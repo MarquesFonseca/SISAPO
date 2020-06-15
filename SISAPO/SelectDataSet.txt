@@ -1,0 +1,5 @@
+﻿SELECT        Codigo, CodigoObjeto, CodigoLdi, NomeCliente, Format(DataLancamento, 'dd/MM/yyyy hh:mm:ss') AS DataLancamento, Format(DataModificacao, 'dd/MM/yyyy hh:mm:ss') AS DataModificacao, Situacao, Atualizado, 
+                         ObjetoEntregue, CaixaPostal
+FROM            TabelaObjetosSROLocal
+WHERE        (Format(DataLancamento, 'yyyy/MM/dd') BETWEEN Format(?, 'yyyy/MM/dd') AND Format(?, 'yyyy/MM/dd'))
+ORDER BY DataLancamento DESC

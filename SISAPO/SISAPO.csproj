@@ -1,0 +1,493 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{789BC96F-9D6F-475C-AACF-3E533009B6FD}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SISAPO</RootNamespace>
+    <AssemblyName>SISAPO</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <PublishUrl>C:\Users\MARQUES\Documents\Visual Studio 2010\Projects\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>SISAPO.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Ico.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>155D6E50908315F31FFAAB4907263059D260ECCC</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>WindowsFormsApplication1_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Base">
+      <HintPath>Dlls\Base.dll</HintPath>
+    </Reference>
+    <Reference Include="FirebirdSql.Data.FirebirdClient">
+      <HintPath>Dlls\FirebirdSql.Data.FirebirdClient.dll</HintPath>
+    </Reference>
+    <Reference Include="FormularioModelo">
+      <HintPath>Dlls\FormularioModelo.dll</HintPath>
+    </Reference>
+    <Reference Include="Ionic.Utils.Zip">
+      <HintPath>Dlls\Ionic.Utils.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Access, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>bin\Microsoft.Office.Interop.Access.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.interop.access.dao, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>bin\Microsoft.Office.interop.access.dao.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>bin\Microsoft.Office.Interop.Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Validation">
+      <HintPath>Dlls\Microsoft.Practices.EnterpriseLibrary.Validation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Vbe.Interop, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>bin\Microsoft.Vbe.Interop.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Mono.Security">
+      <HintPath>Dlls\Mono.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data">
+      <HintPath>Dlls\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Web">
+      <HintPath>Dlls\MySql.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Npgsql">
+      <HintPath>Dlls\Npgsql.dll</HintPath>
+    </Reference>
+    <Reference Include="office, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>bin\office.dll</HintPath>
+    </Reference>
+    <Reference Include="Release">
+      <HintPath>Dlls\Release.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.SqlServerCe, Version=3.5.1.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ClassesDiversas\CriptografiaHelper.cs" />
+    <Compile Include="FormularioAtualizacaoObjetosRequeridosJaEntregues.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormularioAtualizacaoObjetosRequeridosJaEntregues.Designer.cs">
+      <DependentUpon>FormularioAtualizacaoObjetosRequeridosJaEntregues.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormularioAtualizacaoObjetosDestinatarioAusente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormularioAtualizacaoObjetosDestinatarioAusente.Designer.cs">
+      <DependentUpon>FormularioAtualizacaoObjetosDestinatarioAusente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormularioCoordenadasExibicaoMapa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormularioCoordenadasExibicaoMapa.Designer.cs">
+      <DependentUpon>FormularioCoordenadasExibicaoMapa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormularioImpressaoAuxilioGestaoDia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormularioImpressaoAuxilioGestaoDia.Designer.cs">
+      <DependentUpon>FormularioImpressaoAuxilioGestaoDia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormularioAtualizacaoObjetosCompleto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormularioAtualizacaoObjetosCompleto.Designer.cs">
+      <DependentUpon>FormularioAtualizacaoObjetosCompleto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormularioAtualizacaoObjetosSaiuParaEntrega.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormularioAtualizacaoObjetosSaiuParaEntrega.Designer.cs">
+      <DependentUpon>FormularioAtualizacaoObjetosSaiuParaEntrega.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormularioAtualizacaoObjetosPostados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormularioAtualizacaoObjetosPostados.Designer.cs">
+      <DependentUpon>FormularioAtualizacaoObjetosPostados.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataSetConfiguracoes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetConfiguracoes.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSetTabelaObjetosSROLocal.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetTabelaObjetosSROLocal.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="FormularioAlteracaoObjeto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormularioAlteracaoObjeto.Designer.cs">
+      <DependentUpon>FormularioAlteracaoObjeto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormularioHistoricoConsulta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormularioHistoricoConsulta.Designer.cs">
+      <DependentUpon>FormularioHistoricoConsulta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormularioImpressaoEntregaAgruparObjetos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormularioImpressaoEntregaAgruparObjetos.Designer.cs">
+      <DependentUpon>FormularioImpressaoEntregaAgruparObjetos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormularioImpressaoEntregaObjetos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormularioImpressaoEntregaObjetos.Designer.cs">
+      <DependentUpon>FormularioImpressaoEntregaObjetos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormularioImpressaoEntregaObjetosOpcoesImpressao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormularioImpressaoEntregaObjetosOpcoesImpressao.Designer.cs">
+      <DependentUpon>FormularioImpressaoEntregaObjetosOpcoesImpressao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormularioOpcoes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormularioOpcoes.Designer.cs">
+      <DependentUpon>FormularioOpcoes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormularioSobre.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormularioSobre.Designer.cs">
+      <DependentUpon>FormularioSobre.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ArrayList.cs" />
+    <Compile Include="ClassesDiversas\AnexoStream.cs" />
+    <Compile Include="ClassesDiversas\Arquivos.cs" />
+    <Compile Include="ClassesDiversas\ArquivoXML.cs" />
+    <Compile Include="ClassesDiversas\clsSMS.cs" />
+    <Compile Include="ClassesDiversas\Configuracoes.cs" />
+    <Compile Include="ClassesDiversas\Criptografia.cs" />
+    <Compile Include="ClassesDiversas\DAO.cs" />
+    <Compile Include="ClassesDiversas\EMail.cs" />
+    <Compile Include="ClassesDiversas\Enum.cs" />
+    <Compile Include="ClassesDiversas\FormataString.cs" />
+    <Compile Include="ClassesDiversas\IP.cs" />
+    <Compile Include="ClassesDiversas\Liberacao.cs" />
+    <Compile Include="ClassesDiversas\Mensagens.cs" />
+    <Compile Include="ClassesDiversas\Mensagens2.cs" />
+    <Compile Include="ClassesDiversas\Parametros.cs" />
+    <Compile Include="ClassesDiversas\Registro.cs" />
+    <Compile Include="ClassesDiversas\ShortMessage.cs" />
+    <Compile Include="ClassesDiversas\ShortMessageCollection.cs" />
+    <Compile Include="ClassesDiversas\SMS.cs" />
+    <Compile Include="ClassesDiversas\SQLServer.cs" />
+    <Compile Include="ClassesDiversas\TipoAmbiente.cs" />
+    <Compile Include="ClassesDiversas\TipoBanco.cs" />
+    <Compile Include="ClassesDiversas\TipoCampo.cs" />
+    <Compile Include="ClassesDiversas\TipoEnvio.cs" />
+    <Compile Include="ClassesDiversas\Uteis.cs" />
+    <Compile Include="FormularioCadastroObjetos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormularioCadastroObjetos.Designer.cs">
+      <DependentUpon>FormularioCadastroObjetos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormularioAtualizacaoObjetosAguardandoRetirada.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormularioAtualizacaoObjetosAguardandoRetirada.Designer.cs">
+      <DependentUpon>FormularioAtualizacaoObjetosAguardandoRetirada.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormularioPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormularioPrincipal.Designer.cs">
+      <DependentUpon>FormularioPrincipal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormularioConsulta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormularioConsulta.Designer.cs">
+      <DependentUpon>FormularioConsulta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormularioSRORastreamentoUnificado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormularioSRORastreamentoUnificado.Designer.cs">
+      <DependentUpon>FormularioSRORastreamentoUnificado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormularioAuxilioGestaoDia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormularioAuxilioGestaoDia.Designer.cs">
+      <DependentUpon>FormularioAuxilioGestaoDia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormWaiting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormWaiting.designer.cs">
+      <DependentUpon>FormWaiting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormularioAtualizacaoObjetosCompleto.resx">
+      <DependentUpon>FormularioAtualizacaoObjetosCompleto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormularioAtualizacaoObjetosRequeridosJaEntregues.resx">
+      <DependentUpon>FormularioAtualizacaoObjetosRequeridosJaEntregues.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormularioAtualizacaoObjetosDestinatarioAusente.resx">
+      <DependentUpon>FormularioAtualizacaoObjetosDestinatarioAusente.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormularioCoordenadasExibicaoMapa.resx">
+      <DependentUpon>FormularioCoordenadasExibicaoMapa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormularioImpressaoAuxilioGestaoDia.resx">
+      <DependentUpon>FormularioImpressaoAuxilioGestaoDia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormularioAtualizacaoObjetosSaiuParaEntrega.resx">
+      <DependentUpon>FormularioAtualizacaoObjetosSaiuParaEntrega.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormularioAtualizacaoObjetosPostados.resx">
+      <DependentUpon>FormularioAtualizacaoObjetosPostados.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormularioAlteracaoObjeto.resx">
+      <DependentUpon>FormularioAlteracaoObjeto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormularioHistoricoConsulta.resx">
+      <DependentUpon>FormularioHistoricoConsulta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormularioImpressaoEntregaAgruparObjetos.resx">
+      <DependentUpon>FormularioImpressaoEntregaAgruparObjetos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormularioImpressaoEntregaObjetos.resx">
+      <DependentUpon>FormularioImpressaoEntregaObjetos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormularioImpressaoEntregaObjetosOpcoesImpressao.resx">
+      <DependentUpon>FormularioImpressaoEntregaObjetosOpcoesImpressao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormularioOpcoes.resx">
+      <DependentUpon>FormularioOpcoes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormularioSobre.resx">
+      <DependentUpon>FormularioSobre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormularioCadastroObjetos.resx">
+      <DependentUpon>FormularioCadastroObjetos.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormularioAtualizacaoObjetosAguardandoRetirada.resx">
+      <DependentUpon>FormularioAtualizacaoObjetosAguardandoRetirada.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormularioPrincipal.resx">
+      <DependentUpon>FormularioPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormularioConsulta.resx">
+      <DependentUpon>FormularioConsulta.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormularioSRORastreamentoUnificado.resx">
+      <DependentUpon>FormularioSRORastreamentoUnificado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormularioAuxilioGestaoDia.resx">
+      <DependentUpon>FormularioAuxilioGestaoDia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormWaiting.resx">
+      <DependentUpon>FormWaiting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DataSetConfiguracoes.xsc">
+      <DependentUpon>DataSetConfiguracoes.xsd</DependentUpon>
+    </None>
+    <None Include="DataSetConfiguracoes.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetConfiguracoes.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSetConfiguracoes.xss">
+      <DependentUpon>DataSetConfiguracoes.xsd</DependentUpon>
+    </None>
+    <None Include="DataSetTabelaObjetosSROLocal.xsc">
+      <DependentUpon>DataSetTabelaObjetosSROLocal.xsd</DependentUpon>
+    </None>
+    <None Include="DataSetTabelaObjetosSROLocal.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetTabelaObjetosSROLocal.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSetTabelaObjetosSROLocal.xss">
+      <DependentUpon>DataSetTabelaObjetosSROLocal.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.SQL.Server.Compact.3.5">
+      <Visible>False</Visible>
+      <ProductName>SQL Server Compact 3.5 SP2</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Debug\Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="cadastroDataSet_xsd.txt" />
+    <Content Include="DataSetTabelaObjetosSROLocal_SelectTabelaObjetos.txt" />
+    <Content Include="DataSetTabelaObjetosSROLocal_xsd.txt" />
+    <Content Include="FormularioAtualizacaoObjetos_depoisDaTentativaENaoDeuCerto.txt">
+      <SubType>Form</SubType>
+    </Content>
+    <Content Include="GESTAO DO DIA.txt" />
+    <Content Include="Ico.ico" />
+    <Content Include="IcoLimparFiltro.png" />
+    <Content Include="icons8-colar-26.png" />
+    <Content Include="FormularioAtualizacaoObjetos.cs.txt" />
+    <Content Include="FormularioAtualizacaoObjetos_Antes.txt" />
+    <None Include="Resources\impressão-26.png" />
+    <Content Include="Resources\icons8-colar-26.png" />
+    <Content Include="Resources\imp01.gif" />
+    <None Include="Resources\local-map-google.png" />
+    <Content Include="SelectDataSet.txt" />
+    <None Include="Resources\LogoCorreios.jpg" />
+    <None Include="Resources\AtualizarListaObjetos.png" />
+    <None Include="Resources\CadastroObjetos.png" />
+    <None Include="Resources\VisualizarListaObjetos.png" />
+    <None Include="Resources\if_BT_printer_905556.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

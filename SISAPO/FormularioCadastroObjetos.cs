@@ -1,0 +1,482 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Text;
+using System.Windows.Forms;
+using System.Configuration;
+using System.IO;
+using SISAPO.ClassesDiversas;
+
+namespace SISAPO
+{
+    public partial class FormularioCadastroObjetos : Form
+    {
+        DataTable listaObjetos = new DataTable();
+        StringBuilder textoColadoAreaTransferencia = new StringBuilder();
+
+        public FormularioCadastroObjetos()
+        {
+            InitializeComponent();
+            splitContainer1.Visible = false;
+            this.backgroundWorker1 = new BackgroundWorker();
+            this.backgroundWorker1.DoWork += new DoWorkEventHandler(bw_DoWork);
+            this.backgroundWorker1.ProgressChanged += new ProgressChangedEventHandler(bw_ProgressChanged);
+            this.backgroundWorker1.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompleted);
+            this.backgroundWorker1.WorkerReportsProgress = true;
+            this.backgroundWorker1.WorkerSupportsCancellation = true;
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            progressBar1.Value = 0;
+            //label2.Text = "Barra de progresso";
+            LblMensagem.Text = "";
+        }
+
+        //        private void button1_Click(object sender, EventArgs e)
+        //        {
+        //            try
+        //            {
+        //                LblMensagem.Text = "";
+        //                DataTable listaObjetos = RetornaListaObjetos(textBox1.Text);
+        //                if (listaObjetos.Rows.Count == 0)
+        //                {
+        //                    Mensagens.Informa("Não foi possível gravar. O campo está vazio."); return;
+        //                }
+        //                textBox1.Enabled = false;
+        //                int contador = 0;
+        //                progressBar1.Value = 0;
+        //                label2.Text = "Barra de progresso";
+        //                foreach (DataRow item in listaObjetos.Rows)
+        //                {
+        //                    string linhaItemCodigoObjeto = item["CodigoObjeto"].ToString();
+        //                    string linhaItemDataLancamento = item["DataLancamento"].ToString();
+        //                    string linhaItemDataModificacao = item["DataModificacao"].ToString();
+        //                    string linhaItemSituacao = item["Situacao"].ToString();
+
+        //                    contador++;
+        //                    progressBar1.Value = (contador * 100) / listaObjetos.Rows.Count;
+        //                    label2.Text = string.Format("Barra de progresso [{0}%]", progressBar1.Value);
+        //                    using (DAO dao = new DAO(TipoBanco.OleDb, strConexao))
+        //                    {
+        //                        if (!dao.TestaConexao())
+        //                        {
+        //                            FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao;
+        //                            return;
+        //                        }
+        //                        DataSet jaCadastrado = dao.RetornaDataSet(string.Format("SELECT DISTINCT CodigoObjeto, NomeCliente FROM TabelaObjetosSROLocal WHERE (CodigoObjeto = '{0}')", linhaItemCodigoObjeto));
+
+        //                        if (jaCadastrado.Tables[0].Rows.Count >= 1)
+        //                        {
+        //                            //existe na base de dados
+        //                            dao.ExecutaSQL(string.Format("UPDATE TabelaObjetosSROLocal SET DataLancamento = @DataLancamento, DataModificacao = @DataModificacao, Situacao = @Situacao, Atualizado = @Atualizado, ObjetoEntregue = @ObjetoEntregue WHERE (CodigoObjeto = @CodigoObjeto)"), new List<Parametros>(){
+        //                                            new Parametros("@DataLancamento", TipoCampo.Text, linhaItemDataLancamento),
+        //                                            new Parametros("@DataModificacao", TipoCampo.Text, linhaItemDataModificacao),
+        //                                            new Parametros("@Situacao", TipoCampo.Text, linhaItemSituacao),
+        //                                            new Parametros("@Atualizado",TipoCampo.Int, jaCadastrado.Tables[0].Rows[0]["NomeCliente"].ToString() == "" ? 0 : 1),
+        //                                            new Parametros("@ObjetoEntregue", TipoCampo.Int, linhaItemSituacao == "" ? 0 : 1),
+        //                                            //new Parametros("@CaixaPostal",TipoCampo.Int, 0),
+        //                                            new Parametros("@CodigoObjeto", TipoCampo.Text, linhaItemCodigoObjeto)});
+        //                        }
+        //                        else
+        //                        {
+        //                            if (jaCadastrado.Tables[0].Rows.Count == 0)
+        //                            {
+        //                                //não existe na base de dados
+        //                                string SqlString = @"INSERT INTO TabelaObjetosSROLocal (CodigoObjeto, CodigoLdi, NomeCliente, DataLancamento, DataModificacao, Situacao, Atualizado, ObjetoEntregue, CaixaPostal) 
+        //                                                                                VALUES (?,?,?,?,?,?,?,?,?)";
+
+        //                                using (System.Data.OleDb.OleDbConnection conn = new System.Data.OleDb.OleDbConnection(strConexao))
+        //                                {
+        //                                    using (System.Data.OleDb.OleDbCommand cmd = new System.Data.OleDb.OleDbCommand(SqlString, conn))
+        //                                    {
+        //                                        cmd.CommandType = CommandType.Text;
+        //                                        cmd.Parameters.AddWithValue("CodigoObjeto", linhaItemCodigoObjeto);
+        //                                        cmd.Parameters.AddWithValue("CodigoLdi", "");
+        //                                        cmd.Parameters.AddWithValue("NomeCliente", "");
+        //                                        cmd.Parameters.AddWithValue("DataLancamento", linhaItemDataLancamento);
+        //                                        cmd.Parameters.AddWithValue("DataModificacao", linhaItemDataModificacao);
+        //                                        cmd.Parameters.AddWithValue("Situacao", linhaItemSituacao);
+        //                                        cmd.Parameters.AddWithValue("Atualizado", false);
+        //                                        cmd.Parameters.AddWithValue("ObjetoEntregue", (linhaItemDataModificacao == "" || linhaItemSituacao == "") ? false : true);
+        //                                        cmd.Parameters.AddWithValue("CaixaPostal", false);
+        //                                        conn.Open();
+        //                                        cmd.ExecuteNonQuery();
+        //                                    }
+        //                                }
+        //                            }
+        //                        }
+        //                    }
+
+        //                }
+        //                Mensagens.Informa("Gravado com sucesso!", MessageBoxIcon.Information, MessageBoxButtons.OK);
+        //                progressBar1.Value = 0;
+        //                label2.Text = "Barra de progresso";
+        //                textBox1.Enabled = true;
+        //                textBox1.Text = "";
+        //                textBox1.Focus();
+
+        //                FormularioPrincipal.RetornaComponentesFormularioPrincipal().BuscaNovoStatusQuantidadeNaoAtualizados();
+        //                if (FormularioPrincipal.RetornaComponentesFormularioPrincipal().RetornaQuantidadeObjetoNaoAtualizado() > 0)
+        //                {
+        //                    DialogResult pergunta = Mensagens.Pergunta("Deseja realmente requerer uma verificação para os objetos já entregues?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+        //                    if (pergunta == System.Windows.Forms.DialogResult.Yes)
+        //                    {
+        //                        FormularioPrincipal.RetornaComponentesFormularioPrincipal().atualizarNovosObjetosToolStripMenuItem_Click(sender, e);
+        //                    }
+        //                }
+        //            }
+        //            catch (Exception ex)
+        //            {
+        //                Mensagens.Erro(ex.Message);
+        //            }
+        //        }
+
+        private DataTable RetornaListaObjetos(string Texto)
+        {
+            DataTable dtbLista = new DataTable();
+            dtbLista.Columns.Add("CodigoObjeto", typeof(string));
+            dtbLista.Columns.Add("DataLancamento", typeof(string));
+            dtbLista.Columns.Add("DataModificacao", typeof(string));
+            dtbLista.Columns.Add("Situacao", typeof(string));
+            try
+            {
+
+                string[] linha = Texto.Split('\n');
+
+                for (int i = 0; i < linha.Length; i++)
+                {
+                    if (linha[i] == "" || linha[i] == "\r") continue;
+                    string[] Parteslinha = linha[i].Split('\t');
+                    string ParteLinhaAgencia = Parteslinha.Length >= 1 ? Parteslinha[0].Trim().ToUpper() : "";
+                    string ParteLinhaCodigoObjeto = Parteslinha.Length >= 2 ? Parteslinha[1].Trim().ToUpper() : "";
+                    string ParteLinhaDataLancamento = Parteslinha.Length >= 3 ? Parteslinha[2].Trim().ToUpper() : "";
+                    string ParteLinhaDataModificacao = Parteslinha.Length >= 4 ? Parteslinha[3].Trim().ToUpper() : "";
+                    string ParteLinhaSituacao = Parteslinha.Length >= 5 ? Parteslinha[4].Replace("\r", "").Trim().ToUpper() : "";
+                    ParteLinhaSituacao = ParteLinhaSituacao == "OBJETO DISTRIBUIDO" ? "Entregue".ToUpper() : ParteLinhaSituacao;
+                    ParteLinhaSituacao = ParteLinhaSituacao == "" ? "Aguardando retirada".ToUpper() : ParteLinhaSituacao;
+                    ParteLinhaSituacao = ParteLinhaSituacao.RemoveAcento_DICIONARIO();
+
+                    if (ParteLinhaCodigoObjeto != "")
+                        dtbLista.Rows.Add(ParteLinhaCodigoObjeto, ParteLinhaDataLancamento, ParteLinhaDataModificacao, ParteLinhaSituacao);
+
+                }
+
+                return dtbLista;
+            }
+            catch (Exception ex)
+            {
+                Mensagens.Erro(ex.Message);
+                return dtbLista;
+            }
+        }
+
+        
+
+        private void btnConsultar_Click(object sender, EventArgs e)
+        {
+            FormularioConsulta lll = new FormularioConsulta();
+            lll.ShowDialog();
+        }
+
+        private void FormularioCadastroObjetos_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+                return;
+            }
+            if (e.KeyCode == Keys.F12)
+            {
+                FormularioPrincipal.RetornaComponentesFormularioPrincipal().visualizarListaDeObjetosToolStripMenuItem_Click(sender, e);
+            }
+            if (e.KeyCode == Keys.F9)
+            {
+                FormularioPrincipal.RetornaComponentesFormularioPrincipal().sRORastreamentoUnificadoToolStripMenuItem_Click(sender, e);
+            }
+        }
+
+        private void BtnBuscarArquivo_Click(object sender, EventArgs e)
+        {
+            #region
+            string curDir = Path.GetDirectoryName(System.AppDomain.CurrentDomain.BaseDirectory.ToString());
+            string nomeArquivo = "itensAtualizacao.txt";
+            string nomeEnderecoArquivo = string.Format(@"{0}\{1}", curDir, nomeArquivo);
+            StringBuilder textoColadoAreaTransferencia = new StringBuilder();
+
+
+            //int size = -1;
+            openFileDialog1.Title = "Selecione um arquivo para importar";
+            openFileDialog1.Filter = "txt files (*.txt)|*.txt";
+            openFileDialog1.FileName = "";
+            openFileDialog1.CheckFileExists = true;
+            openFileDialog1.CheckPathExists = true;
+            openFileDialog1.Multiselect = false;
+            DialogResult result = openFileDialog1.ShowDialog(); // Show the dialog.
+            txtArquivo.Text = openFileDialog1.FileName;
+            if (result == DialogResult.OK) // Test result.
+            {
+                string file = openFileDialog1.FileName;
+
+                try
+                {
+                    //StringBuilder arquivo = new StringBuilder();
+                    textoColadoAreaTransferencia.Append(File.ReadAllText(file).ToString());
+                    //grava texto no arquivo
+                    using (Arquivos arq = new Arquivos())
+                    {
+                        arq.GravarArquivo(nomeEnderecoArquivo, textoColadoAreaTransferencia.ToString());
+                    }
+                    textBox1.Text = textoColadoAreaTransferencia.ToString();
+                    BtnGravar.Focus();
+                }
+                catch (IOException) { }
+            }
+            #endregion
+        }
+
+        private void BtnColarConteudoJaCopiado_Click(object sender, EventArgs e)
+        {
+            textoColadoAreaTransferencia = new StringBuilder();
+
+            string curDir = Path.GetDirectoryName(System.AppDomain.CurrentDomain.BaseDirectory.ToString());
+            string nomeArquivo = "itensAtualizacao.txt";
+            string nomeEnderecoArquivo = string.Format(@"{0}\{1}", curDir, nomeArquivo);
+
+
+            if (Clipboard.GetDataObject().GetDataPresent(DataFormats.Text) ||
+                string.IsNullOrEmpty(Clipboard.GetDataObject().GetDataPresent(DataFormats.Text).ToString()))
+            {
+                textoColadoAreaTransferencia = textoColadoAreaTransferencia.Append(Clipboard.GetDataObject().GetData(DataFormats.Text).ToString());
+
+                //grava texto no arquivo
+                using (Arquivos arq = new Arquivos())
+                {
+                    arq.GravarArquivo(nomeEnderecoArquivo, textoColadoAreaTransferencia.ToString());
+                }
+
+                ////int saida = arq.AbrirArquivo(nomeEnderecoArquivo);
+                //string file = string.Format(@"{0}\{1}", curDir, nomeArquivo);
+
+                try
+                {
+                    progressBar1.Value = 0;
+                    string tempTXT = textoColadoAreaTransferencia.ToString().Replace("\t", " ");
+                    while (tempTXT.IndexOf("  ") >= 0) tempTXT = tempTXT.Replace("  ", " ");
+                    textBox1.Text = tempTXT;
+
+
+                    LblMensagem.Text = "Certifique-se que o conteúdo na caixa de texto é o mesmo desejado!";
+                    label2.Text = "Barra de progresso";
+                    this.BtnGravar.Enabled = true;
+                    BtnGravar.Focus();
+
+                    listaObjetos = RetornaListaObjetos(textoColadoAreaTransferencia.ToString());
+                    label4.Text = string.Format("Lista de objetos - '{0}' objetos na lista.", listaObjetos.Rows.Count);
+                    label1.Text = string.Format("Conteúdo importado", listaObjetos.Rows.Count);
+                    dataGridView1.DataSource = listaObjetos;
+
+                    if (listaObjetos.Rows.Count > 0)
+                        splitContainer1.Visible = true;
+                }
+                catch (IOException) { }
+            }
+            else
+            {
+                //MessageBox.Show("Não há texto na área de transferência.");
+                //abrir a busca do arquivo no computador        
+                //int size = -1;
+                openFileDialog1.Title = "Selecione um arquivo para importar";
+                openFileDialog1.Filter = "txt files (*.txt)|*.txt";
+                openFileDialog1.FileName = "";
+                openFileDialog1.CheckFileExists = true;
+                openFileDialog1.CheckPathExists = true;
+                openFileDialog1.Multiselect = false;
+                DialogResult result = openFileDialog1.ShowDialog(); // Show the dialog.
+                txtArquivo.Text = openFileDialog1.FileName;
+                if (result == DialogResult.OK) // Test result.
+                {
+                    string file = openFileDialog1.FileName;
+
+                    try
+                    {
+                        StringBuilder arquivo = new StringBuilder();
+                        arquivo.Append(File.ReadAllText(file).ToString());
+                        textBox1.Text = arquivo.ToString();
+                        BtnGravar.Focus();
+                    }
+                    catch (IOException) { }
+                }
+            }
+        }
+
+        private void txtArquivo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Enter)
+            {
+                BtnBuscarArquivo_Click(sender, e);
+            }
+        }
+
+        private void BtnGravar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                LblMensagem.Text = "";
+                listaObjetos = RetornaListaObjetos(textoColadoAreaTransferencia.ToString());
+                //dataGridView1.DataSource = listaObjetos;
+                if (listaObjetos.Rows.Count == 0)
+                {
+                    Mensagens.Informa("Não foi possível gravar. O campo está vazio."); return;
+                }
+                textBox1.Enabled = false;
+                //int contador = 0;
+                progressBar1.Value = 0;
+                label2.Text = "Barra de progresso";
+
+                if (!this.backgroundWorker1.IsBusy)
+                {
+                    this.backgroundWorker1.RunWorkerAsync();
+                    this.BtnGravar.Enabled = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Mensagens.Erro(ex.Message);
+            }
+        }
+        string temp = "";
+        private void bw_DoWork(object sender, DoWorkEventArgs e)
+        {
+            int contador = 0;
+            BackgroundWorker worker = (BackgroundWorker)sender;
+            foreach (DataRow item in listaObjetos.Rows)
+            {
+                if (backgroundWorker1.CancellationPending)
+                {
+                    e.Cancel = true;
+                    break;
+                }
+                string linhaItemCodigoObjeto = item["CodigoObjeto"].ToString();
+                string linhaItemDataLancamento = item["DataLancamento"].ToString();
+                string linhaItemDataModificacao = item["DataModificacao"].ToString();
+                string linhaItemSituacao = item["Situacao"].ToString();
+                temp = string.Format("{0}-{1}-{2}-{3}", linhaItemCodigoObjeto, linhaItemDataLancamento, linhaItemDataModificacao, linhaItemSituacao);
+
+                contador++;
+                int progresso = (contador * 100) / listaObjetos.Rows.Count;
+                worker.ReportProgress(progresso);
+                using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
+                {
+                    if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+                    DataSet jaCadastrado = dao.RetornaDataSet(string.Format("SELECT DISTINCT CodigoObjeto, NomeCliente FROM TabelaObjetosSROLocal WHERE (CodigoObjeto = '{0}')", linhaItemCodigoObjeto));
+
+                    if (jaCadastrado.Tables[0].Rows.Count >= 1)
+                    {
+                        //existe na base de dados
+                        dao.ExecutaSQL(string.Format("UPDATE TabelaObjetosSROLocal SET DataLancamento = @DataLancamento, DataModificacao = @DataModificacao, Situacao = @Situacao, Atualizado = @Atualizado, ObjetoEntregue = @ObjetoEntregue WHERE (CodigoObjeto = @CodigoObjeto)"), new List<Parametros>(){
+                                            new Parametros("@DataLancamento", TipoCampo.Text, linhaItemDataLancamento),
+                                            new Parametros("@DataModificacao", TipoCampo.Text, linhaItemDataModificacao),
+                                            new Parametros("@Situacao", TipoCampo.Text, linhaItemSituacao),
+                                            new Parametros("@Atualizado",TipoCampo.Int, jaCadastrado.Tables[0].Rows[0]["NomeCliente"].ToString() == "" ? 0 : 1),
+                                            new Parametros("@ObjetoEntregue", TipoCampo.Int, linhaItemDataModificacao == "" ? 0 : 1),
+                                            //new Parametros("@CaixaPostal",TipoCampo.Int, 0),
+                                            new Parametros("@CodigoObjeto", TipoCampo.Text, linhaItemCodigoObjeto)});
+                    }
+                    else
+                    {
+                        if (jaCadastrado.Tables[0].Rows.Count == 0)
+                        {
+                            //não existe na base de dados
+                            string SqlString = @"INSERT INTO TabelaObjetosSROLocal (CodigoObjeto, CodigoLdi, NomeCliente, DataLancamento, DataModificacao, Situacao, Atualizado, ObjetoEntregue, CaixaPostal) 
+                                                                                VALUES (?,?,?,?,?,?,?,?,?)";
+
+                            using (System.Data.OleDb.OleDbConnection conn = new System.Data.OleDb.OleDbConnection(ClassesDiversas.Configuracoes.strConexao))
+                            {
+                                using (System.Data.OleDb.OleDbCommand cmd = new System.Data.OleDb.OleDbCommand(SqlString, conn))
+                                {
+                                    cmd.CommandType = CommandType.Text;
+                                    cmd.Parameters.AddWithValue("CodigoObjeto", linhaItemCodigoObjeto);
+                                    cmd.Parameters.AddWithValue("CodigoLdi", "");
+                                    cmd.Parameters.AddWithValue("NomeCliente", "");
+                                    cmd.Parameters.AddWithValue("DataLancamento", linhaItemDataLancamento);
+                                    cmd.Parameters.AddWithValue("DataModificacao", linhaItemDataModificacao);
+                                    cmd.Parameters.AddWithValue("Situacao", linhaItemSituacao);
+                                    cmd.Parameters.AddWithValue("Atualizado", false);
+                                    cmd.Parameters.AddWithValue("ObjetoEntregue", (linhaItemDataModificacao == "" ? false : true));
+                                    cmd.Parameters.AddWithValue("CaixaPostal", false);
+                                    conn.Open();
+                                    cmd.ExecuteNonQuery();
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            e.Result = listaObjetos.Rows.Count;
+        }
+
+        private void bw_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            this.label2.Text = string.Format("{0}% completado...[{1}]", e.ProgressPercentage.ToString(), temp);
+            this.progressBar1.Value = e.ProgressPercentage;
+        }
+
+        private void bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            textBox1.Enabled = true;
+            if (e.Cancelled)
+            {
+                Mensagens.Informa("Rotina Cancelada!!", MessageBoxIcon.Hand, MessageBoxButtons.OK);
+            }
+            else
+            {
+                //Mensagens.Informa("Atualização finalizada com sucesso.", MessageBoxIcon.Information, MessageBoxButtons.OK);
+                this.label2.Text = "Total atualizados: " + e.Result.ToString();
+                this.BtnGravar.Enabled = true;
+                textBox1.Enabled = true;
+            }
+
+            FormularioPrincipal.RetornaComponentesFormularioPrincipal().BuscaNovoStatusQuantidadeNaoAtualizados();
+            if (FormularioPrincipal.RetornaComponentesFormularioPrincipal().RetornaQuantidadeObjetoNaoAtualizado() > 0)
+            {
+                DialogResult pergunta = Mensagens.Pergunta("Deseja realmente requerer uma verificação para os objetos já entregues?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (pergunta == System.Windows.Forms.DialogResult.Yes)
+                {
+                    FormularioPrincipal.RetornaComponentesFormularioPrincipal().atualizarNovosObjetosToolStripMenuItem_Click(sender, e);
+                }
+            }
+        }
+
+        private void BtnCancelar_Click(object sender, EventArgs e)
+        {
+            if (this.backgroundWorker1.IsBusy)
+            {
+                backgroundWorker1.CancelAsync();
+            }
+        }
+
+        private void BtnFechar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void FormularioCadastroObjetos_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            foreach (Form item in Application.OpenForms)
+            {
+                if (item.Name == "FormularioConsulta")
+                {
+                    item.WindowState = FormWindowState.Maximized;
+                    item.Activate();
+                    return;
+                }
+            }
+        }
+
+    }
+}

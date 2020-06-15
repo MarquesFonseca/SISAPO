@@ -1,0 +1,656 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+using System.IO;
+using System.Text.RegularExpressions;
+
+namespace SISAPO
+{
+    public partial class FormularioAtualizacaoObjetos : Form
+    {
+        //modelo para preparação do novo modelo.17-06-2019-21-33
+        public bool abortarAtualizacao = false; 
+        private string strConexao = string.Empty;
+        DataSet ObjetosConsultaRastreamento = new DataSet();
+        private static StringBuilder textoConsulta = new StringBuilder();
+        private string CodigoObjetoAtual = string.Empty;
+        public List<string> ListaLinksJavaScript = new List<string>();
+        //private bool UltimoElemento = false;
+        private enum TipoTela { Rastreamento1, ListaObjetos2, DetalhesDeObjetos3, Postado, SaiuParaEntrega, AguargandoRetirada }
+        //private enum TipoSituacao { Postado, Saiu_para_entrega_ao_destinatário, Entregue, Distribuido_ao_remetente, Aguardando_retirada, Disponivel_em_Caixa_Postal }
+        //private TipoSituacao tipoSituacao = TipoSituacao.Postado;
+        private DataSet dadosAgencia = new DataSet();
+
+        private TipoTela tipoTela = TipoTela.Rastreamento1;
+        private bool DetalhesDeObjetos3 = false;
+        private string TelaRastreamento_1_1 = @"C:\Users\MARQUES\Documents\Visual Studio 2010\Projects\SISAPO\SISAPO\bin\Debug\Nova_Rastreamento_Problema\RastreamantoDetalhes-1-1-problema.htm";
+        //private string TelaRastreamento_1_1 = @"C:\Users\MARQUES\Documents\visual studio 2010\Projects\SISAPO\SISAPO\bin\Debug\TelasRastreamento\1-1-TelaRastreamento.htm";
+        private string TelaDetalhesDeObjetos_1_3 = @"C:\Users\MARQUES\Documents\visual studio 2010\Projects\SISAPO\SISAPO\bin\Debug\TelasRastreamento\1-3-TelaDetalhesDeObjetos_defeito.htm";
+        //private string TelaNomeCliente_1_4 = @"C:\Users\MARQUES\Documents\visual studio 2010\Projects\SISAPO\SISAPO\bin\Debug\TelasRastreamento\1-4-TelaNomeCliente.htm";
+        //private string TelaRastreamento_2_1 = @"C:\Users\MARQUES\Documents\visual studio 2010\Projects\SISAPO\SISAPO\bin\Debug\TelasRastreamento\2-1-TelaRastreamento.htm";
+        private string TelaListaDeObjetos_2_2 = @"C:\Users\MARQUES\Documents\visual studio 2010\Projects\SISAPO\SISAPO\bin\Debug\TelasRastreamento\2-2-TelaListaDeObjetos.htm";
+        private string TelaDetalhesDeObjetos_2_3 = @"C:\Users\MARQUES\Documents\visual studio 2010\Projects\SISAPO\SISAPO\bin\Debug\TelasRastreamento\2-3-TelaDetalhesDeObjetos.htm";
+        //private string TelaNomeCliente_2_4 = @"C:\Users\MARQUES\Documents\visual studio 2010\Projects\SISAPO\SISAPO\bin\Debug\TelasRastreamento\2-4-TelaNomeCliente.htm";
+        private string TelaNomeCliente_2_4 = @"C:\Users\MARQUES\Documents\Visual Studio 2010\Projects\SISAPO\SISAPO\bin\Debug\TelasRastreamento\Rastreamento_Unificado_htm.htm";
+
+        private string enderecoSRO = @"http://websro2/rastreamento/sro";
+
+        private List<HtmlElement> listaLinhasMarcadasPostado = new List<HtmlElement>();
+        private List<HtmlElement> listaLinhasMarcadasSaiuParaEntregaAoDestinatario = new List<HtmlElement>();
+        private List<HtmlElement> listaLinhasMarcadasEntregues = new List<HtmlElement>();
+        private List<HtmlElement> listaLinhasMarcadasDistribuidoAoRemetente = new List<HtmlElement>();
+        private List<HtmlElement> listaLinhasMarcadasAguardandoRetirada = new List<HtmlElement>();
+        private List<HtmlElement> listaLinhasMarcadasAguardandoRetiradaAreaSemEntrega = new List<HtmlElement>();
+        private List<HtmlElement> listaLinhasMarcadasDisponivelEmCaixaPostal = new List<HtmlElement>();
+
+        public FormularioAtualizacaoObjetos()
+        {
+            InitializeComponent();
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormularioAtualizacaoObjetos_FormClosing);
+            strConexao = string.Empty;
+            ObjetosConsultaRastreamento = new DataSet();
+            textoConsulta = new StringBuilder();
+            CodigoObjetoAtual = string.Empty;
+            ListaLinksJavaScript = new List<string>();
+            //UltimoElemento = false;
+            tipoTela = TipoTela.Rastreamento1;
+            DetalhesDeObjetos3 = false;
+
+            strConexao = System.Configuration.ConfigurationManager.ConnectionStrings["cadastroConnectionString"].ConnectionString;
+            strConexao = strConexao + ";Jet OLEDB:Database Password=9342456;";
+
+            dadosAgencia = RetornaDadosAgencia();
+
+            if (Configuracoes.TipoAmbiente == TipoAmbiente.Desenvolvimento)
+            {
+                // caminho que define o teste
+                //caminho para tela de consulta atraves de códigos de objetos rastreadores
+                webBrowser1.Url = new Uri(TelaRastreamento_1_1);
+            }
+            if (Configuracoes.TipoAmbiente == TipoAmbiente.Producao)
+            {
+                //caminho para tela de consulta atraves de códigos de objetos rastreadores
+                webBrowser1.Url = new Uri(enderecoSRO);
+            }
+        }
+
+        private DataSet RetornaDadosAgencia()
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                using (DAO dao = new DAO(TipoBanco.OleDb, strConexao))
+                {
+                    ds = dao.RetornaDataSet("SELECT TOP 1 NomeAgenciaLocal, EnderecoAgenciaLocal FROM TabelaConfiguracoesSistema");
+                }
+                return ds;
+            }
+            catch (Exception)
+            {
+                throw new NotImplementedException();
+            }
+
+        }
+
+        private void Form2_Load(object sender, EventArgs e)
+        {
+            if (Configuracoes.TipoAmbiente == TipoAmbiente.Producao)
+            {
+                textBox1.Visible = false;
+                panel1.Visible = false;
+            }
+            //textBox1.Visible = true;
+            //panel1.Visible = true;
+
+            using (DAO dao = new DAO(TipoBanco.OleDb, strConexao))
+            {
+                if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+                ObjetosConsultaRastreamento = dao.RetornaDataSet("SELECT TOP 1 CodigoObjeto, Atualizado FROM TabelaObjetosSROLocal WHERE (Atualizado = @Atualizado)", new Parametros { Nome = "@Atualizado", Tipo = TipoCampo.Int, Valor = 0 });
+
+                if (ObjetosConsultaRastreamento == null || ObjetosConsultaRastreamento.Tables[0].Rows.Count == 0) return;
+                if (ObjetosConsultaRastreamento.Tables[0].Rows.Count > 0)
+                {
+                    foreach (DataRow item in ObjetosConsultaRastreamento.Tables[0].Rows)
+                    {
+                        textoConsulta.AppendLine(item[0].ToString());
+                    }
+
+                    for (int i = 0; i < 5; i++) SendKeys.Send("{TAB}");
+                }
+            }
+        }
+
+        public static FormularioAtualizacaoObjetos RetornaComponentes()
+        {
+            FormularioAtualizacaoObjetos formularioPrincipal;
+            foreach (Form item in Application.OpenForms)
+            {
+                if (item.Name == "FormularioAtualizacaoObjetos")
+                {
+                    formularioPrincipal = (FormularioAtualizacaoObjetos)item;
+                    return (FormularioAtualizacaoObjetos)item;
+                }
+            }
+            return null;
+        }
+
+        private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        {
+            if (webBrowser1.Url.AbsoluteUri == "about:blank")
+            {
+                EscreveTextoTextBox("Url - about:blank - return");
+                return;
+            }
+            if (ObjetosConsultaRastreamento == null)
+            {
+                EscreveTextoTextBox("ObjetosConsultaRastreamento == null -- return");
+                return;
+            }
+            if (ObjetosConsultaRastreamento.Tables[0].Rows.Count == 0)
+            {
+                EscreveTextoTextBox("ObjetoConsultaRastreamento com contagem 0 - return");
+                webBrowser1.Document.GetElementsByTagName("textarea")[0].Focus();
+                return;
+            }
+            //return;
+            try
+            {
+                EscreveTextoTextBox("TipoTela atual = " + tipoTela.ToString());
+                switch (tipoTela)
+                {
+                    #region Acessando TipoTela.Rastreamento1
+                    case TipoTela.Rastreamento1:
+                        #region TipoAmbiente.Producao
+                        if (Configuracoes.TipoAmbiente == TipoAmbiente.Producao)
+                        {
+                            //webBrowser1.Document.InvokeScript("Detalhes", new object[] { "DETALHES", "0", "intra" });
+
+                            if (webBrowser1.Document.GetElementsByTagName("textarea").Count == 0) return;
+                            else
+                            {
+                                webBrowser1.Document.GetElementsByTagName("textarea")[0].InnerText = textoConsulta.ToString();
+                                webBrowser1.Document.GetElementsByTagName("textarea")[0].Focus();
+                                EscreveTextoTextBox("Será processado: [" + ObjetosConsultaRastreamento.Tables[0].Rows.Count.ToString() + "]");
+                                if (ObjetosConsultaRastreamento.Tables[0].Rows.Count == 1)
+                                {
+                                    //para 1 objeto
+                                    tipoTela = TipoTela.DetalhesDeObjetos3;
+                                    EscreveTextoTextBox("Será encaminhado para a tela 'TipoTela.DetalhesDeObjetos3'");
+                                }
+                                if (ObjetosConsultaRastreamento.Tables[0].Rows.Count > 1)
+                                {    //para 2 objetos
+                                    tipoTela = TipoTela.ListaObjetos2;
+                                    EscreveTextoTextBox("Será encaminhado para a tela 'TipoTela.DetalhesDeObjetos2'");
+                                }
+                                SendKeys.Send("{TAB}");
+                                SendKeys.Send("{ENTER}");
+                            }
+                        }
+                        #endregion
+
+                        #region TipoAmbiente.Desenvolvimento
+                        if (Configuracoes.TipoAmbiente == TipoAmbiente.Desenvolvimento)
+                        {
+                            if (ObjetosConsultaRastreamento.Tables[0].Rows.Count == 1)
+                            {
+                                //para 1 objeto
+                                tipoTela = TipoTela.DetalhesDeObjetos3;
+                                webBrowser1.Url = new Uri(TelaDetalhesDeObjetos_1_3);
+                                //webBrowser1.Url = new Uri(TelaRastreamento_1_1);
+                                //webBrowser1.Url = new Uri(@"file:///C:/Users/MARQUES/Documents/Visual%20Studio%202010/Projects/SISAPO/SISAPO/bin/Debug/Nova_Rastreamento_Problema/RastreamantoDetalhes-3-2-problema.htm");
+                                //webBrowser1.Url = new Uri(@"file:///H:/bin/Debug/TelasRastreamento/1-3-TelaDetalhesDeObjetos_defeito2.htm");
+                                webBrowser1.Url = new Uri(@"file:///C:/Users/MARQUES/Documents/Visual%20Studio%202010/Projects/SISAPO/SISAPO/bin/Debug/TelasRastreamento/Rastreamento%2005062019/PM130013941BR_1.htm");
+
+                            }
+                            if (ObjetosConsultaRastreamento.Tables[0].Rows.Count > 1)
+                            {
+                                //para 2 objetos
+                                tipoTela = TipoTela.ListaObjetos2;
+                                webBrowser1.Url = new Uri(TelaListaDeObjetos_2_2);
+                            }
+                        }
+                        #endregion
+                        break;
+                    #endregion
+
+                    #region Acessando ListaObjetos2
+                    case TipoTela.ListaObjetos2:
+                        tipoTela = TipoTela.DetalhesDeObjetos3;
+                        //javascript: DetalhesTodos('DETALHES','-1','intra');
+
+                        if (Configuracoes.TipoAmbiente == TipoAmbiente.Producao)
+                            webBrowser1.Document.InvokeScript("DetalhesTodos", new object[] { "DETALHES", "-1", "intra" });
+                        if (Configuracoes.TipoAmbiente == TipoAmbiente.Desenvolvimento)
+                            webBrowser1.Url = new Uri(TelaDetalhesDeObjetos_2_3);
+
+                        break;
+                    #endregion
+
+                    #region Acessando DetalhesDeObjetos3
+                    case TipoTela.DetalhesDeObjetos3:
+                        //EscreveTextoTextBox("opa parou aqui...");
+                        DetalhesDeObjetos3 = true;
+                        if (ListaLinksJavaScript.Count == 0)
+                            SeparaLinksDosObjetosRastreados();
+
+                        #region Trata Objetos Postados
+                        foreach (HtmlElement item in listaLinhasMarcadasPostado)
+                        {
+                            CodigoObjetoAtual = RetornaCodigoObjetoAtualPeloLink(item, "Linhas Marcadas Postado");
+                            string linkRetornado = RetornaLinkJavaPeloLink(item, "Linhas Marcadas Postado");
+                            //ListaLinksJavaScript.Add(linkRetornado);
+
+                            //CodigoObjetoAtual = linkRetornado.Substring(34, 13);
+                            listaLinhasMarcadasPostado.Remove(item);
+                            tipoTela = TipoTela.Postado;
+                            DetalhesDeObjetos3 = true;
+
+                            #region TipoAmbiente.Desenvolvimento
+                            if (Configuracoes.TipoAmbiente == TipoAmbiente.Desenvolvimento)
+                            {
+                                webBrowser1.Url = new Uri(TelaNomeCliente_2_4);
+                            }
+                            #endregion
+                            #region TipoAmbiente.Producao
+                            if (Configuracoes.TipoAmbiente == TipoAmbiente.Producao)
+                            {
+                                EscreveTextoTextBox("antes de clicar...");
+                                webBrowser1.Document.InvokeScript("DetalhesPesquisa", new object[] { 
+                                linkRetornado.Substring(18,13), /*DETALHESINTRA*/
+                                linkRetornado.Substring(34,13), /*OA899613034BR*/ 
+                                linkRetornado.Substring(50,3), /*LDI*/
+                                linkRetornado.Substring(56,10), /*1094248527*/ 
+                                linkRetornado.Substring(69,1), /*1*/ 
+                                linkRetornado.Substring(73,19), /*31/08/2018 10:34:00*/ 
+                                linkRetornado.Substring(95,5) /*intra*/ });
+                            }
+                            #endregion
+                        }
+                        #endregion
+                        #region Trata Objetos que saíram para entrega ao destinatário
+                        foreach (HtmlElement item in listaLinhasMarcadasSaiuParaEntregaAoDestinatario)
+                        {
+                            CodigoObjetoAtual = RetornaCodigoObjetoAtualPeloLink(item, "Linhas Marcadas Saiu Para Entrega Ao Destinatario");
+                            string linkRetornado = RetornaLinkJavaPeloLink(item, "Linhas Marcadas Saiu Para Entrega Ao Destinatario");
+                            ListaLinksJavaScript.Add(linkRetornado);
+                        }
+                        #endregion
+                        #region Trata Objetos Entregues
+                        foreach (HtmlElement item in listaLinhasMarcadasEntregues)
+                        {
+                            CodigoObjetoAtual = RetornaCodigoObjetoAtualPeloLink(item, "Linhas Marcadas Entregues");
+
+                            using (DAO dao = new DAO(TipoBanco.OleDb, strConexao))
+                            {
+                                if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+                                dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET ObjetoEntregue = @ObjetoEntregue WHERE (CodigoObjeto = @CodigoObjeto)"
+                                            , new List<Parametros>() { 
+						                    new Parametros { Nome = "@ObjetoEntregue", Tipo = TipoCampo.Int, Valor = 1 },
+						                    new Parametros { Nome = "@CodigoObjeto", Tipo = TipoCampo.Text, Valor = CodigoObjetoAtual }});
+                            }
+                        }
+                        #endregion
+                        #region Trata Objetos Distribuídos ao Remetente
+                        foreach (HtmlElement item in listaLinhasMarcadasDistribuidoAoRemetente)
+                        {
+                            CodigoObjetoAtual = RetornaCodigoObjetoAtualPeloLink(item, "Linhas Marcadas Distribuido Ao Remetente");
+                            string SituacaoAtual = "Distribuído ao remetente";
+                            using (DAO dao = new DAO(TipoBanco.OleDb, strConexao))
+                            {
+                                if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+                                dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET Situacao = @Situacao, ObjetoEntregue = @ObjetoEntregue WHERE (CodigoObjeto = @CodigoObjeto)"
+                                         , new List<Parametros>() { 
+                                         new Parametros { Nome = "@Situacao", Tipo = TipoCampo.Text, Valor = SituacaoAtual.Trim().ToUpper() },
+                                         new Parametros { Nome = "@ObjetoEntregue", Tipo = TipoCampo.Int, Valor = 1 },
+                                         new Parametros { Nome = "@CodigoObjeto", Tipo = TipoCampo.Text, Valor = CodigoObjetoAtual }
+                                     });
+                            }
+                        }
+                        #endregion
+                        #region Trata Objetos Aguardando Retirada
+                        foreach (HtmlElement item in listaLinhasMarcadasAguardandoRetirada)
+                        {
+                            CodigoObjetoAtual = RetornaCodigoObjetoAtualPeloLink(item, "Linhas Marcadas Aguardando Retirada");
+                            string linkRetornado = RetornaLinkJavaPeloLink(item, "Linhas Marcadas Aguardando Retirada");
+                            ListaLinksJavaScript.Add(linkRetornado);
+                        }
+                        #endregion
+                        #region Trata Objetos Disponíveis em Caixa Postal
+                        foreach (HtmlElement item in listaLinhasMarcadasDisponivelEmCaixaPostal)
+                        {
+                            CodigoObjetoAtual = RetornaCodigoObjetoAtualPeloLink(item, "Linhas Marcadas Disponivel Em Caixa Postal");
+
+                            using (DAO dao = new DAO(TipoBanco.OleDb, strConexao))
+                            {
+                                if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+                                dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET CaixaPostal = @CaixaPostal WHERE (CodigoObjeto = @CodigoObjeto)"
+                                         , new List<Parametros>() { 
+										 new Parametros { Nome = "@CaixaPostal", Tipo = TipoCampo.Int, Valor = 1 },
+										 new Parametros { Nome = "@CodigoObjeto", Tipo = TipoCampo.Text, Valor = CodigoObjetoAtual }
+									 });
+                            }
+                        }
+                        #endregion
+
+
+                        //clica no item para visualizar nome;
+                        foreach (var item in ListaLinksJavaScript)
+                        {
+                            //item = item.Replace(");");
+                            //DetalhesPesquisa('DETALHESINTRA','OA899613034BR','LDI','1094248527','1','31/08/2018 10:34:00','intra')
+                            //webBrowser1.Document.InvokeScript("DetalhesPesquisa", new object[] { "DETALHESINTRA", "OA899613034BR", "LDI", "1094248527", "1", "31/08/2018 10:34:00", "intra" });
+                            //UltimoElemento = ListaLinksJavaScript.Count == 1 ? true : false;
+                            string PrimeiroListaLinksJavaScript = ListaLinksJavaScript[0];
+                            CodigoObjetoAtual = PrimeiroListaLinksJavaScript.Substring(34, 13);
+                            ListaLinksJavaScript.Remove(ListaLinksJavaScript[0]);
+                            tipoTela = TipoTela.AguargandoRetirada;
+                            DetalhesDeObjetos3 = true;
+                            #region TipoAmbiente.Producao
+                            if (Configuracoes.TipoAmbiente == TipoAmbiente.Producao)
+                            {
+                                EscreveTextoTextBox("antes de clicar...");
+                                webBrowser1.Document.InvokeScript("DetalhesPesquisa", new object[] { 
+                                PrimeiroListaLinksJavaScript.Substring(18,13), /*DETALHESINTRA*/
+                                PrimeiroListaLinksJavaScript.Substring(34,13), /*OA899613034BR*/ 
+                                PrimeiroListaLinksJavaScript.Substring(50,3), /*LDI*/
+                                PrimeiroListaLinksJavaScript.Substring(56,10), /*1094248527*/ 
+                                PrimeiroListaLinksJavaScript.Substring(69,1), /*1*/ 
+                                PrimeiroListaLinksJavaScript.Substring(73,19), /*31/08/2018 10:34:00*/ 
+                                PrimeiroListaLinksJavaScript.Substring(95,5) /*intra*/ });
+                            }
+                            #endregion
+                            #region TipoAmbiente.Desenvolvimento
+                            if (Configuracoes.TipoAmbiente == TipoAmbiente.Desenvolvimento)
+                            {
+                                webBrowser1.Url = new Uri(TelaNomeCliente_2_4);
+                            }
+                            #endregion
+                            break;
+                        }
+                        break;
+                    #endregion
+
+                    #region TipoTela.AguargandoRetirada
+                    case TipoTela.AguargandoRetirada:
+                        EscreveTextoTextBox("Pegando o nome...");
+                        //return;
+
+                        string NomeCliente = string.Empty;
+                        string Ldi = string.Empty;
+
+                        #region Capturando os dados
+                        for (int i = 0; i < webBrowser1.Document.GetElementsByTagName("TR").Count; i++)
+                        {
+                            string teste = webBrowser1.Document.GetElementsByTagName("TR")[i].InnerText;
+                            if (webBrowser1.Document.GetElementsByTagName("TR")[i].InnerText.Contains("LDI:"))
+                            {
+                                Ldi = webBrowser1.Document.GetElementsByTagName("TR")[i].InnerText.Replace("LDI: ", "");
+                                Ldi = Ldi.Substring(0, 12);
+                                EscreveTextoTextBox("Ldi: " + Ldi.ToString());
+                            }
+
+                            if (webBrowser1.Document.GetElementsByTagName("TR")[i].InnerText.Contains("Cliente:"))
+                            {
+                                NomeCliente = webBrowser1.Document.GetElementsByTagName("TR")[i].InnerText.Replace("Cliente: ", "");
+                                EscreveTextoTextBox(NomeCliente.ToString());
+                                //grava no banco de dados
+                                using (DAO dao = new DAO(TipoBanco.OleDb, strConexao))
+                                {
+                                    if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+									dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET NomeCliente = @NomeCliente, CodigoLdi = @CodigoLdi, Atualizado = @Atualizado WHERE CodigoObjeto = @CodigoObjeto ", new List<Parametros>(){ 
+                                            new Parametros("@NomeCliente", TipoCampo.Text, NomeCliente.ToUpper()),
+                                            new Parametros("@CodigoLdi", TipoCampo.Text, Ldi),
+                                            new Parametros("@Atualizado", TipoCampo.Int, true),
+                                            new Parametros("@CodigoObjeto", TipoCampo.Text, CodigoObjetoAtual)});
+                                }
+                                //ListaLinksJavaScript.RemoveAt(0);
+                                break;
+                            }
+                        }
+                        #endregion
+                        if (DetalhesDeObjetos3)
+                        {
+                            if (ListaLinksJavaScript.Count == 0)
+                            {
+                                DetalhesDeObjetos3 = false;
+                                this.Close();
+                            }
+                            if (ListaLinksJavaScript.Count > 0)
+                            {
+                                DetalhesDeObjetos3 = true;
+                                tipoTela = TipoTela.DetalhesDeObjetos3;
+                                if (Configuracoes.TipoAmbiente == TipoAmbiente.Desenvolvimento)
+                                {
+                                    webBrowser1.Url = new Uri(TelaDetalhesDeObjetos_2_3);
+                                }
+                                if (Configuracoes.TipoAmbiente == TipoAmbiente.Producao)
+                                {
+                                    for (int i = 0; i < 7; i++) SendKeys.Send("{TAB}");
+                                    SendKeys.Send("{ENTER}");
+                                    //webBrowser1.GoBack();
+                                }
+                            }
+                        }
+                        break;
+                    #endregion
+                    
+                    #region TipoTela.Postado
+                    case TipoTela.Postado:
+                        EscreveTextoTextBox("Pegando o nome...");
+                        //return;
+
+                        //string NomeCliente = string.Empty;
+                        //string Ldi = string.Empty;
+
+                        #region Capturando os dados
+                        //for (int i = 0; i < webBrowser1.Document.GetElementsByTagName("TR").Count; i++)
+                        //{
+                        //    string teste = webBrowser1.Document.GetElementsByTagName("TR")[i].InnerText;
+                        //    if (webBrowser1.Document.GetElementsByTagName("TR")[i].InnerText.Contains("LDI:"))
+                        //    {
+                        //        Ldi = webBrowser1.Document.GetElementsByTagName("TR")[i].InnerText.Replace("LDI: ", "");
+                        //        Ldi = Ldi.Substring(0, 12);
+                        //        EscreveTextoTextBox("Ldi: " + Ldi.ToString());
+                        //    }
+
+                        //    if (webBrowser1.Document.GetElementsByTagName("TR")[i].InnerText.Contains("Cliente:"))
+                        //    {
+                        //        NomeCliente = webBrowser1.Document.GetElementsByTagName("TR")[i].InnerText.Replace("Cliente: ", "");
+                        //        EscreveTextoTextBox(NomeCliente.ToString());
+                        //        //grava no banco de dados
+                        //        using (DAO dao = new DAO(TipoBanco.OleDb, strConexao))
+                        //        {
+                        //            if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+						//            dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET NomeCliente = @NomeCliente, CodigoLdi = @CodigoLdi, Atualizado = @Atualizado WHERE CodigoObjeto = @CodigoObjeto ", new List<Parametros>(){ 
+                        //                    new Parametros("@NomeCliente", TipoCampo.Text, NomeCliente.ToUpper()),
+                        //                    new Parametros("@CodigoLdi", TipoCampo.Text, Ldi),
+                        //                    new Parametros("@Atualizado", TipoCampo.Int, true),
+                        //                    new Parametros("@CodigoObjeto", TipoCampo.Text, CodigoObjetoAtual)});
+                        //        }
+                        //        //ListaLinksJavaScript.RemoveAt(0);
+                        //        break;
+                        //    }
+                        //}
+                        #endregion
+                        if (DetalhesDeObjetos3)
+                        {
+                            if (listaLinhasMarcadasPostado.Count == 0)
+                            {
+                                DetalhesDeObjetos3 = false;
+                                this.Close();
+                            }
+                            if (ListaLinksJavaScript.Count > 0)
+                            {
+                                DetalhesDeObjetos3 = true;
+                                tipoTela = TipoTela.DetalhesDeObjetos3;
+                                if (Configuracoes.TipoAmbiente == TipoAmbiente.Desenvolvimento)
+                                {
+                                    webBrowser1.Url = new Uri(TelaDetalhesDeObjetos_2_3);
+                                }
+                                if (Configuracoes.TipoAmbiente == TipoAmbiente.Producao)
+                                {
+                                    for (int i = 0; i < 7; i++) SendKeys.Send("{TAB}");
+                                    SendKeys.Send("{ENTER}");
+                                    //webBrowser1.GoBack();
+                                }
+                            }
+                        }
+                        break;
+                    #endregion
+                        
+                    default:
+                        break;
+                }
+
+                return;
+            }
+            catch (Exception ex)
+            {
+                Mensagens.Erro(ex.Message.ToString());
+                throw new Exception();
+            }
+        }
+
+        private StringBuilder textoTextBox = new StringBuilder();
+        private void EscreveTextoTextBox(string mensagem)
+        {
+            textoTextBox.AppendLine(mensagem);
+            textBox1.Text = textoTextBox.ToString();
+            textBox1.ScrollToCaret();
+        }
+
+        private void SeparaLinksDosObjetosRastreados()
+        {
+            #region Separa Tipos de linhas
+            var itensss = webBrowser1.Document.All.Cast<HtmlElement>().AsEnumerable();
+            var linhas = itensss.Cast<HtmlElement>().AsEnumerable().Where(x => x.TagName.ToUpper() == "TR");
+            foreach (HtmlElement item in linhas)
+            {
+                try
+                {
+                    if (string.IsNullOrEmpty(item.InnerText)) continue;
+                    
+                    if (item.InnerText.ToUpper().Contains("Entregue".ToUpper()))
+                    {
+                        listaLinhasMarcadasEntregues.Add(item);
+                        continue;
+                    }
+                    if (item.InnerText.ToUpper().Contains("Distribuído ao remetente".ToUpper()))
+                    {
+                        listaLinhasMarcadasDistribuidoAoRemetente.Add(item);
+                        continue;
+                    }
+                    if (item.InnerText.ToUpper().Contains("Aguardando retirada".ToUpper()))
+                    {
+                        listaLinhasMarcadasAguardandoRetirada.Add(item);
+                        continue;
+                    }
+                    if (item.InnerText.ToUpper().Contains("Aguardando retirada - Área sem entrega".ToUpper()))
+                    {
+                        listaLinhasMarcadasAguardandoRetiradaAreaSemEntrega.Add(item);
+                        continue;
+                    }
+                    if (item.InnerText.ToUpper().Contains("Disponível em Caixa Postal".ToUpper()))
+                    {
+                        listaLinhasMarcadasDisponivelEmCaixaPostal.Add(item);
+                        continue;
+                    }
+                    if (item.InnerText.ToUpper().Contains("Saiu para entrega ao destinatário".ToUpper()))
+                    {
+                        listaLinhasMarcadasSaiuParaEntregaAoDestinatario.Add(item);
+                        continue;
+                    }
+                    if (item.InnerText.ToUpper().Contains("Postado".ToUpper()) || item.InnerText.Contains("Postado após o horário".ToUpper()) || item.InnerText.Contains("Postagem - DH".ToUpper()))
+                    {
+                        listaLinhasMarcadasPostado.Add(item);
+                        continue;
+                    }
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+            #endregion
+        }
+
+        private string RetornaCodigoObjetoAtualPeloLink(HtmlElement link, string qualLinhaEstaBuscando)
+        {
+            try
+            {
+                string CodigoObjetoAtual = "";
+
+                foreach (HtmlElement item in ((System.Windows.Forms.HtmlElement)(link)).GetElementsByTagName("A"))
+                {
+                    var linkatual = ((System.Windows.Forms.HtmlElement)(item)).OuterHtml;
+                    if (Configuracoes.TipoAmbiente == TipoAmbiente.Desenvolvimento)
+                    {
+                        Mensagens.Informa(string.Format("{0} - Pegando o objeto atual: '{1}'", qualLinhaEstaBuscando, linkatual.Substring(57, 14)));
+                        CodigoObjetoAtual = linkatual.Substring(57, 13);
+                    }
+                    if (Configuracoes.TipoAmbiente == TipoAmbiente.Producao)
+                    {
+                        Mensagens.Informa(string.Format("{0} - Pegando o objeto atual: '{1}'", qualLinhaEstaBuscando, linkatual.Substring(55, 14)));
+                        CodigoObjetoAtual = linkatual.Substring(55, 13);
+                    }
+                    break;
+                }
+                return CodigoObjetoAtual;
+            }
+            catch (Exception)
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        private string RetornaLinkJavaPeloLink(HtmlElement link, string qualLinhaEstaBuscando)
+        {
+            try
+            {
+                string linkAtual = "";
+                foreach (var pegalinkAtual2 in ((System.Windows.Forms.HtmlElement)(link)).GetElementsByTagName("A"))
+                {
+                    if (Configuracoes.TipoAmbiente == TipoAmbiente.Desenvolvimento)
+                    {
+                        linkAtual = ((System.Windows.Forms.HtmlElement)(pegalinkAtual2)).OuterHtml.Substring(23, 105);
+                        Mensagens.Informa(string.Format("{0} - Adicionando link Postado na lista: [{1}]", qualLinhaEstaBuscando, linkAtual));
+                    }
+                    if (Configuracoes.TipoAmbiente == TipoAmbiente.Producao)
+                    {
+                        linkAtual = ((System.Windows.Forms.HtmlElement)(pegalinkAtual2)).OuterHtml.Substring(23, 105);
+                        Mensagens.Informa(string.Format("{0} - Adicionando link Postado na lista: [{1}]", qualLinhaEstaBuscando, linkAtual));
+                    }
+                    break;
+                }
+                return linkAtual;
+            }
+            catch (Exception)
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        private void FormularioAtualizacaoObjetos_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+                return;
+            }
+
+        }
+
+        private void FormularioAtualizacaoObjetos_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (Mensagens.Pergunta("Deseja abortar a atualização de todos os objetos?") == System.Windows.Forms.DialogResult.Yes)
+            {
+                abortarAtualizacao = true;
+            }
+        }
+    }
+}

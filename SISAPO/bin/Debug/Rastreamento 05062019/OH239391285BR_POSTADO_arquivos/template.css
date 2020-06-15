@@ -1,0 +1,67 @@
+
+TD.clsMenu
+{
+  color: #FFFFFF;
+  font-weight: bold;
+}
+
+BODY {
+  margin-top: 0;
+  margin-left: 0;
+  margin-right: 0;
+  color: #003399;
+  font-size: 11px;
+  font-family: arial;
+  background-color: #FFFFFF;
+}
+
+TD {
+  color: #003399;
+  font-size: 11px;
+  font-family: arial;
+}
+A {
+  color: 003366;
+  font-size: 11px;
+  font-family: arial;
+  text-decoration : none;
+}
+A:Visited {
+  font-size: 11px;
+  font-family: arial;
+}
+A:Hover {
+  font-size: 11px;
+  font-family: arial;
+  text-decoration : undeline;
+}
+A.clsMenu
+{
+  color: #FFFFFF;
+  font-weight: bold;
+}
+
+SELECT {
+  color: #003366;
+  font-size: 11px;
+  font-weight: bold;
+  font-family: arial;
+  background-color: #EEEEEE;
+}
+
+INPUT {
+  color: #003366;
+  font-size: 11px;
+  font-weight: bold;
+  font-family: arial;
+  background-color: #EEEEEE;
+}
+
+TEXTAREA {
+  color: #003366;
+  font-size: 11px;
+  font-weight: bold;
+  font-family: arial;
+  background-color: #EEEEEE;
+}
+

@@ -1,0 +1,428 @@
+
+
+<head>
+<link rel="stylesheet"
+	href="/rastreamento/script/template.css">
+<title>Rastreamento Unificado</title>
+</head>
+
+<SCRIPT LANGUAGE="JavaScript">
+	function Comprovante(opcao, codItem, codOperacao, codRegistro,
+			tipoRegistro, dataCriacao, portal) {
+		Rodape.opcao.value = opcao;
+		Rodape.codItem.value = codItem;
+		Rodape.codOperacao.value = codOperacao;
+		Rodape.codRegistro.value = codRegistro;
+		Rodape.tipoRegistro.value = tipoRegistro;
+		Rodape.dataCriacao.value = dataCriacao;
+		Rodape.portal.value = portal;
+		Rodape.submit();
+	}
+
+	function Inicio(opcao, idioma, ambiente, portal) {
+		Rodape.opcao.value = opcao;
+		Rodape.idioma.value = idioma;
+		Rodape.ambiente.value = ambiente;
+		Rodape.portal.value = portal;
+		Rodape.submit();
+	}
+
+	function Voltar(opcao, pos, portal) {
+		Rodape.opcao.value = opcao;
+		Rodape.pos.value = pos;
+		Rodape.portal.value = portal;
+		Rodape.submit();
+	}
+
+	function Pesquisa(opcao, recipiente, portal, dtCriacao) {
+		Recipiente.opcao.value = opcao;
+		Recipiente.recipiente.value = recipiente;
+		Recipiente.portal.value = portal;
+		Recipiente.dataCriacao.value = dtCriacao;
+		Recipiente.submit();
+	}
+</SCRIPT>
+
+
+
+
+
+<head>
+	<link rel="stylesheet" href="/rastreamento/script/template.css">
+	<title>Rastreamento Unificado  </title>
+</head>
+
+<SCRIPT LANGUAGE="JavaScript">
+  function Idioma(opcao, idioma, ambiente, portal) {
+    Cabecalho.opcao.value = opcao;
+    Cabecalho.idioma.value = idioma;
+    Cabecalho.ambiente.value = ambiente;
+    Cabecalho.portal.value = portal;
+    Cabecalho.submit();
+  }
+</SCRIPT>
+
+
+
+
+
+<Form Action="/rastreamento/sro" Name="Cabecalho" Method="get">
+
+<Table Align='Center' BgColor="#FFFFCC" Border="0" Width="780" Height="60" BackGround="/rastreamento/imagens/figuraCabecalho.jpg" CellSpacing="0" CellPadding="0">
+   <TR><TD>&nbsp;</TD></TR>
+   <TR><TD Align='Right'><font face='arial narrow' size='5' color='navy'><B>SRO - Rastreamento Unificado</B></font></TD></TR>
+   <TR><TD Align='Right'><B>Ambiente:&nbsp;Produção</B></TD></TR>
+   <TR><TD Align='Right'><B>Versão:&nbsp;1.5.0</B></TD></TR>
+</Table>
+
+<input type="hidden" name="opcao">
+<input type="hidden" name="idioma">
+<input type="hidden" name="ambiente">
+<input type="hidden" name="portal">
+
+<Table Align='Center' Width="780" Height='5' Bgcolor='#2455A0' CellSpacing="0" CellPadding="0">
+   <TR>
+     <TD Align='Left'>&nbsp;
+	<A hRef="javascript: Idioma('INICIO','001','INTRA','intra');" Name="Idioma"><Font Color='White'><B>Português</B></Font></A>
+	<Font Color='White'>&nbsp;|&nbsp;</Font>
+	<A hRef="javascript: Idioma('INICIO','002','INTRA','intra');" Name="Idioma"><Font Color='White'><B>English</B></Font></A>
+    </TD>
+    <TD Align='Right'><A hRef='http://www.correios.com.br/sobre-correios/fale-com-os-correios' Target='_blank'><font color="white"><B>Fale com os Correios&nbsp;</B></font></A></TD></TR>
+  </TR>
+</Table>
+
+</Form>
+
+
+
+
+
+
+
+
+
+
+
+<form Action="/rastreamento/sro" Name="Recipiente" Method="Post">
+
+	<input Type="Hidden" name="opcao"> <input Type="Hidden"
+		name="recipiente"> <input TYPE="Hidden" name="portal">
+	<input type="hidden" name="dataCriacao">
+
+
+	<Table Width="550" Align="Center" Border="0">
+		<tr>
+			<td Colspan='2' Align='Center'>
+				<H3>ATENÇÃO! Informações desta página são exclusivamente de uso interno.</H3>
+
+			</td>
+		</tr>
+
+		<TR>
+			<TD Colspan="2" Align="Left"
+				Bgcolor='#2455A0'><Font
+				Size="2" Color="white"><B> OG075355081BR - Lan&ccedil;amento para Distribui&ccedil;&atilde;o Interna (LDI)
+
+				</B></Font></TD>
+		</TR>
+
+		
+
+		
+
+		
+
+		<TR>
+			<TD Width='120' Align="Right" Bgcolor=#F3F3F3><B> Usu&aacute;rio / Esta&ccedil;&atilde;o:
+
+			</B></TD>
+
+			
+
+
+
+
+			<TD Width='430' Align="Left" Bgcolor=#F3F3F3>
+				83454160 /  102
+
+			</TD>
+			
+		</TR>
+
+		
+
+		<TR>
+			<TD Width='120' Align="Right" Bgcolor=#F3F3F3><B> Transmitido por:
+
+			</B></TD>
+
+			
+
+
+
+
+			<TD Width='430' Align="Left" Bgcolor=#F3F3F3>
+				77022971 / AC VIA PALMAS BRASIL
+
+			</TD>
+			
+		</TR>
+
+		
+
+		<TR>
+			<TD Width='120' Align="Right" Bgcolor=#F3F3F3><B> Unidade:
+
+			</B></TD>
+
+			
+
+
+
+
+			<TD Width='430' Align="Left" Bgcolor=#F3F3F3>
+				77022971 / AC VIA PALMAS BRASIL
+
+			</TD>
+			
+		</TR>
+
+		
+
+		<TR>
+			<TD Width='120' Align="Right" Bgcolor=#F3F3F3><B> Munic&iacute;pio:
+
+			</B></TD>
+
+			
+
+
+
+
+			<TD Width='430' Align="Left" Bgcolor=#F3F3F3>
+				Palmas / TO
+
+			</TD>
+			
+		</TR>
+
+		
+
+		<TR>
+			<TD Width='120' Align="Right" Bgcolor=#F3F3F3><B> Criado em:
+
+			</B></TD>
+
+			
+
+
+
+
+			<TD Width='430' Align="Left" Bgcolor=#F3F3F3>
+				19/10/2018 11:20:05
+
+			</TD>
+			
+		</TR>
+
+		
+
+		<TR>
+			<TD Width='120' Align="Right" Bgcolor=#F3F3F3><B> Gravado em:
+
+			</B></TD>
+
+			
+
+
+
+
+			<TD Width='430' Align="Left" Bgcolor=#F3F3F3>
+				19/10/2018 11:20:41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<B>Tempo</B>: 00A00D00H00M36S
+
+			</TD>
+			
+		</TR>
+
+		
+
+		<TR>
+			<TD Width='120' Align="Right" Bgcolor=#F3F3F3><B> LDI:
+
+			</B></TD>
+
+			
+			<TD Width='430' Align="Left" Bgcolor=#F3F3F3><a
+				href="/rastreamento/sro?opcao=LDI&codLdi=1726570431&codUnidade=77022971 / AC VIA PALMAS BRASIL&codOpRecipiente=LDI&dataCriacaoRecipiente=19/10/2018 11:20:05&portal=intra"><B>
+						102000002384 - ID: 1726570431
+
+				</B></a></TD>
+
+			
+		</TR>
+
+		
+
+		<TR>
+			<TD Width='120' Align="Right" Bgcolor=#F3F3F3><B> Coment&aacute;rio:
+
+			</B></TD>
+
+			
+
+
+
+
+			<TD Width='430' Align="Left" Bgcolor=#F3F3F3>
+				 
+
+			</TD>
+			
+		</TR>
+
+		
+
+		<TR>
+			<TD Width='120' Align="Right" Bgcolor=#F3F3F3><B> Cliente:
+
+			</B></TD>
+
+			
+
+
+
+
+			<TD Width='430' Align="Left" Bgcolor=#F3F3F3>
+				EXPRESSO ARAUJO/ REMETENTE                                              
+
+			</TD>
+			
+		</TR>
+
+		
+
+		<TR>
+			<TD Width='120' Align="Right" Bgcolor=#F3F3F3><B> Endere&ccedil;o:
+
+			</B></TD>
+
+			
+
+
+
+
+			<TD Width='430' Align="Left" Bgcolor=#F3F3F3>
+				  
+
+			</TD>
+			
+		</TR>
+
+		
+
+		<TR>
+			<TD Width='120' Align="Right" Bgcolor=#F3F3F3><B> Bairro:
+
+			</B></TD>
+
+			
+
+
+
+
+			<TD Width='430' Align="Left" Bgcolor=#F3F3F3>
+				 
+
+			</TD>
+			
+		</TR>
+
+		
+
+		<TR>
+			<TD Width='120' Align="Right" Bgcolor=#F3F3F3><B> Localidade
+
+			</B></TD>
+
+			
+
+
+
+
+			<TD Width='430' Align="Left" Bgcolor=#F3F3F3>
+				 -  / 
+
+			</TD>
+			
+		</TR>
+
+		
+
+		
+
+
+		
+
+
+	</Table>
+
+</form>
+
+
+
+
+
+<Form Action="/rastreamento/sro" Name="Rodape" Method="Post">
+
+	<input type="hidden" name="pos"> <input type="hidden"
+		name="opcao" value="COMPROVANTE"> <input type="hidden"
+		name="idioma" value="001"> <input
+		type="hidden" name="ambiente"
+		value="INTRA"> <input
+		type="hidden" name="codItem"> <input type="hidden"
+		name="codOperacao"> <input type="hidden" name="codRegistro">
+	<input type="hidden" name="tipoRegistro"> <input type="hidden"
+		name="dataCriacao"> <input type="hidden" name="portal">
+
+
+	
+
+	<Table Align="Center" Width="300" Border='0'>
+		<TR>
+			<TD Colspan='3'>&nbsp;</TD>
+		</TR>
+		<TR>
+			<TD Width='100' Align="Center"><A
+				hRef="javascript: window.print();" Name="Imprimir"><IMG
+					SRC="/rastreamento/imagens/imp01.gif" Width=19
+					Height=16 Alt="" Border="0"></A></TD>
+			<TD Width='100' Align="Center"><A
+				hRef="javascript: Inicio('INICIO','001','INTRA','intra');"
+				Name="Inicio"><IMG
+					SRC="/rastreamento/imagens/nov01.gif" Alt=""
+					Border="0"></A></TD>
+			<TD Width='100' Align="Center"><A
+				hRef="javascript: window.history.back();" Name="Voltar"><IMG
+					SRC="/rastreamento/imagens/volta01.gif" Width=25
+					Height=18 Alt="" Border="0"></A></TD>
+		</TR>
+		<TR>
+			<TD Align="Center"><A hRef="javascript: window.print();"
+				Name="Imprimir"> Imprimir
+
+			</A></TD>
+			<TD Align="Center"><A
+				hRef="javascript: Inicio('INICIO','001','INTRA','intra');"
+				Name="Inicio"> Nova<BR>Consulta
+
+			</A></TD>
+			<TD Align="Center"><A hRef="javascript: window.history.back();">
+					Voltar
+
+			</A></TD>
+		</TR>
+	</Table>
+
+	
+
+</Form>
