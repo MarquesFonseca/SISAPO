@@ -44,3 +44,6 @@ C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\bin\
 C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\bin\Debug\SISAPO.application
 C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\bin\Debug\SISAPO.exe
 C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\bin\Debug\SISAPO.pdb
+C:\Projetos\SISAPO\SISAPO\bin\Debug\SISAPO.exe.config
+C:\Projetos\SISAPO\SISAPO\obj\x86\Debug\SISAPO.exe
+C:\Projetos\SISAPO\SISAPO\obj\x86\Debug\SISAPO.pdb
