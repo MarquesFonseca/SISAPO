@@ -81,6 +81,7 @@ namespace SISAPO
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.timerAtualizacaoNovosRegistros = new System.Windows.Forms.Timer(this.components);
+            this.atualizarNovosObjetosDestinatarioAusenteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -115,6 +116,7 @@ namespace SISAPO
             this.atualizarNovosObjetosCompletoToolStripMenuItem,
             this.atualizarNovosObjetosPostadosToolStripMenuItem,
             this.atualizarNovosObjetosSaiuParaEntregaToolStripMenuItem,
+            this.atualizarNovosObjetosDestinatarioAusenteToolStripMenuItem,
             this.atualizaNovosObjetosAguardandoRetiradaToolStripMenuItem,
             this.formularioAtualizacaoObjetosRequeridosJaEntreguesToolStripMenuItem,
             this.atualizarNovosObjetosToolStripMenuItem,
@@ -197,7 +199,6 @@ namespace SISAPO
             this.atualizarNovosObjetosPostadosToolStripMenuItem.Name = "atualizarNovosObjetosPostadosToolStripMenuItem";
             this.atualizarNovosObjetosPostadosToolStripMenuItem.Size = new System.Drawing.Size(459, 22);
             this.atualizarNovosObjetosPostadosToolStripMenuItem.Text = "1 - Atualizar Novo(s) Objetos Postados";
-            this.atualizarNovosObjetosPostadosToolStripMenuItem.Visible = false;
             this.atualizarNovosObjetosPostadosToolStripMenuItem.Click += new System.EventHandler(this.atualizarNovosObjetosPostadosToolStripMenuItem_Click);
             // 
             // atualizarNovosObjetosSaiuParaEntregaToolStripMenuItem
@@ -206,7 +207,6 @@ namespace SISAPO
             this.atualizarNovosObjetosSaiuParaEntregaToolStripMenuItem.Name = "atualizarNovosObjetosSaiuParaEntregaToolStripMenuItem";
             this.atualizarNovosObjetosSaiuParaEntregaToolStripMenuItem.Size = new System.Drawing.Size(459, 22);
             this.atualizarNovosObjetosSaiuParaEntregaToolStripMenuItem.Text = "2 - Atualizar Novo(s) Objetos Saiu para Entrega";
-            this.atualizarNovosObjetosSaiuParaEntregaToolStripMenuItem.Visible = false;
             this.atualizarNovosObjetosSaiuParaEntregaToolStripMenuItem.Click += new System.EventHandler(this.atualizarNovosObjetosSaiuParaEntregaToolStripMenuItem_Click);
             // 
             // atualizaNovosObjetosAguardandoRetiradaToolStripMenuItem
@@ -214,8 +214,7 @@ namespace SISAPO
             this.atualizaNovosObjetosAguardandoRetiradaToolStripMenuItem.Image = global::SISAPO.Properties.Resources.AtualizarListaObjetos;
             this.atualizaNovosObjetosAguardandoRetiradaToolStripMenuItem.Name = "atualizaNovosObjetosAguardandoRetiradaToolStripMenuItem";
             this.atualizaNovosObjetosAguardandoRetiradaToolStripMenuItem.Size = new System.Drawing.Size(459, 22);
-            this.atualizaNovosObjetosAguardandoRetiradaToolStripMenuItem.Text = "3 - Atualiza Novo(s) Objetos Aguardando Retirada";
-            this.atualizaNovosObjetosAguardandoRetiradaToolStripMenuItem.Visible = false;
+            this.atualizaNovosObjetosAguardandoRetiradaToolStripMenuItem.Text = "4 - Atualiza Novo(s) Objetos Aguardando Retirada";
             this.atualizaNovosObjetosAguardandoRetiradaToolStripMenuItem.Click += new System.EventHandler(this.atualizaNovosObjetosAguardandoRetiradaToolStripMenuItem_Click);
             // 
             // formularioAtualizacaoObjetosRequeridosJaEntreguesToolStripMenuItem
@@ -223,7 +222,7 @@ namespace SISAPO
             this.formularioAtualizacaoObjetosRequeridosJaEntreguesToolStripMenuItem.Image = global::SISAPO.Properties.Resources.AtualizarListaObjetos;
             this.formularioAtualizacaoObjetosRequeridosJaEntreguesToolStripMenuItem.Name = "formularioAtualizacaoObjetosRequeridosJaEntreguesToolStripMenuItem";
             this.formularioAtualizacaoObjetosRequeridosJaEntreguesToolStripMenuItem.Size = new System.Drawing.Size(459, 22);
-            this.formularioAtualizacaoObjetosRequeridosJaEntreguesToolStripMenuItem.Text = "4 - Formulário verificação de Objetos ainda não Entregues";
+            this.formularioAtualizacaoObjetosRequeridosJaEntreguesToolStripMenuItem.Text = "5 - Formulário verificação de Objetos ainda não Entregues";
             this.formularioAtualizacaoObjetosRequeridosJaEntreguesToolStripMenuItem.Visible = false;
             this.formularioAtualizacaoObjetosRequeridosJaEntreguesToolStripMenuItem.Click += new System.EventHandler(this.formularioAtualizacaoObjetosRequeridosJaEntreguesToolStripMenuItem_Click);
             // 
@@ -503,6 +502,13 @@ namespace SISAPO
             // 
             this.timerAtualizacaoNovosRegistros.Tick += new System.EventHandler(this.timerAtualizacaoNovosRegistros_Tick);
             // 
+            // atualizarNovosObjetosDestinatarioAusenteToolStripMenuItem
+            // 
+            this.atualizarNovosObjetosDestinatarioAusenteToolStripMenuItem.Name = "atualizarNovosObjetosDestinatarioAusenteToolStripMenuItem";
+            this.atualizarNovosObjetosDestinatarioAusenteToolStripMenuItem.Size = new System.Drawing.Size(459, 22);
+            this.atualizarNovosObjetosDestinatarioAusenteToolStripMenuItem.Text = "3 - Atualizar Novo(s) Objetos Destinatario Ausente";
+            this.atualizarNovosObjetosDestinatarioAusenteToolStripMenuItem.Click += new System.EventHandler(this.atualizarNovosObjetosDestinatarioAusenteToolStripMenuItem_Click);
+            // 
             // FormularioPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -584,6 +590,7 @@ namespace SISAPO
         private System.Windows.Forms.ToolStripMenuItem atualizaNovosObjetosAguardandoRetiradaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem removerLinhasSelecionadasToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem atualizarNovosObjetosDestinatarioAusenteToolStripMenuItem;
     }
 }
 

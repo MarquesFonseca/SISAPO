@@ -370,6 +370,36 @@ namespace SISAPO
             }
         }
 
+        private void atualizarNovosObjetosDestinatarioAusenteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (DAO dao = new DAO(TipoBanco.OleDb, Configuracoes.strConexao))
+            {
+                if (!dao.TestaConexao()) { toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+
+                DataSet ObjetosConsultaRastreamento = dao.RetornaDataSet("SELECT DISTINCT CodigoObjeto FROM TabelaObjetosSROLocal WHERE (Atualizado = @Atualizado)", new List<Parametros>() { new Parametros { Nome = "@Atualizado", Tipo = TipoCampo.Int, Valor = 0 } });
+                if (ObjetosConsultaRastreamento == null || ObjetosConsultaRastreamento.Tables[0].Rows.Count == 0) return;
+
+                bool abortarAtualizacao = false;
+                foreach (DataRow row in ObjetosConsultaRastreamento.Tables[0].Rows)
+                {
+                    BuscaNovoStatusQuantidadeNaoAtualizados();
+
+                    //string codigoObjeto = dao.RetornaDataSet("SELECT TOP 1 CodigoObjeto FROM TabelaObjetosSROLocal WHERE (Atualizado = @Atualizado)", new List<Parametros>() { new Parametros { Nome = "@Atualizado", Tipo = TipoCampo.Int, Valor = 0 } }).Tables[0].Rows[0]["CodigoObjeto"].ToString();
+                    string codigoObjeto = row["CodigoObjeto"].ToString();
+
+                    FormularioAtualizacaoObjetosDestinatarioAusente formularioAtualizacaoObjetosDestinatarioAusente = new FormularioAtualizacaoObjetosDestinatarioAusente(codigoObjeto);
+                    formularioAtualizacaoObjetosDestinatarioAusente.WindowState = FormWindowState.Normal;
+                    formularioAtualizacaoObjetosDestinatarioAusente.ShowDialog();
+                    abortarAtualizacao = formularioAtualizacaoObjetosDestinatarioAusente.abortarAtualizacao;
+                    if (abortarAtualizacao) break;
+
+                    BuscaNovoStatusQuantidadeNaoAtualizados();
+                }
+                if (Application.OpenForms["FormularioConsulta"] != null)
+                    FormularioConsulta.RetornaComponentesFormularioConsulta().ConsultaTodosNaoEntreguesOrdenadoNome();
+            }
+        }
+
         public void atualizarNovosObjetosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             using (DAO dao = new DAO(TipoBanco.OleDb, Configuracoes.strConexao))
@@ -734,6 +764,7 @@ namespace SISAPO
                 }
             }
         }
+
         
     }
 }
