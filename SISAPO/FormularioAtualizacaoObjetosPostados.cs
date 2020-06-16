@@ -171,7 +171,8 @@ namespace SISAPO
 
                     #region Acessando DetalhesDeObjetos3
                     case TipoTela.DetalhesDeObjetos3:
-                        //EscreveTextoTextBox("opa parou aqui...");
+                        Mensagens.InformaDesenvolvedor("TipoTela.DetalhesDeObjetos3");
+
                         DetalhesDeObjetos3 = true;
                         if (ListaLinksJavaScript.Count == 0)
                             SeparaLinksDosObjetosRastreados();
@@ -192,7 +193,7 @@ namespace SISAPO
                             {
                                 EscreveTextoTextBox("antes de clicar...");
                                 Mensagens.InformaDesenvolvedor("link para clicar...: " + PrimeiroListaLinksJavaScript);
-                                webBrowser1.Document.InvokeScript("DetalhesPesquisa", new object[] { 
+                                webBrowser1.Document.InvokeScript("DetalhesPesquisa", new object[] {
                                 PrimeiroListaLinksJavaScript.Split('\'')[1], /*DETALHESINTRA*/
                                 PrimeiroListaLinksJavaScript.Split('\'')[3], /*OA899613034BR*/ 
                                 PrimeiroListaLinksJavaScript.Split('\'')[5], /*LDI*/
@@ -314,17 +315,17 @@ namespace SISAPO
                                 {
                                     //grava o nomecliente
                                     Mensagens.InformaDesenvolvedor(string.Format("Gravando no banco detalhes objeto postado"));
-                                    dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET NomeCliente = @NomeCliente, UnidadePostagem = @UnidadePostagem, MunicipioPostagem = @MunicipioPostagem, CriacaoPostagem = @CriacaoPostagem, CepDestinoPostagem = @CepDestinoPostagem, ARPostagem = @ARPostagem, MPPostagem = @MPPostagem, DataMaxPrevistaEntregaPostagem = @DataMaxPrevistaEntregaPostagem WHERE CodigoObjeto = @CodigoObjeto ", new List<Parametros>(){ 
-															new Parametros("@NomeCliente", TipoCampo.Text, NomeClientePostagem.ToUpper().RemoveAcentos()),
-															new Parametros("@UnidadePostagem", TipoCampo.Text, UnidadePostagem),
-															new Parametros("@MunicipioPostagem", TipoCampo.Text, MunicipioPostagem),
-															new Parametros("@CriacaoPostagem", TipoCampo.Text, CriacaoPostagem),
-															new Parametros("@CepDestinoPostagem", TipoCampo.Text, CepDestinoPostagem),
-															new Parametros("@ARPostagem", TipoCampo.Text, ARPostagem),
-															new Parametros("@MPPostagem", TipoCampo.Text, MPPostagem),
-															new Parametros("@DataMaxPrevistaEntregaPostagem", TipoCampo.Text, DataMaxPrevistaEntregaPostagem),
-															new Parametros("@CodigoObjeto", TipoCampo.Text, CodigoObjetoAtual)
-											});
+                                    dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET NomeCliente = @NomeCliente, UnidadePostagem = @UnidadePostagem, MunicipioPostagem = @MunicipioPostagem, CriacaoPostagem = @CriacaoPostagem, CepDestinoPostagem = @CepDestinoPostagem, ARPostagem = @ARPostagem, MPPostagem = @MPPostagem, DataMaxPrevistaEntregaPostagem = @DataMaxPrevistaEntregaPostagem WHERE CodigoObjeto = @CodigoObjeto ", new List<Parametros>(){
+                                                            new Parametros("@NomeCliente", TipoCampo.Text, NomeClientePostagem.ToUpper().RemoveAcentos()),
+                                                            new Parametros("@UnidadePostagem", TipoCampo.Text, UnidadePostagem),
+                                                            new Parametros("@MunicipioPostagem", TipoCampo.Text, MunicipioPostagem),
+                                                            new Parametros("@CriacaoPostagem", TipoCampo.Text, CriacaoPostagem),
+                                                            new Parametros("@CepDestinoPostagem", TipoCampo.Text, CepDestinoPostagem),
+                                                            new Parametros("@ARPostagem", TipoCampo.Text, ARPostagem),
+                                                            new Parametros("@MPPostagem", TipoCampo.Text, MPPostagem),
+                                                            new Parametros("@DataMaxPrevistaEntregaPostagem", TipoCampo.Text, DataMaxPrevistaEntregaPostagem),
+                                                            new Parametros("@CodigoObjeto", TipoCampo.Text, CodigoObjetoAtual)
+                                            });
                                 }
                                 if (ds.Tables[0].Rows[0]["NomeCliente"].ToString() != "")
                                 {
@@ -333,14 +334,14 @@ namespace SISAPO
                                     dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET UnidadePostagem = @UnidadePostagem, MunicipioPostagem = @MunicipioPostagem, CriacaoPostagem = @CriacaoPostagem, CepDestinoPostagem = @CepDestinoPostagem, ARPostagem = @ARPostagem, MPPostagem = @MPPostagem, DataMaxPrevistaEntregaPostagem = @DataMaxPrevistaEntregaPostagem WHERE CodigoObjeto = @CodigoObjeto ", new List<Parametros>(){ 
 															//new Parametros("@NomeCliente", TipoCampo.Text, NomeClientePostagem.ToUpper()),
 															new Parametros("@UnidadePostagem", TipoCampo.Text, UnidadePostagem),
-															new Parametros("@MunicipioPostagem", TipoCampo.Text, MunicipioPostagem),
-															new Parametros("@CriacaoPostagem", TipoCampo.Text, CriacaoPostagem),
-															new Parametros("@CepDestinoPostagem", TipoCampo.Text, CepDestinoPostagem),
-															new Parametros("@ARPostagem", TipoCampo.Text, ARPostagem),
-															new Parametros("@MPPostagem", TipoCampo.Text, MPPostagem),
-															new Parametros("@DataMaxPrevistaEntregaPostagem", TipoCampo.Text, DataMaxPrevistaEntregaPostagem),
-															new Parametros("@CodigoObjeto", TipoCampo.Text, CodigoObjetoAtual)
-											});
+                                                            new Parametros("@MunicipioPostagem", TipoCampo.Text, MunicipioPostagem),
+                                                            new Parametros("@CriacaoPostagem", TipoCampo.Text, CriacaoPostagem),
+                                                            new Parametros("@CepDestinoPostagem", TipoCampo.Text, CepDestinoPostagem),
+                                                            new Parametros("@ARPostagem", TipoCampo.Text, ARPostagem),
+                                                            new Parametros("@MPPostagem", TipoCampo.Text, MPPostagem),
+                                                            new Parametros("@DataMaxPrevistaEntregaPostagem", TipoCampo.Text, DataMaxPrevistaEntregaPostagem),
+                                                            new Parametros("@CodigoObjeto", TipoCampo.Text, CodigoObjetoAtual)
+                                            });
                                 }
                             }
                         }
@@ -391,6 +392,7 @@ namespace SISAPO
 
         private void SeparaLinksDosObjetosRastreados()
         {
+            Mensagens.InformaDesenvolvedor("Iniciando o método: SeparaLinksDosObjetosRastreados()");
             bool ExisteCampoParaPostado = false;
             ListaLinksJavaScript = new List<string>();
             foreach (var itemTR in webBrowser1.Document.GetElementsByTagName("TR"))
@@ -419,12 +421,14 @@ namespace SISAPO
                             ExisteCampoParaPostado = true;
                             var linkatual = ((System.Windows.Forms.HtmlElement)(pegalinkAtual2)).OuterHtml.Replace("%20", " ");
                             ListaLinksJavaScript.Add(linkatual.Substring(21, 101));
+                            Mensagens.InformaDesenvolvedor("Peguei o link: " + linkatual.Substring(21, 101));
                             return;
                         }
                     }
                     #endregion
                 }
             }
+            Mensagens.InformaDesenvolvedor("Saindo do método 'SeparaLinksDosObjetosRastreados()'");
             if (ExisteCampoParaPostado == false) this.Close();
         }
 
