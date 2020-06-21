@@ -30,7 +30,9 @@ namespace SISAPO
             //DataFinal_dateTimePicker.Text = "25/08/2019";
             //DataInicial_dateTimePicker.Text = "25/09/2019";
 
+            //using (FormWaiting frm = new FormWaiting(ConsultaTodosNaoEntreguesOrdenadoNome)) { frm.ShowDialog(this); }
             this.ConsultaTodosNaoEntreguesOrdenadoNome();
+
             this.dataGridView1.Sort(this.dataGridView1.Columns["DataLancamento"], ListSortDirection.Descending);
             TxtPesquisa.Focus();
             TxtPesquisa.SelecionaControle();
@@ -138,7 +140,7 @@ namespace SISAPO
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            // TODO: This line of code loads data into the 'cadastroDataSet.TabelaObjetosSROLocal' table. You can move, or remove it, as needed.
+            //using (FormWaiting frm = new FormWaiting(ConsultaTodosNaoEntreguesOrdenadoNome)) { frm.ShowDialog(this); }
             this.ConsultaTodosNaoEntreguesOrdenadoNome();
         }
 
@@ -172,6 +174,7 @@ namespace SISAPO
             }
             if (e.KeyCode == Keys.F5)
             {
+                //using (FormWaiting frm = new FormWaiting(ConsultaTodosNaoEntreguesOrdenadoNome)) { frm.ShowDialog(this); }
                 this.ConsultaTodosNaoEntreguesOrdenadoNome();
             }
             if (e.KeyCode == Keys.F6)
@@ -861,11 +864,13 @@ namespace SISAPO
 
         private void DataInicial_dateTimePicker_ValueChanged(object sender, EventArgs e)
         {
+            //using (FormWaiting frm = new FormWaiting(ConsultaTodosNaoEntreguesOrdenadoNome)) { frm.ShowDialog(this); }
             this.ConsultaTodosNaoEntreguesOrdenadoNome();
         }
 
         private void DataFinal_dateTimePicker_ValueChanged(object sender, EventArgs e)
         {
+            //using (FormWaiting frm = new FormWaiting(ConsultaTodosNaoEntreguesOrdenadoNome)) { frm.ShowDialog(this); }
             this.ConsultaTodosNaoEntreguesOrdenadoNome();
         }
 
@@ -1014,6 +1019,8 @@ namespace SISAPO
 
         private void BtnCoordenadas_Click(object sender, EventArgs e)
         {
+            if(currentRow == null) return;
+
             VerificaNavegador();
 
             string CodigoObjetoFormatado = string.Format("{0} {1} {2} {3} {4}",
@@ -1049,24 +1056,37 @@ namespace SISAPO
                 // obtem a versão instalada do IE
                 using (WebBrowser Wb = new WebBrowser())
                 {
+                    Mensagens.InformaDesenvolvedor("Versao navegador:" + Wb.Version.Major.ToString());
                     versaoNavegador = Wb.Version.Major;
                 }
                 // define a versão do IE
                 if (versaoNavegador >= 11)
+                {
                     RegVal = 11001;
+                }
                 else if (versaoNavegador == 10)
+                {
                     RegVal = 10001;
+                }
                 else if (versaoNavegador == 9)
+                {
                     RegVal = 9999;
+                }
                 else if (versaoNavegador == 8)
+                {
                     RegVal = 8888;
+                }
                 else
+                {
                     RegVal = 7000;
+                }
 
                 // define a chave atual
-                Microsoft.Win32.RegistryKey Key = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_BROWSER_EMULATION", true);
-                Key.SetValue(System.Diagnostics.Process.GetCurrentProcess().ProcessName + ".exe", RegVal, Microsoft.Win32.RegistryValueKind.DWord);
-                Key.Close();
+                Mensagens.InformaDesenvolvedor("Caminho: " + @"SOFTWARE\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_BROWSER_EMULATION");
+                Mensagens.InformaDesenvolvedor("CurrentProcess: " + System.Diagnostics.Process.GetCurrentProcess().ProcessName + ".exe");
+                //Microsoft.Win32.RegistryKey Key = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_BROWSER_EMULATION", true);
+                //Key.SetValue(System.Diagnostics.Process.GetCurrentProcess().ProcessName + ".exe", RegVal, Microsoft.Win32.RegistryValueKind.DWord);
+                //Key.Close();
                 return true;
             }
             catch (Exception ex)

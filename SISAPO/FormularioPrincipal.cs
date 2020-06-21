@@ -216,7 +216,7 @@ namespace SISAPO
         private void timerAtualizacaoNovosRegistros_Tick(object sender, EventArgs e)
         {
             this.imprimirListaDeEntregaParaConsultaSelecionadaToolStripMenuItem1.Text = string.Format("Imprimir lista de entrega lançados hoje [{0}]", DateTime.Now.GetDateTimeFormats()[14]);
-            
+
             timerAtualizacaoNovosRegistros.Stop();
 
             Configuracoes.VerificaSeFecharAplicacaoParaAtualizacao();
@@ -227,7 +227,10 @@ namespace SISAPO
                 if (manterConsultaSempreAtualizadaToolStripMenuItem.Checked == true)
                 {
                     //comentado antes de apresentar para o Dario. dia 18/09/2019 pois acredito que essa atualização está causando interrupção no banco de dados fazendo travamento e ter que fechar...
+
+                    //using (FormWaiting frm = new FormWaiting(FormularioConsulta.RetornaComponentesFormularioConsulta().ConsultaTodosNaoEntreguesOrdenadoNome)) { frm.ShowDialog(this); }
                     FormularioConsulta.RetornaComponentesFormularioConsulta().ConsultaTodosNaoEntreguesOrdenadoNome();
+
                     toolStripStatusLabel.Text = "Atualizando informações novas na base de dados...";
                 }
                 if (manterDataFinalEmHojeToolStripMenuItem.Checked == true)
@@ -260,7 +263,7 @@ namespace SISAPO
                 //}
                 item.Close();
             }
-            
+
             //CadastrarObjetos_toolStripButton_Click(sender, e);
             FormularioCadastroObjetos formularioCadastroObjetos = new FormularioCadastroObjetos();
             formularioCadastroObjetos.MdiParent = this;
@@ -312,61 +315,109 @@ namespace SISAPO
 
         private void atualizarNovosObjetosPostadosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (DAO dao = new DAO(TipoBanco.OleDb, Configuracoes.strConexao))
+            if (FormularioPrincipal.RetornaComponentesFormularioPrincipal().habilitarCapturaDeDadosDePostagemToolStripMenuItem.Checked)
             {
-                if (!dao.TestaConexao()) { toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
-
-                DataSet ObjetosConsultaRastreamento = dao.RetornaDataSet("SELECT DISTINCT CodigoObjeto FROM TabelaObjetosSROLocal WHERE (Atualizado = @Atualizado)", new List<Parametros>() { new Parametros { Nome = "@Atualizado", Tipo = TipoCampo.Int, Valor = 0 } });
-                if (ObjetosConsultaRastreamento == null || ObjetosConsultaRastreamento.Tables[0].Rows.Count == 0) return;
-
-                bool abortarAtualizacao = false;
-                foreach (DataRow row in ObjetosConsultaRastreamento.Tables[0].Rows)
+                using (DAO dao = new DAO(TipoBanco.OleDb, Configuracoes.strConexao))
                 {
-                    BuscaNovoStatusQuantidadeNaoAtualizados();
+                    if (!dao.TestaConexao()) { toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
 
-                    //string codigoObjeto = dao.RetornaDataSet("SELECT TOP 1 CodigoObjeto FROM TabelaObjetosSROLocal WHERE (Atualizado = @Atualizado)", new List<Parametros>() { new Parametros { Nome = "@Atualizado", Tipo = TipoCampo.Int, Valor = 0 } }).Tables[0].Rows[0]["CodigoObjeto"].ToString();
-                    string codigoObjeto = row["CodigoObjeto"].ToString();
+                    DataSet ObjetosConsultaRastreamento = dao.RetornaDataSet("SELECT DISTINCT CodigoObjeto FROM TabelaObjetosSROLocal WHERE (Atualizado = @Atualizado)", new List<Parametros>() { new Parametros { Nome = "@Atualizado", Tipo = TipoCampo.Int, Valor = 0 } });
+                    if (ObjetosConsultaRastreamento == null || ObjetosConsultaRastreamento.Tables[0].Rows.Count == 0) return;
 
-                    FormularioAtualizacaoObjetosPostados formularioAtualizacaoObjetosPostados = new FormularioAtualizacaoObjetosPostados(codigoObjeto);
-                    formularioAtualizacaoObjetosPostados.WindowState = FormWindowState.Normal;
-                    formularioAtualizacaoObjetosPostados.ShowDialog();
-                    abortarAtualizacao = formularioAtualizacaoObjetosPostados.abortarAtualizacao;
-                    if (abortarAtualizacao) break;
+                    bool abortarAtualizacao = false;
+                    foreach (DataRow row in ObjetosConsultaRastreamento.Tables[0].Rows)
+                    {
+                        //BuscaNovoStatusQuantidadeNaoAtualizados();
 
-                    BuscaNovoStatusQuantidadeNaoAtualizados();
+                        //string codigoObjeto = dao.RetornaDataSet("SELECT TOP 1 CodigoObjeto FROM TabelaObjetosSROLocal WHERE (Atualizado = @Atualizado)", new List<Parametros>() { new Parametros { Nome = "@Atualizado", Tipo = TipoCampo.Int, Valor = 0 } }).Tables[0].Rows[0]["CodigoObjeto"].ToString();
+                        string codigoObjeto = row["CodigoObjeto"].ToString();
+
+                        FormularioAtualizacaoObjetosPostados formularioAtualizacaoObjetosPostados = new FormularioAtualizacaoObjetosPostados(codigoObjeto);
+                        formularioAtualizacaoObjetosPostados.WindowState = FormWindowState.Normal;
+                        formularioAtualizacaoObjetosPostados.ShowDialog();
+                        abortarAtualizacao = formularioAtualizacaoObjetosPostados.abortarAtualizacao;
+                        if (abortarAtualizacao) break;
+
+                        BuscaNovoStatusQuantidadeNaoAtualizados();
+                    }
+                    if (Application.OpenForms["FormularioConsulta"] != null)
+                    {
+                        //using (FormWaiting frm = new FormWaiting(FormularioConsulta.RetornaComponentesFormularioConsulta().ConsultaTodosNaoEntreguesOrdenadoNome)) { frm.ShowDialog(this); }
+                        FormularioConsulta.RetornaComponentesFormularioConsulta().ConsultaTodosNaoEntreguesOrdenadoNome();
+                    }
                 }
-                if (Application.OpenForms["FormularioConsulta"] != null)
-                    FormularioConsulta.RetornaComponentesFormularioConsulta().ConsultaTodosNaoEntreguesOrdenadoNome();
-            }
+            }            
         }
 
         private void atualizarNovosObjetosSaiuParaEntregaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (DAO dao = new DAO(TipoBanco.OleDb, Configuracoes.strConexao))
+            if (FormularioPrincipal.RetornaComponentesFormularioPrincipal().habilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatárioToolStripMenuItem.Checked)
             {
-                if (!dao.TestaConexao()) { toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
-
-                DataSet ObjetosConsultaRastreamento = dao.RetornaDataSet("SELECT DISTINCT CodigoObjeto FROM TabelaObjetosSROLocal WHERE (Atualizado = @Atualizado)", new List<Parametros>() { new Parametros { Nome = "@Atualizado", Tipo = TipoCampo.Int, Valor = 0 } });
-                if (ObjetosConsultaRastreamento == null || ObjetosConsultaRastreamento.Tables[0].Rows.Count == 0) return;
-
-                bool abortarAtualizacao = false;
-                foreach (DataRow row in ObjetosConsultaRastreamento.Tables[0].Rows)
+                using (DAO dao = new DAO(TipoBanco.OleDb, Configuracoes.strConexao))
                 {
-                    BuscaNovoStatusQuantidadeNaoAtualizados();
+                    if (!dao.TestaConexao()) { toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
 
-                    //string codigoObjeto = dao.RetornaDataSet("SELECT TOP 1 CodigoObjeto FROM TabelaObjetosSROLocal WHERE (Atualizado = @Atualizado)", new List<Parametros>() { new Parametros { Nome = "@Atualizado", Tipo = TipoCampo.Int, Valor = 0 } }).Tables[0].Rows[0]["CodigoObjeto"].ToString();
-                    string codigoObjeto = row["CodigoObjeto"].ToString();
+                    DataSet ObjetosConsultaRastreamento = dao.RetornaDataSet("SELECT DISTINCT CodigoObjeto FROM TabelaObjetosSROLocal WHERE (Atualizado = @Atualizado)", new List<Parametros>() { new Parametros { Nome = "@Atualizado", Tipo = TipoCampo.Int, Valor = 0 } });
+                    if (ObjetosConsultaRastreamento == null || ObjetosConsultaRastreamento.Tables[0].Rows.Count == 0) return;
 
-                    FormularioAtualizacaoObjetosSaiuParaEntrega formularioAtualizacaoObjetosSaiuParaEntrega = new FormularioAtualizacaoObjetosSaiuParaEntrega(codigoObjeto);
-                    formularioAtualizacaoObjetosSaiuParaEntrega.WindowState = FormWindowState.Normal;
-                    formularioAtualizacaoObjetosSaiuParaEntrega.ShowDialog();
-                    abortarAtualizacao = formularioAtualizacaoObjetosSaiuParaEntrega.abortarAtualizacao;
-                    if (abortarAtualizacao) break;
+                    bool abortarAtualizacao = false;
+                    foreach (DataRow row in ObjetosConsultaRastreamento.Tables[0].Rows)
+                    {
+                        //BuscaNovoStatusQuantidadeNaoAtualizados();
 
-                    BuscaNovoStatusQuantidadeNaoAtualizados();
+                        //string codigoObjeto = dao.RetornaDataSet("SELECT TOP 1 CodigoObjeto FROM TabelaObjetosSROLocal WHERE (Atualizado = @Atualizado)", new List<Parametros>() { new Parametros { Nome = "@Atualizado", Tipo = TipoCampo.Int, Valor = 0 } }).Tables[0].Rows[0]["CodigoObjeto"].ToString();
+                        string codigoObjeto = row["CodigoObjeto"].ToString();
+
+                        FormularioAtualizacaoObjetosSaiuParaEntrega formularioAtualizacaoObjetosSaiuParaEntrega = new FormularioAtualizacaoObjetosSaiuParaEntrega(codigoObjeto);
+                        formularioAtualizacaoObjetosSaiuParaEntrega.WindowState = FormWindowState.Normal;
+                        formularioAtualizacaoObjetosSaiuParaEntrega.ShowDialog();
+                        abortarAtualizacao = formularioAtualizacaoObjetosSaiuParaEntrega.abortarAtualizacao;
+                        if (abortarAtualizacao) break;
+
+                        BuscaNovoStatusQuantidadeNaoAtualizados();
+                    }
+                    if (Application.OpenForms["FormularioConsulta"] != null)
+                    {
+                        //using (FormWaiting frm = new FormWaiting(FormularioConsulta.RetornaComponentesFormularioConsulta().ConsultaTodosNaoEntreguesOrdenadoNome)) { frm.ShowDialog(this); }
+                        FormularioConsulta.RetornaComponentesFormularioConsulta().ConsultaTodosNaoEntreguesOrdenadoNome();
+                    }
                 }
-                if (Application.OpenForms["FormularioConsulta"] != null)
-                    FormularioConsulta.RetornaComponentesFormularioConsulta().ConsultaTodosNaoEntreguesOrdenadoNome();
+            }
+        }
+
+        private void atualizarNovosObjetosDestinatárioAusenteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (FormularioPrincipal.RetornaComponentesFormularioPrincipal().habilitarCapturaDeDadosDeDestinatárioAusenteToolStripMenuItem.Checked)
+            {
+                using (DAO dao = new DAO(TipoBanco.OleDb, Configuracoes.strConexao))
+                {
+                    if (!dao.TestaConexao()) { toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+
+                    DataSet ObjetosConsultaRastreamento = dao.RetornaDataSet("SELECT DISTINCT CodigoObjeto FROM TabelaObjetosSROLocal WHERE (Atualizado = @Atualizado)", new List<Parametros>() { new Parametros { Nome = "@Atualizado", Tipo = TipoCampo.Int, Valor = 0 } });
+                    if (ObjetosConsultaRastreamento == null || ObjetosConsultaRastreamento.Tables[0].Rows.Count == 0) return;
+
+                    bool abortarAtualizacao = false;
+                    foreach (DataRow row in ObjetosConsultaRastreamento.Tables[0].Rows)
+                    {
+                        //BuscaNovoStatusQuantidadeNaoAtualizados();
+
+                        //string codigoObjeto = dao.RetornaDataSet("SELECT TOP 1 CodigoObjeto FROM TabelaObjetosSROLocal WHERE (Atualizado = @Atualizado)", new List<Parametros>() { new Parametros { Nome = "@Atualizado", Tipo = TipoCampo.Int, Valor = 0 } }).Tables[0].Rows[0]["CodigoObjeto"].ToString();
+                        string codigoObjeto = row["CodigoObjeto"].ToString();
+
+                        FormularioAtualizacaoObjetosDestinatarioAusente formularioAtualizacaoObjetosDestinatarioAusente = new FormularioAtualizacaoObjetosDestinatarioAusente(codigoObjeto);
+                        formularioAtualizacaoObjetosDestinatarioAusente.WindowState = FormWindowState.Normal;
+                        formularioAtualizacaoObjetosDestinatarioAusente.ShowDialog();
+                        abortarAtualizacao = formularioAtualizacaoObjetosDestinatarioAusente.abortarAtualizacao;
+                        if (abortarAtualizacao) break;
+
+                        BuscaNovoStatusQuantidadeNaoAtualizados();
+                    }
+                    if (Application.OpenForms["FormularioConsulta"] != null)
+                    {
+                        //using (FormWaiting frm = new FormWaiting(FormularioConsulta.RetornaComponentesFormularioConsulta().ConsultaTodosNaoEntreguesOrdenadoNome)) { frm.ShowDialog(this); }
+                        FormularioConsulta.RetornaComponentesFormularioConsulta().ConsultaTodosNaoEntreguesOrdenadoNome();
+                    }
+                }
             }
         }
 
@@ -387,23 +438,32 @@ namespace SISAPO
                     //string codigoObjeto = dao.RetornaDataSet("SELECT TOP 1 CodigoObjeto FROM TabelaObjetosSROLocal WHERE (Atualizado = @Atualizado)", new List<Parametros>() { new Parametros { Nome = "@Atualizado", Tipo = TipoCampo.Int, Valor = 0 } }).Tables[0].Rows[0]["CodigoObjeto"].ToString();
                     string codigoObjeto = row["CodigoObjeto"].ToString();
 
-                    FormularioAtualizacaoObjetosPostados formularioAtualizacaoObjetosPostados = new FormularioAtualizacaoObjetosPostados(codigoObjeto);
-                    formularioAtualizacaoObjetosPostados.WindowState = FormWindowState.Normal;
-                    formularioAtualizacaoObjetosPostados.ShowDialog();
-                    abortarAtualizacao = formularioAtualizacaoObjetosPostados.abortarAtualizacao;
-                    if (abortarAtualizacao) break;
+                    if (FormularioPrincipal.RetornaComponentesFormularioPrincipal().habilitarCapturaDeDadosDePostagemToolStripMenuItem.Checked)
+                    {
+                        FormularioAtualizacaoObjetosPostados formularioAtualizacaoObjetosPostados = new FormularioAtualizacaoObjetosPostados(codigoObjeto);
+                        formularioAtualizacaoObjetosPostados.WindowState = FormWindowState.Normal;
+                        formularioAtualizacaoObjetosPostados.ShowDialog();
+                        abortarAtualizacao = formularioAtualizacaoObjetosPostados.abortarAtualizacao;
+                        if (abortarAtualizacao) break;
+                    }
 
-                    FormularioAtualizacaoObjetosSaiuParaEntrega formularioAtualizacaoObjetosSaiuParaEntrega = new FormularioAtualizacaoObjetosSaiuParaEntrega(codigoObjeto);
-                    formularioAtualizacaoObjetosSaiuParaEntrega.WindowState = FormWindowState.Normal;
-                    formularioAtualizacaoObjetosSaiuParaEntrega.ShowDialog();
-                    abortarAtualizacao = formularioAtualizacaoObjetosSaiuParaEntrega.abortarAtualizacao;
-                    if (abortarAtualizacao) break;
+                    if (FormularioPrincipal.RetornaComponentesFormularioPrincipal().habilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatárioToolStripMenuItem.Checked)
+                    {
+                        FormularioAtualizacaoObjetosSaiuParaEntrega formularioAtualizacaoObjetosSaiuParaEntrega = new FormularioAtualizacaoObjetosSaiuParaEntrega(codigoObjeto);
+                        formularioAtualizacaoObjetosSaiuParaEntrega.WindowState = FormWindowState.Normal;
+                        formularioAtualizacaoObjetosSaiuParaEntrega.ShowDialog();
+                        abortarAtualizacao = formularioAtualizacaoObjetosSaiuParaEntrega.abortarAtualizacao;
+                        if (abortarAtualizacao) break;
+                    }
 
-                    FormularioAtualizacaoObjetosDestinatarioAusente formularioAtualizacaoObjetosDestinatarioAusente = new FormularioAtualizacaoObjetosDestinatarioAusente(codigoObjeto);
-                    formularioAtualizacaoObjetosDestinatarioAusente.WindowState = FormWindowState.Normal;
-                    formularioAtualizacaoObjetosDestinatarioAusente.ShowDialog();
-                    abortarAtualizacao = formularioAtualizacaoObjetosDestinatarioAusente.abortarAtualizacao;
-                    if (abortarAtualizacao) break;
+                    if (FormularioPrincipal.RetornaComponentesFormularioPrincipal().habilitarCapturaDeDadosDeDestinatárioAusenteToolStripMenuItem.Checked)
+                    {
+                        FormularioAtualizacaoObjetosDestinatarioAusente formularioAtualizacaoObjetosDestinatarioAusente = new FormularioAtualizacaoObjetosDestinatarioAusente(codigoObjeto);
+                        formularioAtualizacaoObjetosDestinatarioAusente.WindowState = FormWindowState.Normal;
+                        formularioAtualizacaoObjetosDestinatarioAusente.ShowDialog();
+                        abortarAtualizacao = formularioAtualizacaoObjetosDestinatarioAusente.abortarAtualizacao;
+                        if (abortarAtualizacao) break;
+                    }
 
                     FormularioAtualizacaoObjetosAguardandoRetirada formularioAtualizacaoObjetosAguardandoRetirada = new FormularioAtualizacaoObjetosAguardandoRetirada(codigoObjeto);
                     formularioAtualizacaoObjetosAguardandoRetirada.WindowState = FormWindowState.Normal;
@@ -414,7 +474,43 @@ namespace SISAPO
                     BuscaNovoStatusQuantidadeNaoAtualizados();
                 }
                 if (Application.OpenForms["FormularioConsulta"] != null)
+                {
+                    //using (FormWaiting frm = new FormWaiting(FormularioConsulta.RetornaComponentesFormularioConsulta().ConsultaTodosNaoEntreguesOrdenadoNome)) { frm.ShowDialog(this); }
                     FormularioConsulta.RetornaComponentesFormularioConsulta().ConsultaTodosNaoEntreguesOrdenadoNome();
+                }
+            }
+        }
+
+        private void atualizarNovosObjetosCompletoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (DAO dao = new DAO(TipoBanco.OleDb, Configuracoes.strConexao))
+            {
+                if (!dao.TestaConexao()) { toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+
+                DataSet ObjetosConsultaRastreamento = dao.RetornaDataSet("SELECT DISTINCT CodigoObjeto FROM TabelaObjetosSROLocal WHERE (Atualizado = @Atualizado)", new List<Parametros>() { new Parametros { Nome = "@Atualizado", Tipo = TipoCampo.Int, Valor = 0 } });
+                if (ObjetosConsultaRastreamento == null || ObjetosConsultaRastreamento.Tables[0].Rows.Count == 0) return;
+
+                bool abortarAtualizacao = false;
+                foreach (DataRow row in ObjetosConsultaRastreamento.Tables[0].Rows)
+                {
+                    BuscaNovoStatusQuantidadeNaoAtualizados();
+
+                    //string codigoObjeto = dao.RetornaDataSet("SELECT TOP 1 CodigoObjeto FROM TabelaObjetosSROLocal WHERE (Atualizado = @Atualizado)", new List<Parametros>() { new Parametros { Nome = "@Atualizado", Tipo = TipoCampo.Int, Valor = 0 } }).Tables[0].Rows[0]["CodigoObjeto"].ToString();
+                    string codigoObjeto = row["CodigoObjeto"].ToString();
+
+                    FormularioAtualizacaoObjetosCompleto formularioAtualizacaoObjetosCompleto = new FormularioAtualizacaoObjetosCompleto();
+                    formularioAtualizacaoObjetosCompleto.WindowState = FormWindowState.Normal;
+                    formularioAtualizacaoObjetosCompleto.ShowDialog();
+                    abortarAtualizacao = formularioAtualizacaoObjetosCompleto.abortarAtualizacao;
+                    if (abortarAtualizacao) break;
+                    BuscaNovoStatusQuantidadeNaoAtualizados();
+                }
+
+                if (Application.OpenForms["FormularioConsulta"] != null)
+                {
+                    //using (FormWaiting frm = new FormWaiting(FormularioConsulta.RetornaComponentesFormularioConsulta().ConsultaTodosNaoEntreguesOrdenadoNome)) { frm.ShowDialog(this); }
+                    FormularioConsulta.RetornaComponentesFormularioConsulta().ConsultaTodosNaoEntreguesOrdenadoNome();
+                }
             }
         }
 
@@ -508,7 +604,7 @@ namespace SISAPO
                 if (item.Name == "FormularioConsulta")
                 {
                     formularioConsulta = (FormularioConsulta)item;
-                    
+
                     FormularioImpressaoEntregaObjetosOpcoesImpressao formularioImpressaoEntregaObjetosOpcoesImpressao = new FormularioImpressaoEntregaObjetosOpcoesImpressao();
                     formularioImpressaoEntregaObjetosOpcoesImpressao.ShowDialog();
                     if (formularioImpressaoEntregaObjetosOpcoesImpressao.Cancelou == true) break;
@@ -544,37 +640,6 @@ namespace SISAPO
         private void exibirMensagensAoDesevolvedorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Configuracoes.ExibicaoMensagensParaDesenvolvedor = exibirMensagensAoDesevolvedorToolStripMenuItem.Checked;
-        }
-
-        private void atualizarNovosObjetosCompletoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            using (DAO dao = new DAO(TipoBanco.OleDb, Configuracoes.strConexao))
-            {
-                if (!dao.TestaConexao()) { toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
-
-                DataSet ObjetosConsultaRastreamento = dao.RetornaDataSet("SELECT DISTINCT CodigoObjeto FROM TabelaObjetosSROLocal WHERE (Atualizado = @Atualizado)", new List<Parametros>() { new Parametros { Nome = "@Atualizado", Tipo = TipoCampo.Int, Valor = 0 } });
-                if (ObjetosConsultaRastreamento == null || ObjetosConsultaRastreamento.Tables[0].Rows.Count == 0) return;
-
-                bool abortarAtualizacao = false;
-                foreach (DataRow row in ObjetosConsultaRastreamento.Tables[0].Rows)
-                {
-                    BuscaNovoStatusQuantidadeNaoAtualizados();
-
-                    //string codigoObjeto = dao.RetornaDataSet("SELECT TOP 1 CodigoObjeto FROM TabelaObjetosSROLocal WHERE (Atualizado = @Atualizado)", new List<Parametros>() { new Parametros { Nome = "@Atualizado", Tipo = TipoCampo.Int, Valor = 0 } }).Tables[0].Rows[0]["CodigoObjeto"].ToString();
-                    string codigoObjeto = row["CodigoObjeto"].ToString();
-
-                    FormularioAtualizacaoObjetosCompleto formularioAtualizacaoObjetosCompleto = new FormularioAtualizacaoObjetosCompleto();
-                    formularioAtualizacaoObjetosCompleto.WindowState = FormWindowState.Normal;
-                    formularioAtualizacaoObjetosCompleto.ShowDialog();
-                    abortarAtualizacao = formularioAtualizacaoObjetosCompleto.abortarAtualizacao;
-                    if (abortarAtualizacao) break;
-                    BuscaNovoStatusQuantidadeNaoAtualizados();
-                }
-
-                if (Application.OpenForms["FormularioConsulta"] != null)
-                    FormularioConsulta.RetornaComponentesFormularioConsulta().ConsultaTodosNaoEntreguesOrdenadoNome();
-            }
-
         }
 
         private void marcarSelecionadosComoAtualizadoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -623,13 +688,13 @@ namespace SISAPO
                 {
                     if (!dao.TestaConexao()) { toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
 
-                    dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET Atualizado = @Atualizado WHERE ObjetoEntregue = @ObjetoEntregue ", new List<Parametros>(){ 
+                    dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET Atualizado = @Atualizado WHERE ObjetoEntregue = @ObjetoEntregue ", new List<Parametros>(){
                                             new Parametros("@Atualizado", TipoCampo.Int, 0),
                                             new Parametros("@ObjetoEntregue", TipoCampo.Int, 0)});
 
-                    DataSet ObjetosConsultaRastreamento = dao.RetornaDataSet("SELECT DISTINCT CodigoObjeto, Atualizado, DataModificacao FROM TabelaObjetosSROLocal WHERE Atualizado = @Atualizado OR DataModificacao = @DataModificacao", new List<Parametros>() { 
+                    DataSet ObjetosConsultaRastreamento = dao.RetornaDataSet("SELECT DISTINCT CodigoObjeto, Atualizado, DataModificacao FROM TabelaObjetosSROLocal WHERE Atualizado = @Atualizado OR DataModificacao = @DataModificacao", new List<Parametros>() {
                         new Parametros { Nome = "@Atualizado", Tipo = TipoCampo.Int, Valor = 0 },
-                        new Parametros { Nome = "@DataModificacao", Tipo = TipoCampo.Text, Valor = "" } 
+                        new Parametros { Nome = "@DataModificacao", Tipo = TipoCampo.Text, Valor = "" }
                     });
                     if (ObjetosConsultaRastreamento == null || ObjetosConsultaRastreamento.Tables[0].Rows.Count == 0) return;
 
@@ -650,7 +715,10 @@ namespace SISAPO
                         BuscaNovoStatusQuantidadeNaoAtualizados();
                     }
                     if (Application.OpenForms["FormularioConsulta"] != null)
+                    {
+                        //using (FormWaiting frm = new FormWaiting(FormularioConsulta.RetornaComponentesFormularioConsulta().ConsultaTodosNaoEntreguesOrdenadoNome)) { frm.ShowDialog(this); }
                         FormularioConsulta.RetornaComponentesFormularioConsulta().ConsultaTodosNaoEntreguesOrdenadoNome();
+                    }
                 }
             }
         }
@@ -681,7 +749,10 @@ namespace SISAPO
                     BuscaNovoStatusQuantidadeNaoAtualizados();
                 }
                 if (Application.OpenForms["FormularioConsulta"] != null)
+                {
+                    //using (FormWaiting frm = new FormWaiting(FormularioConsulta.RetornaComponentesFormularioConsulta().ConsultaTodosNaoEntreguesOrdenadoNome)) { frm.ShowDialog(this); }
                     FormularioConsulta.RetornaComponentesFormularioConsulta().ConsultaTodosNaoEntreguesOrdenadoNome();
+                }
             }
         }
 
@@ -712,7 +783,10 @@ namespace SISAPO
                     BuscaNovoStatusQuantidadeNaoAtualizados();
                 }
                 if (Application.OpenForms["FormularioConsulta"] != null)
+                {
+                    //using (FormWaiting frm = new FormWaiting(FormularioConsulta.RetornaComponentesFormularioConsulta().ConsultaTodosNaoEntreguesOrdenadoNome)) { frm.ShowDialog(this); }
                     FormularioConsulta.RetornaComponentesFormularioConsulta().ConsultaTodosNaoEntreguesOrdenadoNome();
+                }
             }
         }
 
@@ -734,6 +808,10 @@ namespace SISAPO
                 }
             }
         }
-        
+
+        private void manterConsultaSempreAtualizadaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

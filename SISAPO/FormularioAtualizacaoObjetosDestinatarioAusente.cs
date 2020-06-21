@@ -111,6 +111,7 @@ namespace SISAPO
             }
             if (string.IsNullOrEmpty(CodigoObjetoAtual))
             {
+                Mensagens.InformaDesenvolvedor("string.IsNullOrEmpty(CodigoObjetoAtual)");
                 EscreveTextoTextBox("CodigoObjetoAtual == null -- return");
                 webBrowser1.Document.GetElementsByTagName("textarea")[0].Focus();
                 return;
@@ -122,6 +123,7 @@ namespace SISAPO
 
                 switch (tipoTela)
                 {
+                    
                     #region Acessando TipoTela.Rastreamento1
                     case TipoTela.Rastreamento1:
                         #region TipoAmbiente.Producao
@@ -172,6 +174,7 @@ namespace SISAPO
                     #region Acessando DetalhesDeObjetos3
                     case TipoTela.DetalhesDeObjetos3:
                         //EscreveTextoTextBox("opa parou aqui...");
+                        Mensagens.InformaDesenvolvedor("TipoTela.DetalhesDeObjetos3");
                         DetalhesDeObjetos3 = true;
                         if (ListaLinksJavaScript.Count == 0)
                             SeparaLinksDosObjetosRastreados();
@@ -246,7 +249,7 @@ namespace SISAPO
                                 CoordenadasDestinatarioAusente = webBrowser1.Document.GetElementsByTagName("TR")[i].InnerText.Replace("Coordenadas: ", "").ToUpper().Trim();
                                 EscreveTextoTextBox("Coordenadas: " + CoordenadasDestinatarioAusente.ToString());
                                 Mensagens.InformaDesenvolvedor(string.Format("Coordenadas: " + CoordenadasDestinatarioAusente.ToString()));
-                                continue;
+                                break;//pois supoe que é a ultima linha embaixo.... obvio.
                             }
                         }
                         #endregion
@@ -329,7 +332,7 @@ namespace SISAPO
                     string CampoAtual = ((System.Windows.Forms.HtmlElement)(itemTD)).InnerText.Trim().ToUpper();
                     if (CampoAtual == null || string.IsNullOrEmpty(CampoAtual.Trim())) continue;
 
-                    #region "Saiu para entrega ao destinatário
+                    #region "Destinatário Ausente"
                     if (CampoAtual.ToUpper().Contains("Destinatário Ausente".ToUpper()))
                     {
                         //Saiu para entrega
@@ -366,9 +369,7 @@ namespace SISAPO
                     this.Close();
                     return;
                 }
-
             }
-
         }
 
         private void BtnFechar_Click(object sender, EventArgs e)
@@ -381,5 +382,17 @@ namespace SISAPO
             }
         }
 
+        private void webBrowser1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                if (Mensagens.Pergunta("Deseja abortar a atualização de todos os objetos?") == System.Windows.Forms.DialogResult.Yes)
+                {
+                    abortarAtualizacao = true;
+                    this.Close();
+                    return;
+                }
+            }
+        }
     }
 }

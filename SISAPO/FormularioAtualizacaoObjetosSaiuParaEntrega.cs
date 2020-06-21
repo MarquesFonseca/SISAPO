@@ -472,6 +472,18 @@ namespace SISAPO
                 return;
             }
         }
-    
+
+        private void webBrowser1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                if (Mensagens.Pergunta("Deseja abortar a atualização de todos os objetos?") == System.Windows.Forms.DialogResult.Yes)
+                {
+                    abortarAtualizacao = true;
+                    this.Close();
+                    return;
+                }
+            }
+        }
     }
 }
