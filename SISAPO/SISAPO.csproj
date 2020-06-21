@@ -158,6 +158,12 @@
     <Compile Include="FormularioAtualizacaoObjetosDestinatarioAusente.Designer.cs">
       <DependentUpon>FormularioAtualizacaoObjetosDestinatarioAusente.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormularioConsultaNovo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormularioConsultaNovo.Designer.cs">
+      <DependentUpon>FormularioConsultaNovo.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormularioCoordenadasExibicaoMapa.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -233,6 +239,12 @@
     </Compile>
     <Compile Include="FormularioOpcoes.Designer.cs">
       <DependentUpon>FormularioOpcoes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormularioPrincipalNovo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormularioPrincipalNovo.Designer.cs">
+      <DependentUpon>FormularioPrincipalNovo.cs</DependentUpon>
     </Compile>
     <Compile Include="FormularioSobre.cs">
       <SubType>Form</SubType>
@@ -321,6 +333,10 @@
       <DependentUpon>FormularioAtualizacaoObjetosDestinatarioAusente.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormularioConsultaNovo.resx">
+      <DependentUpon>FormularioConsultaNovo.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormularioCoordenadasExibicaoMapa.resx">
       <DependentUpon>FormularioCoordenadasExibicaoMapa.cs</DependentUpon>
     </EmbeddedResource>
@@ -352,6 +368,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormularioOpcoes.resx">
       <DependentUpon>FormularioOpcoes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormularioPrincipalNovo.resx">
+      <DependentUpon>FormularioPrincipalNovo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormularioSobre.resx">
       <DependentUpon>FormularioSobre.cs</DependentUpon>
