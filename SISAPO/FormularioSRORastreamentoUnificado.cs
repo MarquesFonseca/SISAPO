@@ -45,11 +45,12 @@ namespace SISAPO
 
         private void FormularioSRORastreamentoUnificado_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
+            TxtEnderecoUrl.Text = webBrowser1.Url.AbsoluteUri;
             //se vazio
             if (webBrowser1.Url.AbsoluteUri == "about:blank") return;
 
@@ -66,6 +67,7 @@ namespace SISAPO
                 //SendKeys.Send("{ENTER}");
                 return;
             }
+
         }
 
         private void FormularioSRORastreamentoUnificado_KeyDown(object sender, KeyEventArgs e)

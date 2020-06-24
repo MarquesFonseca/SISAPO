@@ -263,7 +263,7 @@ namespace SISAPO
 
             using (FormularioSRORastreamentoUnificado formularioSRORastreamentoUnificado = new FormularioSRORastreamentoUnificado(TxtPesquisa.Text))
             {
-                formularioSRORastreamentoUnificado.WindowState = FormWindowState.Maximized;
+                formularioSRORastreamentoUnificado.WindowState = FormWindowState.Normal;
                 formularioSRORastreamentoUnificado.StartPosition = FormStartPosition.CenterScreen;
                 formularioSRORastreamentoUnificado.Text = string.Format(@"SRO - Rastreamento Unificado - http://websro2.correiosnet.int/rastreamento/sro?opcao=PESQUISA&objetos={0}", TxtPesquisa.Text);
                 formularioSRORastreamentoUnificado.ShowDialog();
@@ -374,7 +374,6 @@ namespace SISAPO
             }
             else
             {
-
                 TxtCodigoLDISelecionado.Text = currentRow["CodigoLdi"].ToString();
                 TxtDataLancamento.Text = currentRow["DataLancamento"].ToString();
 
@@ -385,8 +384,8 @@ namespace SISAPO
                     currentRow["CodigoObjeto"].ToString().Substring(8, 3),
                     currentRow["CodigoObjeto"].ToString().Substring(11, 2));
 
-                TxtCodigoObjetoSelecionado.Text = CodigoObjetoFormatado;
-                TxtItemSelecionado.Text = string.Format("{0}", currentRow["NomeCliente"].ToString());
+                TxtCodigoObjetoSelecionado.Text = currentRow["CodigoObjeto"].ToString();
+                TxtItemSelecionado.Text = string.Format("{0} - {1}", CodigoObjetoFormatado, currentRow["NomeCliente"].ToString());
 
 
                 if (string.IsNullOrEmpty(currentRow["CoordenadasDestinatarioAusente"].ToString()))
@@ -716,7 +715,7 @@ namespace SISAPO
 
             using (FormularioSRORastreamentoUnificado formularioSRORastreamentoUnificado = new FormularioSRORastreamentoUnificado(currentRow["CodigoObjeto"].ToString()))
             {
-                formularioSRORastreamentoUnificado.WindowState = FormWindowState.Maximized;
+                formularioSRORastreamentoUnificado.WindowState = FormWindowState.Normal;
                 formularioSRORastreamentoUnificado.StartPosition = FormStartPosition.CenterScreen;
                 formularioSRORastreamentoUnificado.Text = string.Format(@"SRO - Rastreamento Unificado Detalhado - http://websro2.correiosnet.int/rastreamento/sro?opcao=PESQUISA&objetos={0}", currentRow["CodigoObjeto"].ToString());
                 formularioSRORastreamentoUnificado.ShowDialog();
@@ -1043,6 +1042,7 @@ namespace SISAPO
                 DataFinal_dateTimePicker.Text = DateTime.Now.Date.ToShortDateString();
                 DataInicial_dateTimePicker.Text = DateTime.Today.AddMonths(-1).Date.ToShortDateString();
             }
+            this.ConsultaTodosNaoEntreguesOrdenadoNome();
         }
 
         private void alterarItemToolStripMenuItem1_Click(object sender, EventArgs e)
