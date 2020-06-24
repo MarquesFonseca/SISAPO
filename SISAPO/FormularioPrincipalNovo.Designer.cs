@@ -30,7 +30,7 @@ namespace SISAPO
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormularioPrincipal));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormularioPrincipalNovo));
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.toolsMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.sRORastreamentoUnificadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -568,7 +568,7 @@ namespace SISAPO
             this.IsMdiContainer = true;
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip;
-            this.Name = "FormularioPrincipal";
+            this.Name = "FormularioPrincipalNovo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SISAPO-SRO - Sistema de apoio ao rastreamento unificado";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

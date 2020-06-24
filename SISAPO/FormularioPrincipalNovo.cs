@@ -83,15 +83,15 @@ namespace SISAPO
 
         }
 
-        public static FormularioPrincipal RetornaComponentesFormularioPrincipal()
+        public static FormularioPrincipalNovo RetornaComponentesFormularioPrincipal()
         {
-            FormularioPrincipal formularioPrincipal;
+            FormularioPrincipalNovo formularioPrincipal;
             foreach (Form item in Application.OpenForms)
             {
-                if (item.Name == "FormularioPrincipal")
+                if (item.Name == "FormularioPrincipalNovo")
                 {
-                    formularioPrincipal = (FormularioPrincipal)item;
-                    return (FormularioPrincipal)item;
+                    formularioPrincipal = (FormularioPrincipalNovo)item;
+                    return (FormularioPrincipalNovo)item;
                 }
             }
             return null;

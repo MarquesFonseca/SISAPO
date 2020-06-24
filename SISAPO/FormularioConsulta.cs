@@ -12,6 +12,9 @@ namespace SISAPO
 {
     public partial class FormularioConsulta : Form
     {
+        public string dataInicial = string.Empty;
+        public string datafinal = string.Empty;
+
         public static string NovoFiltro = string.Empty;
 
         public FormularioConsulta()
@@ -21,22 +24,20 @@ namespace SISAPO
 
         private void FormularioConsulta_Load(object sender, EventArgs e)
         {
-            ChkIncluirItensEntreguesNaPesquisa.Checked = FormularioPrincipal.RetornaComponentesFormularioPrincipal().ExibirItensJaEntreguesToolStripMenuItem.Checked;
-            ChkIncluirItensCaixaPostalNaPesquisa.Checked = FormularioPrincipal.RetornaComponentesFormularioPrincipal().IncluirCaixaPostalPesquisa_toolStripMenuItem.Checked;
-
             DataFinal_dateTimePicker.Text = DateTime.Now.Date.ToShortDateString();
             DataInicial_dateTimePicker.Text = DateTime.Today.AddMonths(-1).Date.ToShortDateString();
 
-            //DataFinal_dateTimePicker.Text = "25/08/2019";
-            //DataInicial_dateTimePicker.Text = "25/09/2019";
+            if (Configuracoes.TipoAmbiente == TipoAmbiente.Desenvolvimento)
+            {
+                DataFinal_dateTimePicker.Text = "25/08/2019";
+                DataInicial_dateTimePicker.Text = "25/09/2019";
+            }
 
-            //using (FormWaiting frm = new FormWaiting(ConsultaTodosNaoEntreguesOrdenadoNome)) { frm.ShowDialog(this); }
-            this.ConsultaTodosNaoEntreguesOrdenadoNome();
+            //this.ConsultaTodosNaoEntreguesOrdenadoNome();
 
             this.dataGridView1.Sort(this.dataGridView1.Columns["DataLancamento"], ListSortDirection.Descending);
             TxtPesquisa.Focus();
             TxtPesquisa.SelecionaControle();
-            //SendKeys.Send("{TAB}");
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -91,6 +92,52 @@ namespace SISAPO
             tabelaObjetosSROLocalBindingSource.Filter = NovoFiltro;
 
             LbnQuantidadeRegistros.Text = string.Format("{0}", tabelaObjetosSROLocalBindingSource.Count);
+            if(tabelaObjetosSROLocalBindingSource.Count == 0)
+            {
+                LblDadosPostagemIndisponivel.Visible = true;
+                LblDadosPostagemIndisponivel.Text = "Dados de postagem não disponível";
+
+                labelUnidadePostagem.Visible =
+                labelMunicipioPostagem.Visible =
+                labelCriacaoPostagem.Visible =
+                labelCepDestinoPostagem.Visible =
+                labelARPostagem.Visible =
+                labelMPPostagem.Visible =
+                labelDataMaxPrevistaEntregaPostagem.Visible = false;
+
+                LblUnidadePostagem.Visible =
+                LblMunicipioPostagem.Visible =
+                LblCriacaoPostagem.Visible =
+                LblCepDestinoPostagem.Visible =
+                LblARPostagem.Visible =
+                LblMPPostagem.Visible =
+                LblDataMaxPrevistaEntregaPostagem.Visible = false;
+
+                LblDadosTentativaEntregaIndisponivel.Visible = true;
+                LblDadosTentativaEntregaIndisponivel.Text = "Dados de entrega não disponível";
+
+                labelUnidadeLOEC.Visible =
+                labelMunicipioLOEC.Visible =
+                labelCriacaoLOEC.Visible =
+                labelCarteiroLOEC.Visible =
+                labelDistritoLOEC.Visible =
+                labelNumeroLOEC.Visible =
+                labelEnderecoLOEC.Visible =
+                labelBairroLOEC.Visible =
+                labelLocalidadeLOEC.Visible = false;
+
+                LblUnidadeLOEC.Visible =
+                LblMunicipioLOEC.Visible =
+                LblCriacaoLOEC.Visible =
+                LblCarteiroLOEC.Visible =
+                LblDistritoLOEC.Visible =
+                LblNumeroLOEC.Visible =
+                LblEnderecoLOEC.Visible =
+                LblBairroLOEC.Visible =
+                LblLocalidadeLOEC.Visible = false;
+
+                BtnCoordenadas.Visible = false;
+            }
         }
 
         private void dataGridView1_KeyPress(object sender, KeyPressEventArgs e)
@@ -140,7 +187,6 @@ namespace SISAPO
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            //using (FormWaiting frm = new FormWaiting(ConsultaTodosNaoEntreguesOrdenadoNome)) { frm.ShowDialog(this); }
             this.ConsultaTodosNaoEntreguesOrdenadoNome();
         }
 
@@ -151,8 +197,6 @@ namespace SISAPO
                 e.SuppressKeyPress = true;
                 TxtPesquisa.Text = string.Empty;
                 TxtPesquisa.Focus();
-                //this.Close();
-                //return;
             }
             if (e.KeyCode == Keys.Enter)
             {
@@ -161,12 +205,7 @@ namespace SISAPO
             }
             if (e.KeyCode == Keys.F3)
             {
-                //ChkIncluirItensEntreguesNaPesquisa.Checked = !ChkIncluirItensEntreguesNaPesquisa.Checked;
-                //ChkIncluirItensEntreguesNaPesquisa.Checked = !FormularioPrincipal.RetornaComponentesFormularioPrincipal().ExibirItensJaEntreguesToolStripMenuItem.Checked;
-
-                //FormularioPrincipal.RetornaComponentes().ExibirItensJaEntreguesToolStripMenuItem.Checked = ChkIncluirItensEntreguesNaPesquisa.Checked;
-                //FormularioPrincipal.RetornaComponentesFormularioPrincipal().ExibirItensJaEntreguesToolStripMenuItem_Click(sender, e);
-
+                
             }
             if (e.KeyCode == Keys.F4)
             {
@@ -174,7 +213,6 @@ namespace SISAPO
             }
             if (e.KeyCode == Keys.F5)
             {
-                //using (FormWaiting frm = new FormWaiting(ConsultaTodosNaoEntreguesOrdenadoNome)) { frm.ShowDialog(this); }
                 this.ConsultaTodosNaoEntreguesOrdenadoNome();
             }
             if (e.KeyCode == Keys.F6)
@@ -215,18 +253,6 @@ namespace SISAPO
             LblCodigoForaDoPadraoBrasileiro.Visible = false;
             if (string.IsNullOrEmpty(TxtPesquisa.Text)) return;
 
-            //foreach (Form item in Application.OpenForms)
-            //{
-            //    if (item.Name == "FormularioSRORastreamentoUnificado")
-            //    {
-            //        //item.Close();
-            //        item.Activate();
-            //        break;
-            //    }
-            //}
-
-            //verifica tipo objeto
-            //RR123456789BR
             if (VerificaCodigoRastreamentoPadraoBrasileiro(TxtPesquisa.Text) == false)
             {
                 LblCodigoForaDoPadraoBrasileiro.Visible = true;
@@ -235,12 +261,6 @@ namespace SISAPO
 
             GravaHistoricoConsulta(TxtPesquisa.Text);
 
-            //FormularioSRORastreamentoUnificado formularioSRORastreamentoUnificado = new FormularioSRORastreamentoUnificado(TxtPesquisa.Text);
-            //formularioSRORastreamentoUnificado.MdiParent = MdiParent;
-            //formularioSRORastreamentoUnificado.Show();
-            //formularioSRORastreamentoUnificado.WindowState = FormWindowState.Normal;
-            //formularioSRORastreamentoUnificado.WindowState = FormWindowState.Maximized;
-            //formularioSRORastreamentoUnificado.Activate();
             using (FormularioSRORastreamentoUnificado formularioSRORastreamentoUnificado = new FormularioSRORastreamentoUnificado(TxtPesquisa.Text))
             {
                 formularioSRORastreamentoUnificado.WindowState = FormWindowState.Maximized;
@@ -355,7 +375,6 @@ namespace SISAPO
             else
             {
 
-                TxtCodigoObjetoSelecionado.Text = currentRow["CodigoObjeto"].ToString();
                 TxtCodigoLDISelecionado.Text = currentRow["CodigoLdi"].ToString();
                 TxtDataLancamento.Text = currentRow["DataLancamento"].ToString();
 
@@ -365,9 +384,9 @@ namespace SISAPO
                     currentRow["CodigoObjeto"].ToString().Substring(5, 3),
                     currentRow["CodigoObjeto"].ToString().Substring(8, 3),
                     currentRow["CodigoObjeto"].ToString().Substring(11, 2));
-                //FormularioPrincipal.RetornaComponentes().toolStripStatusLabel.Text = string.Format("{0} --> {1}- Para mais detalhes [F6]", CodigoObjetoFormatado, currentRow["NomeCliente"].ToString());
 
-                TxtItemSelecionado.Text = string.Format("{0} - {1}", CodigoObjetoFormatado, currentRow["NomeCliente"].ToString());
+                TxtCodigoObjetoSelecionado.Text = CodigoObjetoFormatado;
+                TxtItemSelecionado.Text = string.Format("{0}", currentRow["NomeCliente"].ToString());
 
 
                 if (string.IsNullOrEmpty(currentRow["CoordenadasDestinatarioAusente"].ToString()))
@@ -497,7 +516,6 @@ namespace SISAPO
             }
         }
 
-        //int quantidadeRegistros = 0;
         public DataRow currentRow
         {
             get
@@ -516,12 +534,6 @@ namespace SISAPO
 
         private void FormularioConsulta_Activated(object sender, EventArgs e)
         {
-            //this.ConsultaTodosNaoEntreguesOrdenadoNome();
-            this.ChkIncluirItensEntreguesNaPesquisa.Checked = FormularioPrincipal.RetornaComponentesFormularioPrincipal().ExibirItensJaEntreguesToolStripMenuItem.Checked;
-
-            //int position = this.BindingContext[tabelaObjetosSROLocalBindingSource].Position;
-            //this.ConsultaTodosNaoEntreguesOrdenadoNome();
-            //this.BindingContext[tabelaObjetosSROLocalBindingSource].Position = position;
             TxtPesquisa.Focus();
         }
 
@@ -539,21 +551,42 @@ namespace SISAPO
             return null;
         }
 
+        WaitWndFun waitForm = new WaitWndFun();
         public void ConsultaTodosNaoEntreguesOrdenadoNome()
         {
-            int posicao = tabelaObjetosSROLocalBindingSource.Position;
-            if (!DAO.TestaConexao(ClassesDiversas.Configuracoes.strConexao, TipoBanco.OleDb))
+            try
             {
-                FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao;
-                return;
-            }
-            string dataInicial = Convert.ToDateTime(DataInicial_dateTimePicker.Text).ToString("yyyy/MM/dd");
-            string datafinal = Convert.ToDateTime(DataFinal_dateTimePicker.Text).ToString("yyyy/MM/dd");
+                int posicao = tabelaObjetosSROLocalBindingSource.Position;
+                if (!DAO.TestaConexao(ClassesDiversas.Configuracoes.strConexao, TipoBanco.OleDb))
+                {
+                    FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao;
+                    return;
+                }
+                dataInicial = Convert.ToDateTime(DataInicial_dateTimePicker.Text).ToString("yyyy/MM/dd");
+                datafinal = Convert.ToDateTime(DataFinal_dateTimePicker.Text).ToString("yyyy/MM/dd");
 
-            this.tabelaObjetosSROLocalTableAdapter.Connection.ConnectionString = ClassesDiversas.Configuracoes.strConexao;
-            this.tabelaObjetosSROLocalTableAdapter.Fill(this.dataSetTabelaObjetosSROLocal.TabelaObjetosSROLocal, dataInicial, datafinal);
-            this.MontaFiltro();
-            tabelaObjetosSROLocalBindingSource.Position = posicao;
+
+                waitForm.Show(this);
+                this.tabelaObjetosSROLocalTableAdapter.Connection.ConnectionString = ClassesDiversas.Configuracoes.strConexao;
+                this.tabelaObjetosSROLocalTableAdapter.Fill(this.dataSetTabelaObjetosSROLocal.TabelaObjetosSROLocal, dataInicial, datafinal);
+                waitForm.Close();
+
+                this.MontaFiltro();
+                tabelaObjetosSROLocalBindingSource.Position = posicao;
+                dataGridView1.Focus();
+            }
+            catch (Exception ex)
+            {
+                foreach (Form item in Application.OpenForms)
+                {
+                    if (item.Name == "WaitForm")
+                    {
+                        waitForm.Close();
+                        break;
+                    }
+                }
+                Mensagens.Erro(ex.Message);
+            }
         }
 
         public void AlterarDataAoIniciarODIa()
@@ -864,14 +897,12 @@ namespace SISAPO
 
         private void DataInicial_dateTimePicker_ValueChanged(object sender, EventArgs e)
         {
-            //using (FormWaiting frm = new FormWaiting(ConsultaTodosNaoEntreguesOrdenadoNome)) { frm.ShowDialog(this); }
-            this.ConsultaTodosNaoEntreguesOrdenadoNome();
+            //this.ConsultaTodosNaoEntreguesOrdenadoNome();
         }
 
         private void DataFinal_dateTimePicker_ValueChanged(object sender, EventArgs e)
         {
-            //using (FormWaiting frm = new FormWaiting(ConsultaTodosNaoEntreguesOrdenadoNome)) { frm.ShowDialog(this); }
-            this.ConsultaTodosNaoEntreguesOrdenadoNome();
+            //this.ConsultaTodosNaoEntreguesOrdenadoNome();
         }
 
         private void DataInicial_dateTimePicker_KeyDown(object sender, KeyEventArgs e)
@@ -891,6 +922,11 @@ namespace SISAPO
                 //btnPesquisarSRO.Focus();
                 SendKeys.Send("{TAB}");
             }
+        }
+
+        private void alterarItemToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AlterarItem(sender, e);
         }
 
         private void AlterarItem(object sender, EventArgs e)
@@ -952,15 +988,12 @@ namespace SISAPO
             }
         }
 
-        private void alterarItemToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            AlterarItem(sender, e);
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
-            FormularioHistoricoConsulta fm = new FormularioHistoricoConsulta();
-            fm.ShowDialog();
+            using (FormularioHistoricoConsulta fm = new FormularioHistoricoConsulta())
+            {
+                fm.ShowDialog();
+            }
         }
 
         private void linkLabelHistoricoConsulta_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -1019,7 +1052,7 @@ namespace SISAPO
 
         private void BtnCoordenadas_Click(object sender, EventArgs e)
         {
-            if(currentRow == null) return;
+            if (currentRow == null) return;
 
             VerificaNavegador();
 
@@ -1039,7 +1072,7 @@ namespace SISAPO
             //"-10.22285,-48.34052"
 
             FormularioCoordenadasExibicaoMapa formularioCoordenadasExibicaoMapa = new FormularioCoordenadasExibicaoMapa(CoordenadasAtual, CodigoObjetoFormatado, NomeCliente, EnderecoCompleto, DataCriacaoLOEC, UnidadeLOEC, DistritoLOEC, CarteiroLOEC);
-            
+
             //formularioCoordenadasExibicaoMapa.MdiParent = MdiParent;
             formularioCoordenadasExibicaoMapa.ShowDialog();
             formularioCoordenadasExibicaoMapa.WindowState = FormWindowState.Normal;
@@ -1095,5 +1128,40 @@ namespace SISAPO
             }
         }
 
+        private void dataGridView1_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            //MessageBox.Show("Error happened " + e.Context.ToString());
+
+            if (e.Context == DataGridViewDataErrorContexts.Commit)
+            {
+                MessageBox.Show("Commit error");
+            }
+            if (e.Context == DataGridViewDataErrorContexts.CurrentCellChange)
+            {
+                MessageBox.Show("Cell change");
+            }
+            if (e.Context == DataGridViewDataErrorContexts.Parsing)
+            {
+                MessageBox.Show("parsing error");
+            }
+            if (e.Context == DataGridViewDataErrorContexts.LeaveControl)
+            {
+                MessageBox.Show("leave control error");
+            }
+
+            if ((e.Exception) is ConstraintException)
+            {
+                DataGridView view = (DataGridView)sender;
+                view.Rows[e.RowIndex].ErrorText = "an error";
+                view.Rows[e.RowIndex].Cells[e.ColumnIndex].ErrorText = "an error";
+
+                e.ThrowException = false;
+            }
+        }
+
+        private void BtnConsultar_Click(object sender, EventArgs e)
+        {
+            this.ConsultaTodosNaoEntreguesOrdenadoNome();
+        }
     }
 }

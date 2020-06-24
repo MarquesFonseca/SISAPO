@@ -7,11 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using SISAPO.ClassesDiversas;
+using System.Data.SqlClient;
+using System.Data.OleDb;
 
 namespace SISAPO
 {
     public partial class FormularioConsultaNovo : Form
     {
+        private OleDbDataAdapter tabelaObjetosSROLocalTableAdapter;
+        private OleDbConnection conn;
+        private DataSet tabelaObjetosSROLocalDataset;
+
         public static string NovoFiltro = string.Empty;
 
         public FormularioConsultaNovo()
@@ -550,8 +556,25 @@ namespace SISAPO
             string dataInicial = Convert.ToDateTime(DataInicial_dateTimePicker.Text).ToString("yyyy/MM/dd");
             string datafinal = Convert.ToDateTime(DataFinal_dateTimePicker.Text).ToString("yyyy/MM/dd");
 
-            this.tabelaObjetosSROLocalTableAdapter.Connection.ConnectionString = ClassesDiversas.Configuracoes.strConexao;
-            this.tabelaObjetosSROLocalTableAdapter.Fill(this.dataSetTabelaObjetosSROLocal.TabelaObjetosSROLocal, dataInicial, datafinal);
+            string connectionString = ClassesDiversas.Configuracoes.strConexao;
+            conn = new OleDbConnection(connectionString);
+            string sql =
+                @"SELECT        Codigo, CodigoObjeto, CodigoLdi, NomeCliente, Format(DataLancamento, 'dd/MM/yyyy hh:mm:ss') AS DataLancamento, Format(DataModificacao, 'dd/MM/yyyy hh:mm:ss') AS DataModificacao, Situacao, Atualizado, 
+                         ObjetoEntregue, CaixaPostal, UnidadePostagem, MunicipioPostagem, CriacaoPostagem, CepDestinoPostagem, ARPostagem, MPPostagem, DataMaxPrevistaEntregaPostagem, UnidadeLOEC, MunicipioLOEC, CriacaoLOEC, 
+                         CarteiroLOEC, DistritoLOEC, NumeroLOEC, EnderecoLOEC, BairroLOEC, LocalidadeLOEC, SituacaoDestinatarioAusente, AgrupadoDestinatarioAusente, CoordenadasDestinatarioAusente
+            FROM            TabelaObjetosSROLocal";
+            tabelaObjetosSROLocalTableAdapter = new OleDbDataAdapter(sql, conn);
+            conn.Open();
+            tabelaObjetosSROLocalDataset = new DataSet();
+            OleDbCommandBuilder commandBuilder = new OleDbCommandBuilder(tabelaObjetosSROLocalTableAdapter);
+            tabelaObjetosSROLocalTableAdapter.Fill(tabelaObjetosSROLocalDataset, "TabelaObjetosSROLocal");
+            tabelaObjetosSROLocalBindingSource.DataSource = tabelaObjetosSROLocalDataset.Tables["TabelaObjetosSROLocal"];
+            dataGridView1.DataSource = tabelaObjetosSROLocalBindingSource;
+
+
+
+            //this.tabelaObjetosSROLocalTableAdapter.Connection.ConnectionString = ClassesDiversas.Configuracoes.strConexao;
+            //this.tabelaObjetosSROLocalTableAdapter.Fill(this.dataSetTabelaObjetosSROLocal.TabelaObjetosSROLocal, dataInicial, datafinal);
             this.MontaFiltro();
             tabelaObjetosSROLocalBindingSource.Position = posicao;
         }
@@ -580,8 +603,9 @@ namespace SISAPO
                 FormularioPrincipalNovo.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao;
                 return;
             }
-            this.tabelaObjetosSROLocalTableAdapter.Connection.ConnectionString = ClassesDiversas.Configuracoes.strConexao;
-            this.tabelaObjetosSROLocalTableAdapter.Update(dataSetTabelaObjetosSROLocal.TabelaObjetosSROLocal);
+            // TODO: Verificar abaixo
+            //this.tabelaObjetosSROLocalTableAdapter.Connection.ConnectionString = ClassesDiversas.Configuracoes.strConexao;
+            //this.tabelaObjetosSROLocalTableAdapter.Update(dataSetTabelaObjetosSROLocal.TabelaObjetosSROLocal);
         }
 
         public void MarcarSelecionadosComoAtualizado()
@@ -718,8 +742,9 @@ namespace SISAPO
                 string CodigoObjeto = this.dataGridView1.SelectedRows[i].Cells[0].Value.ToString();
                 string Nome = this.dataGridView1.SelectedRows[i].Cells[2].Value.ToString();
                 //int teste = currentRow["Codigo"].ToInt();
-                this.tabelaObjetosSROLocalTableAdapter.Connection.ConnectionString = ClassesDiversas.Configuracoes.strConexao;
-                this.tabelaObjetosSROLocalTableAdapter.Delete(CodigoObjeto);
+                // TODO: Verificar abaixo
+                //this.tabelaObjetosSROLocalTableAdapter.Connection.ConnectionString = ClassesDiversas.Configuracoes.strConexao;
+                //this.tabelaObjetosSROLocalTableAdapter.Delete(CodigoObjeto);
             }
 
             if (position > -1)
@@ -865,13 +890,13 @@ namespace SISAPO
         private void DataInicial_dateTimePicker_ValueChanged(object sender, EventArgs e)
         {
             //using (FormWaiting frm = new FormWaiting(ConsultaTodosNaoEntreguesOrdenadoNome)) { frm.ShowDialog(this); }
-            this.ConsultaTodosNaoEntreguesOrdenadoNome();
+            //this.ConsultaTodosNaoEntreguesOrdenadoNome();
         }
 
         private void DataFinal_dateTimePicker_ValueChanged(object sender, EventArgs e)
         {
             //using (FormWaiting frm = new FormWaiting(ConsultaTodosNaoEntreguesOrdenadoNome)) { frm.ShowDialog(this); }
-            this.ConsultaTodosNaoEntreguesOrdenadoNome();
+            //this.ConsultaTodosNaoEntreguesOrdenadoNome();
         }
 
         private void DataInicial_dateTimePicker_KeyDown(object sender, KeyEventArgs e)
@@ -937,8 +962,9 @@ namespace SISAPO
                 currentRow["ObjetoEntregue"] = frm.ObjetoJaEntregue;
                 currentRow["Atualizado"] = frm.ObjetoJaAtualizado;
 
-                this.tabelaObjetosSROLocalTableAdapter.Connection.ConnectionString = ClassesDiversas.Configuracoes.strConexao;
-                this.tabelaObjetosSROLocalTableAdapter.Update(dataSetTabelaObjetosSROLocal.TabelaObjetosSROLocal);
+                // TODO: Verificar abaixo
+                //this.tabelaObjetosSROLocalTableAdapter.Connection.ConnectionString = ClassesDiversas.Configuracoes.strConexao;
+                //this.tabelaObjetosSROLocalTableAdapter.Update(dataSetTabelaObjetosSROLocal.TabelaObjetosSROLocal);
 
                 int position = this.BindingContext[tabelaObjetosSROLocalBindingSource].Position;
                 if (position > -1) this.BindingContext[tabelaObjetosSROLocalBindingSource].Position = position;
@@ -1019,7 +1045,7 @@ namespace SISAPO
 
         private void BtnCoordenadas_Click(object sender, EventArgs e)
         {
-            if(currentRow == null) return;
+            if (currentRow == null) return;
 
             VerificaNavegador();
 
@@ -1039,7 +1065,7 @@ namespace SISAPO
             //"-10.22285,-48.34052"
 
             FormularioCoordenadasExibicaoMapa formularioCoordenadasExibicaoMapa = new FormularioCoordenadasExibicaoMapa(CoordenadasAtual, CodigoObjetoFormatado, NomeCliente, EnderecoCompleto, DataCriacaoLOEC, UnidadeLOEC, DistritoLOEC, CarteiroLOEC);
-            
+
             //formularioCoordenadasExibicaoMapa.MdiParent = MdiParent;
             formularioCoordenadasExibicaoMapa.ShowDialog();
             formularioCoordenadasExibicaoMapa.WindowState = FormWindowState.Normal;

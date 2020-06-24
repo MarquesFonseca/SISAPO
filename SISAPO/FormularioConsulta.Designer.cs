@@ -29,11 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormularioConsulta));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.codigoObjetoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -83,9 +86,7 @@
             this.DataInicial_dateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.checkBoxSomenteHoje = new System.Windows.Forms.CheckBox();
             this.LblDataLancamento = new System.Windows.Forms.Label();
-            this.ChkIncluirItensEntreguesNaPesquisa = new System.Windows.Forms.CheckBox();
             this.LblCodigoForaDoPadraoBrasileiro = new System.Windows.Forms.Label();
-            this.ChkIncluirItensCaixaPostalNaPesquisa = new System.Windows.Forms.CheckBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.DataFinal_dateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.labelDataFinal = new System.Windows.Forms.Label();
@@ -101,7 +102,6 @@
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.linkLabel3 = new System.Windows.Forms.LinkLabel();
             this.linkLabelHistoricoConsulta = new System.Windows.Forms.LinkLabel();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.TxtDataLancamento = new System.Windows.Forms.TextBox();
             this.TxtCodigoLDISelecionado = new System.Windows.Forms.TextBox();
             this.TxtCodigoObjetoSelecionado = new System.Windows.Forms.TextBox();
@@ -150,6 +150,7 @@
             this.LblUnidadeLOEC = new System.Windows.Forms.Label();
             this.tabelaObjetosSROLocalTableAdapter = new SISAPO.DataSetTabelaObjetosSROLocalTableAdapters.TabelaObjetosSROLocalTableAdapter();
             this.tableAdapterManager = new SISAPO.DataSetTabelaObjetosSROLocalTableAdapters.TableAdapterManager();
+            this.BtnConsultar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStripImprimirListaEntrega.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -159,6 +160,7 @@
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.groupBox2.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -178,17 +180,17 @@
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
             this.dataGridView1.AutoGenerateColumns = false;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.codigoObjetoDataGridViewTextBoxColumn,
@@ -220,30 +222,31 @@
             this.CoordenadasDestinatarioAusente,
             this.atualizadoDataGridViewCheckBoxColumn});
             this.dataGridView1.DataSource = this.tabelaObjetosSROLocalBindingSource;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle16;
             this.dataGridView1.RowHeadersWidth = 30;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(543, 366);
+            this.dataGridView1.Size = new System.Drawing.Size(1277, 366);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView1_DataError);
             this.dataGridView1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dataGridView1_KeyPress);
             this.dataGridView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDoubleClick);
             // 
@@ -252,10 +255,9 @@
             this.codigoObjetoDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.codigoObjetoDataGridViewTextBoxColumn.ContextMenuStrip = this.contextMenuStripImprimirListaEntrega;
             this.codigoObjetoDataGridViewTextBoxColumn.DataPropertyName = "CodigoObjeto";
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.Format = "###";
-            dataGridViewCellStyle3.NullValue = null;
-            this.codigoObjetoDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle15.NullValue = null;
+            this.codigoObjetoDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle15;
             this.codigoObjetoDataGridViewTextBoxColumn.FillWeight = 140F;
             this.codigoObjetoDataGridViewTextBoxColumn.HeaderText = "Código";
             this.codigoObjetoDataGridViewTextBoxColumn.Name = "codigoObjetoDataGridViewTextBoxColumn";
@@ -289,6 +291,8 @@
             this.CaixaPostal.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.CaixaPostal.ContextMenuStrip = this.contextMenuStripImprimirListaEntrega;
             this.CaixaPostal.DataPropertyName = "CaixaPostal";
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.CaixaPostal.DefaultCellStyle = dataGridViewCellStyle11;
             this.CaixaPostal.HeaderText = "Caixa Postal?";
             this.CaixaPostal.Name = "CaixaPostal";
             this.CaixaPostal.ReadOnly = true;
@@ -348,6 +352,8 @@
             this.ObjetoEntregue.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.ObjetoEntregue.ContextMenuStrip = this.contextMenuStrip1;
             this.ObjetoEntregue.DataPropertyName = "ObjetoEntregue";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.ObjetoEntregue.DefaultCellStyle = dataGridViewCellStyle3;
             this.ObjetoEntregue.HeaderText = "Objeto Entregue?";
             this.ObjetoEntregue.Name = "ObjetoEntregue";
             this.ObjetoEntregue.ReadOnly = true;
@@ -544,6 +550,8 @@
             this.atualizadoDataGridViewCheckBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.atualizadoDataGridViewCheckBoxColumn.ContextMenuStrip = this.contextMenuStripAtualizacao;
             this.atualizadoDataGridViewCheckBoxColumn.DataPropertyName = "Atualizado";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.atualizadoDataGridViewCheckBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
             this.atualizadoDataGridViewCheckBoxColumn.FalseValue = "";
             this.atualizadoDataGridViewCheckBoxColumn.HeaderText = "Já atualizado?";
             this.atualizadoDataGridViewCheckBoxColumn.Name = "atualizadoDataGridViewCheckBoxColumn";
@@ -605,7 +613,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(739, 51);
+            this.panel1.Size = new System.Drawing.Size(1739, 51);
             this.panel1.TabIndex = 0;
             this.panel1.Visible = false;
             // 
@@ -615,7 +623,7 @@
             this.LblTituloFormulario.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblTituloFormulario.Location = new System.Drawing.Point(0, 0);
             this.LblTituloFormulario.Name = "LblTituloFormulario";
-            this.LblTituloFormulario.Size = new System.Drawing.Size(739, 51);
+            this.LblTituloFormulario.Size = new System.Drawing.Size(1739, 51);
             this.LblTituloFormulario.TabIndex = 0;
             this.LblTituloFormulario.Text = "Consulta de objetos aguardando retirada";
             this.LblTituloFormulario.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -628,7 +636,7 @@
             this.TxtPesquisa.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtPesquisa.Location = new System.Drawing.Point(6, 39);
             this.TxtPesquisa.Name = "TxtPesquisa";
-            this.TxtPesquisa.Size = new System.Drawing.Size(150, 29);
+            this.TxtPesquisa.Size = new System.Drawing.Size(1149, 29);
             this.TxtPesquisa.TabIndex = 4;
             this.TxtPesquisa.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             this.TxtPesquisa.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
@@ -637,11 +645,8 @@
             // 
             this.groupBox1.Controls.Add(this.labelDataInicial);
             this.groupBox1.Controls.Add(this.DataInicial_dateTimePicker);
-            this.groupBox1.Controls.Add(this.checkBoxSomenteHoje);
             this.groupBox1.Controls.Add(this.LblDataLancamento);
-            this.groupBox1.Controls.Add(this.ChkIncluirItensEntreguesNaPesquisa);
             this.groupBox1.Controls.Add(this.LblCodigoForaDoPadraoBrasileiro);
-            this.groupBox1.Controls.Add(this.ChkIncluirItensCaixaPostalNaPesquisa);
             this.groupBox1.Controls.Add(this.pictureBox1);
             this.groupBox1.Controls.Add(this.DataFinal_dateTimePicker);
             this.groupBox1.Controls.Add(this.labelDataFinal);
@@ -652,12 +657,10 @@
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.LbnQuantidadeRegistros);
-            this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.BtnDetalharObjetosSelecionado);
             this.groupBox1.Controls.Add(this.linkLabel2);
             this.groupBox1.Controls.Add(this.linkLabel3);
             this.groupBox1.Controls.Add(this.linkLabelHistoricoConsulta);
-            this.groupBox1.Controls.Add(this.linkLabel1);
             this.groupBox1.Controls.Add(this.TxtDataLancamento);
             this.groupBox1.Controls.Add(this.TxtCodigoLDISelecionado);
             this.groupBox1.Controls.Add(this.TxtCodigoObjetoSelecionado);
@@ -667,7 +670,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox1.Location = new System.Drawing.Point(0, 51);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(739, 132);
+            this.groupBox1.Size = new System.Drawing.Size(1739, 132);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
@@ -677,7 +680,7 @@
             this.labelDataInicial.AutoSize = true;
             this.labelDataInicial.BackColor = System.Drawing.SystemColors.ControlLight;
             this.labelDataInicial.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.labelDataInicial.Location = new System.Drawing.Point(323, 29);
+            this.labelDataInicial.Location = new System.Drawing.Point(1323, 29);
             this.labelDataInicial.Name = "labelDataInicial";
             this.labelDataInicial.Size = new System.Drawing.Size(60, 13);
             this.labelDataInicial.TabIndex = 10;
@@ -688,7 +691,7 @@
             this.DataInicial_dateTimePicker.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.DataInicial_dateTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DataInicial_dateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DataInicial_dateTimePicker.Location = new System.Drawing.Point(326, 43);
+            this.DataInicial_dateTimePicker.Location = new System.Drawing.Point(1326, 43);
             this.DataInicial_dateTimePicker.Name = "DataInicial_dateTimePicker";
             this.DataInicial_dateTimePicker.Size = new System.Drawing.Size(103, 27);
             this.DataInicial_dateTimePicker.TabIndex = 11;
@@ -700,9 +703,10 @@
             this.checkBoxSomenteHoje.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBoxSomenteHoje.AutoSize = true;
             this.checkBoxSomenteHoje.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.checkBoxSomenteHoje.Location = new System.Drawing.Point(325, 13);
+            this.checkBoxSomenteHoje.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.checkBoxSomenteHoje.Location = new System.Drawing.Point(8, 1);
             this.checkBoxSomenteHoje.Name = "checkBoxSomenteHoje";
-            this.checkBoxSomenteHoje.Size = new System.Drawing.Size(96, 17);
+            this.checkBoxSomenteHoje.Size = new System.Drawing.Size(129, 20);
             this.checkBoxSomenteHoje.TabIndex = 9;
             this.checkBoxSomenteHoje.Text = "Lançados hoje";
             this.checkBoxSomenteHoje.UseVisualStyleBackColor = false;
@@ -713,28 +717,11 @@
             this.LblDataLancamento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.LblDataLancamento.AutoSize = true;
             this.LblDataLancamento.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.LblDataLancamento.Location = new System.Drawing.Point(139, 79);
+            this.LblDataLancamento.Location = new System.Drawing.Point(1273, 79);
             this.LblDataLancamento.Name = "LblDataLancamento";
             this.LblDataLancamento.Size = new System.Drawing.Size(92, 13);
             this.LblDataLancamento.TabIndex = 21;
             this.LblDataLancamento.Text = "Data Lançamento";
-            // 
-            // ChkIncluirItensEntreguesNaPesquisa
-            // 
-            this.ChkIncluirItensEntreguesNaPesquisa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ChkIncluirItensEntreguesNaPesquisa.AutoSize = true;
-            this.ChkIncluirItensEntreguesNaPesquisa.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.ChkIncluirItensEntreguesNaPesquisa.Enabled = false;
-            this.ChkIncluirItensEntreguesNaPesquisa.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.ChkIncluirItensEntreguesNaPesquisa.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ChkIncluirItensEntreguesNaPesquisa.ImageKey = "(none)";
-            this.ChkIncluirItensEntreguesNaPesquisa.Location = new System.Drawing.Point(169, 53);
-            this.ChkIncluirItensEntreguesNaPesquisa.Name = "ChkIncluirItensEntreguesNaPesquisa";
-            this.ChkIncluirItensEntreguesNaPesquisa.Size = new System.Drawing.Size(149, 18);
-            this.ChkIncluirItensEntreguesNaPesquisa.TabIndex = 8;
-            this.ChkIncluirItensEntreguesNaPesquisa.Text = "Objetos já entregues";
-            this.ChkIncluirItensEntreguesNaPesquisa.UseVisualStyleBackColor = false;
-            this.ChkIncluirItensEntreguesNaPesquisa.CheckedChanged += new System.EventHandler(this.ChkIncluirItensEntreguesNaPesquisa_CheckedChanged);
             // 
             // LblCodigoForaDoPadraoBrasileiro
             // 
@@ -747,22 +734,6 @@
             this.LblCodigoForaDoPadraoBrasileiro.TabIndex = 18;
             this.LblCodigoForaDoPadraoBrasileiro.Text = "Fora do padrão brasileiro: AA123456789BR";
             this.LblCodigoForaDoPadraoBrasileiro.Visible = false;
-            // 
-            // ChkIncluirItensCaixaPostalNaPesquisa
-            // 
-            this.ChkIncluirItensCaixaPostalNaPesquisa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ChkIncluirItensCaixaPostalNaPesquisa.AutoSize = true;
-            this.ChkIncluirItensCaixaPostalNaPesquisa.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.ChkIncluirItensCaixaPostalNaPesquisa.Enabled = false;
-            this.ChkIncluirItensCaixaPostalNaPesquisa.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.ChkIncluirItensCaixaPostalNaPesquisa.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ChkIncluirItensCaixaPostalNaPesquisa.Location = new System.Drawing.Point(169, 37);
-            this.ChkIncluirItensCaixaPostalNaPesquisa.Name = "ChkIncluirItensCaixaPostalNaPesquisa";
-            this.ChkIncluirItensCaixaPostalNaPesquisa.Size = new System.Drawing.Size(169, 18);
-            this.ChkIncluirItensCaixaPostalNaPesquisa.TabIndex = 7;
-            this.ChkIncluirItensCaixaPostalNaPesquisa.Text = "Objetos em Caixa Postal";
-            this.ChkIncluirItensCaixaPostalNaPesquisa.UseVisualStyleBackColor = false;
-            this.ChkIncluirItensCaixaPostalNaPesquisa.CheckedChanged += new System.EventHandler(this.ChkIncluirItensCaixaPostalNaPesquisa_CheckedChanged);
             // 
             // pictureBox1
             // 
@@ -783,7 +754,7 @@
             this.DataFinal_dateTimePicker.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.DataFinal_dateTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DataFinal_dateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DataFinal_dateTimePicker.Location = new System.Drawing.Point(431, 43);
+            this.DataFinal_dateTimePicker.Location = new System.Drawing.Point(1431, 43);
             this.DataFinal_dateTimePicker.Name = "DataFinal_dateTimePicker";
             this.DataFinal_dateTimePicker.Size = new System.Drawing.Size(103, 27);
             this.DataFinal_dateTimePicker.TabIndex = 13;
@@ -796,7 +767,7 @@
             this.labelDataFinal.AutoSize = true;
             this.labelDataFinal.BackColor = System.Drawing.SystemColors.ControlLight;
             this.labelDataFinal.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.labelDataFinal.Location = new System.Drawing.Point(428, 30);
+            this.labelDataFinal.Location = new System.Drawing.Point(1428, 30);
             this.labelDataFinal.Name = "labelDataFinal";
             this.labelDataFinal.Size = new System.Drawing.Size(52, 13);
             this.labelDataFinal.TabIndex = 12;
@@ -806,7 +777,7 @@
             // 
             this.btnPesquisarSRO.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnPesquisarSRO.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPesquisarSRO.Location = new System.Drawing.Point(1, 8);
+            this.btnPesquisarSRO.Location = new System.Drawing.Point(1157, 38);
             this.btnPesquisarSRO.Name = "btnPesquisarSRO";
             this.btnPesquisarSRO.Size = new System.Drawing.Size(155, 31);
             this.btnPesquisarSRO.TabIndex = 5;
@@ -839,7 +810,7 @@
             this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label8.AutoSize = true;
             this.label8.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label8.Location = new System.Drawing.Point(566, 79);
+            this.label8.Location = new System.Drawing.Point(1105, 80);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(57, 13);
             this.label8.TabIndex = 25;
@@ -850,7 +821,7 @@
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
             this.label7.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label7.Location = new System.Drawing.Point(383, 79);
+            this.label7.Location = new System.Drawing.Point(909, 80);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(72, 13);
             this.label7.TabIndex = 23;
@@ -870,11 +841,11 @@
             // 
             this.LbnQuantidadeRegistros.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.LbnQuantidadeRegistros.AutoSize = true;
-            this.LbnQuantidadeRegistros.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LbnQuantidadeRegistros.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LbnQuantidadeRegistros.ForeColor = System.Drawing.Color.Red;
-            this.LbnQuantidadeRegistros.Location = new System.Drawing.Point(701, 28);
+            this.LbnQuantidadeRegistros.Location = new System.Drawing.Point(1689, 25);
             this.LbnQuantidadeRegistros.Name = "LbnQuantidadeRegistros";
-            this.LbnQuantidadeRegistros.Size = new System.Drawing.Size(14, 13);
+            this.LbnQuantidadeRegistros.Size = new System.Drawing.Size(16, 16);
             this.LbnQuantidadeRegistros.TabIndex = 17;
             this.LbnQuantidadeRegistros.Text = "0";
             this.LbnQuantidadeRegistros.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -884,23 +855,24 @@
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label1.Location = new System.Drawing.Point(582, 28);
+            this.label1.Location = new System.Drawing.Point(222, 16);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(122, 13);
+            this.label1.Size = new System.Drawing.Size(155, 16);
             this.label1.TabIndex = 15;
             this.label1.Text = "Quantidade de registros:";
             // 
             // BtnDetalharObjetosSelecionado
             // 
             this.BtnDetalharObjetosSelecionado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnDetalharObjetosSelecionado.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnDetalharObjetosSelecionado.Location = new System.Drawing.Point(535, 42);
+            this.BtnDetalharObjetosSelecionado.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnDetalharObjetosSelecionado.Location = new System.Drawing.Point(1509, 92);
             this.BtnDetalharObjetosSelecionado.Name = "BtnDetalharObjetosSelecionado";
-            this.BtnDetalharObjetosSelecionado.Size = new System.Drawing.Size(200, 29);
+            this.BtnDetalharObjetosSelecionado.Size = new System.Drawing.Size(224, 33);
             this.BtnDetalharObjetosSelecionado.TabIndex = 14;
             this.BtnDetalharObjetosSelecionado.TabStop = false;
-            this.BtnDetalharObjetosSelecionado.Text = "&Detalhar objeto selecionado [F6]";
+            this.BtnDetalharObjetosSelecionado.Text = "&Detalhar selecionado [F6]";
             this.BtnDetalharObjetosSelecionado.UseVisualStyleBackColor = true;
             this.BtnDetalharObjetosSelecionado.Click += new System.EventHandler(this.BtnDetalharObjetosSelecionado_Click);
             // 
@@ -937,38 +909,25 @@
             this.linkLabelHistoricoConsulta.Text = "Histórico consulta - [F7]";
             this.linkLabelHistoricoConsulta.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelHistoricoConsulta_LinkClicked);
             // 
-            // linkLabel1
-            // 
-            this.linkLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.linkLabel1.Location = new System.Drawing.Point(644, 12);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(86, 13);
-            this.linkLabel1.TabIndex = 16;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Sincronizar - [F5]";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
-            // 
             // TxtDataLancamento
             // 
             this.TxtDataLancamento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.TxtDataLancamento.BackColor = System.Drawing.SystemColors.Control;
             this.TxtDataLancamento.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
             this.TxtDataLancamento.ForeColor = System.Drawing.Color.Maroon;
-            this.TxtDataLancamento.Location = new System.Drawing.Point(142, 93);
+            this.TxtDataLancamento.Location = new System.Drawing.Point(1276, 93);
             this.TxtDataLancamento.Name = "TxtDataLancamento";
             this.TxtDataLancamento.ReadOnly = true;
-            this.TxtDataLancamento.Size = new System.Drawing.Size(238, 31);
+            this.TxtDataLancamento.Size = new System.Drawing.Size(231, 31);
             this.TxtDataLancamento.TabIndex = 22;
             this.TxtDataLancamento.TabStop = false;
             // 
             // TxtCodigoLDISelecionado
             // 
             this.TxtCodigoLDISelecionado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtCodigoLDISelecionado.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtCodigoLDISelecionado.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.TxtCodigoLDISelecionado.Location = new System.Drawing.Point(568, 93);
+            this.TxtCodigoLDISelecionado.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtCodigoLDISelecionado.ForeColor = System.Drawing.Color.Maroon;
+            this.TxtCodigoLDISelecionado.Location = new System.Drawing.Point(1107, 93);
             this.TxtCodigoLDISelecionado.Name = "TxtCodigoLDISelecionado";
             this.TxtCodigoLDISelecionado.ReadOnly = true;
             this.TxtCodigoLDISelecionado.Size = new System.Drawing.Size(166, 31);
@@ -979,11 +938,11 @@
             // 
             this.TxtCodigoObjetoSelecionado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.TxtCodigoObjetoSelecionado.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtCodigoObjetoSelecionado.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.TxtCodigoObjetoSelecionado.Location = new System.Drawing.Point(383, 93);
+            this.TxtCodigoObjetoSelecionado.ForeColor = System.Drawing.Color.Maroon;
+            this.TxtCodigoObjetoSelecionado.Location = new System.Drawing.Point(909, 93);
             this.TxtCodigoObjetoSelecionado.Name = "TxtCodigoObjetoSelecionado";
             this.TxtCodigoObjetoSelecionado.ReadOnly = true;
-            this.TxtCodigoObjetoSelecionado.Size = new System.Drawing.Size(181, 31);
+            this.TxtCodigoObjetoSelecionado.Size = new System.Drawing.Size(196, 31);
             this.TxtCodigoObjetoSelecionado.TabIndex = 24;
             this.TxtCodigoObjetoSelecionado.TabStop = false;
             // 
@@ -992,11 +951,11 @@
             this.TxtItemSelecionado.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TxtItemSelecionado.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold);
-            this.TxtItemSelecionado.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.TxtItemSelecionado.Location = new System.Drawing.Point(6, 93);
+            this.TxtItemSelecionado.ForeColor = System.Drawing.Color.Maroon;
+            this.TxtItemSelecionado.Location = new System.Drawing.Point(6, 92);
             this.TxtItemSelecionado.Name = "TxtItemSelecionado";
             this.TxtItemSelecionado.ReadOnly = true;
-            this.TxtItemSelecionado.Size = new System.Drawing.Size(132, 32);
+            this.TxtItemSelecionado.Size = new System.Drawing.Size(901, 32);
             this.TxtItemSelecionado.TabIndex = 20;
             this.TxtItemSelecionado.TabStop = false;
             // 
@@ -1004,13 +963,17 @@
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.groupBox2.Controls.Add(this.checkBoxSomenteHoje);
+            this.groupBox2.Controls.Add(this.BtnConsultar);
+            this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(162, 9);
+            this.groupBox2.ForeColor = System.Drawing.Color.Blue;
+            this.groupBox2.Location = new System.Drawing.Point(1318, 9);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(571, 68);
+            this.groupBox2.Size = new System.Drawing.Size(415, 68);
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "*Filtros para dados";
+            this.groupBox2.Text = "                                    *Filtros para dados";
             // 
             // tabControl1
             // 
@@ -1019,7 +982,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(192, 167);
+            this.tabControl1.Size = new System.Drawing.Size(458, 167);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -1042,7 +1005,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(184, 141);
+            this.tabPage1.Size = new System.Drawing.Size(450, 141);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Dados de postagem";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -1207,8 +1170,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(739, 366);
-            this.splitContainer1.SplitterDistance = 543;
+            this.splitContainer1.Size = new System.Drawing.Size(1739, 366);
+            this.splitContainer1.SplitterDistance = 1277;
             this.splitContainer1.TabIndex = 4;
             // 
             // splitContainer2
@@ -1225,7 +1188,7 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.tabControl2);
-            this.splitContainer2.Size = new System.Drawing.Size(192, 366);
+            this.splitContainer2.Size = new System.Drawing.Size(458, 366);
             this.splitContainer2.SplitterDistance = 167;
             this.splitContainer2.TabIndex = 4;
             // 
@@ -1236,7 +1199,7 @@
             this.tabControl2.Location = new System.Drawing.Point(0, 0);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(192, 195);
+            this.tabControl2.Size = new System.Drawing.Size(458, 195);
             this.tabControl2.TabIndex = 0;
             // 
             // tabPage2
@@ -1264,7 +1227,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(184, 169);
+            this.tabPage2.Size = new System.Drawing.Size(450, 169);
             this.tabPage2.TabIndex = 0;
             this.tabPage2.Text = "Dados da última tentativa de entrega";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -1277,7 +1240,7 @@
             this.BtnCoordenadas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.BtnCoordenadas.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BtnCoordenadas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnCoordenadas.Location = new System.Drawing.Point(118, 3);
+            this.BtnCoordenadas.Location = new System.Drawing.Point(384, 3);
             this.BtnCoordenadas.Name = "BtnCoordenadas";
             this.BtnCoordenadas.Size = new System.Drawing.Size(64, 44);
             this.BtnCoordenadas.TabIndex = 18;
@@ -1475,12 +1438,26 @@
             this.tableAdapterManager.TabelaObjetosSROLocalTableAdapter = this.tabelaObjetosSROLocalTableAdapter;
             this.tableAdapterManager.UpdateOrder = SISAPO.DataSetTabelaObjetosSROLocalTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
+            // BtnConsultar
+            // 
+            this.BtnConsultar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnConsultar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnConsultar.ForeColor = System.Drawing.Color.DarkRed;
+            this.BtnConsultar.Location = new System.Drawing.Point(221, 32);
+            this.BtnConsultar.Name = "BtnConsultar";
+            this.BtnConsultar.Size = new System.Drawing.Size(191, 29);
+            this.BtnConsultar.TabIndex = 14;
+            this.BtnConsultar.TabStop = false;
+            this.BtnConsultar.Text = "Consultar [F5]";
+            this.BtnConsultar.UseVisualStyleBackColor = true;
+            this.BtnConsultar.Click += new System.EventHandler(this.BtnConsultar_Click);
+            // 
             // FormularioConsulta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(739, 549);
+            this.ClientSize = new System.Drawing.Size(1739, 549);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panel1);
@@ -1489,6 +1466,7 @@
             this.Name = "FormularioConsulta";
             this.ShowInTaskbar = false;
             this.Text = "Consulta de objetos aguardando retirada";
+            this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
             this.Activated += new System.EventHandler(this.FormularioConsulta_Activated);
             this.Load += new System.EventHandler(this.FormularioConsulta_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormularioConsulta_KeyDown);
@@ -1502,6 +1480,8 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
@@ -1533,14 +1513,12 @@
         private System.Windows.Forms.ToolStripMenuItem MarcarComoEntregueToolStripMenuItem;
         private System.Windows.Forms.TextBox TxtPesquisa;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.Button btnPesquisarSRO;
         private System.Windows.Forms.Label LbnQuantidadeRegistros;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox TxtItemSelecionado;
         private System.Windows.Forms.Button BtnDetalharObjetosSelecionado;
-        public System.Windows.Forms.CheckBox ChkIncluirItensEntreguesNaPesquisa;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ContextMenuStrip contextMenuStripAtualizacao;
@@ -1556,7 +1534,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ContextMenuStrip contextMenuStripImprimirListaEntrega;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemImprimirListaEntrega;
-        public System.Windows.Forms.CheckBox ChkIncluirItensCaixaPostalNaPesquisa;
         private System.Windows.Forms.ToolStripMenuItem alterarItemToolStripMenuItem;
         private System.Windows.Forms.Label LblDataLancamento;
         private System.Windows.Forms.TextBox TxtDataLancamento;
@@ -1608,6 +1585,7 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.LinkLabel linkLabel3;
         private System.Windows.Forms.ToolStripMenuItem alterarItemToolStripMenuItem1;
+        private System.Windows.Forms.Button BtnCoordenadas;
         private System.Windows.Forms.DataGridViewTextBoxColumn codigoObjetoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn CaixaPostal;
         private System.Windows.Forms.DataGridViewTextBoxColumn nomeClienteDataGridViewTextBoxColumn;
@@ -1636,6 +1614,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn AgrupadoDestinatarioAusente;
         private System.Windows.Forms.DataGridViewTextBoxColumn CoordenadasDestinatarioAusente;
         private System.Windows.Forms.DataGridViewCheckBoxColumn atualizadoDataGridViewCheckBoxColumn;
-        private System.Windows.Forms.Button BtnCoordenadas;
+        private System.Windows.Forms.Button BtnConsultar;
     }
 }

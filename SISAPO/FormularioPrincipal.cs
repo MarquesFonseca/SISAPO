@@ -38,12 +38,12 @@ namespace SISAPO
 
         private void FormularioPrincipal_Load(object sender, EventArgs e)
         {
-            BuscaNovoStatusQuantidadeNaoAtualizados();
-
             ExibirItensJaEntreguesToolStripMenuItem.Checked = true;
             IncluirCaixaPostalPesquisa_toolStripMenuItem.Checked = true;
-            RastreamentoSRO_toolStripButton_Click(sender, e);
+            //RastreamentoSRO_toolStripButton_Click(sender, e);
             VisualizarListaObjetos_toolStripButton_Click(sender, e);
+
+            BuscaNovoStatusQuantidadeNaoAtualizados();
         }
 
         public void BuscaNovoStatusQuantidadeNaoAtualizados()
@@ -178,7 +178,6 @@ namespace SISAPO
             {
                 if (item.Name == "FormularioConsulta")
                 {
-                    //item.WindowState = FormWindowState.Maximized;
                     item.Activate();
                     return;
                 }
@@ -187,9 +186,7 @@ namespace SISAPO
             FormularioConsulta formularioConsulta = new FormularioConsulta();
             formularioConsulta.MdiParent = this;
             formularioConsulta.Show();
-            //formularioConsulta.WindowState = FormWindowState.Normal;
             formularioConsulta.WindowState = FormWindowState.Maximized;
-            //formularioConsulta.Activate();
             ExibirItensJaEntreguesToolStripMenuItem_Click(sender, e);
         }
 
@@ -207,7 +204,7 @@ namespace SISAPO
             FormularioSRORastreamentoUnificado formularioSRORastreamentoUnificado = new FormularioSRORastreamentoUnificado();
             formularioSRORastreamentoUnificado.MdiParent = this;
             formularioSRORastreamentoUnificado.Show();
-            formularioSRORastreamentoUnificado.WindowState = FormWindowState.Normal;
+            //formularioSRORastreamentoUnificado.WindowState = FormWindowState.Normal;
             formularioSRORastreamentoUnificado.WindowState = FormWindowState.Maximized;
             formularioSRORastreamentoUnificado.Activate();
 
@@ -533,7 +530,7 @@ namespace SISAPO
                 if (item.Name == "FormularioConsulta")
                 {
                     formularioConsulta = (FormularioConsulta)item;
-                    formularioConsulta.ChkIncluirItensCaixaPostalNaPesquisa.Checked = this.IncluirCaixaPostalPesquisa_toolStripMenuItem.Checked;
+                    //formularioConsulta.ChkIncluirItensCaixaPostalNaPesquisa.Checked = this.IncluirCaixaPostalPesquisa_toolStripMenuItem.Checked;
                     formularioConsulta.MontaFiltro();
                     formularioConsulta.Activate();
                     break;
@@ -549,7 +546,7 @@ namespace SISAPO
                 if (item.Name == "FormularioConsulta")
                 {
                     formularioConsulta = (FormularioConsulta)item;
-                    formularioConsulta.ChkIncluirItensEntreguesNaPesquisa.Checked = this.ExibirItensJaEntreguesToolStripMenuItem.Checked;
+                    //formularioConsulta.ChkIncluirItensEntreguesNaPesquisa.Checked = this.ExibirItensJaEntreguesToolStripMenuItem.Checked;
                     formularioConsulta.MontaFiltro();
                     formularioConsulta.Activate();
                     break;

@@ -71,7 +71,7 @@ namespace SISAPO
             if (Configuracoes.VerificaChaveAcesso())
             {
                 //string data = ClassesDiversas.CriptografiaHelper.Criptografa("30-09-2019");
-                Application.Run(new FormularioPrincipalNovo());
+                Application.Run(new FormularioPrincipal());
             }
             else
             {

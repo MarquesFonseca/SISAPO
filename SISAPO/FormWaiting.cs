@@ -13,6 +13,12 @@ namespace SISAPO
     public partial class FormWaiting : Form
     {
         public Action Worker { get; set; }
+
+        public FormWaiting()
+        {
+            InitializeComponent();            
+        }
+
         public FormWaiting(Action worker)
         {
             InitializeComponent();
