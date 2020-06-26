@@ -173,9 +173,7 @@ namespace SISAPO
                 Mensagens.Erro(ex.Message);
                 return dtbLista;
             }
-        }
-
-        
+        }        
 
         private void btnConsultar_Click(object sender, EventArgs e)
         {
@@ -361,6 +359,7 @@ namespace SISAPO
                     e.Cancel = true;
                     break;
                 }
+                FormularioPrincipal.RetornaComponentesFormularioPrincipal().BuscaNovoStatusQuantidadeNaoAtualizados();
                 string linhaItemCodigoObjeto = item["CodigoObjeto"].ToString();
                 string linhaItemDataLancamento = item["DataLancamento"].ToString();
                 string linhaItemDataModificacao = item["DataModificacao"].ToString();
@@ -440,6 +439,8 @@ namespace SISAPO
                 this.BtnGravar.Enabled = true;
                 textBox1.Enabled = true;
             }
+            
+            FormularioConsulta.RetornaComponentesFormularioConsulta().ConsultaTodosNaoEntreguesOrdenadoNome();
 
             FormularioPrincipal.RetornaComponentesFormularioPrincipal().BuscaNovoStatusQuantidadeNaoAtualizados();
             if (FormularioPrincipal.RetornaComponentesFormularioPrincipal().RetornaQuantidadeObjetoNaoAtualizado() > 0)

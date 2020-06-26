@@ -17,10 +17,12 @@ namespace SISAPO
         private static StringBuilder textoConsulta = new StringBuilder();
         private string enderecoSRO = @"http://websro2/rastreamento/sro";
         private string enderecoSRODesenvolvimento = @"C:\Users\MARQUES\Documents\visual studio 2010\Projects\SISAPO\SISAPO\bin\Debug\TelasRastreamento\1-1-TelaRastreamento.htm";
+        public bool detalhamentoObjetoGridView = false;
 
         public FormularioSRORastreamentoUnificado()
         {
             InitializeComponent();
+            detalhamentoObjetoGridView = false;
             textoConsulta = new StringBuilder();
             if (Configuracoes.TipoAmbiente == TipoAmbiente.Desenvolvimento)
                 webBrowser1.Url = new Uri(enderecoSRODesenvolvimento);
@@ -30,8 +32,8 @@ namespace SISAPO
 
         public FormularioSRORastreamentoUnificado(string CodigoRastreamento)
         {
-            //gravar aqui na tabela de histórico.
             InitializeComponent();
+            detalhamentoObjetoGridView = true;
             textoConsulta = new StringBuilder();
             textoConsulta.AppendLine(CodigoRastreamento);
             if (Configuracoes.TipoAmbiente == TipoAmbiente.Desenvolvimento)

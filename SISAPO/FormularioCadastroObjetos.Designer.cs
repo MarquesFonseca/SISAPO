@@ -69,7 +69,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox1.Size = new System.Drawing.Size(381, 299);
+            this.textBox1.Size = new System.Drawing.Size(381, 296);
             this.textBox1.TabIndex = 1;
             // 
             // BtnGravar
@@ -213,7 +213,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(321, 299);
+            this.dataGridView1.Size = new System.Drawing.Size(321, 296);
             this.dataGridView1.TabIndex = 1;
             // 
             // CodigoObjeto
@@ -272,7 +272,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.label1);
             this.splitContainer1.Panel2.Controls.Add(this.textBox1);
-            this.splitContainer1.Size = new System.Drawing.Size(715, 334);
+            this.splitContainer1.Size = new System.Drawing.Size(715, 331);
             this.splitContainer1.SplitterDistance = 324;
             this.splitContainer1.TabIndex = 5;
             // 

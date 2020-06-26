@@ -92,7 +92,7 @@ namespace SISAPO
             tabelaObjetosSROLocalBindingSource.Filter = NovoFiltro;
 
             LbnQuantidadeRegistros.Text = string.Format("{0}", tabelaObjetosSROLocalBindingSource.Count);
-            if(tabelaObjetosSROLocalBindingSource.Count == 0)
+            if (tabelaObjetosSROLocalBindingSource.Count == 0)
             {
                 LblDadosPostagemIndisponivel.Visible = true;
                 LblDadosPostagemIndisponivel.Text = "Dados de postagem não disponível";
@@ -205,7 +205,7 @@ namespace SISAPO
             }
             if (e.KeyCode == Keys.F3)
             {
-                
+
             }
             if (e.KeyCode == Keys.F4)
             {
@@ -323,6 +323,7 @@ namespace SISAPO
                 TxtCodigoObjetoSelecionado.Text = "";
                 TxtCodigoLDISelecionado.Text = "";
                 TxtDataLancamento.Text = "";
+                TxtSituacaoAtual.Text = "";
 
                 LblDadosPostagemIndisponivel.Visible = true;
                 LblDadosPostagemIndisponivel.Text = "Dados de postagem não disponível";
@@ -386,8 +387,9 @@ namespace SISAPO
 
                 TxtCodigoObjetoSelecionado.Text = currentRow["CodigoObjeto"].ToString();
                 TxtItemSelecionado.Text = string.Format("{0} - {1}", CodigoObjetoFormatado, currentRow["NomeCliente"].ToString());
-
-
+                TxtSituacaoAtual.Text = currentRow["Situacao"].ToString().Replace("NAO", "NÃO").Replace("DISTRIBUIDO", "DISTRIBUÍDO").Replace("DESTINATARIO", "DESTINATÁRIO");
+                
+                //this.Text += TxtItemSelecionado.Text;
                 if (string.IsNullOrEmpty(currentRow["CoordenadasDestinatarioAusente"].ToString()))
                 {
                     BtnCoordenadas.Visible = false;
@@ -693,34 +695,43 @@ namespace SISAPO
             FormularioPrincipal.RetornaComponentesFormularioPrincipal().imprimirListaDeEntregaParaConsultaSelecionadaToolStripMenuItem_Click(sender, e);
         }
 
+        private string ultimoCodigoDetalhado = string.Empty;
         private void BtnDetalharObjetosSelecionado_Click(object sender, EventArgs e)
         {
             if (currentRow == null) return;
 
+            bool estaAberto = false;
             foreach (Form item in Application.OpenForms)
             {
                 if (item.Name == "FormularioSRORastreamentoUnificado")
                 {
-                    item.Close();
-                    break;
+                    if (item.Text.Contains("Rastreamento Unificado Detalhado"))
+                    {
+                        if (ultimoCodigoDetalhado == currentRow["CodigoObjeto"].ToString())
+                        {
+                            estaAberto = true;
+                            item.Activate();
+                            break;
+                        }
+                        else
+                        {
+                            estaAberto = false;
+                            item.Close();
+                            break;
+                        }
+                    }
                 }
             }
 
-            //FormularioSRORastreamentoUnificado formularioSRORastreamentoUnificado = new FormularioSRORastreamentoUnificado(currentRow["CodigoObjeto"].ToString());
-            //formularioSRORastreamentoUnificado.MdiParent = MdiParent;
-            //formularioSRORastreamentoUnificado.Show();
-            //formularioSRORastreamentoUnificado.WindowState = FormWindowState.Normal;
-            //formularioSRORastreamentoUnificado.WindowState = FormWindowState.Maximized;
-            //formularioSRORastreamentoUnificado.Activate();
+            if (estaAberto == true) return;
 
-            using (FormularioSRORastreamentoUnificado formularioSRORastreamentoUnificado = new FormularioSRORastreamentoUnificado(currentRow["CodigoObjeto"].ToString()))
-            {
-                formularioSRORastreamentoUnificado.WindowState = FormWindowState.Normal;
-                formularioSRORastreamentoUnificado.StartPosition = FormStartPosition.CenterScreen;
-                formularioSRORastreamentoUnificado.Text = string.Format(@"SRO - Rastreamento Unificado Detalhado - http://websro2.correiosnet.int/rastreamento/sro?opcao=PESQUISA&objetos={0}", currentRow["CodigoObjeto"].ToString());
-                formularioSRORastreamentoUnificado.ShowDialog();
-                formularioSRORastreamentoUnificado.Activate();
-            }
+            ultimoCodigoDetalhado = currentRow["CodigoObjeto"].ToString();
+            FormularioSRORastreamentoUnificado formularioSRORastreamentoUnificado = new FormularioSRORastreamentoUnificado(currentRow["CodigoObjeto"].ToString());
+            formularioSRORastreamentoUnificado.MdiParent = MdiParent;
+            formularioSRORastreamentoUnificado.Text = string.Format(@"SRO - Rastreamento Unificado Detalhado [{0}]", currentRow["CodigoObjeto"].ToString());
+            formularioSRORastreamentoUnificado.Show();
+            formularioSRORastreamentoUnificado.WindowState = FormWindowState.Maximized;
+            formularioSRORastreamentoUnificado.Activate();
         }
 
         private void ChkIncluirItensEntreguesNaPesquisa_CheckedChanged(object sender, EventArgs e)

@@ -192,14 +192,17 @@ namespace SISAPO
 
         private void RastreamentoSRO_toolStripButton_Click(object sender, EventArgs e)
         {
+            bool estaAberto = false;
             foreach (Form item in MdiChildren)
             {
-                if (item.Name == "FormularioSRORastreamentoUnificado")
+                if (item.Name == "FormularioSRORastreamentoUnificado" && !item.Text.Contains("Rastreamento Unificado Detalhado"))
                 {
-                    item.Close();
+                    estaAberto = true;
+                    item.Activate();
                     break;
                 }
             }
+            if (estaAberto) return;
 
             FormularioSRORastreamentoUnificado formularioSRORastreamentoUnificado = new FormularioSRORastreamentoUnificado();
             formularioSRORastreamentoUnificado.MdiParent = this;
@@ -207,7 +210,6 @@ namespace SISAPO
             //formularioSRORastreamentoUnificado.WindowState = FormWindowState.Normal;
             formularioSRORastreamentoUnificado.WindowState = FormWindowState.Maximized;
             formularioSRORastreamentoUnificado.Activate();
-
         }
 
         private void timerAtualizacaoNovosRegistros_Tick(object sender, EventArgs e)
@@ -254,21 +256,20 @@ namespace SISAPO
         {
             foreach (Form item in MdiChildren)
             {
-                //if (item.Name == "FormularioCadastroObjetos")
-                //{
-                //    item.Close();
-                //}
-                item.Close();
+                if (item.Name == "FormularioCadastroObjetos")
+                {
+                    item.Activate();
+                    return;
+                }
             }
 
             //CadastrarObjetos_toolStripButton_Click(sender, e);
             FormularioCadastroObjetos formularioCadastroObjetos = new FormularioCadastroObjetos();
             formularioCadastroObjetos.MdiParent = this;
             formularioCadastroObjetos.Show();
-            formularioCadastroObjetos.WindowState = FormWindowState.Normal;
             formularioCadastroObjetos.WindowState = FormWindowState.Maximized;
 
-            return;
+            //return;
 
             foreach (Form item in MdiChildren)
             {

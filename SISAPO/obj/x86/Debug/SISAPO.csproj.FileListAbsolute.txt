@@ -12,7 +12,6 @@ C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\bin\
 C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\bin\Debug\Release.dll
 C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\bin\Debug\System.Data.SqlServerCe.dll
 C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\bin\Debug\Microsoft.VisualBasic.PowerPacks.Vs.xml
-C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\obj\x86\Debug\SISAPO.csprojResolveAssemblyReference.cache
 C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\obj\x86\Debug\SISAPO.FormularioAtualizacaoObjetosCompleto.resources
 C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\obj\x86\Debug\SISAPO.FormularioAtualizacaoObjetosRequeridosJaEntregues.resources
 C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\obj\x86\Debug\SISAPO.FormularioAtualizacaoObjetosDestinatarioAusente.resources
@@ -47,3 +46,4 @@ C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\bin\
 C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\obj\x86\Debug\SISAPO.FormularioConsultaNovo.resources
 C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\obj\x86\Debug\SISAPO.FormularioPrincipalNovo.resources
 C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\obj\x86\Debug\SISAPO.WaitForm.resources
+C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\obj\x86\Debug\SISAPO.csprojResolveAssemblyReference.cache
