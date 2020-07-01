@@ -28,7 +28,7 @@ namespace SISAPO
         private void FormularioConsulta_Load(object sender, EventArgs e)
         {
             ChkIncluirItensEntreguesNaPesquisa.Checked = FormularioPrincipalNovo.RetornaComponentesFormularioPrincipal().ExibirItensJaEntreguesToolStripMenuItem.Checked;
-            ChkIncluirItensCaixaPostalNaPesquisa.Checked = FormularioPrincipalNovo.RetornaComponentesFormularioPrincipal().IncluirCaixaPostalPesquisa_toolStripMenuItem.Checked;
+            ChkIncluirItensCaixaPostalNaPesquisa.Checked = FormularioPrincipalNovo.RetornaComponentesFormularioPrincipal().ExibirCaixaPostalPesquisa_toolStripMenuItem.Checked;
 
             DataFinal_dateTimePicker.Text = DateTime.Now.Date.ToShortDateString();
             DataInicial_dateTimePicker.Text = DateTime.Today.AddMonths(-1).Date.ToShortDateString();
@@ -58,7 +58,7 @@ namespace SISAPO
             string objetoEntregueSelecionado = "";
             string campoPesquisa = "";
             bool ExibirItensEntregues = FormularioPrincipalNovo.RetornaComponentesFormularioPrincipal().ExibirItensJaEntreguesToolStripMenuItem.Checked;
-            bool IncluirItensCaixaPostal = FormularioPrincipalNovo.RetornaComponentesFormularioPrincipal().IncluirCaixaPostalPesquisa_toolStripMenuItem.Checked;
+            bool IncluirItensCaixaPostal = FormularioPrincipalNovo.RetornaComponentesFormularioPrincipal().ExibirCaixaPostalPesquisa_toolStripMenuItem.Checked;
             if (TxtPesquisa.Text != "")
             {
                 campoPesquisa = string.Format("(CodigoObjeto like '{0}%' OR NomeCliente like '%{0}%')", TxtPesquisa.Text.RemoveSimbolos().RemoveSpecialChars());
@@ -723,8 +723,8 @@ namespace SISAPO
 
         private void ChkIncluirItensCaixaPostalNaPesquisa_CheckedChanged(object sender, EventArgs e)
         {
-            //FormularioPrincipalNovo.RetornaComponentes().IncluirCaixaPostalPesquisa_toolStripMenuItem.Checked = ChkIncluirItensEntreguesNaPesquisa.Checked;
-            //FormularioPrincipalNovo.RetornaComponentes().IncluirCaixaPostalPesquisa_toolStripMenuItem_Click(sender, e);
+            //FormularioPrincipalNovo.RetornaComponentes().ExibirCaixaPostalPesquisa_toolStripMenuItem.Checked = ChkIncluirItensEntreguesNaPesquisa.Checked;
+            //FormularioPrincipalNovo.RetornaComponentes().ExibirCaixaPostalPesquisa_toolStripMenuItem_Click(sender, e);
         }
 
         public void removerItemToolStripMenuItem_Click(object sender, EventArgs e)
@@ -804,7 +804,7 @@ namespace SISAPO
             string objetoEntregueSelecionado = "";
             //bool ExibirItensEntregues = FormularioPrincipalNovo.RetornaComponentesFormularioPrincipal().ExibirItensJaEntreguesToolStripMenuItem.Checked;
             ////ExibirItensEntregues = true;//faz com que sempre imprima com os entregues... alterado dia 09/07/2019 por achar necessário...
-            //bool IncluirItensCaixaPostal = FormularioPrincipalNovo.RetornaComponentesFormularioPrincipal().IncluirCaixaPostalPesquisa_toolStripMenuItem.Checked;
+            //bool IncluirItensCaixaPostal = FormularioPrincipalNovo.RetornaComponentesFormularioPrincipal().ExibirCaixaPostalPesquisa_toolStripMenuItem.Checked;
 
             bool IncluirItensEntregues = _incluirItensEntregues;
             //ExibirItensEntregues = true;//faz com que sempre imprima com os entregues... alterado dia 09/07/2019 por achar necessário...

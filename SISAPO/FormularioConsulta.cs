@@ -53,10 +53,10 @@ namespace SISAPO
             string objetoEntregueSelecionado = "";
             string campoPesquisa = "";
             bool ExibirItensEntregues = FormularioPrincipal.RetornaComponentesFormularioPrincipal().ExibirItensJaEntreguesToolStripMenuItem.Checked;
-            bool IncluirItensCaixaPostal = FormularioPrincipal.RetornaComponentesFormularioPrincipal().IncluirCaixaPostalPesquisa_toolStripMenuItem.Checked;
+            bool IncluirItensCaixaPostal = FormularioPrincipal.RetornaComponentesFormularioPrincipal().ExibirCaixaPostalPesquisa_toolStripMenuItem.Checked;
             if (TxtPesquisa.Text != "")
             {
-                campoPesquisa = string.Format("(CodigoObjeto like '{0}%' OR NomeCliente like '%{0}%')", TxtPesquisa.Text.RemoveSimbolos().RemoveSpecialChars());
+                campoPesquisa = string.Format("(CodigoObjeto like '%{0}' OR CodigoLdi like '{0}%' OR NomeCliente like '%{0}%')", TxtPesquisa.Text.RemoveSimbolos().RemoveSpecialChars());
             }
             if (!ExibirItensEntregues)
             {
@@ -742,8 +742,8 @@ namespace SISAPO
 
         private void ChkIncluirItensCaixaPostalNaPesquisa_CheckedChanged(object sender, EventArgs e)
         {
-            //FormularioPrincipal.RetornaComponentes().IncluirCaixaPostalPesquisa_toolStripMenuItem.Checked = ChkIncluirItensEntreguesNaPesquisa.Checked;
-            //FormularioPrincipal.RetornaComponentes().IncluirCaixaPostalPesquisa_toolStripMenuItem_Click(sender, e);
+            //FormularioPrincipal.RetornaComponentes().ExibirCaixaPostalPesquisa_toolStripMenuItem.Checked = ChkIncluirItensEntreguesNaPesquisa.Checked;
+            //FormularioPrincipal.RetornaComponentes().ExibirCaixaPostalPesquisa_toolStripMenuItem_Click(sender, e);
         }
 
         public void removerItemToolStripMenuItem_Click(object sender, EventArgs e)
@@ -822,7 +822,7 @@ namespace SISAPO
             string objetoEntregueSelecionado = "";
             //bool ExibirItensEntregues = FormularioPrincipal.RetornaComponentesFormularioPrincipal().ExibirItensJaEntreguesToolStripMenuItem.Checked;
             ////ExibirItensEntregues = true;//faz com que sempre imprima com os entregues... alterado dia 09/07/2019 por achar necessário...
-            //bool IncluirItensCaixaPostal = FormularioPrincipal.RetornaComponentesFormularioPrincipal().IncluirCaixaPostalPesquisa_toolStripMenuItem.Checked;
+            //bool IncluirItensCaixaPostal = FormularioPrincipal.RetornaComponentesFormularioPrincipal().ExibirCaixaPostalPesquisa_toolStripMenuItem.Checked;
 
             bool IncluirItensEntregues = _incluirItensEntregues;
             //ExibirItensEntregues = true;//faz com que sempre imprima com os entregues... alterado dia 09/07/2019 por achar necessário...

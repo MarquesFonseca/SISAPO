@@ -52,7 +52,7 @@ namespace SISAPO
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.auxílioÀGestaoDoDiaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.opçõesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.IncluirCaixaPostalPesquisa_toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ExibirCaixaPostalPesquisa_toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ExibirItensJaEntreguesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manterConsultaSempreAtualizadaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manterDataFinalEmHojeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -274,7 +274,7 @@ namespace SISAPO
             // opçõesToolStripMenuItem
             // 
             this.opçõesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.IncluirCaixaPostalPesquisa_toolStripMenuItem,
+            this.ExibirCaixaPostalPesquisa_toolStripMenuItem,
             this.ExibirItensJaEntreguesToolStripMenuItem,
             this.manterConsultaSempreAtualizadaToolStripMenuItem,
             this.manterDataFinalEmHojeToolStripMenuItem,
@@ -294,20 +294,20 @@ namespace SISAPO
             this.opçõesToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.opçõesToolStripMenuItem.Text = "&Opções";
             // 
-            // IncluirCaixaPostalPesquisa_toolStripMenuItem
+            // ExibirCaixaPostalPesquisa_toolStripMenuItem
             // 
-            this.IncluirCaixaPostalPesquisa_toolStripMenuItem.CheckOnClick = true;
-            this.IncluirCaixaPostalPesquisa_toolStripMenuItem.Name = "IncluirCaixaPostalPesquisa_toolStripMenuItem";
-            this.IncluirCaixaPostalPesquisa_toolStripMenuItem.Size = new System.Drawing.Size(410, 22);
-            this.IncluirCaixaPostalPesquisa_toolStripMenuItem.Text = "&Exibir Objetos em Caixa Postal";
-            this.IncluirCaixaPostalPesquisa_toolStripMenuItem.Click += new System.EventHandler(this.IncluirCaixaPostalPesquisa_toolStripMenuItem_Click);
+            this.ExibirCaixaPostalPesquisa_toolStripMenuItem.CheckOnClick = true;
+            this.ExibirCaixaPostalPesquisa_toolStripMenuItem.Name = "ExibirCaixaPostalPesquisa_toolStripMenuItem";
+            this.ExibirCaixaPostalPesquisa_toolStripMenuItem.Size = new System.Drawing.Size(410, 22);
+            this.ExibirCaixaPostalPesquisa_toolStripMenuItem.Text = "Exibir Objetos em Caixa Postal na pesquisa";
+            this.ExibirCaixaPostalPesquisa_toolStripMenuItem.Click += new System.EventHandler(this.ExibirCaixaPostalPesquisa_toolStripMenuItem_Click);
             // 
             // ExibirItensJaEntreguesToolStripMenuItem
             // 
             this.ExibirItensJaEntreguesToolStripMenuItem.CheckOnClick = true;
             this.ExibirItensJaEntreguesToolStripMenuItem.Name = "ExibirItensJaEntreguesToolStripMenuItem";
             this.ExibirItensJaEntreguesToolStripMenuItem.Size = new System.Drawing.Size(410, 22);
-            this.ExibirItensJaEntreguesToolStripMenuItem.Text = "&Incluir Objetos já entregues";
+            this.ExibirItensJaEntreguesToolStripMenuItem.Text = "Exibir Objetos já entregues na pesquisa";
             this.ExibirItensJaEntreguesToolStripMenuItem.Click += new System.EventHandler(this.ExibirItensJaEntreguesToolStripMenuItem_Click);
             // 
             // manterConsultaSempreAtualizadaToolStripMenuItem
@@ -613,7 +613,7 @@ namespace SISAPO
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem imprimirListaDeEntregaParaConsultaSelecionadaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem opçõesToolStripMenuItem;
-        public System.Windows.Forms.ToolStripMenuItem IncluirCaixaPostalPesquisa_toolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem ExibirCaixaPostalPesquisa_toolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem ExibirItensJaEntreguesToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;

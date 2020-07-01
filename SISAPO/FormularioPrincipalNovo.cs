@@ -41,7 +41,7 @@ namespace SISAPO
             BuscaNovoStatusQuantidadeNaoAtualizados();
 
             ExibirItensJaEntreguesToolStripMenuItem.Checked = true;
-            IncluirCaixaPostalPesquisa_toolStripMenuItem.Checked = true;
+            ExibirCaixaPostalPesquisa_toolStripMenuItem.Checked = true;
             RastreamentoSRO_toolStripButton_Click(sender, e);
             VisualizarListaObjetos_toolStripButton_Click(sender, e);
         }
@@ -525,7 +525,7 @@ namespace SISAPO
             formularioSobre.ShowDialog();
         }
 
-        public void IncluirCaixaPostalPesquisa_toolStripMenuItem_Click(object sender, EventArgs e)
+        public void ExibirCaixaPostalPesquisa_toolStripMenuItem_Click(object sender, EventArgs e)
         {
             FormularioConsultaNovo formularioConsulta;
             foreach (Form item in Application.OpenForms)
@@ -533,7 +533,7 @@ namespace SISAPO
                 if (item.Name == "FormularioConsultaNovo")
                 {
                     formularioConsulta = (FormularioConsultaNovo)item;
-                    formularioConsulta.ChkIncluirItensCaixaPostalNaPesquisa.Checked = this.IncluirCaixaPostalPesquisa_toolStripMenuItem.Checked;
+                    formularioConsulta.ChkIncluirItensCaixaPostalNaPesquisa.Checked = this.ExibirCaixaPostalPesquisa_toolStripMenuItem.Checked;
                     formularioConsulta.MontaFiltro();
                     formularioConsulta.Activate();
                     break;

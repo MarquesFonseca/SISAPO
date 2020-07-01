@@ -21,23 +21,30 @@ namespace SISAPO
         {
             this.tabelaConfiguracoesSistemaTableAdapter.Connection.ConnectionString = ClassesDiversas.Configuracoes.strConexao;
             this.tabelaConfiguracoesSistemaTableAdapter.Fill(this.dataSetConfiguracoes.TabelaConfiguracoesSistema);
+            checkBoxExibirObjetosEmCaixaPostal.Checked = FormularioPrincipal.RetornaComponentesFormularioPrincipal().ExibirCaixaPostalPesquisa_toolStripMenuItem.Checked;
             checkBoxExibirItensJaEntregues.Checked = FormularioPrincipal.RetornaComponentesFormularioPrincipal().ExibirItensJaEntreguesToolStripMenuItem.Checked;
-            if (Configuracoes.TipoAmbiente == TipoAmbiente.Desenvolvimento) checkBox1.Visible = true;
-            else checkBox1.Visible = false;
+            if (Configuracoes.TipoAmbiente == TipoAmbiente.Desenvolvimento) BtnMarcarTodosAtualizados.Visible = true;
+            else BtnMarcarTodosAtualizados.Visible = false;
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        private void BtnRequererVerificacaoDeObjetosJaEntregues_Click(object sender, EventArgs e)
         {
             FormularioPrincipal.RetornaComponentesFormularioPrincipal().solicitarVerificacaoDeObjetosAindaNaoEntreguesToolStripMenuItem_Click(sender, e);
         }
 
-        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        private void checkBoxExibirObjetosEmCaixaPostal_CheckedChanged(object sender, EventArgs e)
+        {
+            FormularioPrincipal.RetornaComponentesFormularioPrincipal().ExibirCaixaPostalPesquisa_toolStripMenuItem.Checked = checkBoxExibirObjetosEmCaixaPostal.Checked;
+            FormularioPrincipal.RetornaComponentesFormularioPrincipal().ExibirCaixaPostalPesquisa_toolStripMenuItem_Click(sender, e);
+        }
+
+        private void checkBoxExibirItensJaEntregues_CheckedChanged(object sender, EventArgs e)
         {
             FormularioPrincipal.RetornaComponentesFormularioPrincipal().ExibirItensJaEntreguesToolStripMenuItem.Checked = checkBoxExibirItensJaEntregues.Checked;
             FormularioPrincipal.RetornaComponentesFormularioPrincipal().ExibirItensJaEntreguesToolStripMenuItem_Click(sender, e);
         }
 
-        private void checkBox1_CheckedChanged_1(object sender, EventArgs e)
+        private void BtnMarcarTodosAtualizados_Click(object sender, EventArgs e)
         {
             DialogResult pergunta = Mensagens.Pergunta("Deseja realmente marcar/desmarcar objetos como atualizado?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -51,8 +58,8 @@ namespace SISAPO
                 using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
                 {
                     if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
-                    dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET Atualizado = @Atualizado", new List<Parametros>(){ 
-                                            new Parametros("@Atualizado", TipoCampo.Int, checkBox1.Checked)});
+                    dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET Atualizado = @Atualizado", new List<Parametros>(){
+                                            new Parametros("@Atualizado", TipoCampo.Int, true)});
                 }
                 FormularioPrincipal.RetornaComponentesFormularioPrincipal().BuscaNovoStatusQuantidadeNaoAtualizados();
             }
@@ -97,5 +104,7 @@ namespace SISAPO
                 Mensagens.Erro(ex.Message);
             }
         }
+
+        
     }
 }

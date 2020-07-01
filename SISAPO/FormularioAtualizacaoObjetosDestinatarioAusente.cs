@@ -228,23 +228,23 @@ namespace SISAPO
                         #region Capturando os dados
                         for (int i = 0; i < webBrowser1.Document.GetElementsByTagName("TR").Count; i++)
                         {
-                            string InnerTextSaiuParaEntrega = webBrowser1.Document.GetElementsByTagName("TR")[i].InnerText.Trim();
-                            if (string.IsNullOrEmpty(InnerTextSaiuParaEntrega)) continue;
-                            if (InnerTextSaiuParaEntrega.Contains("Situação:"))
+                            string InnerTextDestinatarioAusente = webBrowser1.Document.GetElementsByTagName("TR")[i].InnerText.Trim();
+                            if (string.IsNullOrEmpty(InnerTextDestinatarioAusente)) continue;
+                            if (InnerTextDestinatarioAusente.Contains("Situação:"))
                             {
                                 SituacaoDestinatarioAusente = webBrowser1.Document.GetElementsByTagName("TR")[i].InnerText.Replace("Situação: ", "").ToUpper().Trim();
                                 EscreveTextoTextBox("Situação: " + SituacaoDestinatarioAusente.ToString());
                                 Mensagens.InformaDesenvolvedor(string.Format("Situação: " + SituacaoDestinatarioAusente.ToString()));
                                 continue;
                             }
-                            else if (InnerTextSaiuParaEntrega.Contains("Agrupado:"))
+                            if (InnerTextDestinatarioAusente.Contains("Agrupado:"))
                             {
                                 AgrupadoDestinatarioAusente = webBrowser1.Document.GetElementsByTagName("TR")[i].InnerText.Replace("Agrupado: ", "").ToUpper().Trim();
                                 EscreveTextoTextBox("Agrupado: " + AgrupadoDestinatarioAusente.ToString());
                                 Mensagens.InformaDesenvolvedor(string.Format("Agrupado: " + AgrupadoDestinatarioAusente.ToString()));
                                 continue;
                             }
-                            else if (InnerTextSaiuParaEntrega.Contains("Coordenadas:"))
+                            if (InnerTextDestinatarioAusente.Contains("Coordenadas:"))
                             {
                                 CoordenadasDestinatarioAusente = webBrowser1.Document.GetElementsByTagName("TR")[i].InnerText.Replace("Coordenadas: ", "").ToUpper().Trim();
                                 EscreveTextoTextBox("Coordenadas: " + CoordenadasDestinatarioAusente.ToString());

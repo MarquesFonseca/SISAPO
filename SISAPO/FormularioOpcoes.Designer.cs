@@ -32,11 +32,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormularioOpcoes));
             this.LblTituloFormulario = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.checkBoxRequererVerificacaoDeObjetosJaEntregues = new System.Windows.Forms.CheckBox();
             this.checkBoxExibirItensJaEntregues = new System.Windows.Forms.CheckBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageObjetosAguardandoRetirada = new System.Windows.Forms.TabPage();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.BtnMarcarTodosAtualizados = new System.Windows.Forms.Button();
+            this.BtnRequererVerificacaoDeObjetosJaEntregues = new System.Windows.Forms.Button();
             this.tabPageExibirItensJaEntregues = new System.Windows.Forms.TabPage();
             this.tabPageConfiguracoesAgencia = new System.Windows.Forms.TabPage();
             this.label1 = new System.Windows.Forms.Label();
@@ -47,6 +47,7 @@
             this.dataSetConfiguracoes = new SISAPO.DataSetConfiguracoes();
             this.txtNomeAgencia = new System.Windows.Forms.TextBox();
             this.tabelaConfiguracoesSistemaTableAdapter = new SISAPO.DataSetConfiguracoesTableAdapters.TabelaConfiguracoesSistemaTableAdapter();
+            this.checkBoxExibirObjetosEmCaixaPostal = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageObjetosAguardandoRetirada.SuspendLayout();
@@ -77,27 +78,16 @@
             this.panel1.Size = new System.Drawing.Size(739, 51);
             this.panel1.TabIndex = 0;
             // 
-            // checkBoxRequererVerificacaoDeObjetosJaEntregues
-            // 
-            this.checkBoxRequererVerificacaoDeObjetosJaEntregues.AutoSize = true;
-            this.checkBoxRequererVerificacaoDeObjetosJaEntregues.Location = new System.Drawing.Point(15, 19);
-            this.checkBoxRequererVerificacaoDeObjetosJaEntregues.Name = "checkBoxRequererVerificacaoDeObjetosJaEntregues";
-            this.checkBoxRequererVerificacaoDeObjetosJaEntregues.Size = new System.Drawing.Size(279, 17);
-            this.checkBoxRequererVerificacaoDeObjetosJaEntregues.TabIndex = 0;
-            this.checkBoxRequererVerificacaoDeObjetosJaEntregues.Text = "&Solicitar verificação de Objetos ainda não Entregues?";
-            this.checkBoxRequererVerificacaoDeObjetosJaEntregues.UseVisualStyleBackColor = true;
-            this.checkBoxRequererVerificacaoDeObjetosJaEntregues.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
-            // 
             // checkBoxExibirItensJaEntregues
             // 
             this.checkBoxExibirItensJaEntregues.AutoSize = true;
-            this.checkBoxExibirItensJaEntregues.Location = new System.Drawing.Point(15, 19);
+            this.checkBoxExibirItensJaEntregues.Location = new System.Drawing.Point(8, 38);
             this.checkBoxExibirItensJaEntregues.Name = "checkBoxExibirItensJaEntregues";
-            this.checkBoxExibirItensJaEntregues.Size = new System.Drawing.Size(189, 17);
+            this.checkBoxExibirItensJaEntregues.Size = new System.Drawing.Size(211, 17);
             this.checkBoxExibirItensJaEntregues.TabIndex = 0;
-            this.checkBoxExibirItensJaEntregues.Text = "Incluir itens entregues na pesquisa";
+            this.checkBoxExibirItensJaEntregues.Text = "Exibir Objetos já entregues na pesquisa";
             this.checkBoxExibirItensJaEntregues.UseVisualStyleBackColor = true;
-            this.checkBoxExibirItensJaEntregues.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
+            this.checkBoxExibirItensJaEntregues.CheckedChanged += new System.EventHandler(this.checkBoxExibirItensJaEntregues_CheckedChanged);
             // 
             // tabControl1
             // 
@@ -113,8 +103,8 @@
             // 
             // tabPageObjetosAguardandoRetirada
             // 
-            this.tabPageObjetosAguardandoRetirada.Controls.Add(this.checkBox1);
-            this.tabPageObjetosAguardandoRetirada.Controls.Add(this.checkBoxRequererVerificacaoDeObjetosJaEntregues);
+            this.tabPageObjetosAguardandoRetirada.Controls.Add(this.BtnMarcarTodosAtualizados);
+            this.tabPageObjetosAguardandoRetirada.Controls.Add(this.BtnRequererVerificacaoDeObjetosJaEntregues);
             this.tabPageObjetosAguardandoRetirada.Location = new System.Drawing.Point(4, 22);
             this.tabPageObjetosAguardandoRetirada.Name = "tabPageObjetosAguardandoRetirada";
             this.tabPageObjetosAguardandoRetirada.Padding = new System.Windows.Forms.Padding(3);
@@ -123,19 +113,29 @@
             this.tabPageObjetosAguardandoRetirada.Text = "Objetos aguardando retirada";
             this.tabPageObjetosAguardandoRetirada.UseVisualStyleBackColor = true;
             // 
-            // checkBox1
+            // BtnMarcarTodosAtualizados
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(15, 42);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(145, 17);
-            this.checkBox1.TabIndex = 1;
-            this.checkBox1.Text = "&Marcar todos Atualizados";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged_1);
+            this.BtnMarcarTodosAtualizados.Location = new System.Drawing.Point(8, 60);
+            this.BtnMarcarTodosAtualizados.Name = "BtnMarcarTodosAtualizados";
+            this.BtnMarcarTodosAtualizados.Size = new System.Drawing.Size(174, 23);
+            this.BtnMarcarTodosAtualizados.TabIndex = 2;
+            this.BtnMarcarTodosAtualizados.Text = "&Marcar todos Atualizados";
+            this.BtnMarcarTodosAtualizados.UseVisualStyleBackColor = true;
+            this.BtnMarcarTodosAtualizados.Click += new System.EventHandler(this.BtnMarcarTodosAtualizados_Click);
+            // 
+            // BtnRequererVerificacaoDeObjetosJaEntregues
+            // 
+            this.BtnRequererVerificacaoDeObjetosJaEntregues.Location = new System.Drawing.Point(8, 15);
+            this.BtnRequererVerificacaoDeObjetosJaEntregues.Name = "BtnRequererVerificacaoDeObjetosJaEntregues";
+            this.BtnRequererVerificacaoDeObjetosJaEntregues.Size = new System.Drawing.Size(174, 23);
+            this.BtnRequererVerificacaoDeObjetosJaEntregues.TabIndex = 2;
+            this.BtnRequererVerificacaoDeObjetosJaEntregues.Text = "&Solicitar verificação de Objetos ainda não Entregues?";
+            this.BtnRequererVerificacaoDeObjetosJaEntregues.UseVisualStyleBackColor = true;
+            this.BtnRequererVerificacaoDeObjetosJaEntregues.Click += new System.EventHandler(this.BtnRequererVerificacaoDeObjetosJaEntregues_Click);
             // 
             // tabPageExibirItensJaEntregues
             // 
+            this.tabPageExibirItensJaEntregues.Controls.Add(this.checkBoxExibirObjetosEmCaixaPostal);
             this.tabPageExibirItensJaEntregues.Controls.Add(this.checkBoxExibirItensJaEntregues);
             this.tabPageExibirItensJaEntregues.Location = new System.Drawing.Point(4, 22);
             this.tabPageExibirItensJaEntregues.Name = "tabPageExibirItensJaEntregues";
@@ -226,6 +226,17 @@
             // 
             this.tabelaConfiguracoesSistemaTableAdapter.ClearBeforeFill = true;
             // 
+            // checkBoxExibirObjetosEmCaixaPostal
+            // 
+            this.checkBoxExibirObjetosEmCaixaPostal.AutoSize = true;
+            this.checkBoxExibirObjetosEmCaixaPostal.Location = new System.Drawing.Point(8, 15);
+            this.checkBoxExibirObjetosEmCaixaPostal.Name = "checkBoxExibirObjetosEmCaixaPostal";
+            this.checkBoxExibirObjetosEmCaixaPostal.Size = new System.Drawing.Size(228, 17);
+            this.checkBoxExibirObjetosEmCaixaPostal.TabIndex = 0;
+            this.checkBoxExibirObjetosEmCaixaPostal.Text = "Exibir Objetos em Caixa Postal na pesquisa";
+            this.checkBoxExibirObjetosEmCaixaPostal.UseVisualStyleBackColor = true;
+            this.checkBoxExibirObjetosEmCaixaPostal.CheckedChanged += new System.EventHandler(this.checkBoxExibirObjetosEmCaixaPostal_CheckedChanged);
+            // 
             // FormularioOpcoes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -246,7 +257,6 @@
             this.panel1.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabPageObjetosAguardandoRetirada.ResumeLayout(false);
-            this.tabPageObjetosAguardandoRetirada.PerformLayout();
             this.tabPageExibirItensJaEntregues.ResumeLayout(false);
             this.tabPageExibirItensJaEntregues.PerformLayout();
             this.tabPageConfiguracoesAgencia.ResumeLayout(false);
@@ -261,12 +271,10 @@
 
         private System.Windows.Forms.Label LblTituloFormulario;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.CheckBox checkBoxRequererVerificacaoDeObjetosJaEntregues;
         private System.Windows.Forms.CheckBox checkBoxExibirItensJaEntregues;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPageObjetosAguardandoRetirada;
         private System.Windows.Forms.TabPage tabPageExibirItensJaEntregues;
-        private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.TabPage tabPageConfiguracoesAgencia;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label LblNomeAgencia;
@@ -276,5 +284,8 @@
         private System.Windows.Forms.BindingSource bindingSourceTabelaConfiguracoesSistema;
         private DataSetConfiguracoes dataSetConfiguracoes;
         private DataSetConfiguracoesTableAdapters.TabelaConfiguracoesSistemaTableAdapter tabelaConfiguracoesSistemaTableAdapter;
+        private System.Windows.Forms.Button BtnMarcarTodosAtualizados;
+        private System.Windows.Forms.Button BtnRequererVerificacaoDeObjetosJaEntregues;
+        private System.Windows.Forms.CheckBox checkBoxExibirObjetosEmCaixaPostal;
     }
 }
