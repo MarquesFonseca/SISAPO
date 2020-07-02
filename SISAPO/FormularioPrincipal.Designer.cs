@@ -361,7 +361,6 @@ namespace SISAPO
             this.exibirMensagensAoDesevolvedorToolStripMenuItem.Name = "exibirMensagensAoDesevolvedorToolStripMenuItem";
             this.exibirMensagensAoDesevolvedorToolStripMenuItem.Size = new System.Drawing.Size(410, 22);
             this.exibirMensagensAoDesevolvedorToolStripMenuItem.Text = "Exibir Mensagens ao desevolvedor";
-            this.exibirMensagensAoDesevolvedorToolStripMenuItem.Visible = false;
             this.exibirMensagensAoDesevolvedorToolStripMenuItem.Click += new System.EventHandler(this.exibirMensagensAoDesevolvedorToolStripMenuItem_Click);
             // 
             // removerLinhasSelecionadasToolStripMenuItem

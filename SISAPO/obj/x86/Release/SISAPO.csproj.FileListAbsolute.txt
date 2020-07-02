@@ -44,3 +44,6 @@ C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\obj\
 C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\obj\x86\Release\SISAPO.exe
 C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\obj\x86\Release\SISAPO.pdb
 C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\obj\x86\Release\SISAPO.csprojResolveAssemblyReference.cache
+C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioConsultaNovo.resources
+C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioPrincipalNovo.resources
+C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\obj\x86\Release\SISAPO.WaitForm.resources

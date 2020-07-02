@@ -175,14 +175,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SISAPO.exe" size="7220224">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SISAPO.exe" size="8034304">
       <assemblyIdentity name="SISAPO" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>bam8IrzWCnqZBUVwE/KuQjtHVdI=</dsig:DigestValue>
+        <dsig:DigestValue>Tq/sE3e7i4ZvfHorqYKJPrZJEQU=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -304,6 +304,15 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
       <dsig:DigestValue>EtNIZSJqhoBXI8dM9LNt/6O5mpM=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\timg11.gif" size="8485">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>OnoffO0I74ysO+uiBPa+X9cK968=</dsig:DigestValue>
     </hash>
   </file>
   <file name="SelectDataSet.txt" size="453">

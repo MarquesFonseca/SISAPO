@@ -232,6 +232,7 @@ namespace SISAPO
                         #region Capturando os dados
                         for (int i = 0; i < webBrowser1.Document.GetElementsByTagName("TR").Count; i++)
                         {
+                            if (string.IsNullOrEmpty(webBrowser1.Document.GetElementsByTagName("TR")[i].InnerText)) continue;
                             string InnerTextSaiuParaEntrega = webBrowser1.Document.GetElementsByTagName("TR")[i].InnerText.Trim();
                             if (string.IsNullOrEmpty(InnerTextSaiuParaEntrega)) continue;
                             if (InnerTextSaiuParaEntrega.Contains("Unidade:"))

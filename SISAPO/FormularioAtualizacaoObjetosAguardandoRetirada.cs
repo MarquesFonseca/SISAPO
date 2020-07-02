@@ -225,8 +225,9 @@ namespace SISAPO
 
                         for (int i = 0; i < webBrowser1.Document.GetElementsByTagName("TR").Count; i++)
                         {
-                            string teste = webBrowser1.Document.GetElementsByTagName("TR")[i].InnerText;
+                            if (string.IsNullOrEmpty(webBrowser1.Document.GetElementsByTagName("TR")[i].InnerText)) continue;
 
+                            string teste = webBrowser1.Document.GetElementsByTagName("TR")[i].InnerText;
                             if (webBrowser1.Document.GetElementsByTagName("TR")[i].InnerText.Contains("LDI:"))
                             {
                                 Ldi = webBrowser1.Document.GetElementsByTagName("TR")[i].InnerText.Replace("LDI: ", "");

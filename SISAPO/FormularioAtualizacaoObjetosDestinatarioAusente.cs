@@ -30,7 +30,7 @@ namespace SISAPO
         //private string TelaNomeCliente_1_4 = @"C:\Users\MARQUES\Documents\visual studio 2010\Projects\SISAPO\SISAPO\bin\Debug\TelasRastreamento\1-4-TelaNomeCliente.htm";
         //private string TelaRastreamento_2_1 = @"C:\Users\MARQUES\Documents\visual studio 2010\Projects\SISAPO\SISAPO\bin\Debug\TelasRastreamento\2-1-TelaRastreamento.htm";
         //private string TelaListaDeObjetos_2_2 = @"C:\Users\MARQUES\Documents\visual studio 2010\Projects\SISAPO\SISAPO\bin\Debug\TelasRastreamento\2-2-TelaListaDeObjetos.htm";
-        private string TelaDetalhesDeObjetos_2_3 = @"C:\Users\MARQUES\Documents\visual studio 2010\Projects\SISAPO\SISAPO\bin\Debug\TelasRastreamento\2-3-TelaDetalhesDeObjetos.htm";
+        private string TelaDetalhesDeObjetos_2_3 = @"C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\bin\Debug\TelasRastreamento\Rastreamento 05062019\PM130013941BR_1.htm";
         //private string TelaNomeCliente_2_4 = @"C:\Users\MARQUES\Documents\visual studio 2010\Projects\SISAPO\SISAPO\bin\Debug\TelasRastreamento\2-4-TelaNomeCliente.htm";
         //private string TelaNomeCliente_2_4 = @"C:\Users\MARQUES\Documents\Visual Studio 2010\Projects\SISAPO\SISAPO\bin\Debug\TelasRastreamento\Rastreamento_Unificado_htm.htm";
 
@@ -152,7 +152,8 @@ namespace SISAPO
                             //webBrowser1.Url = new Uri(TelaDetalhesDeObjetos_1_3);
                             //webBrowser1.Url = new Uri(TelaRastreamento_1_1);
                             //webBrowser1.Url = new Uri(@"file:///C:/Users/MARQUES/Documents/Visual%20Studio%202010/Projects/SISAPO/SISAPO/bin/Debug/Nova_Rastreamento_Problema/RastreamantoDetalhes-3-2-problema.htm");
-                            webBrowser1.Url = new Uri(@"C:\Users\MARQUES\Documents\Visual Studio 2010\Projects\SISAPO\SISAPO\bin\Debug\Rastreamento 05062019\OH239391285BR_DETALHES.htm");
+                            webBrowser1.Url = new Uri(@"C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\bin\Debug\TelasRastreamento\Rastreamento 05062019\PM130013941BR_1.htm");
+                            //webBrowser1.Url = new Uri(@"file:///J:/Destinatario%20ausente%20-%20JN471171636BR%20-%20PROBLEMA.htm");
                         }
                         #endregion
                         break;
@@ -209,7 +210,7 @@ namespace SISAPO
                             if (Configuracoes.TipoAmbiente == TipoAmbiente.Desenvolvimento)
                             {
                                 //webBrowser1.Url = new Uri(TelaNomeCliente_2_4);
-                                webBrowser1.Url = new Uri(@"C:\Users\MARQUES\Documents\Visual Studio 2010\Projects\SISAPO\SISAPO\bin\Debug\Rastreamento 05062019\OH239391285BR_SAIU_PARA_ENTREGA_DESTINATARIO.htm");
+                                webBrowser1.Url = new Uri(@"C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\bin\Debug\TelasRastreamento\Rastreamento 05062019\Destinatario ausente - JN471171636BR - PROBLEMA.htm");
                             }
                             #endregion
                             break;
@@ -219,6 +220,7 @@ namespace SISAPO
 
                     #region TipoTela.DestinatarioAusente
                     case TipoTela.DestinatarioAusente:
+                        Mensagens.InformaDesenvolvedor("TipoTela.DestinatarioAusente:"); 
                         EscreveTextoTextBox("Pegando os dados de Destinatario Ausente...");
                         Mensagens.InformaDesenvolvedor("Abrindo a detalhes antes de capturar os dados da tela para objeto Destinatario Ausente");
                         string SituacaoDestinatarioAusente = string.Empty;
@@ -228,13 +230,17 @@ namespace SISAPO
                         #region Capturando os dados
                         for (int i = 0; i < webBrowser1.Document.GetElementsByTagName("TR").Count; i++)
                         {
+                            if (string.IsNullOrEmpty(webBrowser1.Document.GetElementsByTagName("TR")[i].InnerText)) continue;
+
                             string InnerTextDestinatarioAusente = webBrowser1.Document.GetElementsByTagName("TR")[i].InnerText.Trim();
-                            if (string.IsNullOrEmpty(InnerTextDestinatarioAusente)) continue;
+                            Mensagens.InformaDesenvolvedor("InnerTextDestinatarioAusente: " + InnerTextDestinatarioAusente);
+                            
                             if (InnerTextDestinatarioAusente.Contains("Situação:"))
                             {
                                 SituacaoDestinatarioAusente = webBrowser1.Document.GetElementsByTagName("TR")[i].InnerText.Replace("Situação: ", "").ToUpper().Trim();
                                 EscreveTextoTextBox("Situação: " + SituacaoDestinatarioAusente.ToString());
                                 Mensagens.InformaDesenvolvedor(string.Format("Situação: " + SituacaoDestinatarioAusente.ToString()));
+                                Mensagens.InformaDesenvolvedor("Antes do continue");
                                 continue;
                             }
                             if (InnerTextDestinatarioAusente.Contains("Agrupado:"))
@@ -242,6 +248,7 @@ namespace SISAPO
                                 AgrupadoDestinatarioAusente = webBrowser1.Document.GetElementsByTagName("TR")[i].InnerText.Replace("Agrupado: ", "").ToUpper().Trim();
                                 EscreveTextoTextBox("Agrupado: " + AgrupadoDestinatarioAusente.ToString());
                                 Mensagens.InformaDesenvolvedor(string.Format("Agrupado: " + AgrupadoDestinatarioAusente.ToString()));
+                                Mensagens.InformaDesenvolvedor("Antes do continue");
                                 continue;
                             }
                             if (InnerTextDestinatarioAusente.Contains("Coordenadas:"))
@@ -249,7 +256,8 @@ namespace SISAPO
                                 CoordenadasDestinatarioAusente = webBrowser1.Document.GetElementsByTagName("TR")[i].InnerText.Replace("Coordenadas: ", "").ToUpper().Trim();
                                 EscreveTextoTextBox("Coordenadas: " + CoordenadasDestinatarioAusente.ToString());
                                 Mensagens.InformaDesenvolvedor(string.Format("Coordenadas: " + CoordenadasDestinatarioAusente.ToString()));
-                                break;//pois supoe que é a ultima linha embaixo.... obvio.
+                                Mensagens.InformaDesenvolvedor("Antes do break");
+                                break;
                             }
                         }
                         #endregion
@@ -258,10 +266,10 @@ namespace SISAPO
                         using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
                         {
                             if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
-                            DataSet ds = dao.RetornaDataSet("SELECT top 1 NomeCliente FROM TabelaObjetosSROLocal WHERE (CodigoObjeto = @CodigoObjeto)", new Parametros { Nome = "@CodigoObjeto", Tipo = TipoCampo.Text, Valor = CodigoObjetoAtual });
+                            DataSet ds = dao.RetornaDataSet("SELECT top 1 CodigoObjeto FROM TabelaObjetosSROLocal WHERE (CodigoObjeto = @CodigoObjeto)", new Parametros { Nome = "@CodigoObjeto", Tipo = TipoCampo.Text, Valor = CodigoObjetoAtual });
                             if (ds.Tables[0].Rows.Count == 1)
                             {
-                                Mensagens.InformaDesenvolvedor(string.Format("Gravando no banco detalhes objeto SaiuParaEntrega"));
+                                Mensagens.InformaDesenvolvedor(string.Format("Gravando no banco detalhes objeto SituacaoDestinatarioAusente"));
                                 dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET SituacaoDestinatarioAusente = @SituacaoDestinatarioAusente, AgrupadoDestinatarioAusente = @AgrupadoDestinatarioAusente, CoordenadasDestinatarioAusente = @CoordenadasDestinatarioAusente WHERE CodigoObjeto = @CodigoObjeto ", new List<Parametros>(){
                                                             new Parametros("@SituacaoDestinatarioAusente", TipoCampo.Text, SituacaoDestinatarioAusente),
                                                             new Parametros("@AgrupadoDestinatarioAusente", TipoCampo.Text, AgrupadoDestinatarioAusente),
