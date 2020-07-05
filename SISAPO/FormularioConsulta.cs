@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using SISAPO.ClassesDiversas;
+using System.IO;
 
 namespace SISAPO
 {
@@ -388,7 +389,7 @@ namespace SISAPO
                 TxtCodigoObjetoSelecionado.Text = currentRow["CodigoObjeto"].ToString();
                 TxtItemSelecionado.Text = string.Format("{0} - {1}", CodigoObjetoFormatado, currentRow["NomeCliente"].ToString());
                 TxtSituacaoAtual.Text = currentRow["Situacao"].ToString().Replace("NAO", "NÃO").Replace("DISTRIBUIDO", "DISTRIBUÍDO").Replace("DESTINATARIO", "DESTINATÁRIO");
-                
+
                 //this.Text += TxtItemSelecionado.Text;
                 if (string.IsNullOrEmpty(currentRow["CoordenadasDestinatarioAusente"].ToString()))
                 {
@@ -920,7 +921,8 @@ namespace SISAPO
             if (e.KeyCode == Keys.Enter)
             {
                 //e.SuppressKeyPress = true;
-                DataFinal_dateTimePicker.Focus();
+                //DataFinal_dateTimePicker.Focus();
+                SendKeys.Send("{TAB}");
             }
         }
 
@@ -949,15 +951,37 @@ namespace SISAPO
                     return;
                 }
 
-                string CodigoObjeto = currentRow["CodigoObjeto"].ToString();
-                string NomeCliente = currentRow["NomeCliente"].ToString();
-                string NumeroLDI = currentRow["CodigoLdi"].ToString();
+                string CodigoObjeto = currentRow["CodigoObjeto"].ToString();//string CodigoObjeto,
+                string NomeCliente = currentRow["NomeCliente"].ToString();//string NomeCliente,
+                string NumeroLDI = currentRow["CodigoLdi"].ToString();//string CodigoLdi,
                 string DataLancamento = currentRow["DataLancamento"].ToString();
-                string Situacao = currentRow["Situacao"].ToString();
+                string Situacao = currentRow["Situacao"].ToString();//string Situacao,
                 string DataModificacao = currentRow["DataModificacao"].ToString();
-                int ObjetoEmCaixaPostal = currentRow["CaixaPostal"].ToInt();
-                int ObjetoJaEntregue = currentRow["ObjetoEntregue"].ToInt();
-                int ObjetoJaAtualizado = currentRow["Atualizado"].ToInt();
+                int ObjetoEmCaixaPostal = currentRow["CaixaPostal"].ToInt();//bool CaixaPostal,
+                int ObjetoJaEntregue = currentRow["ObjetoEntregue"].ToInt();//bool ObjetoEntregue,
+                int ObjetoJaAtualizado = currentRow["Atualizado"].ToInt();//bool Atualizado,
+
+                string UnidadePostagem = currentRow["UnidadePostagem"].ToString();//UnidadePostagem
+                string MunicipioPostagem = currentRow["MunicipioPostagem"].ToString();//MunicipioPostagem
+                string CriacaoPostagem = currentRow["CriacaoPostagem"].ToString();//CriacaoPostagem
+                string CepDestinoPostagem = currentRow["CepDestinoPostagem"].ToString();//CepDestinoPostagem
+                string ARPostagem = currentRow["ARPostagem"].ToString();//ARPostagem
+                string MPPostagem = currentRow["MPPostagem"].ToString();//MPPostagem
+                string DataMaxPrevistaEntregaPostagem = currentRow["DataMaxPrevistaEntregaPostagem"].ToString();//DataMaxPrevistaEntregaPostagem
+
+                string UnidadeLOEC = currentRow["UnidadeLOEC"].ToString();//UnidadeLOEC
+                string MunicipioLOEC = currentRow["MunicipioLOEC"].ToString();//MunicipioLOEC
+                string CriacaoLOEC = currentRow["CriacaoLOEC"].ToString();//CriacaoLOEC
+                string CarteiroLOEC = currentRow["CarteiroLOEC"].ToString();//CarteiroLOEC
+                string DistritoLOEC = currentRow["DistritoLOEC"].ToString();//DistritoLOEC
+                string NumeroLOEC = currentRow["NumeroLOEC"].ToString();//NumeroLOEC
+                string EnderecoLOEC = currentRow["EnderecoLOEC"].ToString();//EnderecoLOEC
+                string BairroLOEC = currentRow["BairroLOEC"].ToString();//BairroLOEC
+                string LocalidadeLOEC = currentRow["LocalidadeLOEC"].ToString();//LocalidadeLOEC
+
+                string SituacaoDestinatarioAusente = currentRow["SituacaoDestinatarioAusente"].ToString();//SituacaoDestinatarioAusente
+                string AgrupadoDestinatarioAusente = currentRow["AgrupadoDestinatarioAusente"].ToString();//AgrupadoDestinatarioAusente
+                string CoordenadasDestinatarioAusente = currentRow["CoordenadasDestinatarioAusente"].ToString();//CoordenadasDestinatarioAusente
 
                 FormularioAlteracaoObjeto frm = new FormularioAlteracaoObjeto();
                 frm.CodigoObjeto = CodigoObjeto;
@@ -969,19 +993,65 @@ namespace SISAPO
                 frm.ObjetoEmCaixaPostal = ObjetoEmCaixaPostal == 0 ? false : true;
                 frm.ObjetoJaEntregue = ObjetoJaEntregue == 0 ? false : true;
                 frm.ObjetoJaAtualizado = ObjetoJaAtualizado == 0 ? false : true;
+
+                frm.UnidadePostagem = UnidadePostagem;
+                frm.MunicipioPostagem = MunicipioPostagem;
+                frm.CriacaoPostagem = CriacaoPostagem;
+                frm.CepDestinoPostagem = CepDestinoPostagem;
+                frm.ARPostagem = ARPostagem;
+                frm.MPPostagem = MPPostagem;
+                frm.DataMaxPrevistaEntregaPostagem = DataMaxPrevistaEntregaPostagem;
+
+                frm.UnidadeLOEC = UnidadeLOEC;
+                frm.MunicipioLOEC = MunicipioLOEC;
+                frm.CriacaoLOEC = CriacaoLOEC;
+                frm.CarteiroLOEC = CarteiroLOEC;
+                frm.DistritoLOEC = DistritoLOEC;
+                frm.NumeroLOEC = NumeroLOEC;
+                frm.EnderecoLOEC = EnderecoLOEC;
+                frm.BairroLOEC = BairroLOEC;
+                frm.LocalidadeLOEC = LocalidadeLOEC;
+
+                frm.SituacaoDestinatarioAusente = SituacaoDestinatarioAusente;
+                frm.AgrupadoDestinatarioAusente = AgrupadoDestinatarioAusente;
+                frm.CoordenadasDestinatarioAusente = CoordenadasDestinatarioAusente;
+
                 frm.ShowDialog();
 
                 if (frm.Cancelando) return;
 
-                currentRow["CodigoObjeto"] = frm.CodigoObjeto;
-                currentRow["NomeCliente"] = frm.NomeCliente.ToUpper().RemoveAcentos();
-                currentRow["CodigoLdi"] = frm.NumeroLDI;
+                currentRow["CodigoObjeto"] = frm.CodigoObjeto;//string CodigoObjeto,
+                currentRow["NomeCliente"] = frm.NomeCliente.ToUpper().RemoveAcentos();//string NomeCliente,
+                currentRow["CodigoLdi"] = frm.NumeroLDI;//string CodigoLdi,
                 currentRow["DataLancamento"] = frm.DataLancamento;
-                currentRow["Situacao"] = frm.Situacao;
+                currentRow["Situacao"] = frm.Situacao;//string Situacao,
                 currentRow["DataModificacao"] = frm.DataModificacao;
-                currentRow["CaixaPostal"] = frm.ObjetoEmCaixaPostal;
-                currentRow["ObjetoEntregue"] = frm.ObjetoJaEntregue;
-                currentRow["Atualizado"] = frm.ObjetoJaAtualizado;
+                currentRow["CaixaPostal"] = frm.ObjetoEmCaixaPostal;//bool CaixaPostal,
+                currentRow["ObjetoEntregue"] = frm.ObjetoJaEntregue;//bool ObjetoEntregue,
+                currentRow["Atualizado"] = frm.ObjetoJaAtualizado;//bool Atualizado,
+
+                //string UnidadePostagem,
+                //string MunicipioPostagem,
+                //string CriacaoPostagem,
+                //string CepDestinoPostagem,
+                //string ARPostagem,
+                //string MPPostagem,
+                //string DataMaxPrevistaEntregaPostagem,
+
+                //string UnidadeLOEC,
+                //string MunicipioLOEC,
+                //string CriacaoLOEC,
+                //string CarteiroLOEC,
+                //string DistritoLOEC,
+                //string NumeroLOEC,
+                //string EnderecoLOEC,
+                //string BairroLOEC,
+                //string LocalidadeLOEC,
+
+                //string SituacaoDestinatarioAusente,
+                //string AgrupadoDestinatarioAusente,
+                //string CoordenadasDestinatarioAusente
+
 
                 this.tabelaObjetosSROLocalTableAdapter.Connection.ConnectionString = ClassesDiversas.Configuracoes.strConexao;
                 this.tabelaObjetosSROLocalTableAdapter.Update(dataSetTabelaObjetosSROLocal.TabelaObjetosSROLocal);
@@ -1065,7 +1135,42 @@ namespace SISAPO
         {
             if (currentRow == null) return;
 
-            VerificaNavegador();
+            string CoordenadasAtual = currentRow["CoordenadasDestinatarioAusente"].ToString();
+
+            System.Diagnostics.Process pProcess = new System.Diagnostics.Process();
+
+            if (File.Exists(@"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"))
+            {
+                pProcess.StartInfo.FileName = @"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe";
+            }
+            else if (File.Exists(@"C:\Program Files\Google\Chrome\Application\chrome.exe"))
+            {
+                pProcess.StartInfo.FileName = @"C:\Program Files\Google\Chrome\Application\chrome.exe";
+            }
+            else if (File.Exists(@"C:\Program Files (x86)\Mozilla Firefox\firefox.exe"))
+            {
+                pProcess.StartInfo.FileName = @"C:\Program Files (x86)\Mozilla Firefox\firefox.exe";
+            }
+            else if (File.Exists(@"C:\Program Files\Mozilla Firefox\firefox.exe"))
+            {
+                pProcess.StartInfo.FileName = @"C:\Program Files\Mozilla Firefox\firefox.exe";
+            }
+            else
+            {
+                return;
+            }
+
+            //pProcess.StartInfo.Arguments = "https://www.google.com.br/maps/search/-10.22285,-48.34052";
+            //pProcess.StartInfo.Arguments = "https://maps.google.com/maps?t=k&q=loc:-10.22285+-48.34052";
+            pProcess.StartInfo.Arguments = string.Format("https://maps.google.com/maps?t=k&q=loc:{0}", CoordenadasAtual);
+            pProcess.Start();
+            pProcess.WaitForExit();
+
+
+
+            return;
+
+            //VerificaNavegador();
 
             string CodigoObjetoFormatado = string.Format("{0} {1} {2} {3} {4}",
                     currentRow["CodigoObjeto"].ToString().Substring(0, 2),
@@ -1079,7 +1184,7 @@ namespace SISAPO
             string UnidadeLOEC = currentRow["UnidadeLOEC"].ToString();
             string DistritoLOEC = currentRow["DistritoLOEC"].ToString();
             string CarteiroLOEC = currentRow["CarteiroLOEC"].ToString();
-            string CoordenadasAtual = currentRow["CoordenadasDestinatarioAusente"].ToString();
+            //string CoordenadasAtual = currentRow["CoordenadasDestinatarioAusente"].ToString();
             //"-10.22285,-48.34052"
 
             FormularioCoordenadasExibicaoMapa formularioCoordenadasExibicaoMapa = new FormularioCoordenadasExibicaoMapa(CoordenadasAtual, CodigoObjetoFormatado, NomeCliente, EnderecoCompleto, DataCriacaoLOEC, UnidadeLOEC, DistritoLOEC, CarteiroLOEC);
@@ -1139,40 +1244,22 @@ namespace SISAPO
             }
         }
 
-        private void dataGridView1_DataError(object sender, DataGridViewDataErrorEventArgs e)
-        {
-            //MessageBox.Show("Error happened " + e.Context.ToString());
-
-            if (e.Context == DataGridViewDataErrorContexts.Commit)
-            {
-                MessageBox.Show("Commit error");
-            }
-            if (e.Context == DataGridViewDataErrorContexts.CurrentCellChange)
-            {
-                MessageBox.Show("Cell change");
-            }
-            if (e.Context == DataGridViewDataErrorContexts.Parsing)
-            {
-                MessageBox.Show("parsing error");
-            }
-            if (e.Context == DataGridViewDataErrorContexts.LeaveControl)
-            {
-                MessageBox.Show("leave control error");
-            }
-
-            if ((e.Exception) is ConstraintException)
-            {
-                DataGridView view = (DataGridView)sender;
-                view.Rows[e.RowIndex].ErrorText = "an error";
-                view.Rows[e.RowIndex].Cells[e.ColumnIndex].ErrorText = "an error";
-
-                e.ThrowException = false;
-            }
-        }
-
         private void BtnConsultar_Click(object sender, EventArgs e)
         {
             this.ConsultaTodosNaoEntreguesOrdenadoNome();
+        }
+
+        private void FormularioConsulta_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            foreach (Form item in Application.OpenForms)
+            {
+                if (item.Name == "FormularioCadastroObjetos")
+                {
+                    item.WindowState = FormWindowState.Maximized;
+                    item.Activate();
+                    return;
+                }
+            }
         }
     }
 }

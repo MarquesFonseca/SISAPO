@@ -41,6 +41,7 @@
             this.webBrowser1.Location = new System.Drawing.Point(0, 43);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
+            this.webBrowser1.ScriptErrorsSuppressed = true;
             this.webBrowser1.Size = new System.Drawing.Size(739, 419);
             this.webBrowser1.TabIndex = 0;
             this.webBrowser1.Url = new System.Uri("", System.UriKind.Relative);
@@ -83,7 +84,6 @@
             this.Name = "FormularioSRORastreamentoUnificado";
             this.ShowInTaskbar = false;
             this.Text = "SRO - Rastreamento Unificado";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FormularioSRORastreamentoUnificado_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormularioSRORastreamentoUnificado_KeyDown);
             this.panel1.ResumeLayout(false);

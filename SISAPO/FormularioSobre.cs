@@ -17,9 +17,9 @@ namespace SISAPO
             this.Text = String.Format("Sobre {0}", AssemblyTitle);
             this.labelProductName.Text = AssemblyProduct;
             this.labelVersion.Text = String.Format("Versão {0}", AssemblyVersion);
-            this.labelCopyright.Text = AssemblyCopyright;
+            this.labelCopyright.Text = string.Format("{0} - {1}", AssemblyCopyright.Replace("Microsoft","iQUES Sistemas"), DateTime.Now.Date.Year);
             this.labelCompanyName.Text = AssemblyCompany;
-            this.textBoxDescription.Text = string.Format("{0} - {1}", AssemblyDescription, "E-mail: marques-fonseca@hotmail.com / Telefone: (63) 99208-2269");
+            this.textBoxDescription.Text = string.Format("{0} {1}", AssemblyDescription, "E-mail: marques-fonseca@hotmail.com / Telefone: +55 63 99208-2269");
         }
 
         #region Assembly Attribute Accessors

@@ -257,17 +257,22 @@ namespace SISAPO
             foreach (Form item in MdiChildren)
             {
                 if (item.Name == "FormularioCadastroObjetos")
-                {
+                {                    
                     item.Activate();
                     return;
                 }
             }
-
-            //CadastrarObjetos_toolStripButton_Click(sender, e);
+                       
             FormularioCadastroObjetos formularioCadastroObjetos = new FormularioCadastroObjetos();
             formularioCadastroObjetos.MdiParent = this;
             formularioCadastroObjetos.Show();
+            //formularioCadastroObjetos.WindowState = FormWindowState.Normal;
             formularioCadastroObjetos.WindowState = FormWindowState.Maximized;
+
+            
+
+
+
 
             //return;
 
@@ -275,6 +280,7 @@ namespace SISAPO
             {
                 if (item.Name != "FormularioConsulta" && item.Name != "FormularioCadastroObjetos")
                 {
+                    //fecha todos que não for "FormularioConsulta" e "FormularioCadastroObjetos"
                     item.Close();
                 }
             }
@@ -307,8 +313,6 @@ namespace SISAPO
                     }
                 }
             }
-
-
         }
 
         private void atualizarNovosObjetosPostadosToolStripMenuItem_Click(object sender, EventArgs e)

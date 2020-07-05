@@ -23,7 +23,7 @@ namespace SISAPO
 
         private void FormularioAuxilioGestaoDia_Load(object sender, EventArgs e)
         {
-            BtnColarConteudoJaCopiado_Click(sender, e);
+            //BtnColarConteudoJaCopiado_Click(sender, e);
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)

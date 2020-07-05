@@ -52,6 +52,8 @@ namespace SISAPO
 
         private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
+            //webBrowser1.Document.Body.Style = "zoom:150%;";
+
             TxtEnderecoUrl.Text = webBrowser1.Url.AbsoluteUri;
             //se vazio
             if (webBrowser1.Url.AbsoluteUri == "about:blank") return;

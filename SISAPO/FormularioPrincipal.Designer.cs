@@ -180,7 +180,7 @@ namespace SISAPO
             this.cadastrarNovosObjetosToolStripMenuItem.Image = global::SISAPO.Properties.Resources.CadastroObjetos;
             this.cadastrarNovosObjetosToolStripMenuItem.Name = "cadastrarNovosObjetosToolStripMenuItem";
             this.cadastrarNovosObjetosToolStripMenuItem.Size = new System.Drawing.Size(459, 22);
-            this.cadastrarNovosObjetosToolStripMenuItem.Text = "&Cadastrar Novo(s) Objeto(s)";
+            this.cadastrarNovosObjetosToolStripMenuItem.Text = "Importar Novo(s) Objeto(s)";
             this.cadastrarNovosObjetosToolStripMenuItem.Click += new System.EventHandler(this.cadastrarNovosObjetosToolStripMenuItem_Click);
             // 
             // toolStripSeparator1

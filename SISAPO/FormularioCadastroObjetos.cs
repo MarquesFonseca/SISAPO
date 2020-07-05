@@ -21,7 +21,7 @@ namespace SISAPO
         public FormularioCadastroObjetos()
         {
             InitializeComponent();
-            splitContainer1.Visible = false;
+            tabControl1.Visible = false;
             this.backgroundWorker1 = new BackgroundWorker();
             this.backgroundWorker1.DoWork += new DoWorkEventHandler(bw_DoWork);
             this.backgroundWorker1.ProgressChanged += new ProgressChangedEventHandler(bw_ProgressChanged);
@@ -140,12 +140,11 @@ namespace SISAPO
         {
             DataTable dtbLista = new DataTable();
             dtbLista.Columns.Add("CodigoObjeto", typeof(string));
-            dtbLista.Columns.Add("DataLancamento", typeof(string));
+            dtbLista.Columns.Add("DataLancamento", typeof(DateTime));
             dtbLista.Columns.Add("DataModificacao", typeof(string));
             dtbLista.Columns.Add("Situacao", typeof(string));
             try
             {
-
                 string[] linha = Texto.Split('\n');
 
                 for (int i = 0; i < linha.Length; i++)
@@ -162,9 +161,18 @@ namespace SISAPO
                     ParteLinhaSituacao = ParteLinhaSituacao.RemoveAcento_DICIONARIO();
 
                     if (ParteLinhaCodigoObjeto != "")
-                        dtbLista.Rows.Add(ParteLinhaCodigoObjeto, ParteLinhaDataLancamento, ParteLinhaDataModificacao, ParteLinhaSituacao);
-
+                    {
+                        dtbLista.Rows.Add(
+                            ParteLinhaCodigoObjeto,
+                            Convert.ToDateTime(ParteLinhaDataLancamento),
+                            ParteLinhaDataModificacao,
+                            ParteLinhaSituacao);
+                    }
                 }
+
+
+                dtbLista.DefaultView.Sort = "DataLancamento DESC";
+                dtbLista = dtbLista.DefaultView.ToTable();
 
                 return dtbLista;
             }
@@ -173,7 +181,7 @@ namespace SISAPO
                 Mensagens.Erro(ex.Message);
                 return dtbLista;
             }
-        }        
+        }
 
         private void btnConsultar_Click(object sender, EventArgs e)
         {
@@ -196,45 +204,6 @@ namespace SISAPO
             {
                 FormularioPrincipal.RetornaComponentesFormularioPrincipal().sRORastreamentoUnificadoToolStripMenuItem_Click(sender, e);
             }
-        }
-
-        private void BtnBuscarArquivo_Click(object sender, EventArgs e)
-        {
-            #region
-            string curDir = Path.GetDirectoryName(System.AppDomain.CurrentDomain.BaseDirectory.ToString());
-            string nomeArquivo = "itensAtualizacao.txt";
-            string nomeEnderecoArquivo = string.Format(@"{0}\{1}", curDir, nomeArquivo);
-            StringBuilder textoColadoAreaTransferencia = new StringBuilder();
-
-
-            //int size = -1;
-            openFileDialog1.Title = "Selecione um arquivo para importar";
-            openFileDialog1.Filter = "txt files (*.txt)|*.txt";
-            openFileDialog1.FileName = "";
-            openFileDialog1.CheckFileExists = true;
-            openFileDialog1.CheckPathExists = true;
-            openFileDialog1.Multiselect = false;
-            DialogResult result = openFileDialog1.ShowDialog(); // Show the dialog.
-            txtArquivo.Text = openFileDialog1.FileName;
-            if (result == DialogResult.OK) // Test result.
-            {
-                string file = openFileDialog1.FileName;
-
-                try
-                {
-                    //StringBuilder arquivo = new StringBuilder();
-                    textoColadoAreaTransferencia.Append(File.ReadAllText(file).ToString());
-                    //grava texto no arquivo
-                    using (Arquivos arq = new Arquivos())
-                    {
-                        arq.GravarArquivo(nomeEnderecoArquivo, textoColadoAreaTransferencia.ToString());
-                    }
-                    textBox1.Text = textoColadoAreaTransferencia.ToString();
-                    BtnGravar.Focus();
-                }
-                catch (IOException) { }
-            }
-            #endregion
         }
 
         private void BtnColarConteudoJaCopiado_Click(object sender, EventArgs e)
@@ -267,19 +236,29 @@ namespace SISAPO
                     while (tempTXT.IndexOf("  ") >= 0) tempTXT = tempTXT.Replace("  ", " ");
                     textBox1.Text = tempTXT;
 
-
                     LblMensagem.Text = "Certifique-se que o conteúdo na caixa de texto é o mesmo desejado!";
-                    label2.Text = "Barra de progresso";
-                    this.BtnGravar.Enabled = true;
-                    BtnGravar.Focus();
+
 
                     listaObjetos = RetornaListaObjetos(textoColadoAreaTransferencia.ToString());
-                    label4.Text = string.Format("Lista de objetos - '{0}' objetos na lista.", listaObjetos.Rows.Count);
-                    label1.Text = string.Format("Conteúdo importado", listaObjetos.Rows.Count);
-                    dataGridView1.DataSource = listaObjetos;
 
+                    if (listaObjetos.Rows.Count == 0)
+                    {
+                        LblQuantidadeImportados.Text = "";
+                        tabControl1.Visible = false;
+                        this.BtnGravar.Enabled = false;
+                        label2.Text = "";
+                        progressBar1.Visible = false;
+                    }
                     if (listaObjetos.Rows.Count > 0)
-                        splitContainer1.Visible = true;
+                    {
+                        LblQuantidadeImportados.Text = string.Format("Listados para importação: '{0}' objetos", listaObjetos.Rows.Count);
+                        dataGridView1.DataSource = listaObjetos;
+                        tabControl1.Visible = true;
+                        this.BtnGravar.Enabled = true;
+                        label2.Text = "Barra de progresso";
+                        progressBar1.Visible = true;
+                        BtnGravar.Focus();
+                    }
                 }
                 catch (IOException) { }
             }
@@ -295,7 +274,6 @@ namespace SISAPO
                 openFileDialog1.CheckPathExists = true;
                 openFileDialog1.Multiselect = false;
                 DialogResult result = openFileDialog1.ShowDialog(); // Show the dialog.
-                txtArquivo.Text = openFileDialog1.FileName;
                 if (result == DialogResult.OK) // Test result.
                 {
                     string file = openFileDialog1.FileName;
@@ -312,20 +290,12 @@ namespace SISAPO
             }
         }
 
-        private void txtArquivo_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyData == Keys.Enter)
-            {
-                BtnBuscarArquivo_Click(sender, e);
-            }
-        }
-
         private void BtnGravar_Click(object sender, EventArgs e)
         {
             try
             {
                 LblMensagem.Text = "";
-                listaObjetos = RetornaListaObjetos(textoColadoAreaTransferencia.ToString());
+                //listaObjetos = RetornaListaObjetos(textoColadoAreaTransferencia.ToString());
                 //dataGridView1.DataSource = listaObjetos;
                 if (listaObjetos.Rows.Count == 0)
                 {
@@ -439,8 +409,9 @@ namespace SISAPO
                 this.BtnGravar.Enabled = true;
                 textBox1.Enabled = true;
             }
-            
-            FormularioConsulta.RetornaComponentesFormularioConsulta().ConsultaTodosNaoEntreguesOrdenadoNome();
+
+            if (Application.OpenForms["FormularioConsulta"] != null) //verifica se está aberto
+                FormularioConsulta.RetornaComponentesFormularioConsulta().ConsultaTodosNaoEntreguesOrdenadoNome();
 
             FormularioPrincipal.RetornaComponentesFormularioPrincipal().BuscaNovoStatusQuantidadeNaoAtualizados();
             if (FormularioPrincipal.RetornaComponentesFormularioPrincipal().RetornaQuantidadeObjetoNaoAtualizado() > 0)
