@@ -414,9 +414,10 @@ namespace SISAPO
                 FormularioConsulta.RetornaComponentesFormularioConsulta().ConsultaTodosNaoEntreguesOrdenadoNome();
 
             FormularioPrincipal.RetornaComponentesFormularioPrincipal().BuscaNovoStatusQuantidadeNaoAtualizados();
+
             if (FormularioPrincipal.RetornaComponentesFormularioPrincipal().RetornaQuantidadeObjetoNaoAtualizado() > 0)
             {
-                DialogResult pergunta = Mensagens.Pergunta("Deseja realmente requerer uma verificação para os objetos já entregues?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult pergunta = Mensagens.Pergunta("Uma busca de dados faz necessária.\n\nDeseja realizar a busca agora?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (pergunta == System.Windows.Forms.DialogResult.Yes)
                 {
                     FormularioPrincipal.RetornaComponentesFormularioPrincipal().atualizarNovosObjetosToolStripMenuItem_Click(sender, e);

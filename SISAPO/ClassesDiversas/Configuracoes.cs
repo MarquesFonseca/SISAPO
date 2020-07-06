@@ -103,7 +103,7 @@ namespace SISAPO.ClassesDiversas
             {
                 foreach (DataRow item in dt.Rows)
                 {
-                    if(item["Nome"].ToString() == "ChaveAcesso")
+                    if (item["Nome"].ToString() == "ChaveAcesso")
                     {
                         valorCriptografado = item["Valor"].ToString();
                         break;
@@ -111,8 +111,6 @@ namespace SISAPO.ClassesDiversas
                 }
             }
             #endregion
-
-
 
             try
             {
@@ -136,6 +134,119 @@ namespace SISAPO.ClassesDiversas
         /// Mensagem 'A conexão com o banco de dados foi perdida.'
         /// </summary>
         public static string MensagemPerdaConexao = "A conexão com o banco de dados foi perdida.";
+
+
+        public static void VerificaSquemaBancoDados()
+        {
+            //CriaColuna("TabelaConfiguracoesSistema", "Codigo", "INTEGER");//Codigo
+            CriaColuna("TabelaConfiguracoesSistema", "NomeAgenciaLocal", "TEXT(255) NULL DEFAULT NULL");//NomeAgenciaLocal
+            CriaColuna("TabelaConfiguracoesSistema", "EnderecoAgenciaLocal", "TEXT(255) NULL DEFAULT NULL");//EnderecoAgenciaLocal
+            CriaColuna("TabelaConfiguracoesSistema", "DataInicialPeriodoExibicaoConsulta", "DATETIME NULL DEFAULT NULL");//DataInicialPeriodoExibicaoConsulta
+            CriaColuna("TabelaConfiguracoesSistema", "DataFinalPeriodoExibicaoConsulta", "DATETIME NULL DEFAULT NULL");//DataFinalPeriodoExibicaoConsulta
+
+
+            CriaColuna("TabelaConfiguracoesSistema", "ExibirObjetosEmCaixaPostalNaPesquisa", "YESNO NULL DEFAULT 1");//ExibirObjetosEmCaixaPostalNaPesquisa
+            CriaColuna("TabelaConfiguracoesSistema", "ExibirObjetosJaEntreguesNaPesquisa", "YESNO NULL DEFAULT 1");//ExibirObjetosJaEntreguesNaPesquisa
+            CriaColuna("TabelaConfiguracoesSistema", "ManterConsultaSempreAtualizada", "YESNO NULL DEFAULT 1");//ManterConsultaSempreAtualizada
+            CriaColuna("TabelaConfiguracoesSistema", "TempoAtualizacaoConsultaSempreAtualizada", "TEXT(255) NULL DEFAULT 600000");//TempoAtualizacaoConsultaSempreAtualizada
+            CriaColuna("TabelaConfiguracoesSistema", "PermitirBuscarPorLDINaPesquisa", "YESNO NULL DEFAULT 0");//PermitirBuscarPorLDINaPesquisa
+            CriaColuna("TabelaConfiguracoesSistema", "HabilitarCapturaDeDadosDePostagem", "YESNO NULL DEFAULT 0");//HabilitarCapturaDeDadosDePostagem
+            CriaColuna("TabelaConfiguracoesSistema", "HabilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatario", "YESNO NULL DEFAULT 0");//HabilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatario
+            CriaColuna("TabelaConfiguracoesSistema", "HabilitarCapturaDeDadosDeDestinatarioAusente", "YESNO NULL DEFAULT 0");//HabilitarCapturaDeDadosDeDestinatarioAusente
+
+
+
+            //CriaColuna("TabelaHistoricoConsulta", "Codigo", "INTEGER");//Codigo
+            CriaColuna("TabelaHistoricoConsulta", "CodigoObjeto", "TEXT(255) NULL DEFAULT NULL");//CodigoObjeto
+            CriaColuna("TabelaHistoricoConsulta", "DataConsulta", "DATETIME NULL DEFAULT NULL");//DataConsulta
+            CriaColuna("TabelaHistoricoConsulta", "DataCadastro", "DATETIME NULL DEFAULT NULL");//DataCadastro
+
+            //CriaColuna("TabelaObjetosSROLocal", "Codigo", "INTEGER");//Codigo
+            CriaColuna("TabelaObjetosSROLocal", "CodigoObjeto", "TEXT(255) NULL DEFAULT NULL");//CodigoObjeto
+            CriaColuna("TabelaObjetosSROLocal", "CodigoLdi", "TEXT(255) NULL DEFAULT NULL");//CodigoLdi
+            CriaColuna("TabelaObjetosSROLocal", "NomeCliente", "TEXT(255) NULL DEFAULT NULL");//NomeCliente
+            CriaColuna("TabelaObjetosSROLocal", "DataLancamento", "TEXT(255) NULL DEFAULT NULL");//DataLancamento
+            CriaColuna("TabelaObjetosSROLocal", "DataModificacao", "TEXT(255) NULL DEFAULT NULL");//DataModificacao
+            CriaColuna("TabelaObjetosSROLocal", "Situacao", "TEXT(255) NULL DEFAULT NULL");//Situacao
+            CriaColuna("TabelaObjetosSROLocal", "Atualizado", "YESNO NULL DEFAULT 0");//Atualizado
+            CriaColuna("TabelaObjetosSROLocal", "ObjetoEntregue", "YESNO NULL DEFAULT 0");//ObjetoEntregue
+            CriaColuna("TabelaObjetosSROLocal", "CaixaPostal", "YESNO NULL DEFAULT 0");//CaixaPostal
+            CriaColuna("TabelaObjetosSROLocal", "UnidadePostagem", "TEXT(255) NULL DEFAULT NULL");//UnidadePostagem
+            CriaColuna("TabelaObjetosSROLocal", "MunicipioPostagem", "TEXT(255) NULL DEFAULT NULL");//MunicipioPostagem
+            CriaColuna("TabelaObjetosSROLocal", "CriacaoPostagem", "TEXT(255) NULL DEFAULT NULL");//CriacaoPostagem
+            CriaColuna("TabelaObjetosSROLocal", "CepDestinoPostagem", "TEXT(255) NULL DEFAULT NULL");//CepDestinoPostagem
+            CriaColuna("TabelaObjetosSROLocal", "ARPostagem", "TEXT(255) NULL DEFAULT NULL");//ARPostagem
+            CriaColuna("TabelaObjetosSROLocal", "MPPostagem", "TEXT(255) NULL DEFAULT NULL");//MPPostagem
+            CriaColuna("TabelaObjetosSROLocal", "DataMaxPrevistaEntregaPostagem", "TEXT(255) NULL DEFAULT NULL");//DataMaxPrevistaEntregaPostagem
+            CriaColuna("TabelaObjetosSROLocal", "UnidadeLOEC", "TEXT(255) NULL DEFAULT NULL");//UnidadeLOEC
+            CriaColuna("TabelaObjetosSROLocal", "MunicipioLOEC", "TEXT(255) NULL DEFAULT NULL");//MunicipioLOEC
+            CriaColuna("TabelaObjetosSROLocal", "CriacaoLOEC", "TEXT(255) NULL DEFAULT NULL");//CriacaoLOEC
+            CriaColuna("TabelaObjetosSROLocal", "CarteiroLOEC", "TEXT(255) NULL DEFAULT NULL");//CarteiroLOEC
+            CriaColuna("TabelaObjetosSROLocal", "DistritoLOEC", "TEXT(255) NULL DEFAULT NULL");//DistritoLOEC
+            CriaColuna("TabelaObjetosSROLocal", "NumeroLOEC", "TEXT(255) NULL DEFAULT NULL");//NumeroLOEC
+            CriaColuna("TabelaObjetosSROLocal", "EnderecoLOEC", "TEXT(255) NULL DEFAULT NULL");//EnderecoLOEC
+            CriaColuna("TabelaObjetosSROLocal", "BairroLOEC", "TEXT(255) NULL DEFAULT NULL");//BairroLOEC
+            CriaColuna("TabelaObjetosSROLocal", "LocalidadeLOEC", "TEXT(255) NULL DEFAULT NULL");//LocalidadeLOEC
+            CriaColuna("TabelaObjetosSROLocal", "SituacaoDestinatarioAusente", "TEXT(255) NULL DEFAULT NULL");//SituacaoDestinatarioAusente
+            CriaColuna("TabelaObjetosSROLocal", "AgrupadoDestinatarioAusente", "TEXT(255) NULL DEFAULT NULL");//AgrupadoDestinatarioAusente
+            CriaColuna("TabelaObjetosSROLocal", "CoordenadasDestinatarioAusente", "TEXT(255) NULL DEFAULT NULL");//CoordenadasDestinatarioAusente
+        }
+
+        private static void CriaColuna(string tabela, string coluna, string tipo)
+        {
+
+
+            System.Data.OleDb.OleDbConnection conn = new System.Data.OleDb.OleDbConnection(ClassesDiversas.Configuracoes.strConexao);
+            try
+            {
+                string curDir = System.IO.Path.GetDirectoryName(System.AppDomain.CurrentDomain.BaseDirectory.ToString());
+                if (!Arquivos.Existe(string.Format("{0}\\cadastro.mdb", curDir), false))
+                {
+                    throw new Exception("Arquivo 'cadastro.mdb' não encontrado na raiz do sistema.!");
+                }
+                using (conn)
+                {
+                    conn.Open();
+
+                    var schema = conn.GetOleDbSchemaTable(System.Data.OleDb.OleDbSchemaGuid.Columns,
+                        new object[] { null, null, tabela, null });
+
+                    if (schema != null && schema.Rows
+                        .OfType<DataRow>()
+                        .Any(r => r.ItemArray[3].ToString().ToLower().Equals(coluna.ToLower())))
+                    {
+                        //MessageBox.Show(@"Existe");
+                    }
+                    else
+                    {
+                        System.Data.OleDb.OleDbCommand criaCampo = new System.Data.OleDb.OleDbCommand();
+                        criaCampo.Connection = conn;
+                        criaCampo.CommandText = string.Concat("ALTER TABLE [", tabela, "] ADD COLUMN ", coluna, " ", tipo);
+                        criaCampo.ExecuteNonQuery();
+                        criaCampo.Connection.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                //throw new Exception(@"Houve uma falha ao executar a ação: " + ex.Message);
+                Mensagens.Erro(@"Houve uma falha ao executar a ação: " + ex.Message);
+                var processo = System.Diagnostics.Process.GetCurrentProcess();
+                foreach (System.Diagnostics.Process itens in System.Diagnostics.Process.GetProcessesByName(processo.ProcessName).Where(p => p.Id != processo.Id))
+                {
+                    itens.Kill();
+                }
+                foreach (System.Diagnostics.Process itens in System.Diagnostics.Process.GetProcessesByName(System.Diagnostics.Process.GetCurrentProcess().ProcessName))
+                {
+                    itens.Kill();
+                }
+            }
+            finally
+            {
+                conn.Close();
+                conn.Dispose();
+            }
+        }
 
         /// <summary>
         /// Codigo da versão do leiaute da EFD

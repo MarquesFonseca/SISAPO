@@ -55,18 +55,18 @@ namespace SISAPO
             this.ExibirCaixaPostalPesquisa_toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ExibirItensJaEntreguesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manterConsultaSempreAtualizadaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.manterDataFinalEmHojeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.PermiriBuscarPorLDINaPesquisaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.marcarSelecionadosComoAtualizadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.marcarSelecionadosComoNaoAtualizadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.exibirMensagensAoDesevolvedorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.removerLinhasSelecionadasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.habilitarCapturaDeDadosDePostagemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.habilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatárioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.habilitarCapturaDeDadosDeDestinatárioAusenteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.marcarSelecionadosComoAtualizadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.marcarSelecionadosComoNaoAtualizadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
+            this.removerLinhasSelecionadasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.exibirMensagensAoDesevolvedorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.toolBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -277,18 +277,18 @@ namespace SISAPO
             this.ExibirCaixaPostalPesquisa_toolStripMenuItem,
             this.ExibirItensJaEntreguesToolStripMenuItem,
             this.manterConsultaSempreAtualizadaToolStripMenuItem,
-            this.manterDataFinalEmHojeToolStripMenuItem,
+            this.PermiriBuscarPorLDINaPesquisaToolStripMenuItem,
             this.toolStripSeparator3,
-            this.marcarSelecionadosComoAtualizadoToolStripMenuItem,
-            this.marcarSelecionadosComoNaoAtualizadoToolStripMenuItem,
-            this.toolStripSeparator4,
-            this.exibirMensagensAoDesevolvedorToolStripMenuItem,
-            this.removerLinhasSelecionadasToolStripMenuItem,
-            this.toolStripSeparator2,
             this.habilitarCapturaDeDadosDePostagemToolStripMenuItem,
             this.habilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatárioToolStripMenuItem,
             this.habilitarCapturaDeDadosDeDestinatárioAusenteToolStripMenuItem,
+            this.toolStripSeparator4,
+            this.marcarSelecionadosComoAtualizadoToolStripMenuItem,
+            this.marcarSelecionadosComoNaoAtualizadoToolStripMenuItem,
             this.toolStripSeparator8,
+            this.removerLinhasSelecionadasToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.exibirMensagensAoDesevolvedorToolStripMenuItem,
             this.optionsToolStripMenuItem});
             this.opçõesToolStripMenuItem.Name = "opçõesToolStripMenuItem";
             this.opçõesToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
@@ -321,20 +321,55 @@ namespace SISAPO
             this.manterConsultaSempreAtualizadaToolStripMenuItem.Visible = false;
             this.manterConsultaSempreAtualizadaToolStripMenuItem.Click += new System.EventHandler(this.manterConsultaSempreAtualizadaToolStripMenuItem_Click);
             // 
-            // manterDataFinalEmHojeToolStripMenuItem
+            // PermiriBuscarPorLDINaPesquisaToolStripMenuItem
             // 
-            this.manterDataFinalEmHojeToolStripMenuItem.Checked = true;
-            this.manterDataFinalEmHojeToolStripMenuItem.CheckOnClick = true;
-            this.manterDataFinalEmHojeToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.manterDataFinalEmHojeToolStripMenuItem.Name = "manterDataFinalEmHojeToolStripMenuItem";
-            this.manterDataFinalEmHojeToolStripMenuItem.Size = new System.Drawing.Size(410, 22);
-            this.manterDataFinalEmHojeToolStripMenuItem.Text = "Manter Data Final em \"Hoje\"";
-            this.manterDataFinalEmHojeToolStripMenuItem.Visible = false;
+            this.PermiriBuscarPorLDINaPesquisaToolStripMenuItem.Checked = true;
+            this.PermiriBuscarPorLDINaPesquisaToolStripMenuItem.CheckOnClick = true;
+            this.PermiriBuscarPorLDINaPesquisaToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.PermiriBuscarPorLDINaPesquisaToolStripMenuItem.Name = "PermiriBuscarPorLDINaPesquisaToolStripMenuItem";
+            this.PermiriBuscarPorLDINaPesquisaToolStripMenuItem.Size = new System.Drawing.Size(410, 22);
+            this.PermiriBuscarPorLDINaPesquisaToolStripMenuItem.Text = "Permitir buscar por LDI na pesquisa";
+            this.PermiriBuscarPorLDINaPesquisaToolStripMenuItem.Click += new System.EventHandler(this.PermiriBuscarPorLDINaPesquisaToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(407, 6);
+            // 
+            // habilitarCapturaDeDadosDePostagemToolStripMenuItem
+            // 
+            this.habilitarCapturaDeDadosDePostagemToolStripMenuItem.Checked = true;
+            this.habilitarCapturaDeDadosDePostagemToolStripMenuItem.CheckOnClick = true;
+            this.habilitarCapturaDeDadosDePostagemToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.habilitarCapturaDeDadosDePostagemToolStripMenuItem.Name = "habilitarCapturaDeDadosDePostagemToolStripMenuItem";
+            this.habilitarCapturaDeDadosDePostagemToolStripMenuItem.Size = new System.Drawing.Size(410, 22);
+            this.habilitarCapturaDeDadosDePostagemToolStripMenuItem.Text = "Habilitar captura de dados de \'Postagem\'";
+            this.habilitarCapturaDeDadosDePostagemToolStripMenuItem.Click += new System.EventHandler(this.habilitarCapturaDeDadosDePostagemToolStripMenuItem_Click);
+            // 
+            // habilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatárioToolStripMenuItem
+            // 
+            this.habilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatárioToolStripMenuItem.Checked = true;
+            this.habilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatárioToolStripMenuItem.CheckOnClick = true;
+            this.habilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatárioToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.habilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatárioToolStripMenuItem.Name = "habilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatárioToolStripMenuItem";
+            this.habilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatárioToolStripMenuItem.Size = new System.Drawing.Size(410, 22);
+            this.habilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatárioToolStripMenuItem.Text = "Habilitar captura de dados de \'Saiu para entrega ao destinatário\'";
+            this.habilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatárioToolStripMenuItem.Click += new System.EventHandler(this.habilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatárioToolStripMenuItem_Click);
+            // 
+            // habilitarCapturaDeDadosDeDestinatárioAusenteToolStripMenuItem
+            // 
+            this.habilitarCapturaDeDadosDeDestinatárioAusenteToolStripMenuItem.Checked = true;
+            this.habilitarCapturaDeDadosDeDestinatárioAusenteToolStripMenuItem.CheckOnClick = true;
+            this.habilitarCapturaDeDadosDeDestinatárioAusenteToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.habilitarCapturaDeDadosDeDestinatárioAusenteToolStripMenuItem.Name = "habilitarCapturaDeDadosDeDestinatárioAusenteToolStripMenuItem";
+            this.habilitarCapturaDeDadosDeDestinatárioAusenteToolStripMenuItem.Size = new System.Drawing.Size(410, 22);
+            this.habilitarCapturaDeDadosDeDestinatárioAusenteToolStripMenuItem.Text = "Habilitar captura de dados de \'Destinatário Ausente\'";
+            this.habilitarCapturaDeDadosDeDestinatárioAusenteToolStripMenuItem.Click += new System.EventHandler(this.habilitarCapturaDeDadosDeDestinatárioAusenteToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(407, 6);
             // 
             // marcarSelecionadosComoAtualizadoToolStripMenuItem
             // 
@@ -350,18 +385,10 @@ namespace SISAPO
             this.marcarSelecionadosComoNaoAtualizadoToolStripMenuItem.Text = "Marcar Selecionados como Não Atualizado";
             this.marcarSelecionadosComoNaoAtualizadoToolStripMenuItem.Click += new System.EventHandler(this.marcarSelecionadosComoNaoAtualizadoToolStripMenuItem_Click);
             // 
-            // toolStripSeparator4
+            // toolStripSeparator8
             // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(407, 6);
-            // 
-            // exibirMensagensAoDesevolvedorToolStripMenuItem
-            // 
-            this.exibirMensagensAoDesevolvedorToolStripMenuItem.CheckOnClick = true;
-            this.exibirMensagensAoDesevolvedorToolStripMenuItem.Name = "exibirMensagensAoDesevolvedorToolStripMenuItem";
-            this.exibirMensagensAoDesevolvedorToolStripMenuItem.Size = new System.Drawing.Size(410, 22);
-            this.exibirMensagensAoDesevolvedorToolStripMenuItem.Text = "Exibir Mensagens ao desevolvedor";
-            this.exibirMensagensAoDesevolvedorToolStripMenuItem.Click += new System.EventHandler(this.exibirMensagensAoDesevolvedorToolStripMenuItem_Click);
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
+            this.toolStripSeparator8.Size = new System.Drawing.Size(407, 6);
             // 
             // removerLinhasSelecionadasToolStripMenuItem
             // 
@@ -375,37 +402,14 @@ namespace SISAPO
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(407, 6);
             // 
-            // habilitarCapturaDeDadosDePostagemToolStripMenuItem
+            // exibirMensagensAoDesevolvedorToolStripMenuItem
             // 
-            this.habilitarCapturaDeDadosDePostagemToolStripMenuItem.Checked = true;
-            this.habilitarCapturaDeDadosDePostagemToolStripMenuItem.CheckOnClick = true;
-            this.habilitarCapturaDeDadosDePostagemToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.habilitarCapturaDeDadosDePostagemToolStripMenuItem.Name = "habilitarCapturaDeDadosDePostagemToolStripMenuItem";
-            this.habilitarCapturaDeDadosDePostagemToolStripMenuItem.Size = new System.Drawing.Size(410, 22);
-            this.habilitarCapturaDeDadosDePostagemToolStripMenuItem.Text = "Habilitar captura de dados de \'Postagem\'";
-            // 
-            // habilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatárioToolStripMenuItem
-            // 
-            this.habilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatárioToolStripMenuItem.Checked = true;
-            this.habilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatárioToolStripMenuItem.CheckOnClick = true;
-            this.habilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatárioToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.habilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatárioToolStripMenuItem.Name = "habilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatárioToolStripMenuItem";
-            this.habilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatárioToolStripMenuItem.Size = new System.Drawing.Size(410, 22);
-            this.habilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatárioToolStripMenuItem.Text = "Habilitar captura de dados de \'Saiu para entrega ao destinatário\'";
-            // 
-            // habilitarCapturaDeDadosDeDestinatárioAusenteToolStripMenuItem
-            // 
-            this.habilitarCapturaDeDadosDeDestinatárioAusenteToolStripMenuItem.Checked = true;
-            this.habilitarCapturaDeDadosDeDestinatárioAusenteToolStripMenuItem.CheckOnClick = true;
-            this.habilitarCapturaDeDadosDeDestinatárioAusenteToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.habilitarCapturaDeDadosDeDestinatárioAusenteToolStripMenuItem.Name = "habilitarCapturaDeDadosDeDestinatárioAusenteToolStripMenuItem";
-            this.habilitarCapturaDeDadosDeDestinatárioAusenteToolStripMenuItem.Size = new System.Drawing.Size(410, 22);
-            this.habilitarCapturaDeDadosDeDestinatárioAusenteToolStripMenuItem.Text = "Habilitar captura de dados de \'Destinatário Ausente\'";
-            // 
-            // toolStripSeparator8
-            // 
-            this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(407, 6);
+            this.exibirMensagensAoDesevolvedorToolStripMenuItem.CheckOnClick = true;
+            this.exibirMensagensAoDesevolvedorToolStripMenuItem.Name = "exibirMensagensAoDesevolvedorToolStripMenuItem";
+            this.exibirMensagensAoDesevolvedorToolStripMenuItem.Size = new System.Drawing.Size(410, 22);
+            this.exibirMensagensAoDesevolvedorToolStripMenuItem.Text = "Exibir Mensagens ao desevolvedor";
+            this.exibirMensagensAoDesevolvedorToolStripMenuItem.Visible = false;
+            this.exibirMensagensAoDesevolvedorToolStripMenuItem.Click += new System.EventHandler(this.exibirMensagensAoDesevolvedorToolStripMenuItem_Click);
             // 
             // optionsToolStripMenuItem
             // 
@@ -619,7 +623,7 @@ namespace SISAPO
         private System.Windows.Forms.Timer timerAtualizacaoNovosRegistros;
         private System.Windows.Forms.ToolStripMenuItem imprimirListaDeEntregaParaConsultaSelecionadaToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem manterConsultaSempreAtualizadaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem manterDataFinalEmHojeToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem PermiriBuscarPorLDINaPesquisaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem auxílioÀGestaoDoDiaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exibirMensagensAoDesevolvedorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem atualizarNovosObjetosPostadosToolStripMenuItem;

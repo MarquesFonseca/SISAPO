@@ -38,9 +38,30 @@ namespace SISAPO
 
         private void FormularioPrincipal_Load(object sender, EventArgs e)
         {
-            ExibirItensJaEntreguesToolStripMenuItem.Checked = true;
+            //não posso usar o banco para as configurações pois o usuário tem habito diferente dos demais. portante tenho que deixar a configuraçao por maquina...
+            //using (DAO dao = new DAO(TipoBanco.OleDb, Configuracoes.strConexao))
+            //{
+            //    if (!dao.TestaConexao()) { toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+
+            //    ExibirCaixaPostalPesquisa_toolStripMenuItem.Checked = Convert.ToBoolean(dao.RetornaValor("SELECT TOP 1 ExibirObjetosEmCaixaPostalNaPesquisa FROM TabelaConfiguracoesSistema"));
+            //    ExibirItensJaEntreguesToolStripMenuItem.Checked = Convert.ToBoolean(dao.RetornaValor("SELECT TOP 1 ExibirObjetosJaEntreguesNaPesquisa FROM TabelaConfiguracoesSistema"));
+            //    manterConsultaSempreAtualizadaToolStripMenuItem.Checked = Convert.ToBoolean(dao.RetornaValor("SELECT TOP 1 ManterConsultaSempreAtualizada FROM TabelaConfiguracoesSistema"));
+
+            //    PermiriBuscarPorLDINaPesquisaToolStripMenuItem.Checked = Convert.ToBoolean(dao.RetornaValor("SELECT TOP 1 PermitirBuscarPorLDINaPesquisa FROM TabelaConfiguracoesSistema"));
+            //    habilitarCapturaDeDadosDePostagemToolStripMenuItem.Checked = Convert.ToBoolean(dao.RetornaValor("SELECT TOP 1 HabilitarCapturaDeDadosDePostagem FROM TabelaConfiguracoesSistema"));
+            //    habilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatárioToolStripMenuItem.Checked = Convert.ToBoolean(dao.RetornaValor("SELECT TOP 1 HabilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatario FROM TabelaConfiguracoesSistema"));
+            //    habilitarCapturaDeDadosDeDestinatárioAusenteToolStripMenuItem.Checked = Convert.ToBoolean(dao.RetornaValor("SELECT TOP 1 HabilitarCapturaDeDadosDeDestinatarioAusente FROM TabelaConfiguracoesSistema"));
+            //}
+
             ExibirCaixaPostalPesquisa_toolStripMenuItem.Checked = true;
-            //RastreamentoSRO_toolStripButton_Click(sender, e);
+            ExibirItensJaEntreguesToolStripMenuItem.Checked = true;
+            manterConsultaSempreAtualizadaToolStripMenuItem.Checked = true;
+
+            PermiriBuscarPorLDINaPesquisaToolStripMenuItem.Checked = false;
+            habilitarCapturaDeDadosDePostagemToolStripMenuItem.Checked = true;
+            habilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatárioToolStripMenuItem.Checked = true;
+            habilitarCapturaDeDadosDeDestinatárioAusenteToolStripMenuItem.Checked = true;
+
             VisualizarListaObjetos_toolStripButton_Click(sender, e);
 
             BuscaNovoStatusQuantidadeNaoAtualizados();
@@ -230,18 +251,9 @@ namespace SISAPO
                     //using (FormWaiting frm = new FormWaiting(FormularioConsulta.RetornaComponentesFormularioConsulta().ConsultaTodosNaoEntreguesOrdenadoNome)) { frm.ShowDialog(this); }
                     FormularioConsulta.RetornaComponentesFormularioConsulta().ConsultaTodosNaoEntreguesOrdenadoNome();
 
-                    toolStripStatusLabel.Text = "Atualizando informações novas na base de dados...";
+                    //toolStripStatusLabel.Text = "Atualizando informações novas na base de dados...";
                 }
-                if (manterDataFinalEmHojeToolStripMenuItem.Checked == true)
-                {
-                    if (DateTime.Now.Date.ToShortDateString().ToDateTime().Date > FormularioConsulta.RetornaComponentesFormularioConsulta().DataFinal_dateTimePicker.Text.ToDateTime().Date)
-                    {
-                        //FormularioConsulta.RetornaComponentesFormularioConsulta().DataFinal_dateTimePicker.Text = DateTime.Now.Date.ToShortDateString();
-
-                        //comentado antes de apresentar para o Dario. dia 18/09/2019 pois acredito que essa atualização está causando interrupção no banco de dados fazendo travamento e ter que fechar...
-                        //FormularioConsulta.RetornaComponentesFormularioConsulta().AlterarDataAoIniciarODIa();
-                    }
-                }
+                //FormularioConsulta.RetornaComponentesFormularioConsulta().AlterarDataAoIniciarODIa();
             }
             BuscaNovoStatusQuantidadeNaoAtualizados();
             timerAtualizacaoNovosRegistros.Start();
@@ -257,19 +269,19 @@ namespace SISAPO
             foreach (Form item in MdiChildren)
             {
                 if (item.Name == "FormularioCadastroObjetos")
-                {                    
+                {
                     item.Activate();
                     return;
                 }
             }
-                       
+
             FormularioCadastroObjetos formularioCadastroObjetos = new FormularioCadastroObjetos();
             formularioCadastroObjetos.MdiParent = this;
             formularioCadastroObjetos.Show();
             //formularioCadastroObjetos.WindowState = FormWindowState.Normal;
             formularioCadastroObjetos.WindowState = FormWindowState.Maximized;
 
-            
+
 
 
 
@@ -348,7 +360,7 @@ namespace SISAPO
                         FormularioConsulta.RetornaComponentesFormularioConsulta().ConsultaTodosNaoEntreguesOrdenadoNome();
                     }
                 }
-            }            
+            }
         }
 
         private void atualizarNovosObjetosSaiuParaEntregaToolStripMenuItem_Click(object sender, EventArgs e)
@@ -529,13 +541,21 @@ namespace SISAPO
 
         public void ExibirCaixaPostalPesquisa_toolStripMenuItem_Click(object sender, EventArgs e)
         {
+            ////GRAVA NO BANCO 
+            //using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
+            //{
+            //    if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+
+            //    dao.ExecutaSQL("UPDATE TabelaConfiguracoesSistema SET ExibirObjetosEmCaixaPostalNaPesquisa = @ExibirObjetosEmCaixaPostalNaPesquisa", new List<Parametros>(){
+            //                                                new Parametros("@ExibirObjetosEmCaixaPostalNaPesquisa", TipoCampo.Int, ExibirCaixaPostalPesquisa_toolStripMenuItem.Checked)});
+            //}
+
             FormularioConsulta formularioConsulta;
             foreach (Form item in Application.OpenForms)
             {
                 if (item.Name == "FormularioConsulta")
                 {
                     formularioConsulta = (FormularioConsulta)item;
-                    //formularioConsulta.ChkIncluirItensCaixaPostalNaPesquisa.Checked = this.ExibirCaixaPostalPesquisa_toolStripMenuItem.Checked;
                     formularioConsulta.MontaFiltro();
                     formularioConsulta.Activate();
                     break;
@@ -545,13 +565,21 @@ namespace SISAPO
 
         public void ExibirItensJaEntreguesToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            ////GRAVA NO BANCO 
+            //using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
+            //{
+            //    if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+
+            //    dao.ExecutaSQL("UPDATE TabelaConfiguracoesSistema SET ExibirObjetosJaEntreguesNaPesquisa = @ExibirObjetosJaEntreguesNaPesquisa", new List<Parametros>(){
+            //                                                new Parametros("@ExibirObjetosJaEntreguesNaPesquisa", TipoCampo.Int, ExibirItensJaEntreguesToolStripMenuItem.Checked)});
+            //}
+
             FormularioConsulta formularioConsulta;
             foreach (Form item in Application.OpenForms)
             {
                 if (item.Name == "FormularioConsulta")
                 {
                     formularioConsulta = (FormularioConsulta)item;
-                    //formularioConsulta.ChkIncluirItensEntreguesNaPesquisa.Checked = this.ExibirItensJaEntreguesToolStripMenuItem.Checked;
                     formularioConsulta.MontaFiltro();
                     formularioConsulta.Activate();
                     break;
@@ -684,7 +712,7 @@ namespace SISAPO
 
             if (pergunta == System.Windows.Forms.DialogResult.No)
             {
-                
+
                 return;
             }
             if (pergunta == System.Windows.Forms.DialogResult.Yes)
@@ -817,7 +845,76 @@ namespace SISAPO
 
         private void manterConsultaSempreAtualizadaToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            ////GRAVA NO BANCO 
+            //using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
+            //{
+            //    if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
 
+            //    dao.ExecutaSQL("UPDATE TabelaConfiguracoesSistema SET ManterConsultaSempreAtualizada = @ManterConsultaSempreAtualizada", new List<Parametros>(){
+            //                                                new Parametros("@ManterConsultaSempreAtualizada", TipoCampo.Int, manterConsultaSempreAtualizadaToolStripMenuItem.Checked)});
+            //    dao.ExecutaSQL("UPDATE TabelaConfiguracoesSistema SET TempoAtualizacaoConsultaSempreAtualizada = @TempoAtualizacaoConsultaSempreAtualizada", new List<Parametros>(){
+            //                                                new Parametros("@TempoAtualizacaoConsultaSempreAtualizada", TipoCampo.Text, "600000")});                
+            //}
+        }
+
+        private void PermiriBuscarPorLDINaPesquisaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ////GRAVA NO BANCO 
+            //using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
+            //{
+            //    if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+
+            //    dao.ExecutaSQL("UPDATE TabelaConfiguracoesSistema SET PermitirBuscarPorLDINaPesquisa = @PermitirBuscarPorLDINaPesquisa", new List<Parametros>(){
+            //                                                new Parametros("@PermitirBuscarPorLDINaPesquisa", TipoCampo.Int, PermiriBuscarPorLDINaPesquisaToolStripMenuItem.Checked)});
+            //}
+
+            FormularioConsulta formularioConsulta;
+            foreach (Form item in Application.OpenForms)
+            {
+                if (item.Name == "FormularioConsulta")
+                {
+                    formularioConsulta = (FormularioConsulta)item;
+                    formularioConsulta.MontaFiltro();
+                    formularioConsulta.Activate();
+                    break;
+                }
+            }
+        }
+
+        private void habilitarCapturaDeDadosDePostagemToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ////GRAVA NO BANCO 
+            //using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
+            //{
+            //    if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+
+            //    dao.ExecutaSQL("UPDATE TabelaConfiguracoesSistema SET HabilitarCapturaDeDadosDePostagem = @HabilitarCapturaDeDadosDePostagem", new List<Parametros>(){
+            //                                                new Parametros("@HabilitarCapturaDeDadosDePostagem", TipoCampo.Int, habilitarCapturaDeDadosDePostagemToolStripMenuItem.Checked)});
+            //}
+        }
+
+        private void habilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatárioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ////GRAVA NO BANCO 
+            //using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
+            //{
+            //    if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+
+            //    dao.ExecutaSQL("UPDATE TabelaConfiguracoesSistema SET HabilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatario = @HabilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatario", new List<Parametros>(){
+            //                                                new Parametros("@HabilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatario", TipoCampo.Int, habilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatárioToolStripMenuItem.Checked)});
+            //}
+        }
+
+        private void habilitarCapturaDeDadosDeDestinatárioAusenteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ////GRAVA NO BANCO 
+            //using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
+            //{
+            //    if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+
+            //    dao.ExecutaSQL("UPDATE TabelaConfiguracoesSistema SET HabilitarCapturaDeDadosDeDestinatarioAusente = @HabilitarCapturaDeDadosDeDestinatarioAusente", new List<Parametros>(){
+            //                                                new Parametros("@HabilitarCapturaDeDadosDeDestinatarioAusente", TipoCampo.Int, habilitarCapturaDeDadosDeDestinatárioAusenteToolStripMenuItem.Checked)});
+            //}
         }
     }
 }

@@ -16,7 +16,7 @@ namespace SISAPO
         /// </summary>
         [STAThread]
         static void Main()
-        {
+        {            
             var processo = System.Diagnostics.Process.GetCurrentProcess();
             var jaEstaRodando = System.Diagnostics.Process.GetProcessesByName(processo.ProcessName).Any(p => p.Id != processo.Id);
             //Mensagens.Informa(Dns.GetHostEntry(Environment.MachineName).HostName);
@@ -67,9 +67,19 @@ namespace SISAPO
 
             Configuracoes.GeraArquivoConfig();
             Configuracoes.VerificaSeFecharAplicacaoParaAtualizacao();
-            
+
             if (Configuracoes.VerificaChaveAcesso())
             {
+                ////GRAVA NO BANCO 
+                //using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
+                //{
+                //    if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+
+                //    dao.ExecutaSQL("ALTER TABLE TabelaObjetosSROLocal ALTER COLUMN Codigo COUNTER(17403, 1)");
+                //}
+
+                Configuracoes.VerificaSquemaBancoDados();
+
                 //string data = ClassesDiversas.CriptografiaHelper.Criptografa("30-09-2019");
                 Application.Run(new FormularioPrincipal());
             }
@@ -79,5 +89,7 @@ namespace SISAPO
                 return;
             }
         }
+
+        
     }
 }

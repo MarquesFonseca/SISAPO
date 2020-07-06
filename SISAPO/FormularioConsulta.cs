@@ -57,7 +57,14 @@ namespace SISAPO
             bool IncluirItensCaixaPostal = FormularioPrincipal.RetornaComponentesFormularioPrincipal().ExibirCaixaPostalPesquisa_toolStripMenuItem.Checked;
             if (TxtPesquisa.Text != "")
             {
-                campoPesquisa = string.Format("(CodigoObjeto like '%{0}' OR CodigoLdi like '{0}%' OR NomeCliente like '%{0}%')", TxtPesquisa.Text.RemoveSimbolos().RemoveSpecialChars());
+                if (FormularioPrincipal.RetornaComponentesFormularioPrincipal().PermiriBuscarPorLDINaPesquisaToolStripMenuItem.Checked == true)
+                {
+                    campoPesquisa = string.Format("(CodigoObjeto like '%{0}' OR CodigoLdi like '{0}%' OR NomeCliente like '%{0}%')", TxtPesquisa.Text.RemoveSimbolos().RemoveSpecialChars());
+                }
+                else
+                {
+                    campoPesquisa = string.Format("(CodigoObjeto like '%{0}' OR NomeCliente like '%{0}%')", TxtPesquisa.Text.RemoveSimbolos().RemoveSpecialChars());
+                }
             }
             if (!ExibirItensEntregues)
             {
@@ -571,9 +578,9 @@ namespace SISAPO
                 waitForm.Show(this);
                 this.tabelaObjetosSROLocalTableAdapter.Connection.ConnectionString = ClassesDiversas.Configuracoes.strConexao;
                 this.tabelaObjetosSROLocalTableAdapter.Fill(this.dataSetTabelaObjetosSROLocal.TabelaObjetosSROLocal, dataInicial, datafinal);
+                this.MontaFiltro();
                 waitForm.Close();
 
-                this.MontaFiltro();
                 tabelaObjetosSROLocalBindingSource.Position = posicao;
                 dataGridView1.Focus();
             }
@@ -593,7 +600,10 @@ namespace SISAPO
 
         public void AlterarDataAoIniciarODIa()
         {
-            DataFinal_dateTimePicker.Text = DateTime.Now.Date.ToShortDateString();
+            if (DateTime.Now.Date.ToShortDateString().ToDateTime().Date > DataFinal_dateTimePicker.Text.ToDateTime().Date)
+            {
+                //DataFinal_dateTimePicker.Text = DateTime.Now.Date.ToShortDateString();
+            }
         }
 
         private void MarcarComoEntregueToolStripMenuItem_Click(object sender, EventArgs e)
@@ -621,14 +631,16 @@ namespace SISAPO
 
         public void MarcarSelecionadosComoAtualizado()
         {
-            using (FormWaiting frm = new FormWaiting(ProcessandoMarcarSelecionadosComoAtualizado))
-            {
-                frm.ShowDialog(this);
-            }
+            //using (FormWaiting frm = new FormWaiting(ProcessandoMarcarSelecionadosComoAtualizado))
+            //{
+            //    frm.ShowDialog(this);
+            //}
+            ProcessandoMarcarSelecionadosComoAtualizado();
         }
 
         void ProcessandoMarcarSelecionadosComoAtualizado()
         {
+            waitForm.Show(this);
             using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
             {
                 if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
@@ -644,18 +656,21 @@ namespace SISAPO
                     this.dataGridView1.SelectedRows[i].Cells["atualizadoDataGridViewCheckBoxColumn"].Value = true;
                 }
             }
+            waitForm.Close();
         }
 
         public void MarcarSelecionadosComoNaoAtualizado()
         {
-            using (FormWaiting frm = new FormWaiting(ProcessandoMarcarSelecionadosComoNaoAtualizado))
-            {
-                frm.ShowDialog(this);
-            }
+            //using (FormWaiting frm = new FormWaiting(ProcessandoMarcarSelecionadosComoNaoAtualizado))
+            //{
+            //    frm.ShowDialog(this);
+            //}
+            ProcessandoMarcarSelecionadosComoNaoAtualizado();
         }
 
         void ProcessandoMarcarSelecionadosComoNaoAtualizado()
         {
+            waitForm.Show(this);
             using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
             {
                 if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
@@ -671,6 +686,7 @@ namespace SISAPO
                     this.dataGridView1.SelectedRows[i].Cells["atualizadoDataGridViewCheckBoxColumn"].Value = false;
                 }
             }
+            waitForm.Close();
         }
 
         private void MarcarAtualizadoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -747,6 +763,7 @@ namespace SISAPO
             //FormularioPrincipal.RetornaComponentes().ExibirCaixaPostalPesquisa_toolStripMenuItem_Click(sender, e);
         }
 
+        
         public void removerItemToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (!DAO.TestaConexao(ClassesDiversas.Configuracoes.strConexao, TipoBanco.OleDb))
@@ -757,6 +774,7 @@ namespace SISAPO
 
             int position = this.BindingContext[tabelaObjetosSROLocalBindingSource].Position - this.dataGridView1.SelectedRows.Count + 1;
 
+            waitForm.Show(this);
             for (int i = this.dataGridView1.SelectedRows.Count - 1; i >= 0; i--)
             {
                 string CodigoObjeto = this.dataGridView1.SelectedRows[i].Cells[0].Value.ToString();
@@ -765,6 +783,7 @@ namespace SISAPO
                 this.tabelaObjetosSROLocalTableAdapter.Connection.ConnectionString = ClassesDiversas.Configuracoes.strConexao;
                 this.tabelaObjetosSROLocalTableAdapter.Delete(CodigoObjeto);
             }
+            waitForm.Close();
 
             if (position > -1)
             {
@@ -1058,6 +1077,8 @@ namespace SISAPO
 
                 int position = this.BindingContext[tabelaObjetosSROLocalBindingSource].Position;
                 if (position > -1) this.BindingContext[tabelaObjetosSROLocalBindingSource].Position = position;
+
+                FormularioPrincipal.RetornaComponentesFormularioPrincipal().BuscaNovoStatusQuantidadeNaoAtualizados();
 
                 FormularioConsulta_Activated(sender, e);
             }
