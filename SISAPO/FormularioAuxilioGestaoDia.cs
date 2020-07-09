@@ -84,6 +84,7 @@ namespace SISAPO
             dtbLista.Columns.Add("CodigoObjeto", typeof(string));
             dtbLista.Columns.Add("NomeCliente", typeof(string));
             dtbLista.Columns.Add("DataLancamento", typeof(DateTime));
+            dtbLista.Columns.Add("DiasCorridos", typeof(int));
             try
             {
                 if (!DAO.TestaConexao(ClassesDiversas.Configuracoes.strConexao, TipoBanco.OleDb))
@@ -103,6 +104,7 @@ namespace SISAPO
                         string ParteLinhaCodigoObjeto = Parteslinha.Length >= 2 ? Parteslinha[1].Trim().ToUpper() : "";
                         string ParteLinhaNomeCliente = "";
                         string ParteLinhaDataLancamento = Parteslinha.Length >= 3 ? Parteslinha[2].Trim().ToUpper() : "";
+                        string DiasCorridos = Convert.ToString((DateTime.Now.Date - ParteLinhaDataLancamento.ToDateTime().Date).TotalDays);
 
                         if (ParteLinhaCodigoObjeto != "")
                         {
@@ -113,7 +115,7 @@ namespace SISAPO
                                 ParteLinhaNomeCliente = ds.Tables[0].Rows[0][1].ToString();
                                 ParteLinhaDataLancamento = ds.Tables[0].Rows[0][2].ToString();
                             }
-                            dtbLista.Rows.Add(ParteLinhaCodigoLdi, ParteLinhaCodigoObjeto, ParteLinhaNomeCliente, ParteLinhaDataLancamento.ToDateTime());
+                            dtbLista.Rows.Add(ParteLinhaCodigoLdi, ParteLinhaCodigoObjeto, ParteLinhaNomeCliente, ParteLinhaDataLancamento.ToDateTime(), DiasCorridos.ToInt());
                         }
                     }
                 }
@@ -132,7 +134,8 @@ namespace SISAPO
             //"CodigoLDI"
             //"CodigoObjeto"
             //"NomeCliente"
-            //"DataLancamento"                    
+            //"DataLancamento"   
+            //"DiasCorridos"                 
             if (tabControl1.SelectedIndex == 0)
             {
                 listaObjetos.DefaultView.Sort = "CodigoLDI ASC";
@@ -157,6 +160,12 @@ namespace SISAPO
                 dataGridView1.DataSource = listaObjetos;
                 dataGridView1.Focus();
             }
+            if (tabControl1.SelectedIndex == 4)
+            {
+                listaObjetos.DefaultView.Sort = "DiasCorridos ASC";
+                dataGridView1.DataSource = listaObjetos;
+                dataGridView1.Focus();
+            }
         }
 
         private void BtnImprimirListaAtual_Click(object sender, EventArgs e)
@@ -166,7 +175,8 @@ namespace SISAPO
             //"CodigoLDI"
             //"CodigoObjeto"
             //"NomeCliente"
-            //"DataLancamento"  
+            //"DataLancamento"
+            //"DiasCorridos"  
             if (tabControl1.SelectedIndex == 0)
             {
                 novoCodigoSelecionados = listaObjetos.AsEnumerable().OrderBy(m => m["CodigoLDI"]).Select(c => c["CodigoObjeto"].ToString()).ToList();
@@ -182,6 +192,10 @@ namespace SISAPO
             if (tabControl1.SelectedIndex == 3)
             {
                 novoCodigoSelecionados = listaObjetos.AsEnumerable().OrderBy(m => m["DataLancamento"]).Select(c => c["CodigoObjeto"].ToString()).ToList();
+            }
+            if (tabControl1.SelectedIndex == 4)
+            {
+                novoCodigoSelecionados = listaObjetos.AsEnumerable().OrderBy(m => m["DiasCorridos"]).Select(c => c["CodigoObjeto"].ToString()).ToList();
             }
             //List<string> novoCodigoSelecionados = listaObjetos.AsEnumerable().Select(c => c["CodigoObjeto"].ToString()).ToList();
 

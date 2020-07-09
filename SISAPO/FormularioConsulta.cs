@@ -59,11 +59,11 @@ namespace SISAPO
             {
                 if (FormularioPrincipal.RetornaComponentesFormularioPrincipal().PermiriBuscarPorLDINaPesquisaToolStripMenuItem.Checked == true)
                 {
-                    campoPesquisa = string.Format("(CodigoObjeto like '%{0}' OR CodigoLdi like '{0}%' OR NomeCliente like '%{0}%')", TxtPesquisa.Text.RemoveSimbolos().RemoveSpecialChars());
+                    campoPesquisa = string.Format("(CodigoObjeto like '%{0}%' OR CodigoLdi like '%{0}%' OR NomeCliente like '%{0}%')", TxtPesquisa.Text.RemoveSimbolos().RemoveSpecialChars());
                 }
                 else
                 {
-                    campoPesquisa = string.Format("(CodigoObjeto like '%{0}' OR NomeCliente like '%{0}%')", TxtPesquisa.Text.RemoveSimbolos().RemoveSpecialChars());
+                    campoPesquisa = string.Format("(CodigoObjeto like '%{0}%' OR NomeCliente like '%{0}%')", TxtPesquisa.Text.RemoveSimbolos().RemoveSpecialChars());
                 }
             }
             if (!ExibirItensEntregues)
@@ -1180,12 +1180,11 @@ namespace SISAPO
             {
                 return;
             }
-
-            //pProcess.StartInfo.Arguments = "https://www.google.com.br/maps/search/-10.22285,-48.34052";
+            
             //pProcess.StartInfo.Arguments = "https://maps.google.com/maps?t=k&q=loc:-10.22285+-48.34052";
-            pProcess.StartInfo.Arguments = string.Format("https://maps.google.com/maps?t=k&q=loc:{0}", CoordenadasAtual);
+            pProcess.StartInfo.Arguments = string.Format("https://www.google.com.br/maps/search/{0}", CoordenadasAtual);
             pProcess.Start();
-            pProcess.WaitForExit();
+            //pProcess.WaitForExit();
 
 
 
@@ -1193,28 +1192,28 @@ namespace SISAPO
 
             //VerificaNavegador();
 
-            string CodigoObjetoFormatado = string.Format("{0} {1} {2} {3} {4}",
-                    currentRow["CodigoObjeto"].ToString().Substring(0, 2),
-                    currentRow["CodigoObjeto"].ToString().Substring(2, 3),
-                    currentRow["CodigoObjeto"].ToString().Substring(5, 3),
-                    currentRow["CodigoObjeto"].ToString().Substring(8, 3),
-                    currentRow["CodigoObjeto"].ToString().Substring(11, 2));
-            string NomeCliente = currentRow["NomeCliente"].ToString();
-            string EnderecoCompleto = string.Format("{0}, {1}, {2}, {3}", currentRow["EnderecoLOEC"], currentRow["BairroLOEC"], currentRow["CepDestinoPostagem"], currentRow["MunicipioLOEC"]);
-            string DataCriacaoLOEC = currentRow["CriacaoLOEC"].ToString();
-            string UnidadeLOEC = currentRow["UnidadeLOEC"].ToString();
-            string DistritoLOEC = currentRow["DistritoLOEC"].ToString();
-            string CarteiroLOEC = currentRow["CarteiroLOEC"].ToString();
-            //string CoordenadasAtual = currentRow["CoordenadasDestinatarioAusente"].ToString();
-            //"-10.22285,-48.34052"
+            //string CodigoObjetoFormatado = string.Format("{0} {1} {2} {3} {4}",
+            //        currentRow["CodigoObjeto"].ToString().Substring(0, 2),
+            //        currentRow["CodigoObjeto"].ToString().Substring(2, 3),
+            //        currentRow["CodigoObjeto"].ToString().Substring(5, 3),
+            //        currentRow["CodigoObjeto"].ToString().Substring(8, 3),
+            //        currentRow["CodigoObjeto"].ToString().Substring(11, 2));
+            //string NomeCliente = currentRow["NomeCliente"].ToString();
+            //string EnderecoCompleto = string.Format("{0}, {1}, {2}, {3}", currentRow["EnderecoLOEC"], currentRow["BairroLOEC"], currentRow["CepDestinoPostagem"], currentRow["MunicipioLOEC"]);
+            //string DataCriacaoLOEC = currentRow["CriacaoLOEC"].ToString();
+            //string UnidadeLOEC = currentRow["UnidadeLOEC"].ToString();
+            //string DistritoLOEC = currentRow["DistritoLOEC"].ToString();
+            //string CarteiroLOEC = currentRow["CarteiroLOEC"].ToString();
+            ////string CoordenadasAtual = currentRow["CoordenadasDestinatarioAusente"].ToString();
+            ////"-10.22285,-48.34052"
 
-            FormularioCoordenadasExibicaoMapa formularioCoordenadasExibicaoMapa = new FormularioCoordenadasExibicaoMapa(CoordenadasAtual, CodigoObjetoFormatado, NomeCliente, EnderecoCompleto, DataCriacaoLOEC, UnidadeLOEC, DistritoLOEC, CarteiroLOEC);
+            //FormularioCoordenadasExibicaoMapa formularioCoordenadasExibicaoMapa = new FormularioCoordenadasExibicaoMapa(CoordenadasAtual, CodigoObjetoFormatado, NomeCliente, EnderecoCompleto, DataCriacaoLOEC, UnidadeLOEC, DistritoLOEC, CarteiroLOEC);
 
-            //formularioCoordenadasExibicaoMapa.MdiParent = MdiParent;
-            formularioCoordenadasExibicaoMapa.ShowDialog();
-            formularioCoordenadasExibicaoMapa.WindowState = FormWindowState.Normal;
-            formularioCoordenadasExibicaoMapa.WindowState = FormWindowState.Maximized;
-            formularioCoordenadasExibicaoMapa.Activate();
+            ////formularioCoordenadasExibicaoMapa.MdiParent = MdiParent;
+            //formularioCoordenadasExibicaoMapa.ShowDialog();
+            //formularioCoordenadasExibicaoMapa.WindowState = FormWindowState.Normal;
+            //formularioCoordenadasExibicaoMapa.WindowState = FormWindowState.Maximized;
+            //formularioCoordenadasExibicaoMapa.Activate();
         }
 
         private bool VerificaNavegador()

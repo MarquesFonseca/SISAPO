@@ -118,23 +118,36 @@ namespace SISAPO
 
             using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
             {
-                Html.AppendLine("	<table align=\"Center\" width=\"750\" style=\"border:1px solid #000000;\"> ");
+                Html.AppendLine("	<table align=\"Center\" width=\"850\" style=\"border:1px solid #000000;\"> ");
                 Html.AppendLine("	<tbody>		");
                 Html.AppendLine("		<tr>");
-                Html.AppendLine("		    <td width=\"100\" bgcolor=\"#F3F3F3\"><font size=\"1\"><b><font size=\"3\">Número LDI</font></b></font></td>");
-                Html.AppendLine("		    <td width=\"120\" bgcolor=\"#F3F3F3\"><font size=\"1\"><b><font size=\"3\">Objeto</font></b></font></td>");
-                Html.AppendLine("		    <td width=\"380\" bgcolor=\"#F3F3F3\"><font size=\"1\"><b><font size=\"3\">Nome do cliente</font></b></font></td>");
-                Html.AppendLine("		    <td width=\"150\" bgcolor=\"#F3F3F3\"><font size=\"1\"><b><font size=\"3\">Lançamento</font></b></font></td>");
+                Html.AppendLine("		    <td width=\"90\" bgcolor=\"#F3F3F3\"><font size=\"1\"><b><font size=\"3\">  Núm. LDI</font></b></font></td>");
+                Html.AppendLine("		    <td width=\"130\" bgcolor=\"#F3F3F3\"><font size=\"1\"><b><font size=\"3\">  Objeto</font></b></font></td>");
+                Html.AppendLine("		    <td width=\"420\" bgcolor=\"#F3F3F3\"><font size=\"1\"><b><font size=\"3\">  Destinatário</font></b></font></td>");
+                Html.AppendLine("		    <td width=\"130\" bgcolor=\"#F3F3F3\"><font size=\"1\"><b><font size=\"3\">  Lançamento</font></b></font></td>");
+                Html.AppendLine("		    <td width=\"80\" bgcolor=\"#F3F3F3\"><font size=\"1\"><b><font size=\"3\">  Corridos</font></b></font></td>");
                 Html.AppendLine("		</tr>");
                 foreach (string itemCodigoSelecionado in CodigoSelecionados)
                 {
                     DataRow dr = dao.RetornaDataRow("SELECT Codigo, CodigoObjeto, CodigoLdi, NomeCliente, DataLancamento, Atualizado, Situacao, DataModificacao FROM TabelaObjetosSROLocal WHERE (CodigoObjeto IN ('" + itemCodigoSelecionado + "'))");
-                    DataRow drConfiguracoes = dao.RetornaDataRow("SELECT NomeAgenciaLocal, EnderecoAgenciaLocal FROM TabelaConfiguracoesSistema");
+                    //DataRow drConfiguracoes = dao.RetornaDataRow("SELECT NomeAgenciaLocal, EnderecoAgenciaLocal FROM TabelaConfiguracoesSistema");
+
+                    string CodigoObjetoFormatado = string.Format("{0} {1} {2} {3} {4}",
+                    dr["CodigoObjeto"].ToString().Substring(0, 2),
+                    dr["CodigoObjeto"].ToString().Substring(2, 3),
+                    dr["CodigoObjeto"].ToString().Substring(5, 3),
+                    dr["CodigoObjeto"].ToString().Substring(8, 3),
+                    dr["CodigoObjeto"].ToString().Substring(11, 2));
+                    string DiasCorridos = Convert.ToString((DateTime.Now.Date - dr["DataLancamento"].ToDateTime().Date).TotalDays);
+
+
+
                     Html.AppendLine("		<tr>");
                     Html.AppendLine("		    <td>" + dr["CodigoLdi"].ToString() + "</td>");
-                    Html.AppendLine("		    <td>" + dr["CodigoObjeto"].ToString() + "</td>");
+                    Html.AppendLine("		    <td>" + CodigoObjetoFormatado + "</td>");
                     Html.AppendLine("		    <td>" + dr["NomeCliente"].ToString() + "</td>");
                     Html.AppendLine("		    <td>" + dr["DataLancamento"].ToString() + "</td>");
+                    Html.AppendLine("		    <td>&nbsp;&nbsp;" + DiasCorridos + " dias</td>");
                     Html.AppendLine("		</tr>");
                 }
                 Html.AppendLine("	</tbody>");

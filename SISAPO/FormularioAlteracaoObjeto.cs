@@ -159,7 +159,7 @@ namespace SISAPO
             TxtSituacaoDestinatarioAusente.Text = SituacaoDestinatarioAusente;
             TxtAgrupadoDestinatarioAusente.Text = AgrupadoDestinatarioAusente;
             TxtCoordenadasDestinatarioAusente.Text = CoordenadasDestinatarioAusente;
-            TxtEnderecoCoordenadasDestinatarioAusente.Text = string.Format("https://maps.google.com/maps?t=k&q=loc:{0}", CoordenadasDestinatarioAusente);
+            TxtEnderecoCoordenadasDestinatarioAusente.Text = string.Format("https://www.google.com.br/maps/search/{0}", CoordenadasDestinatarioAusente);
             if (string.IsNullOrEmpty(CoordenadasDestinatarioAusente))
                 TxtEnderecoCoordenadasDestinatarioAusente.Text = CoordenadasDestinatarioAusente;
         }
@@ -220,12 +220,11 @@ namespace SISAPO
             {
                 return;
             }
-
-            //pProcess.StartInfo.Arguments = "https://www.google.com.br/maps/search/-10.22285,-48.34052";
+            
             //pProcess.StartInfo.Arguments = "https://maps.google.com/maps?t=k&q=loc:-10.22285+-48.34052";
-            pProcess.StartInfo.Arguments = string.Format("https://maps.google.com/maps?t=k&q=loc:{0}", CoordenadasDestinatarioAusente);
+            pProcess.StartInfo.Arguments = string.Format("https://www.google.com.br/maps/search/{0}", CoordenadasDestinatarioAusente);
             pProcess.Start();
-            pProcess.WaitForExit();
+            //pProcess.WaitForExit();
         }
     }
 }

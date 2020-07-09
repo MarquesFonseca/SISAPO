@@ -13,6 +13,7 @@ namespace SISAPO
     public partial class FormularioPrincipal : Form
     {
         public static string dataSource = string.Empty;
+        public static bool AtualizandoNovosObjetos = false;
 
         public FormularioPrincipal()
         {
@@ -30,8 +31,8 @@ namespace SISAPO
             //Xmil = 600segundos
             //Xmil = 600 x 1000 = 600.000
 
-            timerAtualizacaoNovosRegistros.Interval = 600000; //10 mimutos
-            //timerAtualizacaoNovosRegistros.Interval = 10000;
+            //timerAtualizacaoNovosRegistros.Interval = 600000; //10 mimutos
+            timerAtualizacaoNovosRegistros.Interval = 1000;
             timerAtualizacaoNovosRegistros.Enabled = true;
             timerAtualizacaoNovosRegistros.Start();
         }
@@ -65,6 +66,7 @@ namespace SISAPO
             VisualizarListaObjetos_toolStripButton_Click(sender, e);
 
             BuscaNovoStatusQuantidadeNaoAtualizados();
+            BuscaDataHoraUltimaAtualizacaoImportacao();
         }
 
         public void BuscaNovoStatusQuantidadeNaoAtualizados()
@@ -233,8 +235,11 @@ namespace SISAPO
             formularioSRORastreamentoUnificado.Activate();
         }
 
+        int contadorTime = 0;
         private void timerAtualizacaoNovosRegistros_Tick(object sender, EventArgs e)
         {
+            contadorTime++;
+            toolStripStatusLabelDataHora.Text = DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString();
             this.imprimirListaDeEntregaParaConsultaSelecionadaToolStripMenuItem1.Text = string.Format("Imprimir lista de entrega lançados hoje [{0}]", DateTime.Now.GetDateTimeFormats()[14]);
 
             timerAtualizacaoNovosRegistros.Stop();
@@ -249,14 +254,63 @@ namespace SISAPO
                     //comentado antes de apresentar para o Dario. dia 18/09/2019 pois acredito que essa atualização está causando interrupção no banco de dados fazendo travamento e ter que fechar...
 
                     //using (FormWaiting frm = new FormWaiting(FormularioConsulta.RetornaComponentesFormularioConsulta().ConsultaTodosNaoEntreguesOrdenadoNome)) { frm.ShowDialog(this); }
-                    FormularioConsulta.RetornaComponentesFormularioConsulta().ConsultaTodosNaoEntreguesOrdenadoNome();
+                    //FormularioConsulta.RetornaComponentesFormularioConsulta().ConsultaTodosNaoEntreguesOrdenadoNome();
 
                     //toolStripStatusLabel.Text = "Atualizando informações novas na base de dados...";
                 }
                 //FormularioConsulta.RetornaComponentesFormularioConsulta().AlterarDataAoIniciarODIa();
             }
-            BuscaNovoStatusQuantidadeNaoAtualizados();
+            if (contadorTime == 60)//busca a cada minuto
+            {
+                BuscaNovoStatusQuantidadeNaoAtualizados();
+                BuscaDataHoraUltimaAtualizacaoImportacao();
+                contadorTime = 0;
+            }
             timerAtualizacaoNovosRegistros.Start();
+        }
+
+        public void AtualizaDataHoraUltimaAtualizacaoImportacao()
+        {
+            //atualiza campo 'DataHoraUltimaAtualizacaoImportacao' da tabela 'TabelaConfiguracoesSistema'
+            try
+            {
+                using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
+                {
+                    if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+                    List<Parametros> Pr = new List<Parametros>() { new Parametros() { Nome = "@DataHoraUltimaAtualizacaoImportacao", Tipo = TipoCampo.DateTime, Valor = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss") } };
+
+                    dao.ExecutaSQL("UPDATE TabelaConfiguracoesSistema SET DataHoraUltimaAtualizacaoImportacao = @DataHoraUltimaAtualizacaoImportacao", Pr);
+                }
+            }
+            catch (Exception ex)
+            {
+                Mensagens.Erro("Ocorreu o seguinte erro: " + ex.Message);
+                throw;
+            }
+            finally
+            {
+                BuscaDataHoraUltimaAtualizacaoImportacao();
+            }
+        }
+
+        public void BuscaDataHoraUltimaAtualizacaoImportacao()
+        {
+            
+            try
+            {
+                using (DAO dao = new DAO(TipoBanco.OleDb, Configuracoes.strConexao))
+                {
+                    if (!dao.TestaConexao()) { toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+
+                    object dataHoraUltimaAtualizacaoImportacaoRetornado = dao.RetornaValor("SELECT DataHoraUltimaAtualizacaoImportacao FROM TabelaConfiguracoesSistema");
+                    toolStripStatusLabelDataHoraUltimaAtualizacaoImportacao.Text = string.Format("Última atualização dos dados: {0:dd/MM/yyyy HH:mm}   -   ", dataHoraUltimaAtualizacaoImportacaoRetornado);
+                }
+            }
+            catch (Exception ex)
+            {
+                Mensagens.Erro("Ocorreu o seguinte erro: " + ex.Message);
+                throw;
+            }
         }
 
         public void sRORastreamentoUnificadoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -437,6 +491,8 @@ namespace SISAPO
 
         public void atualizarNovosObjetosToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (AtualizandoNovosObjetos == true) return;
+            AtualizandoNovosObjetos = true;
             using (DAO dao = new DAO(TipoBanco.OleDb, Configuracoes.strConexao))
             {
                 if (!dao.TestaConexao()) { toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
@@ -492,7 +548,10 @@ namespace SISAPO
                     //using (FormWaiting frm = new FormWaiting(FormularioConsulta.RetornaComponentesFormularioConsulta().ConsultaTodosNaoEntreguesOrdenadoNome)) { frm.ShowDialog(this); }
                     FormularioConsulta.RetornaComponentesFormularioConsulta().ConsultaTodosNaoEntreguesOrdenadoNome();
                 }
+                //atualiza campo 'DataHoraUltimaAtualizacaoImportacao' da tabela 'TabelaConfiguracoesSistema'
+                this.AtualizaDataHoraUltimaAtualizacaoImportacao();
             }
+            AtualizandoNovosObjetos = false;
         }
 
         private void atualizarNovosObjetosCompletoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -710,11 +769,8 @@ namespace SISAPO
         {
             DialogResult pergunta = Mensagens.Pergunta("Deseja realmente solicitar uma verificação\npara todos os objetos ainda não entregues?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-            if (pergunta == System.Windows.Forms.DialogResult.No)
-            {
+            if (pergunta == System.Windows.Forms.DialogResult.No) return;
 
-                return;
-            }
             if (pergunta == System.Windows.Forms.DialogResult.Yes)
             {
                 //grava no banco de dados
@@ -753,6 +809,7 @@ namespace SISAPO
                         //using (FormWaiting frm = new FormWaiting(FormularioConsulta.RetornaComponentesFormularioConsulta().ConsultaTodosNaoEntreguesOrdenadoNome)) { frm.ShowDialog(this); }
                         FormularioConsulta.RetornaComponentesFormularioConsulta().ConsultaTodosNaoEntreguesOrdenadoNome();
                     }
+                    FormularioPrincipal.RetornaComponentesFormularioPrincipal().AtualizaDataHoraUltimaAtualizacaoImportacao();
                 }
             }
         }

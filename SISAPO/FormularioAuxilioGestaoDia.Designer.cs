@@ -34,10 +34,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormularioAuxilioGestaoDia));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.CodigoLdi = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CodigoObjeto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NomeCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DataLancamento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel3 = new System.Windows.Forms.Panel();
             this.BtnImprimirListaAtual = new System.Windows.Forms.Button();
             this.BtnColarConteudoJaCopiado = new System.Windows.Forms.Button();
@@ -48,6 +44,12 @@
             this.tabPageObjeto = new System.Windows.Forms.TabPage();
             this.tabPageNomeCliente = new System.Windows.Forms.TabPage();
             this.tabPageLancamento = new System.Windows.Forms.TabPage();
+            this.CodigoLdi = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CodigoObjeto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NomeCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DataLancamento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DiasCorridos = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tabPageDiasCorridos = new System.Windows.Forms.TabPage();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -72,7 +74,8 @@
             this.CodigoLdi,
             this.CodigoObjeto,
             this.NomeCliente,
-            this.DataLancamento});
+            this.DataLancamento,
+            this.DiasCorridos});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -95,8 +98,127 @@
             this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView1.RowHeadersWidth = 30;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(738, 341);
+            this.dataGridView1.Size = new System.Drawing.Size(791, 341);
             this.dataGridView1.TabIndex = 2;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.BtnImprimirListaAtual);
+            this.panel3.Controls.Add(this.BtnColarConteudoJaCopiado);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(791, 48);
+            this.panel3.TabIndex = 0;
+            // 
+            // BtnImprimirListaAtual
+            // 
+            this.BtnImprimirListaAtual.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnImprimirListaAtual.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.BtnImprimirListaAtual.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnImprimirListaAtual.Image = global::SISAPO.Properties.Resources.impressão_26;
+            this.BtnImprimirListaAtual.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnImprimirListaAtual.Location = new System.Drawing.Point(589, 5);
+            this.BtnImprimirListaAtual.Name = "BtnImprimirListaAtual";
+            this.BtnImprimirListaAtual.Size = new System.Drawing.Size(196, 38);
+            this.BtnImprimirListaAtual.TabIndex = 1;
+            this.BtnImprimirListaAtual.Text = "&Imprimir lista atual";
+            this.BtnImprimirListaAtual.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnImprimirListaAtual.UseVisualStyleBackColor = true;
+            this.BtnImprimirListaAtual.Click += new System.EventHandler(this.BtnImprimirListaAtual_Click);
+            // 
+            // BtnColarConteudoJaCopiado
+            // 
+            this.BtnColarConteudoJaCopiado.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnColarConteudoJaCopiado.Image = global::SISAPO.Properties.Resources.icons8_colar_26;
+            this.BtnColarConteudoJaCopiado.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnColarConteudoJaCopiado.Location = new System.Drawing.Point(5, 5);
+            this.BtnColarConteudoJaCopiado.Name = "BtnColarConteudoJaCopiado";
+            this.BtnColarConteudoJaCopiado.Size = new System.Drawing.Size(252, 38);
+            this.BtnColarConteudoJaCopiado.TabIndex = 0;
+            this.BtnColarConteudoJaCopiado.Text = "&Colar conteúdo já copiado";
+            this.BtnColarConteudoJaCopiado.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnColarConteudoJaCopiado.UseVisualStyleBackColor = true;
+            this.BtnColarConteudoJaCopiado.Click += new System.EventHandler(this.BtnColarConteudoJaCopiado_Click);
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.Silver;
+            this.panel2.Controls.Add(this.btnCancelar);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 411);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(791, 51);
+            this.panel2.TabIndex = 3;
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelar.Location = new System.Drawing.Point(610, 11);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(175, 31);
+            this.btnCancelar.TabIndex = 0;
+            this.btnCancelar.Text = "&Fechar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Appearance = System.Windows.Forms.TabAppearance.Buttons;
+            this.tabControl1.Controls.Add(this.tabPageNumeroLDI);
+            this.tabControl1.Controls.Add(this.tabPageObjeto);
+            this.tabControl1.Controls.Add(this.tabPageNomeCliente);
+            this.tabControl1.Controls.Add(this.tabPageLancamento);
+            this.tabControl1.Controls.Add(this.tabPageDiasCorridos);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabControl1.Location = new System.Drawing.Point(0, 48);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(791, 22);
+            this.tabControl1.TabIndex = 1;
+            this.tabControl1.Click += new System.EventHandler(this.tabControl1_Click);
+            // 
+            // tabPageNumeroLDI
+            // 
+            this.tabPageNumeroLDI.Location = new System.Drawing.Point(4, 25);
+            this.tabPageNumeroLDI.Name = "tabPageNumeroLDI";
+            this.tabPageNumeroLDI.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageNumeroLDI.Size = new System.Drawing.Size(783, 0);
+            this.tabPageNumeroLDI.TabIndex = 0;
+            this.tabPageNumeroLDI.Text = "Ordenar por: Número LDI";
+            this.tabPageNumeroLDI.UseVisualStyleBackColor = true;
+            // 
+            // tabPageObjeto
+            // 
+            this.tabPageObjeto.Location = new System.Drawing.Point(4, 25);
+            this.tabPageObjeto.Name = "tabPageObjeto";
+            this.tabPageObjeto.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageObjeto.Size = new System.Drawing.Size(730, 0);
+            this.tabPageObjeto.TabIndex = 1;
+            this.tabPageObjeto.Text = "Ordenar por: Objeto";
+            this.tabPageObjeto.UseVisualStyleBackColor = true;
+            // 
+            // tabPageNomeCliente
+            // 
+            this.tabPageNomeCliente.Location = new System.Drawing.Point(4, 25);
+            this.tabPageNomeCliente.Name = "tabPageNomeCliente";
+            this.tabPageNomeCliente.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageNomeCliente.Size = new System.Drawing.Size(730, 0);
+            this.tabPageNomeCliente.TabIndex = 2;
+            this.tabPageNomeCliente.Text = "Ordenar por: Nome do Cliente";
+            this.tabPageNomeCliente.UseVisualStyleBackColor = true;
+            // 
+            // tabPageLancamento
+            // 
+            this.tabPageLancamento.Location = new System.Drawing.Point(4, 25);
+            this.tabPageLancamento.Name = "tabPageLancamento";
+            this.tabPageLancamento.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageLancamento.Size = new System.Drawing.Size(730, 0);
+            this.tabPageLancamento.TabIndex = 3;
+            this.tabPageLancamento.Text = "Ordenar por: Lançamento";
+            this.tabPageLancamento.UseVisualStyleBackColor = true;
             // 
             // CodigoLdi
             // 
@@ -135,129 +257,27 @@
             this.DataLancamento.ReadOnly = true;
             this.DataLancamento.Width = 150;
             // 
-            // panel3
+            // DiasCorridos
             // 
-            this.panel3.Controls.Add(this.BtnImprimirListaAtual);
-            this.panel3.Controls.Add(this.BtnColarConteudoJaCopiado);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(738, 48);
-            this.panel3.TabIndex = 0;
+            this.DiasCorridos.DataPropertyName = "DiasCorridos";
+            this.DiasCorridos.HeaderText = "Dias corridos";
+            this.DiasCorridos.Name = "DiasCorridos";
+            this.DiasCorridos.ReadOnly = true;
             // 
-            // BtnImprimirListaAtual
+            // tabPageDiasCorridos
             // 
-            this.BtnImprimirListaAtual.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnImprimirListaAtual.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.BtnImprimirListaAtual.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnImprimirListaAtual.Image = global::SISAPO.Properties.Resources.impressão_26;
-            this.BtnImprimirListaAtual.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnImprimirListaAtual.Location = new System.Drawing.Point(536, 5);
-            this.BtnImprimirListaAtual.Name = "BtnImprimirListaAtual";
-            this.BtnImprimirListaAtual.Size = new System.Drawing.Size(196, 38);
-            this.BtnImprimirListaAtual.TabIndex = 1;
-            this.BtnImprimirListaAtual.Text = "&Imprimir lista atual";
-            this.BtnImprimirListaAtual.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnImprimirListaAtual.UseVisualStyleBackColor = true;
-            this.BtnImprimirListaAtual.Click += new System.EventHandler(this.BtnImprimirListaAtual_Click);
-            // 
-            // BtnColarConteudoJaCopiado
-            // 
-            this.BtnColarConteudoJaCopiado.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnColarConteudoJaCopiado.Image = global::SISAPO.Properties.Resources.icons8_colar_26;
-            this.BtnColarConteudoJaCopiado.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnColarConteudoJaCopiado.Location = new System.Drawing.Point(5, 5);
-            this.BtnColarConteudoJaCopiado.Name = "BtnColarConteudoJaCopiado";
-            this.BtnColarConteudoJaCopiado.Size = new System.Drawing.Size(252, 38);
-            this.BtnColarConteudoJaCopiado.TabIndex = 0;
-            this.BtnColarConteudoJaCopiado.Text = "&Colar conteúdo já copiado";
-            this.BtnColarConteudoJaCopiado.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnColarConteudoJaCopiado.UseVisualStyleBackColor = true;
-            this.BtnColarConteudoJaCopiado.Click += new System.EventHandler(this.BtnColarConteudoJaCopiado_Click);
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.Silver;
-            this.panel2.Controls.Add(this.btnCancelar);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 411);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(738, 51);
-            this.panel2.TabIndex = 3;
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.Location = new System.Drawing.Point(557, 11);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(175, 31);
-            this.btnCancelar.TabIndex = 0;
-            this.btnCancelar.Text = "&Fechar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
-            // tabControl1
-            // 
-            this.tabControl1.Appearance = System.Windows.Forms.TabAppearance.Buttons;
-            this.tabControl1.Controls.Add(this.tabPageNumeroLDI);
-            this.tabControl1.Controls.Add(this.tabPageObjeto);
-            this.tabControl1.Controls.Add(this.tabPageNomeCliente);
-            this.tabControl1.Controls.Add(this.tabPageLancamento);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControl1.Location = new System.Drawing.Point(0, 48);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(738, 22);
-            this.tabControl1.TabIndex = 1;
-            this.tabControl1.Click += new System.EventHandler(this.tabControl1_Click);
-            // 
-            // tabPageNumeroLDI
-            // 
-            this.tabPageNumeroLDI.Location = new System.Drawing.Point(4, 25);
-            this.tabPageNumeroLDI.Name = "tabPageNumeroLDI";
-            this.tabPageNumeroLDI.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageNumeroLDI.Size = new System.Drawing.Size(730, 0);
-            this.tabPageNumeroLDI.TabIndex = 0;
-            this.tabPageNumeroLDI.Text = "Ordenar por: Número LDI";
-            this.tabPageNumeroLDI.UseVisualStyleBackColor = true;
-            // 
-            // tabPageObjeto
-            // 
-            this.tabPageObjeto.Location = new System.Drawing.Point(4, 25);
-            this.tabPageObjeto.Name = "tabPageObjeto";
-            this.tabPageObjeto.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageObjeto.Size = new System.Drawing.Size(730, 0);
-            this.tabPageObjeto.TabIndex = 1;
-            this.tabPageObjeto.Text = "Ordenar por: Objeto";
-            this.tabPageObjeto.UseVisualStyleBackColor = true;
-            // 
-            // tabPageNomeCliente
-            // 
-            this.tabPageNomeCliente.Location = new System.Drawing.Point(4, 25);
-            this.tabPageNomeCliente.Name = "tabPageNomeCliente";
-            this.tabPageNomeCliente.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageNomeCliente.Size = new System.Drawing.Size(730, 0);
-            this.tabPageNomeCliente.TabIndex = 2;
-            this.tabPageNomeCliente.Text = "Ordenar por: Nome do Cliente";
-            this.tabPageNomeCliente.UseVisualStyleBackColor = true;
-            // 
-            // tabPageLancamento
-            // 
-            this.tabPageLancamento.Location = new System.Drawing.Point(4, 25);
-            this.tabPageLancamento.Name = "tabPageLancamento";
-            this.tabPageLancamento.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageLancamento.Size = new System.Drawing.Size(730, 0);
-            this.tabPageLancamento.TabIndex = 3;
-            this.tabPageLancamento.Text = "Ordenar por: Lançamento";
-            this.tabPageLancamento.UseVisualStyleBackColor = true;
+            this.tabPageDiasCorridos.Location = new System.Drawing.Point(4, 25);
+            this.tabPageDiasCorridos.Name = "tabPageDiasCorridos";
+            this.tabPageDiasCorridos.Size = new System.Drawing.Size(730, 0);
+            this.tabPageDiasCorridos.TabIndex = 4;
+            this.tabPageDiasCorridos.Text = "Ordenar por: Dias corridos";
+            this.tabPageDiasCorridos.UseVisualStyleBackColor = true;
             // 
             // FormularioAuxilioGestaoDia
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(738, 462);
+            this.ClientSize = new System.Drawing.Size(791, 462);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.tabControl1);
@@ -286,15 +306,17 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button BtnColarConteudoJaCopiado;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CodigoLdi;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CodigoObjeto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NomeCliente;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DataLancamento;
         private System.Windows.Forms.Button BtnImprimirListaAtual;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPageNumeroLDI;
         private System.Windows.Forms.TabPage tabPageObjeto;
         private System.Windows.Forms.TabPage tabPageNomeCliente;
         private System.Windows.Forms.TabPage tabPageLancamento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CodigoLdi;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CodigoObjeto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NomeCliente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DataLancamento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DiasCorridos;
+        private System.Windows.Forms.TabPage tabPageDiasCorridos;
     }
 }

@@ -86,9 +86,15 @@ namespace SISAPO
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.timerAtualizacaoNovosRegistros = new System.Windows.Forms.Timer(this.components);
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabelDataHoraUltimaAtualizacaoImportacao = new System.Windows.Forms.ToolStripStatusLabel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.toolStripStatusLabelDataHora = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip
@@ -539,11 +545,12 @@ namespace SISAPO
             // 
             // statusStrip
             // 
+            this.statusStrip.Dock = System.Windows.Forms.DockStyle.None;
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel});
-            this.statusStrip.Location = new System.Drawing.Point(0, 518);
+            this.statusStrip.Location = new System.Drawing.Point(0, 0);
             this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(739, 26);
+            this.statusStrip.Size = new System.Drawing.Size(74, 26);
             this.statusStrip.TabIndex = 2;
             this.statusStrip.Text = "StatusStrip";
             // 
@@ -559,12 +566,53 @@ namespace SISAPO
             // 
             this.timerAtualizacaoNovosRegistros.Tick += new System.EventHandler(this.timerAtualizacaoNovosRegistros_Tick);
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.statusStrip1.Dock = System.Windows.Forms.DockStyle.None;
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabelDataHoraUltimaAtualizacaoImportacao,
+            this.toolStripStatusLabelDataHora});
+            this.statusStrip1.Location = new System.Drawing.Point(343, 3);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(396, 23);
+            this.statusStrip1.TabIndex = 4;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabelDataHoraUltimaAtualizacaoImportacao
+            // 
+            this.toolStripStatusLabelDataHoraUltimaAtualizacaoImportacao.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripStatusLabelDataHoraUltimaAtualizacaoImportacao.ForeColor = System.Drawing.Color.Red;
+            this.toolStripStatusLabelDataHoraUltimaAtualizacaoImportacao.Name = "toolStripStatusLabelDataHoraUltimaAtualizacaoImportacao";
+            this.toolStripStatusLabelDataHoraUltimaAtualizacaoImportacao.Size = new System.Drawing.Size(249, 18);
+            this.toolStripStatusLabelDataHoraUltimaAtualizacaoImportacao.Text = "Última atualização dos dados: ";
+            this.toolStripStatusLabelDataHoraUltimaAtualizacaoImportacao.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.statusStrip);
+            this.panel1.Controls.Add(this.statusStrip1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 518);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(739, 26);
+            this.panel1.TabIndex = 5;
+            // 
+            // toolStripStatusLabelDataHora
+            // 
+            this.toolStripStatusLabelDataHora.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripStatusLabelDataHora.ForeColor = System.Drawing.Color.MediumBlue;
+            this.toolStripStatusLabelDataHora.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.toolStripStatusLabelDataHora.Name = "toolStripStatusLabelDataHora";
+            this.toolStripStatusLabelDataHora.Size = new System.Drawing.Size(99, 18);
+            this.toolStripStatusLabelDataHora.Text = "data e hora";
+            // 
             // FormularioPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(739, 544);
-            this.Controls.Add(this.statusStrip);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.toolStrip);
             this.Controls.Add(this.menuStrip);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -583,6 +631,10 @@ namespace SISAPO
             this.toolStrip.PerformLayout();
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -645,6 +697,10 @@ namespace SISAPO
         public System.Windows.Forms.ToolStripMenuItem habilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatárioToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem habilitarCapturaDeDadosDeDestinatárioAusenteToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelDataHoraUltimaAtualizacaoImportacao;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelDataHora;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 

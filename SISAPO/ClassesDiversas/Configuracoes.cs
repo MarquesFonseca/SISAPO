@@ -153,13 +153,14 @@ namespace SISAPO.ClassesDiversas
             CriaColuna("TabelaConfiguracoesSistema", "HabilitarCapturaDeDadosDePostagem", "YESNO NULL DEFAULT 0");//HabilitarCapturaDeDadosDePostagem
             CriaColuna("TabelaConfiguracoesSistema", "HabilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatario", "YESNO NULL DEFAULT 0");//HabilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatario
             CriaColuna("TabelaConfiguracoesSistema", "HabilitarCapturaDeDadosDeDestinatarioAusente", "YESNO NULL DEFAULT 0");//HabilitarCapturaDeDadosDeDestinatarioAusente
-
+            CriaColuna("TabelaConfiguracoesSistema", "DataHoraUltimaAtualizacaoImportacao", "DATETIME NULL DEFAULT NULL");//DataHoraUltimaAtualizacaoImportacao
 
 
             //CriaColuna("TabelaHistoricoConsulta", "Codigo", "INTEGER");//Codigo
             CriaColuna("TabelaHistoricoConsulta", "CodigoObjeto", "TEXT(255) NULL DEFAULT NULL");//CodigoObjeto
             CriaColuna("TabelaHistoricoConsulta", "DataConsulta", "DATETIME NULL DEFAULT NULL");//DataConsulta
-            CriaColuna("TabelaHistoricoConsulta", "DataCadastro", "DATETIME NULL DEFAULT NULL");//DataCadastro
+            CriaColuna("TabelaHistoricoConsulta", "DataCadastro", "DATETIME NULL DEFAULT NULL");//
+
 
             //CriaColuna("TabelaObjetosSROLocal", "Codigo", "INTEGER");//Codigo
             CriaColuna("TabelaObjetosSROLocal", "CodigoObjeto", "TEXT(255) NULL DEFAULT NULL");//CodigoObjeto

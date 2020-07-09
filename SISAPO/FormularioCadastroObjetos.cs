@@ -404,7 +404,8 @@ namespace SISAPO
             }
             else
             {
-                //Mensagens.Informa("Atualização finalizada com sucesso.", MessageBoxIcon.Information, MessageBoxButtons.OK);
+                //Mensagens.Informa("Atualização finalizada com sucesso.", MessageBoxIcon.Information, MessageBoxButtons.OK);   
+                FormularioPrincipal.RetornaComponentesFormularioPrincipal().AtualizaDataHoraUltimaAtualizacaoImportacao();             
                 this.label2.Text = "Total atualizados: " + e.Result.ToString();
                 this.BtnGravar.Enabled = true;
                 textBox1.Enabled = true;
@@ -417,10 +418,13 @@ namespace SISAPO
 
             if (FormularioPrincipal.RetornaComponentesFormularioPrincipal().RetornaQuantidadeObjetoNaoAtualizado() > 0)
             {
-                DialogResult pergunta = Mensagens.Pergunta("Uma busca de dados faz necessária.\n\nDeseja realizar a busca agora?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (pergunta == System.Windows.Forms.DialogResult.Yes)
+                if (FormularioPrincipal.AtualizandoNovosObjetos == false)
                 {
-                    FormularioPrincipal.RetornaComponentesFormularioPrincipal().atualizarNovosObjetosToolStripMenuItem_Click(sender, e);
+                    DialogResult pergunta = Mensagens.Pergunta("Uma busca de dados faz necessária.\n\nDeseja realizar a busca agora?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (pergunta == System.Windows.Forms.DialogResult.Yes)
+                    {
+                        FormularioPrincipal.RetornaComponentesFormularioPrincipal().atualizarNovosObjetosToolStripMenuItem_Click(sender, e);
+                    }
                 }
             }
         }
