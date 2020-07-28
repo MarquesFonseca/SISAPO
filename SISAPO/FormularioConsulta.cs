@@ -15,6 +15,8 @@ namespace SISAPO
     {
         public string dataInicial = string.Empty;
         public string datafinal = string.Empty;
+        public enum ModeloImpressaoListaObjetos { ModeloLDI, ModeloComum };
+        public ModeloImpressaoListaObjetos _modeloImpressaoListaObjetos = ModeloImpressaoListaObjetos.ModeloLDI;
 
         public static string NovoFiltro = string.Empty;
 
@@ -30,8 +32,8 @@ namespace SISAPO
 
             if (Configuracoes.TipoAmbiente == TipoAmbiente.Desenvolvimento)
             {
-                DataFinal_dateTimePicker.Text = "25/08/2019";
-                DataInicial_dateTimePicker.Text = "25/09/2019";
+                //DataFinal_dateTimePicker.Text = "25/08/2019";
+                //DataInicial_dateTimePicker.Text = "25/09/2019";
             }
 
             //this.ConsultaTodosNaoEntreguesOrdenadoNome();
@@ -307,19 +309,12 @@ namespace SISAPO
 
         private void GravaHistoricoConsulta(string codigoConsultado)
         {
-            if (!DAO.TestaConexao(ClassesDiversas.Configuracoes.strConexao, TipoBanco.OleDb))
+            using (DAO dao = new DAO(TipoBanco.OleDb, Configuracoes.strConexao))
             {
-                FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao;
-                return;
+                if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+
+                dao.ExecutaSQL("INSERT INTO TabelaHistoricoConsulta(CodigoObjeto) VALUES (@CodigoObjeto)", new List<Parametros>() { new Parametros() { Nome = "@CodigoObjeto", Tipo = TipoCampo.Text, Valor = codigoConsultado } });
             }
-            DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao);
-
-            List<Parametros> Pr = new List<Parametros>()
-            {
-                    new Parametros() { Nome = "@CodigoObjeto", Tipo = TipoCampo.Text, Valor = codigoConsultado }
-            };
-
-            dao.ExecutaSQL("Insert into TabelaHistoricoConsulta(CodigoObjeto) values (@CodigoObjeto)", Pr);
         }
 
         private void tabelaObjetosSROLocalBindingSource_CurrentItemChanged(object sender, EventArgs e)
@@ -709,7 +704,7 @@ namespace SISAPO
 
         private void toolStripMenuItemImprimirListaEntrega_Click(object sender, EventArgs e)
         {
-            FormularioPrincipal.RetornaComponentesFormularioPrincipal().imprimirListaDeEntregaParaConsultaSelecionadaToolStripMenuItem_Click(sender, e);
+            //FormularioPrincipal.RetornaComponentesFormularioPrincipal().imprimirListaDeEntregaParaConsultaSelecionadaToolStripMenuItem_Click(sender, e);
         }
 
         private string ultimoCodigoDetalhado = string.Empty;
@@ -763,7 +758,7 @@ namespace SISAPO
             //FormularioPrincipal.RetornaComponentes().ExibirCaixaPostalPesquisa_toolStripMenuItem_Click(sender, e);
         }
 
-        
+
         public void removerItemToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (!DAO.TestaConexao(ClassesDiversas.Configuracoes.strConexao, TipoBanco.OleDb))
@@ -794,16 +789,18 @@ namespace SISAPO
         }
 
         Dictionary<string, string> dicionarioCodigo_Nome = new Dictionary<string, string>();
-        public void GeraImpressaoItensSelecionados()
+        Dictionary<string, DateTime> dicionarioCodigo_DataLancamento = new Dictionary<string, DateTime>();
+        public void GeraImpressaoItensSelecionados(ModeloImpressaoListaObjetos _modeloImpressaoListaObjetos)
         {
             if (dataGridView1.SelectedRows.Count == 0)
             {
-                Mensagens.Informa("Nenhum objeto foi selecionado.");
+                Mensagens.Informa("Para impressão da lista de entrega é necessário selecionar algum objeto.");
                 return;
             }
             foreach (Form item in Application.OpenForms)
             {
-                if (item.Name == "FormularioImpressaoEntregaObjetos")
+                if (item.Name == "FormularioImpressaoEntregaObjetosModelo1" ||
+                    item.Name == "FormularioImpressaoEntregaObjetosModelo2")
                 {
                     item.Close();
                     break;
@@ -811,23 +808,56 @@ namespace SISAPO
             }
 
             dicionarioCodigo_Nome = new Dictionary<string, string>();
+            dicionarioCodigo_DataLancamento = new Dictionary<string, DateTime>();
+            List<string> novosCodigosSelecionadosOrdenados = new List<string>();
 
-            for (int i = this.dataGridView1.SelectedRows.Count - 1; i >= 0; i--)
+            //pergunta se ordem alfabética
+            if (Mensagens.Pergunta("Imprimir em ordem Alfabética?\n\n'Sim' para ordem Alfabética.\n'Não' para ordem de Lançamento.") == DialogResult.Yes)//
             {
-                bool existe = dicionarioCodigo_Nome.AsEnumerable().Any(t => t.Key == this.dataGridView1.SelectedRows[i].Cells[0].Value.ToString());
-                if (!existe)
-                    dicionarioCodigo_Nome.Add(this.dataGridView1.SelectedRows[i].Cells[0].Value.ToString(), this.dataGridView1.SelectedRows[i].Cells[1].Value.ToString());
+                for (int i = this.dataGridView1.SelectedRows.Count - 1; i >= 0; i--)
+                {
+                    //codigoObjetoDataGridViewTextBoxColumn
+                    //nomeClienteDataGridViewTextBoxColumn
+                    //DataLancamento
+                    bool existe = dicionarioCodigo_Nome.AsEnumerable().Any(t => t.Key == this.dataGridView1.SelectedRows[i].Cells["codigoObjetoDataGridViewTextBoxColumn"].Value.ToString());
+                    if (!existe)
+                        dicionarioCodigo_Nome.Add(this.dataGridView1.SelectedRows[i].Cells["codigoObjetoDataGridViewTextBoxColumn"].Value.ToString(), this.dataGridView1.SelectedRows[i].Cells["nomeClienteDataGridViewTextBoxColumn"].Value.ToString());
+                }
+
+                novosCodigosSelecionadosOrdenados = dicionarioCodigo_Nome.AsEnumerable().OrderBy(t => t.Value).Select(c => c.Key).ToList();
+            }
+            else
+            {
+                //clicou em não. Então ordem de Lançamento
+                for (int i = this.dataGridView1.SelectedRows.Count - 1; i >= 0; i--)
+                {
+                    //codigoObjetoDataGridViewTextBoxColumn
+                    //nomeClienteDataGridViewTextBoxColumn
+                    //DataLancamento
+                    bool existe = dicionarioCodigo_DataLancamento.AsEnumerable().Any(t => t.Key == this.dataGridView1.SelectedRows[i].Cells["codigoObjetoDataGridViewTextBoxColumn"].Value.ToString());
+                    if (!existe)
+                        dicionarioCodigo_DataLancamento.Add(this.dataGridView1.SelectedRows[i].Cells["codigoObjetoDataGridViewTextBoxColumn"].Value.ToString(), this.dataGridView1.SelectedRows[i].Cells["DataLancamento"].Value.ToDateTime());
+                }
+
+                novosCodigosSelecionadosOrdenados = dicionarioCodigo_DataLancamento.AsEnumerable().OrderBy(t => t.Value).Select(c => c.Key).ToList();
             }
 
-            List<string> novosCodigosSelecionadosOrdenados = dicionarioCodigo_Nome.AsEnumerable().OrderBy(t => t.Value).Select(c => c.Key).ToList();
-
-
-            FormularioImpressaoEntregaObjetos formularioImpressaoEntregaObjetos = new FormularioImpressaoEntregaObjetos(novosCodigosSelecionadosOrdenados);
-            formularioImpressaoEntregaObjetos.MdiParent = MdiParent;
-            formularioImpressaoEntregaObjetos.Show();
-            //formularioImpressaoEntregaObjetos.WindowState = FormWindowState.Normal;
-            formularioImpressaoEntregaObjetos.WindowState = FormWindowState.Maximized;
-            formularioImpressaoEntregaObjetos.Activate();
+            if (_modeloImpressaoListaObjetos == ModeloImpressaoListaObjetos.ModeloComum)
+            {
+                FormularioImpressaoEntregaObjetosModelo1 formularioImpressaoEntregaObjetos = new FormularioImpressaoEntregaObjetosModelo1(novosCodigosSelecionadosOrdenados);
+                //formularioImpressaoEntregaObjetos.MdiParent = MdiParent;
+                //formularioImpressaoEntregaObjetos.Show();
+                //formularioImpressaoEntregaObjetos.WindowState = FormWindowState.Maximized;
+                //formularioImpressaoEntregaObjetos.Activate();
+            }
+            if (_modeloImpressaoListaObjetos == ModeloImpressaoListaObjetos.ModeloLDI)
+            {
+                FormularioImpressaoEntregaObjetosModelo2 formularioImpressaoEntregaObjetos = new FormularioImpressaoEntregaObjetosModelo2(novosCodigosSelecionadosOrdenados);
+                //formularioImpressaoEntregaObjetos.MdiParent = MdiParent;
+                //formularioImpressaoEntregaObjetos.Show();
+                //formularioImpressaoEntregaObjetos.WindowState = FormWindowState.Maximized;
+                //formularioImpressaoEntregaObjetos.Activate();
+            }
         }
 
         public void GeraImpressaoItensLancadosNoDiaHoje(bool _incluirItensEntregues, bool _incluirItensCaixaPostal)
@@ -917,7 +947,7 @@ namespace SISAPO
                     break;
                 }
             }
-            FormularioImpressaoEntregaObjetos formularioImpressaoEntregaObjetos = new FormularioImpressaoEntregaObjetos(ListaCodigoOrdenadosPeloNomeCliente);
+            FormularioImpressaoEntregaObjetosModelo1 formularioImpressaoEntregaObjetos = new FormularioImpressaoEntregaObjetosModelo1(ListaCodigoOrdenadosPeloNomeCliente);
             formularioImpressaoEntregaObjetos.MdiParent = MdiParent;
             formularioImpressaoEntregaObjetos.Show();
             //formularioImpressaoEntregaObjetos.WindowState = FormWindowState.Normal;
@@ -955,7 +985,7 @@ namespace SISAPO
             }
         }
 
-        private void alterarItemToolStripMenuItem_Click(object sender, EventArgs e)
+        public void alterarItemToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AlterarItem(sender, e);
         }
@@ -1160,15 +1190,7 @@ namespace SISAPO
 
             System.Diagnostics.Process pProcess = new System.Diagnostics.Process();
 
-            if (File.Exists(@"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"))
-            {
-                pProcess.StartInfo.FileName = @"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe";
-            }
-            else if (File.Exists(@"C:\Program Files\Google\Chrome\Application\chrome.exe"))
-            {
-                pProcess.StartInfo.FileName = @"C:\Program Files\Google\Chrome\Application\chrome.exe";
-            }
-            else if (File.Exists(@"C:\Program Files (x86)\Mozilla Firefox\firefox.exe"))
+            if (File.Exists(@"C:\Program Files (x86)\Mozilla Firefox\firefox.exe"))
             {
                 pProcess.StartInfo.FileName = @"C:\Program Files (x86)\Mozilla Firefox\firefox.exe";
             }
@@ -1176,11 +1198,19 @@ namespace SISAPO
             {
                 pProcess.StartInfo.FileName = @"C:\Program Files\Mozilla Firefox\firefox.exe";
             }
+            else if (File.Exists(@"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"))
+            {
+                pProcess.StartInfo.FileName = @"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe";
+            }
+            else if (File.Exists(@"C:\Program Files\Google\Chrome\Application\chrome.exe"))
+            {
+                pProcess.StartInfo.FileName = @"C:\Program Files\Google\Chrome\Application\chrome.exe";
+            }
             else
             {
                 return;
             }
-            
+
             //pProcess.StartInfo.Arguments = "https://maps.google.com/maps?t=k&q=loc:-10.22285+-48.34052";
             pProcess.StartInfo.Arguments = string.Format("https://www.google.com.br/maps/search/{0}", CoordenadasAtual);
             pProcess.Start();
@@ -1258,7 +1288,7 @@ namespace SISAPO
                 //Key.Close();
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
             }
@@ -1280,6 +1310,16 @@ namespace SISAPO
                     return;
                 }
             }
+        }
+
+        private void imprimirModeloLDIToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormularioPrincipal.RetornaComponentesFormularioPrincipal().modeloLDIToolStripMenuItem_Click(sender, e);
+        }
+
+        private void imprimirModeloComumToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormularioPrincipal.RetornaComponentesFormularioPrincipal().modeloComumToolStripMenuItem_Click(sender, e);
         }
     }
 }

@@ -38,6 +38,7 @@
             this.BtnMarcarTodosAtualizados = new System.Windows.Forms.Button();
             this.BtnRequererVerificacaoDeObjetosJaEntregues = new System.Windows.Forms.Button();
             this.tabPageExibirItensJaEntregues = new System.Windows.Forms.TabPage();
+            this.checkBoxExibirObjetosEmCaixaPostal = new System.Windows.Forms.CheckBox();
             this.tabPageConfiguracoesAgencia = new System.Windows.Forms.TabPage();
             this.label1 = new System.Windows.Forms.Label();
             this.LblNomeAgencia = new System.Windows.Forms.Label();
@@ -47,7 +48,10 @@
             this.dataSetConfiguracoes = new SISAPO.DataSetConfiguracoes();
             this.txtNomeAgencia = new System.Windows.Forms.TextBox();
             this.tabelaConfiguracoesSistemaTableAdapter = new SISAPO.DataSetConfiguracoesTableAdapters.TabelaConfiguracoesSistemaTableAdapter();
-            this.checkBoxExibirObjetosEmCaixaPostal = new System.Windows.Forms.CheckBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.comboBoxSupEst = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageObjetosAguardandoRetirada.SuspendLayout();
@@ -145,12 +149,27 @@
             this.tabPageExibirItensJaEntregues.Text = "Consulta de objetos aguardando retirada";
             this.tabPageExibirItensJaEntregues.UseVisualStyleBackColor = true;
             // 
+            // checkBoxExibirObjetosEmCaixaPostal
+            // 
+            this.checkBoxExibirObjetosEmCaixaPostal.AutoSize = true;
+            this.checkBoxExibirObjetosEmCaixaPostal.Location = new System.Drawing.Point(8, 15);
+            this.checkBoxExibirObjetosEmCaixaPostal.Name = "checkBoxExibirObjetosEmCaixaPostal";
+            this.checkBoxExibirObjetosEmCaixaPostal.Size = new System.Drawing.Size(228, 17);
+            this.checkBoxExibirObjetosEmCaixaPostal.TabIndex = 0;
+            this.checkBoxExibirObjetosEmCaixaPostal.Text = "Exibir Objetos em Caixa Postal na pesquisa";
+            this.checkBoxExibirObjetosEmCaixaPostal.UseVisualStyleBackColor = true;
+            this.checkBoxExibirObjetosEmCaixaPostal.CheckedChanged += new System.EventHandler(this.checkBoxExibirObjetosEmCaixaPostal_CheckedChanged);
+            // 
             // tabPageConfiguracoesAgencia
             // 
+            this.tabPageConfiguracoesAgencia.Controls.Add(this.comboBoxSupEst);
             this.tabPageConfiguracoesAgencia.Controls.Add(this.label1);
+            this.tabPageConfiguracoesAgencia.Controls.Add(this.label3);
+            this.tabPageConfiguracoesAgencia.Controls.Add(this.label2);
             this.tabPageConfiguracoesAgencia.Controls.Add(this.LblNomeAgencia);
             this.tabPageConfiguracoesAgencia.Controls.Add(this.BtnAtualizarConfiguracoesAgencia);
             this.tabPageConfiguracoesAgencia.Controls.Add(this.txtEnderecoAgencia);
+            this.tabPageConfiguracoesAgencia.Controls.Add(this.textBox2);
             this.tabPageConfiguracoesAgencia.Controls.Add(this.txtNomeAgencia);
             this.tabPageConfiguracoesAgencia.Location = new System.Drawing.Point(4, 22);
             this.tabPageConfiguracoesAgencia.Name = "tabPageConfiguracoesAgencia";
@@ -180,9 +199,10 @@
             // 
             // BtnAtualizarConfiguracoesAgencia
             // 
-            this.BtnAtualizarConfiguracoesAgencia.Location = new System.Drawing.Point(653, 21);
+            this.BtnAtualizarConfiguracoesAgencia.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnAtualizarConfiguracoesAgencia.Location = new System.Drawing.Point(8, 109);
             this.BtnAtualizarConfiguracoesAgencia.Name = "BtnAtualizarConfiguracoesAgencia";
-            this.BtnAtualizarConfiguracoesAgencia.Size = new System.Drawing.Size(75, 67);
+            this.BtnAtualizarConfiguracoesAgencia.Size = new System.Drawing.Size(109, 29);
             this.BtnAtualizarConfiguracoesAgencia.TabIndex = 4;
             this.BtnAtualizarConfiguracoesAgencia.Text = "Atualizar";
             this.BtnAtualizarConfiguracoesAgencia.UseVisualStyleBackColor = true;
@@ -196,9 +216,8 @@
             this.txtEnderecoAgencia.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceTabelaConfiguracoesSistema, "EnderecoAgenciaLocal", true));
             this.txtEnderecoAgencia.Location = new System.Drawing.Point(9, 68);
             this.txtEnderecoAgencia.Name = "txtEnderecoAgencia";
-            this.txtEnderecoAgencia.Size = new System.Drawing.Size(640, 20);
+            this.txtEnderecoAgencia.Size = new System.Drawing.Size(714, 20);
             this.txtEnderecoAgencia.TabIndex = 3;
-            this.txtEnderecoAgencia.Text = "604 SUL AV LO-15 NR 09/10 - LTS 115/16 - ";
             // 
             // bindingSourceTabelaConfiguracoesSistema
             // 
@@ -218,24 +237,75 @@
             this.txtNomeAgencia.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceTabelaConfiguracoesSistema, "NomeAgenciaLocal", true));
             this.txtNomeAgencia.Location = new System.Drawing.Point(8, 24);
             this.txtNomeAgencia.Name = "txtNomeAgencia";
-            this.txtNomeAgencia.Size = new System.Drawing.Size(640, 20);
+            this.txtNomeAgencia.Size = new System.Drawing.Size(532, 20);
             this.txtNomeAgencia.TabIndex = 1;
-            this.txtNomeAgencia.Text = "AC VIA PALMAS BRASIL";
             // 
             // tabelaConfiguracoesSistemaTableAdapter
             // 
             this.tabelaConfiguracoesSistemaTableAdapter.ClearBeforeFill = true;
             // 
-            // checkBoxExibirObjetosEmCaixaPostal
+            // label2
             // 
-            this.checkBoxExibirObjetosEmCaixaPostal.AutoSize = true;
-            this.checkBoxExibirObjetosEmCaixaPostal.Location = new System.Drawing.Point(8, 15);
-            this.checkBoxExibirObjetosEmCaixaPostal.Name = "checkBoxExibirObjetosEmCaixaPostal";
-            this.checkBoxExibirObjetosEmCaixaPostal.Size = new System.Drawing.Size(228, 17);
-            this.checkBoxExibirObjetosEmCaixaPostal.TabIndex = 0;
-            this.checkBoxExibirObjetosEmCaixaPostal.Text = "Exibir Objetos em Caixa Postal na pesquisa";
-            this.checkBoxExibirObjetosEmCaixaPostal.UseVisualStyleBackColor = true;
-            this.checkBoxExibirObjetosEmCaixaPostal.CheckedChanged += new System.EventHandler(this.checkBoxExibirObjetosEmCaixaPostal_CheckedChanged);
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(545, 7);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(50, 13);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Sup. Est.";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox2.Location = new System.Drawing.Point(600, 24);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(123, 20);
+            this.textBox2.TabIndex = 1;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(601, 8);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(71, 13);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "CEP Unidade";
+            // 
+            // comboBoxSupEst
+            // 
+            this.comboBoxSupEst.FormattingEnabled = true;
+            this.comboBoxSupEst.Items.AddRange(new object[] {
+            "AC",
+            "AL",
+            "AP",
+            "AM",
+            "BA",
+            "CE",
+            "DF",
+            "ES",
+            "GO",
+            "MA",
+            "MT",
+            "MS",
+            "MG",
+            "PA",
+            "PB",
+            "PR",
+            "PE",
+            "PI",
+            "RJ",
+            "RN",
+            "RS",
+            "RO",
+            "RR",
+            "SC",
+            "SP",
+            "SE",
+            "TO"});
+            this.comboBoxSupEst.Location = new System.Drawing.Point(546, 23);
+            this.comboBoxSupEst.Name = "comboBoxSupEst";
+            this.comboBoxSupEst.Size = new System.Drawing.Size(49, 21);
+            this.comboBoxSupEst.TabIndex = 5;
             // 
             // FormularioOpcoes
             // 
@@ -287,5 +357,9 @@
         private System.Windows.Forms.Button BtnMarcarTodosAtualizados;
         private System.Windows.Forms.Button BtnRequererVerificacaoDeObjetosJaEntregues;
         private System.Windows.Forms.CheckBox checkBoxExibirObjetosEmCaixaPostal;
+        private System.Windows.Forms.ComboBox comboBoxSupEst;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox textBox2;
     }
 }

@@ -26,7 +26,8 @@ C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\obj\
 C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioAlteracaoObjeto.resources
 C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioHistoricoConsulta.resources
 C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioImpressaoEntregaAgruparObjetos.resources
-C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioImpressaoEntregaObjetos.resources
+C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioImpressaoEntregaObjetosModelo2.resources
+C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioImpressaoEntregaObjetosModelo1.resources
 C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioImpressaoEntregaObjetosOpcoesImpressao.resources
 C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioOpcoes.resources
 C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioSobre.resources

@@ -88,8 +88,10 @@ namespace SISAPO
             this.timerAtualizacaoNovosRegistros = new System.Windows.Forms.Timer(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabelDataHoraUltimaAtualizacaoImportacao = new System.Windows.Forms.ToolStripStatusLabel();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.toolStripStatusLabelDataHora = new System.Windows.Forms.ToolStripStatusLabel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.modeloLDIToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.modeloComumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -162,6 +164,9 @@ namespace SISAPO
             // 
             // imprimirListaDeEntregaParaConsultaSelecionadaToolStripMenuItem
             // 
+            this.imprimirListaDeEntregaParaConsultaSelecionadaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.modeloLDIToolStripMenuItem,
+            this.modeloComumToolStripMenuItem});
             this.imprimirListaDeEntregaParaConsultaSelecionadaToolStripMenuItem.Image = global::SISAPO.Properties.Resources.if_BT_printer_905556;
             this.imprimirListaDeEntregaParaConsultaSelecionadaToolStripMenuItem.Name = "imprimirListaDeEntregaParaConsultaSelecionadaToolStripMenuItem";
             this.imprimirListaDeEntregaParaConsultaSelecionadaToolStripMenuItem.Size = new System.Drawing.Size(459, 22);
@@ -548,7 +553,7 @@ namespace SISAPO
             this.statusStrip.Dock = System.Windows.Forms.DockStyle.None;
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel});
-            this.statusStrip.Location = new System.Drawing.Point(0, 0);
+            this.statusStrip.Location = new System.Drawing.Point(0, 1);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Size = new System.Drawing.Size(74, 26);
             this.statusStrip.TabIndex = 2;
@@ -573,9 +578,9 @@ namespace SISAPO
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabelDataHoraUltimaAtualizacaoImportacao,
             this.toolStripStatusLabelDataHora});
-            this.statusStrip1.Location = new System.Drawing.Point(343, 3);
+            this.statusStrip1.Location = new System.Drawing.Point(374, 1);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(396, 23);
+            this.statusStrip1.Size = new System.Drawing.Size(365, 23);
             this.statusStrip1.TabIndex = 4;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -588,16 +593,6 @@ namespace SISAPO
             this.toolStripStatusLabelDataHoraUltimaAtualizacaoImportacao.Text = "Última atualização dos dados: ";
             this.toolStripStatusLabelDataHoraUltimaAtualizacaoImportacao.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.statusStrip);
-            this.panel1.Controls.Add(this.statusStrip1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 518);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(739, 26);
-            this.panel1.TabIndex = 5;
-            // 
             // toolStripStatusLabelDataHora
             // 
             this.toolStripStatusLabelDataHora.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -606,6 +601,32 @@ namespace SISAPO
             this.toolStripStatusLabelDataHora.Name = "toolStripStatusLabelDataHora";
             this.toolStripStatusLabelDataHora.Size = new System.Drawing.Size(99, 18);
             this.toolStripStatusLabelDataHora.Text = "data e hora";
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.statusStrip);
+            this.panel1.Controls.Add(this.statusStrip1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 514);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(739, 30);
+            this.panel1.TabIndex = 5;
+            // 
+            // modeloLDIToolStripMenuItem
+            // 
+            this.modeloLDIToolStripMenuItem.Image = global::SISAPO.Properties.Resources.if_BT_printer_905556;
+            this.modeloLDIToolStripMenuItem.Name = "modeloLDIToolStripMenuItem";
+            this.modeloLDIToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.modeloLDIToolStripMenuItem.Text = "Imprimir Modelo LDI";
+            this.modeloLDIToolStripMenuItem.Click += new System.EventHandler(this.modeloLDIToolStripMenuItem_Click);
+            // 
+            // modeloComumToolStripMenuItem
+            // 
+            this.modeloComumToolStripMenuItem.Image = global::SISAPO.Properties.Resources.if_BT_printer_905556;
+            this.modeloComumToolStripMenuItem.Name = "modeloComumToolStripMenuItem";
+            this.modeloComumToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.modeloComumToolStripMenuItem.Text = "Imprimir Modelo Comum";
+            this.modeloComumToolStripMenuItem.Click += new System.EventHandler(this.modeloComumToolStripMenuItem_Click);
             // 
             // FormularioPrincipal
             // 
@@ -701,6 +722,8 @@ namespace SISAPO
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelDataHoraUltimaAtualizacaoImportacao;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelDataHora;
         private System.Windows.Forms.Panel panel1;
+        public System.Windows.Forms.ToolStripMenuItem modeloLDIToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem modeloComumToolStripMenuItem;
     }
 }
 

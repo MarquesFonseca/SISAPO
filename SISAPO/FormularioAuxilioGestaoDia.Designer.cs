@@ -34,21 +34,23 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormularioAuxilioGestaoDia));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.CodigoLdi = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CodigoObjeto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NomeCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DataLancamento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DiasCorridos = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel3 = new System.Windows.Forms.Panel();
             this.BtnImprimirListaAtual = new System.Windows.Forms.Button();
+            this.BtnRetornaTodosNaoEntregues = new System.Windows.Forms.Button();
             this.BtnColarConteudoJaCopiado = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.LblQuantidade = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageNumeroLDI = new System.Windows.Forms.TabPage();
             this.tabPageObjeto = new System.Windows.Forms.TabPage();
             this.tabPageNomeCliente = new System.Windows.Forms.TabPage();
             this.tabPageLancamento = new System.Windows.Forms.TabPage();
-            this.CodigoLdi = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CodigoObjeto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NomeCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DataLancamento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DiasCorridos = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPageDiasCorridos = new System.Windows.Forms.TabPage();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel3.SuspendLayout();
@@ -100,125 +102,7 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(791, 341);
             this.dataGridView1.TabIndex = 2;
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.BtnImprimirListaAtual);
-            this.panel3.Controls.Add(this.BtnColarConteudoJaCopiado);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(791, 48);
-            this.panel3.TabIndex = 0;
-            // 
-            // BtnImprimirListaAtual
-            // 
-            this.BtnImprimirListaAtual.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnImprimirListaAtual.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.BtnImprimirListaAtual.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnImprimirListaAtual.Image = global::SISAPO.Properties.Resources.impressão_26;
-            this.BtnImprimirListaAtual.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnImprimirListaAtual.Location = new System.Drawing.Point(589, 5);
-            this.BtnImprimirListaAtual.Name = "BtnImprimirListaAtual";
-            this.BtnImprimirListaAtual.Size = new System.Drawing.Size(196, 38);
-            this.BtnImprimirListaAtual.TabIndex = 1;
-            this.BtnImprimirListaAtual.Text = "&Imprimir lista atual";
-            this.BtnImprimirListaAtual.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnImprimirListaAtual.UseVisualStyleBackColor = true;
-            this.BtnImprimirListaAtual.Click += new System.EventHandler(this.BtnImprimirListaAtual_Click);
-            // 
-            // BtnColarConteudoJaCopiado
-            // 
-            this.BtnColarConteudoJaCopiado.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnColarConteudoJaCopiado.Image = global::SISAPO.Properties.Resources.icons8_colar_26;
-            this.BtnColarConteudoJaCopiado.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnColarConteudoJaCopiado.Location = new System.Drawing.Point(5, 5);
-            this.BtnColarConteudoJaCopiado.Name = "BtnColarConteudoJaCopiado";
-            this.BtnColarConteudoJaCopiado.Size = new System.Drawing.Size(252, 38);
-            this.BtnColarConteudoJaCopiado.TabIndex = 0;
-            this.BtnColarConteudoJaCopiado.Text = "&Colar conteúdo já copiado";
-            this.BtnColarConteudoJaCopiado.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnColarConteudoJaCopiado.UseVisualStyleBackColor = true;
-            this.BtnColarConteudoJaCopiado.Click += new System.EventHandler(this.BtnColarConteudoJaCopiado_Click);
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.Silver;
-            this.panel2.Controls.Add(this.btnCancelar);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 411);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(791, 51);
-            this.panel2.TabIndex = 3;
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.Location = new System.Drawing.Point(610, 11);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(175, 31);
-            this.btnCancelar.TabIndex = 0;
-            this.btnCancelar.Text = "&Fechar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
-            // tabControl1
-            // 
-            this.tabControl1.Appearance = System.Windows.Forms.TabAppearance.Buttons;
-            this.tabControl1.Controls.Add(this.tabPageNumeroLDI);
-            this.tabControl1.Controls.Add(this.tabPageObjeto);
-            this.tabControl1.Controls.Add(this.tabPageNomeCliente);
-            this.tabControl1.Controls.Add(this.tabPageLancamento);
-            this.tabControl1.Controls.Add(this.tabPageDiasCorridos);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControl1.Location = new System.Drawing.Point(0, 48);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(791, 22);
-            this.tabControl1.TabIndex = 1;
-            this.tabControl1.Click += new System.EventHandler(this.tabControl1_Click);
-            // 
-            // tabPageNumeroLDI
-            // 
-            this.tabPageNumeroLDI.Location = new System.Drawing.Point(4, 25);
-            this.tabPageNumeroLDI.Name = "tabPageNumeroLDI";
-            this.tabPageNumeroLDI.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageNumeroLDI.Size = new System.Drawing.Size(783, 0);
-            this.tabPageNumeroLDI.TabIndex = 0;
-            this.tabPageNumeroLDI.Text = "Ordenar por: Número LDI";
-            this.tabPageNumeroLDI.UseVisualStyleBackColor = true;
-            // 
-            // tabPageObjeto
-            // 
-            this.tabPageObjeto.Location = new System.Drawing.Point(4, 25);
-            this.tabPageObjeto.Name = "tabPageObjeto";
-            this.tabPageObjeto.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageObjeto.Size = new System.Drawing.Size(730, 0);
-            this.tabPageObjeto.TabIndex = 1;
-            this.tabPageObjeto.Text = "Ordenar por: Objeto";
-            this.tabPageObjeto.UseVisualStyleBackColor = true;
-            // 
-            // tabPageNomeCliente
-            // 
-            this.tabPageNomeCliente.Location = new System.Drawing.Point(4, 25);
-            this.tabPageNomeCliente.Name = "tabPageNomeCliente";
-            this.tabPageNomeCliente.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageNomeCliente.Size = new System.Drawing.Size(730, 0);
-            this.tabPageNomeCliente.TabIndex = 2;
-            this.tabPageNomeCliente.Text = "Ordenar por: Nome do Cliente";
-            this.tabPageNomeCliente.UseVisualStyleBackColor = true;
-            // 
-            // tabPageLancamento
-            // 
-            this.tabPageLancamento.Location = new System.Drawing.Point(4, 25);
-            this.tabPageLancamento.Name = "tabPageLancamento";
-            this.tabPageLancamento.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageLancamento.Size = new System.Drawing.Size(730, 0);
-            this.tabPageLancamento.TabIndex = 3;
-            this.tabPageLancamento.Text = "Ordenar por: Lançamento";
-            this.tabPageLancamento.UseVisualStyleBackColor = true;
+            this.dataGridView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDoubleClick);
             // 
             // CodigoLdi
             // 
@@ -264,11 +148,156 @@
             this.DiasCorridos.Name = "DiasCorridos";
             this.DiasCorridos.ReadOnly = true;
             // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.BtnImprimirListaAtual);
+            this.panel3.Controls.Add(this.BtnRetornaTodosNaoEntregues);
+            this.panel3.Controls.Add(this.BtnColarConteudoJaCopiado);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(791, 48);
+            this.panel3.TabIndex = 0;
+            // 
+            // BtnImprimirListaAtual
+            // 
+            this.BtnImprimirListaAtual.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnImprimirListaAtual.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.BtnImprimirListaAtual.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnImprimirListaAtual.Image = global::SISAPO.Properties.Resources.impressão_26;
+            this.BtnImprimirListaAtual.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnImprimirListaAtual.Location = new System.Drawing.Point(589, 5);
+            this.BtnImprimirListaAtual.Name = "BtnImprimirListaAtual";
+            this.BtnImprimirListaAtual.Size = new System.Drawing.Size(196, 38);
+            this.BtnImprimirListaAtual.TabIndex = 1;
+            this.BtnImprimirListaAtual.Text = "&Imprimir lista atual";
+            this.BtnImprimirListaAtual.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnImprimirListaAtual.UseVisualStyleBackColor = true;
+            this.BtnImprimirListaAtual.Click += new System.EventHandler(this.BtnImprimirListaAtual_Click);
+            // 
+            // BtnRetornaTodosNaoEntregues
+            // 
+            this.BtnRetornaTodosNaoEntregues.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnRetornaTodosNaoEntregues.Image = global::SISAPO.Properties.Resources.icons8_colar_26;
+            this.BtnRetornaTodosNaoEntregues.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnRetornaTodosNaoEntregues.Location = new System.Drawing.Point(274, 5);
+            this.BtnRetornaTodosNaoEntregues.Name = "BtnRetornaTodosNaoEntregues";
+            this.BtnRetornaTodosNaoEntregues.Size = new System.Drawing.Size(261, 38);
+            this.BtnRetornaTodosNaoEntregues.TabIndex = 0;
+            this.BtnRetornaTodosNaoEntregues.Text = "Todos ainda não entregues";
+            this.BtnRetornaTodosNaoEntregues.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnRetornaTodosNaoEntregues.UseVisualStyleBackColor = true;
+            this.BtnRetornaTodosNaoEntregues.Click += new System.EventHandler(this.BtnRetornaTodosNaoEntregues_Click);
+            // 
+            // BtnColarConteudoJaCopiado
+            // 
+            this.BtnColarConteudoJaCopiado.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnColarConteudoJaCopiado.Image = global::SISAPO.Properties.Resources.icons8_colar_26;
+            this.BtnColarConteudoJaCopiado.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnColarConteudoJaCopiado.Location = new System.Drawing.Point(5, 5);
+            this.BtnColarConteudoJaCopiado.Name = "BtnColarConteudoJaCopiado";
+            this.BtnColarConteudoJaCopiado.Size = new System.Drawing.Size(252, 38);
+            this.BtnColarConteudoJaCopiado.TabIndex = 0;
+            this.BtnColarConteudoJaCopiado.Text = "&Colar conteúdo já copiado";
+            this.BtnColarConteudoJaCopiado.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnColarConteudoJaCopiado.UseVisualStyleBackColor = true;
+            this.BtnColarConteudoJaCopiado.Click += new System.EventHandler(this.BtnColarConteudoJaCopiado_Click);
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.Silver;
+            this.panel2.Controls.Add(this.LblQuantidade);
+            this.panel2.Controls.Add(this.btnCancelar);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 411);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(791, 51);
+            this.panel2.TabIndex = 3;
+            // 
+            // LblQuantidade
+            // 
+            this.LblQuantidade.AutoSize = true;
+            this.LblQuantidade.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblQuantidade.ForeColor = System.Drawing.Color.Maroon;
+            this.LblQuantidade.Location = new System.Drawing.Point(3, 11);
+            this.LblQuantidade.Name = "LblQuantidade";
+            this.LblQuantidade.Size = new System.Drawing.Size(0, 31);
+            this.LblQuantidade.TabIndex = 1;
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelar.Location = new System.Drawing.Point(610, 11);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(175, 31);
+            this.btnCancelar.TabIndex = 0;
+            this.btnCancelar.Text = "&Fechar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Appearance = System.Windows.Forms.TabAppearance.Buttons;
+            this.tabControl1.Controls.Add(this.tabPageNumeroLDI);
+            this.tabControl1.Controls.Add(this.tabPageObjeto);
+            this.tabControl1.Controls.Add(this.tabPageNomeCliente);
+            this.tabControl1.Controls.Add(this.tabPageLancamento);
+            this.tabControl1.Controls.Add(this.tabPageDiasCorridos);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabControl1.Location = new System.Drawing.Point(0, 48);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(791, 22);
+            this.tabControl1.TabIndex = 1;
+            this.tabControl1.Click += new System.EventHandler(this.tabControl1_Click);
+            // 
+            // tabPageNumeroLDI
+            // 
+            this.tabPageNumeroLDI.Location = new System.Drawing.Point(4, 25);
+            this.tabPageNumeroLDI.Name = "tabPageNumeroLDI";
+            this.tabPageNumeroLDI.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageNumeroLDI.Size = new System.Drawing.Size(783, 0);
+            this.tabPageNumeroLDI.TabIndex = 0;
+            this.tabPageNumeroLDI.Text = "Ordenar por: Número LDI";
+            this.tabPageNumeroLDI.UseVisualStyleBackColor = true;
+            // 
+            // tabPageObjeto
+            // 
+            this.tabPageObjeto.Location = new System.Drawing.Point(4, 25);
+            this.tabPageObjeto.Name = "tabPageObjeto";
+            this.tabPageObjeto.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageObjeto.Size = new System.Drawing.Size(783, 0);
+            this.tabPageObjeto.TabIndex = 1;
+            this.tabPageObjeto.Text = "Ordenar por: Objeto";
+            this.tabPageObjeto.UseVisualStyleBackColor = true;
+            // 
+            // tabPageNomeCliente
+            // 
+            this.tabPageNomeCliente.Location = new System.Drawing.Point(4, 25);
+            this.tabPageNomeCliente.Name = "tabPageNomeCliente";
+            this.tabPageNomeCliente.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageNomeCliente.Size = new System.Drawing.Size(783, 0);
+            this.tabPageNomeCliente.TabIndex = 2;
+            this.tabPageNomeCliente.Text = "Ordenar por: Nome do Cliente";
+            this.tabPageNomeCliente.UseVisualStyleBackColor = true;
+            // 
+            // tabPageLancamento
+            // 
+            this.tabPageLancamento.Location = new System.Drawing.Point(4, 25);
+            this.tabPageLancamento.Name = "tabPageLancamento";
+            this.tabPageLancamento.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageLancamento.Size = new System.Drawing.Size(783, 0);
+            this.tabPageLancamento.TabIndex = 3;
+            this.tabPageLancamento.Text = "Ordenar por: Lançamento";
+            this.tabPageLancamento.UseVisualStyleBackColor = true;
+            // 
             // tabPageDiasCorridos
             // 
             this.tabPageDiasCorridos.Location = new System.Drawing.Point(4, 25);
             this.tabPageDiasCorridos.Name = "tabPageDiasCorridos";
-            this.tabPageDiasCorridos.Size = new System.Drawing.Size(730, 0);
+            this.tabPageDiasCorridos.Size = new System.Drawing.Size(783, 0);
             this.tabPageDiasCorridos.TabIndex = 4;
             this.tabPageDiasCorridos.Text = "Ordenar por: Dias corridos";
             this.tabPageDiasCorridos.UseVisualStyleBackColor = true;
@@ -294,6 +323,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -318,5 +348,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn DataLancamento;
         private System.Windows.Forms.DataGridViewTextBoxColumn DiasCorridos;
         private System.Windows.Forms.TabPage tabPageDiasCorridos;
+        private System.Windows.Forms.Button BtnRetornaTodosNaoEntregues;
+        private System.Windows.Forms.Label LblQuantidade;
     }
 }

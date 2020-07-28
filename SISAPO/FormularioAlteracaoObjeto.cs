@@ -200,21 +200,21 @@ namespace SISAPO
 
             System.Diagnostics.Process pProcess = new System.Diagnostics.Process();
 
-            if (File.Exists(@"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"))
-            {
-                pProcess.StartInfo.FileName = @"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe";
-            }
-            else if (File.Exists(@"C:\Program Files\Google\Chrome\Application\chrome.exe"))
-            {
-                pProcess.StartInfo.FileName = @"C:\Program Files\Google\Chrome\Application\chrome.exe";
-            }
-            else if (File.Exists(@"C:\Program Files (x86)\Mozilla Firefox\firefox.exe"))
+            if (File.Exists(@"C:\Program Files (x86)\Mozilla Firefox\firefox.exe"))
             {
                 pProcess.StartInfo.FileName = @"C:\Program Files (x86)\Mozilla Firefox\firefox.exe";
             }
             else if (File.Exists(@"C:\Program Files\Mozilla Firefox\firefox.exe"))
             {
                 pProcess.StartInfo.FileName = @"C:\Program Files\Mozilla Firefox\firefox.exe";
+            }
+            else if (File.Exists(@"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"))
+            {
+                pProcess.StartInfo.FileName = @"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe";
+            }
+            else if (File.Exists(@"C:\Program Files\Google\Chrome\Application\chrome.exe"))
+            {
+                pProcess.StartInfo.FileName = @"C:\Program Files\Google\Chrome\Application\chrome.exe";
             }
             else
             {

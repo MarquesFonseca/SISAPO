@@ -37,105 +37,6 @@ namespace SISAPO
             LblMensagem.Text = "";
         }
 
-        //        private void button1_Click(object sender, EventArgs e)
-        //        {
-        //            try
-        //            {
-        //                LblMensagem.Text = "";
-        //                DataTable listaObjetos = RetornaListaObjetos(textBox1.Text);
-        //                if (listaObjetos.Rows.Count == 0)
-        //                {
-        //                    Mensagens.Informa("Não foi possível gravar. O campo está vazio."); return;
-        //                }
-        //                textBox1.Enabled = false;
-        //                int contador = 0;
-        //                progressBar1.Value = 0;
-        //                label2.Text = "Barra de progresso";
-        //                foreach (DataRow item in listaObjetos.Rows)
-        //                {
-        //                    string linhaItemCodigoObjeto = item["CodigoObjeto"].ToString();
-        //                    string linhaItemDataLancamento = item["DataLancamento"].ToString();
-        //                    string linhaItemDataModificacao = item["DataModificacao"].ToString();
-        //                    string linhaItemSituacao = item["Situacao"].ToString();
-
-        //                    contador++;
-        //                    progressBar1.Value = (contador * 100) / listaObjetos.Rows.Count;
-        //                    label2.Text = string.Format("Barra de progresso [{0}%]", progressBar1.Value);
-        //                    using (DAO dao = new DAO(TipoBanco.OleDb, strConexao))
-        //                    {
-        //                        if (!dao.TestaConexao())
-        //                        {
-        //                            FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao;
-        //                            return;
-        //                        }
-        //                        DataSet jaCadastrado = dao.RetornaDataSet(string.Format("SELECT DISTINCT CodigoObjeto, NomeCliente FROM TabelaObjetosSROLocal WHERE (CodigoObjeto = '{0}')", linhaItemCodigoObjeto));
-
-        //                        if (jaCadastrado.Tables[0].Rows.Count >= 1)
-        //                        {
-        //                            //existe na base de dados
-        //                            dao.ExecutaSQL(string.Format("UPDATE TabelaObjetosSROLocal SET DataLancamento = @DataLancamento, DataModificacao = @DataModificacao, Situacao = @Situacao, Atualizado = @Atualizado, ObjetoEntregue = @ObjetoEntregue WHERE (CodigoObjeto = @CodigoObjeto)"), new List<Parametros>(){
-        //                                            new Parametros("@DataLancamento", TipoCampo.Text, linhaItemDataLancamento),
-        //                                            new Parametros("@DataModificacao", TipoCampo.Text, linhaItemDataModificacao),
-        //                                            new Parametros("@Situacao", TipoCampo.Text, linhaItemSituacao),
-        //                                            new Parametros("@Atualizado",TipoCampo.Int, jaCadastrado.Tables[0].Rows[0]["NomeCliente"].ToString() == "" ? 0 : 1),
-        //                                            new Parametros("@ObjetoEntregue", TipoCampo.Int, linhaItemSituacao == "" ? 0 : 1),
-        //                                            //new Parametros("@CaixaPostal",TipoCampo.Int, 0),
-        //                                            new Parametros("@CodigoObjeto", TipoCampo.Text, linhaItemCodigoObjeto)});
-        //                        }
-        //                        else
-        //                        {
-        //                            if (jaCadastrado.Tables[0].Rows.Count == 0)
-        //                            {
-        //                                //não existe na base de dados
-        //                                string SqlString = @"INSERT INTO TabelaObjetosSROLocal (CodigoObjeto, CodigoLdi, NomeCliente, DataLancamento, DataModificacao, Situacao, Atualizado, ObjetoEntregue, CaixaPostal) 
-        //                                                                                VALUES (?,?,?,?,?,?,?,?,?)";
-
-        //                                using (System.Data.OleDb.OleDbConnection conn = new System.Data.OleDb.OleDbConnection(strConexao))
-        //                                {
-        //                                    using (System.Data.OleDb.OleDbCommand cmd = new System.Data.OleDb.OleDbCommand(SqlString, conn))
-        //                                    {
-        //                                        cmd.CommandType = CommandType.Text;
-        //                                        cmd.Parameters.AddWithValue("CodigoObjeto", linhaItemCodigoObjeto);
-        //                                        cmd.Parameters.AddWithValue("CodigoLdi", "");
-        //                                        cmd.Parameters.AddWithValue("NomeCliente", "");
-        //                                        cmd.Parameters.AddWithValue("DataLancamento", linhaItemDataLancamento);
-        //                                        cmd.Parameters.AddWithValue("DataModificacao", linhaItemDataModificacao);
-        //                                        cmd.Parameters.AddWithValue("Situacao", linhaItemSituacao);
-        //                                        cmd.Parameters.AddWithValue("Atualizado", false);
-        //                                        cmd.Parameters.AddWithValue("ObjetoEntregue", (linhaItemDataModificacao == "" || linhaItemSituacao == "") ? false : true);
-        //                                        cmd.Parameters.AddWithValue("CaixaPostal", false);
-        //                                        conn.Open();
-        //                                        cmd.ExecuteNonQuery();
-        //                                    }
-        //                                }
-        //                            }
-        //                        }
-        //                    }
-
-        //                }
-        //                Mensagens.Informa("Gravado com sucesso!", MessageBoxIcon.Information, MessageBoxButtons.OK);
-        //                progressBar1.Value = 0;
-        //                label2.Text = "Barra de progresso";
-        //                textBox1.Enabled = true;
-        //                textBox1.Text = "";
-        //                textBox1.Focus();
-
-        //                FormularioPrincipal.RetornaComponentesFormularioPrincipal().BuscaNovoStatusQuantidadeNaoAtualizados();
-        //                if (FormularioPrincipal.RetornaComponentesFormularioPrincipal().RetornaQuantidadeObjetoNaoAtualizado() > 0)
-        //                {
-        //                    DialogResult pergunta = Mensagens.Pergunta("Deseja realmente requerer uma verificação para os objetos já entregues?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-        //                    if (pergunta == System.Windows.Forms.DialogResult.Yes)
-        //                    {
-        //                        FormularioPrincipal.RetornaComponentesFormularioPrincipal().atualizarNovosObjetosToolStripMenuItem_Click(sender, e);
-        //                    }
-        //                }
-        //            }
-        //            catch (Exception ex)
-        //            {
-        //                Mensagens.Erro(ex.Message);
-        //            }
-        //        }
-
         private DataTable RetornaListaObjetos(string Texto)
         {
             DataTable dtbLista = new DataTable();
@@ -361,27 +262,17 @@ namespace SISAPO
                         if (jaCadastrado.Tables[0].Rows.Count == 0)
                         {
                             //não existe na base de dados
-                            string SqlString = @"INSERT INTO TabelaObjetosSROLocal (CodigoObjeto, CodigoLdi, NomeCliente, DataLancamento, DataModificacao, Situacao, Atualizado, ObjetoEntregue, CaixaPostal) 
-                                                                                VALUES (?,?,?,?,?,?,?,?,?)";
-
-                            using (System.Data.OleDb.OleDbConnection conn = new System.Data.OleDb.OleDbConnection(ClassesDiversas.Configuracoes.strConexao))
-                            {
-                                using (System.Data.OleDb.OleDbCommand cmd = new System.Data.OleDb.OleDbCommand(SqlString, conn))
-                                {
-                                    cmd.CommandType = CommandType.Text;
-                                    cmd.Parameters.AddWithValue("CodigoObjeto", linhaItemCodigoObjeto);
-                                    cmd.Parameters.AddWithValue("CodigoLdi", "");
-                                    cmd.Parameters.AddWithValue("NomeCliente", "");
-                                    cmd.Parameters.AddWithValue("DataLancamento", linhaItemDataLancamento);
-                                    cmd.Parameters.AddWithValue("DataModificacao", linhaItemDataModificacao);
-                                    cmd.Parameters.AddWithValue("Situacao", linhaItemSituacao);
-                                    cmd.Parameters.AddWithValue("Atualizado", false);
-                                    cmd.Parameters.AddWithValue("ObjetoEntregue", (linhaItemDataModificacao == "" ? false : true));
-                                    cmd.Parameters.AddWithValue("CaixaPostal", false);
-                                    conn.Open();
-                                    cmd.ExecuteNonQuery();
-                                }
-                            }
+                            dao.ExecutaSQL("INSERT INTO TabelaObjetosSROLocal (CodigoObjeto, CodigoLdi, NomeCliente, DataLancamento, DataModificacao, Situacao, Atualizado, ObjetoEntregue, CaixaPostal) VALUES (@CodigoObjeto, @CodigoLdi, @NomeCliente, @DataLancamento, @DataModificacao, @Situacao, @Atualizado, @ObjetoEntregue, @CaixaPostal)", 
+                                new List<Parametros>() {
+                                    new Parametros() { Nome = "CodigoObjeto", Tipo = TipoCampo.Text, Valor = linhaItemCodigoObjeto },
+                                    new Parametros() { Nome = "CodigoLdi", Tipo = TipoCampo.Text, Valor = "" },
+                                    new Parametros() { Nome = "NomeCliente", Tipo = TipoCampo.Text, Valor = "" },
+                                    new Parametros() { Nome = "DataLancamento", Tipo = TipoCampo.Text, Valor = linhaItemDataLancamento },
+                                    new Parametros() { Nome = "DataModificacao", Tipo = TipoCampo.Text, Valor = linhaItemDataModificacao },
+                                    new Parametros() { Nome = "Situacao", Tipo = TipoCampo.Text, Valor = linhaItemSituacao },
+                                    new Parametros() { Nome = "Atualizado", Tipo = TipoCampo.Int, Valor = 0 },
+                                    new Parametros() { Nome = "ObjetoEntregue", Tipo = TipoCampo.Text, Valor = (linhaItemDataModificacao == "" ? 0 : 1) },
+                                    new Parametros() { Nome = "CaixaPostal", Tipo = TipoCampo.Text, Valor = 0 } });
                         }
                     }
                 }
@@ -405,7 +296,7 @@ namespace SISAPO
             else
             {
                 //Mensagens.Informa("Atualização finalizada com sucesso.", MessageBoxIcon.Information, MessageBoxButtons.OK);   
-                FormularioPrincipal.RetornaComponentesFormularioPrincipal().AtualizaDataHoraUltimaAtualizacaoImportacao();             
+                FormularioPrincipal.RetornaComponentesFormularioPrincipal().AtualizaDataHoraUltimaAtualizacaoImportacao();
                 this.label2.Text = "Total atualizados: " + e.Result.ToString();
                 this.BtnGravar.Enabled = true;
                 textBox1.Enabled = true;

@@ -155,6 +155,9 @@ namespace SISAPO.ClassesDiversas
             CriaColuna("TabelaConfiguracoesSistema", "HabilitarCapturaDeDadosDeDestinatarioAusente", "YESNO NULL DEFAULT 0");//HabilitarCapturaDeDadosDeDestinatarioAusente
             CriaColuna("TabelaConfiguracoesSistema", "DataHoraUltimaAtualizacaoImportacao", "DATETIME NULL DEFAULT NULL");//DataHoraUltimaAtualizacaoImportacao
 
+            CriaColuna("TabelaConfiguracoesSistema", "SuperintendenciaEstadual", "TEXT(255) NULL DEFAULT NULL");//DataInicialPeriodoExibicaoConsulta
+            CriaColuna("TabelaConfiguracoesSistema", "CepUnidade", "TEXT(255) NULL DEFAULT NULL");//DataFinalPeriodoExibicaoConsulta
+
 
             //CriaColuna("TabelaHistoricoConsulta", "Codigo", "INTEGER");//Codigo
             CriaColuna("TabelaHistoricoConsulta", "CodigoObjeto", "TEXT(255) NULL DEFAULT NULL");//CodigoObjeto
@@ -191,6 +194,7 @@ namespace SISAPO.ClassesDiversas
             CriaColuna("TabelaObjetosSROLocal", "SituacaoDestinatarioAusente", "TEXT(255) NULL DEFAULT NULL");//SituacaoDestinatarioAusente
             CriaColuna("TabelaObjetosSROLocal", "AgrupadoDestinatarioAusente", "TEXT(255) NULL DEFAULT NULL");//AgrupadoDestinatarioAusente
             CriaColuna("TabelaObjetosSROLocal", "CoordenadasDestinatarioAusente", "TEXT(255) NULL DEFAULT NULL");//CoordenadasDestinatarioAusente
+            CriaColuna("TabelaObjetosSROLocal", "Comentario", "TEXT(255) NULL DEFAULT NULL");//Comentario
         }
 
         private static void CriaColuna(string tabela, string coluna, string tipo)

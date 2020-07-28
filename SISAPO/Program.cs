@@ -16,7 +16,7 @@ namespace SISAPO
         /// </summary>
         [STAThread]
         static void Main()
-        {            
+        {
             var processo = System.Diagnostics.Process.GetCurrentProcess();
             var jaEstaRodando = System.Diagnostics.Process.GetProcessesByName(processo.ProcessName).Any(p => p.Id != processo.Id);
             //Mensagens.Informa(Dns.GetHostEntry(Environment.MachineName).HostName);

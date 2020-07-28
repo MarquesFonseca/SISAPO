@@ -222,6 +222,7 @@ namespace SISAPO
 
                         string NomeCliente = string.Empty;
                         string Ldi = string.Empty;
+                        string Comentario = string.Empty;
 
                         for (int i = 0; i < webBrowser1.Document.GetElementsByTagName("TR").Count; i++)
                         {
@@ -234,7 +235,11 @@ namespace SISAPO
                                 Ldi = Ldi.Substring(0, 12);
                                 EscreveTextoTextBox("Ldi: " + Ldi.ToString());
                             }
-
+                            if (webBrowser1.Document.GetElementsByTagName("TR")[i].InnerText.Contains("Comentário:"))
+                            {
+                                Comentario = webBrowser1.Document.GetElementsByTagName("TR")[i].InnerText.Replace("Comentário: ", "");
+                                EscreveTextoTextBox("Comentário: " + Comentario.ToString());
+                            }
                             if (webBrowser1.Document.GetElementsByTagName("TR")[i].InnerText.Contains("Cliente:"))
                             {
                                 NomeCliente = webBrowser1.Document.GetElementsByTagName("TR")[i].InnerText.Replace("Cliente: ", "");
@@ -249,10 +254,11 @@ namespace SISAPO
                                         NomeCliente = NomeCliente.Trim() == "" ? ds.Tables[0].Rows[0]["NomeCliente"].ToString().ToUpper().RemoveAcentos() : NomeCliente.Trim().ToUpper().RemoveAcentos();
                                     }
                                     Mensagens.InformaDesenvolvedor("Cheguei até a gravação do update do nome: " + NomeCliente);
-                                    dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET NomeCliente = @NomeCliente, CodigoLdi = @CodigoLdi, Atualizado = @Atualizado WHERE CodigoObjeto = @CodigoObjeto ", new List<Parametros>(){ 
+                                    dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET NomeCliente = @NomeCliente, CodigoLdi = @CodigoLdi, Atualizado = @Atualizado, Comentario = @Comentario WHERE CodigoObjeto = @CodigoObjeto ", new List<Parametros>(){ 
                                             new Parametros("@NomeCliente", TipoCampo.Text, NomeCliente),
                                             new Parametros("@CodigoLdi", TipoCampo.Text, Ldi),
                                             new Parametros("@Atualizado", TipoCampo.Int, true),
+                                            new Parametros("@Comentario", TipoCampo.Text, Comentario),
                                             new Parametros("@CodigoObjeto", TipoCampo.Text, CodigoObjetoAtual)});
                                 }
                                 #endregion

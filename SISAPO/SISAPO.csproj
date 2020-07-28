@@ -217,11 +217,17 @@
     <Compile Include="FormularioImpressaoEntregaAgruparObjetos.Designer.cs">
       <DependentUpon>FormularioImpressaoEntregaAgruparObjetos.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormularioImpressaoEntregaObjetos.cs">
+    <Compile Include="FormularioImpressaoEntregaObjetosModelo2.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormularioImpressaoEntregaObjetos.Designer.cs">
-      <DependentUpon>FormularioImpressaoEntregaObjetos.cs</DependentUpon>
+    <Compile Include="FormularioImpressaoEntregaObjetosModelo2.Designer.cs">
+      <DependentUpon>FormularioImpressaoEntregaObjetosModelo2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormularioImpressaoEntregaObjetosModelo1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormularioImpressaoEntregaObjetosModelo1.Designer.cs">
+      <DependentUpon>FormularioImpressaoEntregaObjetosModelo1.cs</DependentUpon>
     </Compile>
     <Compile Include="FormularioImpressaoEntregaObjetosOpcoesImpressao.cs">
       <SubType>Form</SubType>
@@ -352,8 +358,11 @@
     <EmbeddedResource Include="FormularioImpressaoEntregaAgruparObjetos.resx">
       <DependentUpon>FormularioImpressaoEntregaAgruparObjetos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormularioImpressaoEntregaObjetos.resx">
-      <DependentUpon>FormularioImpressaoEntregaObjetos.cs</DependentUpon>
+    <EmbeddedResource Include="FormularioImpressaoEntregaObjetosModelo2.resx">
+      <DependentUpon>FormularioImpressaoEntregaObjetosModelo2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormularioImpressaoEntregaObjetosModelo1.resx">
+      <DependentUpon>FormularioImpressaoEntregaObjetosModelo1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormularioImpressaoEntregaObjetosOpcoesImpressao.resx">
       <DependentUpon>FormularioImpressaoEntregaObjetosOpcoesImpressao.cs</DependentUpon>
@@ -483,6 +492,14 @@
     <Content Include="FormularioAtualizacaoObjetos.cs.txt" />
     <Content Include="FormularioAtualizacaoObjetos_Antes.txt" />
     <None Include="Resources\impressão-26.png" />
+    <Content Include="JsBarcode\ArquivoGeradoDebug.html" />
+    <Content Include="JsBarcode\Impressao modelo correios.html" />
+    <Content Include="JsBarcode\ImpressaoCorreios.html" />
+    <Content Include="JsBarcode\ModeloLDI.html" />
+    <Content Include="JsBarcode\index.html" />
+    <Content Include="JsBarcode\JsBarcode.all.min.js" />
+    <Content Include="JsBarcode\ModeloLDINovo.html" />
+    <Content Include="LANÇAMENTOS LDI.txt" />
     <Content Include="Resources\icons8-colar-26.png" />
     <Content Include="Resources\imp01.gif" />
     <None Include="Resources\local-map-google.png" />

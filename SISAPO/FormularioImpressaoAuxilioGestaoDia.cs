@@ -11,12 +11,12 @@ namespace SISAPO
 {
     public partial class FormularioImpressaoAuxilioGestaoDia : Form
     {
-        public List<string> CodigoSelecionados = new List<string>();
+        private DataTable listaObjetos;
 
-        public FormularioImpressaoAuxilioGestaoDia(List<string> _codigosSelecionados)
+        public FormularioImpressaoAuxilioGestaoDia(DataTable _listaObjetos)
         {
             InitializeComponent();
-            CodigoSelecionados = _codigosSelecionados;
+            this.listaObjetos = _listaObjetos;
         }
 
         private void FormularioImpressaoAuxilioGestaoDia_Load(object sender, EventArgs e)
@@ -29,7 +29,7 @@ namespace SISAPO
         {
             StringBuilder Html = new StringBuilder();
             Html.AppendLine("<html><head>");
-            Html.AppendLine("<meta http-equiv=\"content-type\" content=\"text/html; charset=windows-1252\">");
+            Html.AppendLine("<meta http-equiv=\"Content-Type\" content=\"text/html;charset=utf-8\" />");
             Html.AppendLine("<title>Lista de auxílio à gestão do dia [" + DateTime.Now.Date.ToShortDateString() + "]</title>");
             Html.AppendLine("<style>");
             Html.AppendLine(".espaco {");
@@ -54,7 +54,7 @@ namespace SISAPO
             Html.AppendLine("");
             Html.AppendLine("TD {");
             Html.AppendLine("  color: #000000;");
-            Html.AppendLine("  font-size: 12px;");
+            Html.AppendLine("  font-size: 16px;");
             Html.AppendLine("  font-family: arial;");
             Html.AppendLine("}");
 
@@ -116,46 +116,47 @@ namespace SISAPO
             Html.AppendLine("<form action=\"/rastreamento/sro\" name=\"Recipiente\" method=\"Post\">");
             Html.AppendLine("");
 
-            using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
+            Html.AppendLine("	<table align=\"Center\" width=\"850\" style=\"border:1px solid #000000;\"> ");
+            Html.AppendLine("	<tbody>		");
+            Html.AppendLine("		<tr>");
+            Html.AppendLine("		    <td width=\"770\" bgcolor=\"#F3F3F3\" style=\"text-align:right\"><b><font size=\"3\">TOTAL:</font></b></td>");
+            Html.AppendLine("		    <td width=\"80\" bgcolor=\"#F3F3F3\" style=\"text-align:center\"><b><font size=\"6\">" + listaObjetos.Rows.Count + "</font></b></td>");
+            Html.AppendLine("		</tr>");
+            Html.AppendLine("	</tbody>");
+            Html.AppendLine("	</table>");
+
+            Html.AppendLine("	<table align=\"Center\" width=\"850\" style=\"border:1px solid #000000;\"> ");
+            Html.AppendLine("	<tbody>		");
+            Html.AppendLine("		<tr>");
+            Html.AppendLine("		    <td width=\"90\" bgcolor=\"#F3F3F3\"><b><font size=\"3\">  Núm. LDI</font></b></td>");
+            Html.AppendLine("		    <td width=\"150\" bgcolor=\"#F3F3F3\"><b><font size=\"3\">  Objeto</font></b></td>");
+            Html.AppendLine("		    <td width=\"400\" bgcolor=\"#F3F3F3\"><b><font size=\"3\">  Destinatário</font></b></td>");
+            Html.AppendLine("		    <td width=\"130\" bgcolor=\"#F3F3F3\"><b><font size=\"3\">  Lançamento</font></b></td>");
+            Html.AppendLine("		    <td width=\"80\" bgcolor=\"#F3F3F3\"><b><font size=\"3\">  Corridos</font></b></td>");
+            Html.AppendLine("		</tr>");
+            foreach (DataRow dr in listaObjetos.Rows)
             {
-                Html.AppendLine("	<table align=\"Center\" width=\"850\" style=\"border:1px solid #000000;\"> ");
-                Html.AppendLine("	<tbody>		");
+                string CodigoObjetoFormatado = string.Format("{0} {1} {2} {3} {4}",
+                dr["CodigoObjeto"].ToString().Substring(0, 2),
+                dr["CodigoObjeto"].ToString().Substring(2, 3),
+                dr["CodigoObjeto"].ToString().Substring(5, 3),
+                dr["CodigoObjeto"].ToString().Substring(8, 3),
+                dr["CodigoObjeto"].ToString().Substring(11, 2));
+                string DiasCorridos = Convert.ToString((DateTime.Now.Date - dr["DataLancamento"].ToDateTime().Date).TotalDays);
+
                 Html.AppendLine("		<tr>");
-                Html.AppendLine("		    <td width=\"90\" bgcolor=\"#F3F3F3\"><font size=\"1\"><b><font size=\"3\">  Núm. LDI</font></b></font></td>");
-                Html.AppendLine("		    <td width=\"130\" bgcolor=\"#F3F3F3\"><font size=\"1\"><b><font size=\"3\">  Objeto</font></b></font></td>");
-                Html.AppendLine("		    <td width=\"420\" bgcolor=\"#F3F3F3\"><font size=\"1\"><b><font size=\"3\">  Destinatário</font></b></font></td>");
-                Html.AppendLine("		    <td width=\"130\" bgcolor=\"#F3F3F3\"><font size=\"1\"><b><font size=\"3\">  Lançamento</font></b></font></td>");
-                Html.AppendLine("		    <td width=\"80\" bgcolor=\"#F3F3F3\"><font size=\"1\"><b><font size=\"3\">  Corridos</font></b></font></td>");
+                Html.AppendLine("		    <td>" + dr["CodigoLdi"].ToString() + "</td>");
+                Html.AppendLine("		    <td>" + CodigoObjetoFormatado + "</td>");
+                Html.AppendLine("		    <td>" + dr["NomeCliente"].ToString() + "</td>");
+                Html.AppendLine("		    <td>" + dr["DataLancamento"].ToString() + "</td>");
+                Html.AppendLine("		    <td>&nbsp;&nbsp;" + DiasCorridos + " dias</td>");
                 Html.AppendLine("		</tr>");
-                foreach (string itemCodigoSelecionado in CodigoSelecionados)
-                {
-                    DataRow dr = dao.RetornaDataRow("SELECT Codigo, CodigoObjeto, CodigoLdi, NomeCliente, DataLancamento, Atualizado, Situacao, DataModificacao FROM TabelaObjetosSROLocal WHERE (CodigoObjeto IN ('" + itemCodigoSelecionado + "'))");
-                    //DataRow drConfiguracoes = dao.RetornaDataRow("SELECT NomeAgenciaLocal, EnderecoAgenciaLocal FROM TabelaConfiguracoesSistema");
-
-                    string CodigoObjetoFormatado = string.Format("{0} {1} {2} {3} {4}",
-                    dr["CodigoObjeto"].ToString().Substring(0, 2),
-                    dr["CodigoObjeto"].ToString().Substring(2, 3),
-                    dr["CodigoObjeto"].ToString().Substring(5, 3),
-                    dr["CodigoObjeto"].ToString().Substring(8, 3),
-                    dr["CodigoObjeto"].ToString().Substring(11, 2));
-                    string DiasCorridos = Convert.ToString((DateTime.Now.Date - dr["DataLancamento"].ToDateTime().Date).TotalDays);
-
-
-
-                    Html.AppendLine("		<tr>");
-                    Html.AppendLine("		    <td>" + dr["CodigoLdi"].ToString() + "</td>");
-                    Html.AppendLine("		    <td>" + CodigoObjetoFormatado + "</td>");
-                    Html.AppendLine("		    <td>" + dr["NomeCliente"].ToString() + "</td>");
-                    Html.AppendLine("		    <td>" + dr["DataLancamento"].ToString() + "</td>");
-                    Html.AppendLine("		    <td>&nbsp;&nbsp;" + DiasCorridos + " dias</td>");
-                    Html.AppendLine("		</tr>");
-                }
-                Html.AppendLine("	</tbody>");
-                Html.AppendLine("	</table>");
-                //Html.AppendLine("	<div class=\"espaco\">--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</div>");
-                Html.AppendLine("	<div class=\"espaco\"></div>");
-                Html.AppendLine("		");
             }
+            Html.AppendLine("	</tbody>");
+            Html.AppendLine("	</table>");
+            //Html.AppendLine("	<div class=\"espaco\">--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</div>");
+            Html.AppendLine("	<div class=\"espaco\"></div>");
+            Html.AppendLine("		");
 
             Html.AppendLine("</form>");
             Html.AppendLine("");

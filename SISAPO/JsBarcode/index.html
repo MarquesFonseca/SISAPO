@@ -1,0 +1,48 @@
+<html>
+<head>
+    <script src="JsBarcode.all.min.js"></script>
+    <script>
+        window.onload = function () {			
+            JsBarcode(".barcode").init();
+        }
+    </script>
+</head>
+<body>
+    <svg class="barcode"  
+            jsbarcode-format="auto" 
+            jsbarcode-value="OD123456789BR" 
+            jsbarcode-text="OD 123 456 789 BR"
+            jsbarcode-textmargin="0" 
+            jsbarcode-fontoptions="bold"
+            jsbarcode-w="100"
+            jsbarcode-height="100">
+    </svg>
+    <svg class="barcode"  
+            jsbarcode-format="CODE128" 
+            jsbarcode-value="OD123456789BR" 
+            jsbarcode-text="OD 123 456 789 BR"
+            jsbarcode-textmargin="0" 
+            jsbarcode-fontoptions="bold"
+            jsbarcode-w="100"
+            jsbarcode-height="100">
+    </svg>
+    <svg class="barcode"  
+            jsbarcode-format="CODE39" 
+            jsbarcode-value="OD123456789BR" 
+            jsbarcode-text="OD 123 456 789 BR"
+            jsbarcode-textmargin="0" 
+            jsbarcode-fontoptions="bold"
+            jsbarcode-w="100"
+            jsbarcode-height="100">
+    </svg>
+    <svg class="barcode"  
+            jsbarcode-format="ITF-14" 
+            jsbarcode-value="111111111" 
+            jsbarcode-text="OD 123WWWW 456 789 BR"
+            jsbarcode-textmargin="0" 
+            jsbarcode-fontoptions="bold"
+            jsbarcode-w="100"
+            jsbarcode-height="100">
+    </svg>
+</body>
+</html>

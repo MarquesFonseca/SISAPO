@@ -1190,7 +1190,7 @@ public class DAO : IDisposable
                     return Retorno;
                 }
             #endregion
-            #region PostgreeSql
+            #region OleDb
             case TipoBanco.OleDb:
                 {
                     OleDbConnection Con = this.RetornaConexaoOleDb();
@@ -1243,13 +1243,17 @@ public class DAO : IDisposable
                 try
                 {
                     Con.Open();
-                    return true;
+                    Retorno = true;
                 }
                 catch (Exception exception1)
                 {
                     ex = exception1;
                     Resultado = ex.Message;
-                    return false;
+                    Retorno = false;
+                }
+                finally
+                {
+                    Con.Dispose();
                 }
             }
         }
@@ -1262,13 +1266,13 @@ public class DAO : IDisposable
                 try
                 {
                     Con.Open();
-                    return true;
+                    Retorno = true;
                 }
                 catch (Exception exception2)
                 {
+                    Retorno = false;
                     ex = exception2;
                     Resultado = ex.Message;
-                    return false;
                 }
                 finally
                 {
@@ -1285,13 +1289,17 @@ public class DAO : IDisposable
                 try
                 {
                     Con.Open();
-                    return true;
+                    Retorno = true;
                 }
                 catch (Exception exception3)
                 {
+                    Retorno = false;
                     ex = exception3;
                     Resultado = ex.Message;
-                    return false;
+                }
+                finally
+                {
+                    Con.Dispose();
                 }
             }
         }
@@ -1304,13 +1312,17 @@ public class DAO : IDisposable
                 try
                 {
                     Con.Open();
-                    return true;
+                    Retorno = true;
                 }
                 catch (Exception exception4)
                 {
+                    Retorno = false;
                     ex = exception4;
                     Resultado = ex.Message;
-                    return false;
+                }
+                finally
+                {
+                    Con.Dispose();
                 }
             }
         }
@@ -1323,13 +1335,17 @@ public class DAO : IDisposable
                 try
                 {
                     Con.Open();
-                    return true;
+                    Retorno = true;
                 }
                 catch (Exception exception5)
                 {
+                    Retorno = false;
                     ex = exception5;
                     Resultado = ex.Message;
-                    return false;
+                }
+                finally
+                {
+                    Con.Dispose();
                 }
             }
         }

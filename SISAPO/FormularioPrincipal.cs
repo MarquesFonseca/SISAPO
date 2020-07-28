@@ -42,7 +42,7 @@ namespace SISAPO
             //não posso usar o banco para as configurações pois o usuário tem habito diferente dos demais. portante tenho que deixar a configuraçao por maquina...
             //using (DAO dao = new DAO(TipoBanco.OleDb, Configuracoes.strConexao))
             //{
-            //    if (!dao.TestaConexao()) { toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+            //    if (!dao.TestaConexao()) { this.toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
 
             //    ExibirCaixaPostalPesquisa_toolStripMenuItem.Checked = Convert.ToBoolean(dao.RetornaValor("SELECT TOP 1 ExibirObjetosEmCaixaPostalNaPesquisa FROM TabelaConfiguracoesSistema"));
             //    ExibirItensJaEntreguesToolStripMenuItem.Checked = Convert.ToBoolean(dao.RetornaValor("SELECT TOP 1 ExibirObjetosJaEntreguesNaPesquisa FROM TabelaConfiguracoesSistema"));
@@ -91,7 +91,7 @@ namespace SISAPO
             {
                 using (DAO dao = new DAO(TipoBanco.OleDb, Configuracoes.strConexao))
                 {
-                    if (!dao.TestaConexao()) { toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return 0; }
+                    if (!dao.TestaConexao()) { this.toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return 0; }
 
                     DataSet ObjetosConsultaRastreamento = dao.RetornaDataSet("SELECT distinct CodigoObjeto FROM TabelaObjetosSROLocal WHERE (Atualizado = @Atualizado)", new Parametros { Nome = "@Atualizado", Tipo = TipoCampo.Int, Valor = 0 });
                     quantidade = ObjetosConsultaRastreamento.Tables[0].Rows.Count;
@@ -276,10 +276,8 @@ namespace SISAPO
             {
                 using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
                 {
-                    if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
-                    List<Parametros> Pr = new List<Parametros>() { new Parametros() { Nome = "@DataHoraUltimaAtualizacaoImportacao", Tipo = TipoCampo.DateTime, Valor = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss") } };
-
-                    dao.ExecutaSQL("UPDATE TabelaConfiguracoesSistema SET DataHoraUltimaAtualizacaoImportacao = @DataHoraUltimaAtualizacaoImportacao", Pr);
+                    if (!dao.TestaConexao()) { this.toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+                    dao.ExecutaSQL("UPDATE TabelaConfiguracoesSistema SET DataHoraUltimaAtualizacaoImportacao = @DataHoraUltimaAtualizacaoImportacao", new List<Parametros>() { new Parametros() { Nome = "@DataHoraUltimaAtualizacaoImportacao", Tipo = TipoCampo.DateTime, Valor = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss") } });
                 }
             }
             catch (Exception ex)
@@ -295,15 +293,15 @@ namespace SISAPO
 
         public void BuscaDataHoraUltimaAtualizacaoImportacao()
         {
-            
+
             try
             {
                 using (DAO dao = new DAO(TipoBanco.OleDb, Configuracoes.strConexao))
                 {
-                    if (!dao.TestaConexao()) { toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+                    if (!dao.TestaConexao()) { this.toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
 
-                    object dataHoraUltimaAtualizacaoImportacaoRetornado = dao.RetornaValor("SELECT DataHoraUltimaAtualizacaoImportacao FROM TabelaConfiguracoesSistema");
-                    toolStripStatusLabelDataHoraUltimaAtualizacaoImportacao.Text = string.Format("Última atualização dos dados: {0:dd/MM/yyyy HH:mm}   -   ", dataHoraUltimaAtualizacaoImportacaoRetornado);
+                    object dataHoraUltimaAtualizacaoImportacaoRetornado = dao.RetornaValor("SELECT top 1 DataHoraUltimaAtualizacaoImportacao FROM TabelaConfiguracoesSistema");
+                    toolStripStatusLabelDataHoraUltimaAtualizacaoImportacao.Text = string.Format("Última atualização dos dados: {0:dd/MM/yyyy HH:mm}       ", dataHoraUltimaAtualizacaoImportacaoRetornado);
                 }
             }
             catch (Exception ex)
@@ -387,7 +385,7 @@ namespace SISAPO
             {
                 using (DAO dao = new DAO(TipoBanco.OleDb, Configuracoes.strConexao))
                 {
-                    if (!dao.TestaConexao()) { toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+                    if (!dao.TestaConexao()) { this.toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
 
                     DataSet ObjetosConsultaRastreamento = dao.RetornaDataSet("SELECT DISTINCT CodigoObjeto FROM TabelaObjetosSROLocal WHERE (Atualizado = @Atualizado)", new List<Parametros>() { new Parametros { Nome = "@Atualizado", Tipo = TipoCampo.Int, Valor = 0 } });
                     if (ObjetosConsultaRastreamento == null || ObjetosConsultaRastreamento.Tables[0].Rows.Count == 0) return;
@@ -423,7 +421,7 @@ namespace SISAPO
             {
                 using (DAO dao = new DAO(TipoBanco.OleDb, Configuracoes.strConexao))
                 {
-                    if (!dao.TestaConexao()) { toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+                    if (!dao.TestaConexao()) { this.toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
 
                     DataSet ObjetosConsultaRastreamento = dao.RetornaDataSet("SELECT DISTINCT CodigoObjeto FROM TabelaObjetosSROLocal WHERE (Atualizado = @Atualizado)", new List<Parametros>() { new Parametros { Nome = "@Atualizado", Tipo = TipoCampo.Int, Valor = 0 } });
                     if (ObjetosConsultaRastreamento == null || ObjetosConsultaRastreamento.Tables[0].Rows.Count == 0) return;
@@ -459,7 +457,7 @@ namespace SISAPO
             {
                 using (DAO dao = new DAO(TipoBanco.OleDb, Configuracoes.strConexao))
                 {
-                    if (!dao.TestaConexao()) { toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+                    if (!dao.TestaConexao()) { this.toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
 
                     DataSet ObjetosConsultaRastreamento = dao.RetornaDataSet("SELECT DISTINCT CodigoObjeto FROM TabelaObjetosSROLocal WHERE (Atualizado = @Atualizado)", new List<Parametros>() { new Parametros { Nome = "@Atualizado", Tipo = TipoCampo.Int, Valor = 0 } });
                     if (ObjetosConsultaRastreamento == null || ObjetosConsultaRastreamento.Tables[0].Rows.Count == 0) return;
@@ -495,7 +493,7 @@ namespace SISAPO
             AtualizandoNovosObjetos = true;
             using (DAO dao = new DAO(TipoBanco.OleDb, Configuracoes.strConexao))
             {
-                if (!dao.TestaConexao()) { toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+                if (!dao.TestaConexao()) { this.toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
 
                 DataSet ObjetosConsultaRastreamento = dao.RetornaDataSet("SELECT DISTINCT CodigoObjeto FROM TabelaObjetosSROLocal WHERE (Atualizado = @Atualizado)", new List<Parametros>() { new Parametros { Nome = "@Atualizado", Tipo = TipoCampo.Int, Valor = 0 } });
                 if (ObjetosConsultaRastreamento == null || ObjetosConsultaRastreamento.Tables[0].Rows.Count == 0) return;
@@ -558,7 +556,7 @@ namespace SISAPO
         {
             using (DAO dao = new DAO(TipoBanco.OleDb, Configuracoes.strConexao))
             {
-                if (!dao.TestaConexao()) { toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+                if (!dao.TestaConexao()) { this.toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
 
                 DataSet ObjetosConsultaRastreamento = dao.RetornaDataSet("SELECT DISTINCT CodigoObjeto FROM TabelaObjetosSROLocal WHERE (Atualizado = @Atualizado)", new List<Parametros>() { new Parametros { Nome = "@Atualizado", Tipo = TipoCampo.Int, Valor = 0 } });
                 if (ObjetosConsultaRastreamento == null || ObjetosConsultaRastreamento.Tables[0].Rows.Count == 0) return;
@@ -603,7 +601,7 @@ namespace SISAPO
             ////GRAVA NO BANCO 
             //using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
             //{
-            //    if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+            //    if (!dao.TestaConexao()) { this.toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
 
             //    dao.ExecutaSQL("UPDATE TabelaConfiguracoesSistema SET ExibirObjetosEmCaixaPostalNaPesquisa = @ExibirObjetosEmCaixaPostalNaPesquisa", new List<Parametros>(){
             //                                                new Parametros("@ExibirObjetosEmCaixaPostalNaPesquisa", TipoCampo.Int, ExibirCaixaPostalPesquisa_toolStripMenuItem.Checked)});
@@ -627,7 +625,7 @@ namespace SISAPO
             ////GRAVA NO BANCO 
             //using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
             //{
-            //    if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+            //    if (!dao.TestaConexao()) { this.toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
 
             //    dao.ExecutaSQL("UPDATE TabelaConfiguracoesSistema SET ExibirObjetosJaEntreguesNaPesquisa = @ExibirObjetosJaEntreguesNaPesquisa", new List<Parametros>(){
             //                                                new Parametros("@ExibirObjetosJaEntreguesNaPesquisa", TipoCampo.Int, ExibirItensJaEntreguesToolStripMenuItem.Checked)});
@@ -673,16 +671,7 @@ namespace SISAPO
 
         public void imprimirListaDeEntregaParaConsultaSelecionadaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormularioConsulta formularioConsulta;
-            foreach (Form item in Application.OpenForms)
-            {
-                if (item.Name == "FormularioConsulta")
-                {
-                    formularioConsulta = (FormularioConsulta)item;
-                    formularioConsulta.GeraImpressaoItensSelecionados();
-                    break;
-                }
-            }
+
         }
 
         private void imprimirListaDeEntregaParaConsultaSelecionadaToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -776,7 +765,7 @@ namespace SISAPO
                 //grava no banco de dados
                 using (DAO dao = new DAO(TipoBanco.OleDb, Configuracoes.strConexao))
                 {
-                    if (!dao.TestaConexao()) { toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+                    if (!dao.TestaConexao()) { this.toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
 
                     dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET Atualizado = @Atualizado WHERE ObjetoEntregue = @ObjetoEntregue ", new List<Parametros>(){
                                             new Parametros("@Atualizado", TipoCampo.Int, 0),
@@ -818,7 +807,7 @@ namespace SISAPO
         {
             using (DAO dao = new DAO(TipoBanco.OleDb, Configuracoes.strConexao))
             {
-                if (!dao.TestaConexao()) { toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+                if (!dao.TestaConexao()) { this.toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
 
                 DataSet ObjetosConsultaRastreamento = dao.RetornaDataSet("SELECT DISTINCT CodigoObjeto FROM TabelaObjetosSROLocal WHERE (Atualizado = @Atualizado)", new List<Parametros>() { new Parametros { Nome = "@Atualizado", Tipo = TipoCampo.Int, Valor = 0 } });
                 if (ObjetosConsultaRastreamento == null || ObjetosConsultaRastreamento.Tables[0].Rows.Count == 0) return;
@@ -851,7 +840,7 @@ namespace SISAPO
         {
             using (DAO dao = new DAO(TipoBanco.OleDb, Configuracoes.strConexao))
             {
-                if (!dao.TestaConexao()) { toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+                if (!dao.TestaConexao()) { this.toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
 
                 DataSet ObjetosConsultaRastreamento = dao.RetornaDataSet("SELECT DISTINCT CodigoObjeto FROM TabelaObjetosSROLocal WHERE (Atualizado = @Atualizado)", new List<Parametros>() { new Parametros { Nome = "@Atualizado", Tipo = TipoCampo.Int, Valor = 0 } });
                 if (ObjetosConsultaRastreamento == null || ObjetosConsultaRastreamento.Tables[0].Rows.Count == 0) return;
@@ -905,7 +894,7 @@ namespace SISAPO
             ////GRAVA NO BANCO 
             //using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
             //{
-            //    if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+            //    if (!dao.TestaConexao()) { this.toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
 
             //    dao.ExecutaSQL("UPDATE TabelaConfiguracoesSistema SET ManterConsultaSempreAtualizada = @ManterConsultaSempreAtualizada", new List<Parametros>(){
             //                                                new Parametros("@ManterConsultaSempreAtualizada", TipoCampo.Int, manterConsultaSempreAtualizadaToolStripMenuItem.Checked)});
@@ -919,7 +908,7 @@ namespace SISAPO
             ////GRAVA NO BANCO 
             //using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
             //{
-            //    if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+            //    if (!dao.TestaConexao()) { this.toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
 
             //    dao.ExecutaSQL("UPDATE TabelaConfiguracoesSistema SET PermitirBuscarPorLDINaPesquisa = @PermitirBuscarPorLDINaPesquisa", new List<Parametros>(){
             //                                                new Parametros("@PermitirBuscarPorLDINaPesquisa", TipoCampo.Int, PermiriBuscarPorLDINaPesquisaToolStripMenuItem.Checked)});
@@ -943,7 +932,7 @@ namespace SISAPO
             ////GRAVA NO BANCO 
             //using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
             //{
-            //    if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+            //    if (!dao.TestaConexao()) { this.toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
 
             //    dao.ExecutaSQL("UPDATE TabelaConfiguracoesSistema SET HabilitarCapturaDeDadosDePostagem = @HabilitarCapturaDeDadosDePostagem", new List<Parametros>(){
             //                                                new Parametros("@HabilitarCapturaDeDadosDePostagem", TipoCampo.Int, habilitarCapturaDeDadosDePostagemToolStripMenuItem.Checked)});
@@ -955,7 +944,7 @@ namespace SISAPO
             ////GRAVA NO BANCO 
             //using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
             //{
-            //    if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+            //    if (!dao.TestaConexao()) { this.toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
 
             //    dao.ExecutaSQL("UPDATE TabelaConfiguracoesSistema SET HabilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatario = @HabilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatario", new List<Parametros>(){
             //                                                new Parametros("@HabilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatario", TipoCampo.Int, habilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatárioToolStripMenuItem.Checked)});
@@ -967,11 +956,71 @@ namespace SISAPO
             ////GRAVA NO BANCO 
             //using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
             //{
-            //    if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+            //    if (!dao.TestaConexao()) { this.toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
 
             //    dao.ExecutaSQL("UPDATE TabelaConfiguracoesSistema SET HabilitarCapturaDeDadosDeDestinatarioAusente = @HabilitarCapturaDeDadosDeDestinatarioAusente", new List<Parametros>(){
             //                                                new Parametros("@HabilitarCapturaDeDadosDeDestinatarioAusente", TipoCampo.Int, habilitarCapturaDeDadosDeDestinatárioAusenteToolStripMenuItem.Checked)});
             //}
+        }
+
+        public void modeloLDIToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Application.OpenForms.OfType<FormularioConsulta>().Count() == 0)// se formulario Consulta estiver fechado.
+            {
+                //pergunta se deseja abrir o formulario consulta..
+                if (Mensagens.Pergunta("Para impressão da lista de entrega é necessário filtrar uma consulta e voltar a esta opção.\nDeseja abrir a tela de consulta agora?") == DialogResult.Yes)//
+                {
+                    VisualizarListaObjetos_toolStripButton_Click(sender, e);
+                }
+                else
+                {
+                    //clicou em não. fecha
+                    return;
+                }
+            }
+            if (Application.OpenForms.OfType<FormularioConsulta>().Count() == 1)
+            {
+                FormularioConsulta formularioConsulta;
+                foreach (Form item in Application.OpenForms)
+                {
+                    if (item.Name == "FormularioConsulta")
+                    {
+                        formularioConsulta = (FormularioConsulta)item;
+                        formularioConsulta.GeraImpressaoItensSelecionados(FormularioConsulta.ModeloImpressaoListaObjetos.ModeloLDI);
+                        break;
+                    }
+                }
+            }
+        }
+
+        public void modeloComumToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Application.OpenForms.OfType<FormularioConsulta>().Count() == 0)// se formulario Consulta estiver fechado.
+            {
+                //pergunta se deseja abrir o formulario consulta..
+                if (Mensagens.Pergunta("Para impressão da lista de entrega é necessário filtrar uma consulta e voltar a esta opção.\nDeseja abrir a tela de consulta agora?") == DialogResult.Yes)//
+                {
+                    VisualizarListaObjetos_toolStripButton_Click(sender, e);
+                }
+                else
+                {
+                    //clicou em não. fecha
+                    return;
+                }
+            }
+            if (Application.OpenForms.OfType<FormularioConsulta>().Count() == 1)
+            {
+                FormularioConsulta formularioConsulta;
+                foreach (Form item in Application.OpenForms)
+                {
+                    if (item.Name == "FormularioConsulta")
+                    {
+                        formularioConsulta = (FormularioConsulta)item;
+                        formularioConsulta.GeraImpressaoItensSelecionados(FormularioConsulta.ModeloImpressaoListaObjetos.ModeloComum);
+                        break;
+                    }
+                }
+            }
         }
     }
 }
