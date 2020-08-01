@@ -175,14 +175,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SISAPO.exe" size="8279552">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SISAPO.exe" size="9029120">
       <assemblyIdentity name="SISAPO" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>4O2P6BOtrh44oFbrp9PJKCe720I=</dsig:DigestValue>
+        <dsig:DigestValue>QDs1GdUmlAP5X7/X6dY+YP00S1c=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -396,13 +396,13 @@
       <dsig:DigestValue>/S+hvmDvp/iVaY6KhDLmBQXet+A=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="SISAPO.exe.config" size="2629">
+  <file name="SISAPO.exe.config" size="2652">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>3kzR7HYEQD7taJtHwsNnpZlwmh8=</dsig:DigestValue>
+      <dsig:DigestValue>rz4wothoYpe+TEoCyY4iEDhvBsA=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

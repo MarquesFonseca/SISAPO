@@ -33,8 +33,10 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormularioImpressaoEntregaAgruparObjetos));
             this.BtnAgruparSelecionados = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.BtnCancelar = new System.Windows.Forms.Button();
             this.BtnConcluir = new System.Windows.Forms.Button();
             this.BtnRemoverSelecionados = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -50,7 +52,6 @@
             this.NomeClienteAgrupado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DataModificacao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Endereco = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BtnCancelar = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -79,6 +80,18 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(851, 74);
             this.panel1.TabIndex = 1;
+            // 
+            // BtnCancelar
+            // 
+            this.BtnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnCancelar.Location = new System.Drawing.Point(405, 18);
+            this.BtnCancelar.Name = "BtnCancelar";
+            this.BtnCancelar.Size = new System.Drawing.Size(184, 40);
+            this.BtnCancelar.TabIndex = 2;
+            this.BtnCancelar.Text = "Cancelar impressão";
+            this.BtnCancelar.UseVisualStyleBackColor = true;
+            this.BtnCancelar.Click += new System.EventHandler(this.BtnCancelar_Click);
             // 
             // BtnConcluir
             // 
@@ -268,18 +281,6 @@
             this.Endereco.Name = "Endereco";
             this.Endereco.Width = 78;
             // 
-            // BtnCancelar
-            // 
-            this.BtnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnCancelar.Location = new System.Drawing.Point(405, 18);
-            this.BtnCancelar.Name = "BtnCancelar";
-            this.BtnCancelar.Size = new System.Drawing.Size(184, 40);
-            this.BtnCancelar.TabIndex = 2;
-            this.BtnCancelar.Text = "Cancelar impressão";
-            this.BtnCancelar.UseVisualStyleBackColor = true;
-            this.BtnCancelar.Click += new System.EventHandler(this.BtnCancelar_Click);
-            // 
             // FormularioImpressaoEntregaAgruparObjetos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -288,12 +289,14 @@
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.Name = "FormularioImpressaoEntregaAgruparObjetos";
-            this.ShowIcon = false;
             this.Text = "Formulário de agrupar itens para impressão";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormularioImpressaoEntregaAgruparObjetos_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormularioImpressaoEntregaAgruparObjetos_FormClosed);
             this.Load += new System.EventHandler(this.FormularioImpressaoEntregaAgruparObjetos_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormularioImpressaoEntregaAgruparObjetos_KeyDown);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();

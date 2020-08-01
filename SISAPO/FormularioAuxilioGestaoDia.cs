@@ -67,7 +67,7 @@ namespace SISAPO
                     {
                         dataGridView1.DataSource = listaObjetos;
                         listaObjetos.Clear(); //Retira os valores da tabela mantendo os campos
-                        Mensagens.Informa("Não foi possível carregar.\nCopie a lista e clique no botão para tentar novamente ."); 
+                        Mensagens.Informa("Não foi possível carregar.\nCopie a lista e clique no botão para tentar novamente .");
                         LblQuantidade.Text = string.Format("Quantidade: {0}", listaObjetos.Rows.Count);
                         return;
                     }
@@ -105,6 +105,7 @@ namespace SISAPO
                         string ParteLinhaCodigoObjeto = Parteslinha.Length >= 2 ? Parteslinha[1].Trim().ToUpper() : "";
                         string ParteLinhaNomeCliente = "";
                         string ParteLinhaDataLancamento = Parteslinha.Length >= 3 ? Parteslinha[2].Trim().ToUpper() : "";
+                        string DiasCorridos = "0";
                         bool validaData;
                         try
                         {
@@ -117,11 +118,7 @@ namespace SISAPO
                         }
                         if (validaData)
                         {
-                            string DiasCorridos = Convert.ToString((DateTime.Now.Date - ParteLinhaDataLancamento.ToDateTime().Date).TotalDays);
-                        }
-                        else
-                        {
-                            return dtbLista;
+                            DiasCorridos = Convert.ToString((DateTime.Now.Date - ParteLinhaDataLancamento.ToDateTime().Date).TotalDays);
                         }
 
 
@@ -145,7 +142,6 @@ namespace SISAPO
                 Mensagens.Erro(ex.Message);
                 return dtbLista;
             }
-
         }
 
         private DataTable RetornaListaObjetosNaoEntregues()
@@ -161,9 +157,6 @@ namespace SISAPO
                 using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
                 {
                     if (!DAO.TestaConexao(ClassesDiversas.Configuracoes.strConexao, TipoBanco.OleDb)) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return null; }
-                    //object valor = dao.RetornaValor("SELECT Now() AS CurrentDateTime FROM TabelaObjetosSROLocal");
-                    //object DataLancamento = dao.RetornaValor("SELECT top 1 DataLancamento AS CurrentDateTime FROM TabelaObjetosSROLocal");
-                    //object datediff = dao.RetornaValor("SELECT top 1 DATEDIFF(\"d\", DataLancamento, Now()) AS 'DiasCorridos' FROM TabelaObjetosSROLocal where CodigoObjeto = 'PY637537156BR'");
 
                     DataSet ds = dao.RetornaDataSet(string.Format("SELECT DISTINCT CodigoObjeto, CodigoLDI, NomeCliente, DataLancamento, DATEDIFF(\"d\", DataLancamento, Now()) AS DiasCorridos FROM TabelaObjetosSROLocal WHERE (ObjetoEntregue = {0})", 0));
 
@@ -177,7 +170,6 @@ namespace SISAPO
                 Mensagens.Erro(ex.Message);
                 return dtbLista;
             }
-
         }
 
         private void tabControl1_Click(object sender, EventArgs e)
@@ -223,7 +215,7 @@ namespace SISAPO
         private void BtnImprimirListaAtual_Click(object sender, EventArgs e)
         {
             if (listaObjetos.Rows.Count == 0) return;
-            
+
             if (tabControl1.SelectedIndex == 0)//"CodigoLDI"
             {
                 listaObjetos = listaObjetos.AsEnumerable().OrderBy(r => r.Field<string>("CodigoLDI")).CopyToDataTable();
@@ -248,7 +240,7 @@ namespace SISAPO
             {
                 listaObjetos = listaObjetos.AsEnumerable().OrderBy(r => r.Field<int>("DiasCorridos")).CopyToDataTable();
                 //novoCodigoSelecionados = listaObjetos.AsEnumerable().OrderBy(m => m["DiasCorridos"]).Select(c => c["CodigoObjeto"].ToString()).ToList();
-            }            
+            }
             //FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = "Aguarde enquanto carrega o relatório de impressão.";
 
             //if (Application.OpenForms["FormularioImpressaoAuxilioGestaoDia"] != null) Application.OpenForms["FormularioImpressaoAuxilioGestaoDia"].Close();

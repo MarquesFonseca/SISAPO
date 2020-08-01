@@ -792,6 +792,10 @@ namespace SISAPO
         Dictionary<string, DateTime> dicionarioCodigo_DataLancamento = new Dictionary<string, DateTime>();
         public void GeraImpressaoItensSelecionados(ModeloImpressaoListaObjetos _modeloImpressaoListaObjetos)
         {
+            dicionarioCodigo_Nome = new Dictionary<string, string>();
+            dicionarioCodigo_DataLancamento = new Dictionary<string, DateTime>();
+            List<string> novosCodigosSelecionadosOrdenados = new List<string>();
+
             if (dataGridView1.SelectedRows.Count == 0)
             {
                 Mensagens.Informa("Para impressão da lista de entrega é necessário selecionar algum objeto.");
@@ -807,12 +811,32 @@ namespace SISAPO
                 }
             }
 
-            dicionarioCodigo_Nome = new Dictionary<string, string>();
-            dicionarioCodigo_DataLancamento = new Dictionary<string, DateTime>();
-            List<string> novosCodigosSelecionadosOrdenados = new List<string>();
+            if (_modeloImpressaoListaObjetos == ModeloImpressaoListaObjetos.ModeloLDI)
+            {
+                using (FormularioImpressaoEntregaObjetosOpcoesImpressao2 formularioImpressaoEntregaObjetosOpcoesImpressao = new FormularioImpressaoEntregaObjetosOpcoesImpressao2(_modeloImpressaoListaObjetos))
+                {
+                    formularioImpressaoEntregaObjetosOpcoesImpressao.ShowDialog();
+                    if (formularioImpressaoEntregaObjetosOpcoesImpressao.Cancelou == true) return;
 
-            //pergunta se ordem alfabética
-            if (Mensagens.Pergunta("Imprimir em ordem Alfabética?\n\n'Sim' para ordem Alfabética.\n'Não' para ordem de Lançamento.") == DialogResult.Yes)//
+                    FormularioPrincipal.OpcoesImpressaoOrdenacaoPorNomeDestinatario = formularioImpressaoEntregaObjetosOpcoesImpressao.OrdenacaoPorNomeDestinatario;
+                    FormularioPrincipal.OpcoesImpressaoOrdenacaoPorDataLancamento = formularioImpressaoEntregaObjetosOpcoesImpressao.OrdenacaoPorDataLancamento;
+                    FormularioPrincipal.OpcoesImpressaoOrdenacaoPorOrdemCrescente = formularioImpressaoEntregaObjetosOpcoesImpressao.OrdenacaoPorOrdemCrescente;
+                    FormularioPrincipal.OpcoesImpressaoImprimirUmPorFolha = formularioImpressaoEntregaObjetosOpcoesImpressao.ImprimirUmPorFolha;
+                    FormularioPrincipal.OpcoesImpressaoImprimirVariosPorFolha = formularioImpressaoEntregaObjetosOpcoesImpressao.ImprimirVariosPorFolha;
+                }
+            }
+            if (_modeloImpressaoListaObjetos == ModeloImpressaoListaObjetos.ModeloComum)
+            {
+                //não vai mostrar a tela de opções
+                FormularioPrincipal.OpcoesImpressaoOrdenacaoPorNomeDestinatario = true;
+                FormularioPrincipal.OpcoesImpressaoOrdenacaoPorDataLancamento = false;
+                FormularioPrincipal.OpcoesImpressaoOrdenacaoPorOrdemCrescente = true;
+                FormularioPrincipal.OpcoesImpressaoImprimirUmPorFolha = false;
+                FormularioPrincipal.OpcoesImpressaoImprimirVariosPorFolha = true; ;
+            }
+
+            //Ordem alfabética
+            if (FormularioPrincipal.OpcoesImpressaoOrdenacaoPorNomeDestinatario)
             {
                 for (int i = this.dataGridView1.SelectedRows.Count - 1; i >= 0; i--)
                 {
@@ -823,12 +847,17 @@ namespace SISAPO
                     if (!existe)
                         dicionarioCodigo_Nome.Add(this.dataGridView1.SelectedRows[i].Cells["codigoObjetoDataGridViewTextBoxColumn"].Value.ToString(), this.dataGridView1.SelectedRows[i].Cells["nomeClienteDataGridViewTextBoxColumn"].Value.ToString());
                 }
-
-                novosCodigosSelecionadosOrdenados = dicionarioCodigo_Nome.AsEnumerable().OrderBy(t => t.Value).Select(c => c.Key).ToList();
+                if (FormularioPrincipal.OpcoesImpressaoOrdenacaoPorOrdemCrescente)
+                    novosCodigosSelecionadosOrdenados = dicionarioCodigo_Nome.AsEnumerable().OrderBy(t => t.Value).Select(c => c.Key).ToList();
+                else
+                    novosCodigosSelecionadosOrdenados = dicionarioCodigo_Nome.AsEnumerable().OrderByDescending(t => t.Value).Select(c => c.Key).ToList();
             }
-            else
+
+
+
+            //Ordem de Lançamento
+            if (FormularioPrincipal.OpcoesImpressaoOrdenacaoPorDataLancamento)
             {
-                //clicou em não. Então ordem de Lançamento
                 for (int i = this.dataGridView1.SelectedRows.Count - 1; i >= 0; i--)
                 {
                     //codigoObjetoDataGridViewTextBoxColumn
@@ -838,9 +867,12 @@ namespace SISAPO
                     if (!existe)
                         dicionarioCodigo_DataLancamento.Add(this.dataGridView1.SelectedRows[i].Cells["codigoObjetoDataGridViewTextBoxColumn"].Value.ToString(), this.dataGridView1.SelectedRows[i].Cells["DataLancamento"].Value.ToDateTime());
                 }
-
-                novosCodigosSelecionadosOrdenados = dicionarioCodigo_DataLancamento.AsEnumerable().OrderBy(t => t.Value).Select(c => c.Key).ToList();
+                if (FormularioPrincipal.OpcoesImpressaoOrdenacaoPorOrdemCrescente)
+                    novosCodigosSelecionadosOrdenados = dicionarioCodigo_DataLancamento.AsEnumerable().OrderBy(t => t.Value).Select(c => c.Key).ToList();
+                else
+                    novosCodigosSelecionadosOrdenados = dicionarioCodigo_DataLancamento.AsEnumerable().OrderByDescending(t => t.Value).Select(c => c.Key).ToList();
             }
+
 
             if (_modeloImpressaoListaObjetos == ModeloImpressaoListaObjetos.ModeloComum)
             {
@@ -852,7 +884,7 @@ namespace SISAPO
             }
             if (_modeloImpressaoListaObjetos == ModeloImpressaoListaObjetos.ModeloLDI)
             {
-                FormularioImpressaoEntregaObjetosModelo2 formularioImpressaoEntregaObjetos = new FormularioImpressaoEntregaObjetosModelo2(novosCodigosSelecionadosOrdenados);
+                FormularioImpressaoEntregaObjetosModelo2 formularioImpressaoEntregaObjetos = new FormularioImpressaoEntregaObjetosModelo2(novosCodigosSelecionadosOrdenados, FormularioPrincipal.OpcoesImpressaoImprimirUmPorFolha, FormularioPrincipal.OpcoesImpressaoImprimirVariosPorFolha);
                 //formularioImpressaoEntregaObjetos.MdiParent = MdiParent;
                 //formularioImpressaoEntregaObjetos.Show();
                 //formularioImpressaoEntregaObjetos.WindowState = FormWindowState.Maximized;
@@ -870,12 +902,8 @@ namespace SISAPO
 
             string objetoCaixaPostalSelecionado = "";
             string objetoEntregueSelecionado = "";
-            //bool ExibirItensEntregues = FormularioPrincipal.RetornaComponentesFormularioPrincipal().ExibirItensJaEntreguesToolStripMenuItem.Checked;
-            ////ExibirItensEntregues = true;//faz com que sempre imprima com os entregues... alterado dia 09/07/2019 por achar necessário...
-            //bool IncluirItensCaixaPostal = FormularioPrincipal.RetornaComponentesFormularioPrincipal().ExibirCaixaPostalPesquisa_toolStripMenuItem.Checked;
 
             bool IncluirItensEntregues = _incluirItensEntregues;
-            //ExibirItensEntregues = true;//faz com que sempre imprima com os entregues... alterado dia 09/07/2019 por achar necessário...
             bool IncluirItensCaixaPostal = _incluirItensCaixaPostal;
 
 

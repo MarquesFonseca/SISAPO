@@ -35,9 +35,7 @@ namespace SISAPO
             {
                 this.Close();
             }
-        }
-
-        
+        }        
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
@@ -52,8 +50,28 @@ namespace SISAPO
             this.Close();
         }
 
-        
+        private void checkBoxIncluirItensJaEntregues_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxIncluirItensJaEntregues.Checked)
+            {
+                checkBoxIncluirItensJaEntregues.ForeColor = Color.Red;
+            }
+            else
+            {
+                checkBoxIncluirItensJaEntregues.ForeColor = System.Drawing.SystemColors.Highlight;
+            }
+        }
 
-
+        private void checkBoxIncluirItensCaixaPostal_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxIncluirItensCaixaPostal.Checked)
+            {
+                checkBoxIncluirItensCaixaPostal.ForeColor = Color.Red;
+            }
+            else
+            {
+                checkBoxIncluirItensCaixaPostal.ForeColor = System.Drawing.SystemColors.Highlight;
+            }
+        }
     }
 }

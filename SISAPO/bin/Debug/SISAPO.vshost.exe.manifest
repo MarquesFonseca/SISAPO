@@ -175,14 +175,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SISAPO.exe" size="8279552">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SISAPO.exe" size="9029632">
       <assemblyIdentity name="SISAPO" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>IadsVcuIGSS0glNl+su8THcZsb8=</dsig:DigestValue>
+        <dsig:DigestValue>xbANmQbOBd+C2ndwvOeCYnq+cmg=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -252,13 +252,13 @@
       <dsig:DigestValue>THOgaioJDIzeQW32JfoQEKQTIek=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="GESTAO DO DIA.txt" size="1174">
+  <file name="GESTAO DO DIA.txt" size="1272">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>7iIdcef/VcXhPmGKTfbVPbqjP1E=</dsig:DigestValue>
+      <dsig:DigestValue>PESZSbQKBQdNYioGwmo8CSFYAOU=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Ico.ico" size="370070">
@@ -351,6 +351,15 @@
       <dsig:DigestValue>tTZd0Ja6RJOmrIUnIYZxk1hYnfs=</dsig:DigestValue>
     </hash>
   </file>
+  <file name="LANÇAMENTOS LDI.txt" size="95347">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>ZH76Wm1fCRyR0wJR94bYtvXy3Jw=</dsig:DigestValue>
+    </hash>
+  </file>
   <file name="Resources\icons8-colar-26.png" size="572">
     <hash>
       <dsig:Transforms>
@@ -387,13 +396,13 @@
       <dsig:DigestValue>/S+hvmDvp/iVaY6KhDLmBQXet+A=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="SISAPO.exe.config" size="2629">
+  <file name="SISAPO.exe.config" size="2652">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>3kzR7HYEQD7taJtHwsNnpZlwmh8=</dsig:DigestValue>
+      <dsig:DigestValue>rz4wothoYpe+TEoCyY4iEDhvBsA=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

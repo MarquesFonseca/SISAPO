@@ -229,6 +229,12 @@
     <Compile Include="FormularioImpressaoEntregaObjetosModelo1.Designer.cs">
       <DependentUpon>FormularioImpressaoEntregaObjetosModelo1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormularioImpressaoEntregaObjetosOpcoesImpressao2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormularioImpressaoEntregaObjetosOpcoesImpressao2.Designer.cs">
+      <DependentUpon>FormularioImpressaoEntregaObjetosOpcoesImpressao2.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormularioImpressaoEntregaObjetosOpcoesImpressao.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -363,6 +369,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormularioImpressaoEntregaObjetosModelo1.resx">
       <DependentUpon>FormularioImpressaoEntregaObjetosModelo1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormularioImpressaoEntregaObjetosOpcoesImpressao2.resx">
+      <DependentUpon>FormularioImpressaoEntregaObjetosOpcoesImpressao2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormularioImpressaoEntregaObjetosOpcoesImpressao.resx">
       <DependentUpon>FormularioImpressaoEntregaObjetosOpcoesImpressao.cs</DependentUpon>
@@ -508,6 +517,7 @@
     <None Include="Resources\LogoCorreios.jpg" />
     <None Include="Resources\AtualizarListaObjetos.png" />
     <None Include="Resources\CadastroObjetos.png" />
+    <None Include="Tipos_Postais.ods" />
     <None Include="Resources\VisualizarListaObjetos.png" />
     <None Include="Resources\if_BT_printer_905556.png" />
   </ItemGroup>

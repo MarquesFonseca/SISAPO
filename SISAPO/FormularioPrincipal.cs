@@ -15,6 +15,14 @@ namespace SISAPO
         public static string dataSource = string.Empty;
         public static bool AtualizandoNovosObjetos = false;
 
+        public static bool OpcoesImpressaoIncluirItensJaEntregues = false;
+        public static bool OpcoesImpressaoIncluirItensCaixaPostal = false;
+        public static bool OpcoesImpressaoOrdenacaoPorNomeDestinatario = false;
+        public static bool OpcoesImpressaoOrdenacaoPorDataLancamento = false;
+        public static bool OpcoesImpressaoOrdenacaoPorOrdemCrescente = true;
+        public static bool OpcoesImpressaoImprimirUmPorFolha = false;
+        public static bool OpcoesImpressaoImprimirVariosPorFolha = false;
+
         public FormularioPrincipal()
         {
             InitializeComponent();
@@ -299,7 +307,7 @@ namespace SISAPO
                 using (DAO dao = new DAO(TipoBanco.OleDb, Configuracoes.strConexao))
                 {
                     if (!dao.TestaConexao()) { this.toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
-
+                    
                     object dataHoraUltimaAtualizacaoImportacaoRetornado = dao.RetornaValor("SELECT top 1 DataHoraUltimaAtualizacaoImportacao FROM TabelaConfiguracoesSistema");
                     toolStripStatusLabelDataHoraUltimaAtualizacaoImportacao.Text = string.Format("Última atualização dos dados: {0:dd/MM/yyyy HH:mm}       ", dataHoraUltimaAtualizacaoImportacaoRetornado);
                 }
@@ -671,7 +679,7 @@ namespace SISAPO
 
         public void imprimirListaDeEntregaParaConsultaSelecionadaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void imprimirListaDeEntregaParaConsultaSelecionadaToolStripMenuItem1_Click(object sender, EventArgs e)

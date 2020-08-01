@@ -1064,6 +1064,7 @@ public class DAO : IDisposable
             }
             finally
             {
+                //Con.Close();
                 Con.Dispose();
                 Cmd.Dispose();
                 Adpt.Dispose();

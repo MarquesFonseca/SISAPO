@@ -15,6 +15,7 @@ namespace SISAPO
         private DataView DadosAgrupadosDataView = new DataView();
         private List<string> CodigoSelecionadosEntrada = new List<string>();
         public bool ImpressaoCancelada = false;
+        public bool ClicouNoConfirmar = false;
 
         public FormularioImpressaoEntregaAgruparObjetos(List<string> _codigoSelecionados)
         {
@@ -162,19 +163,37 @@ namespace SISAPO
         private void BtnConcluir_Click(object sender, EventArgs e)
         {
             this.ImpressaoCancelada = false;
+            ClicouNoConfirmar = true;
             this.Close();
-        }
-
-        private void FormularioImpressaoEntregaAgruparObjetos_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            DadosAgrupadosDataView.RowFilter = string.Empty;
-            DadosAgrupados = DadosAgrupadosDataView.ToTable();
         }
 
         private void BtnCancelar_Click(object sender, EventArgs e)
         {
             this.ImpressaoCancelada = true;
             this.Close();
+        }
+
+        private void FormularioImpressaoEntregaAgruparObjetos_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            DadosAgrupadosDataView.RowFilter = string.Empty;
+            DadosAgrupados = DadosAgrupadosDataView.ToTable();
+
+            if (ClicouNoConfirmar)
+                ImpressaoCancelada = false;
+            else
+                ImpressaoCancelada = true;
+        }
+
+        private void FormularioImpressaoEntregaAgruparObjetos_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                BtnCancelar_Click(sender, e);
+            }
+            if (e.KeyCode == Keys.Enter)
+            {
+                BtnConcluir_Click(sender, e);
+            }
         }
     }
 }

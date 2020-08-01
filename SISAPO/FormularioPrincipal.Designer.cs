@@ -37,6 +37,8 @@ namespace SISAPO
             this.visualizarListaDeObjetosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.imprimirListaDeEntregaParaConsultaSelecionadaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.modeloLDIToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.modeloComumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imprimirListaDeEntregaParaConsultaSelecionadaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.cadastrarNovosObjetosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -90,8 +92,6 @@ namespace SISAPO
             this.toolStripStatusLabelDataHoraUltimaAtualizacaoImportacao = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabelDataHora = new System.Windows.Forms.ToolStripStatusLabel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.modeloLDIToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.modeloComumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -173,12 +173,29 @@ namespace SISAPO
             this.imprimirListaDeEntregaParaConsultaSelecionadaToolStripMenuItem.Text = "Imprimir lista de entrega (Selecionados)";
             this.imprimirListaDeEntregaParaConsultaSelecionadaToolStripMenuItem.Click += new System.EventHandler(this.imprimirListaDeEntregaParaConsultaSelecionadaToolStripMenuItem_Click);
             // 
+            // modeloLDIToolStripMenuItem
+            // 
+            this.modeloLDIToolStripMenuItem.Image = global::SISAPO.Properties.Resources.if_BT_printer_905556;
+            this.modeloLDIToolStripMenuItem.Name = "modeloLDIToolStripMenuItem";
+            this.modeloLDIToolStripMenuItem.Size = new System.Drawing.Size(211, 22);
+            this.modeloLDIToolStripMenuItem.Text = "Imprimir Modelo LDI";
+            this.modeloLDIToolStripMenuItem.Click += new System.EventHandler(this.modeloLDIToolStripMenuItem_Click);
+            // 
+            // modeloComumToolStripMenuItem
+            // 
+            this.modeloComumToolStripMenuItem.Image = global::SISAPO.Properties.Resources.if_BT_printer_905556;
+            this.modeloComumToolStripMenuItem.Name = "modeloComumToolStripMenuItem";
+            this.modeloComumToolStripMenuItem.Size = new System.Drawing.Size(211, 22);
+            this.modeloComumToolStripMenuItem.Text = "Imprimir Modelo Comum";
+            this.modeloComumToolStripMenuItem.Click += new System.EventHandler(this.modeloComumToolStripMenuItem_Click);
+            // 
             // imprimirListaDeEntregaParaConsultaSelecionadaToolStripMenuItem1
             // 
             this.imprimirListaDeEntregaParaConsultaSelecionadaToolStripMenuItem1.Image = global::SISAPO.Properties.Resources.if_BT_printer_905556;
             this.imprimirListaDeEntregaParaConsultaSelecionadaToolStripMenuItem1.Name = "imprimirListaDeEntregaParaConsultaSelecionadaToolStripMenuItem1";
             this.imprimirListaDeEntregaParaConsultaSelecionadaToolStripMenuItem1.Size = new System.Drawing.Size(459, 22);
             this.imprimirListaDeEntregaParaConsultaSelecionadaToolStripMenuItem1.Text = "Imprimir lista de entrega lançados hoje [quinta-feira, 11 de julho de 2019]";
+            this.imprimirListaDeEntregaParaConsultaSelecionadaToolStripMenuItem1.Visible = false;
             this.imprimirListaDeEntregaParaConsultaSelecionadaToolStripMenuItem1.Click += new System.EventHandler(this.imprimirListaDeEntregaParaConsultaSelecionadaToolStripMenuItem1_Click);
             // 
             // toolStripSeparator6
@@ -612,22 +629,6 @@ namespace SISAPO
             this.panel1.Size = new System.Drawing.Size(739, 30);
             this.panel1.TabIndex = 5;
             // 
-            // modeloLDIToolStripMenuItem
-            // 
-            this.modeloLDIToolStripMenuItem.Image = global::SISAPO.Properties.Resources.if_BT_printer_905556;
-            this.modeloLDIToolStripMenuItem.Name = "modeloLDIToolStripMenuItem";
-            this.modeloLDIToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
-            this.modeloLDIToolStripMenuItem.Text = "Imprimir Modelo LDI";
-            this.modeloLDIToolStripMenuItem.Click += new System.EventHandler(this.modeloLDIToolStripMenuItem_Click);
-            // 
-            // modeloComumToolStripMenuItem
-            // 
-            this.modeloComumToolStripMenuItem.Image = global::SISAPO.Properties.Resources.if_BT_printer_905556;
-            this.modeloComumToolStripMenuItem.Name = "modeloComumToolStripMenuItem";
-            this.modeloComumToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
-            this.modeloComumToolStripMenuItem.Text = "Imprimir Modelo Comum";
-            this.modeloComumToolStripMenuItem.Click += new System.EventHandler(this.modeloComumToolStripMenuItem_Click);
-            // 
             // FormularioPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -693,7 +694,7 @@ namespace SISAPO
         public System.Windows.Forms.ToolStripMenuItem ExibirItensJaEntreguesToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
-        private System.Windows.Forms.Timer timerAtualizacaoNovosRegistros;
+        public System.Windows.Forms.Timer timerAtualizacaoNovosRegistros;
         private System.Windows.Forms.ToolStripMenuItem imprimirListaDeEntregaParaConsultaSelecionadaToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem manterConsultaSempreAtualizadaToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem PermiriBuscarPorLDINaPesquisaToolStripMenuItem;

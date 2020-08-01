@@ -75,27 +75,31 @@
             // 
             // checkBoxIncluirItensCaixaPostal
             // 
+            this.checkBoxIncluirItensCaixaPostal.Appearance = System.Windows.Forms.Appearance.Button;
             this.checkBoxIncluirItensCaixaPostal.AutoSize = true;
-            this.checkBoxIncluirItensCaixaPostal.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.checkBoxIncluirItensCaixaPostal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBoxIncluirItensCaixaPostal.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBoxIncluirItensCaixaPostal.Location = new System.Drawing.Point(86, 96);
             this.checkBoxIncluirItensCaixaPostal.Name = "checkBoxIncluirItensCaixaPostal";
-            this.checkBoxIncluirItensCaixaPostal.Size = new System.Drawing.Size(367, 34);
+            this.checkBoxIncluirItensCaixaPostal.Size = new System.Drawing.Size(352, 39);
             this.checkBoxIncluirItensCaixaPostal.TabIndex = 0;
             this.checkBoxIncluirItensCaixaPostal.Text = "Incluir itens de caixa postal?";
             this.checkBoxIncluirItensCaixaPostal.UseVisualStyleBackColor = true;
+            this.checkBoxIncluirItensCaixaPostal.CheckedChanged += new System.EventHandler(this.checkBoxIncluirItensCaixaPostal_CheckedChanged);
             // 
             // checkBoxIncluirItensJaEntregues
             // 
+            this.checkBoxIncluirItensJaEntregues.Appearance = System.Windows.Forms.Appearance.Button;
             this.checkBoxIncluirItensJaEntregues.AutoSize = true;
-            this.checkBoxIncluirItensJaEntregues.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.checkBoxIncluirItensJaEntregues.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBoxIncluirItensJaEntregues.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBoxIncluirItensJaEntregues.Location = new System.Drawing.Point(86, 33);
             this.checkBoxIncluirItensJaEntregues.Name = "checkBoxIncluirItensJaEntregues";
-            this.checkBoxIncluirItensJaEntregues.Size = new System.Drawing.Size(337, 34);
+            this.checkBoxIncluirItensJaEntregues.Size = new System.Drawing.Size(322, 39);
             this.checkBoxIncluirItensJaEntregues.TabIndex = 0;
             this.checkBoxIncluirItensJaEntregues.Text = "Incluir itens já entregues?";
             this.checkBoxIncluirItensJaEntregues.UseVisualStyleBackColor = true;
+            this.checkBoxIncluirItensJaEntregues.CheckedChanged += new System.EventHandler(this.checkBoxIncluirItensJaEntregues_CheckedChanged);
             // 
             // panel2
             // 

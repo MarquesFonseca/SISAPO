@@ -6,3 +6,4 @@ C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\GeraChaveSi
 C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\GeraChaveSisapo\obj\x86\Debug\GeraChaveSisapo.csproj.GenerateResource.Cache
 C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\GeraChaveSisapo\obj\x86\Debug\GeraChaveSisapo.exe
 C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\GeraChaveSisapo\obj\x86\Debug\GeraChaveSisapo.pdb
+C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\GeraChaveSisapo\obj\x86\Debug\GeraChaveSisapo.csprojResolveAssemblyReference.cache

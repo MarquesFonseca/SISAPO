@@ -26,7 +26,7 @@ namespace SISAPO
             _formularioImpressaoEntregaAgruparObjetos.ShowDialog();
             if (_formularioImpressaoEntregaAgruparObjetos.ImpressaoCancelada)
             {
-                BeginInvoke(new InvokeDelegate(Fecha_Form));
+                //BeginInvoke(new InvokeDelegate(Fecha_Form));
                 return;
             }
             System.Data.DataColumn newColumn = new System.Data.DataColumn("Impresso", typeof(System.Int32));
@@ -34,7 +34,7 @@ namespace SISAPO
             _formularioImpressaoEntregaAgruparObjetos.DadosAgrupados.Columns.Add(newColumn);
 
             CodigosSelecionadoAgrupados = _formularioImpressaoEntregaAgruparObjetos.DadosAgrupados;
-            //CodigosSelecionadoAgrupados.DefaultView.Sort = "NomeCliente";
+            CodigosSelecionadoAgrupados.DefaultView.Sort = "NomeCliente";
             CodigosSelecionadoAgrupados = CodigosSelecionadoAgrupados.DefaultView.ToTable();
 
             string Html = RetornaHtml().ToString();
@@ -56,7 +56,7 @@ namespace SISAPO
             _formularioImpressaoEntregaAgruparObjetos.DadosAgrupados.Columns.Add(newColumn);
 
             CodigosSelecionadoAgrupados = _formularioImpressaoEntregaAgruparObjetos.DadosAgrupados;
-            CodigosSelecionadoAgrupados.DefaultView.Sort = "NomeCliente";
+            //CodigosSelecionadoAgrupados.DefaultView.Sort = "NomeCliente";
             CodigosSelecionadoAgrupados = CodigosSelecionadoAgrupados.DefaultView.ToTable();
 
             string Html = RetornaHtml().ToString();
@@ -245,7 +245,7 @@ namespace SISAPO
                         .Where(G => G["Grupo"].ToString() == itemCodigoSelecionado["CodigoObjeto"].ToString() && G["Impresso"].ToInt() == 0)
                         .Select(C => C["CodigoObjeto"]).ToList();
 
-                    DataRow dr = dao.RetornaDataRow("SELECT Codigo, CodigoObjeto, CodigoLdi, NomeCliente, DataLancamento, Atualizado, Situacao, DataModificacao FROM TabelaObjetosSROLocal WHERE (CodigoObjeto IN ('" + itemCodigoSelecionado["CodigoObjeto"] + "')) ORDER BY NomeCliente");
+                    DataRow dr = dao.RetornaDataRow("SELECT Codigo, CodigoObjeto, CodigoLdi, NomeCliente, DataLancamento, Atualizado, Situacao, DataModificacao FROM TabelaObjetosSROLocal WHERE (CodigoObjeto IN ('" + itemCodigoSelecionado["CodigoObjeto"] + "'))");
 
                     Html.AppendLine("	<table align=\"Center\" width=\"750\" style=\"border:1px solid #000000;\"> ");
                     Html.AppendLine("	<tbody>		");
@@ -262,7 +262,7 @@ namespace SISAPO
                             Html.AppendLine("		</tr>");
 
                             Html.AppendLine("		<tr>");
-                            Html.AppendLine("			<td colspan=\"2\" align=\"Left\" bgcolor=\"#F3F3F3\"><font size=\"4\"><b> " + dr["CodigoObjeto"].ToString().Trim() + " - " + dr["NomeCliente"].ToString().Trim() + "</b></font></td>");
+                            Html.AppendLine("			<td colspan=\"2\" align=\"Left\" bgcolor=\"#F3F3F3\"><div style=\"font-size: 16px; float: left; margin-top: 1px; border: 0px solid rgb(252, 0, 0); width: 46em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;\"><b> " + dr["CodigoObjeto"].ToString().Trim() + " - " + dr["NomeCliente"].ToString().Trim() + "</b></div></td>");
                             Html.AppendLine("		</tr>		");
                         }
                         else // já entregue
@@ -275,7 +275,7 @@ namespace SISAPO
                             Html.AppendLine("		</tr>");
 
                             Html.AppendLine("		<tr>");
-                            Html.AppendLine("			<td colspan=\"2\" align=\"Left\" bgcolor=\"#F3F3F3\"><font size=\"4\"><b> " + dr["CodigoObjeto"].ToString().Trim() + " - " + dr["NomeCliente"].ToString().Trim() + "</b></font></td>");
+                            Html.AppendLine("			<td colspan=\"2\" align=\"Left\" bgcolor=\"#F3F3F3\"><div style=\"font-size: 16px; float: left; margin-top: 1px; border: 0px solid rgb(252, 0, 0); width: 46em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;\"><b> " + dr["CodigoObjeto"].ToString().Trim() + " - " + dr["NomeCliente"].ToString().Trim() + "</b></div></td>");
                             Html.AppendLine("		</tr>		");
                         }                        
                         #endregion                        
@@ -295,7 +295,7 @@ namespace SISAPO
                             if (drGrupo["DataModificacao"].ToString().Trim() == "") // não entregue
                             {
                                 Html.AppendLine("		<tr>");
-                                Html.AppendLine("			<td colspan=\"2\" align=\"Left\" bgcolor=\"#F3F3F3\"><font size=\"4\"><b> " + drGrupo["CodigoObjeto"].ToString().Trim() + " - " + drGrupo["NomeCliente"].ToString().Trim() + "</b></font></td>");
+                                Html.AppendLine("			<td colspan=\"2\" align=\"Left\" bgcolor=\"#F3F3F3\"><div style=\"font-size: 16px; float: left; margin-top: 1px; border: 0px solid rgb(252, 0, 0); width: 46em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;\"><b> " + drGrupo["CodigoObjeto"].ToString().Trim() + " - " + drGrupo["NomeCliente"].ToString().Trim() + "</b></div></td>");
                                 Html.AppendLine("		</tr>		");
                             }
                             #endregion
@@ -355,7 +355,7 @@ namespace SISAPO
                         Html.AppendLine("		</tr>");
 
                         Html.AppendLine("		<tr>");
-                        Html.AppendLine("			<td colspan=\"2\" align=\"left\" bgcolor=\"#F3F3F3\"><font size=\"1\">Obs.: No momento da impressão desta lista o objeto atual já não estava 'AGUARDANDO RETIRADA' </font></td>");
+                        Html.AppendLine("			<td colspan=\"2\" align=\"left\" bgcolor=\"#F3F3F3\"><font size=\"1\">Obs.: No momento da impressão desta lista o objeto atual se encontra <u>'" + dr["Situacao"].ToString() + "'</u> </font></td>");
                         Html.AppendLine("		</tr>");
                     }
                     Html.AppendLine("	</tbody>");

@@ -45,3 +45,5 @@ C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\obj\
 C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\obj\x86\Debug\SISAPO.exe
 C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\obj\x86\Debug\SISAPO.pdb
 C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\bin\Debug\SISAPO.pdb
+C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\obj\x86\Debug\SISAPO.csprojResolveAssemblyReference.cache
+C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\obj\x86\Debug\SISAPO.FormularioImpressaoEntregaObjetosOpcoesImpressao2.resources
