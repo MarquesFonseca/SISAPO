@@ -21,6 +21,7 @@ namespace SISAPO
         {
             this.tabelaConfiguracoesSistemaTableAdapter.Connection.ConnectionString = ClassesDiversas.Configuracoes.strConexao;
             this.tabelaConfiguracoesSistemaTableAdapter.Fill(this.dataSetConfiguracoes.TabelaConfiguracoesSistema);
+            comboBoxSupEst.Text = ((DataRowView)bindingSourceTabelaConfiguracoesSistema.Current).Row["SuperintendenciaEstadual"].ToString().Replace("SE/", "");
             checkBoxExibirObjetosEmCaixaPostal.Checked = FormularioPrincipal.RetornaComponentesFormularioPrincipal().ExibirCaixaPostalPesquisa_toolStripMenuItem.Checked;
             checkBoxExibirItensJaEntregues.Checked = FormularioPrincipal.RetornaComponentesFormularioPrincipal().ExibirItensJaEntreguesToolStripMenuItem.Checked;
             if (Configuracoes.TipoAmbiente == TipoAmbiente.Desenvolvimento) BtnMarcarTodosAtualizados.Visible = true;
@@ -92,12 +93,19 @@ namespace SISAPO
                 using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
                 {
                     if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
-                    dao.ExecutaSQL(string.Format("UPDATE TabelaConfiguracoesSistema SET NomeAgenciaLocal = @NomeAgenciaLocal, EnderecoAgenciaLocal = @EnderecoAgenciaLocal, SuperintendenciaEstadual = @SuperintendenciaEstadual, CepUnidade = @CepUnidade Where Codigo = @Codigo"), new List<Parametros>(){
+                    dao.ExecutaSQL(string.Format("UPDATE TabelaConfiguracoesSistema SET NomeAgenciaLocal = @NomeAgenciaLocal, EnderecoAgenciaLocal = @EnderecoAgenciaLocal, SuperintendenciaEstadual = @SuperintendenciaEstadual, CepUnidade = @CepUnidade, CidadeAgenciaLocal = @CidadeAgenciaLocal, UFAgenciaLocal = @UFAgenciaLocal, TelefoneAgenciaLocal = @TelefoneAgenciaLocal, HorarioFuncionamentoAgenciaLocal = @HorarioFuncionamentoAgenciaLocal Where Codigo = @Codigo"), new List<Parametros>(){
                                             new Parametros("@NomeAgenciaLocal", TipoCampo.Text, txtNomeAgencia.Text),
                                             new Parametros("@EnderecoAgenciaLocal", TipoCampo.Text, txtEnderecoAgencia.Text),
-                                            new Parametros("@SuperintendenciaEstadual", TipoCampo.Text, string.Format("SE/{0}", comboBoxSupEst.Text)),
-                                            new Parametros("@CepUnidade", TipoCampo.Text, textBox2.Text),
+                                            new Parametros("@SuperintendenciaEstadual", TipoCampo.Text, string.Format("{0}", comboBoxSupEst.Text)),
+                                            new Parametros("@CepUnidade", TipoCampo.Text, txtCepUnidade.Text),
+
+                                            new Parametros("@CidadeAgenciaLocal", TipoCampo.Text, txtCidadeAgenciaLocal.Text),
+                                            new Parametros("@UFAgenciaLocal", TipoCampo.Text, comboBoxUFAgenciaLocal.Text),
+                                            new Parametros("@TelefoneAgenciaLocal", TipoCampo.Text, txtTelefoneAgenciaLocal.Text),
+                                            new Parametros("@HorarioFuncionamentoAgenciaLocal", TipoCampo.Text, txtHorarioFuncionamentoAgenciaLocal.Text),
+
                                             new Parametros("@Codigo", TipoCampo.Int, 2)});
+
                 }
                 Mensagens.Informa("Gravado com sucesso!", MessageBoxIcon.Information, MessageBoxButtons.OK);
             }

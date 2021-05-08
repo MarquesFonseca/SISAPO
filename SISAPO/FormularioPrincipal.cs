@@ -14,6 +14,7 @@ namespace SISAPO
     {
         public static string dataSource = string.Empty;
         public static bool AtualizandoNovosObjetos = false;
+        public static DataTable TiposPostais = null;
 
         public static bool OpcoesImpressaoIncluirItensJaEntregues = false;
         public static bool OpcoesImpressaoIncluirItensCaixaPostal = false;
@@ -22,10 +23,15 @@ namespace SISAPO
         public static bool OpcoesImpressaoOrdenacaoPorOrdemCrescente = true;
         public static bool OpcoesImpressaoImprimirUmPorFolha = false;
         public static bool OpcoesImpressaoImprimirVariosPorFolha = false;
+        
 
         public FormularioPrincipal()
         {
             InitializeComponent();
+
+            //TiposPostais = Configuracoes.RetornaTiposPostaisPlan();
+            TiposPostais = Configuracoes.RetornaTiposPostais();
+
             this.imprimirListaDeEntregaParaConsultaSelecionadaToolStripMenuItem1.Text = string.Format("Imprimir lista de entrega lançados hoje [{0}]", DateTime.Now.GetDateTimeFormats()[14]);
             dataSource = new System.Data.OleDb.OleDbConnection(ClassesDiversas.Configuracoes.strConexao).DataSource.ToString();
 
@@ -41,7 +47,7 @@ namespace SISAPO
 
             //timerAtualizacaoNovosRegistros.Interval = 600000; //10 mimutos
             timerAtualizacaoNovosRegistros.Interval = 1000;
-            timerAtualizacaoNovosRegistros.Enabled = true;
+            timerAtualizacaoNovosRegistros.Enabled = false;
             timerAtualizacaoNovosRegistros.Start();
         }
 
@@ -387,6 +393,50 @@ namespace SISAPO
             }
         }
 
+        private void TiposPostaisToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            bool estaAberto = false;
+            foreach (Form item in MdiChildren)
+            {
+                if (item.Name == "FormularioTiposPostais")
+                {
+                    estaAberto = true;
+                    item.Activate();
+                    break;
+                }
+            }
+            if (estaAberto) return;
+
+            FormularioTiposPostais formularioTiposPostais = new FormularioTiposPostais();
+            formularioTiposPostais.MdiParent = this;
+            formularioTiposPostais.Show();
+            //formularioSRORastreamentoUnificado.WindowState = FormWindowState.Normal;
+            formularioTiposPostais.WindowState = FormWindowState.Maximized;
+            formularioTiposPostais.Activate();
+        }
+        
+        public void cadastrarNovosTiposPostaisToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            bool estaAberto = false;
+            foreach (Form item in MdiChildren)
+            {
+                if (item.Name == "FormularioCadastroTiposPostais")
+                {
+                    estaAberto = true;
+                    item.Activate();
+                    break;
+                }
+            }
+            if (estaAberto) return;
+
+            FormularioCadastroTiposPostais formularioCadastroTiposPostais = new FormularioCadastroTiposPostais();
+            formularioCadastroTiposPostais.MdiParent = this;
+            formularioCadastroTiposPostais.Show();
+            //formularioSRORastreamentoUnificado.WindowState = FormWindowState.Normal;
+            formularioCadastroTiposPostais.WindowState = FormWindowState.Maximized;
+            formularioCadastroTiposPostais.Activate();
+        }
+
         private void atualizarNovosObjetosPostadosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (FormularioPrincipal.RetornaComponentesFormularioPrincipal().habilitarCapturaDeDadosDePostagemToolStripMenuItem.Checked)
@@ -499,6 +549,7 @@ namespace SISAPO
         {
             if (AtualizandoNovosObjetos == true) return;
             AtualizandoNovosObjetos = true;
+            BuscaNovoStatusQuantidadeNaoAtualizados();
             using (DAO dao = new DAO(TipoBanco.OleDb, Configuracoes.strConexao))
             {
                 if (!dao.TestaConexao()) { this.toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
@@ -707,7 +758,7 @@ namespace SISAPO
 
             foreach (Form item in MdiChildren)
             {
-                if (item.Name == "FormularioAuxilioGestaoDia")
+                if (item.Name == "FormularioAuxilioGestaoDiaNovo")
                 {
                     item.WindowState = FormWindowState.Maximized;
                     item.Activate();
@@ -715,7 +766,7 @@ namespace SISAPO
                 }
             }
 
-            FormularioAuxilioGestaoDia formularioAuxilioGestaoDia = new FormularioAuxilioGestaoDia();
+            FormularioAuxilioGestaoDiaNovo formularioAuxilioGestaoDia = new FormularioAuxilioGestaoDiaNovo();
             formularioAuxilioGestaoDia.MdiParent = this;
             formularioAuxilioGestaoDia.Show();
             formularioAuxilioGestaoDia.WindowState = FormWindowState.Normal;
@@ -1025,6 +1076,36 @@ namespace SISAPO
                     {
                         formularioConsulta = (FormularioConsulta)item;
                         formularioConsulta.GeraImpressaoItensSelecionados(FormularioConsulta.ModeloImpressaoListaObjetos.ModeloComum);
+                        break;
+                    }
+                }
+            }
+        }
+
+        public void imprimirAvisosDeChegadaSelecionadosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Application.OpenForms.OfType<FormularioConsulta>().Count() == 0)// se formulario Consulta estiver fechado.
+            {
+                //pergunta se deseja abrir o formulario consulta..
+                if (Mensagens.Pergunta("Para impressão da lista de entrega é necessário filtrar uma consulta e voltar a esta opção.\nDeseja abrir a tela de consulta agora?") == DialogResult.Yes)//
+                {
+                    VisualizarListaObjetos_toolStripButton_Click(sender, e);
+                }
+                else
+                {
+                    //clicou em não. fecha
+                    return;
+                }
+            }
+            if (Application.OpenForms.OfType<FormularioConsulta>().Count() == 1)
+            {
+                FormularioConsulta formularioConsulta;
+                foreach (Form item in Application.OpenForms)
+                {
+                    if (item.Name == "FormularioConsulta")
+                    {
+                        formularioConsulta = (FormularioConsulta)item;
+                        formularioConsulta.GeraAvisosDeChegadaSelecionados();
                         break;
                     }
                 }

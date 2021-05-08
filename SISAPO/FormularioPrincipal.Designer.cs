@@ -39,9 +39,11 @@ namespace SISAPO
             this.imprimirListaDeEntregaParaConsultaSelecionadaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modeloLDIToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modeloComumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.imprimirAvisosDeChegadaSelecionadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imprimirListaDeEntregaParaConsultaSelecionadaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.cadastrarNovosObjetosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cadastrarNovosTiposPostaisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.atualizarNovosObjetosCompletoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.atualizarNovosObjetosPostadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -92,6 +94,7 @@ namespace SISAPO
             this.toolStripStatusLabelDataHoraUltimaAtualizacaoImportacao = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabelDataHora = new System.Windows.Forms.ToolStripStatusLabel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.TiposPostaisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -121,9 +124,12 @@ namespace SISAPO
             this.visualizarListaDeObjetosToolStripMenuItem,
             this.toolStripSeparator7,
             this.imprimirListaDeEntregaParaConsultaSelecionadaToolStripMenuItem,
+            this.imprimirAvisosDeChegadaSelecionadosToolStripMenuItem,
             this.imprimirListaDeEntregaParaConsultaSelecionadaToolStripMenuItem1,
             this.toolStripSeparator6,
             this.cadastrarNovosObjetosToolStripMenuItem,
+            this.TiposPostaisToolStripMenuItem,
+            this.cadastrarNovosTiposPostaisToolStripMenuItem,
             this.toolStripSeparator1,
             this.atualizarNovosObjetosCompletoToolStripMenuItem,
             this.atualizarNovosObjetosPostadosToolStripMenuItem,
@@ -189,6 +195,14 @@ namespace SISAPO
             this.modeloComumToolStripMenuItem.Text = "Imprimir Modelo Comum";
             this.modeloComumToolStripMenuItem.Click += new System.EventHandler(this.modeloComumToolStripMenuItem_Click);
             // 
+            // imprimirAvisosDeChegadaSelecionadosToolStripMenuItem
+            // 
+            this.imprimirAvisosDeChegadaSelecionadosToolStripMenuItem.Image = global::SISAPO.Properties.Resources.if_BT_printer_905556;
+            this.imprimirAvisosDeChegadaSelecionadosToolStripMenuItem.Name = "imprimirAvisosDeChegadaSelecionadosToolStripMenuItem";
+            this.imprimirAvisosDeChegadaSelecionadosToolStripMenuItem.Size = new System.Drawing.Size(459, 22);
+            this.imprimirAvisosDeChegadaSelecionadosToolStripMenuItem.Text = "Imprimir Aviso(s) de chegada (Selecionados)";
+            this.imprimirAvisosDeChegadaSelecionadosToolStripMenuItem.Click += new System.EventHandler(this.imprimirAvisosDeChegadaSelecionadosToolStripMenuItem_Click);
+            // 
             // imprimirListaDeEntregaParaConsultaSelecionadaToolStripMenuItem1
             // 
             this.imprimirListaDeEntregaParaConsultaSelecionadaToolStripMenuItem1.Image = global::SISAPO.Properties.Resources.if_BT_printer_905556;
@@ -210,6 +224,15 @@ namespace SISAPO
             this.cadastrarNovosObjetosToolStripMenuItem.Size = new System.Drawing.Size(459, 22);
             this.cadastrarNovosObjetosToolStripMenuItem.Text = "Importar Novo(s) Objeto(s)";
             this.cadastrarNovosObjetosToolStripMenuItem.Click += new System.EventHandler(this.cadastrarNovosObjetosToolStripMenuItem_Click);
+            // 
+            // cadastrarNovosTiposPostaisToolStripMenuItem
+            // 
+            this.cadastrarNovosTiposPostaisToolStripMenuItem.Image = global::SISAPO.Properties.Resources.CadastroObjetos;
+            this.cadastrarNovosTiposPostaisToolStripMenuItem.Name = "cadastrarNovosTiposPostaisToolStripMenuItem";
+            this.cadastrarNovosTiposPostaisToolStripMenuItem.Size = new System.Drawing.Size(459, 22);
+            this.cadastrarNovosTiposPostaisToolStripMenuItem.Text = "Cadastrar Novos Tipos Postais";
+            this.cadastrarNovosTiposPostaisToolStripMenuItem.Visible = false;
+            this.cadastrarNovosTiposPostaisToolStripMenuItem.Click += new System.EventHandler(this.cadastrarNovosTiposPostaisToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -629,6 +652,14 @@ namespace SISAPO
             this.panel1.Size = new System.Drawing.Size(739, 30);
             this.panel1.TabIndex = 5;
             // 
+            // TiposPostaisToolStripMenuItem
+            // 
+            this.TiposPostaisToolStripMenuItem.Image = global::SISAPO.Properties.Resources.CadastroObjetos;
+            this.TiposPostaisToolStripMenuItem.Name = "TiposPostaisToolStripMenuItem";
+            this.TiposPostaisToolStripMenuItem.Size = new System.Drawing.Size(459, 22);
+            this.TiposPostaisToolStripMenuItem.Text = "Tipos Postais";
+            this.TiposPostaisToolStripMenuItem.Click += new System.EventHandler(this.TiposPostaisToolStripMenuItem_Click);
+            // 
             // FormularioPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -725,6 +756,9 @@ namespace SISAPO
         private System.Windows.Forms.Panel panel1;
         public System.Windows.Forms.ToolStripMenuItem modeloLDIToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem modeloComumToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem imprimirAvisosDeChegadaSelecionadosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cadastrarNovosTiposPostaisToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem TiposPostaisToolStripMenuItem;
     }
 }
 

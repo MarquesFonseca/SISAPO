@@ -892,6 +892,40 @@ namespace SISAPO
             }
         }
 
+        public void GeraAvisosDeChegadaSelecionados()
+        {
+            List<string> novosCodigosSelecionadosOrdenados = new List<string>();
+
+            if (dataGridView1.SelectedRows.Count == 0)
+            {
+                Mensagens.Informa("Para impressão da lista de entrega é necessário selecionar algum objeto.");
+                return;
+            }
+
+            //Ordem de Lançamento
+            for (int i = this.dataGridView1.SelectedRows.Count - 1; i >= 0; i--)
+            {
+                //codigoObjetoDataGridViewTextBoxColumn
+                //nomeClienteDataGridViewTextBoxColumn
+                //DataLancamento
+                bool existe = dicionarioCodigo_DataLancamento.AsEnumerable().Any(t => t.Key == this.dataGridView1.SelectedRows[i].Cells["codigoObjetoDataGridViewTextBoxColumn"].Value.ToString());
+                if (!existe)
+                    dicionarioCodigo_DataLancamento.Add(this.dataGridView1.SelectedRows[i].Cells["codigoObjetoDataGridViewTextBoxColumn"].Value.ToString(), this.dataGridView1.SelectedRows[i].Cells["DataLancamento"].Value.ToDateTime());
+            }
+            if (FormularioPrincipal.OpcoesImpressaoOrdenacaoPorOrdemCrescente)
+                novosCodigosSelecionadosOrdenados = dicionarioCodigo_DataLancamento.AsEnumerable().OrderBy(t => t.Value).Select(c => c.Key).ToList();
+            else
+                novosCodigosSelecionadosOrdenados = dicionarioCodigo_DataLancamento.AsEnumerable().OrderByDescending(t => t.Value).Select(c => c.Key).ToList();
+
+
+
+            FormularioImpressaoAvisosChegada FormularioImpressaoAvisosChegada = new FormularioImpressaoAvisosChegada(novosCodigosSelecionadosOrdenados);
+
+
+
+
+        }
+
         public void GeraImpressaoItensLancadosNoDiaHoje(bool _incluirItensEntregues, bool _incluirItensCaixaPostal)
         {
             //string valorAtualTXTCampoPesquisa = TxtPesquisa.Text;
@@ -1348,6 +1382,11 @@ namespace SISAPO
         private void imprimirModeloComumToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FormularioPrincipal.RetornaComponentesFormularioPrincipal().modeloComumToolStripMenuItem_Click(sender, e);
+        }
+
+        private void imprimirAvisosDeChegadaSelecionadosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormularioPrincipal.RetornaComponentesFormularioPrincipal().imprimirAvisosDeChegadaSelecionadosToolStripMenuItem_Click(sender, e);
         }
     }
 }

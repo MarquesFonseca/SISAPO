@@ -29,19 +29,24 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormularioConsulta));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.codigoObjetoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStripImprimirListaEntrega = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItemImprimirListaEntrega = new System.Windows.Forms.ToolStripMenuItem();
+            this.imprimirModeloLDIToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.imprimirModeloComumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.imprimirAvisosDeChegadaSelecionadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.alterarItemToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.CaixaPostal = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.nomeClienteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -153,8 +158,6 @@
             this.LblUnidadeLOEC = new System.Windows.Forms.Label();
             this.tabelaObjetosSROLocalTableAdapter = new SISAPO.DataSetTabelaObjetosSROLocalTableAdapters.TabelaObjetosSROLocalTableAdapter();
             this.tableAdapterManager = new SISAPO.DataSetTabelaObjetosSROLocalTableAdapters.TableAdapterManager();
-            this.imprimirModeloLDIToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.imprimirModeloComumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStripImprimirListaEntrega.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -184,17 +187,17 @@
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
             this.dataGridView1.AutoGenerateColumns = false;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.codigoObjetoDataGridViewTextBoxColumn,
@@ -226,26 +229,26 @@
             this.CoordenadasDestinatarioAusente,
             this.atualizadoDataGridViewCheckBoxColumn});
             this.dataGridView1.DataSource = this.tabelaObjetosSROLocalBindingSource;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.dataGridView1.RowHeadersWidth = 30;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(521, 310);
@@ -258,9 +261,9 @@
             this.codigoObjetoDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.codigoObjetoDataGridViewTextBoxColumn.ContextMenuStrip = this.contextMenuStripImprimirListaEntrega;
             this.codigoObjetoDataGridViewTextBoxColumn.DataPropertyName = "CodigoObjeto";
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.NullValue = null;
-            this.codigoObjetoDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.NullValue = null;
+            this.codigoObjetoDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle11;
             this.codigoObjetoDataGridViewTextBoxColumn.FillWeight = 140F;
             this.codigoObjetoDataGridViewTextBoxColumn.HeaderText = "Código";
             this.codigoObjetoDataGridViewTextBoxColumn.Name = "codigoObjetoDataGridViewTextBoxColumn";
@@ -271,9 +274,12 @@
             // 
             this.contextMenuStripImprimirListaEntrega.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItemImprimirListaEntrega,
+            this.toolStripSeparator2,
+            this.imprimirAvisosDeChegadaSelecionadosToolStripMenuItem,
+            this.toolStripSeparator1,
             this.alterarItemToolStripMenuItem1});
             this.contextMenuStripImprimirListaEntrega.Name = "contextMenuStripImprimirListaEntrega";
-            this.contextMenuStripImprimirListaEntrega.Size = new System.Drawing.Size(287, 70);
+            this.contextMenuStripImprimirListaEntrega.Size = new System.Drawing.Size(310, 82);
             // 
             // toolStripMenuItemImprimirListaEntrega
             // 
@@ -282,15 +288,49 @@
             this.imprimirModeloComumToolStripMenuItem});
             this.toolStripMenuItemImprimirListaEntrega.Image = global::SISAPO.Properties.Resources.if_BT_printer_905556;
             this.toolStripMenuItemImprimirListaEntrega.Name = "toolStripMenuItemImprimirListaEntrega";
-            this.toolStripMenuItemImprimirListaEntrega.Size = new System.Drawing.Size(286, 22);
+            this.toolStripMenuItemImprimirListaEntrega.Size = new System.Drawing.Size(309, 22);
             this.toolStripMenuItemImprimirListaEntrega.Text = " Imprimir lista de entrega (Selecionados)";
             this.toolStripMenuItemImprimirListaEntrega.Click += new System.EventHandler(this.toolStripMenuItemImprimirListaEntrega_Click);
+            // 
+            // imprimirModeloLDIToolStripMenuItem
+            // 
+            this.imprimirModeloLDIToolStripMenuItem.Image = global::SISAPO.Properties.Resources.if_BT_printer_905556;
+            this.imprimirModeloLDIToolStripMenuItem.Name = "imprimirModeloLDIToolStripMenuItem";
+            this.imprimirModeloLDIToolStripMenuItem.Size = new System.Drawing.Size(211, 22);
+            this.imprimirModeloLDIToolStripMenuItem.Text = "Imprimir Modelo LDI";
+            this.imprimirModeloLDIToolStripMenuItem.Click += new System.EventHandler(this.imprimirModeloLDIToolStripMenuItem_Click);
+            // 
+            // imprimirModeloComumToolStripMenuItem
+            // 
+            this.imprimirModeloComumToolStripMenuItem.Image = global::SISAPO.Properties.Resources.if_BT_printer_905556;
+            this.imprimirModeloComumToolStripMenuItem.Name = "imprimirModeloComumToolStripMenuItem";
+            this.imprimirModeloComumToolStripMenuItem.Size = new System.Drawing.Size(211, 22);
+            this.imprimirModeloComumToolStripMenuItem.Text = "Imprimir Modelo Comum";
+            this.imprimirModeloComumToolStripMenuItem.Click += new System.EventHandler(this.imprimirModeloComumToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(306, 6);
+            // 
+            // imprimirAvisosDeChegadaSelecionadosToolStripMenuItem
+            // 
+            this.imprimirAvisosDeChegadaSelecionadosToolStripMenuItem.Image = global::SISAPO.Properties.Resources.if_BT_printer_905556;
+            this.imprimirAvisosDeChegadaSelecionadosToolStripMenuItem.Name = "imprimirAvisosDeChegadaSelecionadosToolStripMenuItem";
+            this.imprimirAvisosDeChegadaSelecionadosToolStripMenuItem.Size = new System.Drawing.Size(309, 22);
+            this.imprimirAvisosDeChegadaSelecionadosToolStripMenuItem.Text = "Imprimir Aviso(s) de chegada (Selecionados)";
+            this.imprimirAvisosDeChegadaSelecionadosToolStripMenuItem.Click += new System.EventHandler(this.imprimirAvisosDeChegadaSelecionadosToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(306, 6);
             // 
             // alterarItemToolStripMenuItem1
             // 
             this.alterarItemToolStripMenuItem1.Image = global::SISAPO.Properties.Resources.CadastroObjetos;
             this.alterarItemToolStripMenuItem1.Name = "alterarItemToolStripMenuItem1";
-            this.alterarItemToolStripMenuItem1.Size = new System.Drawing.Size(286, 22);
+            this.alterarItemToolStripMenuItem1.Size = new System.Drawing.Size(309, 22);
             this.alterarItemToolStripMenuItem1.Text = "Detalhes/Alterar item (Somente atual)";
             this.alterarItemToolStripMenuItem1.Click += new System.EventHandler(this.alterarItemToolStripMenuItem1_Click);
             // 
@@ -299,8 +339,8 @@
             this.CaixaPostal.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.CaixaPostal.ContextMenuStrip = this.contextMenuStripImprimirListaEntrega;
             this.CaixaPostal.DataPropertyName = "CaixaPostal";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.CaixaPostal.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.CaixaPostal.DefaultCellStyle = dataGridViewCellStyle3;
             this.CaixaPostal.HeaderText = "Caixa Postal?";
             this.CaixaPostal.Name = "CaixaPostal";
             this.CaixaPostal.ReadOnly = true;
@@ -361,8 +401,8 @@
             this.ObjetoEntregue.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.ObjetoEntregue.ContextMenuStrip = this.contextMenuStrip1;
             this.ObjetoEntregue.DataPropertyName = "ObjetoEntregue";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.ObjetoEntregue.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.ObjetoEntregue.DefaultCellStyle = dataGridViewCellStyle4;
             this.ObjetoEntregue.HeaderText = "Objeto Entregue?";
             this.ObjetoEntregue.Name = "ObjetoEntregue";
             this.ObjetoEntregue.ReadOnly = true;
@@ -559,8 +599,8 @@
             this.atualizadoDataGridViewCheckBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.atualizadoDataGridViewCheckBoxColumn.ContextMenuStrip = this.contextMenuStripAtualizacao;
             this.atualizadoDataGridViewCheckBoxColumn.DataPropertyName = "Atualizado";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.atualizadoDataGridViewCheckBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.atualizadoDataGridViewCheckBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
             this.atualizadoDataGridViewCheckBoxColumn.FalseValue = "";
             this.atualizadoDataGridViewCheckBoxColumn.HeaderText = "Já atualizado?";
             this.atualizadoDataGridViewCheckBoxColumn.Name = "atualizadoDataGridViewCheckBoxColumn";
@@ -1489,22 +1529,6 @@
             this.tableAdapterManager.TabelaObjetosSROLocalTableAdapter = this.tabelaObjetosSROLocalTableAdapter;
             this.tableAdapterManager.UpdateOrder = SISAPO.DataSetTabelaObjetosSROLocalTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
-            // imprimirModeloLDIToolStripMenuItem
-            // 
-            this.imprimirModeloLDIToolStripMenuItem.Image = global::SISAPO.Properties.Resources.if_BT_printer_905556;
-            this.imprimirModeloLDIToolStripMenuItem.Name = "imprimirModeloLDIToolStripMenuItem";
-            this.imprimirModeloLDIToolStripMenuItem.Size = new System.Drawing.Size(211, 22);
-            this.imprimirModeloLDIToolStripMenuItem.Text = "Imprimir Modelo LDI";
-            this.imprimirModeloLDIToolStripMenuItem.Click += new System.EventHandler(this.imprimirModeloLDIToolStripMenuItem_Click);
-            // 
-            // imprimirModeloComumToolStripMenuItem
-            // 
-            this.imprimirModeloComumToolStripMenuItem.Image = global::SISAPO.Properties.Resources.if_BT_printer_905556;
-            this.imprimirModeloComumToolStripMenuItem.Name = "imprimirModeloComumToolStripMenuItem";
-            this.imprimirModeloComumToolStripMenuItem.Size = new System.Drawing.Size(211, 22);
-            this.imprimirModeloComumToolStripMenuItem.Text = "Imprimir Modelo Comum";
-            this.imprimirModeloComumToolStripMenuItem.Click += new System.EventHandler(this.imprimirModeloComumToolStripMenuItem_Click);
-            // 
             // FormularioConsulta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1673,5 +1697,8 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn atualizadoDataGridViewCheckBoxColumn;
         private System.Windows.Forms.ToolStripMenuItem imprimirModeloLDIToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem imprimirModeloComumToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem imprimirAvisosDeChegadaSelecionadosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     }
 }

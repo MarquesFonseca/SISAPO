@@ -218,6 +218,7 @@ namespace SISAPO
                 Mensagens.Erro(ex.Message);
             }
         }
+
         string temp = "";
         private void bw_DoWork(object sender, DoWorkEventArgs e)
         {
@@ -243,27 +244,102 @@ namespace SISAPO
                 using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
                 {
                     if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
-                    DataSet jaCadastrado = dao.RetornaDataSet(string.Format("SELECT DISTINCT CodigoObjeto, NomeCliente FROM TabelaObjetosSROLocal WHERE (CodigoObjeto = '{0}')", linhaItemCodigoObjeto));
+                    DataSet jaCadastrado = dao.RetornaDataSet(string.Format("SELECT DISTINCT CodigoObjeto, NomeCliente, CaixaPostal FROM TabelaObjetosSROLocal WHERE (CodigoObjeto = '{0}')", linhaItemCodigoObjeto));
 
                     if (jaCadastrado.Tables[0].Rows.Count >= 1)
                     {
+                        string CodigoObjetoAtual = jaCadastrado.Tables[0].Rows[0]["CodigoObjeto"].ToString();
+                        string NomeCliente = jaCadastrado.Tables[0].Rows[0]["NomeCliente"].ToString().ToUpper().RemoveAcentos();
+                        bool SeECaixaPostal = Convert.ToBoolean(jaCadastrado.Tables[0].Rows[0]["CaixaPostal"]);
+                        bool SeEAoRemetente = (NomeCliente.ToUpper().RemoveAcentos().Contains("ORIGEM") || NomeCliente.ToUpper().RemoveAcentos().Contains("DEVOLUCAO") || NomeCliente.ToUpper().RemoveAcentos().Contains("REMETENTE")) ? true : false;
+                        string TipoPostalServico = string.Empty;
+                        string TipoPostalSiglaCodigo = string.Empty;
+                        string TipoPostalNomeSiglaCodigo = string.Empty;
+                        string TipoPostalPrazoDiasCorridosRegulamentado = "7";
+
+                        if (FormularioPrincipal.TiposPostais.Rows.Count > 0)
+                        {
+                            DataRow drTipoPostal = FormularioPrincipal.TiposPostais.AsEnumerable().First(T => T["Sigla"].Equals(CodigoObjetoAtual.Substring(0, 2))); //["Código"] - Pega linha retornada dos tipos postais vinda do Excel
+
+                            //Exemplo "LB327263658SE"
+                            //[0] - Serviço: NAO URGENTE 
+                            //[1] - Código: LB 
+                            //[2] - Nome: OBJETO INTERNACIONAL PRIME 
+                            //[3] - Prazo dias corridos no destino (Caixa Postal): 30 
+                            //[4] - Prazo dias corridos no destino (Caída/Pedida): 20 
+                            //[5] - Prazo dias corridos na origem/devolução/remetente (Caixa Postal): 20 
+                            //[6] - Prazo dias corridos na origem/devolução/remetente (Caída/Pedida): 20
+
+                            TipoPostalServico = drTipoPostal["Servico"].ToString();
+                            TipoPostalSiglaCodigo = drTipoPostal["Sigla"].ToString();
+                            TipoPostalNomeSiglaCodigo = drTipoPostal["Descricao"].ToString();
+                            TipoPostalPrazoDiasCorridosRegulamentado = "7";
+
+                            //Se for Caixa Postal e Não for Ao remetente
+                            if (SeECaixaPostal && !SeEAoRemetente)
+                            {
+                                // Pega campo "Prazo dias corridos no destino (Caixa Postal)"
+                                TipoPostalPrazoDiasCorridosRegulamentado = drTipoPostal["PrazoDestinoCaixaPostal"].ToString();
+                            }
+                            //Se for Caixa Postal e Se for Ao remetente
+                            if (SeECaixaPostal && SeEAoRemetente)
+                            {
+                                // Pega campo "Prazo dias corridos na origem/devolução/remetente (Caixa Postal)"
+                                TipoPostalPrazoDiasCorridosRegulamentado = drTipoPostal["PrazoRemetenteCaixaPostal"].ToString();
+                            }
+                            //Se Não for Caixa Postal && Não for Ao remetente
+                            if (!SeECaixaPostal && !SeEAoRemetente)
+                            {
+                                // Pega campo "Prazo dias corridos no destino (Caída/Pedida)"
+                                TipoPostalPrazoDiasCorridosRegulamentado = drTipoPostal["PrazoDestinoCaidaPedida"].ToString();
+                            }
+                            //Se Não for Caixa Postal && Se for Ao remetente
+                            if (!SeECaixaPostal && SeEAoRemetente)
+                            {
+                                // Pega campo "Prazo dias corridos na origem/devolução/remetente (Caída/Pedida)"
+                                TipoPostalPrazoDiasCorridosRegulamentado = drTipoPostal["PrazoRemetenteCaidaPedida"].ToString();
+                            }
+                        }
+
                         //existe na base de dados
-                        dao.ExecutaSQL(string.Format("UPDATE TabelaObjetosSROLocal SET DataLancamento = @DataLancamento, DataModificacao = @DataModificacao, Situacao = @Situacao, Atualizado = @Atualizado, ObjetoEntregue = @ObjetoEntregue WHERE (CodigoObjeto = @CodigoObjeto)"), new List<Parametros>(){
+                        dao.ExecutaSQL(string.Format("UPDATE TabelaObjetosSROLocal SET DataLancamento = @DataLancamento, DataModificacao = @DataModificacao, Situacao = @Situacao, Atualizado = @Atualizado, ObjetoEntregue = @ObjetoEntregue, TipoPostalServico = @TipoPostalServico, TipoPostalSiglaCodigo = @TipoPostalSiglaCodigo, TipoPostalNomeSiglaCodigo = @TipoPostalNomeSiglaCodigo, TipoPostalPrazoDiasCorridosRegulamentado = @TipoPostalPrazoDiasCorridosRegulamentado WHERE (CodigoObjeto = @CodigoObjeto)"), new List<Parametros>(){
                                             new Parametros("@DataLancamento", TipoCampo.Text, linhaItemDataLancamento),
                                             new Parametros("@DataModificacao", TipoCampo.Text, linhaItemDataModificacao),
                                             new Parametros("@Situacao", TipoCampo.Text, linhaItemSituacao),
                                             new Parametros("@Atualizado",TipoCampo.Int, jaCadastrado.Tables[0].Rows[0]["NomeCliente"].ToString() == "" ? 0 : 1),
                                             new Parametros("@ObjetoEntregue", TipoCampo.Int, linhaItemDataModificacao == "" ? 0 : 1),
-                                            //new Parametros("@CaixaPostal",TipoCampo.Int, 0),
+
+                                            new Parametros("@TipoPostalServico", TipoCampo.Text, TipoPostalServico),
+                                            new Parametros("@TipoPostalSiglaCodigo", TipoCampo.Text, TipoPostalSiglaCodigo),
+                                            new Parametros("@TipoPostalNomeSiglaCodigo", TipoCampo.Text, TipoPostalNomeSiglaCodigo),
+                                            new Parametros("@TipoPostalPrazoDiasCorridosRegulamentado", TipoCampo.Text, TipoPostalPrazoDiasCorridosRegulamentado),
+
                                             new Parametros("@CodigoObjeto", TipoCampo.Text, linhaItemCodigoObjeto)});
                     }
                     else
                     {
-                        if (jaCadastrado.Tables[0].Rows.Count == 0)
+                        if (jaCadastrado.Tables[0].Rows.Count == 0)//não existe na base de dados
                         {
-                            //não existe na base de dados
-                            dao.ExecutaSQL("INSERT INTO TabelaObjetosSROLocal (CodigoObjeto, CodigoLdi, NomeCliente, DataLancamento, DataModificacao, Situacao, Atualizado, ObjetoEntregue, CaixaPostal) VALUES (@CodigoObjeto, @CodigoLdi, @NomeCliente, @DataLancamento, @DataModificacao, @Situacao, @Atualizado, @ObjetoEntregue, @CaixaPostal)", 
-                                new List<Parametros>() {
+                            string TipoPostalServico = string.Empty;
+                            string TipoPostalSiglaCodigo = string.Empty;
+                            string TipoPostalNomeSiglaCodigo = string.Empty;
+                            string TipoPostalPrazoDiasCorridosRegulamentado = "7";
+
+                            if (FormularioPrincipal.TiposPostais.Rows.Count > 0)
+                            {
+                                DataRow drTipoPostal = FormularioPrincipal.TiposPostais.AsEnumerable().First(T => T["Sigla"].Equals(linhaItemCodigoObjeto.Substring(0, 2))); //["Código"] - Pega linha retornada dos tipos postais vinda do Excel
+
+                                TipoPostalServico = drTipoPostal["Servico"].ToString();
+                                TipoPostalSiglaCodigo = drTipoPostal["Sigla"].ToString();
+                                TipoPostalNomeSiglaCodigo = drTipoPostal["Descricao"].ToString();
+
+                                //Obedece a opçao de nao ser Caixa Postal && Não ser Ao remetente
+                                // Pega campo "Prazo dias corridos no destino (Caída/Pedida)"
+                                TipoPostalPrazoDiasCorridosRegulamentado = drTipoPostal["PrazoDestinoCaidaPedida"].ToString();
+                            }
+
+                            dao.ExecutaSQL("INSERT INTO TabelaObjetosSROLocal (CodigoObjeto, CodigoLdi, NomeCliente, DataLancamento, DataModificacao, Situacao, Atualizado, ObjetoEntregue, CaixaPostal) VALUES (@CodigoObjeto, @CodigoLdi, @NomeCliente, @DataLancamento, @DataModificacao, @Situacao, @Atualizado, @ObjetoEntregue, @CaixaPostal)",
+                            new List<Parametros>() {
                                     new Parametros() { Nome = "CodigoObjeto", Tipo = TipoCampo.Text, Valor = linhaItemCodigoObjeto },
                                     new Parametros() { Nome = "CodigoLdi", Tipo = TipoCampo.Text, Valor = "" },
                                     new Parametros() { Nome = "NomeCliente", Tipo = TipoCampo.Text, Valor = "" },
@@ -272,7 +348,12 @@ namespace SISAPO
                                     new Parametros() { Nome = "Situacao", Tipo = TipoCampo.Text, Valor = linhaItemSituacao },
                                     new Parametros() { Nome = "Atualizado", Tipo = TipoCampo.Int, Valor = 0 },
                                     new Parametros() { Nome = "ObjetoEntregue", Tipo = TipoCampo.Text, Valor = (linhaItemDataModificacao == "" ? 0 : 1) },
-                                    new Parametros() { Nome = "CaixaPostal", Tipo = TipoCampo.Text, Valor = 0 } });
+                                    new Parametros() { Nome = "CaixaPostal", Tipo = TipoCampo.Text, Valor = 0 },//considera todos com não caixa postal
+
+                                    new Parametros() { Nome = "TipoPostalServico", Tipo = TipoCampo.Text, Valor = TipoPostalServico },
+                                    new Parametros() { Nome = "TipoPostalSiglaCodigo", Tipo = TipoCampo.Text, Valor = TipoPostalSiglaCodigo },
+                                    new Parametros() { Nome = "TipoPostalNomeSiglaCodigo", Tipo = TipoCampo.Text, Valor = TipoPostalNomeSiglaCodigo },
+                                    new Parametros() { Nome = "TipoPostalPrazoDiasCorridosRegulamentado", Tipo = TipoCampo.Text, Valor = TipoPostalPrazoDiasCorridosRegulamentado }});
                         }
                     }
                 }

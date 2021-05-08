@@ -289,6 +289,36 @@ namespace SISAPO {
             
             private global::System.Data.DataColumn columnDataFinalPeriodoExibicaoConsulta;
             
+            private global::System.Data.DataColumn columnExibirObjetosEmCaixaPostalNaPesquisa;
+            
+            private global::System.Data.DataColumn columnExibirObjetosJaEntreguesNaPesquisa;
+            
+            private global::System.Data.DataColumn columnManterConsultaSempreAtualizada;
+            
+            private global::System.Data.DataColumn columnTempoAtualizacaoConsultaSempreAtualizada;
+            
+            private global::System.Data.DataColumn columnPermitirBuscarPorLDINaPesquisa;
+            
+            private global::System.Data.DataColumn columnHabilitarCapturaDeDadosDePostagem;
+            
+            private global::System.Data.DataColumn columnHabilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatario;
+            
+            private global::System.Data.DataColumn columnHabilitarCapturaDeDadosDeDestinatarioAusente;
+            
+            private global::System.Data.DataColumn columnDataHoraUltimaAtualizacaoImportacao;
+            
+            private global::System.Data.DataColumn columnSuperintendenciaEstadual;
+            
+            private global::System.Data.DataColumn columnCepUnidade;
+            
+            private global::System.Data.DataColumn columnCidadeAgenciaLocal;
+            
+            private global::System.Data.DataColumn columnUFAgenciaLocal;
+            
+            private global::System.Data.DataColumn columnTelefoneAgenciaLocal;
+            
+            private global::System.Data.DataColumn columnHorarioFuncionamentoAgenciaLocal;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public TabelaConfiguracoesSistemaDataTable() {
@@ -364,6 +394,126 @@ namespace SISAPO {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ExibirObjetosEmCaixaPostalNaPesquisaColumn {
+                get {
+                    return this.columnExibirObjetosEmCaixaPostalNaPesquisa;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ExibirObjetosJaEntreguesNaPesquisaColumn {
+                get {
+                    return this.columnExibirObjetosJaEntreguesNaPesquisa;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ManterConsultaSempreAtualizadaColumn {
+                get {
+                    return this.columnManterConsultaSempreAtualizada;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn TempoAtualizacaoConsultaSempreAtualizadaColumn {
+                get {
+                    return this.columnTempoAtualizacaoConsultaSempreAtualizada;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn PermitirBuscarPorLDINaPesquisaColumn {
+                get {
+                    return this.columnPermitirBuscarPorLDINaPesquisa;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn HabilitarCapturaDeDadosDePostagemColumn {
+                get {
+                    return this.columnHabilitarCapturaDeDadosDePostagem;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn HabilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatarioColumn {
+                get {
+                    return this.columnHabilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatario;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn HabilitarCapturaDeDadosDeDestinatarioAusenteColumn {
+                get {
+                    return this.columnHabilitarCapturaDeDadosDeDestinatarioAusente;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn DataHoraUltimaAtualizacaoImportacaoColumn {
+                get {
+                    return this.columnDataHoraUltimaAtualizacaoImportacao;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SuperintendenciaEstadualColumn {
+                get {
+                    return this.columnSuperintendenciaEstadual;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CepUnidadeColumn {
+                get {
+                    return this.columnCepUnidade;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CidadeAgenciaLocalColumn {
+                get {
+                    return this.columnCidadeAgenciaLocal;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn UFAgenciaLocalColumn {
+                get {
+                    return this.columnUFAgenciaLocal;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn TelefoneAgenciaLocalColumn {
+                get {
+                    return this.columnTelefoneAgenciaLocal;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn HorarioFuncionamentoAgenciaLocalColumn {
+                get {
+                    return this.columnHorarioFuncionamentoAgenciaLocal;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -399,14 +549,48 @@ namespace SISAPO {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public TabelaConfiguracoesSistemaRow AddTabelaConfiguracoesSistemaRow(string NomeAgenciaLocal, string EnderecoAgenciaLocal, System.DateTime DataInicialPeriodoExibicaoConsulta, System.DateTime DataFinalPeriodoExibicaoConsulta) {
+            public TabelaConfiguracoesSistemaRow AddTabelaConfiguracoesSistemaRow(
+                        string NomeAgenciaLocal, 
+                        string EnderecoAgenciaLocal, 
+                        System.DateTime DataInicialPeriodoExibicaoConsulta, 
+                        System.DateTime DataFinalPeriodoExibicaoConsulta, 
+                        bool ExibirObjetosEmCaixaPostalNaPesquisa, 
+                        bool ExibirObjetosJaEntreguesNaPesquisa, 
+                        bool ManterConsultaSempreAtualizada, 
+                        string TempoAtualizacaoConsultaSempreAtualizada, 
+                        bool PermitirBuscarPorLDINaPesquisa, 
+                        bool HabilitarCapturaDeDadosDePostagem, 
+                        bool HabilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatario, 
+                        bool HabilitarCapturaDeDadosDeDestinatarioAusente, 
+                        System.DateTime DataHoraUltimaAtualizacaoImportacao, 
+                        string SuperintendenciaEstadual, 
+                        string CepUnidade, 
+                        string CidadeAgenciaLocal, 
+                        string UFAgenciaLocal, 
+                        string TelefoneAgenciaLocal, 
+                        string HorarioFuncionamentoAgenciaLocal) {
                 TabelaConfiguracoesSistemaRow rowTabelaConfiguracoesSistemaRow = ((TabelaConfiguracoesSistemaRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         NomeAgenciaLocal,
                         EnderecoAgenciaLocal,
                         DataInicialPeriodoExibicaoConsulta,
-                        DataFinalPeriodoExibicaoConsulta};
+                        DataFinalPeriodoExibicaoConsulta,
+                        ExibirObjetosEmCaixaPostalNaPesquisa,
+                        ExibirObjetosJaEntreguesNaPesquisa,
+                        ManterConsultaSempreAtualizada,
+                        TempoAtualizacaoConsultaSempreAtualizada,
+                        PermitirBuscarPorLDINaPesquisa,
+                        HabilitarCapturaDeDadosDePostagem,
+                        HabilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatario,
+                        HabilitarCapturaDeDadosDeDestinatarioAusente,
+                        DataHoraUltimaAtualizacaoImportacao,
+                        SuperintendenciaEstadual,
+                        CepUnidade,
+                        CidadeAgenciaLocal,
+                        UFAgenciaLocal,
+                        TelefoneAgenciaLocal,
+                        HorarioFuncionamentoAgenciaLocal};
                 rowTabelaConfiguracoesSistemaRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowTabelaConfiguracoesSistemaRow);
                 return rowTabelaConfiguracoesSistemaRow;
@@ -441,6 +625,21 @@ namespace SISAPO {
                 this.columnEnderecoAgenciaLocal = base.Columns["EnderecoAgenciaLocal"];
                 this.columnDataInicialPeriodoExibicaoConsulta = base.Columns["DataInicialPeriodoExibicaoConsulta"];
                 this.columnDataFinalPeriodoExibicaoConsulta = base.Columns["DataFinalPeriodoExibicaoConsulta"];
+                this.columnExibirObjetosEmCaixaPostalNaPesquisa = base.Columns["ExibirObjetosEmCaixaPostalNaPesquisa"];
+                this.columnExibirObjetosJaEntreguesNaPesquisa = base.Columns["ExibirObjetosJaEntreguesNaPesquisa"];
+                this.columnManterConsultaSempreAtualizada = base.Columns["ManterConsultaSempreAtualizada"];
+                this.columnTempoAtualizacaoConsultaSempreAtualizada = base.Columns["TempoAtualizacaoConsultaSempreAtualizada"];
+                this.columnPermitirBuscarPorLDINaPesquisa = base.Columns["PermitirBuscarPorLDINaPesquisa"];
+                this.columnHabilitarCapturaDeDadosDePostagem = base.Columns["HabilitarCapturaDeDadosDePostagem"];
+                this.columnHabilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatario = base.Columns["HabilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatario"];
+                this.columnHabilitarCapturaDeDadosDeDestinatarioAusente = base.Columns["HabilitarCapturaDeDadosDeDestinatarioAusente"];
+                this.columnDataHoraUltimaAtualizacaoImportacao = base.Columns["DataHoraUltimaAtualizacaoImportacao"];
+                this.columnSuperintendenciaEstadual = base.Columns["SuperintendenciaEstadual"];
+                this.columnCepUnidade = base.Columns["CepUnidade"];
+                this.columnCidadeAgenciaLocal = base.Columns["CidadeAgenciaLocal"];
+                this.columnUFAgenciaLocal = base.Columns["UFAgenciaLocal"];
+                this.columnTelefoneAgenciaLocal = base.Columns["TelefoneAgenciaLocal"];
+                this.columnHorarioFuncionamentoAgenciaLocal = base.Columns["HorarioFuncionamentoAgenciaLocal"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -456,6 +655,36 @@ namespace SISAPO {
                 base.Columns.Add(this.columnDataInicialPeriodoExibicaoConsulta);
                 this.columnDataFinalPeriodoExibicaoConsulta = new global::System.Data.DataColumn("DataFinalPeriodoExibicaoConsulta", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDataFinalPeriodoExibicaoConsulta);
+                this.columnExibirObjetosEmCaixaPostalNaPesquisa = new global::System.Data.DataColumn("ExibirObjetosEmCaixaPostalNaPesquisa", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnExibirObjetosEmCaixaPostalNaPesquisa);
+                this.columnExibirObjetosJaEntreguesNaPesquisa = new global::System.Data.DataColumn("ExibirObjetosJaEntreguesNaPesquisa", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnExibirObjetosJaEntreguesNaPesquisa);
+                this.columnManterConsultaSempreAtualizada = new global::System.Data.DataColumn("ManterConsultaSempreAtualizada", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnManterConsultaSempreAtualizada);
+                this.columnTempoAtualizacaoConsultaSempreAtualizada = new global::System.Data.DataColumn("TempoAtualizacaoConsultaSempreAtualizada", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTempoAtualizacaoConsultaSempreAtualizada);
+                this.columnPermitirBuscarPorLDINaPesquisa = new global::System.Data.DataColumn("PermitirBuscarPorLDINaPesquisa", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPermitirBuscarPorLDINaPesquisa);
+                this.columnHabilitarCapturaDeDadosDePostagem = new global::System.Data.DataColumn("HabilitarCapturaDeDadosDePostagem", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnHabilitarCapturaDeDadosDePostagem);
+                this.columnHabilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatario = new global::System.Data.DataColumn("HabilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatario", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnHabilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatario);
+                this.columnHabilitarCapturaDeDadosDeDestinatarioAusente = new global::System.Data.DataColumn("HabilitarCapturaDeDadosDeDestinatarioAusente", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnHabilitarCapturaDeDadosDeDestinatarioAusente);
+                this.columnDataHoraUltimaAtualizacaoImportacao = new global::System.Data.DataColumn("DataHoraUltimaAtualizacaoImportacao", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDataHoraUltimaAtualizacaoImportacao);
+                this.columnSuperintendenciaEstadual = new global::System.Data.DataColumn("SuperintendenciaEstadual", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSuperintendenciaEstadual);
+                this.columnCepUnidade = new global::System.Data.DataColumn("CepUnidade", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCepUnidade);
+                this.columnCidadeAgenciaLocal = new global::System.Data.DataColumn("CidadeAgenciaLocal", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCidadeAgenciaLocal);
+                this.columnUFAgenciaLocal = new global::System.Data.DataColumn("UFAgenciaLocal", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnUFAgenciaLocal);
+                this.columnTelefoneAgenciaLocal = new global::System.Data.DataColumn("TelefoneAgenciaLocal", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTelefoneAgenciaLocal);
+                this.columnHorarioFuncionamentoAgenciaLocal = new global::System.Data.DataColumn("HorarioFuncionamentoAgenciaLocal", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnHorarioFuncionamentoAgenciaLocal);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnCodigo}, true));
                 this.columnCodigo.AutoIncrement = true;
@@ -465,6 +694,13 @@ namespace SISAPO {
                 this.columnCodigo.Unique = true;
                 this.columnNomeAgenciaLocal.MaxLength = 255;
                 this.columnEnderecoAgenciaLocal.MaxLength = 255;
+                this.columnTempoAtualizacaoConsultaSempreAtualizada.MaxLength = 255;
+                this.columnSuperintendenciaEstadual.MaxLength = 255;
+                this.columnCepUnidade.MaxLength = 255;
+                this.columnCidadeAgenciaLocal.MaxLength = 255;
+                this.columnUFAgenciaLocal.MaxLength = 255;
+                this.columnTelefoneAgenciaLocal.MaxLength = 255;
+                this.columnHorarioFuncionamentoAgenciaLocal.MaxLength = 255;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -686,6 +922,261 @@ namespace SISAPO {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool ExibirObjetosEmCaixaPostalNaPesquisa {
+                get {
+                    try {
+                        return ((bool)(this[this.tableTabelaConfiguracoesSistema.ExibirObjetosEmCaixaPostalNaPesquisaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ExibirObjetosEmCaixaPostalNaPesquisa\' in table \'TabelaConfi" +
+                                "guracoesSistema\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTabelaConfiguracoesSistema.ExibirObjetosEmCaixaPostalNaPesquisaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool ExibirObjetosJaEntreguesNaPesquisa {
+                get {
+                    try {
+                        return ((bool)(this[this.tableTabelaConfiguracoesSistema.ExibirObjetosJaEntreguesNaPesquisaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ExibirObjetosJaEntreguesNaPesquisa\' in table \'TabelaConfigu" +
+                                "racoesSistema\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTabelaConfiguracoesSistema.ExibirObjetosJaEntreguesNaPesquisaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool ManterConsultaSempreAtualizada {
+                get {
+                    try {
+                        return ((bool)(this[this.tableTabelaConfiguracoesSistema.ManterConsultaSempreAtualizadaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ManterConsultaSempreAtualizada\' in table \'TabelaConfiguraco" +
+                                "esSistema\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTabelaConfiguracoesSistema.ManterConsultaSempreAtualizadaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string TempoAtualizacaoConsultaSempreAtualizada {
+                get {
+                    try {
+                        return ((string)(this[this.tableTabelaConfiguracoesSistema.TempoAtualizacaoConsultaSempreAtualizadaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'TempoAtualizacaoConsultaSempreAtualizada\' in table \'TabelaC" +
+                                "onfiguracoesSistema\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTabelaConfiguracoesSistema.TempoAtualizacaoConsultaSempreAtualizadaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool PermitirBuscarPorLDINaPesquisa {
+                get {
+                    try {
+                        return ((bool)(this[this.tableTabelaConfiguracoesSistema.PermitirBuscarPorLDINaPesquisaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'PermitirBuscarPorLDINaPesquisa\' in table \'TabelaConfiguraco" +
+                                "esSistema\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTabelaConfiguracoesSistema.PermitirBuscarPorLDINaPesquisaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool HabilitarCapturaDeDadosDePostagem {
+                get {
+                    try {
+                        return ((bool)(this[this.tableTabelaConfiguracoesSistema.HabilitarCapturaDeDadosDePostagemColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'HabilitarCapturaDeDadosDePostagem\' in table \'TabelaConfigur" +
+                                "acoesSistema\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTabelaConfiguracoesSistema.HabilitarCapturaDeDadosDePostagemColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool HabilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatario {
+                get {
+                    try {
+                        return ((bool)(this[this.tableTabelaConfiguracoesSistema.HabilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatarioColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'HabilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatario\' in " +
+                                "table \'TabelaConfiguracoesSistema\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTabelaConfiguracoesSistema.HabilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatarioColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool HabilitarCapturaDeDadosDeDestinatarioAusente {
+                get {
+                    try {
+                        return ((bool)(this[this.tableTabelaConfiguracoesSistema.HabilitarCapturaDeDadosDeDestinatarioAusenteColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'HabilitarCapturaDeDadosDeDestinatarioAusente\' in table \'Tab" +
+                                "elaConfiguracoesSistema\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTabelaConfiguracoesSistema.HabilitarCapturaDeDadosDeDestinatarioAusenteColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public System.DateTime DataHoraUltimaAtualizacaoImportacao {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableTabelaConfiguracoesSistema.DataHoraUltimaAtualizacaoImportacaoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DataHoraUltimaAtualizacaoImportacao\' in table \'TabelaConfig" +
+                                "uracoesSistema\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTabelaConfiguracoesSistema.DataHoraUltimaAtualizacaoImportacaoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string SuperintendenciaEstadual {
+                get {
+                    try {
+                        return ((string)(this[this.tableTabelaConfiguracoesSistema.SuperintendenciaEstadualColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'SuperintendenciaEstadual\' in table \'TabelaConfiguracoesSist" +
+                                "ema\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTabelaConfiguracoesSistema.SuperintendenciaEstadualColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string CepUnidade {
+                get {
+                    try {
+                        return ((string)(this[this.tableTabelaConfiguracoesSistema.CepUnidadeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CepUnidade\' in table \'TabelaConfiguracoesSistema\' is DBNull" +
+                                ".", e);
+                    }
+                }
+                set {
+                    this[this.tableTabelaConfiguracoesSistema.CepUnidadeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string CidadeAgenciaLocal {
+                get {
+                    try {
+                        return ((string)(this[this.tableTabelaConfiguracoesSistema.CidadeAgenciaLocalColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CidadeAgenciaLocal\' in table \'TabelaConfiguracoesSistema\' i" +
+                                "s DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTabelaConfiguracoesSistema.CidadeAgenciaLocalColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string UFAgenciaLocal {
+                get {
+                    try {
+                        return ((string)(this[this.tableTabelaConfiguracoesSistema.UFAgenciaLocalColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'UFAgenciaLocal\' in table \'TabelaConfiguracoesSistema\' is DB" +
+                                "Null.", e);
+                    }
+                }
+                set {
+                    this[this.tableTabelaConfiguracoesSistema.UFAgenciaLocalColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string TelefoneAgenciaLocal {
+                get {
+                    try {
+                        return ((string)(this[this.tableTabelaConfiguracoesSistema.TelefoneAgenciaLocalColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'TelefoneAgenciaLocal\' in table \'TabelaConfiguracoesSistema\'" +
+                                " is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTabelaConfiguracoesSistema.TelefoneAgenciaLocalColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string HorarioFuncionamentoAgenciaLocal {
+                get {
+                    try {
+                        return ((string)(this[this.tableTabelaConfiguracoesSistema.HorarioFuncionamentoAgenciaLocalColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'HorarioFuncionamentoAgenciaLocal\' in table \'TabelaConfigura" +
+                                "coesSistema\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTabelaConfiguracoesSistema.HorarioFuncionamentoAgenciaLocalColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsNomeAgenciaLocalNull() {
                 return this.IsNull(this.tableTabelaConfiguracoesSistema.NomeAgenciaLocalColumn);
             }
@@ -730,6 +1221,186 @@ namespace SISAPO {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetDataFinalPeriodoExibicaoConsultaNull() {
                 this[this.tableTabelaConfiguracoesSistema.DataFinalPeriodoExibicaoConsultaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsExibirObjetosEmCaixaPostalNaPesquisaNull() {
+                return this.IsNull(this.tableTabelaConfiguracoesSistema.ExibirObjetosEmCaixaPostalNaPesquisaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetExibirObjetosEmCaixaPostalNaPesquisaNull() {
+                this[this.tableTabelaConfiguracoesSistema.ExibirObjetosEmCaixaPostalNaPesquisaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsExibirObjetosJaEntreguesNaPesquisaNull() {
+                return this.IsNull(this.tableTabelaConfiguracoesSistema.ExibirObjetosJaEntreguesNaPesquisaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetExibirObjetosJaEntreguesNaPesquisaNull() {
+                this[this.tableTabelaConfiguracoesSistema.ExibirObjetosJaEntreguesNaPesquisaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsManterConsultaSempreAtualizadaNull() {
+                return this.IsNull(this.tableTabelaConfiguracoesSistema.ManterConsultaSempreAtualizadaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetManterConsultaSempreAtualizadaNull() {
+                this[this.tableTabelaConfiguracoesSistema.ManterConsultaSempreAtualizadaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsTempoAtualizacaoConsultaSempreAtualizadaNull() {
+                return this.IsNull(this.tableTabelaConfiguracoesSistema.TempoAtualizacaoConsultaSempreAtualizadaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetTempoAtualizacaoConsultaSempreAtualizadaNull() {
+                this[this.tableTabelaConfiguracoesSistema.TempoAtualizacaoConsultaSempreAtualizadaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsPermitirBuscarPorLDINaPesquisaNull() {
+                return this.IsNull(this.tableTabelaConfiguracoesSistema.PermitirBuscarPorLDINaPesquisaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetPermitirBuscarPorLDINaPesquisaNull() {
+                this[this.tableTabelaConfiguracoesSistema.PermitirBuscarPorLDINaPesquisaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsHabilitarCapturaDeDadosDePostagemNull() {
+                return this.IsNull(this.tableTabelaConfiguracoesSistema.HabilitarCapturaDeDadosDePostagemColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetHabilitarCapturaDeDadosDePostagemNull() {
+                this[this.tableTabelaConfiguracoesSistema.HabilitarCapturaDeDadosDePostagemColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsHabilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatarioNull() {
+                return this.IsNull(this.tableTabelaConfiguracoesSistema.HabilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatarioColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetHabilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatarioNull() {
+                this[this.tableTabelaConfiguracoesSistema.HabilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatarioColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsHabilitarCapturaDeDadosDeDestinatarioAusenteNull() {
+                return this.IsNull(this.tableTabelaConfiguracoesSistema.HabilitarCapturaDeDadosDeDestinatarioAusenteColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetHabilitarCapturaDeDadosDeDestinatarioAusenteNull() {
+                this[this.tableTabelaConfiguracoesSistema.HabilitarCapturaDeDadosDeDestinatarioAusenteColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsDataHoraUltimaAtualizacaoImportacaoNull() {
+                return this.IsNull(this.tableTabelaConfiguracoesSistema.DataHoraUltimaAtualizacaoImportacaoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetDataHoraUltimaAtualizacaoImportacaoNull() {
+                this[this.tableTabelaConfiguracoesSistema.DataHoraUltimaAtualizacaoImportacaoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsSuperintendenciaEstadualNull() {
+                return this.IsNull(this.tableTabelaConfiguracoesSistema.SuperintendenciaEstadualColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetSuperintendenciaEstadualNull() {
+                this[this.tableTabelaConfiguracoesSistema.SuperintendenciaEstadualColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsCepUnidadeNull() {
+                return this.IsNull(this.tableTabelaConfiguracoesSistema.CepUnidadeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetCepUnidadeNull() {
+                this[this.tableTabelaConfiguracoesSistema.CepUnidadeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsCidadeAgenciaLocalNull() {
+                return this.IsNull(this.tableTabelaConfiguracoesSistema.CidadeAgenciaLocalColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetCidadeAgenciaLocalNull() {
+                this[this.tableTabelaConfiguracoesSistema.CidadeAgenciaLocalColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsUFAgenciaLocalNull() {
+                return this.IsNull(this.tableTabelaConfiguracoesSistema.UFAgenciaLocalColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetUFAgenciaLocalNull() {
+                this[this.tableTabelaConfiguracoesSistema.UFAgenciaLocalColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsTelefoneAgenciaLocalNull() {
+                return this.IsNull(this.tableTabelaConfiguracoesSistema.TelefoneAgenciaLocalColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetTelefoneAgenciaLocalNull() {
+                this[this.tableTabelaConfiguracoesSistema.TelefoneAgenciaLocalColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsHorarioFuncionamentoAgenciaLocalNull() {
+                return this.IsNull(this.tableTabelaConfiguracoesSistema.HorarioFuncionamentoAgenciaLocalColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetHorarioFuncionamentoAgenciaLocalNull() {
+                this[this.tableTabelaConfiguracoesSistema.HorarioFuncionamentoAgenciaLocalColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -811,7 +1482,7 @@ namespace SISAPO.DataSetConfiguracoesTableAdapters {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        internal global::System.Data.OleDb.OleDbConnection Connection {
+        public global::System.Data.OleDb.OleDbConnection Connection {
             get {
                 if ((this._connection == null)) {
                     this.InitConnection();
@@ -897,6 +1568,21 @@ namespace SISAPO.DataSetConfiguracoesTableAdapters {
             tableMapping.ColumnMappings.Add("EnderecoAgenciaLocal", "EnderecoAgenciaLocal");
             tableMapping.ColumnMappings.Add("DataInicialPeriodoExibicaoConsulta", "DataInicialPeriodoExibicaoConsulta");
             tableMapping.ColumnMappings.Add("DataFinalPeriodoExibicaoConsulta", "DataFinalPeriodoExibicaoConsulta");
+            tableMapping.ColumnMappings.Add("ExibirObjetosEmCaixaPostalNaPesquisa", "ExibirObjetosEmCaixaPostalNaPesquisa");
+            tableMapping.ColumnMappings.Add("ExibirObjetosJaEntreguesNaPesquisa", "ExibirObjetosJaEntreguesNaPesquisa");
+            tableMapping.ColumnMappings.Add("ManterConsultaSempreAtualizada", "ManterConsultaSempreAtualizada");
+            tableMapping.ColumnMappings.Add("TempoAtualizacaoConsultaSempreAtualizada", "TempoAtualizacaoConsultaSempreAtualizada");
+            tableMapping.ColumnMappings.Add("PermitirBuscarPorLDINaPesquisa", "PermitirBuscarPorLDINaPesquisa");
+            tableMapping.ColumnMappings.Add("HabilitarCapturaDeDadosDePostagem", "HabilitarCapturaDeDadosDePostagem");
+            tableMapping.ColumnMappings.Add("HabilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatario", "HabilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatario");
+            tableMapping.ColumnMappings.Add("HabilitarCapturaDeDadosDeDestinatarioAusente", "HabilitarCapturaDeDadosDeDestinatarioAusente");
+            tableMapping.ColumnMappings.Add("DataHoraUltimaAtualizacaoImportacao", "DataHoraUltimaAtualizacaoImportacao");
+            tableMapping.ColumnMappings.Add("SuperintendenciaEstadual", "SuperintendenciaEstadual");
+            tableMapping.ColumnMappings.Add("CepUnidade", "CepUnidade");
+            tableMapping.ColumnMappings.Add("CidadeAgenciaLocal", "CidadeAgenciaLocal");
+            tableMapping.ColumnMappings.Add("UFAgenciaLocal", "UFAgenciaLocal");
+            tableMapping.ColumnMappings.Add("TelefoneAgenciaLocal", "TelefoneAgenciaLocal");
+            tableMapping.ColumnMappings.Add("HorarioFuncionamentoAgenciaLocal", "HorarioFuncionamentoAgenciaLocal");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
@@ -905,24 +1591,55 @@ namespace SISAPO.DataSetConfiguracoesTableAdapters {
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Codigo", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Codigo", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.InsertCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO TabelaConfiguracoesSistema\r\n                         (NomeAgenciaLoca" +
-                "l, EnderecoAgenciaLocal, DataInicialPeriodoExibicaoConsulta, DataFinalPeriodoExi" +
-                "bicaoConsulta)\r\nVALUES        (?, ?, ?, ?)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO `TabelaConfiguracoesSistema` (`NomeAgenciaLocal`, `EnderecoAgenciaLocal`, `DataInicialPeriodoExibicaoConsulta`, `DataFinalPeriodoExibicaoConsulta`, `ExibirObjetosEmCaixaPostalNaPesquisa`, `ExibirObjetosJaEntreguesNaPesquisa`, `ManterConsultaSempreAtualizada`, `TempoAtualizacaoConsultaSempreAtualizada`, `PermitirBuscarPorLDINaPesquisa`, `HabilitarCapturaDeDadosDePostagem`, `HabilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatario`, `HabilitarCapturaDeDadosDeDestinatarioAusente`, `DataHoraUltimaAtualizacaoImportacao`, `SuperintendenciaEstadual`, `CepUnidade`, `CidadeAgenciaLocal`, `UFAgenciaLocal`, `TelefoneAgenciaLocal`, `HorarioFuncionamentoAgenciaLocal`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("NomeAgenciaLocal", global::System.Data.OleDb.OleDbType.WChar, 255, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "NomeAgenciaLocal", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("EnderecoAgenciaLocal", global::System.Data.OleDb.OleDbType.WChar, 255, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "EnderecoAgenciaLocal", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("NomeAgenciaLocal", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "NomeAgenciaLocal", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("EnderecoAgenciaLocal", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "EnderecoAgenciaLocal", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("DataInicialPeriodoExibicaoConsulta", global::System.Data.OleDb.OleDbType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DataInicialPeriodoExibicaoConsulta", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("DataFinalPeriodoExibicaoConsulta", global::System.Data.OleDb.OleDbType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DataFinalPeriodoExibicaoConsulta", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("ExibirObjetosEmCaixaPostalNaPesquisa", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ExibirObjetosEmCaixaPostalNaPesquisa", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("ExibirObjetosJaEntreguesNaPesquisa", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ExibirObjetosJaEntreguesNaPesquisa", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("ManterConsultaSempreAtualizada", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ManterConsultaSempreAtualizada", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("TempoAtualizacaoConsultaSempreAtualizada", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "TempoAtualizacaoConsultaSempreAtualizada", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("PermitirBuscarPorLDINaPesquisa", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "PermitirBuscarPorLDINaPesquisa", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("HabilitarCapturaDeDadosDePostagem", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "HabilitarCapturaDeDadosDePostagem", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("HabilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatario", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "HabilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatario", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("HabilitarCapturaDeDadosDeDestinatarioAusente", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "HabilitarCapturaDeDadosDeDestinatarioAusente", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("DataHoraUltimaAtualizacaoImportacao", global::System.Data.OleDb.OleDbType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DataHoraUltimaAtualizacaoImportacao", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("SuperintendenciaEstadual", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "SuperintendenciaEstadual", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("CepUnidade", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "CepUnidade", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("CidadeAgenciaLocal", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "CidadeAgenciaLocal", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("UFAgenciaLocal", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "UFAgenciaLocal", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("TelefoneAgenciaLocal", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "TelefoneAgenciaLocal", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("HorarioFuncionamentoAgenciaLocal", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "HorarioFuncionamentoAgenciaLocal", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = "UPDATE       TabelaConfiguracoesSistema\r\nSET                NomeAgenciaLocal = ?," +
-                " EnderecoAgenciaLocal = ?, DataInicialPeriodoExibicaoConsulta = ?, DataFinalPeri" +
-                "odoExibicaoConsulta = ?\r\nWHERE        (Codigo = ?)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE       TabelaConfiguracoesSistema
+SET                NomeAgenciaLocal = ?, EnderecoAgenciaLocal = ?, DataInicialPeriodoExibicaoConsulta = ?, DataFinalPeriodoExibicaoConsulta = ?, ExibirObjetosEmCaixaPostalNaPesquisa = ?, ExibirObjetosJaEntreguesNaPesquisa = ?, 
+                         ManterConsultaSempreAtualizada = ?, TempoAtualizacaoConsultaSempreAtualizada = ?, PermitirBuscarPorLDINaPesquisa = ?, HabilitarCapturaDeDadosDePostagem = ?, 
+                         HabilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatario = ?, HabilitarCapturaDeDadosDeDestinatarioAusente = ?, DataHoraUltimaAtualizacaoImportacao = ?, SuperintendenciaEstadual = ?, CepUnidade = ?, 
+                         CidadeAgenciaLocal = ?, UFAgenciaLocal = ?, TelefoneAgenciaLocal = ?, HorarioFuncionamentoAgenciaLocal = ?
+WHERE        (Codigo = ?)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("NomeAgenciaLocal", global::System.Data.OleDb.OleDbType.WChar, 255, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "NomeAgenciaLocal", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("EnderecoAgenciaLocal", global::System.Data.OleDb.OleDbType.WChar, 255, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "EnderecoAgenciaLocal", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("DataInicialPeriodoExibicaoConsulta", global::System.Data.OleDb.OleDbType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DataInicialPeriodoExibicaoConsulta", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("DataFinalPeriodoExibicaoConsulta", global::System.Data.OleDb.OleDbType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DataFinalPeriodoExibicaoConsulta", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("ExibirObjetosEmCaixaPostalNaPesquisa", global::System.Data.OleDb.OleDbType.Boolean, 2, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ExibirObjetosEmCaixaPostalNaPesquisa", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("ExibirObjetosJaEntreguesNaPesquisa", global::System.Data.OleDb.OleDbType.Boolean, 2, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ExibirObjetosJaEntreguesNaPesquisa", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("ManterConsultaSempreAtualizada", global::System.Data.OleDb.OleDbType.Boolean, 2, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ManterConsultaSempreAtualizada", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("TempoAtualizacaoConsultaSempreAtualizada", global::System.Data.OleDb.OleDbType.WChar, 255, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "TempoAtualizacaoConsultaSempreAtualizada", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("PermitirBuscarPorLDINaPesquisa", global::System.Data.OleDb.OleDbType.Boolean, 2, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "PermitirBuscarPorLDINaPesquisa", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("HabilitarCapturaDeDadosDePostagem", global::System.Data.OleDb.OleDbType.Boolean, 2, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "HabilitarCapturaDeDadosDePostagem", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("HabilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatario", global::System.Data.OleDb.OleDbType.Boolean, 2, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "HabilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatario", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("HabilitarCapturaDeDadosDeDestinatarioAusente", global::System.Data.OleDb.OleDbType.Boolean, 2, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "HabilitarCapturaDeDadosDeDestinatarioAusente", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("DataHoraUltimaAtualizacaoImportacao", global::System.Data.OleDb.OleDbType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DataHoraUltimaAtualizacaoImportacao", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("SuperintendenciaEstadual", global::System.Data.OleDb.OleDbType.WChar, 255, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "SuperintendenciaEstadual", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("CepUnidade", global::System.Data.OleDb.OleDbType.WChar, 255, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "CepUnidade", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("CidadeAgenciaLocal", global::System.Data.OleDb.OleDbType.WChar, 255, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "CidadeAgenciaLocal", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("UFAgenciaLocal", global::System.Data.OleDb.OleDbType.WChar, 255, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "UFAgenciaLocal", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("TelefoneAgenciaLocal", global::System.Data.OleDb.OleDbType.WChar, 255, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "TelefoneAgenciaLocal", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("HorarioFuncionamentoAgenciaLocal", global::System.Data.OleDb.OleDbType.WChar, 255, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "HorarioFuncionamentoAgenciaLocal", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Codigo", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Codigo", global::System.Data.DataRowVersion.Original, false, null));
         }
         
@@ -939,9 +1656,11 @@ namespace SISAPO.DataSetConfiguracoesTableAdapters {
             this._commandCollection = new global::System.Data.OleDb.OleDbCommand[1];
             this._commandCollection[0] = new global::System.Data.OleDb.OleDbCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT        Codigo, NomeAgenciaLocal, EnderecoAgenciaLocal, DataInicialPeriodoE" +
-                "xibicaoConsulta, DataFinalPeriodoExibicaoConsulta\r\nFROM            TabelaConfigu" +
-                "racoesSistema";
+            this._commandCollection[0].CommandText = @"SELECT        Codigo, NomeAgenciaLocal, EnderecoAgenciaLocal, DataInicialPeriodoExibicaoConsulta, DataFinalPeriodoExibicaoConsulta, ExibirObjetosEmCaixaPostalNaPesquisa, ExibirObjetosJaEntreguesNaPesquisa, 
+                         ManterConsultaSempreAtualizada, TempoAtualizacaoConsultaSempreAtualizada, PermitirBuscarPorLDINaPesquisa, HabilitarCapturaDeDadosDePostagem, HabilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatario, 
+                         HabilitarCapturaDeDadosDeDestinatarioAusente, DataHoraUltimaAtualizacaoImportacao, SuperintendenciaEstadual, CepUnidade, CidadeAgenciaLocal, UFAgenciaLocal, TelefoneAgenciaLocal, 
+                         HorarioFuncionamentoAgenciaLocal
+FROM            TabelaConfiguracoesSistema";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -1024,7 +1743,26 @@ namespace SISAPO.DataSetConfiguracoesTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string NomeAgenciaLocal, string EnderecoAgenciaLocal, global::System.Nullable<global::System.DateTime> DataInicialPeriodoExibicaoConsulta, global::System.Nullable<global::System.DateTime> DataFinalPeriodoExibicaoConsulta) {
+        public virtual int Insert(
+                    string NomeAgenciaLocal, 
+                    string EnderecoAgenciaLocal, 
+                    global::System.Nullable<global::System.DateTime> DataInicialPeriodoExibicaoConsulta, 
+                    global::System.Nullable<global::System.DateTime> DataFinalPeriodoExibicaoConsulta, 
+                    bool ExibirObjetosEmCaixaPostalNaPesquisa, 
+                    bool ExibirObjetosJaEntreguesNaPesquisa, 
+                    bool ManterConsultaSempreAtualizada, 
+                    string TempoAtualizacaoConsultaSempreAtualizada, 
+                    bool PermitirBuscarPorLDINaPesquisa, 
+                    bool HabilitarCapturaDeDadosDePostagem, 
+                    bool HabilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatario, 
+                    bool HabilitarCapturaDeDadosDeDestinatarioAusente, 
+                    global::System.Nullable<global::System.DateTime> DataHoraUltimaAtualizacaoImportacao, 
+                    string SuperintendenciaEstadual, 
+                    string CepUnidade, 
+                    string CidadeAgenciaLocal, 
+                    string UFAgenciaLocal, 
+                    string TelefoneAgenciaLocal, 
+                    string HorarioFuncionamentoAgenciaLocal) {
             if ((NomeAgenciaLocal == null)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -1049,6 +1787,61 @@ namespace SISAPO.DataSetConfiguracoesTableAdapters {
             else {
                 this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
+            this.Adapter.InsertCommand.Parameters[4].Value = ((bool)(ExibirObjetosEmCaixaPostalNaPesquisa));
+            this.Adapter.InsertCommand.Parameters[5].Value = ((bool)(ExibirObjetosJaEntreguesNaPesquisa));
+            this.Adapter.InsertCommand.Parameters[6].Value = ((bool)(ManterConsultaSempreAtualizada));
+            if ((TempoAtualizacaoConsultaSempreAtualizada == null)) {
+                this.Adapter.InsertCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[7].Value = ((string)(TempoAtualizacaoConsultaSempreAtualizada));
+            }
+            this.Adapter.InsertCommand.Parameters[8].Value = ((bool)(PermitirBuscarPorLDINaPesquisa));
+            this.Adapter.InsertCommand.Parameters[9].Value = ((bool)(HabilitarCapturaDeDadosDePostagem));
+            this.Adapter.InsertCommand.Parameters[10].Value = ((bool)(HabilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatario));
+            this.Adapter.InsertCommand.Parameters[11].Value = ((bool)(HabilitarCapturaDeDadosDeDestinatarioAusente));
+            if ((DataHoraUltimaAtualizacaoImportacao.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[12].Value = ((System.DateTime)(DataHoraUltimaAtualizacaoImportacao.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[12].Value = global::System.DBNull.Value;
+            }
+            if ((SuperintendenciaEstadual == null)) {
+                this.Adapter.InsertCommand.Parameters[13].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[13].Value = ((string)(SuperintendenciaEstadual));
+            }
+            if ((CepUnidade == null)) {
+                this.Adapter.InsertCommand.Parameters[14].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[14].Value = ((string)(CepUnidade));
+            }
+            if ((CidadeAgenciaLocal == null)) {
+                this.Adapter.InsertCommand.Parameters[15].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[15].Value = ((string)(CidadeAgenciaLocal));
+            }
+            if ((UFAgenciaLocal == null)) {
+                this.Adapter.InsertCommand.Parameters[16].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[16].Value = ((string)(UFAgenciaLocal));
+            }
+            if ((TelefoneAgenciaLocal == null)) {
+                this.Adapter.InsertCommand.Parameters[17].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[17].Value = ((string)(TelefoneAgenciaLocal));
+            }
+            if ((HorarioFuncionamentoAgenciaLocal == null)) {
+                this.Adapter.InsertCommand.Parameters[18].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[18].Value = ((string)(HorarioFuncionamentoAgenciaLocal));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -1069,7 +1862,27 @@ namespace SISAPO.DataSetConfiguracoesTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string NomeAgenciaLocal, string EnderecoAgenciaLocal, global::System.Nullable<global::System.DateTime> DataInicialPeriodoExibicaoConsulta, global::System.Nullable<global::System.DateTime> DataFinalPeriodoExibicaoConsulta, int Original_Codigo) {
+        public virtual int Update(
+                    string NomeAgenciaLocal, 
+                    string EnderecoAgenciaLocal, 
+                    global::System.Nullable<global::System.DateTime> DataInicialPeriodoExibicaoConsulta, 
+                    global::System.Nullable<global::System.DateTime> DataFinalPeriodoExibicaoConsulta, 
+                    bool ExibirObjetosEmCaixaPostalNaPesquisa, 
+                    bool ExibirObjetosJaEntreguesNaPesquisa, 
+                    bool ManterConsultaSempreAtualizada, 
+                    string TempoAtualizacaoConsultaSempreAtualizada, 
+                    bool PermitirBuscarPorLDINaPesquisa, 
+                    bool HabilitarCapturaDeDadosDePostagem, 
+                    bool HabilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatario, 
+                    bool HabilitarCapturaDeDadosDeDestinatarioAusente, 
+                    global::System.Nullable<global::System.DateTime> DataHoraUltimaAtualizacaoImportacao, 
+                    string SuperintendenciaEstadual, 
+                    string CepUnidade, 
+                    string CidadeAgenciaLocal, 
+                    string UFAgenciaLocal, 
+                    string TelefoneAgenciaLocal, 
+                    string HorarioFuncionamentoAgenciaLocal, 
+                    int Original_Codigo) {
             if ((NomeAgenciaLocal == null)) {
                 this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -1094,7 +1907,62 @@ namespace SISAPO.DataSetConfiguracoesTableAdapters {
             else {
                 this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_Codigo));
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((bool)(ExibirObjetosEmCaixaPostalNaPesquisa));
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((bool)(ExibirObjetosJaEntreguesNaPesquisa));
+            this.Adapter.UpdateCommand.Parameters[6].Value = ((bool)(ManterConsultaSempreAtualizada));
+            if ((TempoAtualizacaoConsultaSempreAtualizada == null)) {
+                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(TempoAtualizacaoConsultaSempreAtualizada));
+            }
+            this.Adapter.UpdateCommand.Parameters[8].Value = ((bool)(PermitirBuscarPorLDINaPesquisa));
+            this.Adapter.UpdateCommand.Parameters[9].Value = ((bool)(HabilitarCapturaDeDadosDePostagem));
+            this.Adapter.UpdateCommand.Parameters[10].Value = ((bool)(HabilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatario));
+            this.Adapter.UpdateCommand.Parameters[11].Value = ((bool)(HabilitarCapturaDeDadosDeDestinatarioAusente));
+            if ((DataHoraUltimaAtualizacaoImportacao.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((System.DateTime)(DataHoraUltimaAtualizacaoImportacao.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
+            }
+            if ((SuperintendenciaEstadual == null)) {
+                this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(SuperintendenciaEstadual));
+            }
+            if ((CepUnidade == null)) {
+                this.Adapter.UpdateCommand.Parameters[14].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((string)(CepUnidade));
+            }
+            if ((CidadeAgenciaLocal == null)) {
+                this.Adapter.UpdateCommand.Parameters[15].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((string)(CidadeAgenciaLocal));
+            }
+            if ((UFAgenciaLocal == null)) {
+                this.Adapter.UpdateCommand.Parameters[16].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((string)(UFAgenciaLocal));
+            }
+            if ((TelefoneAgenciaLocal == null)) {
+                this.Adapter.UpdateCommand.Parameters[17].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((string)(TelefoneAgenciaLocal));
+            }
+            if ((HorarioFuncionamentoAgenciaLocal == null)) {
+                this.Adapter.UpdateCommand.Parameters[18].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((string)(HorarioFuncionamentoAgenciaLocal));
+            }
+            this.Adapter.UpdateCommand.Parameters[19].Value = ((int)(Original_Codigo));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {

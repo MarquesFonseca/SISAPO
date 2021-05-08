@@ -45,7 +45,7 @@ namespace SISAPO
             textoConsulta = new StringBuilder();
             ListaLinksJavaScript = new List<string>();
             UltimoElemento = false;
-            
+
             DetalhesDeObjetos3 = false;
             dadosAgencia = RetornaDadosAgencia();
 
@@ -193,7 +193,7 @@ namespace SISAPO
                             {
                                 EscreveTextoTextBox("antes de clicar...");
                                 Mensagens.InformaDesenvolvedor("Antes de clicar no link do aguardando retirada... \nwebBrowser1.Document.InvokeScript(\"DetalhesPesquisa\"....");
-                                webBrowser1.Document.InvokeScript("DetalhesPesquisa", new object[] { 
+                                webBrowser1.Document.InvokeScript("DetalhesPesquisa", new object[] {
                                 PrimeiroListaLinksJavaScript.Split('\'')[1], /*DETALHESINTRA*/
                                 PrimeiroListaLinksJavaScript.Split('\'')[3], /*OA899613034BR*/ 
                                 PrimeiroListaLinksJavaScript.Split('\'')[5], /*LDI*/
@@ -243,22 +243,82 @@ namespace SISAPO
                             if (webBrowser1.Document.GetElementsByTagName("TR")[i].InnerText.Contains("Cliente:"))
                             {
                                 NomeCliente = webBrowser1.Document.GetElementsByTagName("TR")[i].InnerText.Replace("Cliente: ", "");
+                                //referente ao Tipo Postal
+                                bool SeEAoRemetente = false;
+                                bool SeECaixaPostal = false;
+                                string TipoPostalServico = string.Empty;
+                                string TipoPostalSiglaCodigo = string.Empty;
+                                string TipoPostalNomeSiglaCodigo = string.Empty;
+                                string TipoPostalPrazoDiasCorridosRegulamentado = string.Empty;
+
                                 EscreveTextoTextBox(NomeCliente.ToString());
                                 #region grava no banco de dados
                                 using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
                                 {
                                     if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
-                                    DataSet ds = dao.RetornaDataSet("SELECT top 1 NomeCliente FROM TabelaObjetosSROLocal WHERE (CodigoObjeto = @CodigoObjeto)", new Parametros { Nome = "@CodigoObjeto", Tipo = TipoCampo.Text, Valor = CodigoObjetoAtual });
+                                    DataSet ds = dao.RetornaDataSet("SELECT TOP 1 NomeCliente, CaixaPostal FROM TabelaObjetosSROLocal WHERE (CodigoObjeto = @CodigoObjeto)", new Parametros { Nome = "@CodigoObjeto", Tipo = TipoCampo.Text, Valor = CodigoObjetoAtual });
                                     if (ds.Tables[0].Rows.Count == 1)
                                     {
                                         NomeCliente = NomeCliente.Trim() == "" ? ds.Tables[0].Rows[0]["NomeCliente"].ToString().ToUpper().RemoveAcentos() : NomeCliente.Trim().ToUpper().RemoveAcentos();
+                                        NomeCliente = string.Format("{0} - {1}", NomeCliente, Comentario);
+                                        SeECaixaPostal = Convert.ToBoolean(ds.Tables[0].Rows[0]["CaixaPostal"]);
+                                        SeEAoRemetente = (NomeCliente.ToUpper().RemoveAcentos().Contains("ORIGEM") || NomeCliente.ToUpper().RemoveAcentos().Contains("DEVOLUCAO") || NomeCliente.ToUpper().RemoveAcentos().Contains("REMETENTE")) ? true : false;
+                                        if (FormularioPrincipal.TiposPostais.Rows.Count > 0)
+                                        {
+                                            DataRow drTipoPostal = FormularioPrincipal.TiposPostais.AsEnumerable().First(T => T["Sigla"].Equals(CodigoObjetoAtual.Substring(0, 2))); //["Código"] - Pega linha retornada dos tipos postais vinda do Excel
+
+                                            //Exemplo "LB327263658SE"
+                                            //[0] - Serviço: NAO URGENTE 
+                                            //[1] - Código: LB 
+                                            //[2] - Nome: OBJETO INTERNACIONAL PRIME 
+                                            //[3] - Prazo dias corridos no destino (Caixa Postal): 30 
+                                            //[4] - Prazo dias corridos no destino (Caída/Pedida): 20 
+                                            //[5] - Prazo dias corridos na origem/devolução/remetente (Caixa Postal): 20 
+                                            //[6] - Prazo dias corridos na origem/devolução/remetente (Caída/Pedida): 20
+
+                                            TipoPostalServico = drTipoPostal["Servico"].ToString();
+                                            TipoPostalSiglaCodigo = drTipoPostal["Sigla"].ToString();
+                                            TipoPostalNomeSiglaCodigo = drTipoPostal["Descricao"].ToString();
+
+                                            //Se for Caixa Postal e Não for Ao remetente
+                                            if (SeECaixaPostal && !SeEAoRemetente)
+                                            {
+                                                // Pega campo "Prazo dias corridos no destino (Caixa Postal)"
+                                                TipoPostalPrazoDiasCorridosRegulamentado = drTipoPostal["PrazoDestinoCaixaPostal"].ToString();
+                                            }
+                                            //Se for Caixa Postal e Se for Ao remetente
+                                            if (SeECaixaPostal && SeEAoRemetente)
+                                            {
+                                                // Pega campo "Prazo dias corridos na origem/devolução/remetente (Caixa Postal)"
+                                                TipoPostalPrazoDiasCorridosRegulamentado = drTipoPostal["PrazoRemetenteCaixaPostal"].ToString();
+                                            }
+                                            //Se Não for Caixa Postal && Não for Ao remetente
+                                            if (!SeECaixaPostal && !SeEAoRemetente)
+                                            {
+                                                // Pega campo "Prazo dias corridos no destino (Caída/Pedida)"
+                                                TipoPostalPrazoDiasCorridosRegulamentado = drTipoPostal["PrazoDestinoCaidaPedida"].ToString();
+                                            }
+                                            //Se Não for Caixa Postal && Se for Ao remetente
+                                            if (!SeECaixaPostal && SeEAoRemetente)
+                                            {
+                                                // Pega campo "Prazo dias corridos na origem/devolução/remetente (Caída/Pedida)"
+                                                TipoPostalPrazoDiasCorridosRegulamentado = drTipoPostal["PrazoRemetenteCaidaPedida"].ToString();
+                                            }
+                                        }
                                     }
+
                                     Mensagens.InformaDesenvolvedor("Cheguei até a gravação do update do nome: " + NomeCliente);
-                                    dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET NomeCliente = @NomeCliente, CodigoLdi = @CodigoLdi, Atualizado = @Atualizado, Comentario = @Comentario WHERE CodigoObjeto = @CodigoObjeto ", new List<Parametros>(){ 
+                                    dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET NomeCliente = @NomeCliente, CodigoLdi = @CodigoLdi, Atualizado = @Atualizado, Comentario = @Comentario, TipoPostalServico = @TipoPostalServico, TipoPostalSiglaCodigo = @TipoPostalSiglaCodigo, TipoPostalNomeSiglaCodigo = @TipoPostalNomeSiglaCodigo, TipoPostalPrazoDiasCorridosRegulamentado = @TipoPostalPrazoDiasCorridosRegulamentado WHERE CodigoObjeto = @CodigoObjeto ", new List<Parametros>(){
                                             new Parametros("@NomeCliente", TipoCampo.Text, NomeCliente),
                                             new Parametros("@CodigoLdi", TipoCampo.Text, Ldi),
                                             new Parametros("@Atualizado", TipoCampo.Int, true),
                                             new Parametros("@Comentario", TipoCampo.Text, Comentario),
+
+                                            new Parametros("@TipoPostalServico", TipoCampo.Text, TipoPostalServico),
+                                            new Parametros("@TipoPostalSiglaCodigo", TipoCampo.Text, TipoPostalSiglaCodigo),
+                                            new Parametros("@TipoPostalNomeSiglaCodigo", TipoCampo.Text, TipoPostalNomeSiglaCodigo),
+                                            new Parametros("@TipoPostalPrazoDiasCorridosRegulamentado", TipoCampo.Text, TipoPostalPrazoDiasCorridosRegulamentado),
+
                                             new Parametros("@CodigoObjeto", TipoCampo.Text, CodigoObjetoAtual)});
                                 }
                                 #endregion
@@ -340,7 +400,7 @@ namespace SISAPO
                     {
                         if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
                         dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET DataModificacao = @DataModificacao, Situacao = @Situacao, ObjetoEntregue = @ObjetoEntregue WHERE (CodigoObjeto = @CodigoObjeto)"
-                            , new List<Parametros>() { 
+                            , new List<Parametros>() {
                                 new Parametros { Nome = "@DataModificacao", Tipo = TipoCampo.Text, Valor = DataModificacao },
                                 new Parametros { Nome = "@Situacao", Tipo = TipoCampo.Text, Valor = "Entregue".ToUpper() },
                                 new Parametros { Nome = "@ObjetoEntregue", Tipo = TipoCampo.Int, Valor = 1 },
@@ -353,7 +413,7 @@ namespace SISAPO
                 #endregion
 
                 #region "Distribuído ao remetente"
-                if (LinhaAtual.Contains("Distribuido ao remetente".ToUpper()) || LinhaAtual.Contains("Distríbuido ao remetente".ToUpper()))
+                if (LinhaAtual.Contains("Distribuido ao remetente".RemoveAcentos().ToUpper()))
                 {
                     objetoJaEntregue = true;
                     Mensagens.InformaDesenvolvedor("Gravando no banco: " + "Distribuído ao remetente".ToUpper());
@@ -363,7 +423,7 @@ namespace SISAPO
                     {
                         if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
                         dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET DataModificacao = @DataModificacao, Situacao = @Situacao, ObjetoEntregue = @ObjetoEntregue WHERE (CodigoObjeto = @CodigoObjeto)"
-                            , new List<Parametros>() { 
+                            , new List<Parametros>() {
                                 new Parametros { Nome = "@DataModificacao", Tipo = TipoCampo.Text, Valor = DataModificacao },
                                 new Parametros { Nome = "@Situacao", Tipo = TipoCampo.Text, Valor = "Distribuido ao remetente".ToUpper() },
                                 new Parametros { Nome = "@ObjetoEntregue", Tipo = TipoCampo.Int, Valor = 1 },
@@ -377,7 +437,8 @@ namespace SISAPO
 
                 //daqui para baixo sai imediatamente break
                 #region "Disponível em Caixa Postal"
-                if (LinhaAtual.Contains("Disponivel em Caixa Postal".ToUpper()) || LinhaAtual.Contains("Disponível em Caixa Postal".ToUpper()))
+                if (LinhaAtual.Contains("Disponivel em Caixa Postal".RemoveAcentos().ToUpper()) ||
+                    LinhaAtual.Contains("Aguardando retirada em Caixa Postal".RemoveAcentos().ToUpper()))
                 {
                     var linkAtual = ((System.Windows.Forms.HtmlElement)(item)).GetElementsByTagName("A")[0].OuterHtml.Replace("%20", " ");
                     ListaLinksJavaScript.Add(linkAtual.Substring(21, 102));
@@ -389,7 +450,7 @@ namespace SISAPO
 
                         //Seta como CaixaPostal
                         dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET CaixaPostal = @CaixaPostal WHERE (CodigoObjeto = @CodigoObjeto)"
-                                 , new List<Parametros>() { 
+                                 , new List<Parametros>() {
                                          new Parametros { Nome = "@CaixaPostal", Tipo = TipoCampo.Int, Valor = 1 },
                                          new Parametros { Nome = "@CodigoObjeto", Tipo = TipoCampo.Text, Valor = CodigoObjetoAtual }
                                      });
@@ -397,7 +458,7 @@ namespace SISAPO
                         if (objetoJaEntregue == false) //não foi entregue coloca a situação "Disponível em Caixa Postal"
                         {
                             dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET Situacao = @Situacao WHERE (CodigoObjeto = @CodigoObjeto)"
-                                     , new List<Parametros>() { 
+                                     , new List<Parametros>() {
                                          new Parametros { Nome = "@Situacao", Tipo = TipoCampo.Text, Valor = "Disponível em Caixa Postal".ToUpper() },
                                          new Parametros { Nome = "@CodigoObjeto", Tipo = TipoCampo.Text, Valor = CodigoObjetoAtual }
                                      });
@@ -410,7 +471,7 @@ namespace SISAPO
                 #endregion
 
                 #region "Aguardando retirada"
-                if (LinhaAtual.Contains("Aguardando retirada".ToUpper()))
+                if (LinhaAtual.Contains("Aguardando retirada".RemoveAcentos().ToUpper()))
                 {
                     var linkAtual = ((System.Windows.Forms.HtmlElement)(item)).GetElementsByTagName("A")[0].OuterHtml.Replace("%20", " ");
                     ListaLinksJavaScript.Add(linkAtual.Substring(21, 102));
@@ -422,7 +483,7 @@ namespace SISAPO
                         {
                             if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
                             dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET Situacao = @Situacao WHERE (CodigoObjeto = @CodigoObjeto)"
-                                     , new List<Parametros>() { 
+                                     , new List<Parametros>() {
                                          new Parametros { Nome = "@Situacao", Tipo = TipoCampo.Text, Valor = "Aguardando retirada".ToUpper() },
                                          new Parametros { Nome = "@CodigoObjeto", Tipo = TipoCampo.Text, Valor = CodigoObjetoAtual }
                                      });
@@ -435,7 +496,7 @@ namespace SISAPO
                 #endregion
 
                 #region "Aguardando retirada - Área sem entrega"
-                if (LinhaAtual.Contains("Aguardando retirada - Area sem entrega".ToUpper()))
+                if (LinhaAtual.Contains("Aguardando retirada - Area sem entrega".RemoveAcentos().ToUpper()))
                 {
                     var linkAtual = ((System.Windows.Forms.HtmlElement)(item)).GetElementsByTagName("A")[0].OuterHtml.Replace("%20", " ");
                     ListaLinksJavaScript.Add(linkAtual.Substring(21, 102));
@@ -448,7 +509,7 @@ namespace SISAPO
                             if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
 
                             dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET Situacao = @Situacao WHERE (CodigoObjeto = @CodigoObjeto)"
-                                     , new List<Parametros>() { 
+                                     , new List<Parametros>() {
                                          new Parametros { Nome = "@Situacao", Tipo = TipoCampo.Text, Valor = "Aguardando retirada - Area sem entrega".ToUpper() },
                                          new Parametros { Nome = "@CodigoObjeto", Tipo = TipoCampo.Text, Valor = CodigoObjetoAtual }
                                      });
@@ -462,7 +523,7 @@ namespace SISAPO
                 #endregion
             }
 
-            if(ListaLinksJavaScript == null || ListaLinksJavaScript.Count == 0)
+            if (ListaLinksJavaScript == null || ListaLinksJavaScript.Count == 0)
             {
                 DetalhesDeObjetos3 = false;
                 Mensagens.InformaDesenvolvedor("Vou fechar... Não tem nunhum campo: Disponivel em Caixa Postal ou Aguardando Retirada");
@@ -607,15 +668,18 @@ namespace SISAPO
             //verifica para ir mais rápido.... senao teria que percorrer todas as colunas até saber se é a linha desejada....
             if (linhaAtual.Contains("Entregue".ToUpper()) == false)
             {
-                if (linhaAtual.Contains("Distribuido ao remetente".ToUpper()) == false)
+                if (linhaAtual.Contains("Distribuido ao remetente".RemoveAcentos().ToUpper()) == false)
                 {
-                    if (linhaAtual.Contains("Disponivel em Caixa Postal".ToUpper()) == false)
+                    if (linhaAtual.Contains("Disponivel em Caixa Postal".RemoveAcentos().ToUpper()) == false)
                     {
-                        if (linhaAtual.Contains("Aguardando retirada".ToUpper()) == false)
+                        if (linhaAtual.Contains("Aguardando retirada em Caixa Postal".RemoveAcentos().ToUpper()) == false)
                         {
-                            if (linhaAtual.Contains("Aguardando retirada - Area sem entrega".ToUpper()) == false)
+                            if (linhaAtual.Contains("Aguardando retirada".RemoveAcentos().ToUpper()) == false)
                             {
-                                return false;
+                                if (linhaAtual.Contains("Aguardando retirada - Area sem entrega".RemoveAcentos().ToUpper()) == false)
+                                {
+                                    return false;
+                                }
                             }
                         }
                     }
