@@ -353,7 +353,7 @@ namespace SISAPO
                 #endregion
 
                 #region "Distribuído ao remetente"
-                if (LinhaAtual.Contains("Distribuido ao remetente".ToUpper()))
+                if (LinhaAtual.Contains("Distribuido ao remetente".ToUpper()) || LinhaAtual.Contains("Distríbuido ao remetente".ToUpper()))
                 {
                     objetoJaEntregue = true;
                     Mensagens.InformaDesenvolvedor("Gravando no banco: " + "Distribuído ao remetente".ToUpper());
@@ -377,7 +377,7 @@ namespace SISAPO
 
                 //daqui para baixo sai imediatamente break
                 #region "Disponível em Caixa Postal"
-                if (LinhaAtual.Contains("Disponivel em Caixa Postal".ToUpper()))
+                if (LinhaAtual.Contains("Disponivel em Caixa Postal".ToUpper()) || LinhaAtual.Contains("Disponível em Caixa Postal".ToUpper()))
                 {
                     var linkAtual = ((System.Windows.Forms.HtmlElement)(item)).GetElementsByTagName("A")[0].OuterHtml.Replace("%20", " ");
                     ListaLinksJavaScript.Add(linkAtual.Substring(21, 102));
