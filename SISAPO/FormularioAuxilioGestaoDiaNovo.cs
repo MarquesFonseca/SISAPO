@@ -254,6 +254,7 @@ namespace SISAPO
                 bindingSourceObjetosNaoEntregues = new BindingSource();
                 bindingSourceObjetosNaoEntregues.DataSource = listaObjetos;
                 dataGridView1.DataSource = bindingSourceObjetosNaoEntregues;
+                //bindingSourceObjetosNaoEntregues.Filter = "1 = 2";
                 LbnQuantidadeRegistros.Text = bindingSourceObjetosNaoEntregues.Count.ToString();
                 dataGridView1.Focus();
             }
@@ -314,7 +315,98 @@ namespace SISAPO
             bindingSourceObjetosNaoEntregues.Filter = MontaFiltro;
 
             LbnQuantidadeRegistros.Text = bindingSourceObjetosNaoEntregues.Count.ToString();
-        }        
+        }
+
+        private void FiltrarPorClassificacaoPACCCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            FiltrosCheckBox();
+        }
+
+        private void FiltrarPorClassificacaoSEDEXCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            FiltrosCheckBox();
+        }
+
+        private void FiltrarPorClassificacaoDIVERSOSCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            FiltrosCheckBox();
+        }
+
+        private void FiltrarPorPrazosVENCIDOSCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            FiltrosCheckBox();
+        }
+
+        private void FiltrarPorPrazosVENCENDOHOJECheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            FiltrosCheckBox();
+        }
+
+        private void FiltrarPorPrazosAVENCERCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            FiltrosCheckBox();
+        }
+
+        private void FiltrosCheckBox()
+        {
+            FiltrostESTE();
+            return;
+
+            bool ClassificacaoPAC = FiltrarPorClassificacaoPACCCheckBox.Checked;
+            bool ClassificacaoSEDEX = FiltrarPorClassificacaoSEDEXCheckBox.Checked;
+            bool ClassificacaoDIVERSOS = FiltrarPorClassificacaoDIVERSOSCheckBox.Checked;
+
+            bool PrazosVENCIDOS = FiltrarPorPrazosVENCIDOSCheckBox.Checked;
+            bool PrazosVENCENDOHOJE = FiltrarPorPrazosVENCENDOHOJECheckBox.Checked;
+            bool PrazosAVENCER = FiltrarPorPrazosAVENCERCheckBox.Checked;
+
+            string MontaFiltro = string.Empty;
+
+            MontaFiltro = "1 = 1";
+
+            MontaFiltro += " AND (StatusPrazo = 'VENCIDO' AND StatusPrazo = 'VENCENDO HOJE' AND StatusPrazo = 'A VENCER')";
+            MontaFiltro += PrazosVENCIDOS ? " OR StatusPrazo = 'VENCIDO'" : "";
+            MontaFiltro += PrazosVENCENDOHOJE ? " OR StatusPrazo = 'VENCENDO HOJE'" : "";
+            MontaFiltro += PrazosAVENCER ? " OR StatusPrazo = 'A VENCER'" : "";
+
+            //MontaFiltro += " AND (TipoClassificacao = 'PAC' AND TipoClassificacao = 'SEDEX' AND TipoClassificacao = 'DIVERSOS')";
+            MontaFiltro += ClassificacaoPAC ? " OR TipoClassificacao = 'PAC'" : " OR TipoClassificacao <> 'PAC'";
+            MontaFiltro += ClassificacaoSEDEX ? " OR TipoClassificacao = 'SEDEX'" : " OR TipoClassificacao <> 'SEDEX'";
+            MontaFiltro += ClassificacaoDIVERSOS ? " OR TipoClassificacao = 'DIVERSOS'" : " OR TipoClassificacao <> 'DIVERSOS'";
+
+            bindingSourceObjetosNaoEntregues.Filter = MontaFiltro;
+
+            LbnQuantidadeRegistros.Text = bindingSourceObjetosNaoEntregues.Count.ToString();
+        }
+
+        private void FiltrostESTE()
+        {
+            bool ClassificacaoPAC = FiltrarPorClassificacaoPACCCheckBox.Checked;
+            bool ClassificacaoSEDEX = FiltrarPorClassificacaoSEDEXCheckBox.Checked;
+            bool ClassificacaoDIVERSOS = FiltrarPorClassificacaoDIVERSOSCheckBox.Checked;
+
+            bool PrazosVENCIDOS = FiltrarPorPrazosVENCIDOSCheckBox.Checked;
+            bool PrazosVENCENDOHOJE = FiltrarPorPrazosVENCENDOHOJECheckBox.Checked;
+            bool PrazosAVENCER = FiltrarPorPrazosAVENCERCheckBox.Checked;
+
+            string MontaFiltro = string.Empty;
+
+            MontaFiltro = "1 = 1";
+
+            //MontaFiltro += " AND (StatusPrazo = 'VENCIDO' AND StatusPrazo = 'VENCENDO HOJE' AND StatusPrazo = 'A VENCER')";
+            MontaFiltro += PrazosVENCIDOS ? " AND (StatusPrazo = 'VENCIDO')" : "";
+            MontaFiltro += PrazosVENCENDOHOJE ? " AND (StatusPrazo = 'VENCENDO HOJE')" : "";
+            MontaFiltro += PrazosAVENCER ? " AND (StatusPrazo = 'A VENCER')" : "";
+
+            ////MontaFiltro += " AND (TipoClassificacao = 'PAC' AND TipoClassificacao = 'SEDEX' AND TipoClassificacao = 'DIVERSOS')";
+            //MontaFiltro += ClassificacaoPAC ? " OR TipoClassificacao = 'PAC'" : " OR TipoClassificacao <> 'PAC'";
+            //MontaFiltro += ClassificacaoSEDEX ? " OR TipoClassificacao = 'SEDEX'" : " OR TipoClassificacao <> 'SEDEX'";
+            //MontaFiltro += ClassificacaoDIVERSOS ? " OR TipoClassificacao = 'DIVERSOS'" : " OR TipoClassificacao <> 'DIVERSOS'";
+
+            bindingSourceObjetosNaoEntregues.Filter = MontaFiltro;
+
+            LbnQuantidadeRegistros.Text = bindingSourceObjetosNaoEntregues.Count.ToString();
+
+        }
     }
 }
-

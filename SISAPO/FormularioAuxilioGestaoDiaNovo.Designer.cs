@@ -48,6 +48,12 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.bindingSourceObjetosNaoEntregues = new System.Windows.Forms.BindingSource(this.components);
+            this.FiltrarPorPrazosVENCIDOSCheckBox = new System.Windows.Forms.CheckBox();
+            this.FiltrarPorPrazosVENCENDOHOJECheckBox = new System.Windows.Forms.CheckBox();
+            this.FiltrarPorPrazosAVENCERCheckBox = new System.Windows.Forms.CheckBox();
+            this.FiltrarPorClassificacaoPACCCheckBox = new System.Windows.Forms.CheckBox();
+            this.FiltrarPorClassificacaoSEDEXCheckBox = new System.Windows.Forms.CheckBox();
+            this.FiltrarPorClassificacaoDIVERSOSCheckBox = new System.Windows.Forms.CheckBox();
             this.CodigoLdi = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Sigla = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CodigoObjeto = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -77,16 +83,19 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(848, 132);
+            this.panel3.Size = new System.Drawing.Size(848, 214);
             this.panel3.TabIndex = 0;
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.FiltrarPorPrazosAVENCERCheckBox);
+            this.groupBox2.Controls.Add(this.FiltrarPorPrazosVENCENDOHOJECheckBox);
+            this.groupBox2.Controls.Add(this.FiltrarPorPrazosVENCIDOSCheckBox);
             this.groupBox2.Controls.Add(this.FiltrarPorPRAZOSComboBox);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(225, 57);
+            this.groupBox2.Location = new System.Drawing.Point(5, 49);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(217, 65);
+            this.groupBox2.Size = new System.Drawing.Size(409, 119);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Filtrar por prazos";
@@ -101,7 +110,7 @@
             "VENCIDO",
             "VENCENDO HOJE",
             "A VENCER"});
-            this.FiltrarPorPRAZOSComboBox.Location = new System.Drawing.Point(14, 25);
+            this.FiltrarPorPRAZOSComboBox.Location = new System.Drawing.Point(215, 25);
             this.FiltrarPorPRAZOSComboBox.Name = "FiltrarPorPRAZOSComboBox";
             this.FiltrarPorPRAZOSComboBox.Size = new System.Drawing.Size(188, 28);
             this.FiltrarPorPRAZOSComboBox.TabIndex = 4;
@@ -109,11 +118,14 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.FiltrarPorClassificacaoDIVERSOSCheckBox);
+            this.groupBox1.Controls.Add(this.FiltrarPorClassificacaoSEDEXCheckBox);
+            this.groupBox1.Controls.Add(this.FiltrarPorClassificacaoPACCCheckBox);
             this.groupBox1.Controls.Add(this.FiltrarPorClassificacaoComboBox);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(8, 57);
+            this.groupBox1.Location = new System.Drawing.Point(429, 49);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(211, 65);
+            this.groupBox1.Size = new System.Drawing.Size(368, 119);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filtrar por classificação";
@@ -128,7 +140,7 @@
             "PAC",
             "SEDEX",
             "DIVERSOS"});
-            this.FiltrarPorClassificacaoComboBox.Location = new System.Drawing.Point(11, 25);
+            this.FiltrarPorClassificacaoComboBox.Location = new System.Drawing.Point(174, 25);
             this.FiltrarPorClassificacaoComboBox.Name = "FiltrarPorClassificacaoComboBox";
             this.FiltrarPorClassificacaoComboBox.Size = new System.Drawing.Size(188, 28);
             this.FiltrarPorClassificacaoComboBox.TabIndex = 4;
@@ -267,7 +279,7 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 132);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 214);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -280,9 +292,87 @@
             this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView1.RowHeadersWidth = 30;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(848, 279);
+            this.dataGridView1.Size = new System.Drawing.Size(848, 197);
             this.dataGridView1.TabIndex = 4;
             this.dataGridView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDoubleClick);
+            // 
+            // FiltrarPorPrazosVENCIDOSCheckBox
+            // 
+            this.FiltrarPorPrazosVENCIDOSCheckBox.AutoSize = true;
+            this.FiltrarPorPrazosVENCIDOSCheckBox.Checked = true;
+            this.FiltrarPorPrazosVENCIDOSCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.FiltrarPorPrazosVENCIDOSCheckBox.Location = new System.Drawing.Point(21, 30);
+            this.FiltrarPorPrazosVENCIDOSCheckBox.Name = "FiltrarPorPrazosVENCIDOSCheckBox";
+            this.FiltrarPorPrazosVENCIDOSCheckBox.Size = new System.Drawing.Size(102, 24);
+            this.FiltrarPorPrazosVENCIDOSCheckBox.TabIndex = 5;
+            this.FiltrarPorPrazosVENCIDOSCheckBox.Text = "Vencidos";
+            this.FiltrarPorPrazosVENCIDOSCheckBox.UseVisualStyleBackColor = true;
+            this.FiltrarPorPrazosVENCIDOSCheckBox.CheckedChanged += new System.EventHandler(this.FiltrarPorPrazosVENCIDOSCheckBox_CheckedChanged);
+            // 
+            // FiltrarPorPrazosVENCENDOHOJECheckBox
+            // 
+            this.FiltrarPorPrazosVENCENDOHOJECheckBox.AutoSize = true;
+            this.FiltrarPorPrazosVENCENDOHOJECheckBox.Checked = true;
+            this.FiltrarPorPrazosVENCENDOHOJECheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.FiltrarPorPrazosVENCENDOHOJECheckBox.Location = new System.Drawing.Point(21, 60);
+            this.FiltrarPorPrazosVENCENDOHOJECheckBox.Name = "FiltrarPorPrazosVENCENDOHOJECheckBox";
+            this.FiltrarPorPrazosVENCENDOHOJECheckBox.Size = new System.Drawing.Size(151, 24);
+            this.FiltrarPorPrazosVENCENDOHOJECheckBox.TabIndex = 6;
+            this.FiltrarPorPrazosVENCENDOHOJECheckBox.Text = "Vencendo Hoje";
+            this.FiltrarPorPrazosVENCENDOHOJECheckBox.UseVisualStyleBackColor = true;
+            this.FiltrarPorPrazosVENCENDOHOJECheckBox.CheckedChanged += new System.EventHandler(this.FiltrarPorPrazosVENCENDOHOJECheckBox_CheckedChanged);
+            // 
+            // FiltrarPorPrazosAVENCERCheckBox
+            // 
+            this.FiltrarPorPrazosAVENCERCheckBox.AutoSize = true;
+            this.FiltrarPorPrazosAVENCERCheckBox.Checked = true;
+            this.FiltrarPorPrazosAVENCERCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.FiltrarPorPrazosAVENCERCheckBox.Location = new System.Drawing.Point(21, 90);
+            this.FiltrarPorPrazosAVENCERCheckBox.Name = "FiltrarPorPrazosAVENCERCheckBox";
+            this.FiltrarPorPrazosAVENCERCheckBox.Size = new System.Drawing.Size(102, 24);
+            this.FiltrarPorPrazosAVENCERCheckBox.TabIndex = 7;
+            this.FiltrarPorPrazosAVENCERCheckBox.Text = "A Vencer";
+            this.FiltrarPorPrazosAVENCERCheckBox.UseVisualStyleBackColor = true;
+            this.FiltrarPorPrazosAVENCERCheckBox.CheckedChanged += new System.EventHandler(this.FiltrarPorPrazosAVENCERCheckBox_CheckedChanged);
+            // 
+            // FiltrarPorClassificacaoPACCCheckBox
+            // 
+            this.FiltrarPorClassificacaoPACCCheckBox.AutoSize = true;
+            this.FiltrarPorClassificacaoPACCCheckBox.Checked = true;
+            this.FiltrarPorClassificacaoPACCCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.FiltrarPorClassificacaoPACCCheckBox.Location = new System.Drawing.Point(19, 30);
+            this.FiltrarPorClassificacaoPACCCheckBox.Name = "FiltrarPorClassificacaoPACCCheckBox";
+            this.FiltrarPorClassificacaoPACCCheckBox.Size = new System.Drawing.Size(58, 24);
+            this.FiltrarPorClassificacaoPACCCheckBox.TabIndex = 5;
+            this.FiltrarPorClassificacaoPACCCheckBox.Text = "Pac";
+            this.FiltrarPorClassificacaoPACCCheckBox.UseVisualStyleBackColor = true;
+            this.FiltrarPorClassificacaoPACCCheckBox.CheckedChanged += new System.EventHandler(this.FiltrarPorClassificacaoPACCCheckBox_CheckedChanged);
+            // 
+            // FiltrarPorClassificacaoSEDEXCheckBox
+            // 
+            this.FiltrarPorClassificacaoSEDEXCheckBox.AutoSize = true;
+            this.FiltrarPorClassificacaoSEDEXCheckBox.Checked = true;
+            this.FiltrarPorClassificacaoSEDEXCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.FiltrarPorClassificacaoSEDEXCheckBox.Location = new System.Drawing.Point(19, 60);
+            this.FiltrarPorClassificacaoSEDEXCheckBox.Name = "FiltrarPorClassificacaoSEDEXCheckBox";
+            this.FiltrarPorClassificacaoSEDEXCheckBox.Size = new System.Drawing.Size(78, 24);
+            this.FiltrarPorClassificacaoSEDEXCheckBox.TabIndex = 6;
+            this.FiltrarPorClassificacaoSEDEXCheckBox.Text = "Sedex";
+            this.FiltrarPorClassificacaoSEDEXCheckBox.UseVisualStyleBackColor = true;
+            this.FiltrarPorClassificacaoSEDEXCheckBox.CheckedChanged += new System.EventHandler(this.FiltrarPorClassificacaoSEDEXCheckBox_CheckedChanged);
+            // 
+            // FiltrarPorClassificacaoDIVERSOSCheckBox
+            // 
+            this.FiltrarPorClassificacaoDIVERSOSCheckBox.AutoSize = true;
+            this.FiltrarPorClassificacaoDIVERSOSCheckBox.Checked = true;
+            this.FiltrarPorClassificacaoDIVERSOSCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.FiltrarPorClassificacaoDIVERSOSCheckBox.Location = new System.Drawing.Point(19, 90);
+            this.FiltrarPorClassificacaoDIVERSOSCheckBox.Name = "FiltrarPorClassificacaoDIVERSOSCheckBox";
+            this.FiltrarPorClassificacaoDIVERSOSCheckBox.Size = new System.Drawing.Size(97, 24);
+            this.FiltrarPorClassificacaoDIVERSOSCheckBox.TabIndex = 7;
+            this.FiltrarPorClassificacaoDIVERSOSCheckBox.Text = "Diversos";
+            this.FiltrarPorClassificacaoDIVERSOSCheckBox.UseVisualStyleBackColor = true;
+            this.FiltrarPorClassificacaoDIVERSOSCheckBox.CheckedChanged += new System.EventHandler(this.FiltrarPorClassificacaoDIVERSOSCheckBox_CheckedChanged);
             // 
             // CodigoLdi
             // 
@@ -334,10 +424,10 @@
             this.NomeCliente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.NomeCliente.DataPropertyName = "NomeCliente";
             this.NomeCliente.HeaderText = "Nome Cliente";
-            this.NomeCliente.MinimumWidth = 200;
+            this.NomeCliente.MinimumWidth = 20;
             this.NomeCliente.Name = "NomeCliente";
             this.NomeCliente.ReadOnly = true;
-            this.NomeCliente.Width = 200;
+            this.NomeCliente.Width = 95;
             // 
             // DataLancamento
             // 
@@ -404,7 +494,9 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ObjetosComPrazoGuardaVencido_KeyDown);
             this.panel3.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -429,6 +521,12 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ComboBox FiltrarPorPRAZOSComboBox;
         private System.Windows.Forms.ComboBox FiltrarPorClassificacaoComboBox;
+        private System.Windows.Forms.CheckBox FiltrarPorPrazosAVENCERCheckBox;
+        private System.Windows.Forms.CheckBox FiltrarPorPrazosVENCENDOHOJECheckBox;
+        private System.Windows.Forms.CheckBox FiltrarPorPrazosVENCIDOSCheckBox;
+        private System.Windows.Forms.CheckBox FiltrarPorClassificacaoDIVERSOSCheckBox;
+        private System.Windows.Forms.CheckBox FiltrarPorClassificacaoSEDEXCheckBox;
+        private System.Windows.Forms.CheckBox FiltrarPorClassificacaoPACCCheckBox;
         private System.Windows.Forms.DataGridViewTextBoxColumn CodigoLdi;
         private System.Windows.Forms.DataGridViewTextBoxColumn Sigla;
         private System.Windows.Forms.DataGridViewTextBoxColumn CodigoObjeto;
