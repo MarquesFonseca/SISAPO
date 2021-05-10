@@ -14,6 +14,7 @@ namespace SISAPO
     public partial class FormularioAuxilioGestaoDiaNovo : Form
     {
         DataTable listaObjetos = new DataTable();
+        string MontaFiltro = string.Empty;
 
         public FormularioAuxilioGestaoDiaNovo()
         {
@@ -214,11 +215,88 @@ namespace SISAPO
             }
         }
 
-        private void BtnImprimirListaAtual_Click(object sender, EventArgs e)
-        {           
-            if (listaObjetos.Rows.Count == 0) return;
+        private DataTable RetornaListaObjetosNaoEntregues(string filtrosAdicionais)
+        {
+            DataTable dtbLista = new DataTable();
+            dtbLista.Columns.Add("CodigoLdi", typeof(string));
+            dtbLista.Columns.Add("Sigla", typeof(string));
+            dtbLista.Columns.Add("CodigoObjeto", typeof(string));
+            dtbLista.Columns.Add("TipoClassificacao", typeof(string));
+            dtbLista.Columns.Add("NomeCliente", typeof(string));
+            dtbLista.Columns.Add("DataLancamento", typeof(DateTime));
+            dtbLista.Columns.Add("QtdDiasCorridos", typeof(string));
+            dtbLista.Columns.Add("PrazoTipoClassificacao", typeof(int));
+            dtbLista.Columns.Add("DataVencimento", typeof(DateTime));
+            dtbLista.Columns.Add("StatusPrazo", typeof(string));
+            dtbLista.Columns.Add("QtdDiasVencidos", typeof(string));
 
-            listaObjetos = listaObjetos.AsEnumerable().OrderBy(r => r.Field<string>("NomeCliente")).CopyToDataTable();
+            try
+            {
+                using (DAO dao = new DAO(TipoBanco.OleDb, Configuracoes.strConexao))
+                {
+                    if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return null; }
+
+                    StringBuilder stringSQL = new StringBuilder();
+                    stringSQL.AppendLine("SELECT                                                                                                                                                                                                                                                                   ");
+                    stringSQL.AppendLine(" ObjetosNaoEntregues.CodigoLdi                                                                                                                                                                                                                                           ");
+                    stringSQL.AppendLine(",ObjetosNaoEntregues.Sigla                                                                                                                                                                                                                                               ");
+                    stringSQL.AppendLine(",ObjetosNaoEntregues.CodigoObjeto                                                                                                                                                                                                                                        ");
+                    stringSQL.AppendLine(",ObjetosNaoEntregues.TipoClassificacao                                                                                                                                                                                                                                   ");
+                    stringSQL.AppendLine(",ObjetosNaoEntregues.NomeCliente                                                                                                                                                                                                                                         ");
+                    stringSQL.AppendLine(",ObjetosNaoEntregues.DataLancamento                                                                                                                                                                                                                                      ");
+                    stringSQL.AppendLine(",ObjetosNaoEntregues.QtdDiasCorridos                                                                                                                                                                                                                                     ");
+                    stringSQL.AppendLine(",ObjetosNaoEntregues.PrazoTipoClassificacao                                                                                                                                                                                                                              ");
+                    stringSQL.AppendLine(",ObjetosNaoEntregues.DataVencimento                                                                                                                                                                                                                                      ");
+                    stringSQL.AppendLine(",ObjetosNaoEntregues.StatusPrazo                                                                                                                                                                                                                                         ");
+                    stringSQL.AppendLine(",ObjetosNaoEntregues.QtdDiasVencidos                                                                                                                                                                                                                                     ");
+                    stringSQL.AppendLine("FROM (                                                                                                                                                                                                                                                                   ");
+                    stringSQL.AppendLine("SELECT                                                                                                                                                                                                                                                                   ");
+                    stringSQL.AppendLine(" TabelaObjetosSROLocal.CodigoLdi                                                                                                                                                                                                                                         ");
+                    stringSQL.AppendLine(",Left(TabelaObjetosSROLocal.CodigoObjeto, 2) AS Sigla                                                                                                                                                                                                                    ");
+                    stringSQL.AppendLine(",TabelaObjetosSROLocal.CodigoObjeto                                                                                                                                                                                                                                      ");
+                    stringSQL.AppendLine(",(SELECT TiposPostais.TipoClassificacao from TiposPostais WHERE TiposPostais.Sigla = Left(TabelaObjetosSROLocal.CodigoObjeto, 2)) AS TipoClassificacao                                                                                                                   ");
+                    stringSQL.AppendLine(",TabelaObjetosSROLocal.NomeCliente                                                                                                                                                                                                                                       ");
+                    stringSQL.AppendLine(",FORMAT(TabelaObjetosSROLocal.DataLancamento, \"dd/MM/yyyy\") AS DataLancamento                                                                                                                                                                                            ");
+                    stringSQL.AppendLine(",DATEDIFF(\"d\", TabelaObjetosSROLocal.DataLancamento, Now()) AS QtdDiasCorridos                                                                                                                                                                                           ");
+                    stringSQL.AppendLine(",IIf(TabelaObjetosSROLocal.TipoPostalPrazoDiasCorridosRegulamentado Is Null, 0, TabelaObjetosSROLocal.TipoPostalPrazoDiasCorridosRegulamentado) AS PrazoTipoClassificacao                                                                                                ");
+                    stringSQL.AppendLine(",FORMAT(DATEADD(\"d\", IIf(TabelaObjetosSROLocal.TipoPostalPrazoDiasCorridosRegulamentado Is Null, 0, TabelaObjetosSROLocal.TipoPostalPrazoDiasCorridosRegulamentado), TabelaObjetosSROLocal.DataLancamento),\"dd/MM/yyyy\") as DataVencimento                               ");
+                    stringSQL.AppendLine(",SWITCH                                                                                                                                                                                                                                                                  ");
+                    stringSQL.AppendLine("(                                                                                                                                                                                                                                                                        ");
+                    stringSQL.AppendLine("	DATEDIFF(\"d\", FORMAT(DATEADD(\"d\", IIf(TabelaObjetosSROLocal.TipoPostalPrazoDiasCorridosRegulamentado Is Null, 0, TabelaObjetosSROLocal.TipoPostalPrazoDiasCorridosRegulamentado), TabelaObjetosSROLocal.DataLancamento),\"dd/MM/yyyy\"), Now()) = 0 , \"VENCENDO HOJE\",   ");
+                    stringSQL.AppendLine("	DATEADD(\"d\", IIf(TabelaObjetosSROLocal.TipoPostalPrazoDiasCorridosRegulamentado Is Null, 0, TabelaObjetosSROLocal.TipoPostalPrazoDiasCorridosRegulamentado), TabelaObjetosSROLocal.DataLancamento) < NOW() , \"VENCIDO\",                                                ");
+                    stringSQL.AppendLine("	DATEADD(\"d\", IIf(TabelaObjetosSROLocal.TipoPostalPrazoDiasCorridosRegulamentado Is Null, 0, TabelaObjetosSROLocal.TipoPostalPrazoDiasCorridosRegulamentado), TabelaObjetosSROLocal.DataLancamento) > NOW() , \"A VENCER\"                                                ");
+                    stringSQL.AppendLine(") AS StatusPrazo                                                                                                                                                                                                                                                         ");
+                    stringSQL.AppendLine(",DATEDIFF(\"d\", FORMAT(DATEADD(\"d\", IIf(TabelaObjetosSROLocal.TipoPostalPrazoDiasCorridosRegulamentado Is Null, 0, TabelaObjetosSROLocal.TipoPostalPrazoDiasCorridosRegulamentado), TabelaObjetosSROLocal.DataLancamento),\"dd/MM/yyyy\"), Now()) AS QtdDiasVencidos        ");
+                    stringSQL.AppendLine("FROM TabelaObjetosSROLocal                                                                                                                                                    ");
+                    stringSQL.AppendLine("WHERE (TabelaObjetosSROLocal.ObjetoEntregue = FALSE)");
+                    stringSQL.AppendLine(") AS ObjetosNaoEntregues ");
+                    stringSQL.AppendLine("WHERE " + filtrosAdicionais.Replace("'", "\"").Replace("StatusPrazo", "ObjetosNaoEntregues.StatusPrazo").Replace("TipoClassificacao", "ObjetosNaoEntregues.TipoClassificacao"));
+                    //stringSQL.AppendLine("ORDER BY ObjetosNaoEntregues.QtdDiasCorridos DESC, ObjetosNaoEntregues.TipoClassificacao ASC");
+
+                    string resulteste = stringSQL.ToString();
+
+                    dtbLista = dao.RetornaDataTable(stringSQL.ToString());
+
+                    //bindingSourceObjetosNaoEntregues = new BindingSource();
+                    //bindingSourceObjetosNaoEntregues.DataSource = dtbLista;
+                    //dataGridView1.DataSource = bindingSourceObjetosNaoEntregues;
+                }
+                return dtbLista;
+            }
+            catch (Exception ex)
+            {
+                Mensagens.Erro(ex.Message);
+                return dtbLista;
+            }
+        }
+
+        private void BtnImprimirListaAtual_Click(object sender, EventArgs e)
+        {
+            DataTable listaObjetosListaImpressao = RetornaListaObjetosNaoEntregues(MontaFiltro);
+
+            if (listaObjetosListaImpressao.Rows.Count == 0) return;
+
+            listaObjetos = listaObjetosListaImpressao.AsEnumerable().OrderBy(r => r.Field<string>("NomeCliente")).CopyToDataTable();
 
             foreach (Form item in Application.OpenForms)
             {
@@ -321,7 +399,7 @@ namespace SISAPO
             bool ClassificacaoSEDEX = FiltrarPorClassificacaoSEDEXCheckBox.Checked;
             bool ClassificacaoDIVERSOS = FiltrarPorClassificacaoDIVERSOSCheckBox.Checked;
 
-            string MontaFiltro = string.Empty;
+            MontaFiltro = string.Empty;
 
             if (!PrazosVENCIDOS && !PrazosVENCENDOHOJE && !PrazosAVENCER && !ClassificacaoPAC && !ClassificacaoSEDEX && !ClassificacaoDIVERSOS)
             {
