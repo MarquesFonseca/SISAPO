@@ -24,8 +24,6 @@ namespace SISAPO
         private void FormularioAuxilioGestaoDia_Load(object sender, EventArgs e)
         {
             //BtnColarConteudoJaCopiado_Click(sender, e);
-            FiltrarPorClassificacaoComboBox.SelectedIndex = 0;
-            FiltrarPorPRAZOSComboBox.SelectedIndex = 0;
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -217,7 +215,7 @@ namespace SISAPO
         }
 
         private void BtnImprimirListaAtual_Click(object sender, EventArgs e)
-        {
+        {           
             if (listaObjetos.Rows.Count == 0) return;
 
             listaObjetos = listaObjetos.AsEnumerable().OrderBy(r => r.Field<string>("NomeCliente")).CopyToDataTable();
@@ -247,14 +245,23 @@ namespace SISAPO
                 listaObjetos = RetornaListaObjetosNaoEntregues();
                 if (listaObjetos == null || listaObjetos.Rows.Count == 0)
                 {
+                    FiltrarPorPrazosVENCIDOSCheckBox.Enabled = FiltrarPorPrazosVENCENDOHOJECheckBox.Enabled = FiltrarPorPrazosAVENCERCheckBox.Enabled = false;
+                    FiltrarPorClassificacaoPACCCheckBox.Enabled = FiltrarPorClassificacaoSEDEXCheckBox.Enabled = FiltrarPorClassificacaoDIVERSOSCheckBox.Enabled = false;
                     //Mensagens.Informa("Não foi possível carregar.\nCopie a lista e clique no botão para tentar novamente ."); 
                     return;
                 }
 
+                FiltrarPorPrazosVENCIDOSCheckBox.Enabled = FiltrarPorPrazosVENCENDOHOJECheckBox.Enabled = FiltrarPorPrazosAVENCERCheckBox.Enabled = true;
+                FiltrarPorPrazosVENCIDOSCheckBox.Checked = true;
+                FiltrarPorClassificacaoPACCCheckBox.Enabled = FiltrarPorClassificacaoSEDEXCheckBox.Enabled = FiltrarPorClassificacaoDIVERSOSCheckBox.Enabled = true;
+                FiltrarPorClassificacaoPACCCheckBox.Checked = FiltrarPorClassificacaoSEDEXCheckBox.Checked = FiltrarPorClassificacaoDIVERSOSCheckBox.Checked = true;
+
                 bindingSourceObjetosNaoEntregues = new BindingSource();
                 bindingSourceObjetosNaoEntregues.DataSource = listaObjetos;
                 dataGridView1.DataSource = bindingSourceObjetosNaoEntregues;
-                //bindingSourceObjetosNaoEntregues.Filter = "1 = 2";
+
+                FiltrosCheckBox();
+
                 LbnQuantidadeRegistros.Text = bindingSourceObjetosNaoEntregues.Count.ToString();
                 dataGridView1.Focus();
             }
@@ -274,47 +281,19 @@ namespace SISAPO
             }
         }
 
-        private void FiltrarPorClassificacaoComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void FiltrarPorPrazosVENCIDOSCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            if (FiltrarPorClassificacaoComboBox.SelectedItem == null) return;
-            if (FiltrarPorPRAZOSComboBox.SelectedItem == null) return;
-            Filtros();
+            FiltrosCheckBox();
         }
 
-        private void FiltrarPorPRAZOSComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void FiltrarPorPrazosVENCENDOHOJECheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            if (FiltrarPorClassificacaoComboBox.SelectedItem == null) return;
-            if (FiltrarPorPRAZOSComboBox.SelectedItem == null) return;
-            Filtros();
+            FiltrosCheckBox();
         }
 
-        private void Filtros()
+        private void FiltrarPorPrazosAVENCERCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            string MontaFiltro = string.Empty;
-
-            MontaFiltro = "1 = 1";
-
-            if (FiltrarPorClassificacaoComboBox.SelectedItem.ToString() == "TODOS")
-            {
-                MontaFiltro += "";
-            }
-            else
-            {
-                MontaFiltro += string.Format(" AND TipoClassificacao = '{0}'", FiltrarPorClassificacaoComboBox.SelectedItem.ToString());
-            }
-
-            if (FiltrarPorPRAZOSComboBox.SelectedItem.ToString() == "TODOS")
-            {
-                MontaFiltro += "";
-            }
-            else
-            {
-                MontaFiltro += string.Format(" AND StatusPrazo = '{0}'", FiltrarPorPRAZOSComboBox.SelectedItem.ToString());
-            }
-
-            bindingSourceObjetosNaoEntregues.Filter = MontaFiltro;
-
-            LbnQuantidadeRegistros.Text = bindingSourceObjetosNaoEntregues.Count.ToString();
+            FiltrosCheckBox();
         }
 
         private void FiltrarPorClassificacaoPACCCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -332,81 +311,103 @@ namespace SISAPO
             FiltrosCheckBox();
         }
 
-        private void FiltrarPorPrazosVENCIDOSCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            FiltrosCheckBox();
-        }
-
-        private void FiltrarPorPrazosVENCENDOHOJECheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            FiltrosCheckBox();
-        }
-
-        private void FiltrarPorPrazosAVENCERCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            FiltrosCheckBox();
-        }
-
         private void FiltrosCheckBox()
         {
-            FiltrostESTE();
-            return;
+            bool PrazosVENCIDOS = FiltrarPorPrazosVENCIDOSCheckBox.Checked;
+            bool PrazosVENCENDOHOJE = FiltrarPorPrazosVENCENDOHOJECheckBox.Checked;
+            bool PrazosAVENCER = FiltrarPorPrazosAVENCERCheckBox.Checked;
 
             bool ClassificacaoPAC = FiltrarPorClassificacaoPACCCheckBox.Checked;
             bool ClassificacaoSEDEX = FiltrarPorClassificacaoSEDEXCheckBox.Checked;
             bool ClassificacaoDIVERSOS = FiltrarPorClassificacaoDIVERSOSCheckBox.Checked;
 
-            bool PrazosVENCIDOS = FiltrarPorPrazosVENCIDOSCheckBox.Checked;
-            bool PrazosVENCENDOHOJE = FiltrarPorPrazosVENCENDOHOJECheckBox.Checked;
-            bool PrazosAVENCER = FiltrarPorPrazosAVENCERCheckBox.Checked;
-
             string MontaFiltro = string.Empty;
 
-            MontaFiltro = "1 = 1";
+            if (!PrazosVENCIDOS && !PrazosVENCENDOHOJE && !PrazosAVENCER && !ClassificacaoPAC && !ClassificacaoSEDEX && !ClassificacaoDIVERSOS)
+            {
+                MontaFiltro = "1<>1";
+            }
+            else if (!PrazosVENCIDOS && !PrazosVENCENDOHOJE && !PrazosAVENCER)
+            {
+                MontaFiltro = "1<>1";
+            }
+            else if (!ClassificacaoPAC && !ClassificacaoSEDEX && !ClassificacaoDIVERSOS)
+            {
+                MontaFiltro = "1<>1";
+            }
+            else
+            {
+                if (!PrazosVENCIDOS && !PrazosVENCENDOHOJE && !PrazosAVENCER)
+                {
+                    MontaFiltro = "StatusPrazo IN('Vencido','Vencendo Hoje','A Vencer')";
+                }
+                if (PrazosVENCIDOS && PrazosVENCENDOHOJE && PrazosAVENCER)
+                {
+                    MontaFiltro = "StatusPrazo IN('Vencido','Vencendo Hoje','A Vencer')";
+                }
+                if (PrazosVENCIDOS && !PrazosVENCENDOHOJE && !PrazosAVENCER)
+                {
+                    MontaFiltro = "StatusPrazo IN('Vencido')";
+                }
+                if (!PrazosVENCIDOS && PrazosVENCENDOHOJE && !PrazosAVENCER)
+                {
+                    MontaFiltro = "StatusPrazo IN('Vencendo Hoje')";
+                }
+                if (!PrazosVENCIDOS && !PrazosVENCENDOHOJE && PrazosAVENCER)
+                {
+                    MontaFiltro = "StatusPrazo IN('A Vencer')";
+                }
+                if (PrazosVENCIDOS && !PrazosVENCENDOHOJE && PrazosAVENCER)
+                {
+                    MontaFiltro = "StatusPrazo IN('Vencido','A Vencer')";
+                }
+                if (PrazosVENCIDOS && PrazosVENCENDOHOJE && !PrazosAVENCER)
+                {
+                    MontaFiltro = "StatusPrazo IN('Vencido','Vencendo Hoje')";
+                }
+                if (!PrazosVENCIDOS && PrazosVENCENDOHOJE && PrazosAVENCER)
+                {
+                    MontaFiltro = "StatusPrazo IN('Vencendo Hoje','A Vencer')";
+                }
 
-            MontaFiltro += " AND (StatusPrazo = 'VENCIDO' AND StatusPrazo = 'VENCENDO HOJE' AND StatusPrazo = 'A VENCER')";
-            MontaFiltro += PrazosVENCIDOS ? " OR StatusPrazo = 'VENCIDO'" : "";
-            MontaFiltro += PrazosVENCENDOHOJE ? " OR StatusPrazo = 'VENCENDO HOJE'" : "";
-            MontaFiltro += PrazosAVENCER ? " OR StatusPrazo = 'A VENCER'" : "";
+                if (!ClassificacaoPAC && !ClassificacaoSEDEX && !ClassificacaoDIVERSOS)
+                {
+                    MontaFiltro += " AND TipoClassificacao IN('PAC','SEDEX','DIVERSOS')";
+                }
+                if (ClassificacaoPAC && ClassificacaoSEDEX && ClassificacaoDIVERSOS)
+                {
+                    MontaFiltro += " AND TipoClassificacao IN('PAC','SEDEX','DIVERSOS')";
+                }
+                if (ClassificacaoPAC && !ClassificacaoSEDEX && !ClassificacaoDIVERSOS)
+                {
+                    MontaFiltro += " AND TipoClassificacao IN('PAC')";
+                }
+                if (!ClassificacaoPAC && ClassificacaoSEDEX && !ClassificacaoDIVERSOS)
+                {
+                    MontaFiltro += " AND TipoClassificacao IN('SEDEX')";
+                }
+                if (!ClassificacaoPAC && !ClassificacaoSEDEX && ClassificacaoDIVERSOS)
+                {
+                    MontaFiltro += " AND TipoClassificacao IN('DIVERSOS')";
+                }
+                if (ClassificacaoPAC && !ClassificacaoSEDEX && ClassificacaoDIVERSOS)
+                {
+                    MontaFiltro += " AND TipoClassificacao IN('PAC','DIVERSOS')";
+                }
+                if (ClassificacaoPAC && ClassificacaoSEDEX && !ClassificacaoDIVERSOS)
+                {
+                    MontaFiltro += " AND TipoClassificacao IN('PAC','SEDEX')";
+                }
+                if (!ClassificacaoPAC && ClassificacaoSEDEX && ClassificacaoDIVERSOS)
+                {
+                    MontaFiltro += " AND TipoClassificacao IN('SEDEX','DIVERSOS')";
+                }
+            }
 
-            //MontaFiltro += " AND (TipoClassificacao = 'PAC' AND TipoClassificacao = 'SEDEX' AND TipoClassificacao = 'DIVERSOS')";
-            MontaFiltro += ClassificacaoPAC ? " OR TipoClassificacao = 'PAC'" : " OR TipoClassificacao <> 'PAC'";
-            MontaFiltro += ClassificacaoSEDEX ? " OR TipoClassificacao = 'SEDEX'" : " OR TipoClassificacao <> 'SEDEX'";
-            MontaFiltro += ClassificacaoDIVERSOS ? " OR TipoClassificacao = 'DIVERSOS'" : " OR TipoClassificacao <> 'DIVERSOS'";
 
             bindingSourceObjetosNaoEntregues.Filter = MontaFiltro;
 
             LbnQuantidadeRegistros.Text = bindingSourceObjetosNaoEntregues.Count.ToString();
-        }
-
-        private void FiltrostESTE()
-        {
-            bool ClassificacaoPAC = FiltrarPorClassificacaoPACCCheckBox.Checked;
-            bool ClassificacaoSEDEX = FiltrarPorClassificacaoSEDEXCheckBox.Checked;
-            bool ClassificacaoDIVERSOS = FiltrarPorClassificacaoDIVERSOSCheckBox.Checked;
-
-            bool PrazosVENCIDOS = FiltrarPorPrazosVENCIDOSCheckBox.Checked;
-            bool PrazosVENCENDOHOJE = FiltrarPorPrazosVENCENDOHOJECheckBox.Checked;
-            bool PrazosAVENCER = FiltrarPorPrazosAVENCERCheckBox.Checked;
-
-            string MontaFiltro = string.Empty;
-
-            MontaFiltro = "1 = 1";
-
-            //MontaFiltro += " AND (StatusPrazo = 'VENCIDO' AND StatusPrazo = 'VENCENDO HOJE' AND StatusPrazo = 'A VENCER')";
-            MontaFiltro += PrazosVENCIDOS ? " AND (StatusPrazo = 'VENCIDO')" : "";
-            MontaFiltro += PrazosVENCENDOHOJE ? " AND (StatusPrazo = 'VENCENDO HOJE')" : "";
-            MontaFiltro += PrazosAVENCER ? " AND (StatusPrazo = 'A VENCER')" : "";
-
-            ////MontaFiltro += " AND (TipoClassificacao = 'PAC' AND TipoClassificacao = 'SEDEX' AND TipoClassificacao = 'DIVERSOS')";
-            //MontaFiltro += ClassificacaoPAC ? " OR TipoClassificacao = 'PAC'" : " OR TipoClassificacao <> 'PAC'";
-            //MontaFiltro += ClassificacaoSEDEX ? " OR TipoClassificacao = 'SEDEX'" : " OR TipoClassificacao <> 'SEDEX'";
-            //MontaFiltro += ClassificacaoDIVERSOS ? " OR TipoClassificacao = 'DIVERSOS'" : " OR TipoClassificacao <> 'DIVERSOS'";
-
-            bindingSourceObjetosNaoEntregues.Filter = MontaFiltro;
-
-            LbnQuantidadeRegistros.Text = bindingSourceObjetosNaoEntregues.Count.ToString();
-
         }
     }
 }
