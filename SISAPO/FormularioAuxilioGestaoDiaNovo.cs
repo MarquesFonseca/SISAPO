@@ -85,11 +85,19 @@ namespace SISAPO
         private DataTable RetornaListaObjetos(string Texto)
         {
             DataTable dtbLista = new DataTable();
-            dtbLista.Columns.Add("CodigoLDI", typeof(string));
+            dtbLista.Columns.Add("CodigoLdi", typeof(string));
+            dtbLista.Columns.Add("Sigla", typeof(string));
             dtbLista.Columns.Add("CodigoObjeto", typeof(string));
+            dtbLista.Columns.Add("TipoClassificacao", typeof(string));
             dtbLista.Columns.Add("NomeCliente", typeof(string));
             dtbLista.Columns.Add("DataLancamento", typeof(DateTime));
-            dtbLista.Columns.Add("DiasCorridos", typeof(int));
+            dtbLista.Columns.Add("QtdDiasCorridos", typeof(string));
+            dtbLista.Columns.Add("PrazoTipoClassificacao", typeof(int));
+            dtbLista.Columns.Add("DataVencimento", typeof(DateTime));
+            dtbLista.Columns.Add("StatusPrazo", typeof(string));
+            dtbLista.Columns.Add("QtdDiasVencidos", typeof(string));
+
+
             try
             {
                 using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
@@ -105,7 +113,7 @@ namespace SISAPO
                         string ParteLinhaCodigoObjeto = Parteslinha.Length >= 2 ? Parteslinha[1].Trim().ToUpper() : "";
                         string ParteLinhaNomeCliente = "";
                         string ParteLinhaDataLancamento = Parteslinha.Length >= 3 ? Parteslinha[2].Trim().ToUpper() : "";
-                        string DiasCorridos = "0";
+                        string QtdDiasCorridos = "0";
                         bool validaData;
                         try
                         {
@@ -118,7 +126,7 @@ namespace SISAPO
                         }
                         if (validaData)
                         {
-                            DiasCorridos = Convert.ToString((DateTime.Now.Date - ParteLinhaDataLancamento.ToDateTime().Date).TotalDays);
+                            QtdDiasCorridos = Convert.ToString((DateTime.Now.Date - ParteLinhaDataLancamento.ToDateTime().Date).TotalDays);
                         }
 
 
@@ -131,7 +139,7 @@ namespace SISAPO
                                 ParteLinhaNomeCliente = ds.Tables[0].Rows[0][1].ToString();
                                 ParteLinhaDataLancamento = ds.Tables[0].Rows[0][2].ToString();
                             }
-                            dtbLista.Rows.Add(ParteLinhaCodigoLdi, ParteLinhaCodigoObjeto, ParteLinhaNomeCliente, ParteLinhaDataLancamento.ToDateTime(), DiasCorridos.ToInt());
+                            dtbLista.Rows.Add(ParteLinhaCodigoLdi, ParteLinhaCodigoObjeto, ParteLinhaNomeCliente, ParteLinhaDataLancamento.ToDateTime(), QtdDiasCorridos.ToInt());
                         }
                     }
                 }
@@ -276,10 +284,6 @@ namespace SISAPO
                     string resulteste = stringSQL.ToString();
 
                     dtbLista = dao.RetornaDataTable(stringSQL.ToString());
-
-                    //bindingSourceObjetosNaoEntregues = new BindingSource();
-                    //bindingSourceObjetosNaoEntregues.DataSource = dtbLista;
-                    //dataGridView1.DataSource = bindingSourceObjetosNaoEntregues;
                 }
                 return dtbLista;
             }
