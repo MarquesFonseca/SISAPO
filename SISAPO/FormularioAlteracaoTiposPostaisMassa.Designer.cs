@@ -51,10 +51,10 @@
             this.BtnCancelar = new System.Windows.Forms.Button();
             this.tabControl4 = new System.Windows.Forms.TabControl();
             this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.label6 = new System.Windows.Forms.Label();
             this.DataInicial_dateTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.radioButtonTodos = new System.Windows.Forms.RadioButton();
             this.radioButtonAPartirDoDia = new System.Windows.Forms.RadioButton();
+            this.radioButtonTodos = new System.Windows.Forms.RadioButton();
+            this.label6 = new System.Windows.Forms.Label();
             this.tabControlPrincipal.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PrazoDestinatarioCaixaPostalUpDown)).BeginInit();
@@ -307,6 +307,7 @@
             this.BtnCancelar.TabIndex = 5;
             this.BtnCancelar.Text = "[ESC] &Cancelar";
             this.BtnCancelar.UseVisualStyleBackColor = true;
+            this.BtnCancelar.Click += new System.EventHandler(this.BtnCancelar_Click);
             // 
             // tabControl4
             // 
@@ -334,16 +335,6 @@
             this.tabPage5.Text = "Sobre Não Entregues";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.label6.Location = new System.Drawing.Point(6, 6);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(325, 18);
-            this.label6.TabIndex = 2;
-            this.label6.Text = "Para redefinir prazos dos objetos não entregues";
-            // 
             // DataInicial_dateTimePicker
             // 
             this.DataInicial_dateTimePicker.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -353,6 +344,17 @@
             this.DataInicial_dateTimePicker.Name = "DataInicial_dateTimePicker";
             this.DataInicial_dateTimePicker.Size = new System.Drawing.Size(103, 27);
             this.DataInicial_dateTimePicker.TabIndex = 12;
+            // 
+            // radioButtonAPartirDoDia
+            // 
+            this.radioButtonAPartirDoDia.AutoSize = true;
+            this.radioButtonAPartirDoDia.Location = new System.Drawing.Point(96, 33);
+            this.radioButtonAPartirDoDia.Name = "radioButtonAPartirDoDia";
+            this.radioButtonAPartirDoDia.Size = new System.Drawing.Size(145, 24);
+            this.radioButtonAPartirDoDia.TabIndex = 13;
+            this.radioButtonAPartirDoDia.Text = "A partir do dia:";
+            this.radioButtonAPartirDoDia.UseVisualStyleBackColor = true;
+            this.radioButtonAPartirDoDia.CheckedChanged += new System.EventHandler(this.radioButtonAPartirDoDia_CheckedChanged);
             // 
             // radioButtonTodos
             // 
@@ -366,16 +368,15 @@
             this.radioButtonTodos.Text = "Todos";
             this.radioButtonTodos.UseVisualStyleBackColor = true;
             // 
-            // radioButtonAPartirDoDia
+            // label6
             // 
-            this.radioButtonAPartirDoDia.AutoSize = true;
-            this.radioButtonAPartirDoDia.Location = new System.Drawing.Point(96, 33);
-            this.radioButtonAPartirDoDia.Name = "radioButtonAPartirDoDia";
-            this.radioButtonAPartirDoDia.Size = new System.Drawing.Size(145, 24);
-            this.radioButtonAPartirDoDia.TabIndex = 13;
-            this.radioButtonAPartirDoDia.Text = "A partir do dia:";
-            this.radioButtonAPartirDoDia.UseVisualStyleBackColor = true;
-            this.radioButtonAPartirDoDia.CheckedChanged += new System.EventHandler(this.radioButtonAPartirDoDia_CheckedChanged);
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.label6.Location = new System.Drawing.Point(6, 6);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(325, 18);
+            this.label6.TabIndex = 2;
+            this.label6.Text = "Para redefinir prazos dos objetos não entregues";
             // 
             // FormularioAlteracaoTiposPostaisMassa
             // 

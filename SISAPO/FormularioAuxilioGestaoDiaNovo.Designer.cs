@@ -51,7 +51,6 @@
             this.LbnQuantidadeRegistros = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.bindingSourceObjetosNaoEntregues = new System.Windows.Forms.BindingSource(this.components);
             this.CodigoLdi = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DataLancamento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.QtdDiasCorridos = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -63,36 +62,46 @@
             this.StatusPrazo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DataVencimento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.QtdDiasVencidos = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bindingSourceObjetosNaoEntregues = new System.Windows.Forms.BindingSource(this.components);
+            this.tabControl3 = new System.Windows.Forms.TabControl();
+            this.tabPageExibicaoTodosAindaNaoEntregues = new System.Windows.Forms.TabPage();
+            this.label5 = new System.Windows.Forms.Label();
+            this.tabPageExibicaoColarConteudoJaCopiado = new System.Windows.Forms.TabPage();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.panel3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceObjetosNaoEntregues)).BeginInit();
+            this.tabControl3.SuspendLayout();
+            this.tabPageExibicaoTodosAindaNaoEntregues.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.groupBox2);
-            this.panel3.Controls.Add(this.groupBox1);
             this.panel3.Controls.Add(this.BtnImprimirListaAtual);
             this.panel3.Controls.Add(this.BtnRetornaTodosNaoEntregues);
+            this.panel3.Controls.Add(this.tabControl3);
+            this.panel3.Controls.Add(this.BtnColarConteudoJaCopiado);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1103, 131);
+            this.panel3.Size = new System.Drawing.Size(771, 77);
             this.panel3.TabIndex = 0;
             // 
             // groupBox2
             // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.FiltrarPorPrazosAVENCERCheckBox);
             this.groupBox2.Controls.Add(this.FiltrarPorPrazosVENCENDOHOJECheckBox);
             this.groupBox2.Controls.Add(this.FiltrarPorPrazosVENCIDOSCheckBox);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(273, 5);
+            this.groupBox2.Location = new System.Drawing.Point(4, 3);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(236, 119);
-            this.groupBox2.TabIndex = 3;
+            this.groupBox2.Size = new System.Drawing.Size(214, 119);
+            this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Filtrar por prazos";
             // 
@@ -103,7 +112,7 @@
             this.FiltrarPorPrazosAVENCERCheckBox.Location = new System.Drawing.Point(14, 89);
             this.FiltrarPorPrazosAVENCERCheckBox.Name = "FiltrarPorPrazosAVENCERCheckBox";
             this.FiltrarPorPrazosAVENCERCheckBox.Size = new System.Drawing.Size(102, 24);
-            this.FiltrarPorPrazosAVENCERCheckBox.TabIndex = 7;
+            this.FiltrarPorPrazosAVENCERCheckBox.TabIndex = 2;
             this.FiltrarPorPrazosAVENCERCheckBox.Text = "A Vencer";
             this.FiltrarPorPrazosAVENCERCheckBox.UseVisualStyleBackColor = true;
             this.FiltrarPorPrazosAVENCERCheckBox.CheckedChanged += new System.EventHandler(this.FiltrarPorPrazosAVENCERCheckBox_CheckedChanged);
@@ -115,7 +124,7 @@
             this.FiltrarPorPrazosVENCENDOHOJECheckBox.Location = new System.Drawing.Point(14, 59);
             this.FiltrarPorPrazosVENCENDOHOJECheckBox.Name = "FiltrarPorPrazosVENCENDOHOJECheckBox";
             this.FiltrarPorPrazosVENCENDOHOJECheckBox.Size = new System.Drawing.Size(151, 24);
-            this.FiltrarPorPrazosVENCENDOHOJECheckBox.TabIndex = 6;
+            this.FiltrarPorPrazosVENCENDOHOJECheckBox.TabIndex = 1;
             this.FiltrarPorPrazosVENCENDOHOJECheckBox.Text = "Vencendo Hoje";
             this.FiltrarPorPrazosVENCENDOHOJECheckBox.UseVisualStyleBackColor = true;
             this.FiltrarPorPrazosVENCENDOHOJECheckBox.CheckedChanged += new System.EventHandler(this.FiltrarPorPrazosVENCENDOHOJECheckBox_CheckedChanged);
@@ -127,21 +136,22 @@
             this.FiltrarPorPrazosVENCIDOSCheckBox.Location = new System.Drawing.Point(14, 29);
             this.FiltrarPorPrazosVENCIDOSCheckBox.Name = "FiltrarPorPrazosVENCIDOSCheckBox";
             this.FiltrarPorPrazosVENCIDOSCheckBox.Size = new System.Drawing.Size(102, 24);
-            this.FiltrarPorPrazosVENCIDOSCheckBox.TabIndex = 5;
+            this.FiltrarPorPrazosVENCIDOSCheckBox.TabIndex = 0;
             this.FiltrarPorPrazosVENCIDOSCheckBox.Text = "Vencidos";
             this.FiltrarPorPrazosVENCIDOSCheckBox.UseVisualStyleBackColor = true;
             this.FiltrarPorPrazosVENCIDOSCheckBox.CheckedChanged += new System.EventHandler(this.FiltrarPorPrazosVENCIDOSCheckBox_CheckedChanged);
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.FiltrarPorClassificacaoDIVERSOSCheckBox);
             this.groupBox1.Controls.Add(this.FiltrarPorClassificacaoSEDEXCheckBox);
             this.groupBox1.Controls.Add(this.FiltrarPorClassificacaoPACCCheckBox);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(515, 6);
+            this.groupBox1.Location = new System.Drawing.Point(4, 128);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(236, 119);
-            this.groupBox1.TabIndex = 2;
+            this.groupBox1.Size = new System.Drawing.Size(214, 119);
+            this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filtrar por classificação";
             // 
@@ -152,7 +162,7 @@
             this.FiltrarPorClassificacaoDIVERSOSCheckBox.Location = new System.Drawing.Point(15, 89);
             this.FiltrarPorClassificacaoDIVERSOSCheckBox.Name = "FiltrarPorClassificacaoDIVERSOSCheckBox";
             this.FiltrarPorClassificacaoDIVERSOSCheckBox.Size = new System.Drawing.Size(97, 24);
-            this.FiltrarPorClassificacaoDIVERSOSCheckBox.TabIndex = 7;
+            this.FiltrarPorClassificacaoDIVERSOSCheckBox.TabIndex = 2;
             this.FiltrarPorClassificacaoDIVERSOSCheckBox.Text = "Diversos";
             this.FiltrarPorClassificacaoDIVERSOSCheckBox.UseVisualStyleBackColor = true;
             this.FiltrarPorClassificacaoDIVERSOSCheckBox.CheckedChanged += new System.EventHandler(this.FiltrarPorClassificacaoDIVERSOSCheckBox_CheckedChanged);
@@ -164,7 +174,7 @@
             this.FiltrarPorClassificacaoSEDEXCheckBox.Location = new System.Drawing.Point(15, 59);
             this.FiltrarPorClassificacaoSEDEXCheckBox.Name = "FiltrarPorClassificacaoSEDEXCheckBox";
             this.FiltrarPorClassificacaoSEDEXCheckBox.Size = new System.Drawing.Size(78, 24);
-            this.FiltrarPorClassificacaoSEDEXCheckBox.TabIndex = 6;
+            this.FiltrarPorClassificacaoSEDEXCheckBox.TabIndex = 1;
             this.FiltrarPorClassificacaoSEDEXCheckBox.Text = "Sedex";
             this.FiltrarPorClassificacaoSEDEXCheckBox.UseVisualStyleBackColor = true;
             this.FiltrarPorClassificacaoSEDEXCheckBox.CheckedChanged += new System.EventHandler(this.FiltrarPorClassificacaoSEDEXCheckBox_CheckedChanged);
@@ -176,7 +186,7 @@
             this.FiltrarPorClassificacaoPACCCheckBox.Location = new System.Drawing.Point(15, 29);
             this.FiltrarPorClassificacaoPACCCheckBox.Name = "FiltrarPorClassificacaoPACCCheckBox";
             this.FiltrarPorClassificacaoPACCCheckBox.Size = new System.Drawing.Size(58, 24);
-            this.FiltrarPorClassificacaoPACCCheckBox.TabIndex = 5;
+            this.FiltrarPorClassificacaoPACCCheckBox.TabIndex = 0;
             this.FiltrarPorClassificacaoPACCCheckBox.Text = "Pac";
             this.FiltrarPorClassificacaoPACCCheckBox.UseVisualStyleBackColor = true;
             this.FiltrarPorClassificacaoPACCCheckBox.CheckedChanged += new System.EventHandler(this.FiltrarPorClassificacaoPACCCheckBox_CheckedChanged);
@@ -188,10 +198,10 @@
             this.BtnImprimirListaAtual.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnImprimirListaAtual.Image = global::SISAPO.Properties.Resources.impressão_26;
             this.BtnImprimirListaAtual.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnImprimirListaAtual.Location = new System.Drawing.Point(901, 14);
+            this.BtnImprimirListaAtual.Location = new System.Drawing.Point(572, 34);
             this.BtnImprimirListaAtual.Name = "BtnImprimirListaAtual";
             this.BtnImprimirListaAtual.Size = new System.Drawing.Size(196, 38);
-            this.BtnImprimirListaAtual.TabIndex = 1;
+            this.BtnImprimirListaAtual.TabIndex = 2;
             this.BtnImprimirListaAtual.Text = "&Imprimir lista atual";
             this.BtnImprimirListaAtual.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BtnImprimirListaAtual.UseVisualStyleBackColor = true;
@@ -202,11 +212,11 @@
             this.BtnRetornaTodosNaoEntregues.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnRetornaTodosNaoEntregues.Image = global::SISAPO.Properties.Resources.icons8_colar_26;
             this.BtnRetornaTodosNaoEntregues.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnRetornaTodosNaoEntregues.Location = new System.Drawing.Point(6, 14);
+            this.BtnRetornaTodosNaoEntregues.Location = new System.Drawing.Point(21, 35);
             this.BtnRetornaTodosNaoEntregues.Name = "BtnRetornaTodosNaoEntregues";
-            this.BtnRetornaTodosNaoEntregues.Size = new System.Drawing.Size(261, 38);
-            this.BtnRetornaTodosNaoEntregues.TabIndex = 0;
-            this.BtnRetornaTodosNaoEntregues.Text = "Todos ainda não entregues";
+            this.BtnRetornaTodosNaoEntregues.Size = new System.Drawing.Size(329, 38);
+            this.BtnRetornaTodosNaoEntregues.TabIndex = 1;
+            this.BtnRetornaTodosNaoEntregues.Text = "Buscar todos ainda não entregues";
             this.BtnRetornaTodosNaoEntregues.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BtnRetornaTodosNaoEntregues.UseVisualStyleBackColor = true;
             this.BtnRetornaTodosNaoEntregues.Click += new System.EventHandler(this.BtnRetornaTodosNaoEntregues_Click);
@@ -216,9 +226,9 @@
             this.BtnColarConteudoJaCopiado.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnColarConteudoJaCopiado.Image = global::SISAPO.Properties.Resources.icons8_colar_26;
             this.BtnColarConteudoJaCopiado.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnColarConteudoJaCopiado.Location = new System.Drawing.Point(12, 6);
+            this.BtnColarConteudoJaCopiado.Location = new System.Drawing.Point(21, 36);
             this.BtnColarConteudoJaCopiado.Name = "BtnColarConteudoJaCopiado";
-            this.BtnColarConteudoJaCopiado.Size = new System.Drawing.Size(262, 38);
+            this.BtnColarConteudoJaCopiado.Size = new System.Drawing.Size(329, 38);
             this.BtnColarConteudoJaCopiado.TabIndex = 0;
             this.BtnColarConteudoJaCopiado.Text = "&Colar conteúdo já copiado";
             this.BtnColarConteudoJaCopiado.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -231,24 +241,23 @@
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.LbnQuantidadeRegistros);
             this.panel2.Controls.Add(this.btnCancelar);
-            this.panel2.Controls.Add(this.BtnColarConteudoJaCopiado);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.Location = new System.Drawing.Point(0, 411);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1103, 51);
-            this.panel2.TabIndex = 3;
+            this.panel2.Size = new System.Drawing.Size(771, 51);
+            this.panel2.TabIndex = 2;
             // 
             // label1
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.SystemColors.Control;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
             this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label1.Location = new System.Drawing.Point(280, 26);
+            this.label1.Location = new System.Drawing.Point(3, 22);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(179, 16);
-            this.label1.TabIndex = 5;
+            this.label1.Size = new System.Drawing.Size(207, 20);
+            this.label1.TabIndex = 0;
             this.label1.Text = "Quantidade de registros:";
             // 
             // LbnQuantidadeRegistros
@@ -259,10 +268,10 @@
             this.LbnQuantidadeRegistros.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.LbnQuantidadeRegistros.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LbnQuantidadeRegistros.ForeColor = System.Drawing.Color.Red;
-            this.LbnQuantidadeRegistros.Location = new System.Drawing.Point(455, 24);
+            this.LbnQuantidadeRegistros.Location = new System.Drawing.Point(210, 22);
             this.LbnQuantidadeRegistros.Name = "LbnQuantidadeRegistros";
             this.LbnQuantidadeRegistros.Size = new System.Drawing.Size(19, 20);
-            this.LbnQuantidadeRegistros.TabIndex = 6;
+            this.LbnQuantidadeRegistros.TabIndex = 1;
             this.LbnQuantidadeRegistros.Text = "0";
             this.LbnQuantidadeRegistros.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -270,10 +279,10 @@
             // 
             this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.btnCancelar.Location = new System.Drawing.Point(922, 11);
+            this.btnCancelar.Location = new System.Drawing.Point(590, 11);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(175, 31);
-            this.btnCancelar.TabIndex = 0;
+            this.btnCancelar.TabIndex = 2;
             this.btnCancelar.Text = "&Fechar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
@@ -315,7 +324,7 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 131);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 77);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -328,8 +337,8 @@
             this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView1.RowHeadersWidth = 30;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1103, 280);
-            this.dataGridView1.TabIndex = 4;
+            this.dataGridView1.Size = new System.Drawing.Size(550, 334);
+            this.dataGridView1.TabIndex = 0;
             this.dataGridView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDoubleClick);
             // 
             // CodigoLdi
@@ -423,12 +432,66 @@
             this.QtdDiasVencidos.ReadOnly = true;
             this.QtdDiasVencidos.Width = 110;
             // 
+            // tabControl3
+            // 
+            this.tabControl3.Controls.Add(this.tabPageExibicaoTodosAindaNaoEntregues);
+            this.tabControl3.Controls.Add(this.tabPageExibicaoColarConteudoJaCopiado);
+            this.tabControl3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tabControl3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabControl3.Location = new System.Drawing.Point(0, 0);
+            this.tabControl3.Name = "tabControl3";
+            this.tabControl3.SelectedIndex = 0;
+            this.tabControl3.Size = new System.Drawing.Size(771, 30);
+            this.tabControl3.TabIndex = 0;
+            this.tabControl3.SelectedIndexChanged += new System.EventHandler(this.tabControl3_SelectedIndexChanged);
+            // 
+            // tabPageExibicaoTodosAindaNaoEntregues
+            // 
+            this.tabPageExibicaoTodosAindaNaoEntregues.Controls.Add(this.label5);
+            this.tabPageExibicaoTodosAindaNaoEntregues.Location = new System.Drawing.Point(4, 29);
+            this.tabPageExibicaoTodosAindaNaoEntregues.Name = "tabPageExibicaoTodosAindaNaoEntregues";
+            this.tabPageExibicaoTodosAindaNaoEntregues.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageExibicaoTodosAindaNaoEntregues.Size = new System.Drawing.Size(763, 0);
+            this.tabPageExibicaoTodosAindaNaoEntregues.TabIndex = 0;
+            this.tabPageExibicaoTodosAindaNaoEntregues.Text = "Exibir todos objetos ainda não entregues";
+            this.tabPageExibicaoTodosAindaNaoEntregues.UseVisualStyleBackColor = true;
+            // 
+            // label5
+            // 
+            this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label5.ForeColor = System.Drawing.Color.Red;
+            this.label5.Location = new System.Drawing.Point(3, 3);
+            this.label5.Name = "label5";
+            this.label5.Padding = new System.Windows.Forms.Padding(0, 8, 0, 0);
+            this.label5.Size = new System.Drawing.Size(757, 0);
+            this.label5.TabIndex = 0;
+            // 
+            // tabPageExibicaoColarConteudoJaCopiado
+            // 
+            this.tabPageExibicaoColarConteudoJaCopiado.Location = new System.Drawing.Point(4, 29);
+            this.tabPageExibicaoColarConteudoJaCopiado.Name = "tabPageExibicaoColarConteudoJaCopiado";
+            this.tabPageExibicaoColarConteudoJaCopiado.Size = new System.Drawing.Size(763, 0);
+            this.tabPageExibicaoColarConteudoJaCopiado.TabIndex = 1;
+            this.tabPageExibicaoColarConteudoJaCopiado.Text = "Exibir itens copiado no SRO";
+            this.tabPageExibicaoColarConteudoJaCopiado.UseVisualStyleBackColor = true;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.groupBox2);
+            this.panel1.Controls.Add(this.groupBox1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel1.Location = new System.Drawing.Point(550, 77);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(221, 334);
+            this.panel1.TabIndex = 1;
+            // 
             // FormularioAuxilioGestaoDiaNovo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1103, 462);
+            this.ClientSize = new System.Drawing.Size(771, 462);
             this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel3);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -449,6 +512,9 @@
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceObjetosNaoEntregues)).EndInit();
+            this.tabControl3.ResumeLayout(false);
+            this.tabPageExibicaoTodosAindaNaoEntregues.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -484,5 +550,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn StatusPrazo;
         private System.Windows.Forms.DataGridViewTextBoxColumn DataVencimento;
         private System.Windows.Forms.DataGridViewTextBoxColumn QtdDiasVencidos;
+        private System.Windows.Forms.TabControl tabControl3;
+        private System.Windows.Forms.TabPage tabPageExibicaoTodosAindaNaoEntregues;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TabPage tabPageExibicaoColarConteudoJaCopiado;
+        private System.Windows.Forms.Panel panel1;
     }
 }

@@ -209,5 +209,10 @@ namespace SISAPO
         {
             DataInicial_dateTimePicker.Enabled = radioButtonAPartirDoDia.Checked;
         }
+
+        private void BtnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

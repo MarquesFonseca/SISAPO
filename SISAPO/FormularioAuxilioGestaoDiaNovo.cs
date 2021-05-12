@@ -25,6 +25,7 @@ namespace SISAPO
         private void FormularioAuxilioGestaoDia_Load(object sender, EventArgs e)
         {
             //BtnColarConteudoJaCopiado_Click(sender, e);
+            BtnColarConteudoJaCopiado.Visible = false;
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -64,19 +65,33 @@ namespace SISAPO
                     string texto = textoColadoAreaTransferencia.ToString();
 
                     listaObjetos = RetornaListaObjetos(textoColadoAreaTransferencia.ToString());
-                    if (listaObjetos.Rows.Count == 0)
+
+
+                    if (listaObjetos == null || listaObjetos.Rows.Count == 0)
                     {
+                        FiltrarPorPrazosVENCIDOSCheckBox.Enabled = FiltrarPorPrazosVENCENDOHOJECheckBox.Enabled = FiltrarPorPrazosAVENCERCheckBox.Enabled = false;
+                        FiltrarPorClassificacaoPACCCheckBox.Enabled = FiltrarPorClassificacaoSEDEXCheckBox.Enabled = FiltrarPorClassificacaoDIVERSOSCheckBox.Enabled = false;
+
                         dataGridView1.DataSource = listaObjetos;
                         listaObjetos.Clear(); //Retira os valores da tabela mantendo os campos
                         Mensagens.Informa("Não foi possível carregar.\nCopie a lista e clique no botão para tentar novamente .");
                         LbnQuantidadeRegistros.Text = string.Format("{0}", listaObjetos.Rows.Count);
                         return;
                     }
-                    LbnQuantidadeRegistros.Text = string.Format("{0}", listaObjetos.Rows.Count);
-                    listaObjetos.DefaultView.Sort = "NomeCliente ASC";
-                    dataGridView1.DataSource = listaObjetos;
-                    this.dataGridView1.Sort(this.dataGridView1.Columns["NomeCliente"], ListSortDirection.Ascending);
-                    dataGridView1.Focus();
+
+                    FiltrarPorPrazosVENCIDOSCheckBox.Enabled = FiltrarPorPrazosVENCENDOHOJECheckBox.Enabled = FiltrarPorPrazosAVENCERCheckBox.Enabled = true;
+                    FiltrarPorPrazosVENCIDOSCheckBox.Checked = true;
+                    FiltrarPorClassificacaoPACCCheckBox.Enabled = FiltrarPorClassificacaoSEDEXCheckBox.Enabled = FiltrarPorClassificacaoDIVERSOSCheckBox.Enabled = true;
+                    FiltrarPorClassificacaoPACCCheckBox.Checked = FiltrarPorClassificacaoSEDEXCheckBox.Checked = FiltrarPorClassificacaoDIVERSOSCheckBox.Checked = true;
+
+                    bindingSourceObjetosNaoEntregues = new BindingSource();
+                    bindingSourceObjetosNaoEntregues.DataSource = listaObjetos;
+                    dataGridView1.DataSource = bindingSourceObjetosNaoEntregues;
+
+                    FiltrosCheckBox();
+
+                    //LbnQuantidadeRegistros.Text = bindingSourceObjetosNaoEntregues.Count.ToString();
+                    //dataGridView1.Focus();
                 }
                 catch (IOException) { }
             }
@@ -100,46 +115,51 @@ namespace SISAPO
 
             try
             {
-                using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
+                string[] linha = Texto.Split('\n');
+
+                for (int i = 0; i < linha.Length; i++)
                 {
-                    if (!DAO.TestaConexao(ClassesDiversas.Configuracoes.strConexao, TipoBanco.OleDb)) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return null; }
-                    string[] linha = Texto.Split('\n');
+                    if (linha[i] == "" || linha[i] == "\r") continue;
+                    string[] Parteslinha = linha[i].Split('\t');
+                    string ParteLinhaCodigoLdi = Parteslinha.Length >= 1 ? Parteslinha[0].Trim().ToUpper() : "";
+                    string ParteLinhaCodigoObjeto = Parteslinha.Length >= 2 ? Parteslinha[1].Trim().ToUpper() : "";
+                    //string ParteLinhaDataLancamento = Parteslinha.Length >= 3 ? Parteslinha[2].Trim().ToUpper() : "";
+                    //string QtdDiasCorridos = "0";
+                    //bool validaData;
+                    //try
+                    //{
+                    //    Convert.ToDateTime(ParteLinhaDataLancamento);
+                    //    validaData = true;
+                    //}
+                    //catch (Exception)
+                    //{
+                    //    validaData = false;
+                    //}
+                    //if (validaData)
+                    //{
+                    //    QtdDiasCorridos = Convert.ToString((DateTime.Now.Date - ParteLinhaDataLancamento.ToDateTime().Date).TotalDays);
+                    //}
 
-                    for (int i = 0; i < linha.Length; i++)
+
+                    if (ParteLinhaCodigoObjeto != "")
                     {
-                        if (linha[i] == "" || linha[i] == "\r") continue;
-                        string[] Parteslinha = linha[i].Split('\t');
-                        string ParteLinhaCodigoLdi = Parteslinha.Length >= 1 ? Parteslinha[0].Trim().ToUpper() : "";
-                        string ParteLinhaCodigoObjeto = Parteslinha.Length >= 2 ? Parteslinha[1].Trim().ToUpper() : "";
-                        string ParteLinhaNomeCliente = "";
-                        string ParteLinhaDataLancamento = Parteslinha.Length >= 3 ? Parteslinha[2].Trim().ToUpper() : "";
-                        string QtdDiasCorridos = "0";
-                        bool validaData;
-                        try
+                        using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
                         {
-                            Convert.ToDateTime(ParteLinhaDataLancamento);
-                            validaData = true;
-                        }
-                        catch (Exception)
-                        {
-                            validaData = false;
-                        }
-                        if (validaData)
-                        {
-                            QtdDiasCorridos = Convert.ToString((DateTime.Now.Date - ParteLinhaDataLancamento.ToDateTime().Date).TotalDays);
-                        }
+                            if (!DAO.TestaConexao(ClassesDiversas.Configuracoes.strConexao, TipoBanco.OleDb)) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return null; }
 
+                            //ParteLinhaCodigoObjeto = "JU939963115BR";
 
-                        if (ParteLinhaCodigoObjeto != "")
-                        {
-                            DataSet ds = dao.RetornaDataSet(string.Format("SELECT DISTINCT CodigoObjeto, NomeCliente, DataLancamento FROM TabelaObjetosSROLocal WHERE (CodigoObjeto = '{0}')", ParteLinhaCodigoObjeto));
-
-                            if (ds.Tables[0].Rows.Count >= 1)
+                            DataTable RetornaLista = RetornaListaObjetosNaoEntregues(string.Format("CodigoObjeto = '{0}' AND CodigoLdi = '{1}'", ParteLinhaCodigoObjeto, ParteLinhaCodigoLdi));
+                            if (RetornaLista.Rows.Count == 0)
                             {
-                                ParteLinhaNomeCliente = ds.Tables[0].Rows[0][1].ToString();
-                                ParteLinhaDataLancamento = ds.Tables[0].Rows[0][2].ToString();
+                                continue;
                             }
-                            dtbLista.Rows.Add(ParteLinhaCodigoLdi, ParteLinhaCodigoObjeto, ParteLinhaNomeCliente, ParteLinhaDataLancamento.ToDateTime(), QtdDiasCorridos.ToInt());
+                            else
+                            {
+                                //CodigoLdi, Sigla, CodigoObjeto, TipoClassificacao, NomeCliente, DataLancamento, QtdDiasCorridos, PrazoTipoClassificacao, DataVencimento, StatusPrazo, QtdDiasVencidos
+
+                                dtbLista.Rows.Add(RetornaLista.Rows[0]["CodigoLdi"], RetornaLista.Rows[0]["Sigla"], RetornaLista.Rows[0]["CodigoObjeto"], RetornaLista.Rows[0]["TipoClassificacao"], RetornaLista.Rows[0]["NomeCliente"], RetornaLista.Rows[0]["DataLancamento"], RetornaLista.Rows[0]["QtdDiasCorridos"], RetornaLista.Rows[0]["PrazoTipoClassificacao"], RetornaLista.Rows[0]["DataVencimento"], RetornaLista.Rows[0]["StatusPrazo"], RetornaLista.Rows[0]["QtdDiasVencidos"]);
+                            }
                         }
                     }
                 }
@@ -343,9 +363,6 @@ namespace SISAPO
                 dataGridView1.DataSource = bindingSourceObjetosNaoEntregues;
 
                 FiltrosCheckBox();
-
-                LbnQuantidadeRegistros.Text = bindingSourceObjetosNaoEntregues.Count.ToString();
-                dataGridView1.Focus();
             }
             catch (IOException) { }
         }
@@ -490,6 +507,22 @@ namespace SISAPO
             bindingSourceObjetosNaoEntregues.Filter = MontaFiltro;
 
             LbnQuantidadeRegistros.Text = bindingSourceObjetosNaoEntregues.Count.ToString();
+
+            dataGridView1.Focus();
+        }
+
+        private void tabControl3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControl3.SelectedIndex == 0)
+            {
+                BtnColarConteudoJaCopiado.Visible = false;
+                BtnRetornaTodosNaoEntregues.Visible = true;
+            }
+            if (tabControl3.SelectedIndex == 1)
+            {
+                BtnRetornaTodosNaoEntregues.Visible = false;
+                BtnColarConteudoJaCopiado.Visible = true;
+            }
         }
     }
 }
