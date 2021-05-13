@@ -111,8 +111,7 @@ namespace SISAPO
             dtbLista.Columns.Add("DataVencimento", typeof(DateTime));
             dtbLista.Columns.Add("StatusPrazo", typeof(string));
             dtbLista.Columns.Add("QtdDiasVencidos", typeof(string));
-
-
+            
             try
             {
                 string[] linha = Texto.Split('\n');
@@ -123,23 +122,6 @@ namespace SISAPO
                     string[] Parteslinha = linha[i].Split('\t');
                     string ParteLinhaCodigoLdi = Parteslinha.Length >= 1 ? Parteslinha[0].Trim().ToUpper() : "";
                     string ParteLinhaCodigoObjeto = Parteslinha.Length >= 2 ? Parteslinha[1].Trim().ToUpper() : "";
-                    //string ParteLinhaDataLancamento = Parteslinha.Length >= 3 ? Parteslinha[2].Trim().ToUpper() : "";
-                    //string QtdDiasCorridos = "0";
-                    //bool validaData;
-                    //try
-                    //{
-                    //    Convert.ToDateTime(ParteLinhaDataLancamento);
-                    //    validaData = true;
-                    //}
-                    //catch (Exception)
-                    //{
-                    //    validaData = false;
-                    //}
-                    //if (validaData)
-                    //{
-                    //    QtdDiasCorridos = Convert.ToString((DateTime.Now.Date - ParteLinhaDataLancamento.ToDateTime().Date).TotalDays);
-                    //}
-
 
                     if (ParteLinhaCodigoObjeto != "")
                     {
