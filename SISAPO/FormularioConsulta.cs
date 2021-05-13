@@ -256,6 +256,14 @@ namespace SISAPO
                 TxtPesquisa.Text = "";
                 TxtPesquisa.Text = fm.CodigoRetorno;
             }
+            if (e.KeyCode == Keys.F9)
+            {
+                FormularioPrincipal.RetornaComponentesFormularioPrincipal().sRORastreamentoUnificadoToolStripMenuItem_Click(sender, e);
+            }
+            if (e.KeyCode == Keys.F12)
+            {
+                FormularioPrincipal.RetornaComponentesFormularioPrincipal().visualizarListaDeObjetosToolStripMenuItem_Click(sender, e);
+            }
         }
 
         private void btnPesquisarSRO_Click(object sender, EventArgs e)
@@ -761,6 +769,12 @@ namespace SISAPO
 
         public void removerItemToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            DialogResult resposta = Mensagens.Pergunta("Realmente deseja remover itens selecionados?", MessageBoxButtons.YesNoCancel);
+            if (resposta == DialogResult.No || resposta == DialogResult.Cancel)
+            {
+                return;
+            }
+
             if (!DAO.TestaConexao(ClassesDiversas.Configuracoes.strConexao, TipoBanco.OleDb))
             {
                 FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao;
@@ -835,7 +849,7 @@ namespace SISAPO
                 FormularioPrincipal.OpcoesImpressaoImprimirVariosPorFolha = true; ;
             }
 
-            //Ordem alfabética
+            #region Ordem alfabética
             if (FormularioPrincipal.OpcoesImpressaoOrdenacaoPorNomeDestinatario)
             {
                 for (int i = this.dataGridView1.SelectedRows.Count - 1; i >= 0; i--)
@@ -852,10 +866,9 @@ namespace SISAPO
                 else
                     novosCodigosSelecionadosOrdenados = dicionarioCodigo_Nome.AsEnumerable().OrderByDescending(t => t.Value).Select(c => c.Key).ToList();
             }
+            #endregion
 
-
-
-            //Ordem de Lançamento
+            #region Ordem de Lançamento
             if (FormularioPrincipal.OpcoesImpressaoOrdenacaoPorDataLancamento)
             {
                 for (int i = this.dataGridView1.SelectedRows.Count - 1; i >= 0; i--)
@@ -872,6 +885,7 @@ namespace SISAPO
                 else
                     novosCodigosSelecionadosOrdenados = dicionarioCodigo_DataLancamento.AsEnumerable().OrderByDescending(t => t.Value).Select(c => c.Key).ToList();
             }
+            #endregion
 
 
             if (_modeloImpressaoListaObjetos == ModeloImpressaoListaObjetos.ModeloComum)
@@ -895,7 +909,7 @@ namespace SISAPO
         public void GeraAvisosDeChegadaSelecionados()
         {
             List<string> novosCodigosSelecionadosOrdenados = new List<string>();
-
+            dicionarioCodigo_DataLancamento = new Dictionary<string, DateTime>();
             if (dataGridView1.SelectedRows.Count == 0)
             {
                 Mensagens.Informa("Para impressão da lista de entrega é necessário selecionar algum objeto.");
@@ -912,18 +926,18 @@ namespace SISAPO
                 if (!existe)
                     dicionarioCodigo_DataLancamento.Add(this.dataGridView1.SelectedRows[i].Cells["codigoObjetoDataGridViewTextBoxColumn"].Value.ToString(), this.dataGridView1.SelectedRows[i].Cells["DataLancamento"].Value.ToDateTime());
             }
+            FormularioPrincipal.OpcoesImpressaoOrdenacaoPorOrdemCrescente = true;
             if (FormularioPrincipal.OpcoesImpressaoOrdenacaoPorOrdemCrescente)
-                novosCodigosSelecionadosOrdenados = dicionarioCodigo_DataLancamento.AsEnumerable().OrderBy(t => t.Value).Select(c => c.Key).ToList();
+            {
+                //novosCodigosSelecionadosOrdenados = dicionarioCodigo_DataLancamento.AsEnumerable().OrderBy(t => t.Value).Select(c => c.Key).ToList();
+                novosCodigosSelecionadosOrdenados = dicionarioCodigo_DataLancamento.AsEnumerable().Select(c => c.Key).ToList();
+            }
             else
+            {
                 novosCodigosSelecionadosOrdenados = dicionarioCodigo_DataLancamento.AsEnumerable().OrderByDescending(t => t.Value).Select(c => c.Key).ToList();
-
-
+            }
 
             FormularioImpressaoAvisosChegada FormularioImpressaoAvisosChegada = new FormularioImpressaoAvisosChegada(novosCodigosSelecionadosOrdenados);
-
-
-
-
         }
 
         public void GeraImpressaoItensLancadosNoDiaHoje(bool _incluirItensEntregues, bool _incluirItensCaixaPostal)

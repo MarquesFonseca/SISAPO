@@ -73,7 +73,14 @@ namespace SISAPO
                 this.Close();
                 return;
             }
-
+            if (e.KeyCode == Keys.F9)
+            {
+                FormularioPrincipal.RetornaComponentesFormularioPrincipal().sRORastreamentoUnificadoToolStripMenuItem_Click(sender, e);
+            }
+            if (e.KeyCode == Keys.F12)
+            {
+                FormularioPrincipal.RetornaComponentesFormularioPrincipal().visualizarListaDeObjetosToolStripMenuItem_Click(sender, e);
+            }
         }
 
         private void BtnAtualizarConfiguracoesAgencia_Click(object sender, EventArgs e)

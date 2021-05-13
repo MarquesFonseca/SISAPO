@@ -43,7 +43,7 @@ namespace SISAPO
             this.imprimirListaDeEntregaParaConsultaSelecionadaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.cadastrarNovosObjetosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cadastrarNovosTiposPostaisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.TiposPostaisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.atualizarNovosObjetosCompletoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.atualizarNovosObjetosPostadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -55,21 +55,21 @@ namespace SISAPO
             this.solicitarVerificacaoDeObjetosAindaNaoEntreguesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.auxílioÀGestaoDoDiaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.opçõesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.opçõesTelaConsultaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ExibirCaixaPostalPesquisa_toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ExibirItensJaEntreguesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manterConsultaSempreAtualizadaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PermiriBuscarPorLDINaPesquisaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.habilitarCapturaDeDadosDePostagemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.habilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatárioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.habilitarCapturaDeDadosDeDestinatárioAusenteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.marcarSelecionadosComoAtualizadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.marcarSelecionadosComoNaoAtualizadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.removerLinhasSelecionadasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.opçõesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.habilitarCapturaDeDadosDePostagemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.habilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatárioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.habilitarCapturaDeDadosDeDestinatárioAusenteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.exibirMensagensAoDesevolvedorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewMenu = new System.Windows.Forms.ToolStripMenuItem();
@@ -82,6 +82,7 @@ namespace SISAPO
             this.closeAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.RastreamentoSRO_toolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
@@ -94,7 +95,7 @@ namespace SISAPO
             this.toolStripStatusLabelDataHoraUltimaAtualizacaoImportacao = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabelDataHora = new System.Windows.Forms.ToolStripStatusLabel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.TiposPostaisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.timerAtualizaDataHoraAtualBarraStatus = new System.Windows.Forms.Timer(this.components);
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -106,6 +107,7 @@ namespace SISAPO
             // 
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolsMenu,
+            this.opçõesTelaConsultaToolStripMenuItem,
             this.opçõesToolStripMenuItem,
             this.viewMenu,
             this.windowsMenu,
@@ -122,14 +124,9 @@ namespace SISAPO
             this.toolsMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.sRORastreamentoUnificadoToolStripMenuItem,
             this.visualizarListaDeObjetosToolStripMenuItem,
-            this.toolStripSeparator7,
-            this.imprimirListaDeEntregaParaConsultaSelecionadaToolStripMenuItem,
-            this.imprimirAvisosDeChegadaSelecionadosToolStripMenuItem,
-            this.imprimirListaDeEntregaParaConsultaSelecionadaToolStripMenuItem1,
-            this.toolStripSeparator6,
+            this.toolStripSeparator7,            
             this.cadastrarNovosObjetosToolStripMenuItem,
             this.TiposPostaisToolStripMenuItem,
-            this.cadastrarNovosTiposPostaisToolStripMenuItem,
             this.toolStripSeparator1,
             this.atualizarNovosObjetosCompletoToolStripMenuItem,
             this.atualizarNovosObjetosPostadosToolStripMenuItem,
@@ -225,14 +222,13 @@ namespace SISAPO
             this.cadastrarNovosObjetosToolStripMenuItem.Text = "Importar Novo(s) Objeto(s)";
             this.cadastrarNovosObjetosToolStripMenuItem.Click += new System.EventHandler(this.cadastrarNovosObjetosToolStripMenuItem_Click);
             // 
-            // cadastrarNovosTiposPostaisToolStripMenuItem
+            // TiposPostaisToolStripMenuItem
             // 
-            this.cadastrarNovosTiposPostaisToolStripMenuItem.Image = global::SISAPO.Properties.Resources.CadastroObjetos;
-            this.cadastrarNovosTiposPostaisToolStripMenuItem.Name = "cadastrarNovosTiposPostaisToolStripMenuItem";
-            this.cadastrarNovosTiposPostaisToolStripMenuItem.Size = new System.Drawing.Size(459, 22);
-            this.cadastrarNovosTiposPostaisToolStripMenuItem.Text = "Cadastrar Novos Tipos Postais";
-            this.cadastrarNovosTiposPostaisToolStripMenuItem.Visible = false;
-            this.cadastrarNovosTiposPostaisToolStripMenuItem.Click += new System.EventHandler(this.cadastrarNovosTiposPostaisToolStripMenuItem_Click);
+            this.TiposPostaisToolStripMenuItem.Image = global::SISAPO.Properties.Resources.CadastroObjetos;
+            this.TiposPostaisToolStripMenuItem.Name = "TiposPostaisToolStripMenuItem";
+            this.TiposPostaisToolStripMenuItem.Size = new System.Drawing.Size(459, 22);
+            this.TiposPostaisToolStripMenuItem.Text = "Gestão de Tipos Postais";
+            this.TiposPostaisToolStripMenuItem.Click += new System.EventHandler(this.TiposPostaisToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -322,34 +318,31 @@ namespace SISAPO
             this.auxílioÀGestaoDoDiaToolStripMenuItem.Text = "Auxílio à gestão do dia";
             this.auxílioÀGestaoDoDiaToolStripMenuItem.Click += new System.EventHandler(this.auxílioÀGestaoDoDiaToolStripMenuItem_Click);
             // 
-            // opçõesToolStripMenuItem
+            // opçõesTelaConsultaToolStripMenuItem
             // 
-            this.opçõesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.opçõesTelaConsultaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ExibirCaixaPostalPesquisa_toolStripMenuItem,
             this.ExibirItensJaEntreguesToolStripMenuItem,
             this.manterConsultaSempreAtualizadaToolStripMenuItem,
             this.PermiriBuscarPorLDINaPesquisaToolStripMenuItem,
             this.toolStripSeparator3,
-            this.habilitarCapturaDeDadosDePostagemToolStripMenuItem,
-            this.habilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatárioToolStripMenuItem,
-            this.habilitarCapturaDeDadosDeDestinatárioAusenteToolStripMenuItem,
-            this.toolStripSeparator4,
+            this.imprimirListaDeEntregaParaConsultaSelecionadaToolStripMenuItem,
+            this.imprimirAvisosDeChegadaSelecionadosToolStripMenuItem,
+            this.imprimirListaDeEntregaParaConsultaSelecionadaToolStripMenuItem1,
+            this.toolStripSeparator6,
             this.marcarSelecionadosComoAtualizadoToolStripMenuItem,
             this.marcarSelecionadosComoNaoAtualizadoToolStripMenuItem,
             this.toolStripSeparator8,
-            this.removerLinhasSelecionadasToolStripMenuItem,
-            this.toolStripSeparator2,
-            this.exibirMensagensAoDesevolvedorToolStripMenuItem,
-            this.optionsToolStripMenuItem});
-            this.opçõesToolStripMenuItem.Name = "opçõesToolStripMenuItem";
-            this.opçõesToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
-            this.opçõesToolStripMenuItem.Text = "&Opções";
+            this.removerLinhasSelecionadasToolStripMenuItem});
+            this.opçõesTelaConsultaToolStripMenuItem.Name = "opçõesTelaConsultaToolStripMenuItem";
+            this.opçõesTelaConsultaToolStripMenuItem.Size = new System.Drawing.Size(132, 20);
+            this.opçõesTelaConsultaToolStripMenuItem.Text = "Opções Tela Consulta";
             // 
             // ExibirCaixaPostalPesquisa_toolStripMenuItem
             // 
             this.ExibirCaixaPostalPesquisa_toolStripMenuItem.CheckOnClick = true;
             this.ExibirCaixaPostalPesquisa_toolStripMenuItem.Name = "ExibirCaixaPostalPesquisa_toolStripMenuItem";
-            this.ExibirCaixaPostalPesquisa_toolStripMenuItem.Size = new System.Drawing.Size(410, 22);
+            this.ExibirCaixaPostalPesquisa_toolStripMenuItem.Size = new System.Drawing.Size(301, 22);
             this.ExibirCaixaPostalPesquisa_toolStripMenuItem.Text = "Exibir Objetos em Caixa Postal na pesquisa";
             this.ExibirCaixaPostalPesquisa_toolStripMenuItem.Click += new System.EventHandler(this.ExibirCaixaPostalPesquisa_toolStripMenuItem_Click);
             // 
@@ -357,7 +350,7 @@ namespace SISAPO
             // 
             this.ExibirItensJaEntreguesToolStripMenuItem.CheckOnClick = true;
             this.ExibirItensJaEntreguesToolStripMenuItem.Name = "ExibirItensJaEntreguesToolStripMenuItem";
-            this.ExibirItensJaEntreguesToolStripMenuItem.Size = new System.Drawing.Size(410, 22);
+            this.ExibirItensJaEntreguesToolStripMenuItem.Size = new System.Drawing.Size(301, 22);
             this.ExibirItensJaEntreguesToolStripMenuItem.Text = "Exibir Objetos já entregues na pesquisa";
             this.ExibirItensJaEntreguesToolStripMenuItem.Click += new System.EventHandler(this.ExibirItensJaEntreguesToolStripMenuItem_Click);
             // 
@@ -367,7 +360,7 @@ namespace SISAPO
             this.manterConsultaSempreAtualizadaToolStripMenuItem.CheckOnClick = true;
             this.manterConsultaSempreAtualizadaToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.manterConsultaSempreAtualizadaToolStripMenuItem.Name = "manterConsultaSempreAtualizadaToolStripMenuItem";
-            this.manterConsultaSempreAtualizadaToolStripMenuItem.Size = new System.Drawing.Size(410, 22);
+            this.manterConsultaSempreAtualizadaToolStripMenuItem.Size = new System.Drawing.Size(301, 22);
             this.manterConsultaSempreAtualizadaToolStripMenuItem.Text = "Manter consulta sempre atualizada";
             this.manterConsultaSempreAtualizadaToolStripMenuItem.Visible = false;
             this.manterConsultaSempreAtualizadaToolStripMenuItem.Click += new System.EventHandler(this.manterConsultaSempreAtualizadaToolStripMenuItem_Click);
@@ -378,14 +371,53 @@ namespace SISAPO
             this.PermiriBuscarPorLDINaPesquisaToolStripMenuItem.CheckOnClick = true;
             this.PermiriBuscarPorLDINaPesquisaToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.PermiriBuscarPorLDINaPesquisaToolStripMenuItem.Name = "PermiriBuscarPorLDINaPesquisaToolStripMenuItem";
-            this.PermiriBuscarPorLDINaPesquisaToolStripMenuItem.Size = new System.Drawing.Size(410, 22);
+            this.PermiriBuscarPorLDINaPesquisaToolStripMenuItem.Size = new System.Drawing.Size(301, 22);
             this.PermiriBuscarPorLDINaPesquisaToolStripMenuItem.Text = "Permitir buscar por LDI na pesquisa";
             this.PermiriBuscarPorLDINaPesquisaToolStripMenuItem.Click += new System.EventHandler(this.PermiriBuscarPorLDINaPesquisaToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(407, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(298, 6);
+            // 
+            // marcarSelecionadosComoAtualizadoToolStripMenuItem
+            // 
+            this.marcarSelecionadosComoAtualizadoToolStripMenuItem.Name = "marcarSelecionadosComoAtualizadoToolStripMenuItem";
+            this.marcarSelecionadosComoAtualizadoToolStripMenuItem.Size = new System.Drawing.Size(301, 22);
+            this.marcarSelecionadosComoAtualizadoToolStripMenuItem.Text = "Marcar Selecionados como Atualizado";
+            this.marcarSelecionadosComoAtualizadoToolStripMenuItem.Click += new System.EventHandler(this.marcarSelecionadosComoAtualizadoToolStripMenuItem_Click);
+            // 
+            // marcarSelecionadosComoNaoAtualizadoToolStripMenuItem
+            // 
+            this.marcarSelecionadosComoNaoAtualizadoToolStripMenuItem.Name = "marcarSelecionadosComoNaoAtualizadoToolStripMenuItem";
+            this.marcarSelecionadosComoNaoAtualizadoToolStripMenuItem.Size = new System.Drawing.Size(301, 22);
+            this.marcarSelecionadosComoNaoAtualizadoToolStripMenuItem.Text = "Marcar Selecionados como Não Atualizado";
+            this.marcarSelecionadosComoNaoAtualizadoToolStripMenuItem.Click += new System.EventHandler(this.marcarSelecionadosComoNaoAtualizadoToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator8
+            // 
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
+            this.toolStripSeparator8.Size = new System.Drawing.Size(298, 6);
+            // 
+            // removerLinhasSelecionadasToolStripMenuItem
+            // 
+            this.removerLinhasSelecionadasToolStripMenuItem.Name = "removerLinhasSelecionadasToolStripMenuItem";
+            this.removerLinhasSelecionadasToolStripMenuItem.Size = new System.Drawing.Size(301, 22);
+            this.removerLinhasSelecionadasToolStripMenuItem.Text = "Remover Linhas Selecionadas";
+            this.removerLinhasSelecionadasToolStripMenuItem.Click += new System.EventHandler(this.removerLinhasSelecionadasToolStripMenuItem_Click);
+            // 
+            // opçõesToolStripMenuItem
+            // 
+            this.opçõesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.habilitarCapturaDeDadosDePostagemToolStripMenuItem,
+            this.habilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatárioToolStripMenuItem,
+            this.habilitarCapturaDeDadosDeDestinatárioAusenteToolStripMenuItem,
+            this.toolStripSeparator4,
+            this.exibirMensagensAoDesevolvedorToolStripMenuItem,
+            this.optionsToolStripMenuItem});
+            this.opçõesToolStripMenuItem.Name = "opçõesToolStripMenuItem";
+            this.opçõesToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
+            this.opçõesToolStripMenuItem.Text = "&Opções";
             // 
             // habilitarCapturaDeDadosDePostagemToolStripMenuItem
             // 
@@ -421,37 +453,6 @@ namespace SISAPO
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
             this.toolStripSeparator4.Size = new System.Drawing.Size(407, 6);
-            // 
-            // marcarSelecionadosComoAtualizadoToolStripMenuItem
-            // 
-            this.marcarSelecionadosComoAtualizadoToolStripMenuItem.Name = "marcarSelecionadosComoAtualizadoToolStripMenuItem";
-            this.marcarSelecionadosComoAtualizadoToolStripMenuItem.Size = new System.Drawing.Size(410, 22);
-            this.marcarSelecionadosComoAtualizadoToolStripMenuItem.Text = "Marcar Selecionados como Atualizado";
-            this.marcarSelecionadosComoAtualizadoToolStripMenuItem.Click += new System.EventHandler(this.marcarSelecionadosComoAtualizadoToolStripMenuItem_Click);
-            // 
-            // marcarSelecionadosComoNaoAtualizadoToolStripMenuItem
-            // 
-            this.marcarSelecionadosComoNaoAtualizadoToolStripMenuItem.Name = "marcarSelecionadosComoNaoAtualizadoToolStripMenuItem";
-            this.marcarSelecionadosComoNaoAtualizadoToolStripMenuItem.Size = new System.Drawing.Size(410, 22);
-            this.marcarSelecionadosComoNaoAtualizadoToolStripMenuItem.Text = "Marcar Selecionados como Não Atualizado";
-            this.marcarSelecionadosComoNaoAtualizadoToolStripMenuItem.Click += new System.EventHandler(this.marcarSelecionadosComoNaoAtualizadoToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator8
-            // 
-            this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(407, 6);
-            // 
-            // removerLinhasSelecionadasToolStripMenuItem
-            // 
-            this.removerLinhasSelecionadasToolStripMenuItem.Name = "removerLinhasSelecionadasToolStripMenuItem";
-            this.removerLinhasSelecionadasToolStripMenuItem.Size = new System.Drawing.Size(410, 22);
-            this.removerLinhasSelecionadasToolStripMenuItem.Text = "Remover Linhas Selecionadas";
-            this.removerLinhasSelecionadasToolStripMenuItem.Click += new System.EventHandler(this.removerLinhasSelecionadasToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(407, 6);
             // 
             // exibirMensagensAoDesevolvedorToolStripMenuItem
             // 
@@ -553,6 +554,11 @@ namespace SISAPO
             this.aboutToolStripMenuItem.Text = "&Sobre";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(407, 6);
+            // 
             // toolStrip
             // 
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -652,13 +658,11 @@ namespace SISAPO
             this.panel1.Size = new System.Drawing.Size(739, 30);
             this.panel1.TabIndex = 5;
             // 
-            // TiposPostaisToolStripMenuItem
+            // timerAtualizaDataHoraAtualBarraStatus
             // 
-            this.TiposPostaisToolStripMenuItem.Image = global::SISAPO.Properties.Resources.CadastroObjetos;
-            this.TiposPostaisToolStripMenuItem.Name = "TiposPostaisToolStripMenuItem";
-            this.TiposPostaisToolStripMenuItem.Size = new System.Drawing.Size(459, 22);
-            this.TiposPostaisToolStripMenuItem.Text = "Tipos Postais";
-            this.TiposPostaisToolStripMenuItem.Click += new System.EventHandler(this.TiposPostaisToolStripMenuItem_Click);
+            this.timerAtualizaDataHoraAtualBarraStatus.Enabled = true;
+            this.timerAtualizaDataHoraAtualBarraStatus.Interval = 1000;
+            this.timerAtualizaDataHoraAtualBarraStatus.Tick += new System.EventHandler(this.timerAtualizaDataHoraAtualBarraStatus_Tick);
             // 
             // FormularioPrincipal
             // 
@@ -757,8 +761,9 @@ namespace SISAPO
         public System.Windows.Forms.ToolStripMenuItem modeloLDIToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem modeloComumToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem imprimirAvisosDeChegadaSelecionadosToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem cadastrarNovosTiposPostaisToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem TiposPostaisToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem opçõesTelaConsultaToolStripMenuItem;
+        public System.Windows.Forms.Timer timerAtualizaDataHoraAtualBarraStatus;
     }
 }
 

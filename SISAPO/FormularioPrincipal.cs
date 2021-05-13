@@ -48,7 +48,7 @@ namespace SISAPO
             //timerAtualizacaoNovosRegistros.Interval = 600000; //10 mimutos
             timerAtualizacaoNovosRegistros.Interval = 1000;
             timerAtualizacaoNovosRegistros.Enabled = false;
-            timerAtualizacaoNovosRegistros.Start();
+            //timerAtualizacaoNovosRegistros.Start();
         }
 
         private void FormularioPrincipal_Load(object sender, EventArgs e)
@@ -280,7 +280,7 @@ namespace SISAPO
                 BuscaDataHoraUltimaAtualizacaoImportacao();
                 contadorTime = 0;
             }
-            timerAtualizacaoNovosRegistros.Start();
+            //timerAtualizacaoNovosRegistros.Start();
         }
 
         public void AtualizaDataHoraUltimaAtualizacaoImportacao()
@@ -787,10 +787,10 @@ namespace SISAPO
                 if (item.Name == "FormularioConsulta")
                 {
                     formularioConsulta = (FormularioConsulta)item;
-                    timerAtualizacaoNovosRegistros.Stop();
+                    //timerAtualizacaoNovosRegistros.Stop();
                     formularioConsulta.MarcarSelecionadosComoAtualizado();
                     BuscaNovoStatusQuantidadeNaoAtualizados();
-                    timerAtualizacaoNovosRegistros.Start();
+                    //timerAtualizacaoNovosRegistros.Start();
                     break;
                 }
             }
@@ -804,10 +804,10 @@ namespace SISAPO
                 if (item.Name == "FormularioConsulta")
                 {
                     formularioConsulta = (FormularioConsulta)item;
-                    timerAtualizacaoNovosRegistros.Stop();
+                    //timerAtualizacaoNovosRegistros.Stop();
                     formularioConsulta.MarcarSelecionadosComoNaoAtualizado();
                     BuscaNovoStatusQuantidadeNaoAtualizados();
-                    timerAtualizacaoNovosRegistros.Start();
+                    //timerAtualizacaoNovosRegistros.Start();
                     break;
                 }
             }
@@ -938,11 +938,11 @@ namespace SISAPO
                 if (item.Name == "FormularioConsulta")
                 {
                     formularioConsulta = (FormularioConsulta)item;
-                    timerAtualizacaoNovosRegistros.Stop();
+                    //timerAtualizacaoNovosRegistros.Stop();
                     //formularioConsulta.MarcarSelecionadosComoNaoAtualizado();
                     formularioConsulta.removerItemToolStripMenuItem_Click(sender, e);
                     BuscaNovoStatusQuantidadeNaoAtualizados();
-                    timerAtualizacaoNovosRegistros.Start();
+                    //timerAtualizacaoNovosRegistros.Start();
                     break;
                 }
             }
@@ -1110,6 +1110,13 @@ namespace SISAPO
                     }
                 }
             }
+        }
+
+        private void timerAtualizaDataHoraAtualBarraStatus_Tick(object sender, EventArgs e)
+        {
+            toolStripStatusLabelDataHora.Text = DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString();
+            this.imprimirListaDeEntregaParaConsultaSelecionadaToolStripMenuItem1.Text = string.Format("Imprimir lista de entrega lançados hoje [{0}]", DateTime.Now.GetDateTimeFormats()[14]);
+
         }
     }
 }

@@ -35,9 +35,18 @@ namespace SISAPO
 
         private void ObjetosComPrazoGuardaVencido_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyData == Keys.Escape)
+            if (e.KeyCode == Keys.Escape)
             {
                 this.Close();
+                return;
+            }
+            if (e.KeyCode == Keys.F9)
+            {
+                FormularioPrincipal.RetornaComponentesFormularioPrincipal().sRORastreamentoUnificadoToolStripMenuItem_Click(sender, e);
+            }
+            if (e.KeyCode == Keys.F12)
+            {
+                FormularioPrincipal.RetornaComponentesFormularioPrincipal().visualizarListaDeObjetosToolStripMenuItem_Click(sender, e);
             }
         }
 
