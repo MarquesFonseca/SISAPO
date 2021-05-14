@@ -1158,26 +1158,26 @@ namespace SISAPO
                 //string UnidadePostagem,
                 //string MunicipioPostagem,
                 //string CriacaoPostagem,
-                //string CepDestinoPostagem,
+                currentRow["CepDestinoPostagem"] = frm.LocalidadeLOEC;//string CepDestinoPostagem,
                 //string ARPostagem,
                 //string MPPostagem,
                 //string DataMaxPrevistaEntregaPostagem,
 
                 //string UnidadeLOEC,
-                //string MunicipioLOEC,
+                currentRow["MunicipioLOEC"] = frm.MunicipioLOEC;//string MunicipioLOEC, 
                 //string CriacaoLOEC,
                 //string CarteiroLOEC,
                 //string DistritoLOEC,
                 //string NumeroLOEC,
-                //string EnderecoLOEC,
-                //string BairroLOEC,
-                //string LocalidadeLOEC,
+                currentRow["EnderecoLOEC"] = frm.EnderecoLOEC;//string EnderecoLOEC,
+                currentRow["BairroLOEC"] = frm.BairroLOEC;//string BairroLOEC,
+                currentRow["LocalidadeLOEC"] = frm.LocalidadeLOEC;//string LocalidadeLOEC,
 
                 //string SituacaoDestinatarioAusente,
                 //string AgrupadoDestinatarioAusente,
                 //string CoordenadasDestinatarioAusente
 
-
+                waitForm.Show(this);
                 this.tabelaObjetosSROLocalTableAdapter.Connection.ConnectionString = ClassesDiversas.Configuracoes.strConexao;
                 this.tabelaObjetosSROLocalTableAdapter.Update(dataSetTabelaObjetosSROLocal.TabelaObjetosSROLocal);
 
@@ -1185,6 +1185,7 @@ namespace SISAPO
                 if (position > -1) this.BindingContext[tabelaObjetosSROLocalBindingSource].Position = position;
 
                 FormularioPrincipal.RetornaComponentesFormularioPrincipal().BuscaNovoStatusQuantidadeNaoAtualizados();
+                waitForm.Close();
 
                 FormularioConsulta_Activated(sender, e);
             }

@@ -13,6 +13,8 @@ namespace SISAPO
 {
     public partial class FormularioAlteracaoObjeto : Form
     {
+
+
         public string CodigoObjeto = string.Empty;
         public string NomeCliente = string.Empty;
         public string NumeroLDI = string.Empty;
@@ -65,8 +67,11 @@ namespace SISAPO
             tabControlPrincipal.TabPages[0].Focus();
             SendKeys.Send("{TAB}");
             SendKeys.Send("{TAB}");
+            SendKeys.Send("{TAB}");
             TxtNomeCliente.ScrollToCaret();
             TxtNomeCliente.ScrollToCaret();
+
+            TxtNomeCliente.Select(TxtNomeCliente.Text.Length, 0);
         }
 
         private void RetornaDadosPrincipal()
@@ -110,37 +115,6 @@ namespace SISAPO
                 TxtMPPostagem.Text = "NÃO";
 
             return;
-            //using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
-            //{
-            //    if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
-            //    DataTable dt = dao.RetornaDataSet("SELECT top 1 UnidadePostagem, MunicipioPostagem, CriacaoPostagem, CepDestinoPostagem, ARPostagem, MPPostagem, DataMaxPrevistaEntregaPostagem FROM TabelaObjetosSROLocal WHERE (CodigoObjeto = @CodigoObjeto)", new Parametros { Nome = "@CodigoObjeto", Tipo = TipoCampo.Text, Valor = CodigoObjeto }).Tables[0];
-            //    if (dt.Rows.Count == 1)
-            //    {
-            //        TxtUnidadePostagem.Text = dt.Rows[0]["UnidadePostagem"].ToString();
-            //        TxtMunicipioPostagem.Text = dt.Rows[0]["MunicipioPostagem"].ToString();
-            //        TxtCriacaoPostagem.Text = dt.Rows[0]["CriacaoPostagem"].ToString();
-            //        //TxtCepDestinoPostagem.Text = dt.Rows[0]["CepDestinoPostagem"].ToString();
-            //        TxtCepDestinoPostagem.Text = dt.Rows[0]["CepDestinoPostagem"].ToString().Length >= 8 ? string.Format("{0}{1}", dt.Rows[0]["CepDestinoPostagem"].ToString().Substring(0, 5), dt.Rows[0]["CepDestinoPostagem"].ToString().Substring(5, dt.Rows[0]["CepDestinoPostagem"].ToString().Length - 5)) : dt.Rows[0]["CepDestinoPostagem"].ToString();
-            //        //TxtDataMaxPrevistaEntregaPostagem.Text = dt.Rows[0]["DataMaxPrevistaEntregaPostagem"].ToString();
-            //        //dt.Rows[0]["DataMaxPrevistaEntregaPostagem"].ToDateTime().GetDateTimeFormats()[14];
-            //        DateTime dataValida; //Verifica Se a data for valida
-            //        TxtDataMaxPrevistaEntregaPostagem.Text = (DateTime.TryParse(dt.Rows[0]["DataMaxPrevistaEntregaPostagem"].ToString(), out dataValida)) ?
-            //                        dt.Rows[0]["DataMaxPrevistaEntregaPostagem"].ToString().ToDateTime().GetDateTimeFormats()[14].ToUpper() : dt.Rows[0]["DataMaxPrevistaEntregaPostagem"].ToString();        
-            //        if(string.IsNullOrEmpty(dt.Rows[0]["ARPostagem"].ToString()))
-            //            TxtARPostagem.Text = "";
-            //        if(dt.Rows[0]["ARPostagem"].ToString() == "S")
-            //            TxtARPostagem.Text = "SIM";
-            //        if(dt.Rows[0]["ARPostagem"].ToString() == "N")
-            //            TxtARPostagem.Text = "NÃO";
-
-            //        if (string.IsNullOrEmpty(dt.Rows[0]["MPPostagem"].ToString()))
-            //            TxtMPPostagem.Text = "";
-            //        if (dt.Rows[0]["MPPostagem"].ToString() == "S")
-            //            TxtMPPostagem.Text = "SIM";
-            //        if (dt.Rows[0]["MPPostagem"].ToString() == "N")
-            //            TxtMPPostagem.Text = "NÃO";                    
-            //    }
-            //}
         }
 
         private void RetornaDadosSaiuParaEntrega()
@@ -189,8 +163,11 @@ namespace SISAPO
         {
             if (e.KeyData == Keys.Escape)
             {
-                Cancelando = true;
-                this.Close();
+                btnCancelar_Click(sender, e);
+            }
+            if(e.KeyCode == Keys.F5)
+            {
+                btnAlterar_Click(sender, e);
             }
         }
 
@@ -220,11 +197,50 @@ namespace SISAPO
             {
                 return;
             }
-            
+
             //pProcess.StartInfo.Arguments = "https://maps.google.com/maps?t=k&q=loc:-10.22285+-48.34052";
             pProcess.StartInfo.Arguments = string.Format("https://www.google.com.br/maps/search/{0}", CoordenadasDestinatarioAusente);
             pProcess.Start();
             //pProcess.WaitForExit();
+        }
+
+        private void BtnAlterarEndereco_Click(object sender, EventArgs e)
+        {
+            //TxtEnderecoLOEC.Text = string.Format("{0} - {1} - {2} - {3}", EnderecoLOEC, BairroLOEC, MunicipioLOEC, LocalidadeLOEC);
+            //string EnderecoDestino = EnderecoLOEC;
+            //string BairroDestino = BairroLOEC;
+            //string municipio[] = MunicipioLOEC.Split('/')[0].Trim();
+
+            string MunicipioDestino = MunicipioLOEC.Contains("/") ? MunicipioLOEC.Split('/')[0].Trim() : "";
+            string EstadoDestino = MunicipioLOEC.Contains("/") ? MunicipioLOEC.Split('/')[1].Trim() : "";
+            //string CepDestino = LocalidadeLOEC;
+            //string CodigoObjetoDestino = CodigoObjeto;
+            //string NomeClienteDestino = NomeCliente;
+            //string NumeroLDIDestino = NumeroLDI;
+
+            FormularioAlteracaoEnderecoObjeto formularioAlteracaoEnderecoObjeto = new FormularioAlteracaoEnderecoObjeto();
+            formularioAlteracaoEnderecoObjeto.TxtCodigoObjeto.Text = CodigoObjeto;
+            formularioAlteracaoEnderecoObjeto.TxtNomeCliente.Text = NomeCliente;
+            formularioAlteracaoEnderecoObjeto.TxtNumeroLDI.Text = NumeroLDI;
+            formularioAlteracaoEnderecoObjeto.TxtEndereco.Text = EnderecoLOEC;
+            formularioAlteracaoEnderecoObjeto.TxtBairro.Text = BairroLOEC;
+            formularioAlteracaoEnderecoObjeto.TxtCidade.Text = MunicipioDestino;
+            formularioAlteracaoEnderecoObjeto.TxtUF.Text = EstadoDestino;
+            formularioAlteracaoEnderecoObjeto.TxtCep.Text = LocalidadeLOEC;
+
+            formularioAlteracaoEnderecoObjeto.ShowDialog();
+
+            if (formularioAlteracaoEnderecoObjeto.cancelar) return;//não faz nada. Cancelou
+
+            EnderecoLOEC = formularioAlteracaoEnderecoObjeto.TxtEndereco.Text;
+            BairroLOEC = formularioAlteracaoEnderecoObjeto.TxtBairro.Text;
+            MunicipioDestino = formularioAlteracaoEnderecoObjeto.TxtCidade.Text;
+            EstadoDestino = formularioAlteracaoEnderecoObjeto.TxtUF.Text;
+            MunicipioLOEC = MunicipioDestino + " / " + EstadoDestino;
+            LocalidadeLOEC = formularioAlteracaoEnderecoObjeto.TxtCep.Text;
+
+            TxtEnderecoLOEC.Text = string.Format("{0} - {1} - {2} - {3}", EnderecoLOEC, BairroLOEC, MunicipioDestino + " / " + EstadoDestino, LocalidadeLOEC);
+            TxtMunicipioLOEC.Text = MunicipioLOEC;
         }
     }
 }

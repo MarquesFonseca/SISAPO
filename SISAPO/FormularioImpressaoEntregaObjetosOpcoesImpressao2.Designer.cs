@@ -30,113 +30,168 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormularioImpressaoEntregaObjetosOpcoesImpressao2));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBoxQuantidadeFolhas = new System.Windows.Forms.GroupBox();
-            this.checkBoxImprimirUmPorFolha = new System.Windows.Forms.CheckBox();
-            this.checkBoxImprimirVariosPorFolha = new System.Windows.Forms.CheckBox();
-            this.groupBoxTipoOrdenacao = new System.Windows.Forms.GroupBox();
-            this.checkBoxOrdenacaoPorNomeDestinatario = new System.Windows.Forms.CheckBox();
-            this.checkBoxOrdenacaoPorDataLancamento = new System.Windows.Forms.CheckBox();
+            this.tabControl4 = new System.Windows.Forms.TabControl();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.checkBoxImprimirVariosPorFolha = new System.Windows.Forms.RadioButton();
+            this.checkBoxImprimirUmPorFolha = new System.Windows.Forms.RadioButton();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.comboBoxOrdemCrescenteDescrecente = new System.Windows.Forms.ComboBox();
+            this.tabControl2 = new System.Windows.Forms.TabControl();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.comboBoxTipoOrdenacao = new System.Windows.Forms.ComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnAlterar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
-            this.groupBoxQuantidadeFolhas.SuspendLayout();
-            this.groupBoxTipoOrdenacao.SuspendLayout();
+            this.tabControl4.SuspendLayout();
+            this.tabPage5.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabControl2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.groupBoxQuantidadeFolhas);
-            this.groupBox1.Controls.Add(this.groupBoxTipoOrdenacao);
+            this.groupBox1.Controls.Add(this.tabControl4);
+            this.groupBox1.Controls.Add(this.tabControl1);
+            this.groupBox1.Controls.Add(this.tabControl2);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(684, 362);
-            this.groupBox1.TabIndex = 1;
+            this.groupBox1.Size = new System.Drawing.Size(778, 362);
+            this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
-            // groupBoxQuantidadeFolhas
+            // tabControl4
             // 
-            this.groupBoxQuantidadeFolhas.Controls.Add(this.checkBoxImprimirUmPorFolha);
-            this.groupBoxQuantidadeFolhas.Controls.Add(this.checkBoxImprimirVariosPorFolha);
-            this.groupBoxQuantidadeFolhas.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBoxQuantidadeFolhas.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.groupBoxQuantidadeFolhas.Location = new System.Drawing.Point(6, 143);
-            this.groupBoxQuantidadeFolhas.Name = "groupBoxQuantidadeFolhas";
-            this.groupBoxQuantidadeFolhas.Size = new System.Drawing.Size(530, 100);
-            this.groupBoxQuantidadeFolhas.TabIndex = 1;
-            this.groupBoxQuantidadeFolhas.TabStop = false;
-            this.groupBoxQuantidadeFolhas.Text = "Quantidade por folha:";
+            this.tabControl4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl4.Controls.Add(this.tabPage5);
+            this.tabControl4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabControl4.Location = new System.Drawing.Point(28, 157);
+            this.tabControl4.Name = "tabControl4";
+            this.tabControl4.SelectedIndex = 0;
+            this.tabControl4.Size = new System.Drawing.Size(718, 102);
+            this.tabControl4.TabIndex = 2;
+            this.tabControl4.TabStop = false;
             // 
-            // checkBoxImprimirUmPorFolha
+            // tabPage5
             // 
-            this.checkBoxImprimirUmPorFolha.Appearance = System.Windows.Forms.Appearance.Button;
-            this.checkBoxImprimirUmPorFolha.AutoSize = true;
-            this.checkBoxImprimirUmPorFolha.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.checkBoxImprimirUmPorFolha.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxImprimirUmPorFolha.Location = new System.Drawing.Point(17, 46);
-            this.checkBoxImprimirUmPorFolha.Name = "checkBoxImprimirUmPorFolha";
-            this.checkBoxImprimirUmPorFolha.Size = new System.Drawing.Size(204, 39);
-            this.checkBoxImprimirUmPorFolha.TabIndex = 0;
-            this.checkBoxImprimirUmPorFolha.Text = "1 item por folha";
-            this.checkBoxImprimirUmPorFolha.UseVisualStyleBackColor = true;
-            this.checkBoxImprimirUmPorFolha.CheckedChanged += new System.EventHandler(this.checkBoxImprimirUmPorFolha_CheckedChanged);
+            this.tabPage5.Controls.Add(this.checkBoxImprimirVariosPorFolha);
+            this.tabPage5.Controls.Add(this.checkBoxImprimirUmPorFolha);
+            this.tabPage5.Location = new System.Drawing.Point(4, 29);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(710, 69);
+            this.tabPage5.TabIndex = 0;
+            this.tabPage5.Text = "Escolha quantos itens por folha";
+            this.tabPage5.UseVisualStyleBackColor = true;
             // 
             // checkBoxImprimirVariosPorFolha
             // 
-            this.checkBoxImprimirVariosPorFolha.Appearance = System.Windows.Forms.Appearance.Button;
             this.checkBoxImprimirVariosPorFolha.AutoSize = true;
-            this.checkBoxImprimirVariosPorFolha.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.checkBoxImprimirVariosPorFolha.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxImprimirVariosPorFolha.Location = new System.Drawing.Point(237, 46);
+            this.checkBoxImprimirVariosPorFolha.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxImprimirVariosPorFolha.Location = new System.Drawing.Point(247, 22);
             this.checkBoxImprimirVariosPorFolha.Name = "checkBoxImprimirVariosPorFolha";
-            this.checkBoxImprimirVariosPorFolha.Size = new System.Drawing.Size(270, 39);
-            this.checkBoxImprimirVariosPorFolha.TabIndex = 0;
-            this.checkBoxImprimirVariosPorFolha.Text = "Vários itens por folha";
+            this.checkBoxImprimirVariosPorFolha.Size = new System.Drawing.Size(197, 29);
+            this.checkBoxImprimirVariosPorFolha.TabIndex = 1;
+            this.checkBoxImprimirVariosPorFolha.Text = "Vários por folha";
             this.checkBoxImprimirVariosPorFolha.UseVisualStyleBackColor = true;
             this.checkBoxImprimirVariosPorFolha.CheckedChanged += new System.EventHandler(this.checkBoxImprimirVariosPorFolha_CheckedChanged);
             // 
-            // groupBoxTipoOrdenacao
+            // checkBoxImprimirUmPorFolha
             // 
-            this.groupBoxTipoOrdenacao.Controls.Add(this.checkBoxOrdenacaoPorNomeDestinatario);
-            this.groupBoxTipoOrdenacao.Controls.Add(this.checkBoxOrdenacaoPorDataLancamento);
-            this.groupBoxTipoOrdenacao.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBoxTipoOrdenacao.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.groupBoxTipoOrdenacao.Location = new System.Drawing.Point(6, 19);
-            this.groupBoxTipoOrdenacao.Name = "groupBoxTipoOrdenacao";
-            this.groupBoxTipoOrdenacao.Size = new System.Drawing.Size(668, 100);
-            this.groupBoxTipoOrdenacao.TabIndex = 1;
-            this.groupBoxTipoOrdenacao.TabStop = false;
-            this.groupBoxTipoOrdenacao.Text = "Tipos de ordenação:";
+            this.checkBoxImprimirUmPorFolha.AutoSize = true;
+            this.checkBoxImprimirUmPorFolha.Checked = true;
+            this.checkBoxImprimirUmPorFolha.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxImprimirUmPorFolha.Location = new System.Drawing.Point(28, 22);
+            this.checkBoxImprimirUmPorFolha.Name = "checkBoxImprimirUmPorFolha";
+            this.checkBoxImprimirUmPorFolha.Size = new System.Drawing.Size(164, 29);
+            this.checkBoxImprimirUmPorFolha.TabIndex = 0;
+            this.checkBoxImprimirUmPorFolha.TabStop = true;
+            this.checkBoxImprimirUmPorFolha.Text = "Um por folha";
+            this.checkBoxImprimirUmPorFolha.UseVisualStyleBackColor = true;
+            this.checkBoxImprimirUmPorFolha.CheckedChanged += new System.EventHandler(this.checkBoxImprimirUmPorFolha_CheckedChanged);
             // 
-            // checkBoxOrdenacaoPorNomeDestinatario
+            // tabControl1
             // 
-            this.checkBoxOrdenacaoPorNomeDestinatario.Appearance = System.Windows.Forms.Appearance.Button;
-            this.checkBoxOrdenacaoPorNomeDestinatario.AutoSize = true;
-            this.checkBoxOrdenacaoPorNomeDestinatario.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.checkBoxOrdenacaoPorNomeDestinatario.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxOrdenacaoPorNomeDestinatario.Location = new System.Drawing.Point(17, 43);
-            this.checkBoxOrdenacaoPorNomeDestinatario.Name = "checkBoxOrdenacaoPorNomeDestinatario";
-            this.checkBoxOrdenacaoPorNomeDestinatario.Size = new System.Drawing.Size(317, 39);
-            this.checkBoxOrdenacaoPorNomeDestinatario.TabIndex = 0;
-            this.checkBoxOrdenacaoPorNomeDestinatario.Text = "Por nome do destinatário";
-            this.checkBoxOrdenacaoPorNomeDestinatario.UseVisualStyleBackColor = true;
-            this.checkBoxOrdenacaoPorNomeDestinatario.CheckedChanged += new System.EventHandler(this.checkBoxOrdenacaoPorNomeDestinatario_CheckedChanged);
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabControl1.Location = new System.Drawing.Point(390, 30);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(356, 102);
+            this.tabControl1.TabIndex = 1;
+            this.tabControl1.TabStop = false;
             // 
-            // checkBoxOrdenacaoPorDataLancamento
+            // tabPage1
             // 
-            this.checkBoxOrdenacaoPorDataLancamento.Appearance = System.Windows.Forms.Appearance.Button;
-            this.checkBoxOrdenacaoPorDataLancamento.AutoSize = true;
-            this.checkBoxOrdenacaoPorDataLancamento.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.checkBoxOrdenacaoPorDataLancamento.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxOrdenacaoPorDataLancamento.Location = new System.Drawing.Point(350, 43);
-            this.checkBoxOrdenacaoPorDataLancamento.Name = "checkBoxOrdenacaoPorDataLancamento";
-            this.checkBoxOrdenacaoPorDataLancamento.Size = new System.Drawing.Size(299, 39);
-            this.checkBoxOrdenacaoPorDataLancamento.TabIndex = 0;
-            this.checkBoxOrdenacaoPorDataLancamento.Text = "Por data de lançamento";
-            this.checkBoxOrdenacaoPorDataLancamento.UseVisualStyleBackColor = true;
-            this.checkBoxOrdenacaoPorDataLancamento.CheckedChanged += new System.EventHandler(this.checkBoxOrdenacaoPorDataLancamento_CheckedChanged);
+            this.tabPage1.Controls.Add(this.comboBoxOrdemCrescenteDescrecente);
+            this.tabPage1.Location = new System.Drawing.Point(4, 29);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(348, 69);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Escolha uma ordem";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // comboBoxOrdemCrescenteDescrecente
+            // 
+            this.comboBoxOrdemCrescenteDescrecente.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxOrdemCrescenteDescrecente.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxOrdemCrescenteDescrecente.ForeColor = System.Drawing.Color.Red;
+            this.comboBoxOrdemCrescenteDescrecente.FormattingEnabled = true;
+            this.comboBoxOrdemCrescenteDescrecente.Items.AddRange(new object[] {
+            "Crescente      [ A-Z ]",
+            "Descrescente [ Z-A ]"});
+            this.comboBoxOrdemCrescenteDescrecente.Location = new System.Drawing.Point(16, 24);
+            this.comboBoxOrdemCrescenteDescrecente.Name = "comboBoxOrdemCrescenteDescrecente";
+            this.comboBoxOrdemCrescenteDescrecente.Size = new System.Drawing.Size(311, 33);
+            this.comboBoxOrdemCrescenteDescrecente.TabIndex = 0;
+            this.comboBoxOrdemCrescenteDescrecente.SelectedIndexChanged += new System.EventHandler(this.comboBoxOrdemCrescenteDescrecente_SelectedIndexChanged);
+            // 
+            // tabControl2
+            // 
+            this.tabControl2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl2.Controls.Add(this.tabPage3);
+            this.tabControl2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabControl2.Location = new System.Drawing.Point(28, 30);
+            this.tabControl2.Name = "tabControl2";
+            this.tabControl2.SelectedIndex = 0;
+            this.tabControl2.Size = new System.Drawing.Size(356, 102);
+            this.tabControl2.TabIndex = 0;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.comboBoxTipoOrdenacao);
+            this.tabPage3.Location = new System.Drawing.Point(4, 29);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(348, 69);
+            this.tabPage3.TabIndex = 0;
+            this.tabPage3.Text = "Escolha um tipo de ordenação";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // comboBoxTipoOrdenacao
+            // 
+            this.comboBoxTipoOrdenacao.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxTipoOrdenacao.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxTipoOrdenacao.ForeColor = System.Drawing.Color.Red;
+            this.comboBoxTipoOrdenacao.FormattingEnabled = true;
+            this.comboBoxTipoOrdenacao.Items.AddRange(new object[] {
+            "Nome do cliente",
+            "Data de lançamento"});
+            this.comboBoxTipoOrdenacao.Location = new System.Drawing.Point(16, 24);
+            this.comboBoxTipoOrdenacao.Name = "comboBoxTipoOrdenacao";
+            this.comboBoxTipoOrdenacao.Size = new System.Drawing.Size(311, 33);
+            this.comboBoxTipoOrdenacao.TabIndex = 0;
+            this.comboBoxTipoOrdenacao.SelectedIndexChanged += new System.EventHandler(this.comboBoxTipoOrdenacao_SelectedIndexChanged);
             // 
             // panel2
             // 
@@ -146,18 +201,18 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.Location = new System.Drawing.Point(0, 311);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(684, 51);
-            this.panel2.TabIndex = 2;
+            this.panel2.Size = new System.Drawing.Size(778, 51);
+            this.panel2.TabIndex = 1;
             // 
             // btnAlterar
             // 
-            this.btnAlterar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAlterar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnAlterar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAlterar.Location = new System.Drawing.Point(501, 6);
+            this.btnAlterar.Location = new System.Drawing.Point(6, 6);
             this.btnAlterar.Name = "btnAlterar";
-            this.btnAlterar.Size = new System.Drawing.Size(175, 39);
-            this.btnAlterar.TabIndex = 1;
-            this.btnAlterar.Text = "Confirmar";
+            this.btnAlterar.Size = new System.Drawing.Size(267, 39);
+            this.btnAlterar.TabIndex = 0;
+            this.btnAlterar.Text = "[Enter] - &Confirmar";
             this.btnAlterar.UseVisualStyleBackColor = true;
             this.btnAlterar.Click += new System.EventHandler(this.btnConfirmar_Click);
             // 
@@ -166,11 +221,11 @@
             this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.Location = new System.Drawing.Point(6, 6);
+            this.btnCancelar.Location = new System.Drawing.Point(505, 6);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(175, 39);
-            this.btnCancelar.TabIndex = 0;
-            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(267, 39);
+            this.btnCancelar.TabIndex = 1;
+            this.btnCancelar.Text = "[Esc] - Cancela&r";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
@@ -178,7 +233,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(684, 362);
+            this.ClientSize = new System.Drawing.Size(778, 362);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -195,10 +250,13 @@
             this.Load += new System.EventHandler(this.FormularioImpressaoEntregaObjetosOpcoesImpressao2_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormularioImpressaoEntregaObjetosOpcoesImpressao2_KeyDown);
             this.groupBox1.ResumeLayout(false);
-            this.groupBoxQuantidadeFolhas.ResumeLayout(false);
-            this.groupBoxQuantidadeFolhas.PerformLayout();
-            this.groupBoxTipoOrdenacao.ResumeLayout(false);
-            this.groupBoxTipoOrdenacao.PerformLayout();
+            this.tabControl4.ResumeLayout(false);
+            this.tabPage5.ResumeLayout(false);
+            this.tabPage5.PerformLayout();
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabControl2.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -209,11 +267,15 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btnAlterar;
         private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.CheckBox checkBoxImprimirUmPorFolha;
-        private System.Windows.Forms.CheckBox checkBoxImprimirVariosPorFolha;
-        private System.Windows.Forms.GroupBox groupBoxQuantidadeFolhas;
-        private System.Windows.Forms.GroupBox groupBoxTipoOrdenacao;
-        private System.Windows.Forms.CheckBox checkBoxOrdenacaoPorNomeDestinatario;
-        private System.Windows.Forms.CheckBox checkBoxOrdenacaoPorDataLancamento;
+        private System.Windows.Forms.TabControl tabControl4;
+        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.RadioButton checkBoxImprimirVariosPorFolha;
+        private System.Windows.Forms.RadioButton checkBoxImprimirUmPorFolha;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.ComboBox comboBoxOrdemCrescenteDescrecente;
+        private System.Windows.Forms.TabControl tabControl2;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.ComboBox comboBoxTipoOrdenacao;
     }
 }

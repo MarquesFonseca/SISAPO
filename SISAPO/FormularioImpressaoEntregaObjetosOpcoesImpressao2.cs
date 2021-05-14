@@ -30,34 +30,40 @@ namespace SISAPO
 
         private void FormularioImpressaoEntregaObjetosOpcoesImpressao2_Load(object sender, EventArgs e)
         {
+            //novo modelo - 13-05-2021
             if (ModeloImpressaoListaObjetos == FormularioConsulta.ModeloImpressaoListaObjetos.ModeloComum)
             {
-                groupBoxQuantidadeFolhas.Visible = false;
+                tabControl4.Visible = false;
             }
-            checkBoxOrdenacaoPorNomeDestinatario.Checked = true;
-            checkBoxImprimirUmPorFolha.Checked = true;
+            comboBoxTipoOrdenacao.SelectedIndex = 0;
+            comboBoxOrdemCrescenteDescrecente.SelectedIndex = 0;
+
+            checkBoxImprimirUmPorFolha.ForeColor = Color.Red;
 
             InicioTela = false;
+            tabControl2.Focus();
+            tabControl2.SelecionaControle();
+            SendKeys.Send("{TAB}");
         }
 
         private void FormularioImpressaoEntregaObjetosOpcoesImpressao_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-
+                btnConfirmar_Click(sender, e);
             }
             if (e.KeyCode == Keys.Escape)
             {
-                Cancelou = true;
-                this.Close();
+                btnCancelar_Click(sender, e);
             }
         }
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
             ClicouNoConfirmar = true;
-            OrdenacaoPorNomeDestinatario = checkBoxOrdenacaoPorNomeDestinatario.Checked;
-            OrdenacaoPorDataLancamento = checkBoxOrdenacaoPorDataLancamento.Checked;
+            OrdenacaoPorNomeDestinatario = comboBoxTipoOrdenacao.SelectedIndex == 0 ? true : false;
+            OrdenacaoPorDataLancamento = comboBoxTipoOrdenacao.SelectedIndex == 1 ? true : false;
+            OrdenacaoPorOrdemCrescente = comboBoxOrdemCrescenteDescrecente.SelectedIndex == 0 ? true : false;
             ImprimirUmPorFolha = checkBoxImprimirUmPorFolha.Checked;
             ImprimirVariosPorFolha = checkBoxImprimirVariosPorFolha.Checked;
 
@@ -71,43 +77,6 @@ namespace SISAPO
             this.Close();
         }
 
-        private void checkBoxOrdenacaoPorNomeDestinatario_CheckedChanged(object sender, EventArgs e)
-        {
-            OrdenacaoPorNomeDestinatario = checkBoxOrdenacaoPorNomeDestinatario.Checked;
-
-            if (checkBoxOrdenacaoPorNomeDestinatario.Checked)
-            {
-                checkBoxOrdenacaoPorNomeDestinatario.ForeColor = Color.Red;
-                //OrdenacaoPorOrdemCrescente
-                if (!InicioTela)
-                    OrdenacaoPorOrdemCrescente = (Mensagens.Pergunta("Organizar os nomes em ordem crescente?\n\n(Letras iniciais do alfabeto em cima") == DialogResult.Yes ? true : false);
-            }
-            else
-            {
-                checkBoxOrdenacaoPorNomeDestinatario.ForeColor = System.Drawing.SystemColors.Highlight;
-            }
-
-            checkBoxOrdenacaoPorDataLancamento.Checked = !checkBoxOrdenacaoPorNomeDestinatario.Checked;
-        }
-
-        private void checkBoxOrdenacaoPorDataLancamento_CheckedChanged(object sender, EventArgs e)
-        {
-            OrdenacaoPorDataLancamento = checkBoxOrdenacaoPorDataLancamento.Checked;
-
-            if (checkBoxOrdenacaoPorDataLancamento.Checked)
-            {
-                checkBoxOrdenacaoPorDataLancamento.ForeColor = Color.Red;
-                //OrdenacaoPorOrdemCrescente
-                if (!InicioTela)
-                    OrdenacaoPorOrdemCrescente = (Mensagens.Pergunta("Organizar as datas ordem crescente?\n\n(Lançados primeiros em cima)") == DialogResult.Yes ? true : false);
-            }
-            else
-            {
-                checkBoxOrdenacaoPorDataLancamento.ForeColor = System.Drawing.SystemColors.Highlight;
-            }
-
-            checkBoxOrdenacaoPorNomeDestinatario.Checked = !checkBoxOrdenacaoPorDataLancamento.Checked;
-        }
 
         private void checkBoxImprimirUmPorFolha_CheckedChanged(object sender, EventArgs e)
         {
@@ -137,8 +106,6 @@ namespace SISAPO
             {
                 checkBoxImprimirVariosPorFolha.ForeColor = System.Drawing.SystemColors.Highlight;
             }
-
-            checkBoxImprimirUmPorFolha.Checked = !checkBoxImprimirVariosPorFolha.Checked;
         }
 
         private void FormularioImpressaoEntregaObjetosOpcoesImpressao2_KeyDown(object sender, KeyEventArgs e)
@@ -159,6 +126,64 @@ namespace SISAPO
                 Cancelou = false;
             else
                 Cancelou = true;
+        }
+
+        private void comboBoxTipoOrdenacao_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBoxTipoOrdenacao.SelectedIndex == -1)
+            {
+                Mensagens.Informa("");
+                comboBoxTipoOrdenacao.Focus();
+                return;
+            }
+            if (comboBoxTipoOrdenacao.SelectedIndex == 0)//Ordenacao Por Nome do Cliente
+            {
+                OrdenacaoPorNomeDestinatario = true;
+                OrdenacaoPorDataLancamento = false;
+            }
+            if (comboBoxTipoOrdenacao.SelectedIndex == 1)//ordenação por Data de Lançamento
+            {
+                OrdenacaoPorNomeDestinatario = false;
+                OrdenacaoPorDataLancamento = true;
+            }
+        }
+
+        private void comboBoxOrdemCrescenteDescrecente_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBoxOrdemCrescenteDescrecente.SelectedIndex == -1)
+            {
+                Mensagens.Informa("");
+                comboBoxOrdemCrescenteDescrecente.Focus();
+                return;
+            }
+            if (comboBoxOrdemCrescenteDescrecente.SelectedIndex == 0) //Ordenação Crescente [A-Z]
+            {
+                OrdenacaoPorOrdemCrescente = true;
+            }
+            if (comboBoxOrdemCrescenteDescrecente.SelectedIndex == 1) //Ordenação Decrescente [Z-A]
+            {
+                OrdenacaoPorOrdemCrescente = false;
+            }
+        }
+
+        private void comboBoxTipoOrdenacao_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void comboBoxOrdemCrescenteDescrecente_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void checkBoxImprimirUmPorFolha_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void checkBoxImprimirVariosPorFolha_KeyDown(object sender, KeyEventArgs e)
+        {
+
         }
     }
 }

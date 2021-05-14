@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormularioImpressaoEntregaObjetosOpcoesImpressao));
             this.LblTituloFormulario = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -75,13 +76,12 @@
             // 
             // checkBoxIncluirItensCaixaPostal
             // 
-            this.checkBoxIncluirItensCaixaPostal.Appearance = System.Windows.Forms.Appearance.Button;
             this.checkBoxIncluirItensCaixaPostal.AutoSize = true;
             this.checkBoxIncluirItensCaixaPostal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBoxIncluirItensCaixaPostal.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxIncluirItensCaixaPostal.Location = new System.Drawing.Point(86, 96);
+            this.checkBoxIncluirItensCaixaPostal.Location = new System.Drawing.Point(78, 146);
             this.checkBoxIncluirItensCaixaPostal.Name = "checkBoxIncluirItensCaixaPostal";
-            this.checkBoxIncluirItensCaixaPostal.Size = new System.Drawing.Size(352, 39);
+            this.checkBoxIncluirItensCaixaPostal.Size = new System.Drawing.Size(358, 33);
             this.checkBoxIncluirItensCaixaPostal.TabIndex = 0;
             this.checkBoxIncluirItensCaixaPostal.Text = "Incluir itens de caixa postal?";
             this.checkBoxIncluirItensCaixaPostal.UseVisualStyleBackColor = true;
@@ -89,13 +89,12 @@
             // 
             // checkBoxIncluirItensJaEntregues
             // 
-            this.checkBoxIncluirItensJaEntregues.Appearance = System.Windows.Forms.Appearance.Button;
             this.checkBoxIncluirItensJaEntregues.AutoSize = true;
             this.checkBoxIncluirItensJaEntregues.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBoxIncluirItensJaEntregues.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxIncluirItensJaEntregues.Location = new System.Drawing.Point(86, 33);
+            this.checkBoxIncluirItensJaEntregues.Location = new System.Drawing.Point(90, 61);
             this.checkBoxIncluirItensJaEntregues.Name = "checkBoxIncluirItensJaEntregues";
-            this.checkBoxIncluirItensJaEntregues.Size = new System.Drawing.Size(322, 39);
+            this.checkBoxIncluirItensJaEntregues.Size = new System.Drawing.Size(328, 33);
             this.checkBoxIncluirItensJaEntregues.TabIndex = 0;
             this.checkBoxIncluirItensJaEntregues.Text = "Incluir itens já entregues?";
             this.checkBoxIncluirItensJaEntregues.UseVisualStyleBackColor = true;
@@ -144,6 +143,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;

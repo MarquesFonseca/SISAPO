@@ -106,3 +106,4 @@ C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.exe.manifest
 C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.application
 C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.exe
 C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.pdb
+C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioAlteracaoEnderecoObjeto.resources

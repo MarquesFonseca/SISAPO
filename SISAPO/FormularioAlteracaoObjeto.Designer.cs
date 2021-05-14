@@ -66,43 +66,44 @@
             this.TxtMunicipioPostagem = new System.Windows.Forms.TextBox();
             this.TxtUnidadePostagem = new System.Windows.Forms.TextBox();
             this.panelPrincipal = new System.Windows.Forms.Panel();
-            this.tabControlDadosEntregaCarteiro = new System.Windows.Forms.TabControl();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabControlDadosDestinatarioAusente = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.BtnCoordenadas = new System.Windows.Forms.Button();
+            this.TxtCoordenadasDestinatarioAusente = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.TxtAgrupadoDestinatarioAusente = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.TxtEnderecoCoordenadasDestinatarioAusente = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.TxtSituacaoDestinatarioAusente = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.tabControlDadosEntregaCarteiro = new System.Windows.Forms.TabControl();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.TxtEnderecoLOEC = new System.Windows.Forms.TextBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.TxtNumeroLOEC = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.TxtDistritoLOEC = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.TxtCarteiroLOEC = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.TxtCriacaoLOEC = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.TxtMunicipioLOEC = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
             this.TxtUnidadeLOEC = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.TxtMunicipioLOEC = new System.Windows.Forms.TextBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.TxtCriacaoLOEC = new System.Windows.Forms.TextBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.TxtCarteiroLOEC = new System.Windows.Forms.TextBox();
-            this.label18 = new System.Windows.Forms.Label();
-            this.TxtDistritoLOEC = new System.Windows.Forms.TextBox();
-            this.label19 = new System.Windows.Forms.Label();
-            this.TxtNumeroLOEC = new System.Windows.Forms.TextBox();
-            this.label20 = new System.Windows.Forms.Label();
-            this.TxtEnderecoLOEC = new System.Windows.Forms.TextBox();
-            this.label21 = new System.Windows.Forms.Label();
-            this.TxtSituacaoDestinatarioAusente = new System.Windows.Forms.TextBox();
-            this.label22 = new System.Windows.Forms.Label();
-            this.TxtAgrupadoDestinatarioAusente = new System.Windows.Forms.TextBox();
-            this.label23 = new System.Windows.Forms.Label();
-            this.TxtCoordenadasDestinatarioAusente = new System.Windows.Forms.TextBox();
-            this.BtnCoordenadas = new System.Windows.Forms.Button();
-            this.label24 = new System.Windows.Forms.Label();
-            this.TxtEnderecoCoordenadasDestinatarioAusente = new System.Windows.Forms.TextBox();
+            this.BtnAlterarEndereco = new System.Windows.Forms.Button();
             this.tabControlPrincipal.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.tabControlDadosPostagem.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.panelPrincipal.SuspendLayout();
-            this.tabControlDadosEntregaCarteiro.SuspendLayout();
-            this.tabPage2.SuspendLayout();
             this.tabControlDadosDestinatarioAusente.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.tabControlDadosEntregaCarteiro.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControlPrincipal
@@ -298,7 +299,7 @@
             this.panel2.Controls.Add(this.btnAlterar);
             this.panel2.Controls.Add(this.btnCancelar);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 420);
+            this.panel2.Location = new System.Drawing.Point(0, 610);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(739, 51);
             this.panel2.TabIndex = 1;
@@ -311,7 +312,7 @@
             this.btnAlterar.Name = "btnAlterar";
             this.btnAlterar.Size = new System.Drawing.Size(175, 36);
             this.btnAlterar.TabIndex = 0;
-            this.btnAlterar.Text = "&Alterar";
+            this.btnAlterar.Text = "[F5] - &Alterar";
             this.btnAlterar.UseVisualStyleBackColor = true;
             this.btnAlterar.Click += new System.EventHandler(this.btnAlterar_Click);
             // 
@@ -323,7 +324,7 @@
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(175, 36);
             this.btnCancelar.TabIndex = 1;
-            this.btnCancelar.Text = "&Cancelar";
+            this.btnCancelar.Text = "[Esc] - &Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
@@ -332,7 +333,7 @@
             this.tabControlDadosPostagem.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControlDadosPostagem.Controls.Add(this.tabPage4);
-            this.tabControlDadosPostagem.Location = new System.Drawing.Point(3, 163);
+            this.tabControlDadosPostagem.Location = new System.Drawing.Point(3, 209);
             this.tabControlDadosPostagem.Name = "tabControlDadosPostagem";
             this.tabControlDadosPostagem.SelectedIndex = 0;
             this.tabControlDadosPostagem.Size = new System.Drawing.Size(730, 133);
@@ -501,6 +502,7 @@
             // panelPrincipal
             // 
             this.panelPrincipal.AutoScroll = true;
+            this.panelPrincipal.Controls.Add(this.BtnAlterarEndereco);
             this.panelPrincipal.Controls.Add(this.tabControlDadosDestinatarioAusente);
             this.panelPrincipal.Controls.Add(this.tabControlDadosEntregaCarteiro);
             this.panelPrincipal.Controls.Add(this.tabControlDadosPostagem);
@@ -508,15 +510,138 @@
             this.panelPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelPrincipal.Location = new System.Drawing.Point(0, 0);
             this.panelPrincipal.Name = "panelPrincipal";
-            this.panelPrincipal.Size = new System.Drawing.Size(739, 420);
+            this.panelPrincipal.Size = new System.Drawing.Size(739, 610);
             this.panelPrincipal.TabIndex = 0;
+            // 
+            // tabControlDadosDestinatarioAusente
+            // 
+            this.tabControlDadosDestinatarioAusente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControlDadosDestinatarioAusente.Controls.Add(this.tabPage3);
+            this.tabControlDadosDestinatarioAusente.Location = new System.Drawing.Point(3, 477);
+            this.tabControlDadosDestinatarioAusente.Name = "tabControlDadosDestinatarioAusente";
+            this.tabControlDadosDestinatarioAusente.SelectedIndex = 0;
+            this.tabControlDadosDestinatarioAusente.Size = new System.Drawing.Size(730, 129);
+            this.tabControlDadosDestinatarioAusente.TabIndex = 3;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.BtnCoordenadas);
+            this.tabPage3.Controls.Add(this.TxtCoordenadasDestinatarioAusente);
+            this.tabPage3.Controls.Add(this.label23);
+            this.tabPage3.Controls.Add(this.TxtAgrupadoDestinatarioAusente);
+            this.tabPage3.Controls.Add(this.label22);
+            this.tabPage3.Controls.Add(this.TxtEnderecoCoordenadasDestinatarioAusente);
+            this.tabPage3.Controls.Add(this.label24);
+            this.tabPage3.Controls.Add(this.TxtSituacaoDestinatarioAusente);
+            this.tabPage3.Controls.Add(this.label21);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(722, 103);
+            this.tabPage3.TabIndex = 0;
+            this.tabPage3.Text = "Resultado da tentativa de entrega pelo carteiro";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // BtnCoordenadas
+            // 
+            this.BtnCoordenadas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnCoordenadas.BackColor = System.Drawing.Color.Transparent;
+            this.BtnCoordenadas.BackgroundImage = global::SISAPO.Properties.Resources.local_map_google;
+            this.BtnCoordenadas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.BtnCoordenadas.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnCoordenadas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnCoordenadas.Location = new System.Drawing.Point(655, 6);
+            this.BtnCoordenadas.Name = "BtnCoordenadas";
+            this.BtnCoordenadas.Size = new System.Drawing.Size(64, 44);
+            this.BtnCoordenadas.TabIndex = 6;
+            this.BtnCoordenadas.UseVisualStyleBackColor = false;
+            this.BtnCoordenadas.Click += new System.EventHandler(this.BtnCoordenadas_Click);
+            // 
+            // TxtCoordenadasDestinatarioAusente
+            // 
+            this.TxtCoordenadasDestinatarioAusente.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.TxtCoordenadasDestinatarioAusente.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtCoordenadasDestinatarioAusente.Location = new System.Drawing.Point(504, 22);
+            this.TxtCoordenadasDestinatarioAusente.Name = "TxtCoordenadasDestinatarioAusente";
+            this.TxtCoordenadasDestinatarioAusente.ReadOnly = true;
+            this.TxtCoordenadasDestinatarioAusente.Size = new System.Drawing.Size(145, 24);
+            this.TxtCoordenadasDestinatarioAusente.TabIndex = 5;
+            // 
+            // label23
+            // 
+            this.label23.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(503, 6);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(119, 13);
+            this.label23.TabIndex = 4;
+            this.label23.Text = "Coordenada da entrega";
+            // 
+            // TxtAgrupadoDestinatarioAusente
+            // 
+            this.TxtAgrupadoDestinatarioAusente.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtAgrupadoDestinatarioAusente.Location = new System.Drawing.Point(7, 22);
+            this.TxtAgrupadoDestinatarioAusente.Name = "TxtAgrupadoDestinatarioAusente";
+            this.TxtAgrupadoDestinatarioAusente.ReadOnly = true;
+            this.TxtAgrupadoDestinatarioAusente.Size = new System.Drawing.Size(92, 24);
+            this.TxtAgrupadoDestinatarioAusente.TabIndex = 1;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(6, 6);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(98, 13);
+            this.label22.TabIndex = 0;
+            this.label22.Text = "Entrega agrupada?";
+            // 
+            // TxtEnderecoCoordenadasDestinatarioAusente
+            // 
+            this.TxtEnderecoCoordenadasDestinatarioAusente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TxtEnderecoCoordenadasDestinatarioAusente.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtEnderecoCoordenadasDestinatarioAusente.Location = new System.Drawing.Point(7, 68);
+            this.TxtEnderecoCoordenadasDestinatarioAusente.Name = "TxtEnderecoCoordenadasDestinatarioAusente";
+            this.TxtEnderecoCoordenadasDestinatarioAusente.ReadOnly = true;
+            this.TxtEnderecoCoordenadasDestinatarioAusente.Size = new System.Drawing.Size(715, 24);
+            this.TxtEnderecoCoordenadasDestinatarioAusente.TabIndex = 8;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(6, 52);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(119, 13);
+            this.label24.TabIndex = 7;
+            this.label24.Text = "Endereço Google Maps";
+            // 
+            // TxtSituacaoDestinatarioAusente
+            // 
+            this.TxtSituacaoDestinatarioAusente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TxtSituacaoDestinatarioAusente.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtSituacaoDestinatarioAusente.Location = new System.Drawing.Point(105, 22);
+            this.TxtSituacaoDestinatarioAusente.Name = "TxtSituacaoDestinatarioAusente";
+            this.TxtSituacaoDestinatarioAusente.ReadOnly = true;
+            this.TxtSituacaoDestinatarioAusente.Size = new System.Drawing.Size(393, 24);
+            this.TxtSituacaoDestinatarioAusente.TabIndex = 3;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(104, 6);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(162, 13);
+            this.label21.TabIndex = 2;
+            this.label21.Text = "Situação da tentativa de entrega";
             // 
             // tabControlDadosEntregaCarteiro
             // 
             this.tabControlDadosEntregaCarteiro.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControlDadosEntregaCarteiro.Controls.Add(this.tabPage2);
-            this.tabControlDadosEntregaCarteiro.Location = new System.Drawing.Point(3, 298);
+            this.tabControlDadosEntregaCarteiro.Location = new System.Drawing.Point(3, 348);
             this.tabControlDadosEntregaCarteiro.Name = "tabControlDadosEntregaCarteiro";
             this.tabControlDadosEntregaCarteiro.SelectedIndex = 0;
             this.tabControlDadosEntregaCarteiro.Size = new System.Drawing.Size(730, 123);
@@ -546,35 +671,119 @@
             this.tabPage2.Text = "Dados de entrega pelo carteiro";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // tabControlDadosDestinatarioAusente
+            // TxtEnderecoLOEC
             // 
-            this.tabControlDadosDestinatarioAusente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.TxtEnderecoLOEC.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabControlDadosDestinatarioAusente.Controls.Add(this.tabPage3);
-            this.tabControlDadosDestinatarioAusente.Location = new System.Drawing.Point(3, 423);
-            this.tabControlDadosDestinatarioAusente.Name = "tabControlDadosDestinatarioAusente";
-            this.tabControlDadosDestinatarioAusente.SelectedIndex = 0;
-            this.tabControlDadosDestinatarioAusente.Size = new System.Drawing.Size(730, 129);
-            this.tabControlDadosDestinatarioAusente.TabIndex = 3;
+            this.TxtEnderecoLOEC.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtEnderecoLOEC.Location = new System.Drawing.Point(180, 65);
+            this.TxtEnderecoLOEC.Name = "TxtEnderecoLOEC";
+            this.TxtEnderecoLOEC.ReadOnly = true;
+            this.TxtEnderecoLOEC.Size = new System.Drawing.Size(539, 24);
+            this.TxtEnderecoLOEC.TabIndex = 13;
             // 
-            // tabPage3
+            // label20
             // 
-            this.tabPage3.Controls.Add(this.BtnCoordenadas);
-            this.tabPage3.Controls.Add(this.TxtCoordenadasDestinatarioAusente);
-            this.tabPage3.Controls.Add(this.label23);
-            this.tabPage3.Controls.Add(this.TxtAgrupadoDestinatarioAusente);
-            this.tabPage3.Controls.Add(this.label22);
-            this.tabPage3.Controls.Add(this.TxtEnderecoCoordenadasDestinatarioAusente);
-            this.tabPage3.Controls.Add(this.label24);
-            this.tabPage3.Controls.Add(this.TxtSituacaoDestinatarioAusente);
-            this.tabPage3.Controls.Add(this.label21);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(722, 103);
-            this.tabPage3.TabIndex = 0;
-            this.tabPage3.Text = "Resultado da tentativa de entrega pelo carteiro";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(180, 49);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(123, 13);
+            this.label20.TabIndex = 12;
+            this.label20.Text = "Endereço entrega LOEC";
+            // 
+            // TxtNumeroLOEC
+            // 
+            this.TxtNumeroLOEC.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtNumeroLOEC.Location = new System.Drawing.Point(7, 22);
+            this.TxtNumeroLOEC.Name = "TxtNumeroLOEC";
+            this.TxtNumeroLOEC.ReadOnly = true;
+            this.TxtNumeroLOEC.Size = new System.Drawing.Size(124, 24);
+            this.TxtNumeroLOEC.TabIndex = 1;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(6, 6);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(75, 13);
+            this.label19.TabIndex = 0;
+            this.label19.Text = "Número LOEC";
+            // 
+            // TxtDistritoLOEC
+            // 
+            this.TxtDistritoLOEC.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtDistritoLOEC.Location = new System.Drawing.Point(105, 65);
+            this.TxtDistritoLOEC.Name = "TxtDistritoLOEC";
+            this.TxtDistritoLOEC.ReadOnly = true;
+            this.TxtDistritoLOEC.Size = new System.Drawing.Size(69, 24);
+            this.TxtDistritoLOEC.TabIndex = 11;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(104, 49);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(70, 13);
+            this.label18.TabIndex = 10;
+            this.label18.Text = "Distrito LOEC";
+            // 
+            // TxtCarteiroLOEC
+            // 
+            this.TxtCarteiroLOEC.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtCarteiroLOEC.Location = new System.Drawing.Point(7, 65);
+            this.TxtCarteiroLOEC.Name = "TxtCarteiroLOEC";
+            this.TxtCarteiroLOEC.ReadOnly = true;
+            this.TxtCarteiroLOEC.Size = new System.Drawing.Size(92, 24);
+            this.TxtCarteiroLOEC.TabIndex = 9;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(6, 49);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(74, 13);
+            this.label17.TabIndex = 8;
+            this.label17.Text = "Carteiro LOEC";
+            // 
+            // TxtCriacaoLOEC
+            // 
+            this.TxtCriacaoLOEC.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.TxtCriacaoLOEC.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtCriacaoLOEC.Location = new System.Drawing.Point(536, 22);
+            this.TxtCriacaoLOEC.Name = "TxtCriacaoLOEC";
+            this.TxtCriacaoLOEC.ReadOnly = true;
+            this.TxtCriacaoLOEC.Size = new System.Drawing.Size(183, 24);
+            this.TxtCriacaoLOEC.TabIndex = 7;
+            // 
+            // label16
+            // 
+            this.label16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(534, 6);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(99, 13);
+            this.label16.TabIndex = 6;
+            this.label16.Text = "Data criação LOEC";
+            // 
+            // TxtMunicipioLOEC
+            // 
+            this.TxtMunicipioLOEC.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TxtMunicipioLOEC.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtMunicipioLOEC.Location = new System.Drawing.Point(335, 22);
+            this.TxtMunicipioLOEC.Name = "TxtMunicipioLOEC";
+            this.TxtMunicipioLOEC.ReadOnly = true;
+            this.TxtMunicipioLOEC.Size = new System.Drawing.Size(195, 24);
+            this.TxtMunicipioLOEC.TabIndex = 5;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(334, 6);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(85, 13);
+            this.label15.TabIndex = 4;
+            this.label15.Text = "Município LOEC";
             // 
             // TxtUnidadeLOEC
             // 
@@ -594,223 +803,29 @@
             this.label7.TabIndex = 2;
             this.label7.Text = "Unidade LOEC";
             // 
-            // label15
+            // BtnAlterarEndereco
             // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(334, 6);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(85, 13);
-            this.label15.TabIndex = 4;
-            this.label15.Text = "Município LOEC";
-            // 
-            // TxtMunicipioLOEC
-            // 
-            this.TxtMunicipioLOEC.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.BtnAlterarEndereco.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtMunicipioLOEC.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtMunicipioLOEC.Location = new System.Drawing.Point(335, 22);
-            this.TxtMunicipioLOEC.Name = "TxtMunicipioLOEC";
-            this.TxtMunicipioLOEC.ReadOnly = true;
-            this.TxtMunicipioLOEC.Size = new System.Drawing.Size(195, 24);
-            this.TxtMunicipioLOEC.TabIndex = 5;
-            // 
-            // label16
-            // 
-            this.label16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(534, 6);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(99, 13);
-            this.label16.TabIndex = 6;
-            this.label16.Text = "Data criação LOEC";
-            // 
-            // TxtCriacaoLOEC
-            // 
-            this.TxtCriacaoLOEC.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtCriacaoLOEC.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtCriacaoLOEC.Location = new System.Drawing.Point(536, 22);
-            this.TxtCriacaoLOEC.Name = "TxtCriacaoLOEC";
-            this.TxtCriacaoLOEC.ReadOnly = true;
-            this.TxtCriacaoLOEC.Size = new System.Drawing.Size(183, 24);
-            this.TxtCriacaoLOEC.TabIndex = 7;
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(6, 49);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(74, 13);
-            this.label17.TabIndex = 8;
-            this.label17.Text = "Carteiro LOEC";
-            // 
-            // TxtCarteiroLOEC
-            // 
-            this.TxtCarteiroLOEC.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtCarteiroLOEC.Location = new System.Drawing.Point(7, 65);
-            this.TxtCarteiroLOEC.Name = "TxtCarteiroLOEC";
-            this.TxtCarteiroLOEC.ReadOnly = true;
-            this.TxtCarteiroLOEC.Size = new System.Drawing.Size(92, 24);
-            this.TxtCarteiroLOEC.TabIndex = 9;
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(104, 49);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(70, 13);
-            this.label18.TabIndex = 10;
-            this.label18.Text = "Distrito LOEC";
-            // 
-            // TxtDistritoLOEC
-            // 
-            this.TxtDistritoLOEC.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtDistritoLOEC.Location = new System.Drawing.Point(105, 65);
-            this.TxtDistritoLOEC.Name = "TxtDistritoLOEC";
-            this.TxtDistritoLOEC.ReadOnly = true;
-            this.TxtDistritoLOEC.Size = new System.Drawing.Size(69, 24);
-            this.TxtDistritoLOEC.TabIndex = 11;
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(6, 6);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(75, 13);
-            this.label19.TabIndex = 0;
-            this.label19.Text = "Número LOEC";
-            // 
-            // TxtNumeroLOEC
-            // 
-            this.TxtNumeroLOEC.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtNumeroLOEC.Location = new System.Drawing.Point(7, 22);
-            this.TxtNumeroLOEC.Name = "TxtNumeroLOEC";
-            this.TxtNumeroLOEC.ReadOnly = true;
-            this.TxtNumeroLOEC.Size = new System.Drawing.Size(124, 24);
-            this.TxtNumeroLOEC.TabIndex = 1;
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(180, 49);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(123, 13);
-            this.label20.TabIndex = 12;
-            this.label20.Text = "Endereço entrega LOEC";
-            // 
-            // TxtEnderecoLOEC
-            // 
-            this.TxtEnderecoLOEC.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtEnderecoLOEC.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtEnderecoLOEC.Location = new System.Drawing.Point(180, 65);
-            this.TxtEnderecoLOEC.Name = "TxtEnderecoLOEC";
-            this.TxtEnderecoLOEC.ReadOnly = true;
-            this.TxtEnderecoLOEC.Size = new System.Drawing.Size(539, 24);
-            this.TxtEnderecoLOEC.TabIndex = 13;
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(104, 6);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(162, 13);
-            this.label21.TabIndex = 2;
-            this.label21.Text = "Situação da tentativa de entrega";
-            // 
-            // TxtSituacaoDestinatarioAusente
-            // 
-            this.TxtSituacaoDestinatarioAusente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtSituacaoDestinatarioAusente.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtSituacaoDestinatarioAusente.Location = new System.Drawing.Point(105, 22);
-            this.TxtSituacaoDestinatarioAusente.Name = "TxtSituacaoDestinatarioAusente";
-            this.TxtSituacaoDestinatarioAusente.ReadOnly = true;
-            this.TxtSituacaoDestinatarioAusente.Size = new System.Drawing.Size(393, 24);
-            this.TxtSituacaoDestinatarioAusente.TabIndex = 3;
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(6, 6);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(98, 13);
-            this.label22.TabIndex = 0;
-            this.label22.Text = "Entrega agrupada?";
-            // 
-            // TxtAgrupadoDestinatarioAusente
-            // 
-            this.TxtAgrupadoDestinatarioAusente.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtAgrupadoDestinatarioAusente.Location = new System.Drawing.Point(7, 22);
-            this.TxtAgrupadoDestinatarioAusente.Name = "TxtAgrupadoDestinatarioAusente";
-            this.TxtAgrupadoDestinatarioAusente.ReadOnly = true;
-            this.TxtAgrupadoDestinatarioAusente.Size = new System.Drawing.Size(92, 24);
-            this.TxtAgrupadoDestinatarioAusente.TabIndex = 1;
-            // 
-            // label23
-            // 
-            this.label23.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(503, 6);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(119, 13);
-            this.label23.TabIndex = 4;
-            this.label23.Text = "Coordenada da entrega";
-            // 
-            // TxtCoordenadasDestinatarioAusente
-            // 
-            this.TxtCoordenadasDestinatarioAusente.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtCoordenadasDestinatarioAusente.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtCoordenadasDestinatarioAusente.Location = new System.Drawing.Point(504, 22);
-            this.TxtCoordenadasDestinatarioAusente.Name = "TxtCoordenadasDestinatarioAusente";
-            this.TxtCoordenadasDestinatarioAusente.ReadOnly = true;
-            this.TxtCoordenadasDestinatarioAusente.Size = new System.Drawing.Size(145, 24);
-            this.TxtCoordenadasDestinatarioAusente.TabIndex = 5;
-            // 
-            // BtnCoordenadas
-            // 
-            this.BtnCoordenadas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnCoordenadas.BackColor = System.Drawing.Color.Transparent;
-            this.BtnCoordenadas.BackgroundImage = global::SISAPO.Properties.Resources.local_map_google;
-            this.BtnCoordenadas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.BtnCoordenadas.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BtnCoordenadas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnCoordenadas.Location = new System.Drawing.Point(655, 6);
-            this.BtnCoordenadas.Name = "BtnCoordenadas";
-            this.BtnCoordenadas.Size = new System.Drawing.Size(64, 44);
-            this.BtnCoordenadas.TabIndex = 6;
-            this.BtnCoordenadas.UseVisualStyleBackColor = false;
-            this.BtnCoordenadas.Click += new System.EventHandler(this.BtnCoordenadas_Click);
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(6, 52);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(119, 13);
-            this.label24.TabIndex = 7;
-            this.label24.Text = "Endereço Google Maps";
-            // 
-            // TxtEnderecoCoordenadasDestinatarioAusente
-            // 
-            this.TxtEnderecoCoordenadasDestinatarioAusente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtEnderecoCoordenadasDestinatarioAusente.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtEnderecoCoordenadasDestinatarioAusente.Location = new System.Drawing.Point(7, 68);
-            this.TxtEnderecoCoordenadasDestinatarioAusente.Name = "TxtEnderecoCoordenadasDestinatarioAusente";
-            this.TxtEnderecoCoordenadasDestinatarioAusente.ReadOnly = true;
-            this.TxtEnderecoCoordenadasDestinatarioAusente.Size = new System.Drawing.Size(715, 24);
-            this.TxtEnderecoCoordenadasDestinatarioAusente.TabIndex = 8;
+            this.BtnAlterarEndereco.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnAlterarEndereco.Location = new System.Drawing.Point(14, 166);
+            this.BtnAlterarEndereco.Name = "BtnAlterarEndereco";
+            this.BtnAlterarEndereco.Size = new System.Drawing.Size(712, 36);
+            this.BtnAlterarEndereco.TabIndex = 0;
+            this.BtnAlterarEndereco.Text = "&Alterar Endereço";
+            this.BtnAlterarEndereco.UseVisualStyleBackColor = true;
+            this.BtnAlterarEndereco.Click += new System.EventHandler(this.BtnAlterarEndereco_Click);
             // 
             // FormularioAlteracaoObjeto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(739, 471);
+            this.ClientSize = new System.Drawing.Size(739, 661);
             this.Controls.Add(this.panelPrincipal);
             this.Controls.Add(this.panel2);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
-            this.MinimumSize = new System.Drawing.Size(755, 510);
+            this.MinimumSize = new System.Drawing.Size(755, 700);
             this.Name = "FormularioAlteracaoObjeto";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -825,12 +840,12 @@
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
             this.panelPrincipal.ResumeLayout(false);
-            this.tabControlDadosEntregaCarteiro.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
             this.tabControlDadosDestinatarioAusente.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
+            this.tabControlDadosEntregaCarteiro.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -900,5 +915,6 @@
         private System.Windows.Forms.Button BtnCoordenadas;
         private System.Windows.Forms.TextBox TxtEnderecoCoordenadasDestinatarioAusente;
         private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Button BtnAlterarEndereco;
     }
 }

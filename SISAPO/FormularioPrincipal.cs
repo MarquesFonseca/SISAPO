@@ -23,7 +23,7 @@ namespace SISAPO
         public static bool OpcoesImpressaoOrdenacaoPorOrdemCrescente = true;
         public static bool OpcoesImpressaoImprimirUmPorFolha = false;
         public static bool OpcoesImpressaoImprimirVariosPorFolha = false;
-        
+
 
         public FormularioPrincipal()
         {
@@ -313,7 +313,7 @@ namespace SISAPO
                 using (DAO dao = new DAO(TipoBanco.OleDb, Configuracoes.strConexao))
                 {
                     if (!dao.TestaConexao()) { this.toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
-                    
+
                     object dataHoraUltimaAtualizacaoImportacaoRetornado = dao.RetornaValor("SELECT top 1 DataHoraUltimaAtualizacaoImportacao FROM TabelaConfiguracoesSistema");
                     toolStripStatusLabelDataHoraUltimaAtualizacaoImportacao.Text = string.Format("Última atualização dos dados: {0:dd/MM/yyyy HH:mm}       ", dataHoraUltimaAtualizacaoImportacaoRetornado);
                 }
@@ -414,7 +414,7 @@ namespace SISAPO
             formularioTiposPostais.WindowState = FormWindowState.Maximized;
             formularioTiposPostais.Activate();
         }
-        
+
         public void cadastrarNovosTiposPostaisToolStripMenuItem_Click(object sender, EventArgs e)
         {
             bool estaAberto = false;
@@ -730,7 +730,7 @@ namespace SISAPO
 
         public void imprimirListaDeEntregaParaConsultaSelecionadaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void imprimirListaDeEntregaParaConsultaSelecionadaToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -1117,6 +1117,66 @@ namespace SISAPO
             toolStripStatusLabelDataHora.Text = DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString();
             this.imprimirListaDeEntregaParaConsultaSelecionadaToolStripMenuItem1.Text = string.Format("Imprimir lista de entrega lançados hoje [{0}]", DateTime.Now.GetDateTimeFormats()[14]);
 
+        }
+
+        private void imprimirListaLDIsExpediçãoPorOrdemDeDecrescenteAoLançamentoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DataSet dsResultDao = new DataSet();
+            string dataInicial = DateTime.Now.Date.ToString("yyyy/MM/dd");
+            string datafinal = DateTime.Now.Date.ToString("yyyy/MM/dd");
+
+            if (!DAO.TestaConexao(ClassesDiversas.Configuracoes.strConexao, TipoBanco.OleDb)) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+            using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
+            {
+                List<Parametros> Pr = new List<Parametros>() {
+                new Parametros() { Nome = "@DataInicial", Tipo = TipoCampo.Text, Valor = dataInicial }
+                ,new Parametros() { Nome = "@DataFinal", Tipo = TipoCampo.Text, Valor = datafinal } };
+
+                dsResultDao = dao.RetornaDataSet(@"SELECT Codigo, CodigoObjeto, NomeCliente, CaixaPostal, ObjetoEntregue FROM TabelaObjetosSROLocal  WHERE 
+                (Format(DataLancamento, 'yyyy/MM/dd') BETWEEN Format(@DataInicial, 'yyyy/MM/dd') AND Format(@DataFinal, 'yyyy/MM/dd')) ORDER BY DataLancamento Desc", Pr);
+            }
+
+            List<string> ListaCodigoOrdenadosPelaDataLancamento = dsResultDao.Tables[0].AsEnumerable()
+            //Where(m => Convert.ToBoolean(m["CaixaPostal"]) == IncluirItensCaixaPostal)
+            //.Where(m => Convert.ToBoolean(m["ObjetoEntregue"]) == IncluirObjetoEntregue)
+            .OrderBy(t => t.Table.Columns["DataLancamento"]).Select(c => c["CodigoObjeto"].ToString()).ToList();
+            if (ListaCodigoOrdenadosPelaDataLancamento.Count == 0)
+            {
+                Mensagens.Informa("Não foi encontrado lançamento para o dia [" + DateTime.Now.GetDateTimeFormats()[14] + "].");
+                return;
+            }
+
+            FormularioImpressaoEntregaObjetosModelo2 formularioImpressaoEntregaObjetos = new FormularioImpressaoEntregaObjetosModelo2(ListaCodigoOrdenadosPelaDataLancamento, true, false);
+        }
+
+        private void imprimirListaLDIsAssinaturasPorOrdemAlfabéticaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DataSet dsResultDao = new DataSet();
+            string dataInicial = DateTime.Now.Date.ToString("yyyy/MM/dd");
+            string datafinal = DateTime.Now.Date.ToString("yyyy/MM/dd");
+
+            if (!DAO.TestaConexao(ClassesDiversas.Configuracoes.strConexao, TipoBanco.OleDb)) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+            using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
+            {
+                List<Parametros> Pr = new List<Parametros>() {
+                new Parametros() { Nome = "@DataInicial", Tipo = TipoCampo.Text, Valor = dataInicial }
+                ,new Parametros() { Nome = "@DataFinal", Tipo = TipoCampo.Text, Valor = datafinal } };
+
+                dsResultDao = dao.RetornaDataSet(@"SELECT Codigo, CodigoObjeto, NomeCliente, CaixaPostal, ObjetoEntregue FROM TabelaObjetosSROLocal  WHERE 
+                (Format(DataLancamento, 'yyyy/MM/dd') BETWEEN Format(@DataInicial, 'yyyy/MM/dd') AND Format(@DataFinal, 'yyyy/MM/dd')) ORDER BY NomeCliente", Pr);
+            }
+
+            List<string> ListaCodigoOrdenadosPeloNomeCliente = dsResultDao.Tables[0].AsEnumerable()
+            .Where(m => Convert.ToBoolean(m["CaixaPostal"]) == false)
+            //.Where(m => Convert.ToBoolean(m["ObjetoEntregue"]) == IncluirObjetoEntregue)
+            .OrderBy(t => t.Table.Columns["NomeCliente"]).Select(c => c["CodigoObjeto"].ToString()).ToList();
+            if (ListaCodigoOrdenadosPeloNomeCliente.Count == 0)
+            {
+                Mensagens.Informa("Não foi encontrado lançamento para o dia [" + DateTime.Now.GetDateTimeFormats()[14] + "].");
+                return;
+            }
+
+            FormularioImpressaoEntregaObjetosModelo2 formularioImpressaoEntregaObjetos = new FormularioImpressaoEntregaObjetosModelo2(ListaCodigoOrdenadosPeloNomeCliente, false, true);
         }
     }
 }
