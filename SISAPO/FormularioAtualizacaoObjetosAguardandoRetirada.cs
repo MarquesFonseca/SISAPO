@@ -238,14 +238,24 @@ namespace SISAPO
                             if (webBrowser1.Document.GetElementsByTagName("TR")[i].InnerText.Contains("Comentário:"))
                             {
                                 Comentario = webBrowser1.Document.GetElementsByTagName("TR")[i].InnerText.Replace("Comentário: ", "");
+                                Comentario = Comentario.Trim().ToUpper().RemoveAcentos();
+
+                                if(Configuracoes.RetornaSeECaixaPostal(Comentario))
+                                    Comentario = Comentario.Replace(Comentario, "CAIXA POSTAL");
+
                                 EscreveTextoTextBox("Comentário: " + Comentario.ToString());
                             }
                             if (webBrowser1.Document.GetElementsByTagName("TR")[i].InnerText.Contains("Cliente:"))
                             {
                                 NomeCliente = webBrowser1.Document.GetElementsByTagName("TR")[i].InnerText.Replace("Cliente: ", "");
+                                if(Configuracoes.RetornaSeECaixaPostal(NomeCliente))
+                                    NomeCliente = Comentario.Replace(NomeCliente, "CAIXA POSTAL");
+
                                 //referente ao Tipo Postal
-                                bool SeEAoRemetente = false;
-                                bool SeECaixaPostal = false;
+                                bool SeEAoRemetente = Configuracoes.RetornaSeEAoRemetente(NomeCliente);
+                                SeEAoRemetente = Configuracoes.RetornaSeEAoRemetente(Comentario);
+                                bool SeECaixaPostal = Configuracoes.RetornaSeECaixaPostal(NomeCliente);
+                                SeECaixaPostal = Configuracoes.RetornaSeECaixaPostal(Comentario);
                                 string TipoPostalServico = string.Empty;
                                 string TipoPostalSiglaCodigo = string.Empty;
                                 string TipoPostalNomeSiglaCodigo = string.Empty;
@@ -261,8 +271,7 @@ namespace SISAPO
                                     {
                                         NomeCliente = NomeCliente.Trim() == "" ? ds.Tables[0].Rows[0]["NomeCliente"].ToString().ToUpper().RemoveAcentos() : NomeCliente.Trim().ToUpper().RemoveAcentos();
                                         NomeCliente = string.Format("{0} - {1}", NomeCliente, Comentario);
-                                        SeECaixaPostal = Convert.ToBoolean(ds.Tables[0].Rows[0]["CaixaPostal"]);
-                                        SeEAoRemetente = (NomeCliente.ToUpper().RemoveAcentos().Contains("ORIGEM") || NomeCliente.ToUpper().RemoveAcentos().Contains("DEVOLUCAO") || NomeCliente.ToUpper().RemoveAcentos().Contains("REMETENTE")) ? true : false;
+
                                         if (FormularioPrincipal.TiposPostais.Rows.Count > 0)
                                         {
                                             DataRow drTipoPostal = FormularioPrincipal.TiposPostais.AsEnumerable().First(T => T["Sigla"].Equals(CodigoObjetoAtual.Substring(0, 2))); //["Código"] - Pega linha retornada dos tipos postais vinda do Excel

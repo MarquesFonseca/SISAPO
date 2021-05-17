@@ -338,6 +338,7 @@ namespace SISAPO.ClassesDiversas
 
         }
 
+
         private static void CriaTiposPostaisIniciais()
         {
             CriaTipoPostalInicial("INSERT INTO TiposPostais(Servico, Sigla, Descricao, PrazoDestinoCaidaPedida, PrazoDestinoCaixaPostal, PrazoRemetenteCaidaPedida, PrazoRemetenteCaixaPostal, TipoClassificacao, DataAlteracao) VALUES(\"URGENTE\", \"AA\", \"ETIQUETA LOGICA SEDEX AA\", \"7\", \"30\", \"7\", \"20\", \"SEDEX\", \"02/05/2021 22:41:51\")");
@@ -686,6 +687,40 @@ namespace SISAPO.ClassesDiversas
             CriaTipoPostalInicial("INSERT INTO TiposPostais(Servico, Sigla, Descricao, PrazoDestinoCaidaPedida, PrazoDestinoCaixaPostal, PrazoRemetenteCaidaPedida, PrazoRemetenteCaixaPostal, TipoClassificacao, DataAlteracao) VALUES(\"NAO URGENTE\", \"XP\", \"CORREIOS PACKET MINI\", \"7\", \"30\", \"7\", \"20\", \"PAC\", \"02/05/2021 22:41:51\")");
             CriaTipoPostalInicial("INSERT INTO TiposPostais(Servico, Sigla, Descricao, PrazoDestinoCaidaPedida, PrazoDestinoCaixaPostal, PrazoRemetenteCaidaPedida, PrazoRemetenteCaixaPostal, TipoClassificacao, DataAlteracao) VALUES(\"NAO URGENTE\", \"XR\", \"OBJETO INTERNACIONAL (PPS TRIBUTADO)\", \"20\", \"30\", \"20\", \"20\", \"DIVERSOS\", \"02/05/2021 22:41:51\")");
             CriaTipoPostalInicial("INSERT INTO TiposPostais(Servico, Sigla, Descricao, PrazoDestinoCaidaPedida, PrazoDestinoCaixaPostal, PrazoRemetenteCaidaPedida, PrazoRemetenteCaixaPostal, TipoClassificacao, DataAlteracao) VALUES(\"URGENTE\", \"XX\", \"OBJETO INTERNACIONAL (PPS TRIBUTADO)\", \"20\", \"30\", \"20\", \"20\", \"DIVERSOS\", \"02/05/2021 22:41:51\")");
+        }
+
+        public static bool RetornaSeECaixaPostal(string texto)
+        {
+            return (texto.RemoveAcentos().ToUpper().Contains("CAIXA POSTAL") ||
+                    texto.RemoveAcentos().ToUpper().Contains("CAIXA POSTA") ||
+                    texto.RemoveAcentos().ToUpper().Contains("CAIXA POST") ||
+                    texto.RemoveAcentos().ToUpper().Contains("CAIXA POS") ||
+                    texto.RemoveAcentos().ToUpper().Contains("CAIXA PO") ||
+                    texto.RemoveAcentos().ToUpper().Contains("CAIXA P") ||
+                    texto.RemoveAcentos().ToUpper().Contains("CX POSTAL") ||
+                    texto.RemoveAcentos().ToUpper().Contains("CX POSTA") ||
+                    texto.RemoveAcentos().ToUpper().Contains("CX POST") ||
+                    texto.RemoveAcentos().ToUpper().Contains("CX POS") ||
+                    texto.RemoveAcentos().ToUpper().Contains("CX PO") ||
+                    texto.RemoveAcentos().ToUpper().Contains("CX P")) ? true : false;
+        }
+
+        public static bool RetornaSeEAoRemetente(string texto)
+        {
+            return (texto.RemoveAcentos().ToUpper().Contains("ORIGEM") ||
+                    texto.RemoveAcentos().ToUpper().Contains("DEVOLUCAO") ||
+                    texto.RemoveAcentos().ToUpper().Contains("DEVOLUCA") ||
+                    texto.RemoveAcentos().ToUpper().Contains("DEVOLUC") ||
+                    texto.RemoveAcentos().ToUpper().Contains("DEVOLU") ||
+                    texto.RemoveAcentos().ToUpper().Contains("DEVOL") ||
+                    texto.RemoveAcentos().ToUpper().Contains("DEVOLUCAO") ||
+                    texto.RemoveAcentos().ToUpper().Contains("REMETENTE") ||
+                    texto.RemoveAcentos().ToUpper().Contains("REMETENT") ||
+                    texto.RemoveAcentos().ToUpper().Contains("REMETEN") ||
+                    texto.RemoveAcentos().ToUpper().Contains("REMETE") ||
+                    texto.RemoveAcentos().ToUpper().Contains("REMET") ||
+                    texto.RemoveAcentos().ToUpper().Contains("REME") ||
+                    texto.RemoveAcentos().ToUpper().Contains("REMETENTE")) ? true : false;
         }
 
         private static void CriaTipoPostalInicial(string SQL)

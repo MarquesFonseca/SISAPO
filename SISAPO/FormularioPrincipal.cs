@@ -1178,5 +1178,41 @@ namespace SISAPO
 
             FormularioImpressaoEntregaObjetosModelo2 formularioImpressaoEntregaObjetos = new FormularioImpressaoEntregaObjetosModelo2(ListaCodigoOrdenadosPeloNomeCliente, false, true);
         }
+
+        private void imprimirAvisoDeChegadaHOJEExcetoEntreguesECaixaPostalToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DataSet dsResultDao = new DataSet();
+            string dataInicial = DateTime.Now.Date.ToString("yyyy/MM/dd");
+            string datafinal = DateTime.Now.Date.ToString("yyyy/MM/dd");
+
+            if (!DAO.TestaConexao(ClassesDiversas.Configuracoes.strConexao, TipoBanco.OleDb)) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+            using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
+            {
+                List<Parametros> Pr = new List<Parametros>() {
+                new Parametros() { Nome = "@DataInicial", Tipo = TipoCampo.Text, Valor = dataInicial }
+                ,new Parametros() { Nome = "@DataFinal", Tipo = TipoCampo.Text, Valor = datafinal }
+                ,new Parametros() { Nome = "@CaixaPostal", Tipo = TipoCampo.Int, Valor = false }
+                ,new Parametros() { Nome = "@ObjetoEntregue", Tipo = TipoCampo.Int, Valor = false }
+                ,new Parametros() { Nome = "@EnderecoLOEC", Tipo = TipoCampo.Text, Valor = "" }
+                };
+
+                dsResultDao = dao.RetornaDataSet(@"SELECT Codigo, CodigoObjeto, NomeCliente, CaixaPostal, ObjetoEntregue FROM TabelaObjetosSROLocal  WHERE 
+                (Format(DataLancamento, 'yyyy/MM/dd') BETWEEN Format(@DataInicial, 'yyyy/MM/dd') AND Format(@DataFinal, 'yyyy/MM/dd')) 
+                AND (CaixaPostal = @CaixaPostal) AND (ObjetoEntregue = @ObjetoEntregue) AND (EnderecoLOEC <> @EnderecoLOEC) 
+                ORDER BY DataLancamento Desc", Pr);
+            }
+
+            List<string> ListaCodigoOrdenadosPelaDataLancamento = dsResultDao.Tables[0].AsEnumerable()
+            //Where(m => Convert.ToBoolean(m["CaixaPostal"]) == IncluirItensCaixaPostal)
+            //.Where(m => Convert.ToBoolean(m["ObjetoEntregue"]) == IncluirObjetoEntregue)
+            .OrderBy(t => t.Table.Columns["DataLancamento"]).Select(c => c["CodigoObjeto"].ToString()).ToList();
+            if (ListaCodigoOrdenadosPelaDataLancamento.Count == 0)
+            {
+                Mensagens.Informa("Não foi encontrado lançamento para o dia [" + DateTime.Now.GetDateTimeFormats()[14] + "].");
+                return;
+            }
+
+            FormularioImpressaoAvisosChegada FormularioImpressaoAvisosChegada = new FormularioImpressaoAvisosChegada(ListaCodigoOrdenadosPelaDataLancamento);
+        }
     }
 }

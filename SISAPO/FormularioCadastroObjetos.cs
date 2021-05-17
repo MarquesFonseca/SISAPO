@@ -251,7 +251,21 @@ namespace SISAPO
                         string CodigoObjetoAtual = jaCadastrado.Tables[0].Rows[0]["CodigoObjeto"].ToString();
                         string NomeCliente = jaCadastrado.Tables[0].Rows[0]["NomeCliente"].ToString().ToUpper().RemoveAcentos();
                         bool SeECaixaPostal = Convert.ToBoolean(jaCadastrado.Tables[0].Rows[0]["CaixaPostal"]);
-                        bool SeEAoRemetente = (NomeCliente.ToUpper().RemoveAcentos().Contains("ORIGEM") || NomeCliente.ToUpper().RemoveAcentos().Contains("DEVOLUCAO") || NomeCliente.ToUpper().RemoveAcentos().Contains("REMETENTE")) ? true : false;
+                        bool SeEAoRemetente = (
+                            NomeCliente.ToUpper().RemoveAcentos().Contains("ORIGEM") || 
+                            NomeCliente.ToUpper().RemoveAcentos().Contains("DEVOLUCAO") ||
+                            NomeCliente.ToUpper().RemoveAcentos().Contains("DEVOLUCA") ||
+                            NomeCliente.ToUpper().RemoveAcentos().Contains("DEVOLUC") ||
+                            NomeCliente.ToUpper().RemoveAcentos().Contains("DEVOLU") ||
+                            NomeCliente.ToUpper().RemoveAcentos().Contains("DEVOL") ||
+                            NomeCliente.ToUpper().RemoveAcentos().Contains("DEVOLUCAO") ||
+                            NomeCliente.ToUpper().RemoveAcentos().Contains("REMETENTE") ||
+                            NomeCliente.ToUpper().RemoveAcentos().Contains("REMETENT") ||
+                            NomeCliente.ToUpper().RemoveAcentos().Contains("REMETEN") ||
+                            NomeCliente.ToUpper().RemoveAcentos().Contains("REMETE") ||
+                            NomeCliente.ToUpper().RemoveAcentos().Contains("REMET") ||
+                            NomeCliente.ToUpper().RemoveAcentos().Contains("REME") ||
+                            NomeCliente.ToUpper().RemoveAcentos().Contains("REMETENTE")) ? true : false;
                         string TipoPostalServico = string.Empty;
                         string TipoPostalSiglaCodigo = string.Empty;
                         string TipoPostalNomeSiglaCodigo = string.Empty;

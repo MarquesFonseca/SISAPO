@@ -277,7 +277,9 @@ namespace SISAPO
                 return;
             }
 
+            //Mensagens.Informa("Antes de gravar o Código: " + TxtPesquisa.Text);
             GravaHistoricoConsulta(TxtPesquisa.Text);
+            //Mensagens.Informa("Depois de gravar o Código: " + TxtPesquisa.Text);
 
             using (FormularioSRORastreamentoUnificado formularioSRORastreamentoUnificado = new FormularioSRORastreamentoUnificado(TxtPesquisa.Text))
             {
@@ -317,11 +319,21 @@ namespace SISAPO
 
         private void GravaHistoricoConsulta(string codigoConsultado)
         {
-            using (DAO dao = new DAO(TipoBanco.OleDb, Configuracoes.strConexao))
+            try
             {
-                if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+                using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
+                {
+                    if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+                    List<Parametros> pr = new List<Parametros>() {
+                            new Parametros() { Nome = "@CodigoObjeto", Tipo = TipoCampo.Text, Valor = codigoConsultado }
+                        };
 
-                dao.ExecutaSQL("INSERT INTO TabelaHistoricoConsulta(CodigoObjeto) VALUES (@CodigoObjeto)", new List<Parametros>() { new Parametros() { Nome = "@CodigoObjeto", Tipo = TipoCampo.Text, Valor = codigoConsultado } });
+                    dao.ExecutaSQL("INSERT INTO TabelaHistoricoConsulta (CodigoObjeto) VALUES (@CodigoObjeto)", pr);
+                }
+            }
+            catch (Exception EX)
+            {
+                Mensagens.Erro("Ocorreu um erro inesperado ao gravar o Histórico da Consulta. \nErro: " + EX.Message);
             }
         }
 
