@@ -48,10 +48,12 @@ namespace SISAPO
         public string CoordenadasDestinatarioAusente = string.Empty;
 
         public bool Cancelando = false;
+        private bool clicouEmAlterar = false;
 
         public FormularioAlteracaoObjeto()
         {
             Cancelando = false;
+            clicouEmAlterar = false;
             InitializeComponent();
 
             TxtNomeCliente.Focus();
@@ -140,6 +142,8 @@ namespace SISAPO
 
         private void btnAlterar_Click(object sender, EventArgs e)
         {
+            clicouEmAlterar = true;
+            Cancelando = false;
             CodigoObjeto = TxtCodigoObjeto.Text;
             NomeCliente = TxtNomeCliente.Text.RemoveAcentos();
             NumeroLDI = TxtNumeroLDI.Text;
@@ -165,7 +169,7 @@ namespace SISAPO
             {
                 btnCancelar_Click(sender, e);
             }
-            if(e.KeyCode == Keys.F5)
+            if (e.KeyCode == Keys.F5)
             {
                 btnAlterar_Click(sender, e);
             }
@@ -241,6 +245,14 @@ namespace SISAPO
 
             TxtEnderecoLOEC.Text = string.Format("{0} - {1} - {2} - {3}", EnderecoLOEC, BairroLOEC, MunicipioDestino + " / " + EstadoDestino, LocalidadeLOEC);
             TxtMunicipioLOEC.Text = MunicipioLOEC;
+        }
+
+        private void FormularioAlteracaoObjeto_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (clicouEmAlterar)
+                Cancelando = false;
+            if (!clicouEmAlterar)
+                Cancelando = true;
         }
     }
 }

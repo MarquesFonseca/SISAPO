@@ -22,7 +22,7 @@ namespace SISAPO.ClassesDiversas
         private static string _strConexao = "Provider = Microsoft.Jet.OLEDB.4.0;Data Source =..\\debug\\cadastro.mdb;Persist Security Info=True";
 #endif
 #if !DEBUG
-            private static string _strConexao = System.Configuration.ConfigurationManager.ConnectionStrings["cadastroConnectionString"].ConnectionString + ";Jet OLEDB:Database Password=9342456;";
+        private static string _strConexao = System.Configuration.ConfigurationManager.ConnectionStrings["cadastroConnectionString"].ConnectionString + ";Jet OLEDB:Database Password=9342456;";
 #endif
 
 
@@ -97,7 +97,7 @@ namespace SISAPO.ClassesDiversas
 
                     string stringSQL = "SELECT Servico, Sigla, Descricao, PrazoDestinoCaixaPostal, PrazoDestinoCaidaPedida, PrazoRemetenteCaixaPostal, PrazoRemetenteCaidaPedida, TipoClassificacao FROM TiposPostais";
                     retorno = dao.RetornaDataTable(stringSQL.ToString());
-                    
+
                 }
                 return retorno;
             }
@@ -703,6 +703,62 @@ namespace SISAPO.ClassesDiversas
                     texto.RemoveAcentos().ToUpper().Contains("CX POS") ||
                     texto.RemoveAcentos().ToUpper().Contains("CX PO") ||
                     texto.RemoveAcentos().ToUpper().Contains("CX P")) ? true : false;
+        }
+
+        public static string RetornaCaixaPostalCorrigidaDefeitoString(string texto)
+        {
+            string NovoTexto = texto.RemoveAcentos().ToUpper();
+
+            if (NovoTexto.Contains("CAIXA PSTAL"))
+            {
+                NovoTexto = NovoTexto.Replace("CAIXA PSTAL", "CAIXA POSTAL");
+            }
+            else if (NovoTexto.Contains("CAIXA POSTA"))
+            {
+                NovoTexto = NovoTexto.Replace("CAIXA POSTA", "CAIXA POSTAL");
+            }
+            else if(NovoTexto.Contains("CAIXA POST"))
+            {
+                NovoTexto = NovoTexto.Replace("CAIXA POST", "CAIXA POSTAL");
+            }
+            else if (NovoTexto.Contains("CAIXA POS"))
+            {
+                NovoTexto = NovoTexto.Replace("CAIXA POS", "CAIXA POSTAL");
+            }
+            else if (NovoTexto.Contains("CAIXA PO"))
+            {
+                NovoTexto = NovoTexto.Replace("CAIXA PO", "CAIXA POSTAL");
+            }
+            else if (NovoTexto.Contains("CAIXA P"))
+            {
+                NovoTexto = NovoTexto.Replace("CAIXA P", "CAIXA POSTAL");
+            }
+            else if (NovoTexto.Contains("CX POSTAL"))
+            {
+                NovoTexto = NovoTexto.Replace("CX POSTAL", "CAIXA POSTAL");
+            }
+            else if (NovoTexto.Contains("CX POSTA"))
+            {
+                NovoTexto = NovoTexto.Replace("CX POSTA", "CAIXA POSTAL");
+            }
+            else if (NovoTexto.Contains("CX POST"))
+            {
+                NovoTexto = NovoTexto.Replace("CX POST", "CAIXA POSTAL");
+            }
+            else if (NovoTexto.Contains("CX POS"))
+            {
+                NovoTexto = NovoTexto.Replace("CX POS", "CAIXA POSTAL");
+            }
+            else if (NovoTexto.Contains("CX PO"))
+            {
+                NovoTexto = NovoTexto.Replace("CX PO", "CAIXA POSTAL");
+            }
+            else if (NovoTexto.Contains("CX P"))
+            {
+                NovoTexto = NovoTexto.Replace("CX P", "CAIXA POSTAL");
+            }
+
+            return NovoTexto;
         }
 
         public static bool RetornaSeEAoRemetente(string texto)

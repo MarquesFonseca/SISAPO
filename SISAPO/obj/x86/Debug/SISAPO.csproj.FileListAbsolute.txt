@@ -51,5 +51,6 @@ C:\Projetos\SISAPO\SISAPO\obj\x86\Debug\SISAPO.exe.manifest
 C:\Projetos\SISAPO\SISAPO\obj\x86\Debug\SISAPO.application
 C:\Projetos\SISAPO\SISAPO\obj\x86\Debug\SISAPO.exe
 C:\Projetos\SISAPO\SISAPO\obj\x86\Debug\SISAPO.pdb
-C:\Projetos\SISAPO\SISAPO\obj\x86\Debug\SISAPO.csprojResolveAssemblyReference.cache
 C:\Projetos\SISAPO\SISAPO\obj\x86\Debug\SISAPO.FormularioAlteracaoEnderecoObjeto.resources
+C:\Projetos\SISAPO\SISAPO\obj\x86\Debug\SISAPO.FormularioAdicionarItemObjeto.resources
+C:\Projetos\SISAPO\SISAPO\obj\x86\Debug\SISAPO.csprojResolveAssemblyReference.cache

@@ -13,6 +13,7 @@ namespace SISAPO
 {
     public partial class FormularioAuxilioGestaoDiaNovo : Form
     {
+        WaitWndFun waitForm = new WaitWndFun();
         DataTable listaObjetos = new DataTable();
         string MontaFiltro = string.Empty;
 
@@ -52,6 +53,8 @@ namespace SISAPO
 
         private void BtnColarConteudoJaCopiado_Click(object sender, EventArgs e)
         {
+            BtnColarConteudoJaCopiado.Enabled = false;
+
             string curDir = Path.GetDirectoryName(System.AppDomain.CurrentDomain.BaseDirectory.ToString());
             string nomeArquivo = string.Format("GestaoDoDia.txt");
             string nomeEnderecoArquivo = string.Format(@"{0}\{1}", curDir, nomeArquivo);
@@ -71,10 +74,12 @@ namespace SISAPO
 
                 try
                 {
+                    waitForm.Show(this);
+
                     string texto = textoColadoAreaTransferencia.ToString();
 
                     listaObjetos = RetornaListaObjetos(textoColadoAreaTransferencia.ToString());
-
+                    
 
                     if (listaObjetos == null || listaObjetos.Rows.Count == 0)
                     {
@@ -83,13 +88,15 @@ namespace SISAPO
 
                         dataGridView1.DataSource = listaObjetos;
                         listaObjetos.Clear(); //Retira os valores da tabela mantendo os campos
+                        waitForm.Close();
                         Mensagens.Informa("Não foi possível carregar.\nCopie a lista e clique no botão para tentar novamente .");
                         LbnQuantidadeRegistros.Text = string.Format("{0}", listaObjetos.Rows.Count);
                         return;
                     }
 
                     FiltrarPorPrazosVENCIDOSCheckBox.Enabled = FiltrarPorPrazosVENCENDOHOJECheckBox.Enabled = FiltrarPorPrazosAVENCERCheckBox.Enabled = true;
-                    FiltrarPorPrazosVENCIDOSCheckBox.Checked = true;
+                    FiltrarPorPrazosVENCIDOSCheckBox.Checked = FiltrarPorPrazosVENCENDOHOJECheckBox.Checked = FiltrarPorPrazosAVENCERCheckBox.Checked = true;
+
                     FiltrarPorClassificacaoPACCCheckBox.Enabled = FiltrarPorClassificacaoSEDEXCheckBox.Enabled = FiltrarPorClassificacaoDIVERSOSCheckBox.Enabled = true;
                     FiltrarPorClassificacaoPACCCheckBox.Checked = FiltrarPorClassificacaoSEDEXCheckBox.Checked = FiltrarPorClassificacaoDIVERSOSCheckBox.Checked = true;
 
@@ -99,10 +106,19 @@ namespace SISAPO
 
                     FiltrosCheckBox();
 
+                    waitForm.Close();
                     //LbnQuantidadeRegistros.Text = bindingSourceObjetosNaoEntregues.Count.ToString();
                     //dataGridView1.Focus();
                 }
-                catch (IOException) { }
+                catch (IOException)
+                {
+                    waitForm.Close();
+                }
+                finally
+                {
+                    waitForm.Close();
+                    BtnColarConteudoJaCopiado.Enabled = true;
+                }
             }
         }
 
@@ -120,9 +136,11 @@ namespace SISAPO
             dtbLista.Columns.Add("DataVencimento", typeof(DateTime));
             dtbLista.Columns.Add("StatusPrazo", typeof(string));
             dtbLista.Columns.Add("QtdDiasVencidos", typeof(string));
-            
+
             try
             {
+                //waitForm.Show(this);
+
                 string[] linha = Texto.Split('\n');
 
                 for (int i = 0; i < linha.Length; i++)
@@ -154,10 +172,13 @@ namespace SISAPO
                         }
                     }
                 }
+
+                //waitForm.Close();
                 return dtbLista;
             }
             catch (Exception ex)
             {
+                //waitForm.Close();
                 Mensagens.Erro(ex.Message);
                 return dtbLista;
             }
@@ -335,6 +356,10 @@ namespace SISAPO
         {
             try
             {
+                BtnRetornaTodosNaoEntregues.Enabled = false;
+
+                waitForm.Show(this);
+
                 listaObjetos = RetornaListaObjetosNaoEntregues();
                 if (listaObjetos == null || listaObjetos.Rows.Count == 0)
                 {
@@ -345,7 +370,8 @@ namespace SISAPO
                 }
 
                 FiltrarPorPrazosVENCIDOSCheckBox.Enabled = FiltrarPorPrazosVENCENDOHOJECheckBox.Enabled = FiltrarPorPrazosAVENCERCheckBox.Enabled = true;
-                FiltrarPorPrazosVENCIDOSCheckBox.Checked = true;
+                FiltrarPorPrazosVENCIDOSCheckBox.Checked = FiltrarPorPrazosVENCENDOHOJECheckBox.Checked = FiltrarPorPrazosAVENCERCheckBox.Checked = true;
+
                 FiltrarPorClassificacaoPACCCheckBox.Enabled = FiltrarPorClassificacaoSEDEXCheckBox.Enabled = FiltrarPorClassificacaoDIVERSOSCheckBox.Enabled = true;
                 FiltrarPorClassificacaoPACCCheckBox.Checked = FiltrarPorClassificacaoSEDEXCheckBox.Checked = FiltrarPorClassificacaoDIVERSOSCheckBox.Checked = true;
 
@@ -354,8 +380,17 @@ namespace SISAPO
                 dataGridView1.DataSource = bindingSourceObjetosNaoEntregues;
 
                 FiltrosCheckBox();
+
+                waitForm.Close();
             }
-            catch (IOException) { }
+            catch (IOException)
+            {
+                waitForm.Close();
+            }
+            finally
+            {
+                BtnRetornaTodosNaoEntregues.Enabled = true;
+            }
         }
 
         private void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)

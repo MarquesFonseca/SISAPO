@@ -290,7 +290,7 @@ namespace SISAPO
             }
         }
 
-        private bool VerificaCodigoRastreamentoPadraoBrasileiro(string TxtPesquisa)
+        public bool VerificaCodigoRastreamentoPadraoBrasileiro(string TxtPesquisa)
         {
             if (TxtPesquisa.Length < 13)
             {
@@ -781,6 +781,8 @@ namespace SISAPO
 
         public void removerItemToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (this.dataGridView1.SelectedRows.Count == 0) return;
+
             DialogResult resposta = Mensagens.Pergunta("Realmente deseja remover itens selecionados?", MessageBoxButtons.YesNoCancel);
             if (resposta == DialogResult.No || resposta == DialogResult.Cancel)
             {
@@ -810,6 +812,9 @@ namespace SISAPO
             {
                 this.BindingContext[tabelaObjetosSROLocalBindingSource].Position = position;
             }
+
+            FormularioConsulta.RetornaComponentesFormularioConsulta().ConsultaTodosNaoEntreguesOrdenadoNome();
+            FormularioPrincipal.RetornaComponentesFormularioPrincipal().BuscaNovoStatusQuantidadeNaoAtualizados();
 
             FormularioConsulta_Activated(sender, e);
         }
@@ -858,7 +863,7 @@ namespace SISAPO
                 FormularioPrincipal.OpcoesImpressaoOrdenacaoPorDataLancamento = false;
                 FormularioPrincipal.OpcoesImpressaoOrdenacaoPorOrdemCrescente = true;
                 FormularioPrincipal.OpcoesImpressaoImprimirUmPorFolha = false;
-                FormularioPrincipal.OpcoesImpressaoImprimirVariosPorFolha = true; ;
+                FormularioPrincipal.OpcoesImpressaoImprimirVariosPorFolha = true;
             }
 
             #region Ordem alfabética
@@ -900,17 +905,17 @@ namespace SISAPO
             #endregion
 
 
-            if (_modeloImpressaoListaObjetos == ModeloImpressaoListaObjetos.ModeloComum)
+            if (_modeloImpressaoListaObjetos == ModeloImpressaoListaObjetos.ModeloLDI)
             {
-                FormularioImpressaoEntregaObjetosModelo1 formularioImpressaoEntregaObjetos = new FormularioImpressaoEntregaObjetosModelo1(novosCodigosSelecionadosOrdenados);
+                FormularioImpressaoEntregaObjetosModelo2 formularioImpressaoEntregaObjetos = new FormularioImpressaoEntregaObjetosModelo2(novosCodigosSelecionadosOrdenados, FormularioPrincipal.OpcoesImpressaoImprimirUmPorFolha, FormularioPrincipal.OpcoesImpressaoImprimirVariosPorFolha);
                 //formularioImpressaoEntregaObjetos.MdiParent = MdiParent;
                 //formularioImpressaoEntregaObjetos.Show();
                 //formularioImpressaoEntregaObjetos.WindowState = FormWindowState.Maximized;
                 //formularioImpressaoEntregaObjetos.Activate();
             }
-            if (_modeloImpressaoListaObjetos == ModeloImpressaoListaObjetos.ModeloLDI)
+            if (_modeloImpressaoListaObjetos == ModeloImpressaoListaObjetos.ModeloComum)
             {
-                FormularioImpressaoEntregaObjetosModelo2 formularioImpressaoEntregaObjetos = new FormularioImpressaoEntregaObjetosModelo2(novosCodigosSelecionadosOrdenados, FormularioPrincipal.OpcoesImpressaoImprimirUmPorFolha, FormularioPrincipal.OpcoesImpressaoImprimirVariosPorFolha);
+                FormularioImpressaoEntregaObjetosModelo1 formularioImpressaoEntregaObjetos = new FormularioImpressaoEntregaObjetosModelo1(novosCodigosSelecionadosOrdenados);
                 //formularioImpressaoEntregaObjetos.MdiParent = MdiParent;
                 //formularioImpressaoEntregaObjetos.Show();
                 //formularioImpressaoEntregaObjetos.WindowState = FormWindowState.Maximized;

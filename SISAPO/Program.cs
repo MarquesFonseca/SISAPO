@@ -29,9 +29,7 @@ namespace SISAPO
 #if !DEBUG
             Configuracoes.TipoAmbiente = TipoAmbiente.Producao;
 #endif
-
-
-
+            
             //inicio teste retorno excel
             //string NomeEndereco = string.Format(@"{0}Tipos_Postais.xls", System.AppDomain.CurrentDomain.BaseDirectory);
             //string NomePlanilha = string.Format("{0}$", "Planilha1");

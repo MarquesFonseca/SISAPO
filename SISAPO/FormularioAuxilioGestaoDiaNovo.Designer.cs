@@ -35,6 +35,13 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormularioAuxilioGestaoDiaNovo));
             this.panel3 = new System.Windows.Forms.Panel();
+            this.BtnImprimirListaAtual = new System.Windows.Forms.Button();
+            this.BtnRetornaTodosNaoEntregues = new System.Windows.Forms.Button();
+            this.tabControl3 = new System.Windows.Forms.TabControl();
+            this.tabPageExibicaoTodosAindaNaoEntregues = new System.Windows.Forms.TabPage();
+            this.label5 = new System.Windows.Forms.Label();
+            this.tabPageExibicaoColarConteudoJaCopiado = new System.Windows.Forms.TabPage();
+            this.BtnColarConteudoJaCopiado = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.FiltrarPorPrazosAVENCERCheckBox = new System.Windows.Forms.CheckBox();
             this.FiltrarPorPrazosVENCENDOHOJECheckBox = new System.Windows.Forms.CheckBox();
@@ -43,9 +50,6 @@
             this.FiltrarPorClassificacaoDIVERSOSCheckBox = new System.Windows.Forms.CheckBox();
             this.FiltrarPorClassificacaoSEDEXCheckBox = new System.Windows.Forms.CheckBox();
             this.FiltrarPorClassificacaoPACCCheckBox = new System.Windows.Forms.CheckBox();
-            this.BtnImprimirListaAtual = new System.Windows.Forms.Button();
-            this.BtnRetornaTodosNaoEntregues = new System.Windows.Forms.Button();
-            this.BtnColarConteudoJaCopiado = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.LbnQuantidadeRegistros = new System.Windows.Forms.Label();
@@ -63,19 +67,15 @@
             this.DataVencimento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.QtdDiasVencidos = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bindingSourceObjetosNaoEntregues = new System.Windows.Forms.BindingSource(this.components);
-            this.tabControl3 = new System.Windows.Forms.TabControl();
-            this.tabPageExibicaoTodosAindaNaoEntregues = new System.Windows.Forms.TabPage();
-            this.label5 = new System.Windows.Forms.Label();
-            this.tabPageExibicaoColarConteudoJaCopiado = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3.SuspendLayout();
+            this.tabControl3.SuspendLayout();
+            this.tabPageExibicaoTodosAindaNaoEntregues.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceObjetosNaoEntregues)).BeginInit();
-            this.tabControl3.SuspendLayout();
-            this.tabPageExibicaoTodosAindaNaoEntregues.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -90,6 +90,93 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(771, 77);
             this.panel3.TabIndex = 0;
+            // 
+            // BtnImprimirListaAtual
+            // 
+            this.BtnImprimirListaAtual.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnImprimirListaAtual.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.BtnImprimirListaAtual.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnImprimirListaAtual.Image = global::SISAPO.Properties.Resources.impressão_26;
+            this.BtnImprimirListaAtual.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnImprimirListaAtual.Location = new System.Drawing.Point(572, 34);
+            this.BtnImprimirListaAtual.Name = "BtnImprimirListaAtual";
+            this.BtnImprimirListaAtual.Size = new System.Drawing.Size(196, 38);
+            this.BtnImprimirListaAtual.TabIndex = 2;
+            this.BtnImprimirListaAtual.Text = "&Imprimir lista atual";
+            this.BtnImprimirListaAtual.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnImprimirListaAtual.UseVisualStyleBackColor = true;
+            this.BtnImprimirListaAtual.Click += new System.EventHandler(this.BtnImprimirListaAtual_Click);
+            // 
+            // BtnRetornaTodosNaoEntregues
+            // 
+            this.BtnRetornaTodosNaoEntregues.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnRetornaTodosNaoEntregues.Image = global::SISAPO.Properties.Resources.icons8_colar_26;
+            this.BtnRetornaTodosNaoEntregues.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnRetornaTodosNaoEntregues.Location = new System.Drawing.Point(21, 35);
+            this.BtnRetornaTodosNaoEntregues.Name = "BtnRetornaTodosNaoEntregues";
+            this.BtnRetornaTodosNaoEntregues.Size = new System.Drawing.Size(329, 38);
+            this.BtnRetornaTodosNaoEntregues.TabIndex = 1;
+            this.BtnRetornaTodosNaoEntregues.Text = "Buscar todos ainda não entregues";
+            this.BtnRetornaTodosNaoEntregues.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnRetornaTodosNaoEntregues.UseVisualStyleBackColor = true;
+            this.BtnRetornaTodosNaoEntregues.Click += new System.EventHandler(this.BtnRetornaTodosNaoEntregues_Click);
+            // 
+            // tabControl3
+            // 
+            this.tabControl3.Controls.Add(this.tabPageExibicaoTodosAindaNaoEntregues);
+            this.tabControl3.Controls.Add(this.tabPageExibicaoColarConteudoJaCopiado);
+            this.tabControl3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tabControl3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabControl3.Location = new System.Drawing.Point(0, 0);
+            this.tabControl3.Name = "tabControl3";
+            this.tabControl3.SelectedIndex = 0;
+            this.tabControl3.Size = new System.Drawing.Size(771, 30);
+            this.tabControl3.TabIndex = 0;
+            this.tabControl3.SelectedIndexChanged += new System.EventHandler(this.tabControl3_SelectedIndexChanged);
+            // 
+            // tabPageExibicaoTodosAindaNaoEntregues
+            // 
+            this.tabPageExibicaoTodosAindaNaoEntregues.Controls.Add(this.label5);
+            this.tabPageExibicaoTodosAindaNaoEntregues.Location = new System.Drawing.Point(4, 29);
+            this.tabPageExibicaoTodosAindaNaoEntregues.Name = "tabPageExibicaoTodosAindaNaoEntregues";
+            this.tabPageExibicaoTodosAindaNaoEntregues.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageExibicaoTodosAindaNaoEntregues.Size = new System.Drawing.Size(763, 0);
+            this.tabPageExibicaoTodosAindaNaoEntregues.TabIndex = 0;
+            this.tabPageExibicaoTodosAindaNaoEntregues.Text = "Exibir todos objetos ainda não entregues";
+            this.tabPageExibicaoTodosAindaNaoEntregues.UseVisualStyleBackColor = true;
+            // 
+            // label5
+            // 
+            this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label5.ForeColor = System.Drawing.Color.Red;
+            this.label5.Location = new System.Drawing.Point(3, 3);
+            this.label5.Name = "label5";
+            this.label5.Padding = new System.Windows.Forms.Padding(0, 8, 0, 0);
+            this.label5.Size = new System.Drawing.Size(757, 0);
+            this.label5.TabIndex = 0;
+            // 
+            // tabPageExibicaoColarConteudoJaCopiado
+            // 
+            this.tabPageExibicaoColarConteudoJaCopiado.Location = new System.Drawing.Point(4, 29);
+            this.tabPageExibicaoColarConteudoJaCopiado.Name = "tabPageExibicaoColarConteudoJaCopiado";
+            this.tabPageExibicaoColarConteudoJaCopiado.Size = new System.Drawing.Size(763, 0);
+            this.tabPageExibicaoColarConteudoJaCopiado.TabIndex = 1;
+            this.tabPageExibicaoColarConteudoJaCopiado.Text = "Exibir itens copiado no SRO";
+            this.tabPageExibicaoColarConteudoJaCopiado.UseVisualStyleBackColor = true;
+            // 
+            // BtnColarConteudoJaCopiado
+            // 
+            this.BtnColarConteudoJaCopiado.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnColarConteudoJaCopiado.Image = global::SISAPO.Properties.Resources.icons8_colar_26;
+            this.BtnColarConteudoJaCopiado.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnColarConteudoJaCopiado.Location = new System.Drawing.Point(21, 36);
+            this.BtnColarConteudoJaCopiado.Name = "BtnColarConteudoJaCopiado";
+            this.BtnColarConteudoJaCopiado.Size = new System.Drawing.Size(329, 38);
+            this.BtnColarConteudoJaCopiado.TabIndex = 0;
+            this.BtnColarConteudoJaCopiado.Text = "&Colar conteúdo já copiado";
+            this.BtnColarConteudoJaCopiado.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnColarConteudoJaCopiado.UseVisualStyleBackColor = true;
+            this.BtnColarConteudoJaCopiado.Click += new System.EventHandler(this.BtnColarConteudoJaCopiado_Click);
             // 
             // groupBox2
             // 
@@ -190,50 +277,6 @@
             this.FiltrarPorClassificacaoPACCCheckBox.Text = "Pac";
             this.FiltrarPorClassificacaoPACCCheckBox.UseVisualStyleBackColor = true;
             this.FiltrarPorClassificacaoPACCCheckBox.CheckedChanged += new System.EventHandler(this.FiltrarPorClassificacaoPACCCheckBox_CheckedChanged);
-            // 
-            // BtnImprimirListaAtual
-            // 
-            this.BtnImprimirListaAtual.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnImprimirListaAtual.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.BtnImprimirListaAtual.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnImprimirListaAtual.Image = global::SISAPO.Properties.Resources.impressão_26;
-            this.BtnImprimirListaAtual.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnImprimirListaAtual.Location = new System.Drawing.Point(572, 34);
-            this.BtnImprimirListaAtual.Name = "BtnImprimirListaAtual";
-            this.BtnImprimirListaAtual.Size = new System.Drawing.Size(196, 38);
-            this.BtnImprimirListaAtual.TabIndex = 2;
-            this.BtnImprimirListaAtual.Text = "&Imprimir lista atual";
-            this.BtnImprimirListaAtual.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnImprimirListaAtual.UseVisualStyleBackColor = true;
-            this.BtnImprimirListaAtual.Click += new System.EventHandler(this.BtnImprimirListaAtual_Click);
-            // 
-            // BtnRetornaTodosNaoEntregues
-            // 
-            this.BtnRetornaTodosNaoEntregues.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnRetornaTodosNaoEntregues.Image = global::SISAPO.Properties.Resources.icons8_colar_26;
-            this.BtnRetornaTodosNaoEntregues.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnRetornaTodosNaoEntregues.Location = new System.Drawing.Point(21, 35);
-            this.BtnRetornaTodosNaoEntregues.Name = "BtnRetornaTodosNaoEntregues";
-            this.BtnRetornaTodosNaoEntregues.Size = new System.Drawing.Size(329, 38);
-            this.BtnRetornaTodosNaoEntregues.TabIndex = 1;
-            this.BtnRetornaTodosNaoEntregues.Text = "Buscar todos ainda não entregues";
-            this.BtnRetornaTodosNaoEntregues.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnRetornaTodosNaoEntregues.UseVisualStyleBackColor = true;
-            this.BtnRetornaTodosNaoEntregues.Click += new System.EventHandler(this.BtnRetornaTodosNaoEntregues_Click);
-            // 
-            // BtnColarConteudoJaCopiado
-            // 
-            this.BtnColarConteudoJaCopiado.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnColarConteudoJaCopiado.Image = global::SISAPO.Properties.Resources.icons8_colar_26;
-            this.BtnColarConteudoJaCopiado.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnColarConteudoJaCopiado.Location = new System.Drawing.Point(21, 36);
-            this.BtnColarConteudoJaCopiado.Name = "BtnColarConteudoJaCopiado";
-            this.BtnColarConteudoJaCopiado.Size = new System.Drawing.Size(329, 38);
-            this.BtnColarConteudoJaCopiado.TabIndex = 0;
-            this.BtnColarConteudoJaCopiado.Text = "&Colar conteúdo já copiado";
-            this.BtnColarConteudoJaCopiado.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnColarConteudoJaCopiado.UseVisualStyleBackColor = true;
-            this.BtnColarConteudoJaCopiado.Click += new System.EventHandler(this.BtnColarConteudoJaCopiado_Click);
             // 
             // panel2
             // 
@@ -432,49 +475,6 @@
             this.QtdDiasVencidos.ReadOnly = true;
             this.QtdDiasVencidos.Width = 110;
             // 
-            // tabControl3
-            // 
-            this.tabControl3.Controls.Add(this.tabPageExibicaoTodosAindaNaoEntregues);
-            this.tabControl3.Controls.Add(this.tabPageExibicaoColarConteudoJaCopiado);
-            this.tabControl3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tabControl3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControl3.Location = new System.Drawing.Point(0, 0);
-            this.tabControl3.Name = "tabControl3";
-            this.tabControl3.SelectedIndex = 0;
-            this.tabControl3.Size = new System.Drawing.Size(771, 30);
-            this.tabControl3.TabIndex = 0;
-            this.tabControl3.SelectedIndexChanged += new System.EventHandler(this.tabControl3_SelectedIndexChanged);
-            // 
-            // tabPageExibicaoTodosAindaNaoEntregues
-            // 
-            this.tabPageExibicaoTodosAindaNaoEntregues.Controls.Add(this.label5);
-            this.tabPageExibicaoTodosAindaNaoEntregues.Location = new System.Drawing.Point(4, 29);
-            this.tabPageExibicaoTodosAindaNaoEntregues.Name = "tabPageExibicaoTodosAindaNaoEntregues";
-            this.tabPageExibicaoTodosAindaNaoEntregues.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageExibicaoTodosAindaNaoEntregues.Size = new System.Drawing.Size(763, 0);
-            this.tabPageExibicaoTodosAindaNaoEntregues.TabIndex = 0;
-            this.tabPageExibicaoTodosAindaNaoEntregues.Text = "Exibir todos objetos ainda não entregues";
-            this.tabPageExibicaoTodosAindaNaoEntregues.UseVisualStyleBackColor = true;
-            // 
-            // label5
-            // 
-            this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label5.ForeColor = System.Drawing.Color.Red;
-            this.label5.Location = new System.Drawing.Point(3, 3);
-            this.label5.Name = "label5";
-            this.label5.Padding = new System.Windows.Forms.Padding(0, 8, 0, 0);
-            this.label5.Size = new System.Drawing.Size(757, 0);
-            this.label5.TabIndex = 0;
-            // 
-            // tabPageExibicaoColarConteudoJaCopiado
-            // 
-            this.tabPageExibicaoColarConteudoJaCopiado.Location = new System.Drawing.Point(4, 29);
-            this.tabPageExibicaoColarConteudoJaCopiado.Name = "tabPageExibicaoColarConteudoJaCopiado";
-            this.tabPageExibicaoColarConteudoJaCopiado.Size = new System.Drawing.Size(763, 0);
-            this.tabPageExibicaoColarConteudoJaCopiado.TabIndex = 1;
-            this.tabPageExibicaoColarConteudoJaCopiado.Text = "Exibir itens copiado no SRO";
-            this.tabPageExibicaoColarConteudoJaCopiado.UseVisualStyleBackColor = true;
-            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.groupBox2);
@@ -504,6 +504,8 @@
             this.Load += new System.EventHandler(this.FormularioAuxilioGestaoDia_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ObjetosComPrazoGuardaVencido_KeyDown);
             this.panel3.ResumeLayout(false);
+            this.tabControl3.ResumeLayout(false);
+            this.tabPageExibicaoTodosAindaNaoEntregues.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -512,8 +514,6 @@
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceObjetosNaoEntregues)).EndInit();
-            this.tabControl3.ResumeLayout(false);
-            this.tabPageExibicaoTodosAindaNaoEntregues.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 

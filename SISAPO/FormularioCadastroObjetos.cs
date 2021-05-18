@@ -104,7 +104,7 @@ namespace SISAPO
             if (e.KeyCode == Keys.F12)
             {
                 FormularioPrincipal.RetornaComponentesFormularioPrincipal().visualizarListaDeObjetosToolStripMenuItem_Click(sender, e);
-            }            
+            }
         }
 
         private void BtnColarConteudoJaCopiado_Click(object sender, EventArgs e)
@@ -246,26 +246,12 @@ namespace SISAPO
                     if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
                     DataSet jaCadastrado = dao.RetornaDataSet(string.Format("SELECT DISTINCT CodigoObjeto, NomeCliente, CaixaPostal FROM TabelaObjetosSROLocal WHERE (CodigoObjeto = '{0}')", linhaItemCodigoObjeto));
 
-                    if (jaCadastrado.Tables[0].Rows.Count >= 1)
+                    if (jaCadastrado.Tables[0].Rows.Count >= 1)//existe na base de dados
                     {
                         string CodigoObjetoAtual = jaCadastrado.Tables[0].Rows[0]["CodigoObjeto"].ToString();
                         string NomeCliente = jaCadastrado.Tables[0].Rows[0]["NomeCliente"].ToString().ToUpper().RemoveAcentos();
                         bool SeECaixaPostal = Convert.ToBoolean(jaCadastrado.Tables[0].Rows[0]["CaixaPostal"]);
-                        bool SeEAoRemetente = (
-                            NomeCliente.ToUpper().RemoveAcentos().Contains("ORIGEM") || 
-                            NomeCliente.ToUpper().RemoveAcentos().Contains("DEVOLUCAO") ||
-                            NomeCliente.ToUpper().RemoveAcentos().Contains("DEVOLUCA") ||
-                            NomeCliente.ToUpper().RemoveAcentos().Contains("DEVOLUC") ||
-                            NomeCliente.ToUpper().RemoveAcentos().Contains("DEVOLU") ||
-                            NomeCliente.ToUpper().RemoveAcentos().Contains("DEVOL") ||
-                            NomeCliente.ToUpper().RemoveAcentos().Contains("DEVOLUCAO") ||
-                            NomeCliente.ToUpper().RemoveAcentos().Contains("REMETENTE") ||
-                            NomeCliente.ToUpper().RemoveAcentos().Contains("REMETENT") ||
-                            NomeCliente.ToUpper().RemoveAcentos().Contains("REMETEN") ||
-                            NomeCliente.ToUpper().RemoveAcentos().Contains("REMETE") ||
-                            NomeCliente.ToUpper().RemoveAcentos().Contains("REMET") ||
-                            NomeCliente.ToUpper().RemoveAcentos().Contains("REME") ||
-                            NomeCliente.ToUpper().RemoveAcentos().Contains("REMETENTE")) ? true : false;
+                        bool SeEAoRemetente = Configuracoes.RetornaSeEAoRemetente(NomeCliente);
                         string TipoPostalServico = string.Empty;
                         string TipoPostalSiglaCodigo = string.Empty;
                         string TipoPostalNomeSiglaCodigo = string.Empty;
@@ -330,7 +316,7 @@ namespace SISAPO
 
                                             new Parametros("@CodigoObjeto", TipoCampo.Text, linhaItemCodigoObjeto)});
                     }
-                    else
+                    else//não existe na base de dados
                     {
                         if (jaCadastrado.Tables[0].Rows.Count == 0)//não existe na base de dados
                         {
@@ -441,5 +427,54 @@ namespace SISAPO
             }
         }
 
+        private void BtnAdicionarItem_Click(object sender, EventArgs e)
+        {
+            using (FormularioAdicionarItemObjeto formularioAdicionarItemObjeto = new FormularioAdicionarItemObjeto())
+            {
+                formularioAdicionarItemObjeto.ShowDialog();
+
+                if (formularioAdicionarItemObjeto.dtbLista.Rows.Count > 0)
+                {
+                    foreach (DataRow item in formularioAdicionarItemObjeto.dtbLista.Rows)
+                    {
+                        if (listaObjetos == null || listaObjetos.Rows.Count == 0)
+                        {
+                            listaObjetos = new DataTable();
+                            listaObjetos.Columns.Add("CodigoObjeto", typeof(string));
+                            listaObjetos.Columns.Add("DataLancamento", typeof(DateTime));
+                            listaObjetos.Columns.Add("DataModificacao", typeof(string));
+                            listaObjetos.Columns.Add("Situacao", typeof(string));
+                        }
+                        bool existe = listaObjetos.AsEnumerable().Any(t => t["CodigoObjeto"].ToString() == item["CodigoObjeto"].ToString());
+                        if (!existe)
+                            listaObjetos.Rows.Add(item["CodigoObjeto"].ToString(), item["DataLancamento"], item["DataModificacao"].ToString(), item["Situacao"].ToString());
+
+                        listaObjetos.DefaultView.Sort = "DataLancamento DESC";
+                        listaObjetos = listaObjetos.DefaultView.ToTable();
+                    }
+
+                    if (listaObjetos.Rows.Count == 0)
+                    {
+                        LblQuantidadeImportados.Text = "";
+                        tabControl1.Visible = false;
+                        this.BtnGravar.Enabled = false;
+                        label2.Text = "";
+                        progressBar1.Visible = false;
+                    }
+                    if (listaObjetos.Rows.Count > 0)
+                    {
+                        LblQuantidadeImportados.Text = string.Format("Listados para importação: '{0}' objetos", listaObjetos.Rows.Count);
+                        dataGridView1.DataSource = listaObjetos;
+                        tabControl1.Visible = true;
+                        this.BtnGravar.Enabled = true;
+                        label2.Text = "Barra de progresso";
+                        progressBar1.Visible = true;
+                        BtnGravar.Focus();
+                    }
+
+                    
+                }
+            }
+        }
     }
 }

@@ -66,6 +66,7 @@
             this.TxtMunicipioPostagem = new System.Windows.Forms.TextBox();
             this.TxtUnidadePostagem = new System.Windows.Forms.TextBox();
             this.panelPrincipal = new System.Windows.Forms.Panel();
+            this.BtnAlterarEndereco = new System.Windows.Forms.Button();
             this.tabControlDadosDestinatarioAusente = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.BtnCoordenadas = new System.Windows.Forms.Button();
@@ -93,7 +94,6 @@
             this.label15 = new System.Windows.Forms.Label();
             this.TxtUnidadeLOEC = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.BtnAlterarEndereco = new System.Windows.Forms.Button();
             this.tabControlPrincipal.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -513,6 +513,19 @@
             this.panelPrincipal.Size = new System.Drawing.Size(739, 610);
             this.panelPrincipal.TabIndex = 0;
             // 
+            // BtnAlterarEndereco
+            // 
+            this.BtnAlterarEndereco.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnAlterarEndereco.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnAlterarEndereco.Location = new System.Drawing.Point(14, 166);
+            this.BtnAlterarEndereco.Name = "BtnAlterarEndereco";
+            this.BtnAlterarEndereco.Size = new System.Drawing.Size(712, 36);
+            this.BtnAlterarEndereco.TabIndex = 0;
+            this.BtnAlterarEndereco.Text = "&Alterar Endereço";
+            this.BtnAlterarEndereco.UseVisualStyleBackColor = true;
+            this.BtnAlterarEndereco.Click += new System.EventHandler(this.BtnAlterarEndereco_Click);
+            // 
             // tabControlDadosDestinatarioAusente
             // 
             this.tabControlDadosDestinatarioAusente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -803,19 +816,6 @@
             this.label7.TabIndex = 2;
             this.label7.Text = "Unidade LOEC";
             // 
-            // BtnAlterarEndereco
-            // 
-            this.BtnAlterarEndereco.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnAlterarEndereco.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnAlterarEndereco.Location = new System.Drawing.Point(14, 166);
-            this.BtnAlterarEndereco.Name = "BtnAlterarEndereco";
-            this.BtnAlterarEndereco.Size = new System.Drawing.Size(712, 36);
-            this.BtnAlterarEndereco.TabIndex = 0;
-            this.BtnAlterarEndereco.Text = "&Alterar Endereço";
-            this.BtnAlterarEndereco.UseVisualStyleBackColor = true;
-            this.BtnAlterarEndereco.Click += new System.EventHandler(this.BtnAlterarEndereco_Click);
-            // 
             // FormularioAlteracaoObjeto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -825,11 +825,13 @@
             this.Controls.Add(this.panel2);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
+            this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(755, 700);
             this.Name = "FormularioAlteracaoObjeto";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Detalhes do objeto";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormularioAlteracaoObjeto_FormClosed);
             this.Load += new System.EventHandler(this.FormularioAlteracaoObjeto_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormularioAlteracaoObjeto_KeyDown);
             this.tabControlPrincipal.ResumeLayout(false);

@@ -419,7 +419,7 @@ namespace SISAPO
                 Html.AppendLine("			</td>                                                                                                                                                                                                                           ");
                 Html.AppendLine("		</tr>		                                                                                                                                                                                                                        ");
                 Html.AppendLine("	</table>                                                                                                                                                                                                                                ");
-                Html.AppendLine("	<div style=\"border: 0px solid rgb(238, 8, 8); width: 100%; height:40px;\"></div>                                                                                                                                                       ");
+                Html.AppendLine("	<div style=\"border: 0px solid rgb(238, 8, 8); width: 100%; height:30px;\"></div>                                                                                                                                                       ");
                 if (valorVerificar.Contains(contador.ToString()))
                 {
                     //Html.AppendLine("	<div style=\"width: 100%; border-bottom: 1px dashed #000000;\"></div>                                                                                                                                                                   ");
