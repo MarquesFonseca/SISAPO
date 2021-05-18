@@ -70,7 +70,8 @@ C:\Projetos\SISAPO\SISAPO\bin\Release\Npgsql.dll
 C:\Projetos\SISAPO\SISAPO\bin\Release\Release.dll
 C:\Projetos\SISAPO\SISAPO\bin\Release\System.Data.SqlServerCe.dll
 C:\Projetos\SISAPO\SISAPO\bin\Release\Microsoft.VisualBasic.PowerPacks.Vs.xml
-C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.csprojResolveAssemblyReference.cache
+C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioAdicionarItemObjeto.resources
+C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioAlteracaoEnderecoObjeto.resources
 C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioAlteracaoTiposPostaisMassa.resources
 C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioAtualizacaoObjetosCompleto.resources
 C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioAtualizacaoObjetosRequeridosJaEntregues.resources
@@ -106,5 +107,3 @@ C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.exe.manifest
 C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.application
 C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.exe
 C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.pdb
-C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioAlteracaoEnderecoObjeto.resources
-C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioAdicionarItemObjeto.resources

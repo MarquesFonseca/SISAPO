@@ -691,18 +691,19 @@ namespace SISAPO.ClassesDiversas
 
         public static bool RetornaSeECaixaPostal(string texto)
         {
-            return (texto.RemoveAcentos().ToUpper().Contains("CAIXA POSTAL") ||
-                    texto.RemoveAcentos().ToUpper().Contains("CAIXA POSTA") ||
-                    texto.RemoveAcentos().ToUpper().Contains("CAIXA POST") ||
-                    texto.RemoveAcentos().ToUpper().Contains("CAIXA POS") ||
-                    texto.RemoveAcentos().ToUpper().Contains("CAIXA PO") ||
-                    texto.RemoveAcentos().ToUpper().Contains("CAIXA P") ||
-                    texto.RemoveAcentos().ToUpper().Contains("CX POSTAL") ||
-                    texto.RemoveAcentos().ToUpper().Contains("CX POSTA") ||
-                    texto.RemoveAcentos().ToUpper().Contains("CX POST") ||
-                    texto.RemoveAcentos().ToUpper().Contains("CX POS") ||
-                    texto.RemoveAcentos().ToUpper().Contains("CX PO") ||
-                    texto.RemoveAcentos().ToUpper().Contains("CX P")) ? true : false;
+            if (texto.RemoveAcentos().ToUpper().Contains("CAIXA POSTAL")) return true;
+            if (texto.RemoveAcentos().ToUpper().Contains("CAIXA POSTA")) return true;
+            if (texto.RemoveAcentos().ToUpper().Contains("CAIXA POST")) return true;
+            if (texto.RemoveAcentos().ToUpper().Contains("CAIXA POS")) return true;
+            if (texto.RemoveAcentos().ToUpper().Contains("CAIXA PO")) return true;
+            if (texto.RemoveAcentos().ToUpper().Contains("CAIXA P")) return true;
+            if (texto.RemoveAcentos().ToUpper().Contains("CX POSTAL")) return true;
+            if (texto.RemoveAcentos().ToUpper().Contains("CX POSTA")) return true;
+            if (texto.RemoveAcentos().ToUpper().Contains("CX POST")) return true;
+            if (texto.RemoveAcentos().ToUpper().Contains("CX POS")) return true;
+            if (texto.RemoveAcentos().ToUpper().Contains("CX PO")) return true;
+            if (texto.RemoveAcentos().ToUpper().Contains("CX P")) return true;
+            return false;
         }
 
         public static string RetornaCaixaPostalCorrigidaDefeitoString(string texto)
@@ -712,50 +713,62 @@ namespace SISAPO.ClassesDiversas
             if (NovoTexto.Contains("CAIXA PSTAL"))
             {
                 NovoTexto = NovoTexto.Replace("CAIXA PSTAL", "CAIXA POSTAL");
+                return NovoTexto;
             }
-            else if (NovoTexto.Contains("CAIXA POSTA"))
+            if (NovoTexto.Contains("CAIXA POSTA"))
             {
                 NovoTexto = NovoTexto.Replace("CAIXA POSTA", "CAIXA POSTAL");
+                return NovoTexto;
             }
-            else if(NovoTexto.Contains("CAIXA POST"))
+            if (NovoTexto.Contains("CAIXA POST"))
             {
                 NovoTexto = NovoTexto.Replace("CAIXA POST", "CAIXA POSTAL");
+                return NovoTexto;
             }
-            else if (NovoTexto.Contains("CAIXA POS"))
+            if (NovoTexto.Contains("CAIXA POS"))
             {
                 NovoTexto = NovoTexto.Replace("CAIXA POS", "CAIXA POSTAL");
+                return NovoTexto;
             }
-            else if (NovoTexto.Contains("CAIXA PO"))
+            if (NovoTexto.Contains("CAIXA PO"))
             {
                 NovoTexto = NovoTexto.Replace("CAIXA PO", "CAIXA POSTAL");
+                return NovoTexto;
             }
-            else if (NovoTexto.Contains("CAIXA P"))
+            if (NovoTexto.Contains("CAIXA P"))
             {
                 NovoTexto = NovoTexto.Replace("CAIXA P", "CAIXA POSTAL");
+                return NovoTexto;
             }
-            else if (NovoTexto.Contains("CX POSTAL"))
+            if (NovoTexto.Contains("CX POSTAL"))
             {
                 NovoTexto = NovoTexto.Replace("CX POSTAL", "CAIXA POSTAL");
+                return NovoTexto;
             }
-            else if (NovoTexto.Contains("CX POSTA"))
+            if (NovoTexto.Contains("CX POSTA"))
             {
                 NovoTexto = NovoTexto.Replace("CX POSTA", "CAIXA POSTAL");
+                return NovoTexto;
             }
-            else if (NovoTexto.Contains("CX POST"))
+            if (NovoTexto.Contains("CX POST"))
             {
                 NovoTexto = NovoTexto.Replace("CX POST", "CAIXA POSTAL");
+                return NovoTexto;
             }
-            else if (NovoTexto.Contains("CX POS"))
+            if (NovoTexto.Contains("CX POS"))
             {
                 NovoTexto = NovoTexto.Replace("CX POS", "CAIXA POSTAL");
+                return NovoTexto;
             }
-            else if (NovoTexto.Contains("CX PO"))
+            if (NovoTexto.Contains("CX PO"))
             {
                 NovoTexto = NovoTexto.Replace("CX PO", "CAIXA POSTAL");
+                return NovoTexto;
             }
-            else if (NovoTexto.Contains("CX P"))
+            if (NovoTexto.Contains("CX P"))
             {
                 NovoTexto = NovoTexto.Replace("CX P", "CAIXA POSTAL");
+                return NovoTexto;
             }
 
             return NovoTexto;
@@ -763,20 +776,20 @@ namespace SISAPO.ClassesDiversas
 
         public static bool RetornaSeEAoRemetente(string texto)
         {
-            return (texto.RemoveAcentos().ToUpper().Contains("ORIGEM") ||
-                    texto.RemoveAcentos().ToUpper().Contains("DEVOLUCAO") ||
-                    texto.RemoveAcentos().ToUpper().Contains("DEVOLUCA") ||
-                    texto.RemoveAcentos().ToUpper().Contains("DEVOLUC") ||
-                    texto.RemoveAcentos().ToUpper().Contains("DEVOLU") ||
-                    texto.RemoveAcentos().ToUpper().Contains("DEVOL") ||
-                    texto.RemoveAcentos().ToUpper().Contains("DEVOLUCAO") ||
-                    texto.RemoveAcentos().ToUpper().Contains("REMETENTE") ||
-                    texto.RemoveAcentos().ToUpper().Contains("REMETENT") ||
-                    texto.RemoveAcentos().ToUpper().Contains("REMETEN") ||
-                    texto.RemoveAcentos().ToUpper().Contains("REMETE") ||
-                    texto.RemoveAcentos().ToUpper().Contains("REMET") ||
-                    texto.RemoveAcentos().ToUpper().Contains("REME") ||
-                    texto.RemoveAcentos().ToUpper().Contains("REMETENTE")) ? true : false;
+            if (texto.RemoveAcentos().ToUpper().Contains("ORIGEM")) return true;
+            if (texto.RemoveAcentos().ToUpper().Contains("DEVOLUCAO")) return true;
+            if (texto.RemoveAcentos().ToUpper().Contains("DEVOLUCA")) return true;
+            if (texto.RemoveAcentos().ToUpper().Contains("DEVOLUC")) return true;
+            if (texto.RemoveAcentos().ToUpper().Contains("DEVOLU")) return true;
+            if (texto.RemoveAcentos().ToUpper().Contains("DEVOL")) return true;
+            if (texto.RemoveAcentos().ToUpper().Contains("REMETENTE")) return true;
+            if (texto.RemoveAcentos().ToUpper().Contains("REMETENT")) return true;
+            if (texto.RemoveAcentos().ToUpper().Contains("REMETEN")) return true;
+            if (texto.RemoveAcentos().ToUpper().Contains("REMETE")) return true;
+            if (texto.RemoveAcentos().ToUpper().Contains("REMET")) return true;
+            if (texto.RemoveAcentos().ToUpper().Contains("REME")) return true;
+            if (texto.RemoveAcentos().ToUpper().Contains("REM")) return true;
+            return false;
         }
 
         private static void CriaTipoPostalInicial(string SQL)

@@ -557,6 +557,7 @@
     <Content Include="cadastroDataSet_xsd.txt" />
     <Content Include="DataSetTabelaObjetosSROLocal_SelectTabelaObjetos.txt" />
     <Content Include="DataSetTabelaObjetosSROLocal_xsd.txt" />
+    <Content Include="FormularioAtualizacaoObjetoAguardandoRetirada18052021erroComNovasModificacoes.txt" />
     <Content Include="FormularioAtualizacaoObjetos_depoisDaTentativaENaoDeuCerto.txt">
       <SubType>Form</SubType>
     </Content>
