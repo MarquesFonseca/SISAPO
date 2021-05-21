@@ -331,23 +331,6 @@ namespace SISAPO
                 this.label2.Text = "Total atualizados: " + e.Result.ToString();
                 this.BtnGravar.Enabled = true;
             }
-
-            if (Application.OpenForms["FormularioConsulta"] != null) //verifica se está aberto
-                FormularioConsulta.RetornaComponentesFormularioConsulta().ConsultaTodosNaoEntreguesOrdenadoNome();
-
-            FormularioPrincipal.RetornaComponentesFormularioPrincipal().BuscaNovoStatusQuantidadeNaoAtualizados();
-
-            if (FormularioPrincipal.RetornaComponentesFormularioPrincipal().RetornaQuantidadeObjetoNaoAtualizado() > 0)
-            {
-                if (FormularioPrincipal.AtualizandoNovosObjetos == false)
-                {
-                    DialogResult pergunta = Mensagens.Pergunta("Uma busca de dados faz necessária.\n\nDeseja realizar a busca agora?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (pergunta == System.Windows.Forms.DialogResult.Yes)
-                    {
-                        FormularioPrincipal.RetornaComponentesFormularioPrincipal().atualizarNovosObjetosToolStripMenuItem_Click(sender, e);
-                    }
-                }
-            }
         }
 
         private void BtnCancelar_Click(object sender, EventArgs e)

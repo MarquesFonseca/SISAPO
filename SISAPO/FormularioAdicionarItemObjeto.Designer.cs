@@ -105,9 +105,9 @@
             this.btnConfirmar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConfirmar.Location = new System.Drawing.Point(3, 6);
             this.btnConfirmar.Name = "btnConfirmar";
-            this.btnConfirmar.Size = new System.Drawing.Size(159, 39);
+            this.btnConfirmar.Size = new System.Drawing.Size(210, 39);
             this.btnConfirmar.TabIndex = 0;
-            this.btnConfirmar.Text = "&Confirmar";
+            this.btnConfirmar.Text = "[F5] &Confirmar";
             this.btnConfirmar.UseVisualStyleBackColor = true;
             this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
             // 
@@ -116,11 +116,11 @@
             this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.Location = new System.Drawing.Point(475, 6);
+            this.btnCancelar.Location = new System.Drawing.Point(431, 6);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(137, 39);
+            this.btnCancelar.Size = new System.Drawing.Size(181, 39);
             this.btnCancelar.TabIndex = 1;
-            this.btnCancelar.Text = "Cancela&r";
+            this.btnCancelar.Text = "[Esc] Cancela&r";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
@@ -177,10 +177,13 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FormularioAdicionarItemObjeto";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Formulário adicionar item objeto";
             this.Load += new System.EventHandler(this.FormularioAdicionarItemObjeto_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormularioAdicionarItemObjeto_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);

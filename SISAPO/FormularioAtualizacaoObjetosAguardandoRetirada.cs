@@ -238,29 +238,14 @@ namespace SISAPO
                             if (webBrowser1.Document.GetElementsByTagName("TR")[i].InnerText.Contains("Comentário:"))
                             {
                                 Comentario = webBrowser1.Document.GetElementsByTagName("TR")[i].InnerText.Replace("Comentário: ", "");
-                                Comentario = Comentario.Trim().ToUpper().RemoveAcentos();
-
-                                //if(Configuracoes.RetornaSeECaixaPostal(Comentario))
-                                //    Comentario = Configuracoes.RetornaCaixaPostalCorrigidaDefeitoString(Comentario);
-
                                 EscreveTextoTextBox("Comentário: " + Comentario.ToString());
                             }
                             if (webBrowser1.Document.GetElementsByTagName("TR")[i].InnerText.Contains("Cliente:"))
                             {
                                 NomeCliente = webBrowser1.Document.GetElementsByTagName("TR")[i].InnerText.Replace("Cliente: ", "");
-                                //if(Configuracoes.RetornaSeECaixaPostal(NomeCliente))
-                                //    NomeCliente = Configuracoes.RetornaCaixaPostalCorrigidaDefeitoString(NomeCliente);
-
                                 //referente ao Tipo Postal
-                                //bool SeEAoRemetente = Configuracoes.RetornaSeEAoRemetente(NomeCliente);
-                                bool SeEAoRemetente = Configuracoes.RetornaSeEAoRemetente(Comentario);
-
-                                //bool SeECaixaPostal = Configuracoes.RetornaSeECaixaPostal(NomeCliente);
-                                //bool SeECaixaPostal = Configuracoes.RetornaSeECaixaPostal(Comentario);
+                                bool SeEAoRemetente = false;
                                 bool SeECaixaPostal = false;
-
-                                string Situacao = string.Empty;
-                                string EnderecoLOEC = string.Empty;
                                 string TipoPostalServico = string.Empty;
                                 string TipoPostalSiglaCodigo = string.Empty;
                                 string TipoPostalNomeSiglaCodigo = string.Empty;
@@ -271,24 +256,13 @@ namespace SISAPO
                                 using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
                                 {
                                     if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
-                                    DataSet ds = dao.RetornaDataSet("SELECT TOP 1 NomeCliente, CaixaPostal, Situacao, EnderecoLOEC FROM TabelaObjetosSROLocal WHERE (CodigoObjeto = @CodigoObjeto)", new Parametros { Nome = "@CodigoObjeto", Tipo = TipoCampo.Text, Valor = CodigoObjetoAtual });
+                                    DataSet ds = dao.RetornaDataSet("SELECT TOP 1 NomeCliente, CaixaPostal FROM TabelaObjetosSROLocal WHERE (CodigoObjeto = @CodigoObjeto)", new Parametros { Nome = "@CodigoObjeto", Tipo = TipoCampo.Text, Valor = CodigoObjetoAtual });
                                     if (ds.Tables[0].Rows.Count == 1)
                                     {
                                         NomeCliente = NomeCliente.Trim() == "" ? ds.Tables[0].Rows[0]["NomeCliente"].ToString().ToUpper().RemoveAcentos() : NomeCliente.Trim().ToUpper().RemoveAcentos();
                                         NomeCliente = string.Format("{0} - {1}", NomeCliente, Comentario);
-                                        //NomeCliente = Configuracoes.RetornaCaixaPostalCorrigidaDefeitoString(NomeCliente);
-
-                                        
-                                        Situacao =  SeECaixaPostal ? "DISPONÍVEL EM CAIXA POSTAL" : ds.Tables[0].Rows[0]["Situacao"].ToString();
-                                        EnderecoLOEC = ds.Tables[0].Rows[0]["EnderecoLOEC"].ToString();
-                                        if (SeECaixaPostal)
-                                        {
-                                            if(string.IsNullOrEmpty(ds.Tables[0].Rows[0]["EnderecoLOEC"].ToString()))
-                                            {
-                                                EnderecoLOEC = Comentario;
-                                            }
-                                        }
-                                        
+                                        SeECaixaPostal = Convert.ToBoolean(ds.Tables[0].Rows[0]["CaixaPostal"]);
+                                        SeEAoRemetente = (NomeCliente.ToUpper().RemoveAcentos().Contains("ORIGEM") || NomeCliente.ToUpper().RemoveAcentos().Contains("DEVOLUCAO") || NomeCliente.ToUpper().RemoveAcentos().Contains("REMETENTE")) ? true : false;
                                         if (FormularioPrincipal.TiposPostais.Rows.Count > 0)
                                         {
                                             DataRow drTipoPostal = FormularioPrincipal.TiposPostais.AsEnumerable().First(T => T["Sigla"].Equals(CodigoObjetoAtual.Substring(0, 2))); //["Código"] - Pega linha retornada dos tipos postais vinda do Excel
@@ -334,18 +308,17 @@ namespace SISAPO
                                     }
 
                                     Mensagens.InformaDesenvolvedor("Cheguei até a gravação do update do nome: " + NomeCliente);
-                                    dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET NomeCliente = @NomeCliente, CodigoLdi = @CodigoLdi, Situacao = @Situacao, Atualizado = @Atualizado, CaixaPostal = @CaixaPostal, EnderecoLOEC = @EnderecoLOEC, Comentario = @Comentario, TipoPostalServico = @TipoPostalServico, TipoPostalSiglaCodigo = @TipoPostalSiglaCodigo, TipoPostalNomeSiglaCodigo = @TipoPostalNomeSiglaCodigo, TipoPostalPrazoDiasCorridosRegulamentado = @TipoPostalPrazoDiasCorridosRegulamentado WHERE CodigoObjeto = @CodigoObjeto ", new List<Parametros>(){
+                                    dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET NomeCliente = @NomeCliente, CodigoLdi = @CodigoLdi, Atualizado = @Atualizado, Comentario = @Comentario, TipoPostalServico = @TipoPostalServico, TipoPostalSiglaCodigo = @TipoPostalSiglaCodigo, TipoPostalNomeSiglaCodigo = @TipoPostalNomeSiglaCodigo, TipoPostalPrazoDiasCorridosRegulamentado = @TipoPostalPrazoDiasCorridosRegulamentado WHERE CodigoObjeto = @CodigoObjeto ", new List<Parametros>(){
                                             new Parametros("@NomeCliente", TipoCampo.Text, NomeCliente),
                                             new Parametros("@CodigoLdi", TipoCampo.Text, Ldi),
-                                            new Parametros("@Situacao", TipoCampo.Text, Situacao),
                                             new Parametros("@Atualizado", TipoCampo.Int, true),
-                                            new Parametros("@CaixaPostal", TipoCampo.Int, SeECaixaPostal),
-                                            new Parametros("@EnderecoLOEC", TipoCampo.Text, EnderecoLOEC),
                                             new Parametros("@Comentario", TipoCampo.Text, Comentario),
+
                                             new Parametros("@TipoPostalServico", TipoCampo.Text, TipoPostalServico),
                                             new Parametros("@TipoPostalSiglaCodigo", TipoCampo.Text, TipoPostalSiglaCodigo),
                                             new Parametros("@TipoPostalNomeSiglaCodigo", TipoCampo.Text, TipoPostalNomeSiglaCodigo),
                                             new Parametros("@TipoPostalPrazoDiasCorridosRegulamentado", TipoCampo.Text, TipoPostalPrazoDiasCorridosRegulamentado),
+
                                             new Parametros("@CodigoObjeto", TipoCampo.Text, CodigoObjetoAtual)});
                                 }
                                 #endregion

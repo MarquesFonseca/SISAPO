@@ -55,6 +55,11 @@
             this.radioButtonAPartirDoDia = new System.Windows.Forms.RadioButton();
             this.radioButtonTodos = new System.Windows.Forms.RadioButton();
             this.label6 = new System.Windows.Forms.Label();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.LblProgresso1 = new System.Windows.Forms.Label();
+            this.LblProgresso2 = new System.Windows.Forms.Label();
+            this.progressBar2 = new System.Windows.Forms.ProgressBar();
             this.tabControlPrincipal.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PrazoDestinatarioCaixaPostalUpDown)).BeginInit();
@@ -109,6 +114,7 @@
             0,
             0,
             0});
+            this.PrazoDestinatarioCaixaPostalUpDown.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PrazoDestinatarioCaixaPostalUpDown_MouseClick);
             // 
             // label1
             // 
@@ -132,6 +138,7 @@
             0,
             0,
             0});
+            this.PrazoDestinatarioCaidaPedidaUpDown.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PrazoDestinatarioCaidaPedidaUpDown_MouseClick);
             // 
             // label2
             // 
@@ -181,6 +188,7 @@
             0,
             0,
             0});
+            this.PrazoRemetenteCaixaPostalUpDown.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PrazoRemetenteCaixaPostalUpDown_MouseClick);
             // 
             // label3
             // 
@@ -204,6 +212,7 @@
             0,
             0,
             0});
+            this.PrazoRemetenteCaidaPedidaUpDown.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PrazoRemetenteCaidaPedidaUpDown_MouseClick);
             // 
             // label4
             // 
@@ -228,6 +237,7 @@
             this.comboBoxTipoClassificacao.Name = "comboBoxTipoClassificacao";
             this.comboBoxTipoClassificacao.Size = new System.Drawing.Size(311, 26);
             this.comboBoxTipoClassificacao.TabIndex = 0;
+            this.comboBoxTipoClassificacao.SelectedIndexChanged += new System.EventHandler(this.comboBoxTipoClassificacao_SelectedIndexChanged);
             // 
             // tabControl2
             // 
@@ -289,7 +299,7 @@
             // 
             this.BtnGravar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnGravar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnGravar.Location = new System.Drawing.Point(28, 413);
+            this.BtnGravar.Location = new System.Drawing.Point(16, 498);
             this.BtnGravar.Name = "BtnGravar";
             this.BtnGravar.Size = new System.Drawing.Size(127, 37);
             this.BtnGravar.TabIndex = 4;
@@ -301,7 +311,7 @@
             // 
             this.BtnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnCancelar.Location = new System.Drawing.Point(582, 413);
+            this.BtnCancelar.Location = new System.Drawing.Point(579, 498);
             this.BtnCancelar.Name = "BtnCancelar";
             this.BtnCancelar.Size = new System.Drawing.Size(152, 37);
             this.BtnCancelar.TabIndex = 5;
@@ -378,11 +388,57 @@
             this.label6.TabIndex = 2;
             this.label6.Text = "Para redefinir prazos dos objetos não entregues";
             // 
+            // progressBar1
+            // 
+            this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.progressBar1.Location = new System.Drawing.Point(16, 395);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(714, 34);
+            this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.progressBar1.TabIndex = 12;
+            // 
+            // LblProgresso1
+            // 
+            this.LblProgresso1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.LblProgresso1.AutoSize = true;
+            this.LblProgresso1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblProgresso1.ForeColor = System.Drawing.Color.Maroon;
+            this.LblProgresso1.Location = new System.Drawing.Point(12, 370);
+            this.LblProgresso1.Name = "LblProgresso1";
+            this.LblProgresso1.Size = new System.Drawing.Size(0, 24);
+            this.LblProgresso1.TabIndex = 11;
+            // 
+            // LblProgresso2
+            // 
+            this.LblProgresso2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.LblProgresso2.AutoSize = true;
+            this.LblProgresso2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblProgresso2.ForeColor = System.Drawing.Color.Maroon;
+            this.LblProgresso2.Location = new System.Drawing.Point(12, 432);
+            this.LblProgresso2.Name = "LblProgresso2";
+            this.LblProgresso2.Size = new System.Drawing.Size(0, 24);
+            this.LblProgresso2.TabIndex = 11;
+            // 
+            // progressBar2
+            // 
+            this.progressBar2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.progressBar2.Location = new System.Drawing.Point(16, 456);
+            this.progressBar2.Name = "progressBar2";
+            this.progressBar2.Size = new System.Drawing.Size(714, 34);
+            this.progressBar2.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.progressBar2.TabIndex = 12;
+            // 
             // FormularioAlteracaoTiposPostaisMassa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(751, 463);
+            this.ClientSize = new System.Drawing.Size(751, 539);
+            this.Controls.Add(this.progressBar2);
+            this.Controls.Add(this.progressBar1);
+            this.Controls.Add(this.LblProgresso2);
+            this.Controls.Add(this.LblProgresso1);
             this.Controls.Add(this.BtnCancelar);
             this.Controls.Add(this.BtnGravar);
             this.Controls.Add(this.tabControl1);
@@ -419,6 +475,7 @@
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -450,5 +507,10 @@
         public System.Windows.Forms.DateTimePicker DataInicial_dateTimePicker;
         private System.Windows.Forms.RadioButton radioButtonAPartirDoDia;
         private System.Windows.Forms.RadioButton radioButtonTodos;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.Label LblProgresso1;
+        private System.Windows.Forms.Label LblProgresso2;
+        private System.Windows.Forms.ProgressBar progressBar2;
     }
 }

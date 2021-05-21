@@ -58,9 +58,11 @@ namespace SISAPO
             this.imprimirListaDeEntregaParaConsultaSelecionadaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modeloLDIToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modeloComumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
             this.imprimirAvisosDeChegadaSelecionadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
             this.imprimirListaDeEntregaParaConsultaSelecionadaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.imprimirAvisoDeChegadaHOJEExcetoEntreguesECaixaPostalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.imprimirListaLDIsExpediçãoPorOrdemDeDecrescenteAoLançamentoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imprimirListaLDIsAssinaturasPorOrdemAlfabéticaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.marcarSelecionadosComoAtualizadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -98,8 +100,6 @@ namespace SISAPO
             this.toolStripStatusLabelDataHora = new System.Windows.Forms.ToolStripStatusLabel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.timerAtualizaDataHoraAtualBarraStatus = new System.Windows.Forms.Timer(this.components);
-            this.imprimirAvisoDeChegadaHOJEExcetoEntreguesECaixaPostalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.imprimirListaLDIsExpediçãoPorOrdemDeDecrescenteAoLançamentoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -285,9 +285,9 @@ namespace SISAPO
             this.imprimirAvisosDeChegadaSelecionadosToolStripMenuItem,
             this.toolStripSeparator11,
             this.imprimirListaDeEntregaParaConsultaSelecionadaToolStripMenuItem1,
-            this.imprimirAvisoDeChegadaHOJEExcetoEntreguesECaixaPostalToolStripMenuItem,
             this.imprimirListaLDIsExpediçãoPorOrdemDeDecrescenteAoLançamentoToolStripMenuItem,
             this.imprimirListaLDIsAssinaturasPorOrdemAlfabéticaToolStripMenuItem,
+            this.imprimirAvisoDeChegadaHOJEExcetoEntreguesECaixaPostalToolStripMenuItem,
             this.toolStripSeparator6,
             this.marcarSelecionadosComoAtualizadoToolStripMenuItem,
             this.marcarSelecionadosComoNaoAtualizadoToolStripMenuItem,
@@ -366,11 +366,6 @@ namespace SISAPO
             this.modeloComumToolStripMenuItem.Text = "Imprimir Modelo Comum";
             this.modeloComumToolStripMenuItem.Click += new System.EventHandler(this.modeloComumToolStripMenuItem_Click);
             // 
-            // toolStripSeparator11
-            // 
-            this.toolStripSeparator11.Name = "toolStripSeparator11";
-            this.toolStripSeparator11.Size = new System.Drawing.Size(479, 6);
-            // 
             // imprimirAvisosDeChegadaSelecionadosToolStripMenuItem
             // 
             this.imprimirAvisosDeChegadaSelecionadosToolStripMenuItem.Image = global::SISAPO.Properties.Resources.if_BT_printer_905556;
@@ -378,6 +373,11 @@ namespace SISAPO
             this.imprimirAvisosDeChegadaSelecionadosToolStripMenuItem.Size = new System.Drawing.Size(482, 22);
             this.imprimirAvisosDeChegadaSelecionadosToolStripMenuItem.Text = "Imprimir Aviso(s) de chegada (Selecionados)";
             this.imprimirAvisosDeChegadaSelecionadosToolStripMenuItem.Click += new System.EventHandler(this.imprimirAvisosDeChegadaSelecionadosToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator11
+            // 
+            this.toolStripSeparator11.Name = "toolStripSeparator11";
+            this.toolStripSeparator11.Size = new System.Drawing.Size(479, 6);
             // 
             // imprimirListaDeEntregaParaConsultaSelecionadaToolStripMenuItem1
             // 
@@ -387,6 +387,22 @@ namespace SISAPO
             this.imprimirListaDeEntregaParaConsultaSelecionadaToolStripMenuItem1.Text = "Imprimir lista de entrega lançados hoje [quinta-feira, 11 de julho de 2019]";
             this.imprimirListaDeEntregaParaConsultaSelecionadaToolStripMenuItem1.Visible = false;
             this.imprimirListaDeEntregaParaConsultaSelecionadaToolStripMenuItem1.Click += new System.EventHandler(this.imprimirListaDeEntregaParaConsultaSelecionadaToolStripMenuItem1_Click);
+            // 
+            // imprimirAvisoDeChegadaHOJEExcetoEntreguesECaixaPostalToolStripMenuItem
+            // 
+            this.imprimirAvisoDeChegadaHOJEExcetoEntreguesECaixaPostalToolStripMenuItem.Image = global::SISAPO.Properties.Resources.if_BT_printer_905556;
+            this.imprimirAvisoDeChegadaHOJEExcetoEntreguesECaixaPostalToolStripMenuItem.Name = "imprimirAvisoDeChegadaHOJEExcetoEntreguesECaixaPostalToolStripMenuItem";
+            this.imprimirAvisoDeChegadaHOJEExcetoEntreguesECaixaPostalToolStripMenuItem.Size = new System.Drawing.Size(482, 22);
+            this.imprimirAvisoDeChegadaHOJEExcetoEntreguesECaixaPostalToolStripMenuItem.Text = "Imprimir lista Aviso de chegada [HOJE] - (Exceto: Entregues e Caixa Postal)";
+            this.imprimirAvisoDeChegadaHOJEExcetoEntreguesECaixaPostalToolStripMenuItem.Click += new System.EventHandler(this.imprimirAvisoDeChegadaHOJEExcetoEntreguesECaixaPostalToolStripMenuItem_Click);
+            // 
+            // imprimirListaLDIsExpediçãoPorOrdemDeDecrescenteAoLançamentoToolStripMenuItem
+            // 
+            this.imprimirListaLDIsExpediçãoPorOrdemDeDecrescenteAoLançamentoToolStripMenuItem.Image = global::SISAPO.Properties.Resources.if_BT_printer_905556;
+            this.imprimirListaLDIsExpediçãoPorOrdemDeDecrescenteAoLançamentoToolStripMenuItem.Name = "imprimirListaLDIsExpediçãoPorOrdemDeDecrescenteAoLançamentoToolStripMenuItem";
+            this.imprimirListaLDIsExpediçãoPorOrdemDeDecrescenteAoLançamentoToolStripMenuItem.Size = new System.Drawing.Size(482, 22);
+            this.imprimirListaLDIsExpediçãoPorOrdemDeDecrescenteAoLançamentoToolStripMenuItem.Text = "Imprimir lista LDIs-Expedição [HOJE] (Por ordem decrescente ao lançamento)";
+            this.imprimirListaLDIsExpediçãoPorOrdemDeDecrescenteAoLançamentoToolStripMenuItem.Click += new System.EventHandler(this.imprimirListaLDIsExpediçãoPorOrdemDeDecrescenteAoLançamentoToolStripMenuItem_Click);
             // 
             // imprimirListaLDIsAssinaturasPorOrdemAlfabéticaToolStripMenuItem
             // 
@@ -684,22 +700,6 @@ namespace SISAPO
             this.timerAtualizaDataHoraAtualBarraStatus.Enabled = true;
             this.timerAtualizaDataHoraAtualBarraStatus.Interval = 1000;
             this.timerAtualizaDataHoraAtualBarraStatus.Tick += new System.EventHandler(this.timerAtualizaDataHoraAtualBarraStatus_Tick);
-            // 
-            // imprimirAvisoDeChegadaHOJEExcetoEntreguesECaixaPostalToolStripMenuItem
-            // 
-            this.imprimirAvisoDeChegadaHOJEExcetoEntreguesECaixaPostalToolStripMenuItem.Image = global::SISAPO.Properties.Resources.if_BT_printer_905556;
-            this.imprimirAvisoDeChegadaHOJEExcetoEntreguesECaixaPostalToolStripMenuItem.Name = "imprimirAvisoDeChegadaHOJEExcetoEntreguesECaixaPostalToolStripMenuItem";
-            this.imprimirAvisoDeChegadaHOJEExcetoEntreguesECaixaPostalToolStripMenuItem.Size = new System.Drawing.Size(482, 22);
-            this.imprimirAvisoDeChegadaHOJEExcetoEntreguesECaixaPostalToolStripMenuItem.Text = "Imprimir lista Aviso de chegada [HOJE] - (Exceto: Entregues e Caixa Postal)";
-            this.imprimirAvisoDeChegadaHOJEExcetoEntreguesECaixaPostalToolStripMenuItem.Click += new System.EventHandler(this.imprimirAvisoDeChegadaHOJEExcetoEntreguesECaixaPostalToolStripMenuItem_Click);
-            // 
-            // imprimirListaLDIsExpediçãoPorOrdemDeDecrescenteAoLançamentoToolStripMenuItem
-            // 
-            this.imprimirListaLDIsExpediçãoPorOrdemDeDecrescenteAoLançamentoToolStripMenuItem.Image = global::SISAPO.Properties.Resources.if_BT_printer_905556;
-            this.imprimirListaLDIsExpediçãoPorOrdemDeDecrescenteAoLançamentoToolStripMenuItem.Name = "imprimirListaLDIsExpediçãoPorOrdemDeDecrescenteAoLançamentoToolStripMenuItem";
-            this.imprimirListaLDIsExpediçãoPorOrdemDeDecrescenteAoLançamentoToolStripMenuItem.Size = new System.Drawing.Size(482, 22);
-            this.imprimirListaLDIsExpediçãoPorOrdemDeDecrescenteAoLançamentoToolStripMenuItem.Text = "Imprimir lista LDIs-Expedição [HOJE] (Por ordem decrescente ao lançamento)";
-            this.imprimirListaLDIsExpediçãoPorOrdemDeDecrescenteAoLançamentoToolStripMenuItem.Click += new System.EventHandler(this.imprimirListaLDIsExpediçãoPorOrdemDeDecrescenteAoLançamentoToolStripMenuItem_Click);
             // 
             // FormularioPrincipal
             // 

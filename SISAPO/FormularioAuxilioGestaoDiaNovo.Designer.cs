@@ -31,10 +31,18 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormularioAuxilioGestaoDiaNovo));
             this.panel3 = new System.Windows.Forms.Panel();
+            this.radioButtonNomeCliente = new System.Windows.Forms.RadioButton();
+            this.radioButtonQtdDiasVencidos = new System.Windows.Forms.RadioButton();
+            this.radioButtonTipoClassificacao = new System.Windows.Forms.RadioButton();
+            this.radioButtonDataLancamento = new System.Windows.Forms.RadioButton();
             this.BtnImprimirListaAtual = new System.Windows.Forms.Button();
             this.BtnRetornaTodosNaoEntregues = new System.Windows.Forms.Button();
             this.tabControl3 = new System.Windows.Forms.TabControl();
@@ -55,19 +63,23 @@
             this.LbnQuantidadeRegistros = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.CodigoLdi = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DataLancamento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.QtdDiasCorridos = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TipoClassificacao = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CodigoObjeto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Sigla = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PrazoTipoClassificacao = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NomeCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StatusPrazo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DataVencimento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.QtdDiasVencidos = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bindingSourceObjetosNaoEntregues = new System.Windows.Forms.BindingSource(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox = new System.Windows.Forms.CheckBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.CodigoLdi = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CodigoObjeto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Sigla = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TipoClassificacao = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NomeCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CaixaPostal = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.StatusPrazo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DataLancamento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.QtdDiasCorridos = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PrazoTipoClassificacao = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DataVencimento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.QtdDiasVencidos = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel3.SuspendLayout();
             this.tabControl3.SuspendLayout();
             this.tabPageExibicaoTodosAindaNaoEntregues.SuspendLayout();
@@ -77,10 +89,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceObjetosNaoEntregues)).BeginInit();
             this.panel1.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.label2);
+            this.panel3.Controls.Add(this.radioButtonNomeCliente);
+            this.panel3.Controls.Add(this.radioButtonQtdDiasVencidos);
+            this.panel3.Controls.Add(this.radioButtonTipoClassificacao);
+            this.panel3.Controls.Add(this.radioButtonDataLancamento);
             this.panel3.Controls.Add(this.BtnImprimirListaAtual);
             this.panel3.Controls.Add(this.BtnRetornaTodosNaoEntregues);
             this.panel3.Controls.Add(this.tabControl3);
@@ -88,8 +106,54 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(771, 77);
+            this.panel3.Size = new System.Drawing.Size(1007, 77);
             this.panel3.TabIndex = 0;
+            // 
+            // radioButtonNomeCliente
+            // 
+            this.radioButtonNomeCliente.AutoSize = true;
+            this.radioButtonNomeCliente.Location = new System.Drawing.Point(476, 54);
+            this.radioButtonNomeCliente.Name = "radioButtonNomeCliente";
+            this.radioButtonNomeCliente.Size = new System.Drawing.Size(88, 17);
+            this.radioButtonNomeCliente.TabIndex = 4;
+            this.radioButtonNomeCliente.Text = "Nome Cliente";
+            this.radioButtonNomeCliente.UseVisualStyleBackColor = true;
+            this.radioButtonNomeCliente.CheckedChanged += new System.EventHandler(this.radioButtonNomeCliente_CheckedChanged);
+            // 
+            // radioButtonQtdDiasVencidos
+            // 
+            this.radioButtonQtdDiasVencidos.AutoSize = true;
+            this.radioButtonQtdDiasVencidos.Location = new System.Drawing.Point(687, 55);
+            this.radioButtonQtdDiasVencidos.Name = "radioButtonQtdDiasVencidos";
+            this.radioButtonQtdDiasVencidos.Size = new System.Drawing.Size(113, 17);
+            this.radioButtonQtdDiasVencidos.TabIndex = 4;
+            this.radioButtonQtdDiasVencidos.Text = "Qtd Dias Vencidos";
+            this.radioButtonQtdDiasVencidos.UseVisualStyleBackColor = true;
+            this.radioButtonQtdDiasVencidos.CheckedChanged += new System.EventHandler(this.radioButtonQtdDiasVencidos_CheckedChanged);
+            // 
+            // radioButtonTipoClassificacao
+            // 
+            this.radioButtonTipoClassificacao.AutoSize = true;
+            this.radioButtonTipoClassificacao.Location = new System.Drawing.Point(570, 54);
+            this.radioButtonTipoClassificacao.Name = "radioButtonTipoClassificacao";
+            this.radioButtonTipoClassificacao.Size = new System.Drawing.Size(111, 17);
+            this.radioButtonTipoClassificacao.TabIndex = 4;
+            this.radioButtonTipoClassificacao.Text = "Tipo Classificacao";
+            this.radioButtonTipoClassificacao.UseVisualStyleBackColor = true;
+            this.radioButtonTipoClassificacao.CheckedChanged += new System.EventHandler(this.radioButtonTipoClassificacao_CheckedChanged);
+            // 
+            // radioButtonDataLancamento
+            // 
+            this.radioButtonDataLancamento.AutoSize = true;
+            this.radioButtonDataLancamento.Checked = true;
+            this.radioButtonDataLancamento.Location = new System.Drawing.Point(360, 54);
+            this.radioButtonDataLancamento.Name = "radioButtonDataLancamento";
+            this.radioButtonDataLancamento.Size = new System.Drawing.Size(110, 17);
+            this.radioButtonDataLancamento.TabIndex = 3;
+            this.radioButtonDataLancamento.TabStop = true;
+            this.radioButtonDataLancamento.Text = "Data Lançamento";
+            this.radioButtonDataLancamento.UseVisualStyleBackColor = true;
+            this.radioButtonDataLancamento.CheckedChanged += new System.EventHandler(this.radioButtonDataLancamento_CheckedChanged);
             // 
             // BtnImprimirListaAtual
             // 
@@ -98,7 +162,7 @@
             this.BtnImprimirListaAtual.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnImprimirListaAtual.Image = global::SISAPO.Properties.Resources.impressão_26;
             this.BtnImprimirListaAtual.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnImprimirListaAtual.Location = new System.Drawing.Point(572, 34);
+            this.BtnImprimirListaAtual.Location = new System.Drawing.Point(808, 34);
             this.BtnImprimirListaAtual.Name = "BtnImprimirListaAtual";
             this.BtnImprimirListaAtual.Size = new System.Drawing.Size(196, 38);
             this.BtnImprimirListaAtual.TabIndex = 2;
@@ -130,7 +194,7 @@
             this.tabControl3.Location = new System.Drawing.Point(0, 0);
             this.tabControl3.Name = "tabControl3";
             this.tabControl3.SelectedIndex = 0;
-            this.tabControl3.Size = new System.Drawing.Size(771, 30);
+            this.tabControl3.Size = new System.Drawing.Size(1007, 30);
             this.tabControl3.TabIndex = 0;
             this.tabControl3.SelectedIndexChanged += new System.EventHandler(this.tabControl3_SelectedIndexChanged);
             // 
@@ -140,7 +204,7 @@
             this.tabPageExibicaoTodosAindaNaoEntregues.Location = new System.Drawing.Point(4, 29);
             this.tabPageExibicaoTodosAindaNaoEntregues.Name = "tabPageExibicaoTodosAindaNaoEntregues";
             this.tabPageExibicaoTodosAindaNaoEntregues.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageExibicaoTodosAindaNaoEntregues.Size = new System.Drawing.Size(763, 0);
+            this.tabPageExibicaoTodosAindaNaoEntregues.Size = new System.Drawing.Size(999, 0);
             this.tabPageExibicaoTodosAindaNaoEntregues.TabIndex = 0;
             this.tabPageExibicaoTodosAindaNaoEntregues.Text = "Exibir todos objetos ainda não entregues";
             this.tabPageExibicaoTodosAindaNaoEntregues.UseVisualStyleBackColor = true;
@@ -152,14 +216,14 @@
             this.label5.Location = new System.Drawing.Point(3, 3);
             this.label5.Name = "label5";
             this.label5.Padding = new System.Windows.Forms.Padding(0, 8, 0, 0);
-            this.label5.Size = new System.Drawing.Size(757, 0);
+            this.label5.Size = new System.Drawing.Size(993, 0);
             this.label5.TabIndex = 0;
             // 
             // tabPageExibicaoColarConteudoJaCopiado
             // 
             this.tabPageExibicaoColarConteudoJaCopiado.Location = new System.Drawing.Point(4, 29);
             this.tabPageExibicaoColarConteudoJaCopiado.Name = "tabPageExibicaoColarConteudoJaCopiado";
-            this.tabPageExibicaoColarConteudoJaCopiado.Size = new System.Drawing.Size(763, 0);
+            this.tabPageExibicaoColarConteudoJaCopiado.Size = new System.Drawing.Size(999, 0);
             this.tabPageExibicaoColarConteudoJaCopiado.TabIndex = 1;
             this.tabPageExibicaoColarConteudoJaCopiado.Text = "Exibir itens copiado no SRO";
             this.tabPageExibicaoColarConteudoJaCopiado.UseVisualStyleBackColor = true;
@@ -285,9 +349,9 @@
             this.panel2.Controls.Add(this.LbnQuantidadeRegistros);
             this.panel2.Controls.Add(this.btnCancelar);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 411);
+            this.panel2.Location = new System.Drawing.Point(0, 421);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(771, 51);
+            this.panel2.Size = new System.Drawing.Size(1007, 51);
             this.panel2.TabIndex = 2;
             // 
             // label1
@@ -322,7 +386,7 @@
             // 
             this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.btnCancelar.Location = new System.Drawing.Point(590, 11);
+            this.btnCancelar.Location = new System.Drawing.Point(826, 11);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(175, 31);
             this.btnCancelar.TabIndex = 2;
@@ -334,7 +398,6 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AllowUserToOrderColumns = true;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -348,41 +411,87 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CodigoLdi,
-            this.DataLancamento,
-            this.QtdDiasCorridos,
-            this.TipoClassificacao,
             this.CodigoObjeto,
             this.Sigla,
-            this.PrazoTipoClassificacao,
+            this.TipoClassificacao,
             this.NomeCliente,
+            this.CaixaPostal,
             this.StatusPrazo,
+            this.DataLancamento,
+            this.QtdDiasCorridos,
+            this.PrazoTipoClassificacao,
             this.DataVencimento,
             this.QtdDiasVencidos});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle7;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 77);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.dataGridView1.RowHeadersWidth = 30;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(550, 334);
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            this.dataGridView1.RowHeadersWidth = 40;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(786, 344);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDoubleClick);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.groupBox3);
+            this.panel1.Controls.Add(this.groupBox2);
+            this.panel1.Controls.Add(this.groupBox1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel1.Location = new System.Drawing.Point(786, 77);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(221, 344);
+            this.panel1.TabIndex = 1;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.Controls.Add(this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox);
+            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox3.Location = new System.Drawing.Point(4, 253);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(214, 85);
+            this.groupBox3.TabIndex = 2;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Mais Filtros";
+            // 
+            // FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox
+            // 
+            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.AutoSize = true;
+            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.Enabled = false;
+            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.Location = new System.Drawing.Point(15, 29);
+            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.Name = "FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox";
+            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.Size = new System.Drawing.Size(181, 24);
+            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.TabIndex = 0;
+            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.Text = "Incluir Caixa Postal";
+            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.UseVisualStyleBackColor = true;
+            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.CheckedChanged += new System.EventHandler(this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox_CheckedChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.label2.Location = new System.Drawing.Point(357, 32);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(110, 20);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Ordenar por:";
             // 
             // CodigoLdi
             // 
@@ -391,7 +500,74 @@
             this.CodigoLdi.HeaderText = "Código Ldi";
             this.CodigoLdi.Name = "CodigoLdi";
             this.CodigoLdi.ReadOnly = true;
-            this.CodigoLdi.Width = 82;
+            this.CodigoLdi.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.CodigoLdi.Visible = false;
+            this.CodigoLdi.Width = 63;
+            // 
+            // CodigoObjeto
+            // 
+            this.CodigoObjeto.DataPropertyName = "CodigoObjeto";
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.CodigoObjeto.DefaultCellStyle = dataGridViewCellStyle3;
+            this.CodigoObjeto.HeaderText = "Código Objeto";
+            this.CodigoObjeto.Name = "CodigoObjeto";
+            this.CodigoObjeto.ReadOnly = true;
+            this.CodigoObjeto.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.CodigoObjeto.Width = 160;
+            // 
+            // Sigla
+            // 
+            this.Sigla.DataPropertyName = "Sigla";
+            this.Sigla.HeaderText = "Sigla";
+            this.Sigla.Name = "Sigla";
+            this.Sigla.ReadOnly = true;
+            this.Sigla.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Sigla.Width = 40;
+            // 
+            // TipoClassificacao
+            // 
+            this.TipoClassificacao.DataPropertyName = "TipoClassificacao";
+            this.TipoClassificacao.HeaderText = "Tipo Classificação";
+            this.TipoClassificacao.Name = "TipoClassificacao";
+            this.TipoClassificacao.ReadOnly = true;
+            this.TipoClassificacao.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // NomeCliente
+            // 
+            this.NomeCliente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.NomeCliente.DataPropertyName = "NomeCliente";
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NomeCliente.DefaultCellStyle = dataGridViewCellStyle4;
+            this.NomeCliente.HeaderText = "Nome Cliente";
+            this.NomeCliente.MinimumWidth = 20;
+            this.NomeCliente.Name = "NomeCliente";
+            this.NomeCliente.ReadOnly = true;
+            this.NomeCliente.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.NomeCliente.Width = 76;
+            // 
+            // CaixaPostal
+            // 
+            this.CaixaPostal.DataPropertyName = "CaixaPostal";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.NullValue = false;
+            this.CaixaPostal.DefaultCellStyle = dataGridViewCellStyle5;
+            this.CaixaPostal.HeaderText = "Caixa Postal";
+            this.CaixaPostal.Name = "CaixaPostal";
+            this.CaixaPostal.ReadOnly = true;
+            this.CaixaPostal.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.CaixaPostal.Width = 75;
+            // 
+            // StatusPrazo
+            // 
+            this.StatusPrazo.DataPropertyName = "StatusPrazo";
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StatusPrazo.DefaultCellStyle = dataGridViewCellStyle6;
+            this.StatusPrazo.HeaderText = "Status";
+            this.StatusPrazo.Name = "StatusPrazo";
+            this.StatusPrazo.ReadOnly = true;
+            this.StatusPrazo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.StatusPrazo.Width = 120;
             // 
             // DataLancamento
             // 
@@ -409,30 +585,8 @@
             this.QtdDiasCorridos.HeaderText = "Qtd Dias Corridos";
             this.QtdDiasCorridos.Name = "QtdDiasCorridos";
             this.QtdDiasCorridos.ReadOnly = true;
+            this.QtdDiasCorridos.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.QtdDiasCorridos.Width = 95;
-            // 
-            // TipoClassificacao
-            // 
-            this.TipoClassificacao.DataPropertyName = "TipoClassificacao";
-            this.TipoClassificacao.HeaderText = "Tipo Classificação";
-            this.TipoClassificacao.Name = "TipoClassificacao";
-            this.TipoClassificacao.ReadOnly = true;
-            // 
-            // CodigoObjeto
-            // 
-            this.CodigoObjeto.DataPropertyName = "CodigoObjeto";
-            this.CodigoObjeto.HeaderText = "Código Objeto";
-            this.CodigoObjeto.Name = "CodigoObjeto";
-            this.CodigoObjeto.ReadOnly = true;
-            this.CodigoObjeto.Width = 99;
-            // 
-            // Sigla
-            // 
-            this.Sigla.DataPropertyName = "Sigla";
-            this.Sigla.HeaderText = "Sigla";
-            this.Sigla.Name = "Sigla";
-            this.Sigla.ReadOnly = true;
-            this.Sigla.Width = 40;
             // 
             // PrazoTipoClassificacao
             // 
@@ -440,24 +594,7 @@
             this.PrazoTipoClassificacao.HeaderText = "Prazo Tipo Class.";
             this.PrazoTipoClassificacao.Name = "PrazoTipoClassificacao";
             this.PrazoTipoClassificacao.ReadOnly = true;
-            // 
-            // NomeCliente
-            // 
-            this.NomeCliente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.NomeCliente.DataPropertyName = "NomeCliente";
-            this.NomeCliente.HeaderText = "Nome Cliente";
-            this.NomeCliente.MinimumWidth = 20;
-            this.NomeCliente.Name = "NomeCliente";
-            this.NomeCliente.ReadOnly = true;
-            this.NomeCliente.Width = 95;
-            // 
-            // StatusPrazo
-            // 
-            this.StatusPrazo.DataPropertyName = "StatusPrazo";
-            this.StatusPrazo.HeaderText = "Status";
-            this.StatusPrazo.Name = "StatusPrazo";
-            this.StatusPrazo.ReadOnly = true;
-            this.StatusPrazo.Width = 120;
+            this.PrazoTipoClassificacao.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // DataVencimento
             // 
@@ -465,6 +602,7 @@
             this.DataVencimento.HeaderText = "Data Vencimento";
             this.DataVencimento.Name = "DataVencimento";
             this.DataVencimento.ReadOnly = true;
+            this.DataVencimento.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.DataVencimento.Width = 98;
             // 
             // QtdDiasVencidos
@@ -473,23 +611,14 @@
             this.QtdDiasVencidos.HeaderText = "Qtd Dias Vencidos";
             this.QtdDiasVencidos.Name = "QtdDiasVencidos";
             this.QtdDiasVencidos.ReadOnly = true;
+            this.QtdDiasVencidos.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.QtdDiasVencidos.Width = 110;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.groupBox2);
-            this.panel1.Controls.Add(this.groupBox1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(550, 77);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(221, 334);
-            this.panel1.TabIndex = 1;
             // 
             // FormularioAuxilioGestaoDiaNovo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(771, 462);
+            this.ClientSize = new System.Drawing.Size(1007, 472);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
@@ -501,9 +630,11 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Formulário de auxílio à gestão do dia";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormularioAuxilioGestaoDiaNovo_FormClosing);
             this.Load += new System.EventHandler(this.FormularioAuxilioGestaoDia_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ObjetosComPrazoGuardaVencido_KeyDown);
             this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.tabControl3.ResumeLayout(false);
             this.tabPageExibicaoTodosAindaNaoEntregues.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
@@ -515,6 +646,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceObjetosNaoEntregues)).EndInit();
             this.panel1.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -539,21 +672,29 @@
         private System.Windows.Forms.CheckBox FiltrarPorClassificacaoDIVERSOSCheckBox;
         private System.Windows.Forms.CheckBox FiltrarPorClassificacaoSEDEXCheckBox;
         private System.Windows.Forms.CheckBox FiltrarPorClassificacaoPACCCheckBox;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CodigoLdi;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DataLancamento;
-        private System.Windows.Forms.DataGridViewTextBoxColumn QtdDiasCorridos;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TipoClassificacao;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CodigoObjeto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Sigla;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PrazoTipoClassificacao;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NomeCliente;
-        private System.Windows.Forms.DataGridViewTextBoxColumn StatusPrazo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DataVencimento;
-        private System.Windows.Forms.DataGridViewTextBoxColumn QtdDiasVencidos;
         private System.Windows.Forms.TabControl tabControl3;
         private System.Windows.Forms.TabPage tabPageExibicaoTodosAindaNaoEntregues;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TabPage tabPageExibicaoColarConteudoJaCopiado;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.RadioButton radioButtonTipoClassificacao;
+        private System.Windows.Forms.RadioButton radioButtonDataLancamento;
+        private System.Windows.Forms.RadioButton radioButtonNomeCliente;
+        private System.Windows.Forms.RadioButton radioButtonQtdDiasVencidos;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.CheckBox FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CodigoLdi;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CodigoObjeto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Sigla;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TipoClassificacao;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NomeCliente;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn CaixaPostal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn StatusPrazo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DataLancamento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn QtdDiasCorridos;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PrazoTipoClassificacao;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DataVencimento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn QtdDiasVencidos;
     }
 }

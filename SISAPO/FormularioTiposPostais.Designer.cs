@@ -59,6 +59,7 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.comboBoxTipoClassificacao = new System.Windows.Forms.ComboBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.BtnAlterarPrazosTodosSelecionados = new System.Windows.Forms.Button();
             this.BtnAdicionarNovosTiposPostais = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -370,6 +371,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.BtnAlterarPrazosTodosSelecionados);
             this.groupBox3.Controls.Add(this.BtnAdicionarNovosTiposPostais);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox3.Location = new System.Drawing.Point(0, 0);
@@ -377,6 +379,17 @@
             this.groupBox3.Size = new System.Drawing.Size(763, 70);
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
+            // 
+            // BtnAlterarPrazosTodosSelecionados
+            // 
+            this.BtnAlterarPrazosTodosSelecionados.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.BtnAlterarPrazosTodosSelecionados.Location = new System.Drawing.Point(12, 12);
+            this.BtnAlterarPrazosTodosSelecionados.Name = "BtnAlterarPrazosTodosSelecionados";
+            this.BtnAlterarPrazosTodosSelecionados.Size = new System.Drawing.Size(192, 53);
+            this.BtnAlterarPrazosTodosSelecionados.TabIndex = 0;
+            this.BtnAlterarPrazosTodosSelecionados.Text = "Alterar prazo de todos selecionados";
+            this.BtnAlterarPrazosTodosSelecionados.UseVisualStyleBackColor = true;
+            this.BtnAlterarPrazosTodosSelecionados.Click += new System.EventHandler(this.BtnAlterarPrazosTodosSelecionados_Click);
             // 
             // BtnAdicionarNovosTiposPostais
             // 
@@ -387,7 +400,7 @@
             this.BtnAdicionarNovosTiposPostais.Location = new System.Drawing.Point(499, 12);
             this.BtnAdicionarNovosTiposPostais.Name = "BtnAdicionarNovosTiposPostais";
             this.BtnAdicionarNovosTiposPostais.Size = new System.Drawing.Size(252, 53);
-            this.BtnAdicionarNovosTiposPostais.TabIndex = 0;
+            this.BtnAdicionarNovosTiposPostais.TabIndex = 1;
             this.BtnAdicionarNovosTiposPostais.Text = "&Adicionar novos registros";
             this.BtnAdicionarNovosTiposPostais.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BtnAdicionarNovosTiposPostais.UseVisualStyleBackColor = true;
@@ -457,5 +470,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn PrazoRemetenteCaidaPedida;
         private System.Windows.Forms.DataGridViewTextBoxColumn PrazoRemetenteCaixaPostal;
         private System.Windows.Forms.DataGridViewTextBoxColumn DataAlteracao;
+        private System.Windows.Forms.Button BtnAlterarPrazosTodosSelecionados;
     }
 }

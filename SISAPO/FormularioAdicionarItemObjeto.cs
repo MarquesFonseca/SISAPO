@@ -120,10 +120,12 @@ namespace SISAPO
             if (dtbLista.Rows.Count == 0)
             {
                 ClicouConfirmar = false;
+                ClicouCancelar = true;
             }
             else
             {
                 ClicouConfirmar = true;
+                ClicouCancelar = false;
             }
             this.Close();
         }
@@ -132,6 +134,18 @@ namespace SISAPO
         {
             ClicouCancelar = true;
             this.Close();
+        }
+
+        private void FormularioAdicionarItemObjeto_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.F5)
+            {
+                btnConfirmar_Click(sender, e);
+            }
+            if (e.KeyCode == Keys.Escape)
+            {
+                btnCancelar_Click(sender, e);
+            }
         }
     }
 }

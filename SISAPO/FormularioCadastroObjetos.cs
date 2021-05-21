@@ -211,6 +211,7 @@ namespace SISAPO
                 {
                     this.backgroundWorker1.RunWorkerAsync();
                     this.BtnGravar.Enabled = false;
+                    this.BtnAdicionarItem.Enabled = false;
                 }
             }
             catch (Exception ex)
@@ -380,7 +381,8 @@ namespace SISAPO
                 FormularioPrincipal.RetornaComponentesFormularioPrincipal().AtualizaDataHoraUltimaAtualizacaoImportacao();
                 this.label2.Text = "Total atualizados: " + e.Result.ToString();
                 this.BtnGravar.Enabled = true;
-                textBox1.Enabled = true;
+                this.textBox1.Enabled = true;
+                this.BtnAdicionarItem.Enabled = true;
             }
 
             if (Application.OpenForms["FormularioConsulta"] != null) //verifica se está aberto

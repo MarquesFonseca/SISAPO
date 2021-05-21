@@ -352,45 +352,45 @@ namespace SISAPO
 
 
 
-            //return;
+            return;
 
-            foreach (Form item in MdiChildren)
-            {
-                if (item.Name != "FormularioConsulta" && item.Name != "FormularioCadastroObjetos")
-                {
-                    //fecha todos que não for "FormularioConsulta" e "FormularioCadastroObjetos"
-                    item.Close();
-                }
-            }
+            //foreach (Form item in MdiChildren)
+            //{
+            //    if (item.Name != "FormularioConsulta" && item.Name != "FormularioCadastroObjetos")
+            //    {
+            //        //fecha todos que não for "FormularioConsulta" e "FormularioCadastroObjetos"
+            //        item.Close();
+            //    }
+            //}
 
-            bool abertoConsulta = false;
-            bool abertoCadastro = false;
-            foreach (Form item in MdiChildren)
-            {
-                if (item.Name == "FormularioConsulta") abertoConsulta = true;
-                if (item.Name != "FormularioCadastroObjetos") abertoCadastro = true;
-            }
+            //bool abertoConsulta = false;
+            //bool abertoCadastro = false;
+            //foreach (Form item in MdiChildren)
+            //{
+            //    if (item.Name == "FormularioConsulta") abertoConsulta = true;
+            //    if (item.Name != "FormularioCadastroObjetos") abertoCadastro = true;
+            //}
 
-            if (abertoConsulta && abertoCadastro)
-            {
-                LayoutMdi(MdiLayout.TileVertical);
-                return;
-            }
-            else
-            {
-                if (abertoCadastro && !abertoConsulta)
-                {
-                    foreach (Form item in MdiChildren)
-                    {
-                        if (item.Name == "FormularioCadastroObjetos")
-                        {
-                            item.WindowState = FormWindowState.Maximized;
-                            item.Activate();
-                            return;
-                        }
-                    }
-                }
-            }
+            //if (abertoConsulta && abertoCadastro)
+            //{
+            //    LayoutMdi(MdiLayout.TileVertical);
+            //    return;
+            //}
+            //else
+            //{
+            //    if (abertoCadastro && !abertoConsulta)
+            //    {
+            //        foreach (Form item in MdiChildren)
+            //        {
+            //            if (item.Name == "FormularioCadastroObjetos")
+            //            {
+            //                item.WindowState = FormWindowState.Maximized;
+            //                item.Activate();
+            //                return;
+            //            }
+            //        }
+            //    }
+            //}
         }
 
         private void TiposPostaisToolStripMenuItem_Click(object sender, EventArgs e)
@@ -417,24 +417,34 @@ namespace SISAPO
 
         public void cadastrarNovosTiposPostaisToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            bool estaAberto = false;
-            foreach (Form item in MdiChildren)
-            {
-                if (item.Name == "FormularioCadastroTiposPostais")
-                {
-                    estaAberto = true;
-                    item.Activate();
-                    break;
-                }
-            }
-            if (estaAberto) return;
+            //bool estaAberto = false;
+            //foreach (Form item in MdiChildren)
+            //{
+            //    if (item.Name == "FormularioCadastroTiposPostais")
+            //    {
+            //        estaAberto = true;
+            //        item.Activate();
+            //        break;
+            //    }
+            //}
+            //if (estaAberto) return;
 
-            FormularioCadastroTiposPostais formularioCadastroTiposPostais = new FormularioCadastroTiposPostais();
-            formularioCadastroTiposPostais.MdiParent = this;
-            formularioCadastroTiposPostais.Show();
-            //formularioSRORastreamentoUnificado.WindowState = FormWindowState.Normal;
-            formularioCadastroTiposPostais.WindowState = FormWindowState.Maximized;
-            formularioCadastroTiposPostais.Activate();
+            //FormularioCadastroTiposPostais formularioCadastroTiposPostais = new FormularioCadastroTiposPostais();
+            //formularioCadastroTiposPostais.MdiParent = this;
+            //formularioCadastroTiposPostais.Show();
+            ////formularioSRORastreamentoUnificado.WindowState = FormWindowState.Normal;
+            //formularioCadastroTiposPostais.WindowState = FormWindowState.Maximized;
+            //formularioCadastroTiposPostais.Activate();
+
+            using (FormularioCadastroTiposPostais formularioCadastroTiposPostais = new FormularioCadastroTiposPostais())
+            {
+                formularioCadastroTiposPostais.FormBorderStyle = FormBorderStyle.FixedSingle;
+                formularioCadastroTiposPostais.WindowState = FormWindowState.Normal;
+                formularioCadastroTiposPostais.StartPosition = FormStartPosition.CenterParent;
+                formularioCadastroTiposPostais.MinimizeBox = false;
+                formularioCadastroTiposPostais.MaximizeBox = false;
+                formularioCadastroTiposPostais.ShowDialog();
+            }
         }
 
         private void atualizarNovosObjetosPostadosToolStripMenuItem_Click(object sender, EventArgs e)

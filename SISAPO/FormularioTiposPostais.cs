@@ -35,23 +35,43 @@ namespace SISAPO
                 bsTiposPostais.DataSource = dtTiposPostais;
                 dataGridView1.DataSource = bsTiposPostais;
                 LbnQuantidadeRegistros.Text = bsTiposPostais.Count.ToString();
-                SendKeys.Send("\t");
-                SendKeys.Send("\t");
 
+                TxtPesquisa.Focus();
+                TxtPesquisa.ScrollToCaret();
+                TxtPesquisa.ScrollToCaret();
+
+                SendKeys.Send("{TAB}");
+                SendKeys.Send("{TAB}");
+                SendKeys.Send("{TAB}");
             }
         }
 
         private void BtnAdicionarNovosTiposPostais_Click(object sender, EventArgs e)
         {
             FormularioPrincipal.RetornaComponentesFormularioPrincipal().cadastrarNovosTiposPostaisToolStripMenuItem_Click(sender, e);
+
+            using (DAO dao = new DAO(TipoBanco.OleDb, Configuracoes.strConexao))
+            {
+                if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+
+                dtTiposPostais = dao.RetornaDataTable("SELECT Codigo, Servico, Sigla, Descricao, PrazoDestinoCaidaPedida, PrazoDestinoCaixaPostal, PrazoRemetenteCaidaPedida, PrazoRemetenteCaixaPostal, TipoClassificacao, DataAlteracao FROM TiposPostais");
+                bsTiposPostais = new BindingSource();
+                bsTiposPostais.DataSource = dtTiposPostais;
+                dataGridView1.DataSource = bsTiposPostais;
+                LbnQuantidadeRegistros.Text = bsTiposPostais.Count.ToString();
+            }
+
+            FormularioPrincipal.TiposPostais = Configuracoes.RetornaTiposPostais();
+
+            MontaFiltro();
         }
-        
+
         private void comboBoxTipoClassificacao_SelectedValueChanged(object sender, EventArgs e)
         {
             if (bsTiposPostais == null) return;
             MontaFiltro();
         }
-        
+
         private void TxtPesquisa_TextChanged(object sender, EventArgs e)
         {
             if (bsTiposPostais == null) return;
@@ -117,6 +137,8 @@ namespace SISAPO
 
             bsTiposPostais.Filter = resultado;
 
+            bsTiposPostais.Sort = "Sigla ASC";
+
             LbnQuantidadeRegistros.Text = bsTiposPostais.Count.ToString();
         }
 
@@ -136,9 +158,10 @@ namespace SISAPO
         private void acoesAlterarPrazoTodosSelecionadosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             selecionados = new Dictionary<string, string>();
+            List<string> Classificacao = new List<string>();
             if (dataGridView1.SelectedRows.Count == 0)
             {
-                Mensagens.Informa("Para impressão da lista de entrega é necessário selecionar algum objeto.");
+                Mensagens.Erro("Para esta ação é necessário selecionar algum item.");
                 return;
             }
 
@@ -146,10 +169,21 @@ namespace SISAPO
             {
                 bool existe = selecionados.AsEnumerable().Any(t => t.Key == this.dataGridView1.SelectedRows[i].Cells["Codigo"].Value.ToString());
                 if (!existe)
+                {
                     selecionados.Add(this.dataGridView1.SelectedRows[i].Cells["Codigo"].Value.ToString(), this.dataGridView1.SelectedRows[i].Cells["Sigla"].Value.ToString());
+                    Classificacao.Add(this.dataGridView1.SelectedRows[i].Cells["TipoClassificacao"].Value.ToString());
+                }
             }
 
-            using (FormularioAlteracaoTiposPostaisMassa formularioAlteracaoTiposPostaisMassa = new FormularioAlteracaoTiposPostaisMassa(selecionados))
+            var GrupoTipoPostal = Classificacao.AsEnumerable().GroupBy(t => t).Distinct().ToList();
+            if (GrupoTipoPostal.Count > 1)
+            {
+                Mensagens.Erro("Operação não permitida!\nÉ necessário escolher itens com mesma classificação.");
+                return;
+            }
+
+
+            using (FormularioAlteracaoTiposPostaisMassa formularioAlteracaoTiposPostaisMassa = new FormularioAlteracaoTiposPostaisMassa(selecionados, Classificacao[0]))
             {
                 formularioAlteracaoTiposPostaisMassa.ShowDialog();
             }
@@ -187,6 +221,11 @@ namespace SISAPO
             {
                 FormularioPrincipal.RetornaComponentesFormularioPrincipal().visualizarListaDeObjetosToolStripMenuItem_Click(sender, e);
             }
+        }
+
+        private void BtnAlterarPrazosTodosSelecionados_Click(object sender, EventArgs e)
+        {
+            acoesAlterarPrazoTodosSelecionadosToolStripMenuItem_Click(sender, e);
         }
     }
 }

@@ -175,14 +175,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SISAPO.exe" size="12465664">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SISAPO.exe" size="12475392">
       <assemblyIdentity name="SISAPO" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>dLqzoGhjwiAydtSH2j/y1SEWce8=</dsig:DigestValue>
+        <dsig:DigestValue>nDWlE5B6dqqWbmsgum7s/4V2XJA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -225,6 +225,15 @@
       <dsig:DigestValue>zrp/lvmjeUhUXg5iIcElOD75gyg=</dsig:DigestValue>
     </hash>
   </file>
+  <file name="FormularioAtualizacaoObjetoAguardandoRetirada18052021erroComNovasModificacoes.txt" size="38501">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>xy71Dom8oRRSM4vcsgFcMhcsU+o=</dsig:DigestValue>
+    </hash>
+  </file>
   <file name="FormularioAtualizacaoObjetos.cs.txt" size="37533">
     <hash>
       <dsig:Transforms>
@@ -252,13 +261,13 @@
       <dsig:DigestValue>THOgaioJDIzeQW32JfoQEKQTIek=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="GESTAO DO DIA.txt" size="1272">
+  <file name="GESTAO DO DIA.txt" size="1316">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>PESZSbQKBQdNYioGwmo8CSFYAOU=</dsig:DigestValue>
+      <dsig:DigestValue>k/4VUsQA4fKg581/zTtEQ0u4a3U=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Ico.ico" size="370070">

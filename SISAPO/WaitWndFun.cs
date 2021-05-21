@@ -30,12 +30,24 @@ namespace SISAPO
         }
         public void Close()
         {
-            if (loadingForm != null)
+            try
             {
                 loadingForm.BeginInvoke(new System.Threading.ThreadStart(loadingForm.CloseLoadingForm));
                 loadingForm = null;
                 loadthread = null;
+
+                loadingForm.Dispose();
+                //if (loadingForm != null)
+                //{
+                //    loadingForm.BeginInvoke(new System.Threading.ThreadStart(loadingForm.CloseLoadingForm));
+                //    loadingForm = null;
+                //    loadthread = null;
+                //}
             }
+            catch (Exception)
+            {
+            }
+
         }
         private void LoadingProcessEx()
         {
