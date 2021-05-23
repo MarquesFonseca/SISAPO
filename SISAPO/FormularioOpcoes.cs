@@ -60,7 +60,7 @@ namespace SISAPO
                 {
                     if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
                     dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET Atualizado = @Atualizado", new List<Parametros>(){
-                                            new Parametros("@Atualizado", TipoCampo.Int, true)});
+                                            new Parametros("@Atualizado", TipoCampo.Boolean, true)});
                 }
                 FormularioPrincipal.RetornaComponentesFormularioPrincipal().BuscaNovoStatusQuantidadeNaoAtualizados();
             }

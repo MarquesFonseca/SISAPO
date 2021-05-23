@@ -6,5 +6,6 @@ public enum TipoCampo
     Int,
     Double,
     Text,
-    DateTime
+    DateTime,
+    Boolean
 }

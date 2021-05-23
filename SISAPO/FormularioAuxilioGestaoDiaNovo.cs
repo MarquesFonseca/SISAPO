@@ -240,6 +240,8 @@ namespace SISAPO
                     stringSQL.AppendLine("WHERE (TabelaObjetosSROLocal.ObjetoEntregue = FALSE)                                                                                                                                                                                                                     ");
                     stringSQL.AppendLine(") AS ObjetosNaoEntregues order BY ObjetosNaoEntregues.QtdDiasCorridos DESC, ObjetosNaoEntregues.TipoClassificacao ASC                                                                               ");
 
+                    string teste = stringSQL.ToString();
+
                     dtbLista = dao.RetornaDataTable(stringSQL.ToString());
 
                     bindingSourceObjetosNaoEntregues = new BindingSource();

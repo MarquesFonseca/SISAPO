@@ -225,7 +225,7 @@ namespace SISAPO
                         FormularioPrincipal.RetornaComponentesFormularioPrincipal().timerAtualizacaoNovosRegistros.Stop();
 
                         List<Parametros> pr = new List<Parametros>() {
-                            new Parametros() { Nome = "@Atualizado", Tipo = TipoCampo.Int, Valor = false },
+                            new Parametros() { Nome = "@Atualizado", Tipo = TipoCampo.Boolean, Valor = false },
                             new Parametros() { Nome = "@CodigoObjeto", Tipo = TipoCampo.Text, Valor = CodigoObjeto } };
                         dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET Atualizado = @Atualizado  WHERE (CodigoObjeto = @CodigoObjeto)", pr);
 

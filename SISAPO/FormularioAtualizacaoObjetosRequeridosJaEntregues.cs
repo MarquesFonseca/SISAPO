@@ -251,7 +251,7 @@ namespace SISAPO
                                     dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET NomeCliente = @NomeCliente, CodigoLdi = @CodigoLdi, Atualizado = @Atualizado WHERE CodigoObjeto = @CodigoObjeto ", new List<Parametros>(){ 
                                             new Parametros("@NomeCliente", TipoCampo.Text, NomeCliente),
                                             new Parametros("@CodigoLdi", TipoCampo.Text, Ldi),
-                                            new Parametros("@Atualizado", TipoCampo.Int, true),
+                                            new Parametros("@Atualizado", TipoCampo.Boolean, true),
                                             new Parametros("@CodigoObjeto", TipoCampo.Text, CodigoObjetoAtual)});
                                 }
                                 #endregion
@@ -325,8 +325,8 @@ namespace SISAPO
                                                 , new List<Parametros>() { 
 							new Parametros { Nome = "@DataModificacao", Tipo = TipoCampo.Text, Valor = DataModificacao },
 							new Parametros { Nome = "@Situacao", Tipo = TipoCampo.Text, Valor = "Entregue".ToUpper() },
-							new Parametros { Nome = "@ObjetoEntregue", Tipo = TipoCampo.Int, Valor = 1 },
-							new Parametros { Nome = "@Atualizado", Tipo = TipoCampo.Int, Valor = 1 },
+							new Parametros { Nome = "@ObjetoEntregue", Tipo = TipoCampo.Boolean, Valor = true },
+							new Parametros { Nome = "@Atualizado", Tipo = TipoCampo.Boolean, Valor = true },
 							new Parametros { Nome = "@CodigoObjeto", Tipo = TipoCampo.Text, Valor = CodigoObjetoAtual }
 						});
                     }
@@ -349,8 +349,8 @@ namespace SISAPO
                                                 , new List<Parametros>() { 
 							new Parametros { Nome = "@DataModificacao", Tipo = TipoCampo.Text, Valor = DataModificacao },
 							new Parametros { Nome = "@Situacao", Tipo = TipoCampo.Text, Valor = "Distribuido ao remetente".ToUpper() },
-							new Parametros { Nome = "@ObjetoEntregue", Tipo = TipoCampo.Int, Valor = 1 },
-							new Parametros { Nome = "@Atualizado", Tipo = TipoCampo.Int, Valor = 1 },
+							new Parametros { Nome = "@ObjetoEntregue", Tipo = TipoCampo.Boolean, Valor = true },
+							new Parametros { Nome = "@Atualizado", Tipo = TipoCampo.Boolean, Valor = true },
 							new Parametros { Nome = "@CodigoObjeto", Tipo = TipoCampo.Text, Valor = CodigoObjetoAtual }
 						});
                     }
@@ -367,7 +367,7 @@ namespace SISAPO
                     if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
                     dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET Atualizado = @Atualizado WHERE (CodigoObjeto = @CodigoObjeto)"
                                             , new List<Parametros>() { 
-						new Parametros { Nome = "@Atualizado", Tipo = TipoCampo.Int, Valor = 1 },
+						new Parametros { Nome = "@Atualizado", Tipo = TipoCampo.Boolean, Valor = true },
 						new Parametros { Nome = "@CodigoObjeto", Tipo = TipoCampo.Text, Valor = CodigoObjetoAtual }
 					});
                 }

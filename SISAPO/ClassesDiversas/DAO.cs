@@ -346,7 +346,7 @@ public class DAO : IDisposable
             FbCommand Cmd = new FbCommand(Query, Con, Trans)
             {
                 CommandType = CommandType.Text
-            }; ;
+            };
             for (i = 0; i < Parametros.Count; i++)
             {
                 switch (Parametros[i].Tipo)
@@ -374,6 +374,11 @@ public class DAO : IDisposable
                     case TipoCampo.DateTime:
                         Cmd.Parameters.Add(Parametros[i].Nome, FbDbType.Date);
                         Cmd.Parameters[i].Value = Convert.ToDateTime(Parametros[i].Valor);
+                        break;
+
+                    case TipoCampo.Boolean:
+                        Cmd.Parameters.Add(Parametros[i].Nome, FbDbType.Boolean);
+                        Cmd.Parameters[i].Value = Convert.ToBoolean(Parametros[i].Valor);
                         break;
                 }
             }
@@ -406,7 +411,7 @@ public class DAO : IDisposable
             SqlCommand Cmd = new SqlCommand(Query, Con, Trans)
             {
                 CommandType = CommandType.Text
-            }; ;
+            };
             for (i = 0; i < Parametros.Count; i++)
             {
                 switch (Parametros[i].Tipo)
@@ -434,6 +439,11 @@ public class DAO : IDisposable
                     case TipoCampo.DateTime:
                         Cmd.Parameters.Add(Parametros[i].Nome, SqlDbType.DateTime);
                         Cmd.Parameters[i].Value = Convert.ToDateTime(Parametros[i].Valor);
+                        break;
+                        
+                    case TipoCampo.Boolean:
+                        Cmd.Parameters.Add(Parametros[i].Nome, SqlDbType.Bit);
+                        Cmd.Parameters[i].Value = Convert.ToBoolean(Parametros[i].Valor);
                         break;
                 }
             }
@@ -466,7 +476,7 @@ public class DAO : IDisposable
             MySqlCommand Cmd = new MySqlCommand(Query, Con, Trans)
             {
                 CommandType = CommandType.Text
-            }; ;
+            };
             for (i = 0; i < Parametros.Count; i++)
             {
                 switch (Parametros[i].Tipo)
@@ -494,6 +504,11 @@ public class DAO : IDisposable
                     case TipoCampo.DateTime:
                         Cmd.Parameters.Add(Parametros[i].Nome, MySqlDbType.DateTime);
                         Cmd.Parameters[i].Value = Convert.ToDateTime(Parametros[i].Valor);
+                        break;
+
+                    case TipoCampo.Boolean:
+                        Cmd.Parameters.Add(Parametros[i].Nome, MySqlDbType.Byte);
+                        Cmd.Parameters[i].Value = Convert.ToBoolean(Parametros[i].Valor);
                         break;
                 }
             }
@@ -526,7 +541,7 @@ public class DAO : IDisposable
             NpgsqlCommand Cmd = new NpgsqlCommand(Query, Con, Trans)
             {
                 CommandType = CommandType.Text
-            }; ;
+            };
             for (i = 0; i < Parametros.Count; i++)
             {
                 switch (Parametros[i].Tipo)
@@ -554,6 +569,11 @@ public class DAO : IDisposable
                     case TipoCampo.DateTime:
                         Cmd.Parameters.Add(Parametros[i].Nome, NpgsqlDbType.Timestamp);
                         Cmd.Parameters[i].Value = Convert.ToDateTime(Parametros[i].Valor);
+                        break;
+
+                    case TipoCampo.Boolean:
+                        Cmd.Parameters.Add(Parametros[i].Nome, NpgsqlDbType.Boolean);
+                        Cmd.Parameters[i].Value = Convert.ToBoolean(Parametros[i].Valor);
                         break;
                 }
             }
@@ -586,7 +606,7 @@ public class DAO : IDisposable
             OleDbCommand Cmd = new OleDbCommand(Query, Con, Trans)
             {
                 CommandType = CommandType.Text
-            }; ;
+            };
             for (i = 0; i < Parametros.Count; i++)
             {
                 switch (Parametros[i].Tipo)
@@ -615,6 +635,11 @@ public class DAO : IDisposable
                         Cmd.Parameters.Add(Parametros[i].Nome, OleDbType.DBTimeStamp);
                         Cmd.Parameters[i].Value = Convert.ToDateTime(Parametros[i].Valor);
                         break;
+
+                    case TipoCampo.Boolean:
+                        Cmd.Parameters.Add(Parametros[i].Nome, OleDbType.Boolean);
+                        Cmd.Parameters[i].Value = Convert.ToBoolean(Parametros[i].Valor);
+                        break;
                 }
             }
             try
@@ -637,7 +662,6 @@ public class DAO : IDisposable
             }
         }
         #endregion
-
     }
 
     public void GravaStrConexao(TipoBanco Tp, string Servidor, string Banco, string Usuario, string Senha)
@@ -859,6 +883,11 @@ public class DAO : IDisposable
                         Cmd.Parameters.Add(Parametros[i].Nome, FbDbType.Date);
                         Cmd.Parameters[i].Value = Convert.ToDateTime(Parametros[i].Valor);
                         break;
+
+                    case TipoCampo.Boolean:
+                        Cmd.Parameters.Add(Parametros[i].Nome, FbDbType.Boolean);
+                        Cmd.Parameters[i].Value = Convert.ToBoolean(Parametros[i].Valor);
+                        break;
                 }
             }
             FbDataAdapter Adpt = new FbDataAdapter(Cmd);
@@ -907,6 +936,11 @@ public class DAO : IDisposable
                     case TipoCampo.DateTime:
                         Cmd.Parameters.Add(Parametros[i].Nome, SqlDbType.Date);
                         Cmd.Parameters[i].Value = Convert.ToDateTime(Parametros[i].Valor);
+                        break;
+
+                    case TipoCampo.Boolean:
+                        Cmd.Parameters.Add(Parametros[i].Nome, SqlDbType.Bit);
+                        Cmd.Parameters[i].Value = Convert.ToBoolean(Parametros[i].Valor);
                         break;
                 }
             }
@@ -957,6 +991,11 @@ public class DAO : IDisposable
                         Cmd.Parameters.Add(Parametros[i].Nome, MySqlDbType.Date);
                         Cmd.Parameters[i].Value = Convert.ToDateTime(Parametros[i].Valor);
                         break;
+
+                    case TipoCampo.Boolean:
+                        Cmd.Parameters.Add(Parametros[i].Nome, MySqlDbType.Byte);
+                        Cmd.Parameters[i].Value = Convert.ToBoolean(Parametros[i].Valor);
+                        break;
                 }
             }
             MySqlDataAdapter Adpt = new MySqlDataAdapter(Cmd);
@@ -1006,6 +1045,11 @@ public class DAO : IDisposable
                         Cmd.Parameters.Add(Parametros[i].Nome, NpgsqlDbType.Date);
                         Cmd.Parameters[i].Value = Convert.ToDateTime(Parametros[i].Valor);
                         break;
+
+                    case TipoCampo.Boolean:
+                        Cmd.Parameters.Add(Parametros[i].Nome, NpgsqlDbType.Boolean);
+                        Cmd.Parameters[i].Value = Convert.ToBoolean(Parametros[i].Valor);
+                        break;
                 }
             }
             NpgsqlDataAdapter Adpt = new NpgsqlDataAdapter(Cmd);
@@ -1054,6 +1098,11 @@ public class DAO : IDisposable
                     case TipoCampo.DateTime:
                         Cmd.Parameters.Add(Parametros[i].Nome, OleDbType.DBTimeStamp);
                         Cmd.Parameters[i].Value = Convert.ToDateTime(Parametros[i].Valor);
+                        break;
+
+                    case TipoCampo.Boolean:
+                        Cmd.Parameters.Add(Parametros[i].Nome, OleDbType.Boolean);
+                        Cmd.Parameters[i].Value = Convert.ToBoolean(Parametros[i].Valor);
                         break;
                 }
             }

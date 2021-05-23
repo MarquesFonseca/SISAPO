@@ -307,8 +307,8 @@ namespace SISAPO
                                             new Parametros("@DataLancamento", TipoCampo.Text, linhaItemDataLancamento),
                                             new Parametros("@DataModificacao", TipoCampo.Text, linhaItemDataModificacao),
                                             new Parametros("@Situacao", TipoCampo.Text, linhaItemSituacao),
-                                            new Parametros("@Atualizado",TipoCampo.Int, jaCadastrado.Tables[0].Rows[0]["NomeCliente"].ToString() == "" ? 0 : 1),
-                                            new Parametros("@ObjetoEntregue", TipoCampo.Int, linhaItemDataModificacao == "" ? 0 : 1),
+                                            new Parametros("@Atualizado",TipoCampo.Boolean, jaCadastrado.Tables[0].Rows[0]["NomeCliente"].ToString() == "" ? false : true),
+                                            new Parametros("@ObjetoEntregue", TipoCampo.Boolean, linhaItemDataModificacao == "" ? false : true),
 
                                             new Parametros("@TipoPostalServico", TipoCampo.Text, TipoPostalServico),
                                             new Parametros("@TipoPostalSiglaCodigo", TipoCampo.Text, TipoPostalSiglaCodigo),
@@ -347,9 +347,9 @@ namespace SISAPO
                                     new Parametros() { Nome = "DataLancamento", Tipo = TipoCampo.Text, Valor = linhaItemDataLancamento },
                                     new Parametros() { Nome = "DataModificacao", Tipo = TipoCampo.Text, Valor = linhaItemDataModificacao },
                                     new Parametros() { Nome = "Situacao", Tipo = TipoCampo.Text, Valor = linhaItemSituacao },
-                                    new Parametros() { Nome = "Atualizado", Tipo = TipoCampo.Int, Valor = 0 },
-                                    new Parametros() { Nome = "ObjetoEntregue", Tipo = TipoCampo.Text, Valor = (linhaItemDataModificacao == "" ? 0 : 1) },
-                                    new Parametros() { Nome = "CaixaPostal", Tipo = TipoCampo.Text, Valor = 0 },//considera todos com não caixa postal
+                                    new Parametros() { Nome = "Atualizado", Tipo = TipoCampo.Boolean, Valor = false },
+                                    new Parametros() { Nome = "ObjetoEntregue", Tipo = TipoCampo.Boolean, Valor = (linhaItemDataModificacao == "" ? false : true) },
+                                    new Parametros() { Nome = "CaixaPostal", Tipo = TipoCampo.Boolean, Valor = false },//considera todos com não caixa postal
 
                                     new Parametros() { Nome = "TipoPostalServico", Tipo = TipoCampo.Text, Valor = TipoPostalServico },
                                     new Parametros() { Nome = "TipoPostalSiglaCodigo", Tipo = TipoCampo.Text, Valor = TipoPostalSiglaCodigo },

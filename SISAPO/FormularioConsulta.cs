@@ -664,7 +664,7 @@ namespace SISAPO
                     //var atualizado = dataGridView1.SelectedRows[i].Cells["atualizadoDataGridViewCheckBoxColumn"].Value;
                     string CodigoObjeto = this.dataGridView1.SelectedRows[i].Cells[0].Value.ToString();
                     List<Parametros> pr = new List<Parametros>() {
-                            new Parametros() { Nome = "@Atualizado", Tipo = TipoCampo.Int, Valor = true },
+                            new Parametros() { Nome = "@Atualizado", Tipo = TipoCampo.Boolean, Valor = true },
                             new Parametros() { Nome = "@CodigoObjeto", Tipo = TipoCampo.Text, Valor = CodigoObjeto }
                         };
                     dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET Atualizado = @Atualizado  WHERE (CodigoObjeto = @CodigoObjeto)", pr);
@@ -694,7 +694,7 @@ namespace SISAPO
                     //var atualizado = dataGridView1.SelectedRows[i].Cells["atualizadoDataGridViewCheckBoxColumn"].Value;
                     string CodigoObjeto = this.dataGridView1.SelectedRows[i].Cells[0].Value.ToString();
                     List<Parametros> pr = new List<Parametros>() {
-                            new Parametros() { Nome = "@Atualizado", Tipo = TipoCampo.Int, Valor = false },
+                            new Parametros() { Nome = "@Atualizado", Tipo = TipoCampo.Boolean, Valor = false },
                             new Parametros() { Nome = "@CodigoObjeto", Tipo = TipoCampo.Text, Valor = CodigoObjeto }
                         };
                     dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET Atualizado = @Atualizado  WHERE (CodigoObjeto = @CodigoObjeto)", pr);

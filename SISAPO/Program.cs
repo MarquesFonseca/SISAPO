@@ -90,6 +90,8 @@ namespace SISAPO
                 //}
 
                 Configuracoes.VerificaSquemaBancoDados();
+                
+                //Configuracoes.MetodoDeTesteQualquer();
 
                 //string data = ClassesDiversas.CriptografiaHelper.Criptografa("30-09-2019");
                 Application.Run(new FormularioPrincipal());

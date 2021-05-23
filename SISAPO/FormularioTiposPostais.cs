@@ -25,25 +25,21 @@ namespace SISAPO
         {
             comboBoxTipoClassificacao.SelectedIndex = 0;
 
-            using (DAO dao = new DAO(TipoBanco.OleDb, Configuracoes.strConexao))
-            {
-                if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+            FormularioPrincipal.TiposPostais = Configuracoes.RetornaTiposPostais();
+            dtTiposPostais = FormularioPrincipal.TiposPostais;
 
-                dtTiposPostais = dao.RetornaDataTable("SELECT Codigo, Servico, Sigla, Descricao, PrazoDestinoCaidaPedida, PrazoDestinoCaixaPostal, PrazoRemetenteCaidaPedida, PrazoRemetenteCaixaPostal, TipoClassificacao, DataAlteracao FROM TiposPostais");
+            bsTiposPostais = new BindingSource();
+            bsTiposPostais.DataSource = dtTiposPostais;
+            dataGridView1.DataSource = bsTiposPostais;
+            LbnQuantidadeRegistros.Text = bsTiposPostais.Count.ToString();
 
-                bsTiposPostais = new BindingSource();
-                bsTiposPostais.DataSource = dtTiposPostais;
-                dataGridView1.DataSource = bsTiposPostais;
-                LbnQuantidadeRegistros.Text = bsTiposPostais.Count.ToString();
+            TxtPesquisa.Focus();
+            TxtPesquisa.ScrollToCaret();
+            TxtPesquisa.ScrollToCaret();
 
-                TxtPesquisa.Focus();
-                TxtPesquisa.ScrollToCaret();
-                TxtPesquisa.ScrollToCaret();
-
-                SendKeys.Send("{TAB}");
-                SendKeys.Send("{TAB}");
-                SendKeys.Send("{TAB}");
-            }
+            SendKeys.Send("{TAB}");
+            SendKeys.Send("{TAB}");
+            SendKeys.Send("{TAB}");
         }
 
         private void BtnAdicionarNovosTiposPostais_Click(object sender, EventArgs e)
@@ -189,19 +185,12 @@ namespace SISAPO
             }
             selecionados = new Dictionary<string, string>();
 
-
-            using (DAO dao = new DAO(TipoBanco.OleDb, Configuracoes.strConexao))
-            {
-                if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
-
-                dtTiposPostais = dao.RetornaDataTable("SELECT Codigo, Servico, Sigla, Descricao, PrazoDestinoCaidaPedida, PrazoDestinoCaixaPostal, PrazoRemetenteCaidaPedida, PrazoRemetenteCaixaPostal, TipoClassificacao, DataAlteracao FROM TiposPostais");
-                bsTiposPostais = new BindingSource();
-                bsTiposPostais.DataSource = dtTiposPostais;
-                dataGridView1.DataSource = bsTiposPostais;
-                LbnQuantidadeRegistros.Text = bsTiposPostais.Count.ToString();
-            }
-
             FormularioPrincipal.TiposPostais = Configuracoes.RetornaTiposPostais();
+            dtTiposPostais = FormularioPrincipal.TiposPostais;
+            bsTiposPostais = new BindingSource();
+            bsTiposPostais.DataSource = dtTiposPostais;
+            dataGridView1.DataSource = bsTiposPostais;
+            LbnQuantidadeRegistros.Text = bsTiposPostais.Count.ToString();
 
             MontaFiltro();
         }

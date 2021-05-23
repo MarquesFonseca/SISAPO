@@ -95,9 +95,8 @@ namespace SISAPO.ClassesDiversas
                 {
                     if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return null; }
 
-                    string stringSQL = "SELECT Servico, Sigla, Descricao, PrazoDestinoCaixaPostal, PrazoDestinoCaidaPedida, PrazoRemetenteCaixaPostal, PrazoRemetenteCaidaPedida, TipoClassificacao FROM TiposPostais";
+                    string stringSQL = "SELECT Codigo, Servico, Sigla, Descricao, PrazoDestinoCaidaPedida, PrazoDestinoCaixaPostal, PrazoRemetenteCaidaPedida, PrazoRemetenteCaixaPostal, TipoClassificacao, DataAlteracao FROM TiposPostais";
                     retorno = dao.RetornaDataTable(stringSQL.ToString());
-
                 }
                 return retorno;
             }
@@ -105,6 +104,26 @@ namespace SISAPO.ClassesDiversas
             {
                 Mensagens.Erro(ex.Message);
                 return retorno;
+            }
+        }
+
+        public static void MetodoDeTesteQualquer()
+        {
+            try
+            {
+                using (DAO dao = new DAO(TipoBanco.OleDb, Configuracoes.strConexao))
+                {
+                    if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+                    dao.ExecutaSQL(@"UPDATE TabelaObjetosSROLocal SET 
+                                            Atualizado = @Atualizado
+                                            WHERE CodigoObjeto = @CodigoObjeto ", new List<Parametros>(){
+                                            new Parametros("@Atualizado", TipoCampo.Boolean, true),
+                                            new Parametros("@CodigoObjeto", TipoCampo.Text, "BE165192894BR")});
+                }
+            }
+            catch (Exception ex)
+            {
+                Mensagens.Erro(ex.Message);
             }
         }
 
@@ -691,18 +710,22 @@ namespace SISAPO.ClassesDiversas
 
         public static bool RetornaSeECaixaPostal(string texto)
         {
-            if (texto.RemoveAcentos().ToUpper().Contains("CAIXA POSTAL")) return true;
-            if (texto.RemoveAcentos().ToUpper().Contains("CAIXA POSTA")) return true;
-            if (texto.RemoveAcentos().ToUpper().Contains("CAIXA POST")) return true;
-            if (texto.RemoveAcentos().ToUpper().Contains("CAIXA POS")) return true;
-            if (texto.RemoveAcentos().ToUpper().Contains("CAIXA PO")) return true;
-            if (texto.RemoveAcentos().ToUpper().Contains("CAIXA P")) return true;
-            if (texto.RemoveAcentos().ToUpper().Contains("CX POSTAL")) return true;
-            if (texto.RemoveAcentos().ToUpper().Contains("CX POSTA")) return true;
-            if (texto.RemoveAcentos().ToUpper().Contains("CX POST")) return true;
-            if (texto.RemoveAcentos().ToUpper().Contains("CX POS")) return true;
-            if (texto.RemoveAcentos().ToUpper().Contains("CX PO")) return true;
-            if (texto.RemoveAcentos().ToUpper().Contains("CX P")) return true;
+            string textoFormatado = string.Empty;
+            textoFormatado = texto.RemoveAcentos();
+            textoFormatado = textoFormatado.ToUpper();
+
+            if (textoFormatado.Contains("CAIXA POSTAL")) return true;
+            if (textoFormatado.Contains("CAIXA POSTA")) return true;
+            if (textoFormatado.Contains("CAIXA POST")) return true;
+            if (textoFormatado.Contains("CAIXA POS")) return true;
+            if (textoFormatado.Contains("CAIXA PO")) return true;
+            if (textoFormatado.Contains("CAIXA P")) return true;
+            if (textoFormatado.Contains("CX POSTAL")) return true;
+            if (textoFormatado.Contains("CX POSTA")) return true;
+            if (textoFormatado.Contains("CX POST")) return true;
+            if (textoFormatado.Contains("CX POS")) return true;
+            if (textoFormatado.Contains("CX PO")) return true;
+            if (textoFormatado.Contains("CX P")) return true;
             return false;
         }
 
@@ -776,19 +799,23 @@ namespace SISAPO.ClassesDiversas
 
         public static bool RetornaSeEAoRemetente(string texto)
         {
-            if (texto.RemoveAcentos().ToUpper().Contains("ORIGEM")) return true;
-            if (texto.RemoveAcentos().ToUpper().Contains("DEVOLUCAO")) return true;
-            if (texto.RemoveAcentos().ToUpper().Contains("DEVOLUCA")) return true;
-            if (texto.RemoveAcentos().ToUpper().Contains("DEVOLUC")) return true;
-            if (texto.RemoveAcentos().ToUpper().Contains("DEVOLU")) return true;
-            if (texto.RemoveAcentos().ToUpper().Contains("DEVOL")) return true;
-            if (texto.RemoveAcentos().ToUpper().Contains("REMETENTE")) return true;
-            if (texto.RemoveAcentos().ToUpper().Contains("REMETENT")) return true;
-            if (texto.RemoveAcentos().ToUpper().Contains("REMETEN")) return true;
-            if (texto.RemoveAcentos().ToUpper().Contains("REMETE")) return true;
-            if (texto.RemoveAcentos().ToUpper().Contains("REMET")) return true;
-            if (texto.RemoveAcentos().ToUpper().Contains("REME")) return true;
-            if (texto.RemoveAcentos().ToUpper().Contains("REM")) return true;
+            string textoFormatado = string.Empty;
+            textoFormatado = texto.RemoveAcentos();
+            textoFormatado = textoFormatado.ToUpper();
+
+            if (textoFormatado.Contains("ORIGEM")) return true;
+            if (textoFormatado.Contains("DEVOLUCAO")) return true;
+            if (textoFormatado.Contains("DEVOLUCA")) return true;
+            if (textoFormatado.Contains("DEVOLUC")) return true;
+            if (textoFormatado.Contains("DEVOLU")) return true;
+            if (textoFormatado.Contains("DEVOL")) return true;
+            if (textoFormatado.Contains("REMETENTE")) return true;
+            if (textoFormatado.Contains("REMETENT")) return true;
+            if (textoFormatado.Contains("REMETEN")) return true;
+            if (textoFormatado.Contains("REMETE")) return true;
+            if (textoFormatado.Contains("REMET")) return true;
+            if (textoFormatado.Contains("REME")) return true;
+            if (textoFormatado.Contains("REM")) return true;
             return false;
         }
 

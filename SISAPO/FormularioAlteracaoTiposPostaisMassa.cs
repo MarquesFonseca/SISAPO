@@ -17,6 +17,10 @@ namespace SISAPO
         private Dictionary<string, string> selecionados;
         string NomeComboBoxTipoClassificacao = string.Empty;
         string ClassificacaoInicial = string.Empty;
+        string dataInicial_dateTimePickerDia = string.Empty;
+        string dataInicial_dateTimePickerMes = string.Empty;
+        string dataInicial_dateTimePickerAno = string.Empty;
+        string dataInicial_dateTimePickerAnoMesDiaFormatado = string.Empty;
 
         //public FormularioAlteracaoTiposPostaisMassa()
         //{
@@ -50,18 +54,6 @@ namespace SISAPO
 
         private void BtnGravar_Click(object sender, EventArgs e)
         {
-
-
-            ////grava aqui no banco..
-            //AtualizaTodosSelecionados();
-
-            //this.Close();
-
-
-
-
-
-
             try
             {
                 if (comboBoxTipoClassificacao.SelectedIndex == -1)
@@ -69,6 +61,11 @@ namespace SISAPO
                     Mensagens.Erro("Selecione uma classificação para os selecionados.");
                     return;
                 }
+                dataInicial_dateTimePickerDia = DataInicial_dateTimePicker.Value.Date.Day.ToString();
+                dataInicial_dateTimePickerMes = DataInicial_dateTimePicker.Value.Date.Month.ToString();
+                dataInicial_dateTimePickerAno = DataInicial_dateTimePicker.Value.Date.Year.ToString();
+                dataInicial_dateTimePickerAnoMesDiaFormatado = string.Format("{0}/{1}/{2}", dataInicial_dateTimePickerAno, dataInicial_dateTimePickerMes, dataInicial_dateTimePickerDia);
+
                 progressBar1.Value = 0;
                 LblProgresso1.Text = "";
                 LblProgresso2.Text = "";
@@ -197,10 +194,10 @@ namespace SISAPO
                                     List<Parametros> pr1 = new List<Parametros>() {
                                         new Parametros() { Nome = "@PrazoRemetenteCaixaPostal", Tipo = TipoCampo.Text, Valor = PrazoRemetenteCaixaPostalUpDown.Value.ToString() },
                                         new Parametros() { Nome = "@CodigoObjeto", Tipo = TipoCampo.Text, Valor = CodigoObjetoAtual.ToString() },
-                                        new Parametros() { Nome = "@DataInicial_dateTimePicker", Tipo = TipoCampo.Text, Valor = DataInicial_dateTimePicker.Text.ToString() }
+                                        new Parametros() { Nome = "@DataInicial_dateTimePicker", Tipo = TipoCampo.Text, Valor = dataInicial_dateTimePickerAnoMesDiaFormatado }
                                     };
                                     if (radioButtonAPartirDoDia.Checked)
-                                        dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET TipoPostalPrazoDiasCorridosRegulamentado = @PrazoRemetenteCaixaPostal WHERE (CodigoObjeto = @CodigoObjeto) AND format(DataLancamento, 'dd/MM/yyyy') >= @DataInicial_dateTimePicker", pr1);
+                                        dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET TipoPostalPrazoDiasCorridosRegulamentado = @PrazoRemetenteCaixaPostal WHERE (CodigoObjeto = @CodigoObjeto) AND (format(DataLancamento, \"yyyy/MM/dd\") >= \"@DataInicial_dateTimePicker\")", pr1);
                                     else
                                         dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET TipoPostalPrazoDiasCorridosRegulamentado = @PrazoRemetenteCaixaPostal WHERE (CodigoObjeto = @CodigoObjeto)", pr1);
                                 }
@@ -209,10 +206,10 @@ namespace SISAPO
                                     List<Parametros> pr2 = new List<Parametros>() {
                                         new Parametros() { Nome = "@PrazoRemetenteCaidaPedida", Tipo = TipoCampo.Text, Valor = PrazoRemetenteCaidaPedidaUpDown.Value.ToString() },
                                         new Parametros() { Nome = "@CodigoObjeto", Tipo = TipoCampo.Text, Valor = CodigoObjetoAtual.ToString() },
-                                        new Parametros() { Nome = "@DataInicial_dateTimePicker", Tipo = TipoCampo.Text, Valor = DataInicial_dateTimePicker.Text.ToString() }
+                                        new Parametros() { Nome = "@DataInicial_dateTimePicker", Tipo = TipoCampo.Text, Valor = dataInicial_dateTimePickerAnoMesDiaFormatado }
                                     };
                                     if (radioButtonAPartirDoDia.Checked)
-                                        dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET TipoPostalPrazoDiasCorridosRegulamentado = @PrazoRemetenteCaidaPedida WHERE (CodigoObjeto = @CodigoObjeto) AND format(DataLancamento, 'dd/MM/yyyy') >= @DataInicial_dateTimePicker", pr2);
+                                        dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET TipoPostalPrazoDiasCorridosRegulamentado = @PrazoRemetenteCaidaPedida WHERE (CodigoObjeto = @CodigoObjeto) AND (format(DataLancamento, \"yyyy/MM/dd\") >= \"@DataInicial_dateTimePicker\")", pr2);
                                     else
                                         dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET TipoPostalPrazoDiasCorridosRegulamentado = @PrazoRemetenteCaidaPedida WHERE (CodigoObjeto = @CodigoObjeto)", pr2);
                                 }
@@ -226,10 +223,10 @@ namespace SISAPO
                                     List<Parametros> pr3 = new List<Parametros>() {
                                         new Parametros() { Nome = "@PrazoDestinoCaixaPostal", Tipo = TipoCampo.Text, Valor = PrazoDestinatarioCaixaPostalUpDown.Value.ToString() },
                                         new Parametros() { Nome = "@CodigoObjeto", Tipo = TipoCampo.Text, Valor = CodigoObjetoAtual.ToString() },
-                                        new Parametros() { Nome = "@DataInicial_dateTimePicker", Tipo = TipoCampo.Text, Valor = DataInicial_dateTimePicker.Text.ToString() }
+                                        new Parametros() { Nome = "@DataInicial_dateTimePicker", Tipo = TipoCampo.Text, Valor = dataInicial_dateTimePickerAnoMesDiaFormatado }
                                     };
                                     if (radioButtonAPartirDoDia.Checked)
-                                        dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET TipoPostalPrazoDiasCorridosRegulamentado = @PrazoDestinoCaixaPostal WHERE (CodigoObjeto = @CodigoObjeto) AND format(DataLancamento, 'dd/MM/yyyy') >= @DataInicial_dateTimePicker", pr3);
+                                        dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET TipoPostalPrazoDiasCorridosRegulamentado = @PrazoDestinoCaixaPostal WHERE (CodigoObjeto = @CodigoObjeto) AND (format(DataLancamento, \"yyyy/MM/dd\") >= \"@DataInicial_dateTimePicker\")", pr3);
                                     else
                                         dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET TipoPostalPrazoDiasCorridosRegulamentado = @PrazoDestinoCaixaPostal WHERE (CodigoObjeto = @CodigoObjeto)", pr3);
                                 }
@@ -238,10 +235,10 @@ namespace SISAPO
                                     List<Parametros> pr4 = new List<Parametros>() {
                                         new Parametros() { Nome = "@PrazoDestinoCaidaPedida", Tipo = TipoCampo.Text, Valor = PrazoDestinatarioCaidaPedidaUpDown.Value.ToString() },
                                         new Parametros() { Nome = "@CodigoObjeto", Tipo = TipoCampo.Text, Valor = CodigoObjetoAtual.ToString() },
-                                        new Parametros() { Nome = "@DataInicial_dateTimePicker", Tipo = TipoCampo.Text, Valor = DataInicial_dateTimePicker.Value.Date.ToShortDateString() }
-                                    };
+                                        new Parametros() { Nome = "@DataInicial_dateTimePicker", Tipo = TipoCampo.Text, Valor = dataInicial_dateTimePickerAnoMesDiaFormatado }
+                                    };//string.Format("{0}/{1}/{3}", DataInicial_dateTimePicker.Value.Date.Year, DataInicial_dateTimePicker.Value.Date.Month, DataInicial_dateTimePicker.Value.Date.Day)
                                     if (radioButtonAPartirDoDia.Checked)
-                                        dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET TipoPostalPrazoDiasCorridosRegulamentado = @PrazoDestinoCaidaPedida WHERE (CodigoObjeto = @CodigoObjeto) AND format(DataLancamento, 'dd/MM/yyyy') >= @DataInicial_dateTimePicker", pr4);
+                                        dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET TipoPostalPrazoDiasCorridosRegulamentado = @PrazoDestinoCaidaPedida WHERE (CodigoObjeto = @CodigoObjeto) AND (format(DataLancamento, \"yyyy/MM/dd\") >= \"@DataInicial_dateTimePicker\")", pr4);
                                     else
                                         dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET TipoPostalPrazoDiasCorridosRegulamentado = @PrazoDestinoCaidaPedida WHERE (CodigoObjeto = @CodigoObjeto)", pr4);
                                 }
@@ -299,7 +296,6 @@ namespace SISAPO
             }
             else
             {
-
                 if (Porcentagem1 == 100)
                 {
                     this.progressBar2.Value = this.progressBar1.Value;

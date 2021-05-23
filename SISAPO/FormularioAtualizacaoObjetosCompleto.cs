@@ -77,7 +77,7 @@ namespace SISAPO
             using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
             {
                 if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
-                ObjetosConsultaRastreamento = dao.RetornaDataSet("SELECT TOP 1 CodigoObjeto, Atualizado FROM TabelaObjetosSROLocal WHERE (Atualizado = @Atualizado)", new Parametros { Nome = "@Atualizado", Tipo = TipoCampo.Int, Valor = 0 });
+                ObjetosConsultaRastreamento = dao.RetornaDataSet("SELECT TOP 1 CodigoObjeto, Atualizado FROM TabelaObjetosSROLocal WHERE (Atualizado = @Atualizado)", new Parametros { Nome = "@Atualizado", Tipo = TipoCampo.Boolean, Valor = false });
 
                 if (ObjetosConsultaRastreamento == null || ObjetosConsultaRastreamento.Tables[0].Rows.Count == 0) return;
                 if (ObjetosConsultaRastreamento.Tables[0].Rows.Count > 0)
@@ -656,7 +656,7 @@ namespace SISAPO
                                         dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET NomeCliente = @NomeCliente, CodigoLdi = @CodigoLdi, Atualizado = @Atualizado WHERE CodigoObjeto = @CodigoObjeto ", new List<Parametros>(){ 
                                             new Parametros("@NomeCliente", TipoCampo.Text, NomeCliente.ToUpper()),
                                             new Parametros("@CodigoLdi", TipoCampo.Text, Ldi),
-                                            new Parametros("@Atualizado", TipoCampo.Int, true),
+                                            new Parametros("@Atualizado", TipoCampo.Boolean, true),
                                             new Parametros("@CodigoObjeto", TipoCampo.Text, CodigoObjetoAtual)});
                                         listaObjectsLinhasMarcadasAguardandoRetirada3.RemoveAt(0);
                                     }
@@ -667,7 +667,7 @@ namespace SISAPO
                                         dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET CodigoLdi = @CodigoLdi, Atualizado = @Atualizado WHERE CodigoObjeto = @CodigoObjeto ", new List<Parametros>(){ 
                                             //new Parametros("@NomeCliente", TipoCampo.Text, NomeCliente.ToUpper()),
                                             new Parametros("@CodigoLdi", TipoCampo.Text, Ldi),
-                                            new Parametros("@Atualizado", TipoCampo.Int, true),
+                                            new Parametros("@Atualizado", TipoCampo.Boolean, true),
                                             new Parametros("@CodigoObjeto", TipoCampo.Text, CodigoObjetoAtual)});
                                         listaObjectsLinhasMarcadasAguardandoRetirada3.RemoveAt(0);
                                     }
@@ -857,7 +857,7 @@ namespace SISAPO
                                     if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
                                     dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET CaixaPostal = @CaixaPostal WHERE (CodigoObjeto = @CodigoObjeto)"
                                              , new List<Parametros>() { 
-										 new Parametros { Nome = "@CaixaPostal", Tipo = TipoCampo.Int, Valor = 1 },
+										 new Parametros { Nome = "@CaixaPostal", Tipo = TipoCampo.Boolean, Valor = true },
 										 new Parametros { Nome = "@CodigoObjeto", Tipo = TipoCampo.Text, Valor = CodigoObjetoAtual }
 									 });
                                 }

@@ -387,7 +387,7 @@
             this.BtnAlterarPrazosTodosSelecionados.Name = "BtnAlterarPrazosTodosSelecionados";
             this.BtnAlterarPrazosTodosSelecionados.Size = new System.Drawing.Size(192, 53);
             this.BtnAlterarPrazosTodosSelecionados.TabIndex = 0;
-            this.BtnAlterarPrazosTodosSelecionados.Text = "Alterar prazo de todos selecionados";
+            this.BtnAlterarPrazosTodosSelecionados.Text = "Alterar prazo (Selecionados)";
             this.BtnAlterarPrazosTodosSelecionados.UseVisualStyleBackColor = true;
             this.BtnAlterarPrazosTodosSelecionados.Click += new System.EventHandler(this.BtnAlterarPrazosTodosSelecionados_Click);
             // 
