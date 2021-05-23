@@ -128,6 +128,7 @@ namespace SISAPO
             dtbLista.Columns.Add("CodigoObjeto", typeof(string));
             dtbLista.Columns.Add("TipoClassificacao", typeof(string));
             dtbLista.Columns.Add("NomeCliente", typeof(string));
+            dtbLista.Columns.Add("CaixaPostal", typeof(bool));
             dtbLista.Columns.Add("DataLancamento", typeof(DateTime));
             dtbLista.Columns.Add("QtdDiasCorridos", typeof(string));
             dtbLista.Columns.Add("PrazoTipoClassificacao", typeof(int));
@@ -165,7 +166,7 @@ namespace SISAPO
                             {
                                 //CodigoLdi, Sigla, CodigoObjeto, TipoClassificacao, NomeCliente, DataLancamento, QtdDiasCorridos, PrazoTipoClassificacao, DataVencimento, StatusPrazo, QtdDiasVencidos
 
-                                dtbLista.Rows.Add(RetornaLista.Rows[0]["CodigoLdi"], RetornaLista.Rows[0]["Sigla"], RetornaLista.Rows[0]["CodigoObjeto"], RetornaLista.Rows[0]["TipoClassificacao"], RetornaLista.Rows[0]["NomeCliente"], RetornaLista.Rows[0]["DataLancamento"], RetornaLista.Rows[0]["QtdDiasCorridos"], RetornaLista.Rows[0]["PrazoTipoClassificacao"], RetornaLista.Rows[0]["DataVencimento"], RetornaLista.Rows[0]["StatusPrazo"], RetornaLista.Rows[0]["QtdDiasVencidos"]);
+                                dtbLista.Rows.Add(RetornaLista.Rows[0]["CodigoLdi"], RetornaLista.Rows[0]["Sigla"], RetornaLista.Rows[0]["CodigoObjeto"], RetornaLista.Rows[0]["TipoClassificacao"], RetornaLista.Rows[0]["NomeCliente"], RetornaLista.Rows[0]["CaixaPostal"], RetornaLista.Rows[0]["DataLancamento"], RetornaLista.Rows[0]["QtdDiasCorridos"], RetornaLista.Rows[0]["PrazoTipoClassificacao"], RetornaLista.Rows[0]["DataVencimento"], RetornaLista.Rows[0]["StatusPrazo"], RetornaLista.Rows[0]["QtdDiasVencidos"]);
                             }
                         }
                     }
@@ -190,6 +191,7 @@ namespace SISAPO
             dtbLista.Columns.Add("CodigoObjeto", typeof(string));
             dtbLista.Columns.Add("TipoClassificacao", typeof(string));
             dtbLista.Columns.Add("NomeCliente", typeof(string));
+            dtbLista.Columns.Add("CaixaPostal", typeof(bool));
             dtbLista.Columns.Add("DataLancamento", typeof(DateTime));
             dtbLista.Columns.Add("QtdDiasCorridos", typeof(string));
             dtbLista.Columns.Add("PrazoTipoClassificacao", typeof(int));
@@ -265,6 +267,7 @@ namespace SISAPO
             dtbLista.Columns.Add("CodigoObjeto", typeof(string));
             dtbLista.Columns.Add("TipoClassificacao", typeof(string));
             dtbLista.Columns.Add("NomeCliente", typeof(string));
+            dtbLista.Columns.Add("CaixaPostal", typeof(bool));
             dtbLista.Columns.Add("DataLancamento", typeof(DateTime));
             dtbLista.Columns.Add("QtdDiasCorridos", typeof(string));
             dtbLista.Columns.Add("PrazoTipoClassificacao", typeof(int));
@@ -332,7 +335,9 @@ namespace SISAPO
 
         private void BtnImprimirListaAtual_Click(object sender, EventArgs e)
         {
-            DataTable listaObjetosListaImpressao = RetornaListaObjetosNaoEntregues(MontaFiltro);
+            //DataTable listaObjetosListaImpressao = RetornaListaObjetosNaoEntregues(MontaFiltro);
+            //listaObjetosListaImpressao = (DataTable)bindingSourceObjetosNaoEntregues.DataSource;
+            DataTable listaObjetosListaImpressao = ((System.Data.DataRowView)bindingSourceObjetosNaoEntregues.Current).DataView.ToTable();
 
             if (listaObjetosListaImpressao.Rows.Count == 0) return;
 
@@ -581,7 +586,6 @@ namespace SISAPO
             bindingSourceObjetosNaoEntregues.Filter = MontaFiltro;
             MudaCorLinhasGridView();
             LbnQuantidadeRegistros.Text = bindingSourceObjetosNaoEntregues.Count.ToString();
-
             dataGridView1.Focus();
         }
 

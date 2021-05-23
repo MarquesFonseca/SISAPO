@@ -114,17 +114,38 @@ namespace SISAPO.ClassesDiversas
                 using (DAO dao = new DAO(TipoBanco.OleDb, Configuracoes.strConexao))
                 {
                     if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
-                    dao.ExecutaSQL(@"UPDATE TabelaObjetosSROLocal SET 
-                                            Atualizado = @Atualizado
-                                            WHERE CodigoObjeto = @CodigoObjeto ", new List<Parametros>(){
-                                            new Parametros("@Atualizado", TipoCampo.Boolean, true),
-                                            new Parametros("@CodigoObjeto", TipoCampo.Text, "BE165192894BR")});
+
+                    string dataInicial_dateTimePickerAnoMesDiaFormatado = "11/05/2021";
+                    List<Parametros> pr3 = new List<Parametros>() {
+                                        new Parametros() { Nome = "@PrazoDestinoCaixaPostal", Tipo = TipoCampo.Text, Valor = 30 },
+                                        new Parametros() { Nome = "@CodigoObjeto", Tipo = TipoCampo.Text, Valor = "QE640052237BR" },
+                                        new Parametros() { Nome = "@DataLancamento", Tipo = TipoCampo.Text, Valor = dataInicial_dateTimePickerAnoMesDiaFormatado }
+                                    };
+                    dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET TipoPostalPrazoDiasCorridosRegulamentado = @PrazoDestinoCaixaPostal WHERE (CodigoObjeto = @CodigoObjeto) AND (DateValue(DataLancamento) >= DateValue(@DataLancamento))", pr3);
                 }
             }
             catch (Exception ex)
             {
                 Mensagens.Erro(ex.Message);
             }
+
+
+            //try
+            //{
+            //    using (DAO dao = new DAO(TipoBanco.OleDb, Configuracoes.strConexao))
+            //    {
+            //        if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+            //        dao.ExecutaSQL(@"UPDATE TabelaObjetosSROLocal SET 
+            //                                Atualizado = @Atualizado
+            //                                WHERE CodigoObjeto = @CodigoObjeto ", new List<Parametros>(){
+            //                                new Parametros("@Atualizado", TipoCampo.Boolean, true),
+            //                                new Parametros("@CodigoObjeto", TipoCampo.Text, "BE165192894BR")});
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    Mensagens.Erro(ex.Message);
+            //}
         }
 
         public static void VerificaAplicacaoSeAbertaFechar()

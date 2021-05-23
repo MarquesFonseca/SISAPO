@@ -561,6 +561,7 @@
     <Content Include="FormularioAtualizacaoObjetos_depoisDaTentativaENaoDeuCerto.txt">
       <SubType>Form</SubType>
     </Content>
+    <Content Include="GESTAO DO DIA 21-05-2021.txt" />
     <Content Include="GESTAO DO DIA.txt" />
     <Content Include="Ico.ico" />
     <Content Include="IcoLimparFiltro.png" />
