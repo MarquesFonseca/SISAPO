@@ -60,6 +60,9 @@
             this.tabPageExibicaoColarConteudoJaCopiado = new System.Windows.Forms.TabPage();
             this.BtnColarConteudoJaCopiado = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.FiltrarPorPrazosAVENCERCheckBox = new System.Windows.Forms.CheckBox();
             this.FiltrarPorPrazosVENCENDOHOJECheckBox = new System.Windows.Forms.CheckBox();
             this.FiltrarPorPrazosVENCIDOSCheckBox = new System.Windows.Forms.CheckBox();
@@ -76,15 +79,13 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox = new System.Windows.Forms.CheckBox();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.panel6 = new System.Windows.Forms.Panel();
             this.CodigoLdi = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CodigoObjeto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Sigla = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CodigoObjeto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TipoClassificacao = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NomeCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CaixaPostal = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.NomeCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Comentario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StatusPrazo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DataLancamento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.QtdDiasCorridos = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -280,6 +281,34 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Filtrar por prazos";
             // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.Color.LightGreen;
+            this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel6.Location = new System.Drawing.Point(174, 88);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(40, 24);
+            this.panel6.TabIndex = 3;
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.LightYellow;
+            this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel5.Location = new System.Drawing.Point(174, 59);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(40, 24);
+            this.panel5.TabIndex = 3;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.LightSalmon;
+            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel4.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.panel4.Location = new System.Drawing.Point(174, 29);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(40, 24);
+            this.panel4.TabIndex = 3;
+            // 
             // FiltrarPorPrazosAVENCERCheckBox
             // 
             this.FiltrarPorPrazosAVENCERCheckBox.AutoSize = true;
@@ -435,11 +464,12 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CodigoLdi,
-            this.CodigoObjeto,
             this.Sigla,
+            this.CodigoObjeto,
             this.TipoClassificacao,
-            this.NomeCliente,
             this.CaixaPostal,
+            this.NomeCliente,
+            this.Comentario,
             this.StatusPrazo,
             this.DataLancamento,
             this.QtdDiasCorridos,
@@ -507,34 +537,6 @@
             this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.UseVisualStyleBackColor = true;
             this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.CheckedChanged += new System.EventHandler(this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox_CheckedChanged);
             // 
-            // panel4
-            // 
-            this.panel4.BackColor = System.Drawing.Color.LightSalmon;
-            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel4.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.panel4.Location = new System.Drawing.Point(174, 29);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(40, 24);
-            this.panel4.TabIndex = 3;
-            // 
-            // panel5
-            // 
-            this.panel5.BackColor = System.Drawing.Color.LightYellow;
-            this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel5.Location = new System.Drawing.Point(174, 59);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(40, 24);
-            this.panel5.TabIndex = 3;
-            // 
-            // panel6
-            // 
-            this.panel6.BackColor = System.Drawing.Color.LightGreen;
-            this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel6.Location = new System.Drawing.Point(174, 88);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(40, 24);
-            this.panel6.TabIndex = 3;
-            // 
             // CodigoLdi
             // 
             this.CodigoLdi.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
@@ -548,27 +550,27 @@
             this.CodigoLdi.Visible = false;
             this.CodigoLdi.Width = 63;
             // 
-            // CodigoObjeto
-            // 
-            this.CodigoObjeto.DataPropertyName = "CodigoObjeto";
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.CodigoObjeto.DefaultCellStyle = dataGridViewCellStyle4;
-            this.CodigoObjeto.HeaderText = "Código Objeto";
-            this.CodigoObjeto.Name = "CodigoObjeto";
-            this.CodigoObjeto.ReadOnly = true;
-            this.CodigoObjeto.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.CodigoObjeto.Width = 160;
-            // 
             // Sigla
             // 
             this.Sigla.DataPropertyName = "Sigla";
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.Sigla.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.Sigla.DefaultCellStyle = dataGridViewCellStyle4;
             this.Sigla.HeaderText = "Sigla";
             this.Sigla.Name = "Sigla";
             this.Sigla.ReadOnly = true;
             this.Sigla.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.Sigla.Width = 40;
+            // 
+            // CodigoObjeto
+            // 
+            this.CodigoObjeto.DataPropertyName = "CodigoObjeto";
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.CodigoObjeto.DefaultCellStyle = dataGridViewCellStyle5;
+            this.CodigoObjeto.HeaderText = "Código Objeto";
+            this.CodigoObjeto.Name = "CodigoObjeto";
+            this.CodigoObjeto.ReadOnly = true;
+            this.CodigoObjeto.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.CodigoObjeto.Width = 160;
             // 
             // TipoClassificacao
             // 
@@ -580,11 +582,24 @@
             this.TipoClassificacao.ReadOnly = true;
             this.TipoClassificacao.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
+            // CaixaPostal
+            // 
+            this.CaixaPostal.DataPropertyName = "CaixaPostal";
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle7.NullValue = false;
+            this.CaixaPostal.DefaultCellStyle = dataGridViewCellStyle7;
+            this.CaixaPostal.HeaderText = "Caixa Postal";
+            this.CaixaPostal.Name = "CaixaPostal";
+            this.CaixaPostal.ReadOnly = true;
+            this.CaixaPostal.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.CaixaPostal.Width = 75;
+            // 
             // NomeCliente
             // 
             this.NomeCliente.DataPropertyName = "NomeCliente";
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NomeCliente.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NomeCliente.DefaultCellStyle = dataGridViewCellStyle8;
             this.NomeCliente.HeaderText = "Nome Cliente";
             this.NomeCliente.MinimumWidth = 300;
             this.NomeCliente.Name = "NomeCliente";
@@ -593,18 +608,13 @@
             this.NomeCliente.ToolTipText = "Nome Cliente";
             this.NomeCliente.Width = 300;
             // 
-            // CaixaPostal
+            // Comentario
             // 
-            this.CaixaPostal.DataPropertyName = "CaixaPostal";
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle8.NullValue = false;
-            this.CaixaPostal.DefaultCellStyle = dataGridViewCellStyle8;
-            this.CaixaPostal.HeaderText = "Caixa Postal";
-            this.CaixaPostal.Name = "CaixaPostal";
-            this.CaixaPostal.ReadOnly = true;
-            this.CaixaPostal.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.CaixaPostal.Width = 75;
+            this.Comentario.DataPropertyName = "Comentario";
+            this.Comentario.HeaderText = "Comentario";
+            this.Comentario.Name = "Comentario";
+            this.Comentario.ReadOnly = true;
+            this.Comentario.Visible = false;
             // 
             // StatusPrazo
             // 
@@ -746,11 +756,12 @@
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.DataGridViewTextBoxColumn CodigoLdi;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CodigoObjeto;
         private System.Windows.Forms.DataGridViewTextBoxColumn Sigla;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CodigoObjeto;
         private System.Windows.Forms.DataGridViewTextBoxColumn TipoClassificacao;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NomeCliente;
         private System.Windows.Forms.DataGridViewCheckBoxColumn CaixaPostal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NomeCliente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Comentario;
         private System.Windows.Forms.DataGridViewTextBoxColumn StatusPrazo;
         private System.Windows.Forms.DataGridViewTextBoxColumn DataLancamento;
         private System.Windows.Forms.DataGridViewTextBoxColumn QtdDiasCorridos;

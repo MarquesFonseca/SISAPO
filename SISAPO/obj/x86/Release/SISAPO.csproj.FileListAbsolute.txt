@@ -80,6 +80,7 @@ C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioAuxilioGestaoDiaNovo.
 C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioCadastroTiposPostais.resources
 C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioConsulta.resources
 C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioCoordenadasExibicaoMapa.resources
+C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioImpressaoAuxilioGestaoDiaAgrupados.resources
 C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioImpressaoAuxilioGestaoDia.resources
 C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioAtualizacaoObjetosSaiuParaEntrega.resources
 C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioAtualizacaoObjetosPostados.resources

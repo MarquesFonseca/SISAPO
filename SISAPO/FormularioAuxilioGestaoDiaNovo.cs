@@ -128,6 +128,7 @@ namespace SISAPO
             dtbLista.Columns.Add("CodigoObjeto", typeof(string));
             dtbLista.Columns.Add("TipoClassificacao", typeof(string));
             dtbLista.Columns.Add("NomeCliente", typeof(string));
+            dtbLista.Columns.Add("Comentario", typeof(string));
             dtbLista.Columns.Add("CaixaPostal", typeof(bool));
             dtbLista.Columns.Add("DataLancamento", typeof(DateTime));
             dtbLista.Columns.Add("QtdDiasCorridos", typeof(string));
@@ -166,7 +167,7 @@ namespace SISAPO
                             {
                                 //CodigoLdi, Sigla, CodigoObjeto, TipoClassificacao, NomeCliente, DataLancamento, QtdDiasCorridos, PrazoTipoClassificacao, DataVencimento, StatusPrazo, QtdDiasVencidos
 
-                                dtbLista.Rows.Add(RetornaLista.Rows[0]["CodigoLdi"], RetornaLista.Rows[0]["Sigla"], RetornaLista.Rows[0]["CodigoObjeto"], RetornaLista.Rows[0]["TipoClassificacao"], RetornaLista.Rows[0]["NomeCliente"], RetornaLista.Rows[0]["CaixaPostal"], RetornaLista.Rows[0]["DataLancamento"], RetornaLista.Rows[0]["QtdDiasCorridos"], RetornaLista.Rows[0]["PrazoTipoClassificacao"], RetornaLista.Rows[0]["DataVencimento"], RetornaLista.Rows[0]["StatusPrazo"], RetornaLista.Rows[0]["QtdDiasVencidos"]);
+                                dtbLista.Rows.Add(RetornaLista.Rows[0]["CodigoLdi"], RetornaLista.Rows[0]["Sigla"], RetornaLista.Rows[0]["CodigoObjeto"], RetornaLista.Rows[0]["TipoClassificacao"], RetornaLista.Rows[0]["NomeCliente"], RetornaLista.Rows[0]["Comentario"], RetornaLista.Rows[0]["CaixaPostal"], RetornaLista.Rows[0]["DataLancamento"], RetornaLista.Rows[0]["QtdDiasCorridos"], RetornaLista.Rows[0]["PrazoTipoClassificacao"], RetornaLista.Rows[0]["DataVencimento"], RetornaLista.Rows[0]["StatusPrazo"], RetornaLista.Rows[0]["QtdDiasVencidos"]);
                             }
                         }
                     }
@@ -191,6 +192,7 @@ namespace SISAPO
             dtbLista.Columns.Add("CodigoObjeto", typeof(string));
             dtbLista.Columns.Add("TipoClassificacao", typeof(string));
             dtbLista.Columns.Add("NomeCliente", typeof(string));
+            dtbLista.Columns.Add("Comentario", typeof(string));
             dtbLista.Columns.Add("CaixaPostal", typeof(bool));
             dtbLista.Columns.Add("DataLancamento", typeof(DateTime));
             dtbLista.Columns.Add("QtdDiasCorridos", typeof(string));
@@ -212,6 +214,7 @@ namespace SISAPO
                     stringSQL.AppendLine(",ObjetosNaoEntregues.CodigoObjeto                                                                                                                                                                                                                                        ");
                     stringSQL.AppendLine(",ObjetosNaoEntregues.TipoClassificacao                                                                                                                                                                                                                                   ");
                     stringSQL.AppendLine(",ObjetosNaoEntregues.NomeCliente                                                                                                                                                                                                                                         ");
+                    stringSQL.AppendLine(",ObjetosNaoEntregues.Comentario                                                                                                                                                                                                                                         ");
                     stringSQL.AppendLine(",ObjetosNaoEntregues.CaixaPostal                                                                                                                                                                                                                                         ");
                     stringSQL.AppendLine(",ObjetosNaoEntregues.DataLancamento                                                                                                                                                                                                                                      ");
                     stringSQL.AppendLine(",ObjetosNaoEntregues.QtdDiasCorridos                                                                                                                                                                                                                                     ");
@@ -226,6 +229,7 @@ namespace SISAPO
                     stringSQL.AppendLine(",TabelaObjetosSROLocal.CodigoObjeto                                                                                                                                                                                                                                      ");
                     stringSQL.AppendLine(",(SELECT TiposPostais.TipoClassificacao from TiposPostais WHERE TiposPostais.Sigla = Left(TabelaObjetosSROLocal.CodigoObjeto, 2)) AS TipoClassificacao                                                                                                                   ");
                     stringSQL.AppendLine(",TabelaObjetosSROLocal.NomeCliente                                                                                                                                                                                                                                       ");
+                    stringSQL.AppendLine(",TabelaObjetosSROLocal.Comentario                                                                                                                                                                                                                                       ");
                     stringSQL.AppendLine(",TabelaObjetosSROLocal.CaixaPostal                                                                                                                                                                                                                                       ");
                     stringSQL.AppendLine(",FORMAT(TabelaObjetosSROLocal.DataLancamento, \"dd/MM/yyyy\") AS DataLancamento                                                                                                                                                                                            ");
                     stringSQL.AppendLine(",DATEDIFF(\"d\", TabelaObjetosSROLocal.DataLancamento, Now()) AS QtdDiasCorridos                                                                                                                                                                                           ");
@@ -267,6 +271,7 @@ namespace SISAPO
             dtbLista.Columns.Add("CodigoObjeto", typeof(string));
             dtbLista.Columns.Add("TipoClassificacao", typeof(string));
             dtbLista.Columns.Add("NomeCliente", typeof(string));
+            dtbLista.Columns.Add("Comentario", typeof(string));
             dtbLista.Columns.Add("CaixaPostal", typeof(bool));
             dtbLista.Columns.Add("DataLancamento", typeof(DateTime));
             dtbLista.Columns.Add("QtdDiasCorridos", typeof(string));
@@ -288,6 +293,7 @@ namespace SISAPO
                     stringSQL.AppendLine(",ObjetosNaoEntregues.CodigoObjeto                                                                                                                                                                                                                                        ");
                     stringSQL.AppendLine(",ObjetosNaoEntregues.TipoClassificacao                                                                                                                                                                                                                                   ");
                     stringSQL.AppendLine(",ObjetosNaoEntregues.NomeCliente                                                                                                                                                                                                                                         ");
+                    stringSQL.AppendLine(",ObjetosNaoEntregues.Comentario                                                                                                                                                                                                                                         ");
                     stringSQL.AppendLine(",ObjetosNaoEntregues.CaixaPostal                                                                                                                                                                                                                                         ");
                     stringSQL.AppendLine(",ObjetosNaoEntregues.DataLancamento                                                                                                                                                                                                                                      ");
                     stringSQL.AppendLine(",ObjetosNaoEntregues.QtdDiasCorridos                                                                                                                                                                                                                                     ");
@@ -302,6 +308,7 @@ namespace SISAPO
                     stringSQL.AppendLine(",TabelaObjetosSROLocal.CodigoObjeto                                                                                                                                                                                                                                      ");
                     stringSQL.AppendLine(",(SELECT TiposPostais.TipoClassificacao from TiposPostais WHERE TiposPostais.Sigla = Left(TabelaObjetosSROLocal.CodigoObjeto, 2)) AS TipoClassificacao                                                                                                                   ");
                     stringSQL.AppendLine(",TabelaObjetosSROLocal.NomeCliente                                                                                                                                                                                                                                       ");
+                    stringSQL.AppendLine(",TabelaObjetosSROLocal.Comentario                                                                                                                                                                                                                                       ");
                     stringSQL.AppendLine(",TabelaObjetosSROLocal.CaixaPostal                                                                                                                                                                                                                                       ");
                     stringSQL.AppendLine(",FORMAT(TabelaObjetosSROLocal.DataLancamento, \"dd/MM/yyyy\") AS DataLancamento                                                                                                                                                                                            ");
                     stringSQL.AppendLine(",DATEDIFF(\"d\", TabelaObjetosSROLocal.DataLancamento, Now()) AS QtdDiasCorridos                                                                                                                                                                                           ");
@@ -337,6 +344,7 @@ namespace SISAPO
         {
             //DataTable listaObjetosListaImpressao = RetornaListaObjetosNaoEntregues(MontaFiltro);
             //listaObjetosListaImpressao = (DataTable)bindingSourceObjetosNaoEntregues.DataSource;
+            if (bindingSourceObjetosNaoEntregues.Current == null) return;
             DataTable listaObjetosListaImpressao = ((System.Data.DataRowView)bindingSourceObjetosNaoEntregues.Current).DataView.ToTable();
 
             if (listaObjetosListaImpressao.Rows.Count == 0) return;
@@ -352,13 +360,13 @@ namespace SISAPO
                 }
             }
 
-            //FormularioImpressaoAuxilioGestaoDia formularioImpressaoAuxilioGestaoDia = new FormularioImpressaoAuxilioGestaoDia(novoCodigoSelecionados);
-            FormularioImpressaoAuxilioGestaoDia formularioImpressaoAuxilioGestaoDia = new FormularioImpressaoAuxilioGestaoDia(listaObjetos);
-            formularioImpressaoAuxilioGestaoDia.MdiParent = MdiParent;
-            formularioImpressaoAuxilioGestaoDia.Show();
-            formularioImpressaoAuxilioGestaoDia.WindowState = FormWindowState.Normal;
-            formularioImpressaoAuxilioGestaoDia.WindowState = FormWindowState.Maximized;
-            formularioImpressaoAuxilioGestaoDia.Activate();
+            //FormularioImpressaoAuxilioGestaoDia formularioImpressaoAuxilioGestaoDia = new FormularioImpressaoAuxilioGestaoDia(listaObjetos);
+            FormularioImpressaoAuxilioGestaoDiaAgrupados formularioImpressaoAuxilioGestaoDiaAgrupados = new FormularioImpressaoAuxilioGestaoDiaAgrupados (listaObjetos);
+            formularioImpressaoAuxilioGestaoDiaAgrupados.MdiParent = MdiParent;
+            formularioImpressaoAuxilioGestaoDiaAgrupados.Show();
+            formularioImpressaoAuxilioGestaoDiaAgrupados.WindowState = FormWindowState.Normal;
+            formularioImpressaoAuxilioGestaoDiaAgrupados.WindowState = FormWindowState.Maximized;
+            formularioImpressaoAuxilioGestaoDiaAgrupados.Activate();
         }
 
         private void BtnRetornaTodosNaoEntregues_Click(object sender, EventArgs e)
@@ -585,6 +593,10 @@ namespace SISAPO
 
             bindingSourceObjetosNaoEntregues.Filter = MontaFiltro;
             MudaCorLinhasGridView();
+
+            //dataGridView1.Columns["TipoClassificacao"].Frozen = true;
+            //dataGridView1.RightToLeft = RightToLeft.Yes;
+
             LbnQuantidadeRegistros.Text = bindingSourceObjetosNaoEntregues.Count.ToString();
             dataGridView1.Focus();
         }

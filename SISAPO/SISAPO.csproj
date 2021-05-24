@@ -203,6 +203,12 @@
     <Compile Include="FormularioCoordenadasExibicaoMapa.Designer.cs">
       <DependentUpon>FormularioCoordenadasExibicaoMapa.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormularioImpressaoAuxilioGestaoDiaAgrupados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormularioImpressaoAuxilioGestaoDiaAgrupados.Designer.cs">
+      <DependentUpon>FormularioImpressaoAuxilioGestaoDiaAgrupados.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormularioImpressaoAuxilioGestaoDia.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -407,6 +413,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormularioCoordenadasExibicaoMapa.resx">
       <DependentUpon>FormularioCoordenadasExibicaoMapa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormularioImpressaoAuxilioGestaoDiaAgrupados.resx">
+      <DependentUpon>FormularioImpressaoAuxilioGestaoDiaAgrupados.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormularioImpressaoAuxilioGestaoDia.resx">
       <DependentUpon>FormularioImpressaoAuxilioGestaoDia.cs</DependentUpon>

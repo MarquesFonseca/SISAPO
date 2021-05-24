@@ -61,9 +61,9 @@ namespace SISAPO
             this.imprimirAvisosDeChegadaSelecionadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
             this.imprimirListaDeEntregaParaConsultaSelecionadaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.imprimirAvisoDeChegadaHOJEExcetoEntreguesECaixaPostalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imprimirListaLDIsExpediçãoPorOrdemDeDecrescenteAoLançamentoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imprimirListaLDIsAssinaturasPorOrdemAlfabéticaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.imprimirAvisoDeChegadaHOJEExcetoEntreguesECaixaPostalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.marcarSelecionadosComoAtualizadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.marcarSelecionadosComoNaoAtualizadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -388,14 +388,6 @@ namespace SISAPO
             this.imprimirListaDeEntregaParaConsultaSelecionadaToolStripMenuItem1.Visible = false;
             this.imprimirListaDeEntregaParaConsultaSelecionadaToolStripMenuItem1.Click += new System.EventHandler(this.imprimirListaDeEntregaParaConsultaSelecionadaToolStripMenuItem1_Click);
             // 
-            // imprimirAvisoDeChegadaHOJEExcetoEntreguesECaixaPostalToolStripMenuItem
-            // 
-            this.imprimirAvisoDeChegadaHOJEExcetoEntreguesECaixaPostalToolStripMenuItem.Image = global::SISAPO.Properties.Resources.if_BT_printer_905556;
-            this.imprimirAvisoDeChegadaHOJEExcetoEntreguesECaixaPostalToolStripMenuItem.Name = "imprimirAvisoDeChegadaHOJEExcetoEntreguesECaixaPostalToolStripMenuItem";
-            this.imprimirAvisoDeChegadaHOJEExcetoEntreguesECaixaPostalToolStripMenuItem.Size = new System.Drawing.Size(482, 22);
-            this.imprimirAvisoDeChegadaHOJEExcetoEntreguesECaixaPostalToolStripMenuItem.Text = "Imprimir lista Aviso de chegada [HOJE] - (Exceto: Entregues e Caixa Postal)";
-            this.imprimirAvisoDeChegadaHOJEExcetoEntreguesECaixaPostalToolStripMenuItem.Click += new System.EventHandler(this.imprimirAvisoDeChegadaHOJEExcetoEntreguesECaixaPostalToolStripMenuItem_Click);
-            // 
             // imprimirListaLDIsExpediçãoPorOrdemDeDecrescenteAoLançamentoToolStripMenuItem
             // 
             this.imprimirListaLDIsExpediçãoPorOrdemDeDecrescenteAoLançamentoToolStripMenuItem.Image = global::SISAPO.Properties.Resources.if_BT_printer_905556;
@@ -411,6 +403,14 @@ namespace SISAPO
             this.imprimirListaLDIsAssinaturasPorOrdemAlfabéticaToolStripMenuItem.Size = new System.Drawing.Size(482, 22);
             this.imprimirListaLDIsAssinaturasPorOrdemAlfabéticaToolStripMenuItem.Text = "Imprimir lista LDIs-Assinaturas [HOJE] (Por ordem alfabética)";
             this.imprimirListaLDIsAssinaturasPorOrdemAlfabéticaToolStripMenuItem.Click += new System.EventHandler(this.imprimirListaLDIsAssinaturasPorOrdemAlfabéticaToolStripMenuItem_Click);
+            // 
+            // imprimirAvisoDeChegadaHOJEExcetoEntreguesECaixaPostalToolStripMenuItem
+            // 
+            this.imprimirAvisoDeChegadaHOJEExcetoEntreguesECaixaPostalToolStripMenuItem.Image = global::SISAPO.Properties.Resources.if_BT_printer_905556;
+            this.imprimirAvisoDeChegadaHOJEExcetoEntreguesECaixaPostalToolStripMenuItem.Name = "imprimirAvisoDeChegadaHOJEExcetoEntreguesECaixaPostalToolStripMenuItem";
+            this.imprimirAvisoDeChegadaHOJEExcetoEntreguesECaixaPostalToolStripMenuItem.Size = new System.Drawing.Size(482, 22);
+            this.imprimirAvisoDeChegadaHOJEExcetoEntreguesECaixaPostalToolStripMenuItem.Text = "Imprimir lista Aviso de chegada [HOJE] - (Exceto: Entregues e Caixa Postal)";
+            this.imprimirAvisoDeChegadaHOJEExcetoEntreguesECaixaPostalToolStripMenuItem.Click += new System.EventHandler(this.imprimirAvisoDeChegadaHOJEExcetoEntreguesECaixaPostalToolStripMenuItem_Click);
             // 
             // toolStripSeparator6
             // 

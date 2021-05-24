@@ -17,6 +17,129 @@ namespace SISAPO
         {
             InitializeComponent();
             this.listaObjetos = _listaObjetos;
+            //Classificacao.AsEnumerable().GroupBy(t => t).Distinct().ToList()
+            Dictionary<string, DataTable> listaPCT = new Dictionary<string, DataTable>();
+            DataTable DtTempPCT = new DataTable();
+            DtTempPCT = FormataColunasDataTable(DtTempPCT);
+
+            Dictionary<string, DataTable> listaPCTINT = new Dictionary<string, DataTable>();
+            DataTable DtTempPCTINT = new DataTable();
+            DtTempPCTINT = FormataColunasDataTable(DtTempPCTINT);
+
+            Dictionary<string, DataTable> listaENV = new Dictionary<string, DataTable>();
+            DataTable DtTempENV = new DataTable();
+            DtTempENV = FormataColunasDataTable(DtTempENV);
+
+            Dictionary<string, DataTable> listaCAIXAPOSTAL = new Dictionary<string, DataTable>();
+            DataTable DtTempCAIXAPOSTAL = new DataTable();
+            DtTempCAIXAPOSTAL = FormataColunasDataTable(DtTempCAIXAPOSTAL);
+
+            Dictionary<string, DataTable> listaACOBRAR = new Dictionary<string, DataTable>();
+            DataTable DtTempACOBRAR = new DataTable();
+            DtTempACOBRAR = FormataColunasDataTable(DtTempACOBRAR);
+
+            foreach (DataRow item in this.listaObjetos.Rows)
+            {
+                string Comentario = item["Comentario"].ToString();
+                #region VerificaComentarioPCT
+                if (VerificaComentarioPCT(Comentario))
+                {
+                    DtTempPCT.Rows.Add(item["CodigoLdi"], item["Sigla"], item["CodigoObjeto"], item["TipoClassificacao"], item["NomeCliente"], item["Comentario"], item["CaixaPostal"], item["DataLancamento"], item["QtdDiasCorridos"], item["PrazoTipoClassificacao"], item["DataVencimento"], item["StatusPrazo"], item["QtdDiasVencidos"]);
+                    continue;
+                }
+                #endregion
+                #region VerificaComentarioPCTINT
+                if (VerificaComentarioPCTINT(Comentario))
+                {
+                    DtTempPCTINT.Rows.Add(item["CodigoLdi"], item["Sigla"], item["CodigoObjeto"], item["TipoClassificacao"], item["NomeCliente"], item["Comentario"], item["CaixaPostal"], item["DataLancamento"], item["QtdDiasCorridos"], item["PrazoTipoClassificacao"], item["DataVencimento"], item["StatusPrazo"], item["QtdDiasVencidos"]);
+                    continue;
+                }
+                #endregion
+                #region VerificaComentarioENV
+                if (VerificaComentarioENV(Comentario))
+                {
+                    DtTempENV.Rows.Add(item["CodigoLdi"], item["Sigla"], item["CodigoObjeto"], item["TipoClassificacao"], item["NomeCliente"], item["Comentario"], item["CaixaPostal"], item["DataLancamento"], item["QtdDiasCorridos"], item["PrazoTipoClassificacao"], item["DataVencimento"], item["StatusPrazo"], item["QtdDiasVencidos"]);
+                    continue;
+                }
+                #endregion
+                #region VerificaComentarioCAIXAPOSTAL
+                if (VerificaComentarioCAIXAPOSTAL(Comentario))
+                {
+                    DtTempCAIXAPOSTAL.Rows.Add(item["CodigoLdi"], item["Sigla"], item["CodigoObjeto"], item["TipoClassificacao"], item["NomeCliente"], item["Comentario"], item["CaixaPostal"], item["DataLancamento"], item["QtdDiasCorridos"], item["PrazoTipoClassificacao"], item["DataVencimento"], item["StatusPrazo"], item["QtdDiasVencidos"]);
+                    continue;
+                }
+                #endregion
+                #region VerificaComentarioACOBRAR
+                if (VerificaComentarioACOBRAR(Comentario))
+                {
+                    DtTempACOBRAR.Rows.Add(item["CodigoLdi"], item["Sigla"], item["CodigoObjeto"], item["TipoClassificacao"], item["NomeCliente"], item["Comentario"], item["CaixaPostal"], item["DataLancamento"], item["QtdDiasCorridos"], item["PrazoTipoClassificacao"], item["DataVencimento"], item["StatusPrazo"], item["QtdDiasVencidos"]);
+                    continue;
+                }
+                #endregion
+                DtTempPCT.Rows.Add(item["CodigoLdi"], item["Sigla"], item["CodigoObjeto"], item["TipoClassificacao"], item["NomeCliente"], item["Comentario"], item["CaixaPostal"], item["DataLancamento"], item["QtdDiasCorridos"], item["PrazoTipoClassificacao"], item["DataVencimento"], item["StatusPrazo"], item["QtdDiasVencidos"]);
+            }
+        }
+
+        private DataTable FormataColunasDataTable(DataTable datatable)
+        {
+            datatable.Columns.Add("CodigoLdi", typeof(string));
+            datatable.Columns.Add("Sigla", typeof(string));
+            datatable.Columns.Add("CodigoObjeto", typeof(string));
+            datatable.Columns.Add("TipoClassificacao", typeof(string));
+            datatable.Columns.Add("NomeCliente", typeof(string));
+            datatable.Columns.Add("Comentario", typeof(string));
+            datatable.Columns.Add("CaixaPostal", typeof(bool));
+            datatable.Columns.Add("DataLancamento", typeof(DateTime));
+            datatable.Columns.Add("QtdDiasCorridos", typeof(string));
+            datatable.Columns.Add("PrazoTipoClassificacao", typeof(int));
+            datatable.Columns.Add("DataVencimento", typeof(DateTime));
+            datatable.Columns.Add("StatusPrazo", typeof(string));
+            datatable.Columns.Add("QtdDiasVencidos", typeof(string));
+            return datatable;
+        }
+
+        private bool VerificaComentarioACOBRAR(string comentario)
+        {
+            if (comentario.Contains("A COBRAR")) return true;
+            return false;
+        }
+
+        private bool VerificaComentarioCAIXAPOSTAL(string comentario)
+        {
+            if (comentario.Contains("CAIXA POSTAL")) return true;
+            return false;
+        }
+
+        private bool VerificaComentarioENV(string comentario)
+        {
+            if (comentario.Contains("ENV")) return true;
+            return false;
+        }
+
+        private bool VerificaComentarioPCTINT(string comentario)
+        {
+            if (comentario.Contains("PCT"))
+                if (comentario.Replace("PCT", "").Trim() != "")
+                    if (comentario.Replace("PCT", "").Trim().Contains("INT"))
+                        return true;
+            return false;
+        }
+
+        private bool VerificaComentarioPCT(string comentario)
+        {
+            if (comentario.Contains("PCT"))
+            {
+                if (comentario.Contains("INT"))
+                {
+                    return false;
+                }
+                if (comentario.Contains("INTERNACIONAL"))
+                {
+                    return false;
+                }
+                return true;
+            }
+            return false;
         }
 
         private void FormularioImpressaoAuxilioGestaoDia_Load(object sender, EventArgs e)
@@ -130,24 +253,35 @@ namespace SISAPO
             Html.AppendLine("		<tr>");
             Html.AppendLine("		    <td width=\"90\" bgcolor=\"#F3F3F3\"><b><font size=\"3\">  Núm. LDI</font></b></td>");
             Html.AppendLine("		    <td width=\"150\" bgcolor=\"#F3F3F3\"><b><font size=\"3\">  Objeto</font></b></td>");
-            Html.AppendLine("		    <td width=\"400\" bgcolor=\"#F3F3F3\"><b><font size=\"3\">  Destinatário</font></b></td>");
-            Html.AppendLine("		    <td width=\"130\" bgcolor=\"#F3F3F3\"><b><font size=\"3\">  Lançamento</font></b></td>");
-            Html.AppendLine("		    <td width=\"80\" bgcolor=\"#F3F3F3\"><b><font size=\"3\">  Corridos</font></b></td>");
+            Html.AppendLine("		    <td width=\"450\" bgcolor=\"#F3F3F3\"><b><font size=\"3\">  Destinatário</font></b></td>");
+            Html.AppendLine("		    <td width=\"90\" bgcolor=\"#F3F3F3\"><b><font size=\"3\">  Lançamento</font></b></td>");
+            Html.AppendLine("		    <td width=\"70\" bgcolor=\"#F3F3F3\"><b><font size=\"3\">  Corridos</font></b></td>");
             Html.AppendLine("		</tr>");
             foreach (DataRow dr in listaObjetos.Rows)
             {
-                string CodigoObjetoFormatado = string.Format("{0} {1} {2} {3} {4}",
+                #region Modelo QE 812 219 679 BR
+                //QE 812 219 679 BR
+                //string CodigoObjetoFormatado = string.Format("{0} {1} {2} {3} {4}",
+                //dr["CodigoObjeto"].ToString().Substring(0, 2),
+                //dr["CodigoObjeto"].ToString().Substring(2, 3),
+                //dr["CodigoObjeto"].ToString().Substring(5, 3),
+                //dr["CodigoObjeto"].ToString().Substring(8, 3),
+                //dr["CodigoObjeto"].ToString().Substring(11, 2));
+                #endregion
+                #region Modelo QE 81221967-9 BR
+                //QE 81221967-9 BR
+                string CodigoObjetoFormatado = string.Format("{0} {1}-{2} {3}",
                 dr["CodigoObjeto"].ToString().Substring(0, 2),
-                dr["CodigoObjeto"].ToString().Substring(2, 3),
-                dr["CodigoObjeto"].ToString().Substring(5, 3),
-                dr["CodigoObjeto"].ToString().Substring(8, 3),
+                dr["CodigoObjeto"].ToString().Substring(2, 8),
+                dr["CodigoObjeto"].ToString().Substring(10, 1),
                 dr["CodigoObjeto"].ToString().Substring(11, 2));
+                #endregion
                 string DiasCorridos = Convert.ToString((DateTime.Now.Date - dr["DataLancamento"].ToDateTime().Date).TotalDays);
 
                 Html.AppendLine("		<tr>");
                 Html.AppendLine("		    <td>" + dr["CodigoLdi"].ToString() + "</td>");
                 Html.AppendLine("		    <td>" + CodigoObjetoFormatado + "</td>");
-                Html.AppendLine("		    <td>" + dr["NomeCliente"].ToString() + "</td>");
+                Html.AppendLine("		    <td><b>" + dr["NomeCliente"].ToString() + "</b></td>");
                 Html.AppendLine("		    <td>" + dr["DataLancamento"].ToString() + "</td>");
                 Html.AppendLine("		    <td>&nbsp;&nbsp;" + DiasCorridos + " dias</td>");
                 Html.AppendLine("		</tr>");

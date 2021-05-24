@@ -229,17 +229,26 @@ namespace SISAPO
 
         private void RastreamentoSRO_toolStripButton_Click(object sender, EventArgs e)
         {
-            bool estaAberto = false;
+            //bool estaAberto = false;
+            //foreach (Form item in MdiChildren)
+            //{
+            //    if (item.Name == "FormularioSRORastreamentoUnificado" && !item.Text.Contains("Rastreamento Unificado Detalhado"))
+            //    {
+            //        estaAberto = true;
+            //        item.Activate();
+            //        break;
+            //    }
+            //}
+            //if (estaAberto) return;
+
             foreach (Form item in MdiChildren)
             {
                 if (item.Name == "FormularioSRORastreamentoUnificado" && !item.Text.Contains("Rastreamento Unificado Detalhado"))
-                {
-                    estaAberto = true;
-                    item.Activate();
+                {                    
+                    item.Close();
                     break;
                 }
             }
-            if (estaAberto) return;
 
             FormularioSRORastreamentoUnificado formularioSRORastreamentoUnificado = new FormularioSRORastreamentoUnificado();
             formularioSRORastreamentoUnificado.MdiParent = this;
