@@ -279,8 +279,8 @@ namespace SISAPO
                         SeECaixaPostal = !SeECaixaPostal ? Configuracoes.RetornaSeECaixaPostal(NomeCliente) : SeECaixaPostal;
                         SeEAoRemetente = Configuracoes.RetornaSeEAoRemetente(NomeCliente);
 
+                        //precisa ter essa verificação porque o objeto atual pode ser caixa postal ou ao remente... portanto verificar para trazer...
                         TipoPostalPrazoDiasCorridosRegulamentado = Configuracoes.RetornaTipoPostalPrazoDiasCorridosRegulamentado(CodigoObjetoAtual, SeEAoRemetente, SeECaixaPostal, ref TipoPostalServico, ref TipoPostalSiglaCodigo, ref TipoPostalNomeSiglaCodigo);
-                        TipoPostalPrazoDiasCorridosRegulamentado = TipoPostalPrazoDiasCorridosRegulamentado == "" ? "7" : TipoPostalPrazoDiasCorridosRegulamentado;
 
                         //existe na base de dados
                         dao.ExecutaSQL(string.Format("UPDATE TabelaObjetosSROLocal SET DataLancamento = @DataLancamento, DataModificacao = @DataModificacao, Situacao = @Situacao, Atualizado = @Atualizado, ObjetoEntregue = @ObjetoEntregue, TipoPostalServico = @TipoPostalServico, TipoPostalSiglaCodigo = @TipoPostalSiglaCodigo, TipoPostalNomeSiglaCodigo = @TipoPostalNomeSiglaCodigo, TipoPostalPrazoDiasCorridosRegulamentado = @TipoPostalPrazoDiasCorridosRegulamentado WHERE (CodigoObjeto = @CodigoObjeto)"), new List<Parametros>(){
@@ -293,7 +293,7 @@ namespace SISAPO
                                             new Parametros("@TipoPostalServico", TipoCampo.Text, TipoPostalServico == "" ? (object)DBNull.Value : TipoPostalServico),
                                             new Parametros("@TipoPostalSiglaCodigo", TipoCampo.Text, TipoPostalSiglaCodigo == "" ? (object)DBNull.Value : TipoPostalSiglaCodigo),
                                             new Parametros("@TipoPostalNomeSiglaCodigo", TipoCampo.Text, TipoPostalNomeSiglaCodigo == "" ? (object)DBNull.Value : TipoPostalNomeSiglaCodigo),
-                                            new Parametros("@TipoPostalPrazoDiasCorridosRegulamentado", TipoCampo.Text, TipoPostalPrazoDiasCorridosRegulamentado == "" ? (object)DBNull.Value : TipoPostalPrazoDiasCorridosRegulamentado),
+                                            new Parametros("@TipoPostalPrazoDiasCorridosRegulamentado", TipoCampo.Text, TipoPostalPrazoDiasCorridosRegulamentado == "" ? "7" : TipoPostalPrazoDiasCorridosRegulamentado),
 
                                             new Parametros("@CodigoObjeto", TipoCampo.Text, linhaItemCodigoObjeto)});
                     }
