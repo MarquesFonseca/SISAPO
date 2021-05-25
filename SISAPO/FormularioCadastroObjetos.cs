@@ -243,7 +243,7 @@ namespace SISAPO
                 int progresso = (contador * 100) / listaObjetos.Rows.Count;
                 worker.ReportProgress(progresso);
 
-                string CodigoObjetoAtual = string.Empty;
+                string CodigoObjetoAtual = linhaItemCodigoObjeto;
                 string NomeCliente = string.Empty;
                 bool SeECaixaPostal = false;
                 bool SeEAoRemetente = false;
@@ -259,12 +259,18 @@ namespace SISAPO
                     Mensagens.Erro(string.Format("Não foi encontrado o Tipo Postal [ {0} ].\nUma gestão de tipos postais é necessário.", linhaItemCodigoObjeto.Substring(0, 2)));
                     //continua mesmo não tendo o tipo postal desejado....
                 }
+                if (linhaItemSituacao == "CANCELAMENTO DE LANÇAMENTO INTERNO")
+                {
+                    //remove do banco
+                    //dao.ExecutaSQL(string.Format("DELETE FROM TabelaObjetosSROLocal WHERE (CodigoObjeto = @CodigoObjeto)"), new List<Parametros>(){
+                    //                    new Parametros("@CodigoObjeto", TipoCampo.Text, linhaItemCodigoObjeto)});
+                    continue;
+                }
 
                 using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
                 {
                     if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
                     DataSet jaCadastrado = dao.RetornaDataSet(string.Format("SELECT DISTINCT CodigoObjeto, NomeCliente, CaixaPostal FROM TabelaObjetosSROLocal WHERE (CodigoObjeto = '{0}')", linhaItemCodigoObjeto));
-
                     if (jaCadastrado.Tables[0].Rows.Count >= 1)//existe na base de dados
                     {
                         CodigoObjetoAtual = jaCadastrado.Tables[0].Rows[0]["CodigoObjeto"].ToString();
@@ -308,7 +314,7 @@ namespace SISAPO
                                     new Parametros() { Nome = "TipoPostalServico", Tipo = TipoCampo.Text, Valor = TipoPostalServico == "" ? (object)DBNull.Value : TipoPostalServico },
                                     new Parametros() { Nome = "TipoPostalSiglaCodigo", Tipo = TipoCampo.Text, Valor = TipoPostalSiglaCodigo == "" ? (object)DBNull.Value : TipoPostalSiglaCodigo },
                                     new Parametros() { Nome = "TipoPostalNomeSiglaCodigo", Tipo = TipoCampo.Text, Valor = TipoPostalNomeSiglaCodigo == "" ? (object)DBNull.Value : TipoPostalNomeSiglaCodigo },
-                                    new Parametros() { Nome = "TipoPostalPrazoDiasCorridosRegulamentado", Tipo = TipoCampo.Text, Valor = "7" }});
+                                    new Parametros() { Nome = "TipoPostalPrazoDiasCorridosRegulamentado", Tipo = TipoCampo.Text, Valor = TipoPostalPrazoDiasCorridosRegulamentado == "" ? "7" : TipoPostalPrazoDiasCorridosRegulamentado }});
                     }
                 }
             }
