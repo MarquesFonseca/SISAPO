@@ -284,6 +284,71 @@ namespace SISAPO.ClassesDiversas
             }
         }
 
+        public static string RetornaTipoPostalPrazoDiasCorridosRegulamentado(string _CodigoObjetoAtual, bool SeEAoRemetente, bool SeECaixaPostal, ref string TipoPostalServico, ref string TipoPostalSiglaCodigo, ref string TipoPostalNomeSiglaCodigo)
+        {
+            string TipoPostalPrazoDiasCorridosRegulamentado = "";
+            try
+            {
+                if (FormularioPrincipal.TiposPostais.Rows.Count > 0)
+                {
+                    if (_CodigoObjetoAtual == "") return "";
+
+                    bool existe = FormularioPrincipal.TiposPostais.AsEnumerable().Any(T => T["Sigla"].Equals(_CodigoObjetoAtual.Substring(0, 2)));
+                    if (!existe) return "";
+                    // existe
+                    DataRow drTipoPostal = FormularioPrincipal.TiposPostais.AsEnumerable().First(T => T["Sigla"].Equals(_CodigoObjetoAtual.Substring(0, 2)));
+                    if (drTipoPostal == null) return "";
+
+                    //Exemplo "LB327263658SE"
+                    //[0] - Serviço: NAO URGENTE 
+                    //[1] - Código: LB 
+                    //[2] - Nome: OBJETO INTERNACIONAL PRIME 
+                    //[3] - Prazo dias corridos no destino (Caixa Postal): 30 
+                    //[4] - Prazo dias corridos no destino (Caída/Pedida): 20 
+                    //[5] - Prazo dias corridos na origem/devolução/remetente (Caixa Postal): 20 
+                    //[6] - Prazo dias corridos na origem/devolução/remetente (Caída/Pedida): 20
+
+                    TipoPostalServico = drTipoPostal["Servico"].ToString();
+                    TipoPostalSiglaCodigo = drTipoPostal["Sigla"].ToString();
+                    TipoPostalNomeSiglaCodigo = drTipoPostal["Descricao"].ToString();
+
+                    #region Se for Caixa Postal e Não for Ao remetente
+                    if (SeECaixaPostal && !SeEAoRemetente)
+                    {
+                        // Pega campo "Prazo dias corridos no destino (Caixa Postal)"
+                        TipoPostalPrazoDiasCorridosRegulamentado = drTipoPostal["PrazoDestinoCaixaPostal"].ToString();
+                    }
+                    #endregion
+                    #region Se for Caixa Postal e Se for Ao remetente
+                    if (SeECaixaPostal && SeEAoRemetente)
+                    {
+                        // Pega campo "Prazo dias corridos na origem/devolução/remetente (Caixa Postal)"
+                        TipoPostalPrazoDiasCorridosRegulamentado = drTipoPostal["PrazoRemetenteCaixaPostal"].ToString();
+                    }
+                    #endregion
+                    #region Se Não for Caixa Postal && Não for Ao remetente
+                    if (!SeECaixaPostal && !SeEAoRemetente)
+                    {
+                        // Pega campo "Prazo dias corridos no destino (Caída/Pedida)"
+                        TipoPostalPrazoDiasCorridosRegulamentado = drTipoPostal["PrazoDestinoCaidaPedida"].ToString();
+                    }
+                    #endregion
+                    #region Se Não for Caixa Postal && Se for Ao remetente
+                    if (!SeECaixaPostal && SeEAoRemetente)
+                    {
+                        // Pega campo "Prazo dias corridos na origem/devolução/remetente (Caída/Pedida)"
+                        TipoPostalPrazoDiasCorridosRegulamentado = drTipoPostal["PrazoRemetenteCaidaPedida"].ToString();
+                    }
+                    #endregion
+                }
+                return TipoPostalPrazoDiasCorridosRegulamentado;
+            }
+            catch (Exception ex)
+            {
+                return TipoPostalPrazoDiasCorridosRegulamentado;
+            }
+        }
+
         /// <summary>
         /// Mensagem 'A conexão com o banco de dados foi perdida.'
         /// </summary>
@@ -735,18 +800,19 @@ namespace SISAPO.ClassesDiversas
             textoFormatado = texto.RemoveAcentos();
             textoFormatado = textoFormatado.ToUpper();
 
-            if (textoFormatado.Contains("CAIXA POSTAL")) return true;
-            if (textoFormatado.Contains("CAIXA POSTA")) return true;
-            if (textoFormatado.Contains("CAIXA POST")) return true;
-            if (textoFormatado.Contains("CAIXA POS")) return true;
-            if (textoFormatado.Contains("CAIXA PO")) return true;
-            if (textoFormatado.Contains("CAIXA P")) return true;
-            if (textoFormatado.Contains("CX POSTAL")) return true;
-            if (textoFormatado.Contains("CX POSTA")) return true;
-            if (textoFormatado.Contains("CX POST")) return true;
-            if (textoFormatado.Contains("CX POS")) return true;
-            if (textoFormatado.Contains("CX PO")) return true;
-            if (textoFormatado.Contains("CX P")) return true;
+            if (textoFormatado.Contains(" - CAIXA POSTAL")) return true;
+            if (textoFormatado.Contains(" - CAIXA POSTA")) return true;
+            if (textoFormatado.Contains(" - CAIXA POST")) return true;
+            if (textoFormatado.Contains(" - CAIXA POS")) return true;
+            if (textoFormatado.Contains(" - CAIXA PO")) return true;
+            if (textoFormatado.Contains(" - CAIXA P")) return true;
+            if (textoFormatado.Contains(" - CX POSTAL")) return true;
+            if (textoFormatado.Contains(" - CX POSTA")) return true;
+            if (textoFormatado.Contains(" - CX POST")) return true;
+            if (textoFormatado.Contains(" - CX POS")) return true;
+            if (textoFormatado.Contains(" - CX PO")) return true;
+            if (textoFormatado.Contains(" - CX P")) return true;
+            if (textoFormatado.Contains(" - CP")) return true;
             return false;
         }
 
@@ -824,19 +890,26 @@ namespace SISAPO.ClassesDiversas
             textoFormatado = texto.RemoveAcentos();
             textoFormatado = textoFormatado.ToUpper();
 
-            if (textoFormatado.Contains("ORIGEM")) return true;
-            if (textoFormatado.Contains("DEVOLUCAO")) return true;
-            if (textoFormatado.Contains("DEVOLUCA")) return true;
-            if (textoFormatado.Contains("DEVOLUC")) return true;
-            if (textoFormatado.Contains("DEVOLU")) return true;
-            if (textoFormatado.Contains("DEVOL")) return true;
-            if (textoFormatado.Contains("REMETENTE")) return true;
-            if (textoFormatado.Contains("REMETENT")) return true;
-            if (textoFormatado.Contains("REMETEN")) return true;
-            if (textoFormatado.Contains("REMETE")) return true;
-            if (textoFormatado.Contains("REMET")) return true;
-            if (textoFormatado.Contains("REME")) return true;
-            if (textoFormatado.Contains("REM")) return true;
+            if (textoFormatado.Contains(" - ORIGEM")) return true;
+            if (textoFormatado.Contains(" - DEVOLUCAO")) return true;
+            if (textoFormatado.Contains(" - DEVOLUCA")) return true;
+            if (textoFormatado.Contains(" - DEVOLUC")) return true;
+            if (textoFormatado.Contains(" - DEVOLU")) return true;
+            if (textoFormatado.Contains(" - DEVOL")) return true;
+            if (textoFormatado.Contains(" - REMETENTE")) return true;
+            if (textoFormatado.Contains(" - REMETENT")) return true;
+            if (textoFormatado.Contains(" - REMETEN")) return true;
+            if (textoFormatado.Contains(" - REMETE")) return true;
+            if (textoFormatado.Contains(" - REMET")) return true;
+            if (textoFormatado.Contains(" - REME")) return true;
+            if (textoFormatado.Contains(" - REM")) return true;
+            if (textoFormatado.Contains(" - AO REMETENTE")) return true;
+            if (textoFormatado.Contains(" - AO REMETENT")) return true;
+            if (textoFormatado.Contains(" - AO REMETEN")) return true;
+            if (textoFormatado.Contains(" - AO REMETE")) return true;
+            if (textoFormatado.Contains(" - AO REMET")) return true;
+            if (textoFormatado.Contains(" - AO REME")) return true;
+            if (textoFormatado.Contains(" - AO REM")) return true;
             return false;
         }
 

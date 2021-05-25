@@ -53,8 +53,14 @@ namespace SISAPO
             {
                 // caminho que define o teste
                 //caminho para tela de consulta atraves de códigos de objetos rastreadores
-                tipoTela = TipoTela.Rastreamento1;
-                webBrowser1.Url = new Uri(TelaRastreamento_1_1);
+                //tipoTela = TipoTela.Rastreamento1;
+                //webBrowser1.Url = new Uri(TelaRastreamento_1_1);
+                CodigoObjetoAtual = "QB137892122BR";
+                //string TelaNomeCliente_2_4 = @"J:\Rastreamento_Unificado_SC349045411BR.htm";
+                string TelaNomeCliente_2_4 = @"J:\Rastreamento_Unificado_S_QB137892122BR.htm";
+                //"J:\Rastreamento_Unificado_SC349045411BR.htm";
+                tipoTela = TipoTela.NomeCliente4;
+                webBrowser1.Url = new Uri(TelaNomeCliente_2_4);
             }
             if (Configuracoes.TipoAmbiente == TipoAmbiente.Producao)
             {
@@ -223,109 +229,177 @@ namespace SISAPO
                         string NomeCliente = string.Empty;
                         string Ldi = string.Empty;
                         string Comentario = string.Empty;
+                        string DataLancamento = string.Empty;
+                        string EnderecoLOEC = string.Empty;
+                        string BairroLOEC = string.Empty;
+                        string LocalidadeLOECCEP = string.Empty;
+                        string MunicipioLOEC = string.Empty;
+                        bool SeEAoRemetente = false;
+                        bool SeECaixaPostal = false;
+                        //referente ao Tipo Postal                        
+                        string TipoPostalServico = string.Empty;
+                        string TipoPostalSiglaCodigo = string.Empty;
+                        string TipoPostalNomeSiglaCodigo = string.Empty;
+                        string TipoPostalPrazoDiasCorridosRegulamentado = string.Empty;
 
+                        #region For BuscaHTMLs
                         for (int i = 0; i < webBrowser1.Document.GetElementsByTagName("TR").Count; i++)
                         {
                             if (string.IsNullOrEmpty(webBrowser1.Document.GetElementsByTagName("TR")[i].InnerText)) continue;
 
                             string teste = webBrowser1.Document.GetElementsByTagName("TR")[i].InnerText;
+                            #region Criado em
+                            if (webBrowser1.Document.GetElementsByTagName("TR")[i].InnerText.Contains("Criado em:"))
+                            {
+                                DataLancamento = webBrowser1.Document.GetElementsByTagName("TR")[i].InnerText.Replace("Criado em: ", "");
+                                EscreveTextoTextBox("Criado em: " + DataLancamento.ToString());
+                                continue;
+                            }
+                            #endregion
+                            #region LDI
                             if (webBrowser1.Document.GetElementsByTagName("TR")[i].InnerText.Contains("LDI:"))
                             {
                                 Ldi = webBrowser1.Document.GetElementsByTagName("TR")[i].InnerText.Replace("LDI: ", "");
-                                Ldi = Ldi.Substring(0, 12);
+                                if (!string.IsNullOrEmpty(Ldi))
+                                {
+                                    if (Ldi.Contains("-"))
+                                    {
+                                        Ldi = Ldi.Split('-')[0].Trim();
+                                    }
+                                }
                                 EscreveTextoTextBox("Ldi: " + Ldi.ToString());
+                                continue;
                             }
+                            #endregion
+                            #region Comentário
                             if (webBrowser1.Document.GetElementsByTagName("TR")[i].InnerText.Contains("Comentário:"))
                             {
                                 Comentario = webBrowser1.Document.GetElementsByTagName("TR")[i].InnerText.Replace("Comentário: ", "");
+                                Comentario = Comentario.RemoveAcentos().ToUpper().Trim();
+                                if (string.IsNullOrEmpty(Comentario))
+                                {
+                                    DataRow drTipoPostal = FormularioPrincipal.TiposPostais.AsEnumerable().First(T => T["Sigla"].Equals(CodigoObjetoAtual.Substring(0, 2))); //["Código"] - Pega linha retornada dos tipos postais vinda do Excel
+                                    string descricao = drTipoPostal["Descricao"].ToString().ToUpper().RemoveAcentos();
+                                    if (descricao.Contains("A COBRAR") ||
+                                        descricao.Contains("PAGAMENTO NA ENTREGA") ||
+                                        descricao.Contains("PAGAMENTO ENTREGA"))
+                                    {
+                                        Comentario = "A COBRAR";
+                                    }
+                                }
+
                                 EscreveTextoTextBox("Comentário: " + Comentario.ToString());
+                                continue;
                             }
+                            #endregion
+                            #region Cliente
                             if (webBrowser1.Document.GetElementsByTagName("TR")[i].InnerText.Contains("Cliente:"))
                             {
                                 NomeCliente = webBrowser1.Document.GetElementsByTagName("TR")[i].InnerText.Replace("Cliente: ", "");
-                                //referente ao Tipo Postal
-                                bool SeEAoRemetente = false;
-                                bool SeECaixaPostal = false;
-                                string TipoPostalServico = string.Empty;
-                                string TipoPostalSiglaCodigo = string.Empty;
-                                string TipoPostalNomeSiglaCodigo = string.Empty;
-                                string TipoPostalPrazoDiasCorridosRegulamentado = string.Empty;
-
+                                NomeCliente = NomeCliente.RemoveAcentos().ToUpper().Trim();
                                 EscreveTextoTextBox(NomeCliente.ToString());
-                                #region grava no banco de dados
-                                using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
+                                continue;
+                            }
+                            #endregion
+                            #region Endereço
+                            if (webBrowser1.Document.GetElementsByTagName("TR")[i].InnerText.Contains("Endereço:"))
+                            {
+                                EnderecoLOEC = webBrowser1.Document.GetElementsByTagName("TR")[i].InnerText.Replace("Endereço: ", "");
+                                EnderecoLOEC = EnderecoLOEC.RemoveAcentos().ToUpper().Trim();
+                                EscreveTextoTextBox(EnderecoLOEC.ToString());
+                                continue;
+                            }
+                            #endregion
+                            #region Bairro
+                            if (webBrowser1.Document.GetElementsByTagName("TR")[i].InnerText.Contains("Bairro:"))
+                            {
+                                BairroLOEC = webBrowser1.Document.GetElementsByTagName("TR")[i].InnerText.Replace("Bairro: ", "");
+                                BairroLOEC = BairroLOEC.RemoveAcentos().ToUpper().Trim();
+                                EscreveTextoTextBox(BairroLOEC.ToString());
+                                continue;
+                            }
+                            #endregion
+                            #region Localidade
+                            if (webBrowser1.Document.GetElementsByTagName("TR")[i].InnerText.Contains("Localidade"))
+                            {
+                                string LocalidadeRetornada = webBrowser1.Document.GetElementsByTagName("TR")[i].InnerText.Replace("Localidade ", "");
+
+                                if (!string.IsNullOrEmpty(LocalidadeRetornada))
                                 {
-                                    if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
-                                    DataSet ds = dao.RetornaDataSet("SELECT TOP 1 NomeCliente, CaixaPostal FROM TabelaObjetosSROLocal WHERE (CodigoObjeto = @CodigoObjeto)", new Parametros { Nome = "@CodigoObjeto", Tipo = TipoCampo.Text, Valor = CodigoObjetoAtual });
-                                    if (ds.Tables[0].Rows.Count == 1)
+                                    if (LocalidadeRetornada.Contains("-"))
                                     {
-                                        NomeCliente = NomeCliente.Trim() == "" ? ds.Tables[0].Rows[0]["NomeCliente"].ToString().ToUpper().RemoveAcentos() : NomeCliente.Trim().ToUpper().RemoveAcentos();
-                                        NomeCliente = string.Format("{0} - {1}", NomeCliente, Comentario);
-                                        SeECaixaPostal = Convert.ToBoolean(ds.Tables[0].Rows[0]["CaixaPostal"]);
-                                        SeEAoRemetente = (NomeCliente.ToUpper().RemoveAcentos().Contains("ORIGEM") || NomeCliente.ToUpper().RemoveAcentos().Contains("DEVOLUCAO") || NomeCliente.ToUpper().RemoveAcentos().Contains("REMETENTE")) ? true : false;
-                                        if (FormularioPrincipal.TiposPostais.Rows.Count > 0)
-                                        {
-                                            DataRow drTipoPostal = FormularioPrincipal.TiposPostais.AsEnumerable().First(T => T["Sigla"].Equals(CodigoObjetoAtual.Substring(0, 2))); //["Código"] - Pega linha retornada dos tipos postais vinda do Excel
-
-                                            //Exemplo "LB327263658SE"
-                                            //[0] - Serviço: NAO URGENTE 
-                                            //[1] - Código: LB 
-                                            //[2] - Nome: OBJETO INTERNACIONAL PRIME 
-                                            //[3] - Prazo dias corridos no destino (Caixa Postal): 30 
-                                            //[4] - Prazo dias corridos no destino (Caída/Pedida): 20 
-                                            //[5] - Prazo dias corridos na origem/devolução/remetente (Caixa Postal): 20 
-                                            //[6] - Prazo dias corridos na origem/devolução/remetente (Caída/Pedida): 20
-
-                                            TipoPostalServico = drTipoPostal["Servico"].ToString();
-                                            TipoPostalSiglaCodigo = drTipoPostal["Sigla"].ToString();
-                                            TipoPostalNomeSiglaCodigo = drTipoPostal["Descricao"].ToString();
-
-                                            //Se for Caixa Postal e Não for Ao remetente
-                                            if (SeECaixaPostal && !SeEAoRemetente)
-                                            {
-                                                // Pega campo "Prazo dias corridos no destino (Caixa Postal)"
-                                                TipoPostalPrazoDiasCorridosRegulamentado = drTipoPostal["PrazoDestinoCaixaPostal"].ToString();
-                                            }
-                                            //Se for Caixa Postal e Se for Ao remetente
-                                            if (SeECaixaPostal && SeEAoRemetente)
-                                            {
-                                                // Pega campo "Prazo dias corridos na origem/devolução/remetente (Caixa Postal)"
-                                                TipoPostalPrazoDiasCorridosRegulamentado = drTipoPostal["PrazoRemetenteCaixaPostal"].ToString();
-                                            }
-                                            //Se Não for Caixa Postal && Não for Ao remetente
-                                            if (!SeECaixaPostal && !SeEAoRemetente)
-                                            {
-                                                // Pega campo "Prazo dias corridos no destino (Caída/Pedida)"
-                                                TipoPostalPrazoDiasCorridosRegulamentado = drTipoPostal["PrazoDestinoCaidaPedida"].ToString();
-                                            }
-                                            //Se Não for Caixa Postal && Se for Ao remetente
-                                            if (!SeECaixaPostal && SeEAoRemetente)
-                                            {
-                                                // Pega campo "Prazo dias corridos na origem/devolução/remetente (Caída/Pedida)"
-                                                TipoPostalPrazoDiasCorridosRegulamentado = drTipoPostal["PrazoRemetenteCaidaPedida"].ToString();
-                                            }
-                                        }
+                                        LocalidadeLOECCEP = LocalidadeRetornada.Split('-')[0].Trim();
+                                        MunicipioLOEC = LocalidadeRetornada.Split('-')[1].Trim();
                                     }
+                                }
+                                EscreveTextoTextBox(LocalidadeLOECCEP.ToString());
+                                break;//por ser o ultimo campo a ser buscado, não tem necessidade de ficar rodando mais.
+                            }
+                            #endregion
+                        }
+                        #endregion                        
 
-                                    Mensagens.InformaDesenvolvedor("Cheguei até a gravação do update do nome: " + NomeCliente);
-                                    dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET NomeCliente = @NomeCliente, CodigoLdi = @CodigoLdi, Atualizado = @Atualizado, Comentario = @Comentario, TipoPostalServico = @TipoPostalServico, TipoPostalSiglaCodigo = @TipoPostalSiglaCodigo, TipoPostalNomeSiglaCodigo = @TipoPostalNomeSiglaCodigo, TipoPostalPrazoDiasCorridosRegulamentado = @TipoPostalPrazoDiasCorridosRegulamentado WHERE CodigoObjeto = @CodigoObjeto ", new List<Parametros>(){
-                                            new Parametros("@NomeCliente", TipoCampo.Text, NomeCliente),
+                        #region grava no banco de dados                             
+                        using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
+                        {
+                            if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+                            DataSet DsCliente = dao.RetornaDataSet("SELECT TOP 1 Codigo, CodigoObjeto, CodigoLdi, NomeCliente, DataLancamento, Atualizado, ObjetoEntregue, CaixaPostal, MunicipioLOEC, EnderecoLOEC, BairroLOEC, LocalidadeLOEC, Comentario, TipoPostalServico, TipoPostalSiglaCodigo, TipoPostalNomeSiglaCodigo, TipoPostalPrazoDiasCorridosRegulamentado FROM TabelaObjetosSROLocal WHERE (CodigoObjeto = @CodigoObjeto) ORDER BY Codigo DESC", new Parametros { Nome = "@CodigoObjeto", Tipo = TipoCampo.Text, Valor = CodigoObjetoAtual });
+                            if (DsCliente.Tables[0].Rows.Count == 0) break;
+
+                            NomeCliente = NomeCliente.Trim() == "" ? DsCliente.Tables[0].Rows[0]["NomeCliente"].ToString().ToUpper().RemoveAcentos() : NomeCliente.Trim().ToUpper().RemoveAcentos();
+                            NomeCliente = NomeCliente.Replace("- " + Comentario, "").Trim();//evita repetir o mesmo comentario varias vezes
+                            NomeCliente = string.Format("{0} - {1}", NomeCliente, Comentario);
+
+                            EnderecoLOEC = string.IsNullOrEmpty(EnderecoLOEC) ? DsCliente.Tables[0].Rows[0]["EnderecoLOEC"].ToString().RemoveAcentos().ToUpper() : EnderecoLOEC;
+                            BairroLOEC = string.IsNullOrEmpty(BairroLOEC) ? DsCliente.Tables[0].Rows[0]["BairroLOEC"].ToString().RemoveAcentos().ToUpper() : BairroLOEC;
+                            LocalidadeLOECCEP = string.IsNullOrEmpty(LocalidadeLOECCEP) ? DsCliente.Tables[0].Rows[0]["LocalidadeLOEC"].ToString().RemoveAcentos().ToUpper() : LocalidadeLOECCEP;
+                            MunicipioLOEC = (string.IsNullOrEmpty(MunicipioLOEC) || MunicipioLOEC == "/") ? DsCliente.Tables[0].Rows[0]["MunicipioLOEC"].ToString().RemoveAcentos().ToUpper() : MunicipioLOEC;
+
+                            SeECaixaPostal = Convert.ToBoolean(DsCliente.Tables[0].Rows[0]["CaixaPostal"]);
+                            SeECaixaPostal = !SeECaixaPostal ? Configuracoes.RetornaSeECaixaPostal(NomeCliente) : SeECaixaPostal;
+
+                            SeEAoRemetente = Configuracoes.RetornaSeEAoRemetente(NomeCliente);
+
+                            TipoPostalPrazoDiasCorridosRegulamentado = Configuracoes.RetornaTipoPostalPrazoDiasCorridosRegulamentado(CodigoObjetoAtual, SeEAoRemetente, SeECaixaPostal, ref TipoPostalServico, ref TipoPostalSiglaCodigo, ref TipoPostalNomeSiglaCodigo);
+
+                            Mensagens.InformaDesenvolvedor("Cheguei até a gravação do update do nome: " + NomeCliente);
+                            dao.ExecutaSQL(@"UPDATE TabelaObjetosSROLocal SET 
+                                            CodigoLdi = @CodigoLdi, 
+                                            NomeCliente = @NomeCliente, 
+                                            DataLancamento = @DataLancamento,
+                                            Atualizado = @Atualizado, 
+                                            CaixaPostal = @CaixaPostal,
+                                            Comentario = @Comentario, 
+                                            EnderecoLOEC = @EnderecoLOEC,
+                                            BairroLOEC = @BairroLOEC,
+                                            LocalidadeLOEC = @LocalidadeLOEC,                                            
+                                            MunicipioLOEC = @MunicipioLOEC,
+                                            TipoPostalServico = @TipoPostalServico, 
+                                            TipoPostalSiglaCodigo = @TipoPostalSiglaCodigo, 
+                                            TipoPostalNomeSiglaCodigo = @TipoPostalNomeSiglaCodigo, 
+                                            TipoPostalPrazoDiasCorridosRegulamentado = @TipoPostalPrazoDiasCorridosRegulamentado 
+                                            WHERE CodigoObjeto = @CodigoObjeto ", new List<Parametros>(){
                                             new Parametros("@CodigoLdi", TipoCampo.Text, Ldi),
-                                            new Parametros("@Atualizado", TipoCampo.Int, true),
+                                            new Parametros("@NomeCliente", TipoCampo.Text, NomeCliente),
+                                            new Parametros("@DataLancamento", TipoCampo.Text, DataLancamento),
+                                            new Parametros("@Atualizado", TipoCampo.Boolean, true),
+                                            new Parametros("@CaixaPostal", TipoCampo.Boolean, SeECaixaPostal),
                                             new Parametros("@Comentario", TipoCampo.Text, Comentario),
-
+                                            new Parametros("@EnderecoLOEC", TipoCampo.Text, EnderecoLOEC),
+                                            new Parametros("@BairroLOEC", TipoCampo.Text, BairroLOEC),
+                                            new Parametros("@LocalidadeLOEC", TipoCampo.Text, LocalidadeLOECCEP),
+                                            new Parametros("@MunicipioLOEC", TipoCampo.Text, MunicipioLOEC),
                                             new Parametros("@TipoPostalServico", TipoCampo.Text, TipoPostalServico),
                                             new Parametros("@TipoPostalSiglaCodigo", TipoCampo.Text, TipoPostalSiglaCodigo),
                                             new Parametros("@TipoPostalNomeSiglaCodigo", TipoCampo.Text, TipoPostalNomeSiglaCodigo),
                                             new Parametros("@TipoPostalPrazoDiasCorridosRegulamentado", TipoCampo.Text, TipoPostalPrazoDiasCorridosRegulamentado),
 
                                             new Parametros("@CodigoObjeto", TipoCampo.Text, CodigoObjetoAtual)});
-                                }
-                                #endregion
-                                //ListaLinksJavaScript.RemoveAt(0);
-                                break;
-                            }
+
+                            this.Close();
+                            break;
                         }
+                        #endregion
 
                         if (DetalhesDeObjetos3)
                         {

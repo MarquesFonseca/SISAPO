@@ -75,10 +75,6 @@
             this.LbnQuantidadeRegistros = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.bindingSourceObjetosNaoEntregues = new System.Windows.Forms.BindingSource(this.components);
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox = new System.Windows.Forms.CheckBox();
             this.CodigoLdi = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Sigla = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CodigoObjeto = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -92,6 +88,10 @@
             this.PrazoTipoClassificacao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DataVencimento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.QtdDiasVencidos = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bindingSourceObjetosNaoEntregues = new System.Windows.Forms.BindingSource(this.components);
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox = new System.Windows.Forms.CheckBox();
             this.panel3.SuspendLayout();
             this.tabControl3.SuspendLayout();
             this.tabPageExibicaoTodosAindaNaoEntregues.SuspendLayout();
@@ -502,41 +502,6 @@
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDoubleClick);
             // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.groupBox3);
-            this.panel1.Controls.Add(this.groupBox2);
-            this.panel1.Controls.Add(this.groupBox1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(786, 77);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(221, 344);
-            this.panel1.TabIndex = 1;
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox3.Controls.Add(this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox);
-            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(4, 253);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(214, 85);
-            this.groupBox3.TabIndex = 2;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Mais Filtros";
-            // 
-            // FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox
-            // 
-            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.AutoSize = true;
-            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.Enabled = false;
-            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.Location = new System.Drawing.Point(15, 29);
-            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.Name = "FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox";
-            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.Size = new System.Drawing.Size(181, 24);
-            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.TabIndex = 0;
-            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.Text = "Incluir Caixa Postal";
-            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.UseVisualStyleBackColor = true;
-            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.CheckedChanged += new System.EventHandler(this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox_CheckedChanged);
-            // 
             // CodigoLdi
             // 
             this.CodigoLdi.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
@@ -548,7 +513,6 @@
             this.CodigoLdi.ReadOnly = true;
             this.CodigoLdi.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.CodigoLdi.Visible = false;
-            this.CodigoLdi.Width = 63;
             // 
             // Sigla
             // 
@@ -681,6 +645,41 @@
             this.QtdDiasVencidos.ReadOnly = true;
             this.QtdDiasVencidos.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.QtdDiasVencidos.Width = 110;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.groupBox3);
+            this.panel1.Controls.Add(this.groupBox2);
+            this.panel1.Controls.Add(this.groupBox1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel1.Location = new System.Drawing.Point(786, 77);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(221, 344);
+            this.panel1.TabIndex = 1;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.Controls.Add(this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox);
+            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox3.Location = new System.Drawing.Point(4, 253);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(214, 85);
+            this.groupBox3.TabIndex = 2;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Mais Filtros";
+            // 
+            // FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox
+            // 
+            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.AutoSize = true;
+            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.Enabled = false;
+            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.Location = new System.Drawing.Point(15, 29);
+            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.Name = "FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox";
+            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.Size = new System.Drawing.Size(181, 24);
+            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.TabIndex = 0;
+            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.Text = "Incluir Caixa Postal";
+            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.UseVisualStyleBackColor = true;
+            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.CheckedChanged += new System.EventHandler(this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox_CheckedChanged);
             // 
             // FormularioAuxilioGestaoDiaNovo
             // 
