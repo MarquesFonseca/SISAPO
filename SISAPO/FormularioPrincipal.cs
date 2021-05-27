@@ -244,7 +244,7 @@ namespace SISAPO
             foreach (Form item in MdiChildren)
             {
                 if (item.Name == "FormularioSRORastreamentoUnificado" && !item.Text.Contains("Rastreamento Unificado Detalhado"))
-                {                    
+                {
                     item.Close();
                     break;
                 }
@@ -770,14 +770,14 @@ namespace SISAPO
             }
         }
 
-        private void auxílioÀGestaoDoDiaToolStripMenuItem_Click(object sender, EventArgs e)
+        private void auxílioÀGestaoDoDiaItensNaoEntreguesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //FormularioAuxilioGestaoDia frm = new FormularioAuxilioGestaoDia();
             //frm.ShowDialog();
 
             foreach (Form item in MdiChildren)
             {
-                if (item.Name == "FormularioAuxilioGestaoDiaNovo")
+                if (item.Name == "FormularioAuxilioGestaoDiaNovo" + "ItensNaoEntregues")
                 {
                     item.WindowState = FormWindowState.Maximized;
                     item.Activate();
@@ -785,7 +785,36 @@ namespace SISAPO
                 }
             }
 
-            FormularioAuxilioGestaoDiaNovo formularioAuxilioGestaoDia = new FormularioAuxilioGestaoDiaNovo();
+            FormularioAuxilioGestaoDiaNovo formularioAuxilioGestaoDia = new FormularioAuxilioGestaoDiaNovo(FormularioAuxilioGestaoDiaNovo.ModeloTelaAbertura.TelaAguardandoRetirada);
+            //AUXÍLIO A GESTÃO DO DIA - ITENS NÃO ENTREGUES
+            formularioAuxilioGestaoDia.Name += "ItensNaoEntregues";
+            formularioAuxilioGestaoDia.Text += " - ITENS NÃO ENTREGUES";
+            formularioAuxilioGestaoDia.MdiParent = this;
+            formularioAuxilioGestaoDia.Show();
+            formularioAuxilioGestaoDia.WindowState = FormWindowState.Normal;
+            formularioAuxilioGestaoDia.WindowState = FormWindowState.Maximized;
+            formularioAuxilioGestaoDia.Activate();
+        }
+
+        private void auxílioÀGestaoDoDiaItensColadosSROToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //FormularioAuxilioGestaoDia frm = new FormularioAuxilioGestaoDia();
+            //frm.ShowDialog();
+
+            foreach (Form item in MdiChildren)
+            {
+                if (item.Name == "FormularioAuxilioGestaoDiaNovo" + "ItensColadosSRO")
+                {
+                    item.WindowState = FormWindowState.Maximized;
+                    item.Activate();
+                    return;
+                }
+            }
+
+            FormularioAuxilioGestaoDiaNovo formularioAuxilioGestaoDia = new FormularioAuxilioGestaoDiaNovo(FormularioAuxilioGestaoDiaNovo.ModeloTelaAbertura.TelaColarItensSRO);
+            //AUXÍLIO A GESTÃO DO DIA - ITENS COLADOS SRO
+            formularioAuxilioGestaoDia.Name += "ItensColadosSRO";
+            formularioAuxilioGestaoDia.Text += " - ITENS COLADOS SRO";
             formularioAuxilioGestaoDia.MdiParent = this;
             formularioAuxilioGestaoDia.Show();
             formularioAuxilioGestaoDia.WindowState = FormWindowState.Normal;
@@ -1232,6 +1261,11 @@ namespace SISAPO
             }
 
             FormularioImpressaoAvisosChegada FormularioImpressaoAvisosChegada = new FormularioImpressaoAvisosChegada(ListaCodigoOrdenadosPelaDataLancamento);
+        }
+
+        private void FormularioPrincipal_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Dispose();
         }
     }
 }

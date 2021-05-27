@@ -54,10 +54,6 @@
             this.radioButtonDataLancamento = new System.Windows.Forms.RadioButton();
             this.BtnImprimirListaAtual = new System.Windows.Forms.Button();
             this.BtnRetornaTodosNaoEntregues = new System.Windows.Forms.Button();
-            this.tabControl3 = new System.Windows.Forms.TabControl();
-            this.tabPageExibicaoTodosAindaNaoEntregues = new System.Windows.Forms.TabPage();
-            this.label5 = new System.Windows.Forms.Label();
-            this.tabPageExibicaoColarConteudoJaCopiado = new System.Windows.Forms.TabPage();
             this.BtnColarConteudoJaCopiado = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.panel6 = new System.Windows.Forms.Panel();
@@ -75,6 +71,15 @@
             this.LbnQuantidadeRegistros = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.bindingSourceObjetosNaoEntregues = new System.Windows.Forms.BindingSource(this.components);
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.DataInicial_dateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox = new System.Windows.Forms.CheckBox();
+            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox = new System.Windows.Forms.CheckBox();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.CodigoLdi = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Sigla = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CodigoObjeto = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -88,13 +93,7 @@
             this.PrazoTipoClassificacao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DataVencimento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.QtdDiasVencidos = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bindingSourceObjetosNaoEntregues = new System.Windows.Forms.BindingSource(this.components);
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox = new System.Windows.Forms.CheckBox();
             this.panel3.SuspendLayout();
-            this.tabControl3.SuspendLayout();
-            this.tabPageExibicaoTodosAindaNaoEntregues.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -102,39 +101,36 @@
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceObjetosNaoEntregues)).BeginInit();
             this.panel1.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.panel7.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.label2);
-            this.panel3.Controls.Add(this.radioButtonNomeCliente);
-            this.panel3.Controls.Add(this.radioButtonQtdDiasVencidos);
-            this.panel3.Controls.Add(this.radioButtonTipoClassificacao);
-            this.panel3.Controls.Add(this.radioButtonDataLancamento);
-            this.panel3.Controls.Add(this.BtnImprimirListaAtual);
-            this.panel3.Controls.Add(this.BtnRetornaTodosNaoEntregues);
-            this.panel3.Controls.Add(this.tabControl3);
-            this.panel3.Controls.Add(this.BtnColarConteudoJaCopiado);
+            this.panel3.Controls.Add(this.groupBox4);
+            this.panel3.Controls.Add(this.panel7);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1007, 77);
+            this.panel3.Size = new System.Drawing.Size(786, 114);
             this.panel3.TabIndex = 0;
             // 
             // label2
             // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.label2.Location = new System.Drawing.Point(357, 32);
+            this.label2.Location = new System.Drawing.Point(427, 14);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(110, 20);
-            this.label2.TabIndex = 5;
+            this.label2.TabIndex = 2;
             this.label2.Text = "Ordenar por:";
             // 
             // radioButtonNomeCliente
             // 
+            this.radioButtonNomeCliente.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radioButtonNomeCliente.AutoSize = true;
-            this.radioButtonNomeCliente.Location = new System.Drawing.Point(476, 54);
+            this.radioButtonNomeCliente.Location = new System.Drawing.Point(671, 40);
             this.radioButtonNomeCliente.Name = "radioButtonNomeCliente";
             this.radioButtonNomeCliente.Size = new System.Drawing.Size(88, 17);
             this.radioButtonNomeCliente.TabIndex = 4;
@@ -144,31 +140,34 @@
             // 
             // radioButtonQtdDiasVencidos
             // 
+            this.radioButtonQtdDiasVencidos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radioButtonQtdDiasVencidos.AutoSize = true;
-            this.radioButtonQtdDiasVencidos.Location = new System.Drawing.Point(687, 55);
+            this.radioButtonQtdDiasVencidos.Location = new System.Drawing.Point(543, 40);
             this.radioButtonQtdDiasVencidos.Name = "radioButtonQtdDiasVencidos";
-            this.radioButtonQtdDiasVencidos.Size = new System.Drawing.Size(113, 17);
-            this.radioButtonQtdDiasVencidos.TabIndex = 4;
-            this.radioButtonQtdDiasVencidos.Text = "Qtd Dias Vencidos";
+            this.radioButtonQtdDiasVencidos.Size = new System.Drawing.Size(107, 17);
+            this.radioButtonQtdDiasVencidos.TabIndex = 6;
+            this.radioButtonQtdDiasVencidos.Text = "Data Vencimento";
             this.radioButtonQtdDiasVencidos.UseVisualStyleBackColor = true;
             this.radioButtonQtdDiasVencidos.CheckedChanged += new System.EventHandler(this.radioButtonQtdDiasVencidos_CheckedChanged);
             // 
             // radioButtonTipoClassificacao
             // 
+            this.radioButtonTipoClassificacao.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radioButtonTipoClassificacao.AutoSize = true;
-            this.radioButtonTipoClassificacao.Location = new System.Drawing.Point(570, 54);
+            this.radioButtonTipoClassificacao.Location = new System.Drawing.Point(671, 15);
             this.radioButtonTipoClassificacao.Name = "radioButtonTipoClassificacao";
             this.radioButtonTipoClassificacao.Size = new System.Drawing.Size(111, 17);
-            this.radioButtonTipoClassificacao.TabIndex = 4;
+            this.radioButtonTipoClassificacao.TabIndex = 5;
             this.radioButtonTipoClassificacao.Text = "Tipo Classificacao";
             this.radioButtonTipoClassificacao.UseVisualStyleBackColor = true;
             this.radioButtonTipoClassificacao.CheckedChanged += new System.EventHandler(this.radioButtonTipoClassificacao_CheckedChanged);
             // 
             // radioButtonDataLancamento
             // 
+            this.radioButtonDataLancamento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radioButtonDataLancamento.AutoSize = true;
             this.radioButtonDataLancamento.Checked = true;
-            this.radioButtonDataLancamento.Location = new System.Drawing.Point(360, 54);
+            this.radioButtonDataLancamento.Location = new System.Drawing.Point(543, 15);
             this.radioButtonDataLancamento.Name = "radioButtonDataLancamento";
             this.radioButtonDataLancamento.Size = new System.Drawing.Size(110, 17);
             this.radioButtonDataLancamento.TabIndex = 3;
@@ -184,10 +183,10 @@
             this.BtnImprimirListaAtual.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnImprimirListaAtual.Image = global::SISAPO.Properties.Resources.impressão_26;
             this.BtnImprimirListaAtual.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnImprimirListaAtual.Location = new System.Drawing.Point(808, 34);
+            this.BtnImprimirListaAtual.Location = new System.Drawing.Point(15, 17);
             this.BtnImprimirListaAtual.Name = "BtnImprimirListaAtual";
             this.BtnImprimirListaAtual.Size = new System.Drawing.Size(196, 38);
-            this.BtnImprimirListaAtual.TabIndex = 2;
+            this.BtnImprimirListaAtual.TabIndex = 0;
             this.BtnImprimirListaAtual.Text = "&Imprimir lista atual";
             this.BtnImprimirListaAtual.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BtnImprimirListaAtual.UseVisualStyleBackColor = true;
@@ -198,7 +197,7 @@
             this.BtnRetornaTodosNaoEntregues.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnRetornaTodosNaoEntregues.Image = global::SISAPO.Properties.Resources.icons8_colar_26;
             this.BtnRetornaTodosNaoEntregues.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnRetornaTodosNaoEntregues.Location = new System.Drawing.Point(21, 35);
+            this.BtnRetornaTodosNaoEntregues.Location = new System.Drawing.Point(7, 18);
             this.BtnRetornaTodosNaoEntregues.Name = "BtnRetornaTodosNaoEntregues";
             this.BtnRetornaTodosNaoEntregues.Size = new System.Drawing.Size(329, 38);
             this.BtnRetornaTodosNaoEntregues.TabIndex = 1;
@@ -207,55 +206,12 @@
             this.BtnRetornaTodosNaoEntregues.UseVisualStyleBackColor = true;
             this.BtnRetornaTodosNaoEntregues.Click += new System.EventHandler(this.BtnRetornaTodosNaoEntregues_Click);
             // 
-            // tabControl3
-            // 
-            this.tabControl3.Controls.Add(this.tabPageExibicaoTodosAindaNaoEntregues);
-            this.tabControl3.Controls.Add(this.tabPageExibicaoColarConteudoJaCopiado);
-            this.tabControl3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tabControl3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControl3.Location = new System.Drawing.Point(0, 0);
-            this.tabControl3.Name = "tabControl3";
-            this.tabControl3.SelectedIndex = 0;
-            this.tabControl3.Size = new System.Drawing.Size(1007, 30);
-            this.tabControl3.TabIndex = 0;
-            this.tabControl3.SelectedIndexChanged += new System.EventHandler(this.tabControl3_SelectedIndexChanged);
-            // 
-            // tabPageExibicaoTodosAindaNaoEntregues
-            // 
-            this.tabPageExibicaoTodosAindaNaoEntregues.Controls.Add(this.label5);
-            this.tabPageExibicaoTodosAindaNaoEntregues.Location = new System.Drawing.Point(4, 29);
-            this.tabPageExibicaoTodosAindaNaoEntregues.Name = "tabPageExibicaoTodosAindaNaoEntregues";
-            this.tabPageExibicaoTodosAindaNaoEntregues.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageExibicaoTodosAindaNaoEntregues.Size = new System.Drawing.Size(999, 0);
-            this.tabPageExibicaoTodosAindaNaoEntregues.TabIndex = 0;
-            this.tabPageExibicaoTodosAindaNaoEntregues.Text = "Exibir todos objetos ainda não entregues";
-            this.tabPageExibicaoTodosAindaNaoEntregues.UseVisualStyleBackColor = true;
-            // 
-            // label5
-            // 
-            this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label5.ForeColor = System.Drawing.Color.Red;
-            this.label5.Location = new System.Drawing.Point(3, 3);
-            this.label5.Name = "label5";
-            this.label5.Padding = new System.Windows.Forms.Padding(0, 8, 0, 0);
-            this.label5.Size = new System.Drawing.Size(993, 0);
-            this.label5.TabIndex = 0;
-            // 
-            // tabPageExibicaoColarConteudoJaCopiado
-            // 
-            this.tabPageExibicaoColarConteudoJaCopiado.Location = new System.Drawing.Point(4, 29);
-            this.tabPageExibicaoColarConteudoJaCopiado.Name = "tabPageExibicaoColarConteudoJaCopiado";
-            this.tabPageExibicaoColarConteudoJaCopiado.Size = new System.Drawing.Size(999, 0);
-            this.tabPageExibicaoColarConteudoJaCopiado.TabIndex = 1;
-            this.tabPageExibicaoColarConteudoJaCopiado.Text = "Exibir itens copiado no SRO";
-            this.tabPageExibicaoColarConteudoJaCopiado.UseVisualStyleBackColor = true;
-            // 
             // BtnColarConteudoJaCopiado
             // 
             this.BtnColarConteudoJaCopiado.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnColarConteudoJaCopiado.Image = global::SISAPO.Properties.Resources.icons8_colar_26;
             this.BtnColarConteudoJaCopiado.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnColarConteudoJaCopiado.Location = new System.Drawing.Point(21, 36);
+            this.BtnColarConteudoJaCopiado.Location = new System.Drawing.Point(6, 18);
             this.BtnColarConteudoJaCopiado.Name = "BtnColarConteudoJaCopiado";
             this.BtnColarConteudoJaCopiado.Size = new System.Drawing.Size(329, 38);
             this.BtnColarConteudoJaCopiado.TabIndex = 0;
@@ -274,10 +230,10 @@
             this.groupBox2.Controls.Add(this.FiltrarPorPrazosVENCENDOHOJECheckBox);
             this.groupBox2.Controls.Add(this.FiltrarPorPrazosVENCIDOSCheckBox);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(4, 3);
+            this.groupBox2.Location = new System.Drawing.Point(4, 61);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(214, 119);
-            this.groupBox2.TabIndex = 0;
+            this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Filtrar por prazos";
             // 
@@ -285,26 +241,26 @@
             // 
             this.panel6.BackColor = System.Drawing.Color.LightGreen;
             this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel6.Location = new System.Drawing.Point(174, 88);
+            this.panel6.Location = new System.Drawing.Point(170, 88);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(40, 24);
-            this.panel6.TabIndex = 3;
+            this.panel6.TabIndex = 5;
             // 
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.LightYellow;
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel5.Location = new System.Drawing.Point(174, 59);
+            this.panel5.Location = new System.Drawing.Point(170, 59);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(40, 24);
-            this.panel5.TabIndex = 3;
+            this.panel5.TabIndex = 4;
             // 
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.LightSalmon;
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel4.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.panel4.Location = new System.Drawing.Point(174, 29);
+            this.panel4.Location = new System.Drawing.Point(170, 29);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(40, 24);
             this.panel4.TabIndex = 3;
@@ -352,10 +308,10 @@
             this.groupBox1.Controls.Add(this.FiltrarPorClassificacaoSEDEXCheckBox);
             this.groupBox1.Controls.Add(this.FiltrarPorClassificacaoPACCCheckBox);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(4, 128);
+            this.groupBox1.Location = new System.Drawing.Point(4, 186);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(214, 119);
-            this.groupBox1.TabIndex = 1;
+            this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filtrar por classificação";
             // 
@@ -402,7 +358,7 @@
             this.panel2.Controls.Add(this.LbnQuantidadeRegistros);
             this.panel2.Controls.Add(this.btnCancelar);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 421);
+            this.panel2.Location = new System.Drawing.Point(0, 462);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1007, 51);
             this.panel2.TabIndex = 2;
@@ -485,7 +441,7 @@
             dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle15;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 77);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 114);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -498,9 +454,110 @@
             this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle16;
             this.dataGridView1.RowHeadersWidth = 40;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(786, 344);
+            this.dataGridView1.Size = new System.Drawing.Size(786, 348);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDoubleClick);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.groupBox3);
+            this.panel1.Controls.Add(this.groupBox2);
+            this.panel1.Controls.Add(this.groupBox1);
+            this.panel1.Controls.Add(this.BtnImprimirListaAtual);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel1.Location = new System.Drawing.Point(786, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(221, 462);
+            this.panel1.TabIndex = 1;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.Controls.Add(this.DataInicial_dateTimePicker);
+            this.groupBox3.Controls.Add(this.FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox);
+            this.groupBox3.Controls.Add(this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox);
+            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox3.Location = new System.Drawing.Point(4, 311);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(214, 144);
+            this.groupBox3.TabIndex = 3;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Mais Filtros";
+            // 
+            // DataInicial_dateTimePicker
+            // 
+            this.DataInicial_dateTimePicker.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.DataInicial_dateTimePicker.Enabled = false;
+            this.DataInicial_dateTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DataInicial_dateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.DataInicial_dateTimePicker.Location = new System.Drawing.Point(36, 89);
+            this.DataInicial_dateTimePicker.Name = "DataInicial_dateTimePicker";
+            this.DataInicial_dateTimePicker.Size = new System.Drawing.Size(172, 31);
+            this.DataInicial_dateTimePicker.TabIndex = 2;
+            this.DataInicial_dateTimePicker.ValueChanged += new System.EventHandler(this.DataInicial_dateTimePicker_ValueChanged);
+            // 
+            // FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox
+            // 
+            this.FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox.AutoSize = true;
+            this.FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox.Enabled = false;
+            this.FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox.Location = new System.Drawing.Point(15, 59);
+            this.FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox.Name = "FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox";
+            this.FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox.Size = new System.Drawing.Size(130, 24);
+            this.FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox.TabIndex = 1;
+            this.FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox.Text = "Previsão dia:";
+            this.FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox.UseVisualStyleBackColor = true;
+            this.FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox.CheckedChanged += new System.EventHandler(this.FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox_CheckedChanged);
+            // 
+            // FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox
+            // 
+            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.AutoSize = true;
+            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.Enabled = false;
+            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.Location = new System.Drawing.Point(15, 29);
+            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.Name = "FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox";
+            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.Size = new System.Drawing.Size(181, 24);
+            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.TabIndex = 0;
+            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.Text = "Incluir Caixa Postal";
+            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.UseVisualStyleBackColor = true;
+            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.CheckedChanged += new System.EventHandler(this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox_CheckedChanged);
+            // 
+            // panel7
+            // 
+            this.panel7.BackColor = System.Drawing.SystemColors.Control;
+            this.panel7.Controls.Add(this.label3);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel7.Location = new System.Drawing.Point(0, 0);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(786, 42);
+            this.panel7.TabIndex = 0;
+            // 
+            // label3
+            // 
+            this.label3.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label3.Font = new System.Drawing.Font("Arial Black", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label3.Location = new System.Drawing.Point(0, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(786, 42);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "AUXÍLIO A GESTÃO DO DIA - ITENS NÃO ENTREGUES";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.BtnRetornaTodosNaoEntregues);
+            this.groupBox4.Controls.Add(this.label2);
+            this.groupBox4.Controls.Add(this.BtnColarConteudoJaCopiado);
+            this.groupBox4.Controls.Add(this.radioButtonDataLancamento);
+            this.groupBox4.Controls.Add(this.radioButtonNomeCliente);
+            this.groupBox4.Controls.Add(this.radioButtonTipoClassificacao);
+            this.groupBox4.Controls.Add(this.radioButtonQtdDiasVencidos);
+            this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox4.Location = new System.Drawing.Point(0, 42);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(786, 72);
+            this.groupBox4.TabIndex = 1;
+            this.groupBox4.TabStop = false;
             // 
             // CodigoLdi
             // 
@@ -513,6 +570,7 @@
             this.CodigoLdi.ReadOnly = true;
             this.CodigoLdi.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.CodigoLdi.Visible = false;
+            this.CodigoLdi.Width = 63;
             // 
             // Sigla
             // 
@@ -541,10 +599,11 @@
             this.TipoClassificacao.DataPropertyName = "TipoClassificacao";
             dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
             this.TipoClassificacao.DefaultCellStyle = dataGridViewCellStyle6;
-            this.TipoClassificacao.HeaderText = "Tipo Classificação";
+            this.TipoClassificacao.HeaderText = "Classificação";
             this.TipoClassificacao.Name = "TipoClassificacao";
             this.TipoClassificacao.ReadOnly = true;
             this.TipoClassificacao.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.TipoClassificacao.Width = 75;
             // 
             // CaixaPostal
             // 
@@ -608,21 +667,22 @@
             this.QtdDiasCorridos.DataPropertyName = "QtdDiasCorridos";
             dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
             this.QtdDiasCorridos.DefaultCellStyle = dataGridViewCellStyle11;
-            this.QtdDiasCorridos.HeaderText = "Qtd Dias Corridos";
+            this.QtdDiasCorridos.HeaderText = "Dias Corridos";
             this.QtdDiasCorridos.Name = "QtdDiasCorridos";
             this.QtdDiasCorridos.ReadOnly = true;
             this.QtdDiasCorridos.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.QtdDiasCorridos.Width = 95;
+            this.QtdDiasCorridos.Width = 80;
             // 
             // PrazoTipoClassificacao
             // 
             this.PrazoTipoClassificacao.DataPropertyName = "PrazoTipoClassificacao";
             dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
             this.PrazoTipoClassificacao.DefaultCellStyle = dataGridViewCellStyle12;
-            this.PrazoTipoClassificacao.HeaderText = "Prazo Tipo Class.";
+            this.PrazoTipoClassificacao.HeaderText = "Prazo Class.";
             this.PrazoTipoClassificacao.Name = "PrazoTipoClassificacao";
             this.PrazoTipoClassificacao.ReadOnly = true;
             this.PrazoTipoClassificacao.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.PrazoTipoClassificacao.Width = 80;
             // 
             // DataVencimento
             // 
@@ -640,56 +700,21 @@
             this.QtdDiasVencidos.DataPropertyName = "QtdDiasVencidos";
             dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
             this.QtdDiasVencidos.DefaultCellStyle = dataGridViewCellStyle14;
-            this.QtdDiasVencidos.HeaderText = "Qtd Dias Vencidos";
+            this.QtdDiasVencidos.HeaderText = "Dias Vencidos";
             this.QtdDiasVencidos.Name = "QtdDiasVencidos";
             this.QtdDiasVencidos.ReadOnly = true;
             this.QtdDiasVencidos.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.QtdDiasVencidos.Width = 110;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.groupBox3);
-            this.panel1.Controls.Add(this.groupBox2);
-            this.panel1.Controls.Add(this.groupBox1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(786, 77);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(221, 344);
-            this.panel1.TabIndex = 1;
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox3.Controls.Add(this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox);
-            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(4, 253);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(214, 85);
-            this.groupBox3.TabIndex = 2;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Mais Filtros";
-            // 
-            // FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox
-            // 
-            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.AutoSize = true;
-            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.Enabled = false;
-            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.Location = new System.Drawing.Point(15, 29);
-            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.Name = "FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox";
-            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.Size = new System.Drawing.Size(181, 24);
-            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.TabIndex = 0;
-            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.Text = "Incluir Caixa Postal";
-            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.UseVisualStyleBackColor = true;
-            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.CheckedChanged += new System.EventHandler(this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox_CheckedChanged);
+            this.QtdDiasVencidos.Width = 90;
             // 
             // FormularioAuxilioGestaoDiaNovo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1007, 472);
+            this.ClientSize = new System.Drawing.Size(1007, 513);
             this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel3);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MinimizeBox = false;
@@ -701,9 +726,6 @@
             this.Load += new System.EventHandler(this.FormularioAuxilioGestaoDia_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ObjetosComPrazoGuardaVencido_KeyDown);
             this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
-            this.tabControl3.ResumeLayout(false);
-            this.tabPageExibicaoTodosAindaNaoEntregues.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -715,6 +737,9 @@
             this.panel1.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.panel7.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -739,10 +764,6 @@
         private System.Windows.Forms.CheckBox FiltrarPorClassificacaoDIVERSOSCheckBox;
         private System.Windows.Forms.CheckBox FiltrarPorClassificacaoSEDEXCheckBox;
         private System.Windows.Forms.CheckBox FiltrarPorClassificacaoPACCCheckBox;
-        private System.Windows.Forms.TabControl tabControl3;
-        private System.Windows.Forms.TabPage tabPageExibicaoTodosAindaNaoEntregues;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TabPage tabPageExibicaoColarConteudoJaCopiado;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.RadioButton radioButtonTipoClassificacao;
         private System.Windows.Forms.RadioButton radioButtonDataLancamento;
@@ -754,6 +775,11 @@
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.DateTimePicker DataInicial_dateTimePicker;
+        private System.Windows.Forms.CheckBox FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridViewTextBoxColumn CodigoLdi;
         private System.Windows.Forms.DataGridViewTextBoxColumn Sigla;
         private System.Windows.Forms.DataGridViewTextBoxColumn CodigoObjeto;

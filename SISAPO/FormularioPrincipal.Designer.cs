@@ -48,7 +48,8 @@ namespace SISAPO
             this.atualizarNovosObjetosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.solicitarVerificacaoDeObjetosAindaNaoEntreguesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.auxílioÀGestaoDoDiaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.auxílioÀGestaoDoDiaItensNaoEntreguesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.auxílioÀGestaoDoDiaItensColadosSROToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.opçõesTelaConsultaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ExibirCaixaPostalPesquisa_toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ExibirItensJaEntreguesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -141,7 +142,8 @@ namespace SISAPO
             this.atualizarNovosObjetosToolStripMenuItem,
             this.solicitarVerificacaoDeObjetosAindaNaoEntreguesToolStripMenuItem,
             this.toolStripSeparator5,
-            this.auxílioÀGestaoDoDiaToolStripMenuItem});
+            this.auxílioÀGestaoDoDiaItensNaoEntreguesToolStripMenuItem,
+            this.auxílioÀGestaoDoDiaItensColadosSROToolStripMenuItem});
             this.toolsMenu.Name = "toolsMenu";
             this.toolsMenu.Size = new System.Drawing.Size(84, 20);
             this.toolsMenu.Text = "&Ferramentas";
@@ -232,6 +234,7 @@ namespace SISAPO
             this.atualizaNovosObjetosAguardandoRetiradaToolStripMenuItem.Name = "atualizaNovosObjetosAguardandoRetiradaToolStripMenuItem";
             this.atualizaNovosObjetosAguardandoRetiradaToolStripMenuItem.Size = new System.Drawing.Size(379, 22);
             this.atualizaNovosObjetosAguardandoRetiradaToolStripMenuItem.Text = "4 - Atualizar Novo(s) Objetos Aguardando Retirada";
+            this.atualizaNovosObjetosAguardandoRetiradaToolStripMenuItem.Visible = false;
             this.atualizaNovosObjetosAguardandoRetiradaToolStripMenuItem.Click += new System.EventHandler(this.atualizaNovosObjetosAguardandoRetiradaToolStripMenuItem_Click);
             // 
             // formularioAtualizacaoObjetosRequeridosJaEntreguesToolStripMenuItem
@@ -264,13 +267,21 @@ namespace SISAPO
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             this.toolStripSeparator5.Size = new System.Drawing.Size(376, 6);
             // 
-            // auxílioÀGestaoDoDiaToolStripMenuItem
+            // auxílioÀGestaoDoDiaItensNaoEntreguesToolStripMenuItem
             // 
-            this.auxílioÀGestaoDoDiaToolStripMenuItem.Image = global::SISAPO.Properties.Resources.CadastroObjetos;
-            this.auxílioÀGestaoDoDiaToolStripMenuItem.Name = "auxílioÀGestaoDoDiaToolStripMenuItem";
-            this.auxílioÀGestaoDoDiaToolStripMenuItem.Size = new System.Drawing.Size(379, 22);
-            this.auxílioÀGestaoDoDiaToolStripMenuItem.Text = "Auxílio à gestão do dia";
-            this.auxílioÀGestaoDoDiaToolStripMenuItem.Click += new System.EventHandler(this.auxílioÀGestaoDoDiaToolStripMenuItem_Click);
+            this.auxílioÀGestaoDoDiaItensNaoEntreguesToolStripMenuItem.Image = global::SISAPO.Properties.Resources.CadastroObjetos;
+            this.auxílioÀGestaoDoDiaItensNaoEntreguesToolStripMenuItem.Name = "auxílioÀGestaoDoDiaItensNaoEntreguesToolStripMenuItem";
+            this.auxílioÀGestaoDoDiaItensNaoEntreguesToolStripMenuItem.Size = new System.Drawing.Size(379, 22);
+            this.auxílioÀGestaoDoDiaItensNaoEntreguesToolStripMenuItem.Text = "Auxílio à gestão do dia - NÃO ENTREGUES";
+            this.auxílioÀGestaoDoDiaItensNaoEntreguesToolStripMenuItem.Click += new System.EventHandler(this.auxílioÀGestaoDoDiaItensNaoEntreguesToolStripMenuItem_Click);
+            // 
+            // auxílioÀGestaoDoDiaItensColadosSROToolStripMenuItem
+            // 
+            this.auxílioÀGestaoDoDiaItensColadosSROToolStripMenuItem.Image = global::SISAPO.Properties.Resources.CadastroObjetos;
+            this.auxílioÀGestaoDoDiaItensColadosSROToolStripMenuItem.Name = "auxílioÀGestaoDoDiaItensColadosSROToolStripMenuItem";
+            this.auxílioÀGestaoDoDiaItensColadosSROToolStripMenuItem.Size = new System.Drawing.Size(379, 22);
+            this.auxílioÀGestaoDoDiaItensColadosSROToolStripMenuItem.Text = "Auxílio à gestão do dia - COLADOS SRO";
+            this.auxílioÀGestaoDoDiaItensColadosSROToolStripMenuItem.Click += new System.EventHandler(this.auxílioÀGestaoDoDiaItensColadosSROToolStripMenuItem_Click);
             // 
             // opçõesTelaConsultaToolStripMenuItem
             // 
@@ -716,6 +727,7 @@ namespace SISAPO
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SISAPO-SRO - Sistema de apoio ao rastreamento unificado";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormularioPrincipal_FormClosed);
             this.Load += new System.EventHandler(this.FormularioPrincipal_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormularioPrincipal_KeyDown);
             this.menuStrip.ResumeLayout(false);
@@ -769,7 +781,7 @@ namespace SISAPO
         private System.Windows.Forms.ToolStripMenuItem imprimirListaDeEntregaParaConsultaSelecionadaToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem manterConsultaSempreAtualizadaToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem PermiriBuscarPorLDINaPesquisaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem auxílioÀGestaoDoDiaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem auxílioÀGestaoDoDiaItensNaoEntreguesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exibirMensagensAoDesevolvedorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem atualizarNovosObjetosPostadosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem atualizarNovosObjetosSaiuParaEntregaToolStripMenuItem;
@@ -804,6 +816,7 @@ namespace SISAPO
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
         private System.Windows.Forms.ToolStripMenuItem imprimirAvisoDeChegadaHOJEExcetoEntreguesECaixaPostalToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem imprimirListaLDIsExpediçãoPorOrdemDeDecrescenteAoLançamentoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem auxílioÀGestaoDoDiaItensColadosSROToolStripMenuItem;
     }
 }
 

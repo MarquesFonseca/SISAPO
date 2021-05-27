@@ -16,38 +16,90 @@ namespace SISAPO
         WaitWndFun waitForm = new WaitWndFun();
         DataTable listaObjetos = new DataTable();
         string MontaFiltro = string.Empty;
+        string ValorDataInicialDateTimePickerSelecionado = DateTime.Now.Date.ToShortDateString();
+        public enum ModeloTelaAbertura { TelaAguardandoRetirada, TelaColarItensSRO }
+        public ModeloTelaAbertura ModeloTelaAberturaSelecionado = ModeloTelaAbertura.TelaAguardandoRetirada;
 
         public FormularioAuxilioGestaoDiaNovo()
         {
             InitializeComponent();
             DataTable listaObjetos = new DataTable();
+
+            ModeloTelaAberturaSelecionado = ModeloTelaAbertura.TelaAguardandoRetirada;
+        }
+
+        public FormularioAuxilioGestaoDiaNovo(ModeloTelaAbertura modeloTelaAberturaSelecionado)
+        {
+            InitializeComponent();
+
+            DataTable listaObjetos = new DataTable();
+
+            ModeloTelaAberturaSelecionado = modeloTelaAberturaSelecionado;
         }
 
         private void FormularioAuxilioGestaoDia_Load(object sender, EventArgs e)
         {
-            //BtnColarConteudoJaCopiado_Click(sender, e);
-            BtnColarConteudoJaCopiado.Visible = false;
+            if (ModeloTelaAberturaSelecionado == ModeloTelaAbertura.TelaAguardandoRetirada)
+            {
+                BtnColarConteudoJaCopiado.Visible = false;
+                BtnRetornaTodosNaoEntregues.Visible = true;
+                label3.Text = "AUXÍLIO A GESTÃO DO DIA - ITENS NÃO ENTREGUES";
+            }
+            if (ModeloTelaAberturaSelecionado == ModeloTelaAbertura.TelaColarItensSRO)
+            {
+                BtnColarConteudoJaCopiado.Visible = true;
+                BtnRetornaTodosNaoEntregues.Visible = false;
+                label3.Text = "AUXÍLIO A GESTÃO DO DIA - ITENS COLADOS SRO";
+            }
+
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e)
+        private void BtnRetornaTodosNaoEntregues_Click(object sender, EventArgs e)
         {
-            this.Close();
-        }
+            try
+            {
+                BtnRetornaTodosNaoEntregues.Enabled = false;
+                waitForm.Show(this);
 
-        private void ObjetosComPrazoGuardaVencido_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Escape)
-            {
-                this.Close();
-                return;
+                listaObjetos = RetornaListaObjetosNaoEntregues();
+                if (listaObjetos == null || listaObjetos.Rows.Count == 0)
+                {
+                    FiltrarPorPrazosVENCIDOSCheckBox.Enabled = FiltrarPorPrazosVENCENDOHOJECheckBox.Enabled = FiltrarPorPrazosAVENCERCheckBox.Enabled = false;
+                    FiltrarPorClassificacaoPACCCheckBox.Enabled = FiltrarPorClassificacaoSEDEXCheckBox.Enabled = FiltrarPorClassificacaoDIVERSOSCheckBox.Enabled = false;
+                    FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.Enabled = false;
+                    FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox.Enabled = false;
+                    //Mensagens.Informa("Não foi possível carregar.\nCopie a lista e clique no botão para tentar novamente ."); 
+                    return;
+                }
+
+                FiltrarPorPrazosVENCIDOSCheckBox.Enabled = FiltrarPorPrazosVENCENDOHOJECheckBox.Enabled = FiltrarPorPrazosAVENCERCheckBox.Enabled = true;
+                FiltrarPorPrazosVENCIDOSCheckBox.Checked = FiltrarPorPrazosVENCENDOHOJECheckBox.Checked = FiltrarPorPrazosAVENCERCheckBox.Checked = true;
+
+                FiltrarPorClassificacaoPACCCheckBox.Enabled = FiltrarPorClassificacaoSEDEXCheckBox.Enabled = FiltrarPorClassificacaoDIVERSOSCheckBox.Enabled = true;
+                FiltrarPorClassificacaoPACCCheckBox.Checked = FiltrarPorClassificacaoSEDEXCheckBox.Checked = FiltrarPorClassificacaoDIVERSOSCheckBox.Checked = true;
+
+                FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.Enabled = true;
+                FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.Checked = true;
+
+                FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox.Enabled = true;
+                FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox.Checked = false;
+
+                bindingSourceObjetosNaoEntregues = new BindingSource();
+                bindingSourceObjetosNaoEntregues.DataSource = listaObjetos;
+                bindingSourceObjetosNaoEntregues.Sort = "QtdDiasCorridos Desc, Sigla ASC";
+                dataGridView1.DataSource = bindingSourceObjetosNaoEntregues;
+
+                FiltrosCheckBox();
+
+                waitForm.Close();
             }
-            if (e.KeyCode == Keys.F9)
+            catch (IOException)
             {
-                FormularioPrincipal.RetornaComponentesFormularioPrincipal().sRORastreamentoUnificadoToolStripMenuItem_Click(sender, e);
+                waitForm.Close();
             }
-            if (e.KeyCode == Keys.F12)
+            finally
             {
-                FormularioPrincipal.RetornaComponentesFormularioPrincipal().visualizarListaDeObjetosToolStripMenuItem_Click(sender, e);
+                BtnRetornaTodosNaoEntregues.Enabled = true;
             }
         }
 
@@ -84,6 +136,7 @@ namespace SISAPO
                         FiltrarPorPrazosVENCIDOSCheckBox.Enabled = FiltrarPorPrazosVENCENDOHOJECheckBox.Enabled = FiltrarPorPrazosAVENCERCheckBox.Enabled = false;
                         FiltrarPorClassificacaoPACCCheckBox.Enabled = FiltrarPorClassificacaoSEDEXCheckBox.Enabled = FiltrarPorClassificacaoDIVERSOSCheckBox.Enabled = false;
                         FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.Enabled = false;
+                        FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox.Enabled = false;
 
                         dataGridView1.DataSource = listaObjetos;
                         listaObjetos.Clear(); //Retira os valores da tabela mantendo os campos
@@ -101,6 +154,9 @@ namespace SISAPO
                     FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.Enabled = true;
                     FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.Checked = true;
 
+                    FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox.Enabled = true;
+                    FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox.Checked = false;
+
                     bindingSourceObjetosNaoEntregues = new BindingSource();
                     bindingSourceObjetosNaoEntregues.DataSource = listaObjetos;
                     dataGridView1.DataSource = bindingSourceObjetosNaoEntregues;
@@ -117,6 +173,28 @@ namespace SISAPO
                 {
                     BtnColarConteudoJaCopiado.Enabled = true;
                 }
+            }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void ObjetosComPrazoGuardaVencido_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+                return;
+            }
+            if (e.KeyCode == Keys.F9)
+            {
+                FormularioPrincipal.RetornaComponentesFormularioPrincipal().sRORastreamentoUnificadoToolStripMenuItem_Click(sender, e);
+            }
+            if (e.KeyCode == Keys.F12)
+            {
+                FormularioPrincipal.RetornaComponentesFormularioPrincipal().visualizarListaDeObjetosToolStripMenuItem_Click(sender, e);
             }
         }
 
@@ -361,59 +439,12 @@ namespace SISAPO
             }
 
             //FormularioImpressaoAuxilioGestaoDia formularioImpressaoAuxilioGestaoDia = new FormularioImpressaoAuxilioGestaoDia(listaObjetos);
-            FormularioImpressaoAuxilioGestaoDiaAgrupados formularioImpressaoAuxilioGestaoDiaAgrupados = new FormularioImpressaoAuxilioGestaoDiaAgrupados (listaObjetos);
+            FormularioImpressaoAuxilioGestaoDiaAgrupados formularioImpressaoAuxilioGestaoDiaAgrupados = new FormularioImpressaoAuxilioGestaoDiaAgrupados(listaObjetos);
             formularioImpressaoAuxilioGestaoDiaAgrupados.MdiParent = MdiParent;
             formularioImpressaoAuxilioGestaoDiaAgrupados.Show();
             formularioImpressaoAuxilioGestaoDiaAgrupados.WindowState = FormWindowState.Normal;
             formularioImpressaoAuxilioGestaoDiaAgrupados.WindowState = FormWindowState.Maximized;
             formularioImpressaoAuxilioGestaoDiaAgrupados.Activate();
-        }
-
-        private void BtnRetornaTodosNaoEntregues_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                BtnRetornaTodosNaoEntregues.Enabled = false;
-                tabControl3.Enabled = panel1.Enabled = panel2.Enabled = panel3.Enabled = false;
-                waitForm.Show(this);
-
-                listaObjetos = RetornaListaObjetosNaoEntregues();
-                if (listaObjetos == null || listaObjetos.Rows.Count == 0)
-                {
-                    FiltrarPorPrazosVENCIDOSCheckBox.Enabled = FiltrarPorPrazosVENCENDOHOJECheckBox.Enabled = FiltrarPorPrazosAVENCERCheckBox.Enabled = false;
-                    FiltrarPorClassificacaoPACCCheckBox.Enabled = FiltrarPorClassificacaoSEDEXCheckBox.Enabled = FiltrarPorClassificacaoDIVERSOSCheckBox.Enabled = false;
-                    FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.Enabled = false;
-                    //Mensagens.Informa("Não foi possível carregar.\nCopie a lista e clique no botão para tentar novamente ."); 
-                    return;
-                }
-
-                FiltrarPorPrazosVENCIDOSCheckBox.Enabled = FiltrarPorPrazosVENCENDOHOJECheckBox.Enabled = FiltrarPorPrazosAVENCERCheckBox.Enabled = true;
-                FiltrarPorPrazosVENCIDOSCheckBox.Checked = FiltrarPorPrazosVENCENDOHOJECheckBox.Checked = FiltrarPorPrazosAVENCERCheckBox.Checked = true;
-
-                FiltrarPorClassificacaoPACCCheckBox.Enabled = FiltrarPorClassificacaoSEDEXCheckBox.Enabled = FiltrarPorClassificacaoDIVERSOSCheckBox.Enabled = true;
-                FiltrarPorClassificacaoPACCCheckBox.Checked = FiltrarPorClassificacaoSEDEXCheckBox.Checked = FiltrarPorClassificacaoDIVERSOSCheckBox.Checked = true;
-
-                FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.Enabled = true;
-                FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.Checked = true;
-
-                bindingSourceObjetosNaoEntregues = new BindingSource();
-                bindingSourceObjetosNaoEntregues.DataSource = listaObjetos;
-                bindingSourceObjetosNaoEntregues.Sort = "QtdDiasCorridos Desc, Sigla ASC";
-                dataGridView1.DataSource = bindingSourceObjetosNaoEntregues;
-
-                FiltrosCheckBox();
-
-                waitForm.Close();
-                tabControl3.Enabled = panel1.Enabled = panel2.Enabled = panel3.Enabled = true;
-            }
-            catch (IOException)
-            {
-                waitForm.Close();
-            }
-            finally
-            {
-                BtnRetornaTodosNaoEntregues.Enabled = true;
-            }
         }
 
         private void MudaCorLinhasGridView()
@@ -489,6 +520,21 @@ namespace SISAPO
             FiltrosCheckBox();
         }
 
+        private void FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox.Checked)
+            {
+                DataInicial_dateTimePicker.Enabled = true;
+                DataInicial_dateTimePicker.Focus();//CHAMA O METODO DataInicial_dateTimePicker_GotFocus()
+            }
+            else
+            {
+                DataInicial_dateTimePicker.Enabled = false;
+                DataInicial_dateTimePicker.Value = DateTime.Now.Date;
+            }
+            FiltrosCheckBox();
+        }
+
         private void FiltrosCheckBox()
         {
             bool PrazosVENCIDOS = FiltrarPorPrazosVENCIDOSCheckBox.Checked;
@@ -500,6 +546,8 @@ namespace SISAPO
             bool ClassificacaoDIVERSOS = FiltrarPorClassificacaoDIVERSOSCheckBox.Checked;
 
             bool IncluirCaixaPostal = FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.Checked;
+
+            bool PorPrevisaoDia = FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox.Checked;
 
             MontaFiltro = string.Empty;
 
@@ -584,35 +632,101 @@ namespace SISAPO
                 }
             }
 
+            #region IncluirCaixaPostal
             if (!IncluirCaixaPostal)
             {
-                string incluirCaixaPostal = "AND CaixaPostal = FALSE";
+                string incluirCaixaPostal = "AND (CaixaPostal = FALSE)";
                 MontaFiltro = string.Format("{0} {1}", MontaFiltro, incluirCaixaPostal);
-            }
+            } 
+            #endregion
 
+            #region PorPrevisaoDia
+            if (PorPrevisaoDia)
+            {
+                DayOfWeek diaSemana = Convert.ToDateTime(ValorDataInicialDateTimePickerSelecionado).DayOfWeek;
+                if (diaSemana == DayOfWeek.Saturday)
+                {
+                    if (Mensagens.Pergunta("Você selecionou um dia de SÁBADO.\nDeseja incluir o SÁBADO + DOMINGO\ne considerar como SEGUNDA?") == DialogResult.Yes)
+                    {
+                        DateTime Sabado = Convert.ToDateTime(ValorDataInicialDateTimePickerSelecionado).Date.AddDays(0);
+                        double qtdSabado = (DateTime.Now.Date - Sabado.Date).TotalDays;
+
+                        DateTime Domingo = Convert.ToDateTime(ValorDataInicialDateTimePickerSelecionado).Date.AddDays(1);
+                        double qtdDomingo = (DateTime.Now.Date - Domingo.Date).TotalDays;
+
+                        DateTime Segunda = Convert.ToDateTime(ValorDataInicialDateTimePickerSelecionado).Date.AddDays(2);
+                        double qtdSegunda = (DateTime.Now.Date - Segunda.Date).TotalDays;
+
+                        string porPrevisaoDia = string.Format("AND (QtdDiasVencidos IN({0},{1},{2}))", qtdSegunda, qtdDomingo, qtdSabado);
+                        MontaFiltro = string.Format("{0} {1}", MontaFiltro, porPrevisaoDia);
+                    }
+                    else
+                    {
+                        double qtd = (DateTime.Now.Date - Convert.ToDateTime(ValorDataInicialDateTimePickerSelecionado).Date).TotalDays;
+                        string porPrevisaoDia = string.Format("AND (QtdDiasVencidos IN({0}))", qtd);
+                        MontaFiltro = string.Format("{0} {1}", MontaFiltro, porPrevisaoDia);
+                    }
+                }
+                else if (diaSemana == DayOfWeek.Sunday)
+                {
+                    if (Mensagens.Pergunta("Você selecionou um dia de DOMINGO.\nDeseja incluir o SÁBADO + DOMINGO\ne considerar como SEGUNDA?") == DialogResult.Yes)
+                    {
+                        DateTime Sabado = Convert.ToDateTime(ValorDataInicialDateTimePickerSelecionado).Date.AddDays(-1);
+                        double qtdSabado = (DateTime.Now.Date - Sabado.Date).TotalDays;
+
+                        DateTime Domingo = Convert.ToDateTime(ValorDataInicialDateTimePickerSelecionado).Date.AddDays(0);
+                        double qtdDomingo = (DateTime.Now.Date - Domingo.Date).TotalDays;
+
+                        DateTime Segunda = Convert.ToDateTime(ValorDataInicialDateTimePickerSelecionado).Date.AddDays(1);
+                        double qtdSegunda = (DateTime.Now.Date - Segunda.Date).TotalDays;
+
+                        string porPrevisaoDia = string.Format("AND (QtdDiasVencidos IN({0},{1},{2}))", qtdSegunda, qtdDomingo, qtdSabado);
+                        MontaFiltro = string.Format("{0} {1}", MontaFiltro, porPrevisaoDia);
+                    }
+                    else
+                    {
+                        double qtd = (DateTime.Now.Date - Convert.ToDateTime(ValorDataInicialDateTimePickerSelecionado).Date).TotalDays;
+                        string porPrevisaoDia = string.Format("AND (QtdDiasVencidos IN({0}))", qtd);
+                        MontaFiltro = string.Format("{0} {1}", MontaFiltro, porPrevisaoDia);
+                    }
+                }
+                else if (diaSemana == DayOfWeek.Monday)//Monday - segunda
+                {
+                    if (Mensagens.Pergunta("Você selecionou um dia de SEGUNDA.\nDeseja incluir o SÁBADO + DOMINGO\ne considerar como SEGUNDA?") == DialogResult.Yes)
+                    {
+                        DateTime Sabado = Convert.ToDateTime(ValorDataInicialDateTimePickerSelecionado).Date.AddDays(-2);
+                        double qtdSabado = (DateTime.Now.Date - Sabado.Date).TotalDays;
+
+                        DateTime Domingo = Convert.ToDateTime(ValorDataInicialDateTimePickerSelecionado).Date.AddDays(-1);
+                        double qtdDomingo = (DateTime.Now.Date - Domingo.Date).TotalDays;
+
+                        DateTime Segunda = Convert.ToDateTime(ValorDataInicialDateTimePickerSelecionado).Date.AddDays(0);
+                        double qtdSegunda = (DateTime.Now.Date - Segunda.Date).TotalDays;
+
+                        string porPrevisaoDia = string.Format("AND (QtdDiasVencidos IN({0},{1},{2}))", qtdSegunda, qtdDomingo, qtdSabado);
+                        MontaFiltro = string.Format("{0} {1}", MontaFiltro, porPrevisaoDia);
+                    }
+                    else
+                    {
+                        double qtd = (DateTime.Now.Date - Convert.ToDateTime(ValorDataInicialDateTimePickerSelecionado).Date).TotalDays;
+                        string porPrevisaoDia = string.Format("AND (QtdDiasVencidos IN({0}))", qtd);
+                        MontaFiltro = string.Format("{0} {1}", MontaFiltro, porPrevisaoDia);
+                    }
+                }
+                else
+                {
+                    double qtd = (DateTime.Now.Date - Convert.ToDateTime(ValorDataInicialDateTimePickerSelecionado).Date).TotalDays;
+                    string porPrevisaoDia = string.Format("AND (QtdDiasVencidos IN({0}))", qtd);
+                    MontaFiltro = string.Format("{0} {1}", MontaFiltro, porPrevisaoDia);
+                }
+            } 
+            #endregion
 
             bindingSourceObjetosNaoEntregues.Filter = MontaFiltro;
             MudaCorLinhasGridView();
 
-            //dataGridView1.Columns["TipoClassificacao"].Frozen = true;
-            //dataGridView1.RightToLeft = RightToLeft.Yes;
-
             LbnQuantidadeRegistros.Text = bindingSourceObjetosNaoEntregues.Count.ToString();
             dataGridView1.Focus();
-        }
-
-        private void tabControl3_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (tabControl3.SelectedIndex == 0)
-            {
-                BtnColarConteudoJaCopiado.Visible = false;
-                BtnRetornaTodosNaoEntregues.Visible = true;
-            }
-            if (tabControl3.SelectedIndex == 1)
-            {
-                BtnRetornaTodosNaoEntregues.Visible = false;
-                BtnColarConteudoJaCopiado.Visible = true;
-            }
         }
 
         private void radioButtonDataLancamento_CheckedChanged(object sender, EventArgs e)
@@ -621,12 +735,8 @@ namespace SISAPO
             {
                 if (bindingSourceObjetosNaoEntregues.Count > 0)
                 {
-                    tabControl3.Enabled = panel1.Enabled = panel2.Enabled = panel3.Enabled = false;
-                    waitForm.Show(this);
                     bindingSourceObjetosNaoEntregues.Sort = "QtdDiasCorridos Desc";
                     MudaCorLinhasGridView();
-                    waitForm.Close();
-                    tabControl3.Enabled = panel1.Enabled = panel2.Enabled = panel3.Enabled = true;
                 }
             }
         }
@@ -637,12 +747,8 @@ namespace SISAPO
             {
                 if (bindingSourceObjetosNaoEntregues.Count > 0)
                 {
-                    tabControl3.Enabled = panel1.Enabled = panel2.Enabled = panel3.Enabled = false;
-                    waitForm.Show(this);
                     bindingSourceObjetosNaoEntregues.Sort = "NomeCliente ASC";
                     MudaCorLinhasGridView();
-                    waitForm.Close();
-                    tabControl3.Enabled = panel1.Enabled = panel2.Enabled = panel3.Enabled = true;
                 }
             }
         }
@@ -653,12 +759,8 @@ namespace SISAPO
             {
                 if (bindingSourceObjetosNaoEntregues.Count > 0)
                 {
-                    tabControl3.Enabled = panel1.Enabled = panel2.Enabled = panel3.Enabled = false;
-                    waitForm.Show(this);
                     bindingSourceObjetosNaoEntregues.Sort = "TipoClassificacao ASC";
                     MudaCorLinhasGridView();
-                    waitForm.Close();
-                    tabControl3.Enabled = panel1.Enabled = panel2.Enabled = panel3.Enabled = true;
                 }
             }
         }
@@ -669,12 +771,8 @@ namespace SISAPO
             {
                 if (bindingSourceObjetosNaoEntregues.Count > 0)
                 {
-                    tabControl3.Enabled = panel1.Enabled = panel2.Enabled = panel3.Enabled = false;
-                    waitForm.Show(this);
                     bindingSourceObjetosNaoEntregues.Sort = "QtdDiasVencidos ASC";
                     MudaCorLinhasGridView();
-                    waitForm.Close();
-                    tabControl3.Enabled = panel1.Enabled = panel2.Enabled = panel3.Enabled = true;
                 }
             }
         }
@@ -693,5 +791,11 @@ namespace SISAPO
 
         }
 
+        private void DataInicial_dateTimePicker_ValueChanged(object sender, EventArgs e)
+        {
+            ValorDataInicialDateTimePickerSelecionado = DataInicial_dateTimePicker.Value.Date.ToShortDateString();
+
+            FiltrosCheckBox();
+        }
     }
 }

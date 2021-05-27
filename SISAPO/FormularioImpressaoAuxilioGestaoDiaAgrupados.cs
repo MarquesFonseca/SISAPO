@@ -301,8 +301,8 @@ namespace SISAPO
                 Html.AppendLine("	<tbody>		");
                 Html.AppendLine("		<tr>");
                 Html.AppendLine("		    <td width=\"90\" bgcolor=\"#F3F3F3\"><b><font size=\"3\">  Núm. LDI</font></b></td>");
-                Html.AppendLine("		    <td width=\"160\" bgcolor=\"#F3F3F3\"><b><font size=\"3\">  Objeto</font></b></td>");
-                Html.AppendLine("		    <td width=\"440\" bgcolor=\"#F3F3F3\"><b><font size=\"3\">  Destinatário</font></b></td>");
+                Html.AppendLine("		    <td width=\"170\" bgcolor=\"#F3F3F3\"><b><font size=\"3\">  Objeto</font></b></td>");
+                Html.AppendLine("		    <td width=\"430\" bgcolor=\"#F3F3F3\"><b><font size=\"3\">  Destinatário</font></b></td>");
                 Html.AppendLine("		    <td width=\"90\" bgcolor=\"#F3F3F3\"><b><font size=\"3\">  Lançamento</font></b></td>");
                 Html.AppendLine("		    <td width=\"70\" bgcolor=\"#F3F3F3\"><b><font size=\"3\">  Corridos</font></b></td>");
                 Html.AppendLine("		</tr>");

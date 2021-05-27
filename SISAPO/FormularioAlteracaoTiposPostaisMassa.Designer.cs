@@ -87,6 +87,7 @@
             this.tabControlPrincipal.SelectedIndex = 0;
             this.tabControlPrincipal.Size = new System.Drawing.Size(360, 155);
             this.tabControlPrincipal.TabIndex = 1;
+            this.tabControlPrincipal.TabStop = false;
             // 
             // tabPage1
             // 
@@ -114,6 +115,8 @@
             0,
             0,
             0});
+            this.PrazoDestinatarioCaixaPostalUpDown.Enter += new System.EventHandler(this.PrazoDestinatarioCaixaPostalUpDown_Enter);
+            this.PrazoDestinatarioCaixaPostalUpDown.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PrazoDestinatarioCaixaPostalUpDown_KeyDown);
             this.PrazoDestinatarioCaixaPostalUpDown.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PrazoDestinatarioCaixaPostalUpDown_MouseClick);
             // 
             // label1
@@ -138,6 +141,8 @@
             0,
             0,
             0});
+            this.PrazoDestinatarioCaidaPedidaUpDown.Enter += new System.EventHandler(this.PrazoDestinatarioCaidaPedidaUpDown_Enter);
+            this.PrazoDestinatarioCaidaPedidaUpDown.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PrazoDestinatarioCaidaPedidaUpDown_KeyDown);
             this.PrazoDestinatarioCaidaPedidaUpDown.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PrazoDestinatarioCaidaPedidaUpDown_MouseClick);
             // 
             // label2
@@ -161,6 +166,7 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(360, 155);
             this.tabControl1.TabIndex = 2;
+            this.tabControl1.TabStop = false;
             // 
             // tabPage2
             // 
@@ -188,6 +194,8 @@
             0,
             0,
             0});
+            this.PrazoRemetenteCaixaPostalUpDown.Enter += new System.EventHandler(this.PrazoRemetenteCaixaPostalUpDown_Enter);
+            this.PrazoRemetenteCaixaPostalUpDown.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PrazoRemetenteCaixaPostalUpDown_KeyDown);
             this.PrazoRemetenteCaixaPostalUpDown.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PrazoRemetenteCaixaPostalUpDown_MouseClick);
             // 
             // label3
@@ -212,6 +220,8 @@
             0,
             0,
             0});
+            this.PrazoRemetenteCaidaPedidaUpDown.Enter += new System.EventHandler(this.PrazoRemetenteCaidaPedidaUpDown_Enter);
+            this.PrazoRemetenteCaidaPedidaUpDown.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PrazoRemetenteCaidaPedidaUpDown_KeyDown);
             this.PrazoRemetenteCaidaPedidaUpDown.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PrazoRemetenteCaidaPedidaUpDown_MouseClick);
             // 
             // label4
@@ -238,6 +248,7 @@
             this.comboBoxTipoClassificacao.Size = new System.Drawing.Size(311, 26);
             this.comboBoxTipoClassificacao.TabIndex = 0;
             this.comboBoxTipoClassificacao.SelectedIndexChanged += new System.EventHandler(this.comboBoxTipoClassificacao_SelectedIndexChanged);
+            this.comboBoxTipoClassificacao.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBoxTipoClassificacao_KeyDown);
             // 
             // tabControl2
             // 
@@ -250,6 +261,7 @@
             this.tabControl2.SelectedIndex = 0;
             this.tabControl2.Size = new System.Drawing.Size(356, 102);
             this.tabControl2.TabIndex = 3;
+            this.tabControl2.TabStop = false;
             // 
             // tabPage3
             // 
@@ -273,6 +285,7 @@
             this.tabControl3.SelectedIndex = 0;
             this.tabControl3.Size = new System.Drawing.Size(726, 98);
             this.tabControl3.TabIndex = 0;
+            this.tabControl3.TabStop = false;
             // 
             // tabPage4
             // 
@@ -302,7 +315,7 @@
             this.BtnGravar.Location = new System.Drawing.Point(16, 498);
             this.BtnGravar.Name = "BtnGravar";
             this.BtnGravar.Size = new System.Drawing.Size(127, 37);
-            this.BtnGravar.TabIndex = 4;
+            this.BtnGravar.TabIndex = 9;
             this.BtnGravar.Text = "[F5] &Gravar";
             this.BtnGravar.UseVisualStyleBackColor = true;
             this.BtnGravar.Click += new System.EventHandler(this.BtnGravar_Click);
@@ -314,7 +327,7 @@
             this.BtnCancelar.Location = new System.Drawing.Point(579, 498);
             this.BtnCancelar.Name = "BtnCancelar";
             this.BtnCancelar.Size = new System.Drawing.Size(152, 37);
-            this.BtnCancelar.TabIndex = 5;
+            this.BtnCancelar.TabIndex = 10;
             this.BtnCancelar.Text = "[ESC] &Cancelar";
             this.BtnCancelar.UseVisualStyleBackColor = true;
             this.BtnCancelar.Click += new System.EventHandler(this.BtnCancelar_Click);
@@ -329,7 +342,8 @@
             this.tabControl4.Name = "tabControl4";
             this.tabControl4.SelectedIndex = 0;
             this.tabControl4.Size = new System.Drawing.Size(356, 102);
-            this.tabControl4.TabIndex = 3;
+            this.tabControl4.TabIndex = 4;
+            this.tabControl4.TabStop = false;
             // 
             // tabPage5
             // 
@@ -350,18 +364,19 @@
             this.DataInicial_dateTimePicker.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.DataInicial_dateTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DataInicial_dateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DataInicial_dateTimePicker.Location = new System.Drawing.Point(239, 32);
+            this.DataInicial_dateTimePicker.Location = new System.Drawing.Point(234, 32);
             this.DataInicial_dateTimePicker.Name = "DataInicial_dateTimePicker";
-            this.DataInicial_dateTimePicker.Size = new System.Drawing.Size(103, 27);
-            this.DataInicial_dateTimePicker.TabIndex = 12;
+            this.DataInicial_dateTimePicker.Size = new System.Drawing.Size(108, 27);
+            this.DataInicial_dateTimePicker.TabIndex = 3;
+            this.DataInicial_dateTimePicker.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DataInicial_dateTimePicker_KeyDown);
             // 
             // radioButtonAPartirDoDia
             // 
             this.radioButtonAPartirDoDia.AutoSize = true;
-            this.radioButtonAPartirDoDia.Location = new System.Drawing.Point(96, 33);
+            this.radioButtonAPartirDoDia.Location = new System.Drawing.Point(94, 33);
             this.radioButtonAPartirDoDia.Name = "radioButtonAPartirDoDia";
             this.radioButtonAPartirDoDia.Size = new System.Drawing.Size(145, 24);
-            this.radioButtonAPartirDoDia.TabIndex = 13;
+            this.radioButtonAPartirDoDia.TabIndex = 2;
             this.radioButtonAPartirDoDia.Text = "A partir do dia:";
             this.radioButtonAPartirDoDia.UseVisualStyleBackColor = true;
             this.radioButtonAPartirDoDia.CheckedChanged += new System.EventHandler(this.radioButtonAPartirDoDia_CheckedChanged);
@@ -370,13 +385,14 @@
             // 
             this.radioButtonTodos.AutoSize = true;
             this.radioButtonTodos.Checked = true;
-            this.radioButtonTodos.Location = new System.Drawing.Point(9, 33);
+            this.radioButtonTodos.Location = new System.Drawing.Point(13, 33);
             this.radioButtonTodos.Name = "radioButtonTodos";
             this.radioButtonTodos.Size = new System.Drawing.Size(76, 24);
-            this.radioButtonTodos.TabIndex = 13;
+            this.radioButtonTodos.TabIndex = 1;
             this.radioButtonTodos.TabStop = true;
             this.radioButtonTodos.Text = "Todos";
             this.radioButtonTodos.UseVisualStyleBackColor = true;
+            this.radioButtonTodos.KeyDown += new System.Windows.Forms.KeyEventHandler(this.radioButtonTodos_KeyDown);
             // 
             // label6
             // 
@@ -385,7 +401,7 @@
             this.label6.Location = new System.Drawing.Point(6, 6);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(325, 18);
-            this.label6.TabIndex = 2;
+            this.label6.TabIndex = 0;
             this.label6.Text = "Para redefinir prazos dos objetos não entregues";
             // 
             // progressBar1
@@ -396,7 +412,7 @@
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(714, 34);
             this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
-            this.progressBar1.TabIndex = 12;
+            this.progressBar1.TabIndex = 6;
             // 
             // LblProgresso1
             // 
@@ -407,7 +423,7 @@
             this.LblProgresso1.Location = new System.Drawing.Point(12, 370);
             this.LblProgresso1.Name = "LblProgresso1";
             this.LblProgresso1.Size = new System.Drawing.Size(0, 24);
-            this.LblProgresso1.TabIndex = 11;
+            this.LblProgresso1.TabIndex = 5;
             // 
             // LblProgresso2
             // 
@@ -418,7 +434,7 @@
             this.LblProgresso2.Location = new System.Drawing.Point(12, 432);
             this.LblProgresso2.Name = "LblProgresso2";
             this.LblProgresso2.Size = new System.Drawing.Size(0, 24);
-            this.LblProgresso2.TabIndex = 11;
+            this.LblProgresso2.TabIndex = 7;
             // 
             // progressBar2
             // 
@@ -428,7 +444,7 @@
             this.progressBar2.Name = "progressBar2";
             this.progressBar2.Size = new System.Drawing.Size(714, 34);
             this.progressBar2.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
-            this.progressBar2.TabIndex = 12;
+            this.progressBar2.TabIndex = 8;
             // 
             // FormularioAlteracaoTiposPostaisMassa
             // 
