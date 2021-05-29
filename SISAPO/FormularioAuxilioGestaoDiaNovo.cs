@@ -50,6 +50,8 @@ namespace SISAPO
                 BtnColarConteudoJaCopiado.Visible = true;
                 BtnRetornaTodosNaoEntregues.Visible = false;
                 label3.Text = "AUXÍLIO A GESTÃO DO DIA - ITENS COLADOS SRO";
+                FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox.Visible = false;
+                DataInicial_dateTimePicker.Visible = false;
             }
 
         }

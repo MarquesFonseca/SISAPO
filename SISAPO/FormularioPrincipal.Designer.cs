@@ -234,7 +234,6 @@ namespace SISAPO
             this.atualizaNovosObjetosAguardandoRetiradaToolStripMenuItem.Name = "atualizaNovosObjetosAguardandoRetiradaToolStripMenuItem";
             this.atualizaNovosObjetosAguardandoRetiradaToolStripMenuItem.Size = new System.Drawing.Size(379, 22);
             this.atualizaNovosObjetosAguardandoRetiradaToolStripMenuItem.Text = "4 - Atualizar Novo(s) Objetos Aguardando Retirada";
-            this.atualizaNovosObjetosAguardandoRetiradaToolStripMenuItem.Visible = false;
             this.atualizaNovosObjetosAguardandoRetiradaToolStripMenuItem.Click += new System.EventHandler(this.atualizaNovosObjetosAguardandoRetiradaToolStripMenuItem_Click);
             // 
             // formularioAtualizacaoObjetosRequeridosJaEntreguesToolStripMenuItem

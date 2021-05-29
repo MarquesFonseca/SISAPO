@@ -276,6 +276,7 @@ namespace SISAPO
                             {
                                 Comentario = webBrowser1.Document.GetElementsByTagName("TR")[i].InnerText.Replace("Comentário: ", "");
                                 Comentario = Comentario.RemoveAcentos().ToUpper().Trim();
+                                Comentario = Configuracoes.RetornaCaixaPostalCorrigidaDefeitoString(Comentario);
                                 if (string.IsNullOrEmpty(Comentario))
                                 {
                                     DataRow drTipoPostal = FormularioPrincipal.TiposPostais.AsEnumerable().First(T => T["Sigla"].Equals(CodigoObjetoAtual.Substring(0, 2))); //["Código"] - Pega linha retornada dos tipos postais vinda do Excel
@@ -346,6 +347,7 @@ namespace SISAPO
                             DataSet DsCliente = dao.RetornaDataSet("SELECT TOP 1 Codigo, CodigoObjeto, CodigoLdi, NomeCliente, DataLancamento, Atualizado, ObjetoEntregue, CaixaPostal, MunicipioLOEC, EnderecoLOEC, BairroLOEC, LocalidadeLOEC, Comentario, TipoPostalServico, TipoPostalSiglaCodigo, TipoPostalNomeSiglaCodigo, TipoPostalPrazoDiasCorridosRegulamentado FROM TabelaObjetosSROLocal WHERE (CodigoObjeto = @CodigoObjeto) ORDER BY Codigo DESC", new Parametros { Nome = "@CodigoObjeto", Tipo = TipoCampo.Text, Valor = CodigoObjetoAtual });
                             if (DsCliente.Tables[0].Rows.Count == 0) break;
 
+                            //NomeCliente = DsCliente.Tables[0].Rows[0]["NomeCliente"].ToString().ToUpper().RemoveAcentos();
                             NomeCliente = NomeCliente.Trim() == "" ? DsCliente.Tables[0].Rows[0]["NomeCliente"].ToString().ToUpper().RemoveAcentos() : NomeCliente.Trim().ToUpper().RemoveAcentos();
                             NomeCliente = NomeCliente.Replace("- " + Comentario, "").Trim();//evita repetir o mesmo comentario varias vezes
                             NomeCliente = string.Format("{0} - {1}", NomeCliente, Comentario);
@@ -357,9 +359,9 @@ namespace SISAPO
 
                             SeECaixaPostal = Convert.ToBoolean(DsCliente.Tables[0].Rows[0]["CaixaPostal"]);
                             SeECaixaPostal = !SeECaixaPostal ? Configuracoes.RetornaSeECaixaPostal(NomeCliente) : SeECaixaPostal;
-
+                            
                             SeEAoRemetente = Configuracoes.RetornaSeEAoRemetente(NomeCliente);
-
+                            
                             TipoPostalPrazoDiasCorridosRegulamentado = Configuracoes.RetornaTipoPostalPrazoDiasCorridosRegulamentado(CodigoObjetoAtual, SeEAoRemetente, SeECaixaPostal, ref TipoPostalServico, ref TipoPostalSiglaCodigo, ref TipoPostalNomeSiglaCodigo);
 
                             Mensagens.InformaDesenvolvedor("Cheguei até a gravação do update do nome: " + NomeCliente);

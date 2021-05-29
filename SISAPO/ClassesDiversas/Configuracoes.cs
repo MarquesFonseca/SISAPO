@@ -850,6 +850,16 @@ namespace SISAPO.ClassesDiversas
                 NovoTexto = NovoTexto.Replace("CAIXA P", "CAIXA POSTAL");
                 return NovoTexto;
             }
+            if (NovoTexto.Contains("CAIXA PSTA"))
+            {
+                NovoTexto = NovoTexto.Replace("CAIXA PSTA", "CAIXA POSTAL");
+                return NovoTexto;
+            }
+            if (NovoTexto.Contains("CAIXA PSTAL"))
+            {
+                NovoTexto = NovoTexto.Replace("CAIXA PSTAL", "CAIXA POSTAL");
+                return NovoTexto;
+            }
             if (NovoTexto.Contains("CX POSTAL"))
             {
                 NovoTexto = NovoTexto.Replace("CX POSTAL", "CAIXA POSTAL");
@@ -878,6 +888,16 @@ namespace SISAPO.ClassesDiversas
             if (NovoTexto.Contains("CX P"))
             {
                 NovoTexto = NovoTexto.Replace("CX P", "CAIXA POSTAL");
+                return NovoTexto;
+            }
+            if (NovoTexto.Contains("CX PSTA"))
+            {
+                NovoTexto = NovoTexto.Replace("CX PSTA", "CAIXA POSTAL");
+                return NovoTexto;
+            }
+            if (NovoTexto.Contains("CX PSTAL"))
+            {
+                NovoTexto = NovoTexto.Replace("CX PSTAL", "CAIXA POSTAL");
                 return NovoTexto;
             }
 
