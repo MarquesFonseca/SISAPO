@@ -381,7 +381,7 @@ namespace SISAPO
             {
                 string itemTRInnerText = ((System.Windows.Forms.HtmlElement)(itemTR)).InnerText;
                 string itemTRInnerHtml = ((System.Windows.Forms.HtmlElement)(itemTR)).InnerHtml;
-                string NomeAgenciaLocal = dadosAgencia.Tables[0].Rows[0][0].ToString().Trim().ToUpper();
+                string NomeAgenciaLocal = dadosAgencia.Tables[0].Rows[0]["NomeAgenciaLocal"].ToString().Trim().ToUpper();
                 if (itemTRInnerText == null || string.IsNullOrEmpty(itemTRInnerText.Trim())) continue;
                 if (itemTRInnerText.Trim().ToUpper().Contains(NomeAgenciaLocal) == false) //se não estiver a referencia à agência não continua...
                     continue;

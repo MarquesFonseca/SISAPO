@@ -55,7 +55,7 @@ namespace SISAPO
                 //caminho para tela de consulta atraves de códigos de objetos rastreadores
                 //tipoTela = TipoTela.Rastreamento1;
                 //webBrowser1.Url = new Uri(TelaRastreamento_1_1);
-                CodigoObjetoAtual = "QB137892122BR";
+                CodigoObjetoAtual = "QB156597975BR";
                 //string TelaNomeCliente_2_4 = @"J:\Rastreamento_Unificado_SC349045411BR.htm";
                 string TelaNomeCliente_2_4 = @"J:\Rastreamento_Unificado_S_QB137892122BR.htm";
                 //"J:\Rastreamento_Unificado_SC349045411BR.htm";
@@ -274,9 +274,19 @@ namespace SISAPO
                             #region Comentário
                             if (webBrowser1.Document.GetElementsByTagName("TR")[i].InnerText.Contains("Comentário:"))
                             {
+                                //CodigoObjetoAtual = "LE253372517SE";
+                                if (Configuracoes.SeEAoRemetenteAtualizacaoObjetosSaiuParaEntrega != null &&
+                                    Configuracoes.SeEAoRemetenteAtualizacaoObjetosSaiuParaEntrega.AsEnumerable().Any(t => t.Key == CodigoObjetoAtual)) //existe?
+                                {
+                                    SeEAoRemetente = Configuracoes.SeEAoRemetenteAtualizacaoObjetosSaiuParaEntrega[CodigoObjetoAtual];
+                                }
+
                                 Comentario = webBrowser1.Document.GetElementsByTagName("TR")[i].InnerText.Replace("Comentário: ", "");
                                 Comentario = Comentario.RemoveAcentos().ToUpper().Trim();
                                 Comentario = Configuracoes.RetornaCaixaPostalCorrigidaDefeitoString(Comentario);
+                                Comentario = Configuracoes.RetornaAoRemetenteCorrigidaDefeitoString(Comentario);
+
+                                #region TrataTipo SC PC (A COBRAR)
                                 if (string.IsNullOrEmpty(Comentario))
                                 {
                                     DataRow drTipoPostal = FormularioPrincipal.TiposPostais.AsEnumerable().First(T => T["Sigla"].Equals(CodigoObjetoAtual.Substring(0, 2))); //["Código"] - Pega linha retornada dos tipos postais vinda do Excel
@@ -286,8 +296,28 @@ namespace SISAPO
                                         descricao.Contains("PAGAMENTO ENTREGA"))
                                     {
                                         Comentario = "A COBRAR";
+                                        if (SeEAoRemetente)
+                                            Comentario = "A COBRAR - AO REMETENTE";
+                                    }
+                                    else
+                                    {
+                                        if (SeEAoRemetente)
+                                        {
+                                            Comentario = string.Format("AO REMETENTE");
+                                        }
                                     }
                                 }
+                                else
+                                {
+                                    if (SeEAoRemetente)
+                                    {
+                                        if (Comentario != "AO REMETENTE")
+                                        {
+                                            Comentario = string.Format("{0} - AO REMETENTE", Comentario);
+                                        }
+                                    }
+                                }
+                                #endregion
 
                                 EscreveTextoTextBox("Comentário: " + Comentario.ToString());
                                 continue;
@@ -359,9 +389,9 @@ namespace SISAPO
 
                             SeECaixaPostal = Convert.ToBoolean(DsCliente.Tables[0].Rows[0]["CaixaPostal"]);
                             SeECaixaPostal = !SeECaixaPostal ? Configuracoes.RetornaSeECaixaPostal(NomeCliente) : SeECaixaPostal;
-                            
-                            SeEAoRemetente = Configuracoes.RetornaSeEAoRemetente(NomeCliente);
-                            
+
+                            SeEAoRemetente = !SeEAoRemetente ? Configuracoes.RetornaSeEAoRemetente(NomeCliente) : SeEAoRemetente;
+
                             TipoPostalPrazoDiasCorridosRegulamentado = Configuracoes.RetornaTipoPostalPrazoDiasCorridosRegulamentado(CodigoObjetoAtual, SeEAoRemetente, SeECaixaPostal, ref TipoPostalServico, ref TipoPostalSiglaCodigo, ref TipoPostalNomeSiglaCodigo);
 
                             Mensagens.InformaDesenvolvedor("Cheguei até a gravação do update do nome: " + NomeCliente);
@@ -397,7 +427,6 @@ namespace SISAPO
                                             new Parametros("@TipoPostalPrazoDiasCorridosRegulamentado", TipoCampo.Text, TipoPostalPrazoDiasCorridosRegulamentado),
 
                                             new Parametros("@CodigoObjeto", TipoCampo.Text, CodigoObjetoAtual)});
-
                             this.Close();
                             break;
                         }
@@ -606,138 +635,6 @@ namespace SISAPO
                 this.Close();
             }
         }
-
-
-        //server 275
-        //private void SeparaLinksDosObjetosRastreados()
-        //{
-        //    bool objetoJaEntregue = false;
-        //    ListaLinksJavaScript = new List<string>();
-        //    //string CodigoObjetoAtual = "0";
-        //    foreach (var itemTR in webBrowser1.Document.GetElementsByTagName("TR"))
-        //    {
-        //        string itemTRInnerText = ((System.Windows.Forms.HtmlElement)(itemTR)).InnerText;
-        //        string itemTRInnerHtml = ((System.Windows.Forms.HtmlElement)(itemTR)).InnerHtml;
-        //        if (itemTRInnerText == null || string.IsNullOrEmpty(itemTRInnerText.Trim())) continue;
-        //        if (!VerificaSeELinhaDesejada(itemTRInnerText)) continue;
-
-        //        Mensagens.InformaDesenvolvedor("passou pela: '...verifica para ir mais rápido.... senao teria que percorrer todas as colunas até saber se é a linha desejada....'");
-        //        Mensagens.InformaDesenvolvedor("itemTRInnerText: " + itemTRInnerText);
-
-        //        foreach (var itemTD in ((System.Windows.Forms.HtmlElement)(itemTR)).GetElementsByTagName("TD"))
-        //        {
-        //            if (((System.Windows.Forms.HtmlElement)(itemTD)).InnerText == null) continue;
-        //            string CampoAtual = ((System.Windows.Forms.HtmlElement)(itemTD)).InnerText.Trim().ToUpper();
-        //            if (CampoAtual == null || string.IsNullOrEmpty(CampoAtual.Trim())) continue;
-
-        //            if (CampoAtual == "Entregue".ToUpper() ||
-        //                CampoAtual == "Distribuído ao remetente".ToUpper() ||
-        //                CampoAtual == "Encaminhado".ToUpper() ||
-        //                CampoAtual == "Disponível em Caixa Postal".ToUpper())
-        //            {
-        //                foreach (var pegalinkAtual in ((System.Windows.Forms.HtmlElement)(itemTR)).GetElementsByTagName("A"))
-        //                {
-        //                    //var linkatual = ((System.Windows.Forms.HtmlElement)(pegalinkAtual)).OuterHtml.Replace("%20", " ");
-        //                    //CodigoObjetoAtual = linkatual.Substring(55, 13);
-
-        //                    #region pega os "Entregue" | "Distribuído ao remetente" | "Encaminhado"
-        //                    if (CampoAtual == "Entregue".ToUpper() ||
-        //                        CampoAtual == "Distribuído ao remetente".ToUpper() ||
-        //                        CampoAtual == "Encaminhado".ToUpper())
-        //                    {
-        //                        Mensagens.InformaDesenvolvedor("Gravando no banco : " + CampoAtual);
-        //                        objetoJaEntregue = true;
-        //                        string DataModificacao = itemTRInnerText.Trim().Substring(0, 19);
-        //                        using (DAO dao = new DAO(TipoBanco.OleDb, strConexao))
-        //                        {
-        //                            if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
-        //                            dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET DataModificacao = @DataModificacao, Situacao = @Situacao, ObjetoEntregue = @ObjetoEntregue WHERE (CodigoObjeto = @CodigoObjeto)"
-        //                                                 , new List<Parametros>() { 
-        //                                         new Parametros { Nome = "@DataModificacao", Tipo = TipoCampo.Text, Valor = DataModificacao },
-        //                                         new Parametros { Nome = "@Situacao", Tipo = TipoCampo.Text, Valor = CampoAtual.ToUpper() },
-        //                                         new Parametros { Nome = "@ObjetoEntregue", Tipo = TipoCampo.Int, Valor = 1 },
-        //                                         new Parametros { Nome = "@CodigoObjeto", Tipo = TipoCampo.Text, Valor = CodigoObjetoAtual }
-        //                                     });
-        //                        }
-        //                        break;
-        //                    }
-        //                    #endregion
-
-        //                    #region pega os "Disponível em Caixa Postal"
-        //                    if (CampoAtual == "Disponível em Caixa Postal".ToUpper())
-        //                    {
-        //                        Mensagens.InformaDesenvolvedor("Gravando no banco: " + CampoAtual);
-        //                        using (DAO dao = new DAO(TipoBanco.OleDb, strConexao))
-        //                        {
-        //                            if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
-        //                            dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET Situacao = @Situacao, CaixaPostal = @CaixaPostal WHERE (CodigoObjeto = @CodigoObjeto)"
-        //                                     , new List<Parametros>() { 
-        //                                         new Parametros { Nome = "@Situacao", Tipo = TipoCampo.Text, Valor = CampoAtual.Trim().ToUpper() },
-        //                                         new Parametros { Nome = "@CaixaPostal", Tipo = TipoCampo.Int, Valor = 1 },
-        //                                         new Parametros { Nome = "@CodigoObjeto", Tipo = TipoCampo.Text, Valor = CodigoObjetoAtual }
-        //                                     });
-        //                        }
-        //                        break;
-        //                    }
-        //                    #endregion
-        //                }
-        //            }
-
-        //            if (CampoAtual == "Aguardando retirada".ToUpper() || CampoAtual == "Aguardando retirada - Área sem entrega".ToUpper() || CampoAtual == "Aguardando retirada - Area sem entrega".ToUpper())
-        //            {
-        //                string NomeAgenciaLocal = dadosAgencia.Tables[0].Rows[0][0].ToString().Trim().ToUpper();
-        //                if (itemTRInnerText.Trim().ToUpper().Contains(NomeAgenciaLocal.ToUpper()) == false)
-        //                {
-        //                    Mensagens.InformaDesenvolvedor(itemTRInnerText.Trim().ToUpper() + "\n\n(itemTRInnerText.Trim().ToUpper().Contains(NomeAgenciaLocal.ToUpper()) == false)");
-        //                    continue;//se não estiver a referencia à agência não continua...	
-        //                }
-        //            }
-
-        //            #region pega os "Aguardando retirada" ou "Disponível em Caixa Postal"
-        //            if (CampoAtual == "Aguardando retirada".ToUpper() ||
-        //                CampoAtual == "Aguardando retirada - Área sem entrega".ToUpper() ||
-        //                CampoAtual == "Aguardando retirada - Area sem entrega".ToUpper() ||
-        //                CampoAtual == "Disponível em Caixa Postal".ToUpper())
-        //            {
-        //                //Aguardando retirada ou Disponível em Caixa Postal
-        //                foreach (var pegalinkAtual2 in ((System.Windows.Forms.HtmlElement)(itemTR)).GetElementsByTagName("A"))
-        //                {
-        //                    var linkatual = ((System.Windows.Forms.HtmlElement)(pegalinkAtual2)).OuterHtml.Replace("%20", " ");
-        //                    ListaLinksJavaScript.Add(linkatual.Substring(21, 102));
-
-        //                    if (objetoJaEntregue == false) //não foi entregue
-        //                    {
-        //                        using (DAO dao = new DAO(TipoBanco.OleDb, strConexao))
-        //                        {
-        //                            if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
-        //                            dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET Situacao = @Situacao WHERE (CodigoObjeto = @CodigoObjeto)"
-        //                                     , new List<Parametros>() { 
-        //                                 new Parametros { Nome = "@Situacao", Tipo = TipoCampo.Text, Valor = CampoAtual.Trim().ToUpper() },
-        //                                 new Parametros { Nome = "@CodigoObjeto", Tipo = TipoCampo.Text, Valor = CodigoObjetoAtual }
-        //                             });
-        //                        }
-        //                    }
-        //                    return;
-        //                }
-        //            }
-        //            #endregion
-
-        //            //adicionado dia 07/06/2019
-        //            #region pega os "Postado" ou "Postado após o horário"
-        //            //if (CampoAtual == "Postado".ToUpper() || CampoAtual == "Postado após o horário".ToUpper())
-        //            //{
-        //            ////Postado" ou "Postado após o horário
-        //            //foreach (var pegalinkAtual2 in ((System.Windows.Forms.HtmlElement)(itemTR)).GetElementsByTagName("A"))
-        //            //{
-        //            //var linkatual = ((System.Windows.Forms.HtmlElement)(pegalinkAtual2)).OuterHtml;
-        //            //ListaLinksJavaScript.Add(linkatual.Substring(21, 102));
-        //            //return;
-        //            //}
-        //            //}
-        //            #endregion
-        //        }
-        //    }
-        //}
 
         private bool VerificaSeELinhaDesejada(string linhaAtual)
         {

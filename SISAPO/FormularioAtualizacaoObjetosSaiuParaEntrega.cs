@@ -45,14 +45,18 @@ namespace SISAPO
             tipoTela = TipoTela.Rastreamento1;
             DetalhesDeObjetos3 = false;
 
-            dadosAgencia = RetornaDadosAgencia();
+            dadosAgencia = Configuracoes.RetornaDadosAgencia();
 
             if (Configuracoes.TipoAmbiente == TipoAmbiente.Desenvolvimento)
             {
                 // caminho que define o teste
                 //caminho para tela de consulta atraves de códigos de objetos rastreadores
-                tipoTela = TipoTela.Rastreamento1;
-                webBrowser1.Url = new Uri(TelaRastreamento_1_1);
+
+                //tipoTela = TipoTela.Rastreamento1;
+                //webBrowser1.Url = new Uri(TelaRastreamento_1_1);
+
+                tipoTela = TipoTela.DetalhesDeObjetos3;
+                webBrowser1.Url = new Uri(@"j:\Rastreamento_EXPRESSO_ARAUJO_0_DETALHES.htm");
             }
             if (Configuracoes.TipoAmbiente == TipoAmbiente.Producao)
             {
@@ -60,24 +64,6 @@ namespace SISAPO
                 tipoTela = TipoTela.DetalhesDeObjetos3;
                 webBrowser1.Url = new Uri(enderecoSRO + codigoObjetoIniciado);
             }
-        }
-
-        private DataSet RetornaDadosAgencia()
-        {
-            DataSet ds = new DataSet();
-            try
-            {
-                using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
-                {
-                    ds = dao.RetornaDataSet("SELECT TOP 1 NomeAgenciaLocal, EnderecoAgenciaLocal FROM TabelaConfiguracoesSistema");
-                }
-                return ds;
-            }
-            catch (Exception)
-            {
-                throw new NotImplementedException();
-            }
-
         }
 
         private void FormularioAtualizacaoObjetosSaiuParaEntrega_Load(object sender, EventArgs e)
@@ -192,21 +178,25 @@ namespace SISAPO
                             {
                                 EscreveTextoTextBox("antes de clicar...");
                                 Mensagens.InformaDesenvolvedor("link para clicar...: " + PrimeiroListaLinksJavaScript);
-                                webBrowser1.Document.InvokeScript("DetalhesPesquisa", new object[] { 
+
+                                object[] DetalhesObjeto = new object[] {
                                 PrimeiroListaLinksJavaScript.Split('\'')[1], /*DETALHESINTRA*/
                                 PrimeiroListaLinksJavaScript.Split('\'')[3], /*OH239391285BR*/ 
                                 PrimeiroListaLinksJavaScript.Split('\'')[5], /*OEC*/
                                 PrimeiroListaLinksJavaScript.Split('\'')[7], /*33113410964*/ 
                                 PrimeiroListaLinksJavaScript.Split('\'')[9], /*1*/ 
                                 PrimeiroListaLinksJavaScript.Split('\'')[11],/*15/06/2019 08:24:18*/ 
-                                PrimeiroListaLinksJavaScript.Split('\'')[13] /*intra*/ });
+                                PrimeiroListaLinksJavaScript.Split('\'')[13] /*intra*/ };
+
+                                webBrowser1.Document.InvokeScript("DetalhesPesquisa", DetalhesObjeto);
                             }
                             #endregion
                             #region TipoAmbiente.Desenvolvimento
                             if (Configuracoes.TipoAmbiente == TipoAmbiente.Desenvolvimento)
                             {
+                                CodigoObjetoAtual = "QB156597975BR";
                                 //webBrowser1.Url = new Uri(TelaNomeCliente_2_4);
-                                webBrowser1.Url = new Uri(@"C:\Users\MARQUES\Documents\Visual Studio 2010\Projects\SISAPO\SISAPO\bin\Debug\Rastreamento 05062019\OH239391285BR_SAIU_PARA_ENTREGA_DESTINATARIO.htm");
+                                webBrowser1.Url = new Uri(@"J:\Rastreamento_EXPRESSO_ARAUJO_2_SAIU_ENTREGA_PALMAS.htm");
                             }
                             #endregion
                             break;
@@ -326,37 +316,37 @@ namespace SISAPO
                                 {
                                     //grava o nomecliente
                                     Mensagens.InformaDesenvolvedor(string.Format("Gravando no banco detalhes objeto SaiuParaEntrega"));
-                                    dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET UnidadeLOEC = @UnidadeLOEC, MunicipioLOEC = @MunicipioLOEC, CriacaoLOEC = @CriacaoLOEC, CarteiroLOEC = @CarteiroLOEC, DistritoLOEC = @DistritoLOEC, NumeroLOEC = @NumeroLOEC, NomeCliente = @NomeCliente, EnderecoLOEC = @EnderecoLOEC, BairroLOEC = @BairroLOEC, LocalidadeLOEC = @LocalidadeLOEC WHERE CodigoObjeto = @CodigoObjeto ", new List<Parametros>(){ 
-															new Parametros("@UnidadeLOEC", TipoCampo.Text, UnidadeLOEC),
-															new Parametros("@MunicipioLOEC", TipoCampo.Text, MunicipioLOEC),
-															new Parametros("@CriacaoLOEC", TipoCampo.Text, CriacaoLOEC),
-															new Parametros("@CarteiroLOEC", TipoCampo.Text, CarteiroLOEC),
-															new Parametros("@DistritoLOEC", TipoCampo.Text, DistritoLOEC),
-															new Parametros("@NumeroLOEC", TipoCampo.Text, NumeroLOEC),
-															new Parametros("@NomeCliente", TipoCampo.Text, ClienteLOEC),
-															new Parametros("@EnderecoLOEC", TipoCampo.Text, EnderecoLOEC),
-															new Parametros("@BairroLOEC", TipoCampo.Text, BairroLOEC),
-															new Parametros("@LocalidadeLOEC", TipoCampo.Text, LocalidadeLOEC),
-															new Parametros("@CodigoObjeto", TipoCampo.Text, CodigoObjetoAtual)
-											});
+                                    dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET UnidadeLOEC = @UnidadeLOEC, MunicipioLOEC = @MunicipioLOEC, CriacaoLOEC = @CriacaoLOEC, CarteiroLOEC = @CarteiroLOEC, DistritoLOEC = @DistritoLOEC, NumeroLOEC = @NumeroLOEC, NomeCliente = @NomeCliente, EnderecoLOEC = @EnderecoLOEC, BairroLOEC = @BairroLOEC, LocalidadeLOEC = @LocalidadeLOEC WHERE CodigoObjeto = @CodigoObjeto ", new List<Parametros>(){
+                                                            new Parametros("@UnidadeLOEC", TipoCampo.Text, UnidadeLOEC),
+                                                            new Parametros("@MunicipioLOEC", TipoCampo.Text, MunicipioLOEC),
+                                                            new Parametros("@CriacaoLOEC", TipoCampo.Text, CriacaoLOEC),
+                                                            new Parametros("@CarteiroLOEC", TipoCampo.Text, CarteiroLOEC),
+                                                            new Parametros("@DistritoLOEC", TipoCampo.Text, DistritoLOEC),
+                                                            new Parametros("@NumeroLOEC", TipoCampo.Text, NumeroLOEC),
+                                                            new Parametros("@NomeCliente", TipoCampo.Text, ClienteLOEC),
+                                                            new Parametros("@EnderecoLOEC", TipoCampo.Text, EnderecoLOEC),
+                                                            new Parametros("@BairroLOEC", TipoCampo.Text, BairroLOEC),
+                                                            new Parametros("@LocalidadeLOEC", TipoCampo.Text, LocalidadeLOEC),
+                                                            new Parametros("@CodigoObjeto", TipoCampo.Text, CodigoObjetoAtual)
+                                            });
                                 }
                                 if (ds.Tables[0].Rows[0]["NomeCliente"].ToString() != "")
                                 {
                                     //já tem algo e não grava o nome
                                     Mensagens.InformaDesenvolvedor(string.Format("Gravando no banco detalhes objeto SaiuParaEntrega"));
-                                    dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET UnidadeLOEC = @UnidadeLOEC, MunicipioLOEC = @MunicipioLOEC, CriacaoLOEC = @CriacaoLOEC, CarteiroLOEC = @CarteiroLOEC, DistritoLOEC = @DistritoLOEC, NumeroLOEC = @NumeroLOEC, EnderecoLOEC = @EnderecoLOEC, BairroLOEC = @BairroLOEC, LocalidadeLOEC = @LocalidadeLOEC WHERE CodigoObjeto = @CodigoObjeto ", new List<Parametros>(){ 
-															new Parametros("@UnidadeLOEC", TipoCampo.Text, UnidadeLOEC),
-															new Parametros("@MunicipioLOEC", TipoCampo.Text, MunicipioLOEC),
-															new Parametros("@CriacaoLOEC", TipoCampo.Text, CriacaoLOEC),
-															new Parametros("@CarteiroLOEC", TipoCampo.Text, CarteiroLOEC),
-															new Parametros("@DistritoLOEC", TipoCampo.Text, DistritoLOEC),
-															new Parametros("@NumeroLOEC", TipoCampo.Text, NumeroLOEC),
+                                    dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET UnidadeLOEC = @UnidadeLOEC, MunicipioLOEC = @MunicipioLOEC, CriacaoLOEC = @CriacaoLOEC, CarteiroLOEC = @CarteiroLOEC, DistritoLOEC = @DistritoLOEC, NumeroLOEC = @NumeroLOEC, EnderecoLOEC = @EnderecoLOEC, BairroLOEC = @BairroLOEC, LocalidadeLOEC = @LocalidadeLOEC WHERE CodigoObjeto = @CodigoObjeto ", new List<Parametros>(){
+                                                            new Parametros("@UnidadeLOEC", TipoCampo.Text, UnidadeLOEC),
+                                                            new Parametros("@MunicipioLOEC", TipoCampo.Text, MunicipioLOEC),
+                                                            new Parametros("@CriacaoLOEC", TipoCampo.Text, CriacaoLOEC),
+                                                            new Parametros("@CarteiroLOEC", TipoCampo.Text, CarteiroLOEC),
+                                                            new Parametros("@DistritoLOEC", TipoCampo.Text, DistritoLOEC),
+                                                            new Parametros("@NumeroLOEC", TipoCampo.Text, NumeroLOEC),
 															//new Parametros("@ClienteLOEC", TipoCampo.Text, ClienteLOEC),
 															new Parametros("@EnderecoLOEC", TipoCampo.Text, EnderecoLOEC),
-															new Parametros("@BairroLOEC", TipoCampo.Text, BairroLOEC),
-															new Parametros("@LocalidadeLOEC", TipoCampo.Text, LocalidadeLOEC),
-															new Parametros("@CodigoObjeto", TipoCampo.Text, CodigoObjetoAtual)
-											});
+                                                            new Parametros("@BairroLOEC", TipoCampo.Text, BairroLOEC),
+                                                            new Parametros("@LocalidadeLOEC", TipoCampo.Text, LocalidadeLOEC),
+                                                            new Parametros("@CodigoObjeto", TipoCampo.Text, CodigoObjetoAtual)
+                                            });
                                 }
                             }
                         }
@@ -407,35 +397,42 @@ namespace SISAPO
 
         private void SeparaLinksDosObjetosRastreados()
         {
+            string CidadeAgenciaLocal = dadosAgencia.Tables[0].Rows[0]["CidadeAgenciaLocal"].ToString().Trim().ToUpper();
+            string UFAgenciaLocal = dadosAgencia.Tables[0].Rows[0]["UFAgenciaLocal"].ToString().Trim().ToUpper();
+
             bool ExisteCampoParaSaiuParaEntrega = false;
             ListaLinksJavaScript = new List<string>();
+
             foreach (var itemTR in webBrowser1.Document.GetElementsByTagName("TR"))
             {
                 string itemTRInnerText = ((System.Windows.Forms.HtmlElement)(itemTR)).InnerText;
                 string itemTRInnerHtml = ((System.Windows.Forms.HtmlElement)(itemTR)).InnerHtml;
-                string NomeAgenciaLocal = dadosAgencia.Tables[0].Rows[0][0].ToString().Trim().ToUpper();
                 if (itemTRInnerText == null || string.IsNullOrEmpty(itemTRInnerText.Trim())) continue;
-
-                foreach (var itemTD in ((System.Windows.Forms.HtmlElement)(itemTR)).GetElementsByTagName("TD"))
+                if (itemTRInnerText.ToUpper().Contains(string.Format("{0} / {1}", CidadeAgenciaLocal, UFAgenciaLocal).ToUpper()))
                 {
-                    if (((System.Windows.Forms.HtmlElement)(itemTD)).InnerText == null) continue;
-                    string CampoAtual = ((System.Windows.Forms.HtmlElement)(itemTD)).InnerText.Trim().ToUpper();
-                    if (CampoAtual == null || string.IsNullOrEmpty(CampoAtual.Trim())) continue;
+                    //Saiu para entrega ao remetente  - pega primeiro   
+                    bool AoRemetente = (itemTRInnerText.ToUpper().Contains("Saiu para entrega ao remetente".ToUpper()));
+                    //Saiu para entrega ao destinatário
+                    bool AoDestinatario = (itemTRInnerText.ToUpper().Contains("Saiu para entrega ao destinatário".ToUpper()));
 
-                    #region "Saiu para entrega ao destinatário
-                    if (CampoAtual.ToUpper().Contains("Saiu para entrega ao destinatário".ToUpper()))
+                    if (AoRemetente || AoDestinatario)
                     {
-                        //Saiu para entrega
+                        Configuracoes.SeEAoRemetenteAtualizacaoObjetosSaiuParaEntrega = new Dictionary<string, bool>() { { CodigoObjetoAtual, AoRemetente } };
+
                         foreach (var pegalinkAtual2 in ((System.Windows.Forms.HtmlElement)(itemTR)).GetElementsByTagName("A"))
                         {
                             ExisteCampoParaSaiuParaEntrega = true;
                             var linkatual = ((System.Windows.Forms.HtmlElement)(pegalinkAtual2)).OuterHtml.Replace("%20", " ");
                             ListaLinksJavaScript.Add(linkatual.Substring(21, 104));
-                            return;
+                            break;
                         }
+                        if (ExisteCampoParaSaiuParaEntrega) break;
                         continue;
                     }
-                    #endregion
+                    else
+                    {
+                        continue;
+                    }
                 }
             }
             if (ExisteCampoParaSaiuParaEntrega == false) this.Close();
@@ -463,7 +460,7 @@ namespace SISAPO
             }
 
         }
-        
+
         private void BtnFechar_Click(object sender, EventArgs e)
         {
             if (Mensagens.Pergunta("Deseja abortar a atualização de todos os objetos?") == System.Windows.Forms.DialogResult.Yes)

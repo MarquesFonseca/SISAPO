@@ -9,7 +9,6 @@ C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\GeraChaveSi
 C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\GeraChaveSisapo\obj\x86\Release\GeraChaveSisapo.csprojResolveAssemblyReference.cache
 C:\Projetos\SISAPO\GeraChaveSisapo\bin\Release\GeraChaveSisapo.exe
 C:\Projetos\SISAPO\GeraChaveSisapo\bin\Release\GeraChaveSisapo.pdb
-C:\Projetos\SISAPO\GeraChaveSisapo\obj\x86\Release\GeraChaveSisapo.csprojResolveAssemblyReference.cache
 C:\Projetos\SISAPO\GeraChaveSisapo\obj\x86\Release\GeraChaveSisapo.FormGeraChaveSisapo.resources
 C:\Projetos\SISAPO\GeraChaveSisapo\obj\x86\Release\GeraChaveSisapo.FormAcesso.resources
 C:\Projetos\SISAPO\GeraChaveSisapo\obj\x86\Release\GeraChaveSisapo.Properties.Resources.resources

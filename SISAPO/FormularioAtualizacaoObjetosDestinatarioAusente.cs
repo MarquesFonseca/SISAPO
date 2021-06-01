@@ -331,7 +331,7 @@ namespace SISAPO
             {
                 string itemTRInnerText = ((System.Windows.Forms.HtmlElement)(itemTR)).InnerText;
                 string itemTRInnerHtml = ((System.Windows.Forms.HtmlElement)(itemTR)).InnerHtml;
-                string NomeAgenciaLocal = dadosAgencia.Tables[0].Rows[0][0].ToString().Trim().ToUpper();
+                string NomeAgenciaLocal = dadosAgencia.Tables[0].Rows[0]["NomeAgenciaLocal"].ToString().Trim().ToUpper();
                 if (itemTRInnerText == null || string.IsNullOrEmpty(itemTRInnerText.Trim())) continue;
 
                 foreach (var itemTD in ((System.Windows.Forms.HtmlElement)(itemTR)).GetElementsByTagName("TD"))

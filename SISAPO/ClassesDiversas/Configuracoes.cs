@@ -439,10 +439,25 @@ namespace SISAPO.ClassesDiversas
 
                 CriaTiposPostaisIniciais();
             }
-
-
         }
 
+        public static DataSet RetornaDadosAgencia()
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
+                {
+                    ds = dao.RetornaDataSet("SELECT TOP 1 Codigo, NomeAgenciaLocal, EnderecoAgenciaLocal, SuperintendenciaEstadual, CepUnidade, CidadeAgenciaLocal, UFAgenciaLocal, TelefoneAgenciaLocal, HorarioFuncionamentoAgenciaLocal FROM TabelaConfiguracoesSistema");
+                }
+                return ds;
+            }
+            catch (Exception)
+            {
+                throw new NotImplementedException();
+            }
+
+        }
 
         private static void CriaTiposPostaisIniciais()
         {
@@ -818,90 +833,81 @@ namespace SISAPO.ClassesDiversas
 
         public static string RetornaCaixaPostalCorrigidaDefeitoString(string texto)
         {
-            string NovoTexto = texto.RemoveAcentos().ToUpper();
+            #region Possíveis Palavras Erradas
+            string[] Cadeia = new string[]
+                {
+                    "CAIXA PSTAL",
+                    "CAIXA POSTA",
+                    "CAIXA POST",
+                    "CAIXA POS",
+                    "CAIXA PO",
+                    "CAIXA P",
+                    "CAIXA PSTA",
+                    "CAIXA PSTAL",
+                    "CX POSTAL",
+                    "CX POSTA",
+                    "CX POST",
+                    "CX POS",
+                    "CX PO",
+                    "CX P",
+                    "CX PSTA",
+                    "CX PSTAL"
+                };
+            #endregion
 
-            if (NovoTexto.Contains("CAIXA PSTAL"))
-            {
-                NovoTexto = NovoTexto.Replace("CAIXA PSTAL", "CAIXA POSTAL");
-                return NovoTexto;
-            }
-            if (NovoTexto.Contains("CAIXA POSTA"))
-            {
-                NovoTexto = NovoTexto.Replace("CAIXA POSTA", "CAIXA POSTAL");
-                return NovoTexto;
-            }
-            if (NovoTexto.Contains("CAIXA POST"))
-            {
-                NovoTexto = NovoTexto.Replace("CAIXA POST", "CAIXA POSTAL");
-                return NovoTexto;
-            }
-            if (NovoTexto.Contains("CAIXA POS"))
-            {
-                NovoTexto = NovoTexto.Replace("CAIXA POS", "CAIXA POSTAL");
-                return NovoTexto;
-            }
-            if (NovoTexto.Contains("CAIXA PO"))
-            {
-                NovoTexto = NovoTexto.Replace("CAIXA PO", "CAIXA POSTAL");
-                return NovoTexto;
-            }
-            if (NovoTexto.Contains("CAIXA P"))
-            {
-                NovoTexto = NovoTexto.Replace("CAIXA P", "CAIXA POSTAL");
-                return NovoTexto;
-            }
-            if (NovoTexto.Contains("CAIXA PSTA"))
-            {
-                NovoTexto = NovoTexto.Replace("CAIXA PSTA", "CAIXA POSTAL");
-                return NovoTexto;
-            }
-            if (NovoTexto.Contains("CAIXA PSTAL"))
-            {
-                NovoTexto = NovoTexto.Replace("CAIXA PSTAL", "CAIXA POSTAL");
-                return NovoTexto;
-            }
-            if (NovoTexto.Contains("CX POSTAL"))
-            {
-                NovoTexto = NovoTexto.Replace("CX POSTAL", "CAIXA POSTAL");
-                return NovoTexto;
-            }
-            if (NovoTexto.Contains("CX POSTA"))
-            {
-                NovoTexto = NovoTexto.Replace("CX POSTA", "CAIXA POSTAL");
-                return NovoTexto;
-            }
-            if (NovoTexto.Contains("CX POST"))
-            {
-                NovoTexto = NovoTexto.Replace("CX POST", "CAIXA POSTAL");
-                return NovoTexto;
-            }
-            if (NovoTexto.Contains("CX POS"))
-            {
-                NovoTexto = NovoTexto.Replace("CX POS", "CAIXA POSTAL");
-                return NovoTexto;
-            }
-            if (NovoTexto.Contains("CX PO"))
-            {
-                NovoTexto = NovoTexto.Replace("CX PO", "CAIXA POSTAL");
-                return NovoTexto;
-            }
-            if (NovoTexto.Contains("CX P"))
-            {
-                NovoTexto = NovoTexto.Replace("CX P", "CAIXA POSTAL");
-                return NovoTexto;
-            }
-            if (NovoTexto.Contains("CX PSTA"))
-            {
-                NovoTexto = NovoTexto.Replace("CX PSTA", "CAIXA POSTAL");
-                return NovoTexto;
-            }
-            if (NovoTexto.Contains("CX PSTAL"))
-            {
-                NovoTexto = NovoTexto.Replace("CX PSTAL", "CAIXA POSTAL");
-                return NovoTexto;
-            }
+            string TextoDesejado = "CAIXA POSTAL";
 
-            return NovoTexto;
+            foreach (string item in Cadeia)
+            {
+                string itemAtual = item.RemoveAcentos().ToUpper();
+                texto = texto.RemoveAcentos().ToUpper();
+
+                if (texto.Contains(itemAtual))
+                {
+                    texto = texto.Replace(itemAtual, TextoDesejado);
+                    break;
+                }
+            }
+            return texto;
+        }
+
+        public static string RetornaAoRemetenteCorrigidaDefeitoString(string texto)
+        {
+            #region Possíveis Palavras Erradas
+            string[] Cadeia = new string[]
+                {
+                    "ORIGEM",
+                    "DEVOLUCAO",
+                    "DEVOLUCA",
+                    "DEVOLUC",
+                    "DEVOLU",
+                    "DEVOL",
+                    "REMETENTE",
+                    "REMETENT",
+                    "REMETEN",
+                    "REMETE",
+                    "REMET",
+                    "REME",
+                    "REM"
+                };
+            #endregion
+
+            string TextoDesejado = "REMETENTE";
+
+            foreach (string item in Cadeia)
+            {
+                string itemAtual = item.RemoveAcentos().ToUpper();
+                texto = texto.RemoveAcentos().ToUpper();
+
+                if (texto.Contains(itemAtual))
+                {
+                    texto = texto.Replace(itemAtual, TextoDesejado).Trim();
+                    texto = texto.Replace("AO", "").Trim();
+                    texto = texto.Replace(TextoDesejado, "AO REMETENTE");
+                    break;
+                }
+            }
+            return texto;
         }
 
         public static bool RetornaSeEAoRemetente(string texto)
@@ -1241,7 +1247,13 @@ namespace SISAPO.ClassesDiversas
 
         public static bool FecharApplication { get; set; }
 
-
+        /// <summary>
+        /// Seta OU Retorna o Valor AoRemetente exclusivamente na tela FormularioAtualizacaoObjetosSaiuParaEntrega
+        /// String: Código do Objeto Atual;
+        /// Bool: Se é Ao Remetente ou não.
+        /// Obs. Só será Ao Remetente se existir o item "Saiu para entrega ao remetente".
+        public static Dictionary<string, bool> SeEAoRemetenteAtualizacaoObjetosSaiuParaEntrega { get; internal set; }
+        //public static bool SeEAoDestinatario { get; internal set; }
 
         static Configuracoes()
         {
@@ -1527,6 +1539,8 @@ namespace SISAPO.ClassesDiversas
                 GravaConfig("EstiloAplicacao", value);
             }
         }
+
+
         #endregion
 
         #endregion

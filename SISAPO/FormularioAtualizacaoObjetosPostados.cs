@@ -45,7 +45,7 @@ namespace SISAPO
             tipoTela = TipoTela.Rastreamento1;
             DetalhesDeObjetos3 = false;
 
-            dadosAgencia = RetornaDadosAgencia();
+            dadosAgencia = Configuracoes.RetornaDadosAgencia();
 
             if (Configuracoes.TipoAmbiente == TipoAmbiente.Desenvolvimento)
             {
@@ -60,25 +60,7 @@ namespace SISAPO
                 tipoTela = TipoTela.DetalhesDeObjetos3;
                 webBrowser1.Url = new Uri(enderecoSRO + codigoObjetoIniciado);
             }
-        }
-
-        private DataSet RetornaDadosAgencia()
-        {
-            DataSet ds = new DataSet();
-            try
-            {
-                using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
-                {
-                    ds = dao.RetornaDataSet("SELECT TOP 1 NomeAgenciaLocal, EnderecoAgenciaLocal FROM TabelaConfiguracoesSistema");
-                }
-                return ds;
-            }
-            catch (Exception)
-            {
-                throw new NotImplementedException();
-            }
-
-        }
+        }        
 
         private void FormularioAtualizacaoObjetosPostados_Load(object sender, EventArgs e)
         {
@@ -401,7 +383,7 @@ namespace SISAPO
             {
                 string itemTRInnerText = ((System.Windows.Forms.HtmlElement)(itemTR)).InnerText;
                 string itemTRInnerHtml = ((System.Windows.Forms.HtmlElement)(itemTR)).InnerHtml;
-                string NomeAgenciaLocal = dadosAgencia.Tables[0].Rows[0][0].ToString().Trim().ToUpper();
+                string NomeAgenciaLocal = dadosAgencia.Tables[0].Rows[0]["NomeAgenciaLocal"].ToString().Trim().ToUpper();
                 if (itemTRInnerText == null || string.IsNullOrEmpty(itemTRInnerText.Trim())) continue;
 
 
