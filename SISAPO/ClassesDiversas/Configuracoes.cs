@@ -441,6 +441,7 @@ namespace SISAPO.ClassesDiversas
             }
         }
 
+        public static DataSet DadosAgencia { get; set; }
         public static DataSet RetornaDadosAgencia()
         {
             DataSet ds = new DataSet();

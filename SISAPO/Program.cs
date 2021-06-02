@@ -90,7 +90,7 @@ namespace SISAPO
                 //}
 
                 Configuracoes.VerificaSquemaBancoDados();
-
+                Configuracoes.DadosAgencia = Configuracoes.RetornaDadosAgencia();
                 
 
 

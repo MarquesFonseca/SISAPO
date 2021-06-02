@@ -19,9 +19,7 @@ namespace SISAPO
         public List<string> ListaLinksJavaScript = new List<string>();
         private bool UltimoElemento = false;
         private enum TipoTela { Rastreamento1, ListaObjetos2, DetalhesDeObjetos3, SaiuParaEntrega }
-
-        private DataSet dadosAgencia = new DataSet();
-
+        
         private TipoTela tipoTela = TipoTela.Rastreamento1;
         private bool DetalhesDeObjetos3 = false;
         private string TelaRastreamento_1_1 = @"C:\Users\MARQUES\Documents\Visual Studio 2010\Projects\SISAPO\SISAPO\bin\Debug\Nova_Rastreamento_Problema\RastreamantoDetalhes-1-1-problema.htm";
@@ -44,8 +42,6 @@ namespace SISAPO
             UltimoElemento = false;
             tipoTela = TipoTela.Rastreamento1;
             DetalhesDeObjetos3 = false;
-
-            dadosAgencia = Configuracoes.RetornaDadosAgencia();
 
             if (Configuracoes.TipoAmbiente == TipoAmbiente.Desenvolvimento)
             {
@@ -397,8 +393,8 @@ namespace SISAPO
 
         private void SeparaLinksDosObjetosRastreados()
         {
-            string CidadeAgenciaLocal = dadosAgencia.Tables[0].Rows[0]["CidadeAgenciaLocal"].ToString().Trim().ToUpper();
-            string UFAgenciaLocal = dadosAgencia.Tables[0].Rows[0]["UFAgenciaLocal"].ToString().Trim().ToUpper();
+            string CidadeAgenciaLocal = Configuracoes.DadosAgencia.Tables[0].Rows[0]["CidadeAgenciaLocal"].ToString().Trim().ToUpper();
+            string UFAgenciaLocal = Configuracoes.DadosAgencia.Tables[0].Rows[0]["UFAgenciaLocal"].ToString().Trim().ToUpper();
 
             bool ExisteCampoParaSaiuParaEntrega = false;
             ListaLinksJavaScript = new List<string>();

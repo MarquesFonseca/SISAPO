@@ -19,9 +19,7 @@ namespace SISAPO
         public List<string> ListaLinksJavaScript = new List<string>();
         private bool UltimoElemento = false;
         private enum TipoTela { Rastreamento1, ListaObjetos2, DetalhesDeObjetos3, DestinatarioAusente }
-
-        private DataSet dadosAgencia = new DataSet();
-
+        
         private TipoTela tipoTela = TipoTela.Rastreamento1;
         private bool DetalhesDeObjetos3 = false;
         private string TelaRastreamento_1_1 = @"C:\Users\MARQUES\Documents\Visual Studio 2010\Projects\SISAPO\SISAPO\bin\Debug\Nova_Rastreamento_Problema\RastreamantoDetalhes-1-1-problema.htm";
@@ -44,8 +42,6 @@ namespace SISAPO
             UltimoElemento = false;
             tipoTela = TipoTela.Rastreamento1;
             DetalhesDeObjetos3 = false;
-
-            dadosAgencia = RetornaDadosAgencia();
 
             if (Configuracoes.TipoAmbiente == TipoAmbiente.Desenvolvimento)
             {
@@ -331,7 +327,7 @@ namespace SISAPO
             {
                 string itemTRInnerText = ((System.Windows.Forms.HtmlElement)(itemTR)).InnerText;
                 string itemTRInnerHtml = ((System.Windows.Forms.HtmlElement)(itemTR)).InnerHtml;
-                string NomeAgenciaLocal = dadosAgencia.Tables[0].Rows[0]["NomeAgenciaLocal"].ToString().Trim().ToUpper();
+                string NomeAgenciaLocal = Configuracoes.DadosAgencia.Tables[0].Rows[0]["NomeAgenciaLocal"].ToString().Trim().ToUpper();
                 if (itemTRInnerText == null || string.IsNullOrEmpty(itemTRInnerText.Trim())) continue;
 
                 foreach (var itemTD in ((System.Windows.Forms.HtmlElement)(itemTR)).GetElementsByTagName("TD"))

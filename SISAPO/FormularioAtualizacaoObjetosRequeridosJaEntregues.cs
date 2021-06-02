@@ -22,9 +22,6 @@ namespace SISAPO
         private bool UltimoElemento = false;
         private enum TipoTela { Rastreamento1, ListaObjetos2, DetalhesDeObjetos3, NomeCliente4 }
 
-
-        private DataSet dadosAgencia = new DataSet();
-
         private TipoTela tipoTela = TipoTela.Rastreamento1;
         private bool DetalhesDeObjetos3 = false;
         //private string TelaRastreamento_1_1 = @"C:\Users\MARQUES\Documents\Visual Studio 2010\Projects\SISAPO\SISAPO\bin\Debug\Nova_Rastreamento_Problema\RastreamantoDetalhes-1-1-problema.htm";
@@ -49,8 +46,6 @@ namespace SISAPO
             UltimoElemento = false;
             tipoTela = TipoTela.Rastreamento1;
             DetalhesDeObjetos3 = false;
-
-            dadosAgencia = RetornaDadosAgencia();
 
             if (Configuracoes.TipoAmbiente == TipoAmbiente.Desenvolvimento)
             {
