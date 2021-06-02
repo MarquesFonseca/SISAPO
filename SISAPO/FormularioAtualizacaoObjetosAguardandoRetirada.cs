@@ -286,9 +286,9 @@ namespace SISAPO
                                 Comentario = Configuracoes.RetornaCaixaPostalCorrigidaDefeitoString(Comentario);
                                 Comentario = Configuracoes.RetornaAoRemetenteCorrigidaDefeitoString(Comentario);
 
-                                #region TrataTipo SC PC (A COBRAR)
                                 if (string.IsNullOrEmpty(Comentario))
                                 {
+                                    #region TrataTipo SC PC (A COBRAR)
                                     DataRow drTipoPostal = FormularioPrincipal.TiposPostais.AsEnumerable().First(T => T["Sigla"].Equals(CodigoObjetoAtual.Substring(0, 2))); //["Código"] - Pega linha retornada dos tipos postais vinda do Excel
                                     string descricao = drTipoPostal["Descricao"].ToString().ToUpper().RemoveAcentos();
                                     if (descricao.Contains("A COBRAR") ||
@@ -306,18 +306,21 @@ namespace SISAPO
                                             Comentario = string.Format("AO REMETENTE");
                                         }
                                     }
+                                    #endregion
                                 }
                                 else
                                 {
                                     if (SeEAoRemetente)
                                     {
-                                        if (Comentario != "AO REMETENTE")
+                                        if (!Comentario.Contains("AO REMETENTE"))
                                         {
                                             Comentario = string.Format("{0} - AO REMETENTE", Comentario);
                                         }
                                     }
                                 }
-                                #endregion
+
+                                Comentario = Comentario.Replace("AO REMETENTE - AO REMETENTE", "AO REMETENTE");
+                                Comentario = Comentario.Replace("CAIXA POSTALL","CAIXA POSTAL");
 
                                 EscreveTextoTextBox("Comentário: " + Comentario.ToString());
                                 continue;
