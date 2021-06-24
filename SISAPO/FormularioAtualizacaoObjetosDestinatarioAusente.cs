@@ -47,8 +47,11 @@ namespace SISAPO
             {
                 // caminho que define o teste
                 //caminho para tela de consulta atraves de códigos de objetos rastreadores
-                tipoTela = TipoTela.Rastreamento1;
-                webBrowser1.Url = new Uri(TelaRastreamento_1_1);
+                //tipoTela = TipoTela.Rastreamento1;
+                //webBrowser1.Url = new Uri(TelaRastreamento_1_1);
+
+                tipoTela = TipoTela.DetalhesDeObjetos3;
+                webBrowser1.Url = new Uri(@"J:\Rastreamento_EXPRESSO_ARAUJO_0_DETALHES.htm");
             }
             if (Configuracoes.TipoAmbiente == TipoAmbiente.Producao)
             {
@@ -56,24 +59,6 @@ namespace SISAPO
                 tipoTela = TipoTela.DetalhesDeObjetos3;
                 webBrowser1.Url = new Uri(enderecoSRO + codigoObjetoIniciado);
             }
-        }
-
-        private DataSet RetornaDadosAgencia()
-        {
-            DataSet ds = new DataSet();
-            try
-            {
-                using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
-                {
-                    ds = dao.RetornaDataSet("SELECT TOP 1 NomeAgenciaLocal, EnderecoAgenciaLocal FROM TabelaConfiguracoesSistema");
-                }
-                return ds;
-            }
-            catch (Exception)
-            {
-                throw new NotImplementedException();
-            }
-
         }
 
         private void FormularioAtualizacaoObjetosDestinatarioAusente_Load(object sender, EventArgs e)
@@ -321,13 +306,16 @@ namespace SISAPO
 
         private void SeparaLinksDosObjetosRastreados()
         {
+            string CidadeAgenciaLocal = Configuracoes.DadosAgencia.Tables[0].Rows[0]["CidadeAgenciaLocal"].ToString().Trim().ToUpper();
+            string UFAgenciaLocal = Configuracoes.DadosAgencia.Tables[0].Rows[0]["UFAgenciaLocal"].ToString().Trim().ToUpper();
+
             bool ExisteCampoParaDestinatarioAusente = false;
             ListaLinksJavaScript = new List<string>();
             foreach (var itemTR in webBrowser1.Document.GetElementsByTagName("TR"))
             {
                 string itemTRInnerText = ((System.Windows.Forms.HtmlElement)(itemTR)).InnerText;
                 string itemTRInnerHtml = ((System.Windows.Forms.HtmlElement)(itemTR)).InnerHtml;
-                string NomeAgenciaLocal = Configuracoes.DadosAgencia.Tables[0].Rows[0]["NomeAgenciaLocal"].ToString().Trim().ToUpper();
+
                 if (itemTRInnerText == null || string.IsNullOrEmpty(itemTRInnerText.Trim())) continue;
 
                 foreach (var itemTD in ((System.Windows.Forms.HtmlElement)(itemTR)).GetElementsByTagName("TD"))
@@ -339,7 +327,8 @@ namespace SISAPO
                     #region "Destinatário Ausente"
                     if (CampoAtual.ToUpper().Contains("Destinatário Ausente".ToUpper()))
                     {
-                        //Saiu para entrega
+                        if (itemTRInnerText.Contains(string.Format("{0} / {1}", CidadeAgenciaLocal, UFAgenciaLocal).ToUpper()) == false) continue;
+
                         foreach (var pegalinkAtual2 in ((System.Windows.Forms.HtmlElement)(itemTR)).GetElementsByTagName("A"))
                         {
                             ExisteCampoParaDestinatarioAusente = true;

@@ -234,7 +234,7 @@ namespace SISAPO
                         FormularioPrincipal.RetornaComponentesFormularioPrincipal().timerAtualizacaoNovosRegistros.Start();
                         contador = contador - 1;
                         continue;
-                    }
+                    }                    
 
                     Html.AppendLine("");
                     Html.AppendLine("	    <!-- Inicia objeto [" + CodigoObjeto + "] -->");

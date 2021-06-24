@@ -350,14 +350,14 @@ namespace SISAPO
                             #endregion
                         }
                         #endregion
-                                                
+
                         #region Retorna dados Objeto Atual (CodigoObjetoAtual)
                         using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
                         {
                             if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
                             DsCliente = dao.RetornaDataSet("SELECT TOP 1 Codigo, CodigoObjeto, CodigoLdi, NomeCliente, DataLancamento, Atualizado, ObjetoEntregue, CaixaPostal, MunicipioLOEC, EnderecoLOEC, BairroLOEC, LocalidadeLOEC, Comentario, TipoPostalServico, TipoPostalSiglaCodigo, TipoPostalNomeSiglaCodigo, TipoPostalPrazoDiasCorridosRegulamentado FROM TabelaObjetosSROLocal WHERE (CodigoObjeto = @CodigoObjeto) ORDER BY Codigo DESC", new Parametros { Nome = "@CodigoObjeto", Tipo = TipoCampo.Text, Valor = CodigoObjetoAtual });
                         }
-                        if (DsCliente.Tables[0].Rows.Count == 0) break; 
+                        if (DsCliente.Tables[0].Rows.Count == 0) break;
                         #endregion
 
                         #region Tratamento NomeCliente
@@ -438,31 +438,31 @@ namespace SISAPO
                         break;
 
 
-                        //if (DetalhesDeObjetos3)
-                        //{
-                        //    if (ListaLinksJavaScript.Count == 0)
-                        //    {
-                        //        DetalhesDeObjetos3 = false;
-                        //        Mensagens.InformaDesenvolvedor("Vou fechar... Já peguei os dados da tela nome... ");
-                        //        this.Close();
-                        //    }
-                        //    if (ListaLinksJavaScript.Count > 0)
-                        //    {
-                        //        DetalhesDeObjetos3 = true;
-                        //        tipoTela = TipoTela.DetalhesDeObjetos3;
-                        //        if (Configuracoes.TipoAmbiente == TipoAmbiente.Desenvolvimento)
-                        //        {
-                        //            webBrowser1.Url = new Uri(TelaDetalhesDeObjetos_2_3);
-                        //        }
-                        //        if (Configuracoes.TipoAmbiente == TipoAmbiente.Producao)
-                        //        {
-                        //            for (int i = 0; i < 7; i++) SendKeys.Send("{TAB}");
-                        //            SendKeys.Send("{ENTER}");
-                        //            //webBrowser1.GoBack();
-                        //        }
-                        //    }
-                        //}
-                        //break;
+                    //if (DetalhesDeObjetos3)
+                    //{
+                    //    if (ListaLinksJavaScript.Count == 0)
+                    //    {
+                    //        DetalhesDeObjetos3 = false;
+                    //        Mensagens.InformaDesenvolvedor("Vou fechar... Já peguei os dados da tela nome... ");
+                    //        this.Close();
+                    //    }
+                    //    if (ListaLinksJavaScript.Count > 0)
+                    //    {
+                    //        DetalhesDeObjetos3 = true;
+                    //        tipoTela = TipoTela.DetalhesDeObjetos3;
+                    //        if (Configuracoes.TipoAmbiente == TipoAmbiente.Desenvolvimento)
+                    //        {
+                    //            webBrowser1.Url = new Uri(TelaDetalhesDeObjetos_2_3);
+                    //        }
+                    //        if (Configuracoes.TipoAmbiente == TipoAmbiente.Producao)
+                    //        {
+                    //            for (int i = 0; i < 7; i++) SendKeys.Send("{TAB}");
+                    //            SendKeys.Send("{ENTER}");
+                    //            //webBrowser1.GoBack();
+                    //        }
+                    //    }
+                    //}
+                    //break;
                     #endregion
 
                     default:
@@ -489,6 +489,10 @@ namespace SISAPO
 
         private void SeparaLinksDosObjetosRastreados()
         {
+            //string CidadeAgenciaLocal = Configuracoes.DadosAgencia.Tables[0].Rows[0]["CidadeAgenciaLocal"].ToString().RemoveAcentos().ToUpper().Trim();
+            //string UFAgenciaLocal = Configuracoes.DadosAgencia.Tables[0].Rows[0]["UFAgenciaLocal"].ToString().RemoveAcentos().ToUpper().Trim();
+            string NomeAgenciaLocal = Configuracoes.DadosAgencia.Tables[0].Rows[0]["NomeAgenciaLocal"].ToString().RemoveAcentos().ToUpper().Trim();
+
             bool objetoJaEntregue = false;
             ListaLinksJavaScript = new List<string>();
 
@@ -514,7 +518,7 @@ namespace SISAPO
                             , new List<Parametros>() {
                                 new Parametros { Nome = "@DataModificacao", Tipo = TipoCampo.Text, Valor = DataModificacao },
                                 new Parametros { Nome = "@Situacao", Tipo = TipoCampo.Text, Valor = "Entregue".ToUpper() },
-                                new Parametros { Nome = "@ObjetoEntregue", Tipo = TipoCampo.Int, Valor = 1 },
+                                new Parametros { Nome = "@ObjetoEntregue", Tipo = TipoCampo.Boolean, Valor = true },
                                 new Parametros { Nome = "@CodigoObjeto", Tipo = TipoCampo.Text, Valor = CodigoObjetoAtual }
                             });
                     }
@@ -537,7 +541,7 @@ namespace SISAPO
                             , new List<Parametros>() {
                                 new Parametros { Nome = "@DataModificacao", Tipo = TipoCampo.Text, Valor = DataModificacao },
                                 new Parametros { Nome = "@Situacao", Tipo = TipoCampo.Text, Valor = "Distribuido ao remetente".ToUpper() },
-                                new Parametros { Nome = "@ObjetoEntregue", Tipo = TipoCampo.Int, Valor = 1 },
+                                new Parametros { Nome = "@ObjetoEntregue", Tipo = TipoCampo.Boolean, Valor = true },
                                 new Parametros { Nome = "@CodigoObjeto", Tipo = TipoCampo.Text, Valor = CodigoObjetoAtual }
                             });
                     }
@@ -551,6 +555,8 @@ namespace SISAPO
                 if (LinhaAtual.Contains("Disponivel em Caixa Postal".RemoveAcentos().ToUpper()) ||
                     LinhaAtual.Contains("Aguardando retirada em Caixa Postal".RemoveAcentos().ToUpper()))
                 {
+                    if (LinhaAtual.Contains(string.Format("{0}", NomeAgenciaLocal)) == false) continue;
+
                     var linkAtual = ((System.Windows.Forms.HtmlElement)(item)).GetElementsByTagName("A")[0].OuterHtml.Replace("%20", " ");
                     ListaLinksJavaScript.Add(linkAtual.Substring(21, 102));
 
@@ -562,7 +568,7 @@ namespace SISAPO
                         //Seta como CaixaPostal
                         dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET CaixaPostal = @CaixaPostal WHERE (CodigoObjeto = @CodigoObjeto)"
                                  , new List<Parametros>() {
-                                         new Parametros { Nome = "@CaixaPostal", Tipo = TipoCampo.Int, Valor = 1 },
+                                         new Parametros { Nome = "@CaixaPostal", Tipo = TipoCampo.Boolean, Valor = true },
                                          new Parametros { Nome = "@CodigoObjeto", Tipo = TipoCampo.Text, Valor = CodigoObjetoAtual }
                                      });
 
@@ -584,6 +590,8 @@ namespace SISAPO
                 #region "Aguardando retirada"
                 if (LinhaAtual.Contains("Aguardando retirada".RemoveAcentos().ToUpper()))
                 {
+                    if (LinhaAtual.Contains(string.Format("{0}", NomeAgenciaLocal)) == false) continue;
+
                     var linkAtual = ((System.Windows.Forms.HtmlElement)(item)).GetElementsByTagName("A")[0].OuterHtml.Replace("%20", " ");
                     ListaLinksJavaScript.Add(linkAtual.Substring(21, 102));
 
@@ -609,6 +617,8 @@ namespace SISAPO
                 #region "Aguardando retirada - Área sem entrega"
                 if (LinhaAtual.Contains("Aguardando retirada - Area sem entrega".RemoveAcentos().ToUpper()))
                 {
+                    if (LinhaAtual.Contains(string.Format("{0}", NomeAgenciaLocal)) == false) continue;
+
                     var linkAtual = ((System.Windows.Forms.HtmlElement)(item)).GetElementsByTagName("A")[0].OuterHtml.Replace("%20", " ");
                     ListaLinksJavaScript.Add(linkAtual.Substring(21, 102));
 

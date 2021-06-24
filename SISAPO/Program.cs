@@ -93,9 +93,6 @@ namespace SISAPO
                 Configuracoes.DadosAgencia = Configuracoes.RetornaDadosAgencia();
                 
 
-
-
-
                 //Configuracoes.MetodoDeTesteQualquer();
 
                 //string data = ClassesDiversas.CriptografiaHelper.Criptografa("30-09-2019");
