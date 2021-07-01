@@ -22,7 +22,7 @@ namespace SISAPO
         
         private TipoTela tipoTela = TipoTela.Rastreamento1;
         private bool DetalhesDeObjetos3 = false;
-        private string TelaRastreamento_1_1 = @"C:\Users\MARQUES\Documents\Visual Studio 2010\Projects\SISAPO\SISAPO\bin\Debug\Nova_Rastreamento_Problema\RastreamantoDetalhes-1-1-problema.htm";
+        //private string TelaRastreamento_1_1 = @"C:\Users\MARQUES\Documents\Visual Studio 2010\Projects\SISAPO\SISAPO\bin\Debug\Nova_Rastreamento_Problema\RastreamantoDetalhes-1-1-problema.htm";
         //private string TelaRastreamento_1_1 = @"C:\Users\MARQUES\Documents\visual studio 2010\Projects\SISAPO\SISAPO\bin\Debug\TelasRastreamento\1-1-TelaRastreamento.htm";
         //private string TelaDetalhesDeObjetos_1_3 = @"C:\Users\MARQUES\Documents\visual studio 2010\Projects\SISAPO\SISAPO\bin\Debug\TelasRastreamento\1-3-TelaDetalhesDeObjetos_defeito.htm";
         //private string TelaNomeCliente_1_4 = @"C:\Users\MARQUES\Documents\visual studio 2010\Projects\SISAPO\SISAPO\bin\Debug\TelasRastreamento\1-4-TelaNomeCliente.htm";
@@ -32,10 +32,13 @@ namespace SISAPO
         //private string TelaNomeCliente_2_4 = @"C:\Users\MARQUES\Documents\visual studio 2010\Projects\SISAPO\SISAPO\bin\Debug\TelasRastreamento\2-4-TelaNomeCliente.htm";
         //private string TelaNomeCliente_2_4 = @"C:\Users\MARQUES\Documents\Visual Studio 2010\Projects\SISAPO\SISAPO\bin\Debug\TelasRastreamento\Rastreamento_Unificado_htm.htm";
 
-        private string enderecoSRO = @"http://websro2/rastreamento/sro?opcao=PESQUISA&objetos=";
+        //private string enderecoSRO = @"http://websro2/rastreamento/sro?opcao=PESQUISA&objetos=";
+        //private string enderecoSRO = @"https://app.correiosnet.int/rastreamento/sro?opcao=PESQUISA&objetos=";
+        private string enderecoSRO = @"" + Configuracoes.EnderecosSRO["EnderecoSROPorObjeto"].ToString();
+
 
         public FormularioAtualizacaoObjetosSaiuParaEntrega(string codigoObjetoIniciado)
-        {
+        {            
             InitializeComponent();
             CodigoObjetoAtual = codigoObjetoIniciado;
             ListaLinksJavaScript = new List<string>();

@@ -175,14 +175,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SISAPO.exe" size="13284864">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SISAPO.exe" size="13670400">
       <assemblyIdentity name="SISAPO" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>DLVsll+FkkPaZZOayl5VEZgnUuw=</dsig:DigestValue>
+        <dsig:DigestValue>Rxyo4GViKLVH1nLFYK+QnnCNTuA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -225,40 +225,40 @@
       <dsig:DigestValue>zrp/lvmjeUhUXg5iIcElOD75gyg=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="FormularioAtualizacaoObjetoAguardandoRetirada18052021erroComNovasModificacoes.txt" size="38501">
+  <file name="FormularioAtualizacaoObjetoAguardandoRetirada18052021erroComNovasModificacoes.txt" size="38711">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>xy71Dom8oRRSM4vcsgFcMhcsU+o=</dsig:DigestValue>
+      <dsig:DigestValue>WGLffXjKqoPz9Fk7yTVuUCUHgas=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="FormularioAtualizacaoObjetos.cs.txt" size="37533">
+  <file name="FormularioAtualizacaoObjetos.cs.txt" size="37627">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>0jNJQzF1fw70q4hOULCVzp9puAg=</dsig:DigestValue>
+      <dsig:DigestValue>RFQtpIPjQsWrM+1rjl58c/xwdcs=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="FormularioAtualizacaoObjetos_Antes.txt" size="33250">
+  <file name="FormularioAtualizacaoObjetos_Antes.txt" size="33344">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>ZpnCnECekQKr5d47EpcyQS/itcU=</dsig:DigestValue>
+      <dsig:DigestValue>9Mpg3SZPIUfy1x6zzm8vV5vnHBo=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="FormularioAtualizacaoObjetos_depoisDaTentativaENaoDeuCerto.txt" size="67752">
+  <file name="FormularioAtualizacaoObjetos_depoisDaTentativaENaoDeuCerto.txt" size="67846">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>THOgaioJDIzeQW32JfoQEKQTIek=</dsig:DigestValue>
+      <dsig:DigestValue>3bWC46bqOtPm29vo4Ozu4g2u3VY=</dsig:DigestValue>
     </hash>
   </file>
   <file name="GESTAO DO DIA 21-05-2021.txt" size="1566">
@@ -414,13 +414,13 @@
       <dsig:DigestValue>/S+hvmDvp/iVaY6KhDLmBQXet+A=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="SISAPO.exe.config" size="2652">
+  <file name="SISAPO.exe.config" size="2630">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>OHlaTysRnEgrnvMbPAubbjv9+sA=</dsig:DigestValue>
+      <dsig:DigestValue>nQX8dAlzQCctfjYB3DTqyo5AXe8=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

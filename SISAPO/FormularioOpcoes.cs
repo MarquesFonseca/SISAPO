@@ -26,6 +26,20 @@ namespace SISAPO
             checkBoxExibirItensJaEntregues.Checked = FormularioPrincipal.RetornaComponentesFormularioPrincipal().ExibirItensJaEntreguesToolStripMenuItem.Checked;
             if (Configuracoes.TipoAmbiente == TipoAmbiente.Desenvolvimento) BtnMarcarTodosAtualizados.Visible = true;
             else BtnMarcarTodosAtualizados.Visible = false;
+
+            buscaEnderecoSRO();
+        }
+
+        private void buscaEnderecoSRO()
+        {
+            using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
+            {
+                if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+
+                DataRow RetornoEnderecosSRO = dao.RetornaDataRow("SELECT EnderecoSRO, EnderecoSROPorObjeto FROM TabelaConfiguracoesSistema");
+                TxtEnderecoSRO.Text = RetornoEnderecosSRO["EnderecoSRO"].ToString();
+                TxtEnderecoSROEspecificoObjeto.Text = RetornoEnderecosSRO["EnderecoSROPorObjeto"].ToString() + "QB378038055BR";
+            }
         }
 
         private void BtnRequererVerificacaoDeObjetosJaEntregues_Click(object sender, EventArgs e)
@@ -122,6 +136,81 @@ namespace SISAPO
             }
         }
 
-        
+        private void BtnAtualizarEnderecoSRO_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string EnderecoSRO = TxtEnderecoSRO.Text;
+                if (string.IsNullOrEmpty(EnderecoSRO))
+                {
+                    Mensagens.Informa("Para atualizar é necessário informar um endereço válido.");
+                    return;
+                }
+
+                using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
+                {
+                    if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+
+                    //verifica se tem BR e se é no final 
+                    if (EnderecoSRO.Contains("BR") && (EnderecoSRO.IndexOf("BR") == EnderecoSRO.Length - 2))
+                    {
+                        EnderecoSRO = EnderecoSRO.Substring(0, EnderecoSRO.Length - 13);
+                    }
+
+                    if (!string.IsNullOrEmpty(EnderecoSRO))
+                    {
+                        List<Parametros> pr = new List<Parametros>() {
+                            new Parametros() { Nome = "@EnderecoSRO", Tipo = TipoCampo.Text, Valor = EnderecoSRO }
+                        };
+                        dao.ExecutaSQL("UPDATE TabelaConfiguracoesSistema SET EnderecoSRO = @EnderecoSRO", pr);
+                        Configuracoes.EnderecosSRO = Configuracoes.RetornaEnderecosSRO();
+                        Mensagens.Informa("Atualizado com sucesso!");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Mensagens.Erro("Ocorreu um erro ao tentar atualizar. \n" + ex.Message);
+            }
+        }
+
+        private void BtnAtualizarEnderecoSROObjetoEspecifico_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string EnderecoSROPorObjeto = TxtEnderecoSROEspecificoObjeto.Text;
+                if (string.IsNullOrEmpty(EnderecoSROPorObjeto))
+                {
+                    Mensagens.Informa("Para atualizar é necessário informar um endereço válido.");
+                    return;
+                }
+
+                using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
+                {
+                    if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+
+                    //verifica se tem BR e se é no final 
+                    if (EnderecoSROPorObjeto.Contains("BR") && (EnderecoSROPorObjeto.IndexOf("BR") == EnderecoSROPorObjeto.Length - 2))
+                    {
+                        EnderecoSROPorObjeto = EnderecoSROPorObjeto.Substring(0, EnderecoSROPorObjeto.Length - 13);
+                    }
+
+                    if (!string.IsNullOrEmpty(EnderecoSROPorObjeto))
+                    {
+                        List<Parametros> pr = new List<Parametros>() {
+                            new Parametros() { Nome = "@EnderecoSROPorObjeto", Tipo = TipoCampo.Text, Valor = EnderecoSROPorObjeto }
+                        };
+                        dao.ExecutaSQL("UPDATE TabelaConfiguracoesSistema SET EnderecoSROPorObjeto = @EnderecoSROPorObjeto", pr);
+                        Configuracoes.EnderecosSRO = Configuracoes.RetornaEnderecosSRO();
+                        Mensagens.Informa("Atualizado com sucesso!");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Mensagens.Erro("Ocorreu um erro ao tentar atualizar. \n" + ex.Message);
+            }
+
+        }
     }
 }

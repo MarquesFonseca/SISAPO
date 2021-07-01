@@ -47,14 +47,17 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormularioAuxilioGestaoDiaNovo));
             this.panel3 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.radioButtonNomeCliente = new System.Windows.Forms.RadioButton();
-            this.radioButtonQtdDiasVencidos = new System.Windows.Forms.RadioButton();
-            this.radioButtonTipoClassificacao = new System.Windows.Forms.RadioButton();
-            this.radioButtonDataLancamento = new System.Windows.Forms.RadioButton();
-            this.BtnImprimirListaAtual = new System.Windows.Forms.Button();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.BtnRetornaTodosNaoEntregues = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             this.BtnColarConteudoJaCopiado = new System.Windows.Forms.Button();
+            this.radioButtonDataLancamento = new System.Windows.Forms.RadioButton();
+            this.radioButtonNomeCliente = new System.Windows.Forms.RadioButton();
+            this.radioButtonTipoClassificacao = new System.Windows.Forms.RadioButton();
+            this.radioButtonQtdDiasVencidos = new System.Windows.Forms.RadioButton();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.BtnImprimirListaAtual = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
@@ -71,15 +74,6 @@
             this.LbnQuantidadeRegistros = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.bindingSourceObjetosNaoEntregues = new System.Windows.Forms.BindingSource(this.components);
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.DataInicial_dateTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox = new System.Windows.Forms.CheckBox();
-            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox = new System.Windows.Forms.CheckBox();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.CodigoLdi = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Sigla = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CodigoObjeto = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -93,7 +87,17 @@
             this.PrazoTipoClassificacao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DataVencimento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.QtdDiasVencidos = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bindingSourceObjetosNaoEntregues = new System.Windows.Forms.BindingSource(this.components);
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.DataInicial_dateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox = new System.Windows.Forms.CheckBox();
+            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox = new System.Windows.Forms.CheckBox();
+            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.alterarSituacaoItensToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.panel3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            this.panel7.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -101,8 +105,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceObjetosNaoEntregues)).BeginInit();
             this.panel1.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.panel7.SuspendLayout();
-            this.groupBox4.SuspendLayout();
+            this.contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel3
@@ -115,6 +118,36 @@
             this.panel3.Size = new System.Drawing.Size(786, 114);
             this.panel3.TabIndex = 0;
             // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.BtnRetornaTodosNaoEntregues);
+            this.groupBox4.Controls.Add(this.label2);
+            this.groupBox4.Controls.Add(this.BtnColarConteudoJaCopiado);
+            this.groupBox4.Controls.Add(this.radioButtonDataLancamento);
+            this.groupBox4.Controls.Add(this.radioButtonNomeCliente);
+            this.groupBox4.Controls.Add(this.radioButtonTipoClassificacao);
+            this.groupBox4.Controls.Add(this.radioButtonQtdDiasVencidos);
+            this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox4.Location = new System.Drawing.Point(0, 42);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(786, 72);
+            this.groupBox4.TabIndex = 1;
+            this.groupBox4.TabStop = false;
+            // 
+            // BtnRetornaTodosNaoEntregues
+            // 
+            this.BtnRetornaTodosNaoEntregues.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnRetornaTodosNaoEntregues.Image = global::SISAPO.Properties.Resources.icons8_colar_26;
+            this.BtnRetornaTodosNaoEntregues.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnRetornaTodosNaoEntregues.Location = new System.Drawing.Point(7, 18);
+            this.BtnRetornaTodosNaoEntregues.Name = "BtnRetornaTodosNaoEntregues";
+            this.BtnRetornaTodosNaoEntregues.Size = new System.Drawing.Size(329, 38);
+            this.BtnRetornaTodosNaoEntregues.TabIndex = 1;
+            this.BtnRetornaTodosNaoEntregues.Text = "Buscar todos ainda não entregues";
+            this.BtnRetornaTodosNaoEntregues.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnRetornaTodosNaoEntregues.UseVisualStyleBackColor = true;
+            this.BtnRetornaTodosNaoEntregues.Click += new System.EventHandler(this.BtnRetornaTodosNaoEntregues_Click);
+            // 
             // label2
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -126,41 +159,19 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Ordenar por:";
             // 
-            // radioButtonNomeCliente
+            // BtnColarConteudoJaCopiado
             // 
-            this.radioButtonNomeCliente.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.radioButtonNomeCliente.AutoSize = true;
-            this.radioButtonNomeCliente.Location = new System.Drawing.Point(671, 40);
-            this.radioButtonNomeCliente.Name = "radioButtonNomeCliente";
-            this.radioButtonNomeCliente.Size = new System.Drawing.Size(88, 17);
-            this.radioButtonNomeCliente.TabIndex = 4;
-            this.radioButtonNomeCliente.Text = "Nome Cliente";
-            this.radioButtonNomeCliente.UseVisualStyleBackColor = true;
-            this.radioButtonNomeCliente.CheckedChanged += new System.EventHandler(this.radioButtonNomeCliente_CheckedChanged);
-            // 
-            // radioButtonQtdDiasVencidos
-            // 
-            this.radioButtonQtdDiasVencidos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.radioButtonQtdDiasVencidos.AutoSize = true;
-            this.radioButtonQtdDiasVencidos.Location = new System.Drawing.Point(543, 40);
-            this.radioButtonQtdDiasVencidos.Name = "radioButtonQtdDiasVencidos";
-            this.radioButtonQtdDiasVencidos.Size = new System.Drawing.Size(107, 17);
-            this.radioButtonQtdDiasVencidos.TabIndex = 6;
-            this.radioButtonQtdDiasVencidos.Text = "Data Vencimento";
-            this.radioButtonQtdDiasVencidos.UseVisualStyleBackColor = true;
-            this.radioButtonQtdDiasVencidos.CheckedChanged += new System.EventHandler(this.radioButtonQtdDiasVencidos_CheckedChanged);
-            // 
-            // radioButtonTipoClassificacao
-            // 
-            this.radioButtonTipoClassificacao.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.radioButtonTipoClassificacao.AutoSize = true;
-            this.radioButtonTipoClassificacao.Location = new System.Drawing.Point(671, 15);
-            this.radioButtonTipoClassificacao.Name = "radioButtonTipoClassificacao";
-            this.radioButtonTipoClassificacao.Size = new System.Drawing.Size(111, 17);
-            this.radioButtonTipoClassificacao.TabIndex = 5;
-            this.radioButtonTipoClassificacao.Text = "Tipo Classificacao";
-            this.radioButtonTipoClassificacao.UseVisualStyleBackColor = true;
-            this.radioButtonTipoClassificacao.CheckedChanged += new System.EventHandler(this.radioButtonTipoClassificacao_CheckedChanged);
+            this.BtnColarConteudoJaCopiado.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnColarConteudoJaCopiado.Image = global::SISAPO.Properties.Resources.icons8_colar_26;
+            this.BtnColarConteudoJaCopiado.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnColarConteudoJaCopiado.Location = new System.Drawing.Point(6, 18);
+            this.BtnColarConteudoJaCopiado.Name = "BtnColarConteudoJaCopiado";
+            this.BtnColarConteudoJaCopiado.Size = new System.Drawing.Size(329, 38);
+            this.BtnColarConteudoJaCopiado.TabIndex = 0;
+            this.BtnColarConteudoJaCopiado.Text = "&Colar conteúdo já copiado";
+            this.BtnColarConteudoJaCopiado.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnColarConteudoJaCopiado.UseVisualStyleBackColor = true;
+            this.BtnColarConteudoJaCopiado.Click += new System.EventHandler(this.BtnColarConteudoJaCopiado_Click);
             // 
             // radioButtonDataLancamento
             // 
@@ -175,6 +186,65 @@
             this.radioButtonDataLancamento.Text = "Data Lançamento";
             this.radioButtonDataLancamento.UseVisualStyleBackColor = true;
             this.radioButtonDataLancamento.CheckedChanged += new System.EventHandler(this.radioButtonDataLancamento_CheckedChanged);
+            // 
+            // radioButtonNomeCliente
+            // 
+            this.radioButtonNomeCliente.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.radioButtonNomeCliente.AutoSize = true;
+            this.radioButtonNomeCliente.Location = new System.Drawing.Point(671, 40);
+            this.radioButtonNomeCliente.Name = "radioButtonNomeCliente";
+            this.radioButtonNomeCliente.Size = new System.Drawing.Size(88, 17);
+            this.radioButtonNomeCliente.TabIndex = 4;
+            this.radioButtonNomeCliente.Text = "Nome Cliente";
+            this.radioButtonNomeCliente.UseVisualStyleBackColor = true;
+            this.radioButtonNomeCliente.CheckedChanged += new System.EventHandler(this.radioButtonNomeCliente_CheckedChanged);
+            // 
+            // radioButtonTipoClassificacao
+            // 
+            this.radioButtonTipoClassificacao.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.radioButtonTipoClassificacao.AutoSize = true;
+            this.radioButtonTipoClassificacao.Location = new System.Drawing.Point(671, 15);
+            this.radioButtonTipoClassificacao.Name = "radioButtonTipoClassificacao";
+            this.radioButtonTipoClassificacao.Size = new System.Drawing.Size(111, 17);
+            this.radioButtonTipoClassificacao.TabIndex = 5;
+            this.radioButtonTipoClassificacao.Text = "Tipo Classificacao";
+            this.radioButtonTipoClassificacao.UseVisualStyleBackColor = true;
+            this.radioButtonTipoClassificacao.CheckedChanged += new System.EventHandler(this.radioButtonTipoClassificacao_CheckedChanged);
+            // 
+            // radioButtonQtdDiasVencidos
+            // 
+            this.radioButtonQtdDiasVencidos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.radioButtonQtdDiasVencidos.AutoSize = true;
+            this.radioButtonQtdDiasVencidos.Location = new System.Drawing.Point(543, 40);
+            this.radioButtonQtdDiasVencidos.Name = "radioButtonQtdDiasVencidos";
+            this.radioButtonQtdDiasVencidos.Size = new System.Drawing.Size(107, 17);
+            this.radioButtonQtdDiasVencidos.TabIndex = 6;
+            this.radioButtonQtdDiasVencidos.Text = "Data Vencimento";
+            this.radioButtonQtdDiasVencidos.UseVisualStyleBackColor = true;
+            this.radioButtonQtdDiasVencidos.CheckedChanged += new System.EventHandler(this.radioButtonQtdDiasVencidos_CheckedChanged);
+            // 
+            // panel7
+            // 
+            this.panel7.BackColor = System.Drawing.SystemColors.Control;
+            this.panel7.Controls.Add(this.label3);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel7.Location = new System.Drawing.Point(0, 0);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(786, 42);
+            this.panel7.TabIndex = 0;
+            // 
+            // label3
+            // 
+            this.label3.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label3.Font = new System.Drawing.Font("Arial Black", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label3.Location = new System.Drawing.Point(0, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(786, 42);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "AUXÍLIO A GESTÃO DO DIA - ITENS NÃO ENTREGUES";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // BtnImprimirListaAtual
             // 
@@ -191,34 +261,6 @@
             this.BtnImprimirListaAtual.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BtnImprimirListaAtual.UseVisualStyleBackColor = true;
             this.BtnImprimirListaAtual.Click += new System.EventHandler(this.BtnImprimirListaAtual_Click);
-            // 
-            // BtnRetornaTodosNaoEntregues
-            // 
-            this.BtnRetornaTodosNaoEntregues.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnRetornaTodosNaoEntregues.Image = global::SISAPO.Properties.Resources.icons8_colar_26;
-            this.BtnRetornaTodosNaoEntregues.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnRetornaTodosNaoEntregues.Location = new System.Drawing.Point(7, 18);
-            this.BtnRetornaTodosNaoEntregues.Name = "BtnRetornaTodosNaoEntregues";
-            this.BtnRetornaTodosNaoEntregues.Size = new System.Drawing.Size(329, 38);
-            this.BtnRetornaTodosNaoEntregues.TabIndex = 1;
-            this.BtnRetornaTodosNaoEntregues.Text = "Buscar todos ainda não entregues";
-            this.BtnRetornaTodosNaoEntregues.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnRetornaTodosNaoEntregues.UseVisualStyleBackColor = true;
-            this.BtnRetornaTodosNaoEntregues.Click += new System.EventHandler(this.BtnRetornaTodosNaoEntregues_Click);
-            // 
-            // BtnColarConteudoJaCopiado
-            // 
-            this.BtnColarConteudoJaCopiado.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnColarConteudoJaCopiado.Image = global::SISAPO.Properties.Resources.icons8_colar_26;
-            this.BtnColarConteudoJaCopiado.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnColarConteudoJaCopiado.Location = new System.Drawing.Point(6, 18);
-            this.BtnColarConteudoJaCopiado.Name = "BtnColarConteudoJaCopiado";
-            this.BtnColarConteudoJaCopiado.Size = new System.Drawing.Size(329, 38);
-            this.BtnColarConteudoJaCopiado.TabIndex = 0;
-            this.BtnColarConteudoJaCopiado.Text = "&Colar conteúdo já copiado";
-            this.BtnColarConteudoJaCopiado.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnColarConteudoJaCopiado.UseVisualStyleBackColor = true;
-            this.BtnColarConteudoJaCopiado.Click += new System.EventHandler(this.BtnColarConteudoJaCopiado_Click);
             // 
             // groupBox2
             // 
@@ -432,6 +474,7 @@
             this.PrazoTipoClassificacao,
             this.DataVencimento,
             this.QtdDiasVencidos});
+            this.dataGridView1.ContextMenuStrip = this.contextMenuStrip;
             dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -458,107 +501,6 @@
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDoubleClick);
             // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.groupBox3);
-            this.panel1.Controls.Add(this.groupBox2);
-            this.panel1.Controls.Add(this.groupBox1);
-            this.panel1.Controls.Add(this.BtnImprimirListaAtual);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(786, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(221, 462);
-            this.panel1.TabIndex = 1;
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox3.Controls.Add(this.DataInicial_dateTimePicker);
-            this.groupBox3.Controls.Add(this.FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox);
-            this.groupBox3.Controls.Add(this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox);
-            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(4, 311);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(214, 144);
-            this.groupBox3.TabIndex = 3;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Mais Filtros";
-            // 
-            // DataInicial_dateTimePicker
-            // 
-            this.DataInicial_dateTimePicker.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.DataInicial_dateTimePicker.Enabled = false;
-            this.DataInicial_dateTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DataInicial_dateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DataInicial_dateTimePicker.Location = new System.Drawing.Point(36, 89);
-            this.DataInicial_dateTimePicker.Name = "DataInicial_dateTimePicker";
-            this.DataInicial_dateTimePicker.Size = new System.Drawing.Size(172, 31);
-            this.DataInicial_dateTimePicker.TabIndex = 2;
-            this.DataInicial_dateTimePicker.ValueChanged += new System.EventHandler(this.DataInicial_dateTimePicker_ValueChanged);
-            // 
-            // FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox
-            // 
-            this.FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox.AutoSize = true;
-            this.FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox.Enabled = false;
-            this.FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox.Location = new System.Drawing.Point(15, 59);
-            this.FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox.Name = "FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox";
-            this.FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox.Size = new System.Drawing.Size(130, 24);
-            this.FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox.TabIndex = 1;
-            this.FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox.Text = "Previsão dia:";
-            this.FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox.UseVisualStyleBackColor = true;
-            this.FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox.CheckedChanged += new System.EventHandler(this.FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox_CheckedChanged);
-            // 
-            // FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox
-            // 
-            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.AutoSize = true;
-            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.Enabled = false;
-            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.Location = new System.Drawing.Point(15, 29);
-            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.Name = "FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox";
-            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.Size = new System.Drawing.Size(181, 24);
-            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.TabIndex = 0;
-            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.Text = "Incluir Caixa Postal";
-            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.UseVisualStyleBackColor = true;
-            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.CheckedChanged += new System.EventHandler(this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox_CheckedChanged);
-            // 
-            // panel7
-            // 
-            this.panel7.BackColor = System.Drawing.SystemColors.Control;
-            this.panel7.Controls.Add(this.label3);
-            this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel7.Location = new System.Drawing.Point(0, 0);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(786, 42);
-            this.panel7.TabIndex = 0;
-            // 
-            // label3
-            // 
-            this.label3.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Font = new System.Drawing.Font("Arial Black", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label3.Location = new System.Drawing.Point(0, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(786, 42);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "AUXÍLIO A GESTÃO DO DIA - ITENS NÃO ENTREGUES";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.BtnRetornaTodosNaoEntregues);
-            this.groupBox4.Controls.Add(this.label2);
-            this.groupBox4.Controls.Add(this.BtnColarConteudoJaCopiado);
-            this.groupBox4.Controls.Add(this.radioButtonDataLancamento);
-            this.groupBox4.Controls.Add(this.radioButtonNomeCliente);
-            this.groupBox4.Controls.Add(this.radioButtonTipoClassificacao);
-            this.groupBox4.Controls.Add(this.radioButtonQtdDiasVencidos);
-            this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox4.Location = new System.Drawing.Point(0, 42);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(786, 72);
-            this.groupBox4.TabIndex = 1;
-            this.groupBox4.TabStop = false;
-            // 
             // CodigoLdi
             // 
             this.CodigoLdi.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
@@ -570,7 +512,6 @@
             this.CodigoLdi.ReadOnly = true;
             this.CodigoLdi.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.CodigoLdi.Visible = false;
-            this.CodigoLdi.Width = 63;
             // 
             // Sigla
             // 
@@ -706,6 +647,83 @@
             this.QtdDiasVencidos.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.QtdDiasVencidos.Width = 90;
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.groupBox3);
+            this.panel1.Controls.Add(this.groupBox2);
+            this.panel1.Controls.Add(this.groupBox1);
+            this.panel1.Controls.Add(this.BtnImprimirListaAtual);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel1.Location = new System.Drawing.Point(786, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(221, 462);
+            this.panel1.TabIndex = 1;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.Controls.Add(this.DataInicial_dateTimePicker);
+            this.groupBox3.Controls.Add(this.FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox);
+            this.groupBox3.Controls.Add(this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox);
+            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox3.Location = new System.Drawing.Point(4, 311);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(214, 144);
+            this.groupBox3.TabIndex = 3;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Mais Filtros";
+            // 
+            // DataInicial_dateTimePicker
+            // 
+            this.DataInicial_dateTimePicker.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.DataInicial_dateTimePicker.Enabled = false;
+            this.DataInicial_dateTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DataInicial_dateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.DataInicial_dateTimePicker.Location = new System.Drawing.Point(36, 89);
+            this.DataInicial_dateTimePicker.Name = "DataInicial_dateTimePicker";
+            this.DataInicial_dateTimePicker.Size = new System.Drawing.Size(172, 31);
+            this.DataInicial_dateTimePicker.TabIndex = 2;
+            this.DataInicial_dateTimePicker.ValueChanged += new System.EventHandler(this.DataInicial_dateTimePicker_ValueChanged);
+            // 
+            // FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox
+            // 
+            this.FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox.AutoSize = true;
+            this.FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox.Enabled = false;
+            this.FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox.Location = new System.Drawing.Point(15, 59);
+            this.FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox.Name = "FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox";
+            this.FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox.Size = new System.Drawing.Size(130, 24);
+            this.FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox.TabIndex = 1;
+            this.FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox.Text = "Previsão dia:";
+            this.FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox.UseVisualStyleBackColor = true;
+            this.FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox.CheckedChanged += new System.EventHandler(this.FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox_CheckedChanged);
+            // 
+            // FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox
+            // 
+            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.AutoSize = true;
+            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.Enabled = false;
+            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.Location = new System.Drawing.Point(15, 29);
+            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.Name = "FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox";
+            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.Size = new System.Drawing.Size(181, 24);
+            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.TabIndex = 0;
+            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.Text = "Incluir Caixa Postal";
+            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.UseVisualStyleBackColor = true;
+            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.CheckedChanged += new System.EventHandler(this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox_CheckedChanged);
+            // 
+            // contextMenuStrip
+            // 
+            this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.alterarSituacaoItensToolStripMenuItem1});
+            this.contextMenuStrip.Name = "contextMenuStripImprimirListaEntrega";
+            this.contextMenuStrip.Size = new System.Drawing.Size(281, 26);
+            // 
+            // alterarSituacaoItensToolStripMenuItem1
+            // 
+            this.alterarSituacaoItensToolStripMenuItem1.Image = global::SISAPO.Properties.Resources.CadastroObjetos;
+            this.alterarSituacaoItensToolStripMenuItem1.Name = "alterarSituacaoItensToolStripMenuItem1";
+            this.alterarSituacaoItensToolStripMenuItem1.Size = new System.Drawing.Size(280, 22);
+            this.alterarSituacaoItensToolStripMenuItem1.Text = "Alterar situação de itens (Selecionados)";
+            this.alterarSituacaoItensToolStripMenuItem1.Click += new System.EventHandler(this.alterarSituacaoItensToolStripMenuItem1_Click);
+            // 
             // FormularioAuxilioGestaoDiaNovo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -726,6 +744,9 @@
             this.Load += new System.EventHandler(this.FormularioAuxilioGestaoDia_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ObjetosComPrazoGuardaVencido_KeyDown);
             this.panel3.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            this.panel7.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -737,9 +758,7 @@
             this.panel1.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.panel7.ResumeLayout(false);
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
+            this.contextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -793,5 +812,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn PrazoTipoClassificacao;
         private System.Windows.Forms.DataGridViewTextBoxColumn DataVencimento;
         private System.Windows.Forms.DataGridViewTextBoxColumn QtdDiasVencidos;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem alterarSituacaoItensToolStripMenuItem1;
     }
 }

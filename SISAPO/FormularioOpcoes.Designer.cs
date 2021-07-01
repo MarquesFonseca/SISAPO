@@ -41,8 +41,6 @@
             this.checkBoxExibirObjetosEmCaixaPostal = new System.Windows.Forms.CheckBox();
             this.tabPageConfiguracoesAgencia = new System.Windows.Forms.TabPage();
             this.comboBoxUFAgenciaLocal = new System.Windows.Forms.ComboBox();
-            this.bindingSourceTabelaConfiguracoesSistema = new System.Windows.Forms.BindingSource(this.components);
-            this.dataSetConfiguracoes = new SISAPO.DataSetConfiguracoes();
             this.comboBoxSupEst = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -59,7 +57,17 @@
             this.txtTelefoneAgenciaLocal = new System.Windows.Forms.TextBox();
             this.txtCidadeAgenciaLocal = new System.Windows.Forms.TextBox();
             this.txtNomeAgencia = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.TxtEnderecoSRO = new System.Windows.Forms.TextBox();
+            this.bindingSourceTabelaConfiguracoesSistema = new System.Windows.Forms.BindingSource(this.components);
+            this.dataSetConfiguracoes = new SISAPO.DataSetConfiguracoes();
             this.tabelaConfiguracoesSistemaTableAdapter = new SISAPO.DataSetConfiguracoesTableAdapters.TabelaConfiguracoesSistemaTableAdapter();
+            this.label10 = new System.Windows.Forms.Label();
+            this.TxtEnderecoSROEspecificoObjeto = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.BtnAtualizarEnderecoSRO = new System.Windows.Forms.Button();
+            this.BtnAtualizarEnderecoSROObjetoEspecifico = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageObjetosAguardandoRetirada.SuspendLayout();
@@ -115,6 +123,14 @@
             // 
             // tabPageObjetosAguardandoRetirada
             // 
+            this.tabPageObjetosAguardandoRetirada.Controls.Add(this.label11);
+            this.tabPageObjetosAguardandoRetirada.Controls.Add(this.label10);
+            this.tabPageObjetosAguardandoRetirada.Controls.Add(this.label9);
+            this.tabPageObjetosAguardandoRetirada.Controls.Add(this.label8);
+            this.tabPageObjetosAguardandoRetirada.Controls.Add(this.TxtEnderecoSROEspecificoObjeto);
+            this.tabPageObjetosAguardandoRetirada.Controls.Add(this.TxtEnderecoSRO);
+            this.tabPageObjetosAguardandoRetirada.Controls.Add(this.BtnAtualizarEnderecoSROObjetoEspecifico);
+            this.tabPageObjetosAguardandoRetirada.Controls.Add(this.BtnAtualizarEnderecoSRO);
             this.tabPageObjetosAguardandoRetirada.Controls.Add(this.BtnMarcarTodosAtualizados);
             this.tabPageObjetosAguardandoRetirada.Controls.Add(this.BtnRequererVerificacaoDeObjetosJaEntregues);
             this.tabPageObjetosAguardandoRetirada.Location = new System.Drawing.Point(4, 22);
@@ -127,7 +143,7 @@
             // 
             // BtnMarcarTodosAtualizados
             // 
-            this.BtnMarcarTodosAtualizados.Location = new System.Drawing.Point(8, 60);
+            this.BtnMarcarTodosAtualizados.Location = new System.Drawing.Point(188, 15);
             this.BtnMarcarTodosAtualizados.Name = "BtnMarcarTodosAtualizados";
             this.BtnMarcarTodosAtualizados.Size = new System.Drawing.Size(174, 23);
             this.BtnMarcarTodosAtualizados.TabIndex = 2;
@@ -232,16 +248,6 @@
             this.comboBoxUFAgenciaLocal.Name = "comboBoxUFAgenciaLocal";
             this.comboBoxUFAgenciaLocal.Size = new System.Drawing.Size(49, 28);
             this.comboBoxUFAgenciaLocal.TabIndex = 11;
-            // 
-            // bindingSourceTabelaConfiguracoesSistema
-            // 
-            this.bindingSourceTabelaConfiguracoesSistema.DataMember = "TabelaConfiguracoesSistema";
-            this.bindingSourceTabelaConfiguracoesSistema.DataSource = this.dataSetConfiguracoes;
-            // 
-            // dataSetConfiguracoes
-            // 
-            this.dataSetConfiguracoes.DataSetName = "DataSetConfiguracoes";
-            this.dataSetConfiguracoes.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // comboBoxSupEst
             // 
@@ -444,9 +450,101 @@
             this.txtNomeAgencia.Size = new System.Drawing.Size(532, 26);
             this.txtNomeAgencia.TabIndex = 1;
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(8, 53);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(111, 16);
+            this.label8.TabIndex = 3;
+            this.label8.Text = "Endereço SRO";
+            // 
+            // TxtEnderecoSRO
+            // 
+            this.TxtEnderecoSRO.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TxtEnderecoSRO.DataBindings.Add(new System.Windows.Forms.Binding("Tag", this.bindingSourceTabelaConfiguracoesSistema, "NomeAgenciaLocal", true));
+            this.TxtEnderecoSRO.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceTabelaConfiguracoesSistema, "NomeAgenciaLocal", true));
+            this.TxtEnderecoSRO.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtEnderecoSRO.Location = new System.Drawing.Point(8, 89);
+            this.TxtEnderecoSRO.Name = "TxtEnderecoSRO";
+            this.TxtEnderecoSRO.Size = new System.Drawing.Size(596, 26);
+            this.TxtEnderecoSRO.TabIndex = 4;
+            // 
+            // bindingSourceTabelaConfiguracoesSistema
+            // 
+            this.bindingSourceTabelaConfiguracoesSistema.DataMember = "TabelaConfiguracoesSistema";
+            this.bindingSourceTabelaConfiguracoesSistema.DataSource = this.dataSetConfiguracoes;
+            // 
+            // dataSetConfiguracoes
+            // 
+            this.dataSetConfiguracoes.DataSetName = "DataSetConfiguracoes";
+            this.dataSetConfiguracoes.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // tabelaConfiguracoesSistemaTableAdapter
             // 
             this.tabelaConfiguracoesSistemaTableAdapter.ClearBeforeFill = true;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(8, 70);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(256, 16);
+            this.label10.TabIndex = 3;
+            this.label10.Text = "Exemplo: http://websro2/rastreamento/sro";
+            // 
+            // TxtEnderecoSROEspecificoObjeto
+            // 
+            this.TxtEnderecoSROEspecificoObjeto.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TxtEnderecoSROEspecificoObjeto.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtEnderecoSROEspecificoObjeto.Location = new System.Drawing.Point(8, 163);
+            this.TxtEnderecoSROEspecificoObjeto.Name = "TxtEnderecoSROEspecificoObjeto";
+            this.TxtEnderecoSROEspecificoObjeto.Size = new System.Drawing.Size(596, 26);
+            this.TxtEnderecoSROEspecificoObjeto.TabIndex = 4;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(8, 127);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(295, 16);
+            this.label9.TabIndex = 3;
+            this.label9.Text = "Endereço SRO para um obejto específico";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(8, 144);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(530, 16);
+            this.label11.TabIndex = 3;
+            this.label11.Text = "Exemplo: http://websro2/rastreamento/sro?opcao=PESQUISA&objetos=QB378038055BR";
+            // 
+            // BtnAtualizarEnderecoSRO
+            // 
+            this.BtnAtualizarEnderecoSRO.Location = new System.Drawing.Point(610, 88);
+            this.BtnAtualizarEnderecoSRO.Name = "BtnAtualizarEnderecoSRO";
+            this.BtnAtualizarEnderecoSRO.Size = new System.Drawing.Size(113, 28);
+            this.BtnAtualizarEnderecoSRO.TabIndex = 2;
+            this.BtnAtualizarEnderecoSRO.Text = "Atualizar";
+            this.BtnAtualizarEnderecoSRO.UseVisualStyleBackColor = true;
+            this.BtnAtualizarEnderecoSRO.Click += new System.EventHandler(this.BtnAtualizarEnderecoSRO_Click);
+            // 
+            // BtnAtualizarEnderecoSROObjetoEspecifico
+            // 
+            this.BtnAtualizarEnderecoSROObjetoEspecifico.Location = new System.Drawing.Point(610, 161);
+            this.BtnAtualizarEnderecoSROObjetoEspecifico.Name = "BtnAtualizarEnderecoSROObjetoEspecifico";
+            this.BtnAtualizarEnderecoSROObjetoEspecifico.Size = new System.Drawing.Size(113, 28);
+            this.BtnAtualizarEnderecoSROObjetoEspecifico.TabIndex = 2;
+            this.BtnAtualizarEnderecoSROObjetoEspecifico.Text = "Atualizar";
+            this.BtnAtualizarEnderecoSROObjetoEspecifico.UseVisualStyleBackColor = true;
+            this.BtnAtualizarEnderecoSROObjetoEspecifico.Click += new System.EventHandler(this.BtnAtualizarEnderecoSROObjetoEspecifico_Click);
             // 
             // FormularioOpcoes
             // 
@@ -468,6 +566,7 @@
             this.panel1.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabPageObjetosAguardandoRetirada.ResumeLayout(false);
+            this.tabPageObjetosAguardandoRetirada.PerformLayout();
             this.tabPageExibirItensJaEntregues.ResumeLayout(false);
             this.tabPageExibirItensJaEntregues.PerformLayout();
             this.tabPageConfiguracoesAgencia.ResumeLayout(false);
@@ -510,5 +609,13 @@
         private System.Windows.Forms.TextBox txtHorarioFuncionamentoAgenciaLocal;
         private System.Windows.Forms.TextBox txtTelefoneAgenciaLocal;
         private System.Windows.Forms.TextBox txtCidadeAgenciaLocal;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox TxtEnderecoSRO;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox TxtEnderecoSROEspecificoObjeto;
+        private System.Windows.Forms.Button BtnAtualizarEnderecoSROObjetoEspecifico;
+        private System.Windows.Forms.Button BtnAtualizarEnderecoSRO;
     }
 }

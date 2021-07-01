@@ -61,7 +61,10 @@ namespace SISAPO
             try
             {
                 BtnRetornaTodosNaoEntregues.Enabled = false;
-                waitForm.Show(this);
+
+#if !DEBUG
+waitForm.Show(this);
+#endif
 
                 listaObjetos = RetornaListaObjetosNaoEntregues();
                 if (listaObjetos == null || listaObjetos.Rows.Count == 0)
@@ -93,11 +96,15 @@ namespace SISAPO
 
                 FiltrosCheckBox();
 
-                waitForm.Close();
+#if !DEBUG
+waitForm.Close();
+#endif
             }
             catch (IOException)
             {
-                waitForm.Close();
+#if !DEBUG
+waitForm.Close();
+#endif
             }
             finally
             {
@@ -240,7 +247,6 @@ namespace SISAPO
 
                             DataTable RetornaLista = RetornaListaObjetosNaoEntregues(string.Format("CodigoObjeto = '{0}' AND CodigoLdi = '{1}'", ParteLinhaCodigoObjeto, ParteLinhaCodigoLdi));
 
-
                             if (RetornaLista.Rows.Count == 0)
                             {
                                 continue;
@@ -335,21 +341,21 @@ namespace SISAPO
             stringSQL.AppendLine(",TabelaObjetosSROLocal.NomeCliente                                                                                                                                                                                                                                                                                                                         ");
             stringSQL.AppendLine(",TabelaObjetosSROLocal.Comentario                                                                                                                                                                                                                                                                                                                          ");
             stringSQL.AppendLine(",TabelaObjetosSROLocal.CaixaPostal                                                                                                                                                                                                                                                                                                                         ");
-            stringSQL.AppendLine(",FORMAT(IIf(TabelaObjetosSROLocal.DataLancamento IS NULL, \"01/01/1900 00:00:00\", TabelaObjetosSROLocal.DataLancamento), \"dd/MM/yyyy\") AS DataLancamento                                                                                                                                                                                                ");
-            stringSQL.AppendLine(",DATEDIFF(\"d\", IIf(TabelaObjetosSROLocal.DataLancamento IS NULL, \"01/01/1900 00:00:00\", TabelaObjetosSROLocal.DataLancamento), Now()) AS QtdDiasCorridos                                                                                                                                                                                               ");
-            stringSQL.AppendLine(",IIf(TabelaObjetosSROLocal.TipoPostalPrazoDiasCorridosRegulamentado Is Null, 0, TabelaObjetosSROLocal.TipoPostalPrazoDiasCorridosRegulamentado) AS PrazoTipoClassificacao                                                                                                                                                                                  ");
-            stringSQL.AppendLine(",FORMAT(DATEADD(\"d\", IIf(TabelaObjetosSROLocal.TipoPostalPrazoDiasCorridosRegulamentado Is Null, 0, TabelaObjetosSROLocal.TipoPostalPrazoDiasCorridosRegulamentado), IIf(TabelaObjetosSROLocal.DataLancamento Is Null, \"01 / 01 / 1900 00:00:00\", TabelaObjetosSROLocal.DataLancamento)),\"dd/MM/yyyy\") as DataVencimento                             ");
+            stringSQL.AppendLine(",FORMAT(IIf(TabelaObjetosSROLocal.DataLancamento = \"\" OR TabelaObjetosSROLocal.DataLancamento IS NULL, \"01/01/1900 00:00:00\", TabelaObjetosSROLocal.DataLancamento), \"dd/MM/yyyy\") AS DataLancamento                                                                                                                                                                                                ");
+            stringSQL.AppendLine(",DATEDIFF(\"d\", IIf(TabelaObjetosSROLocal.DataLancamento = \"\" OR TabelaObjetosSROLocal.DataLancamento IS NULL, \"01/01/1900 00:00:00\", TabelaObjetosSROLocal.DataLancamento), Now()) AS QtdDiasCorridos                                                                                                                                                                                               ");
+            stringSQL.AppendLine(",IIf(TabelaObjetosSROLocal.TipoPostalPrazoDiasCorridosRegulamentado = \"\" OR TabelaObjetosSROLocal.TipoPostalPrazoDiasCorridosRegulamentado IS NULL, 0, TabelaObjetosSROLocal.TipoPostalPrazoDiasCorridosRegulamentado) AS PrazoTipoClassificacao                                                                                                                                                                                  ");
+            stringSQL.AppendLine(",FORMAT(DATEADD(\"d\", IIf(TabelaObjetosSROLocal.TipoPostalPrazoDiasCorridosRegulamentado = \"\" OR TabelaObjetosSROLocal.TipoPostalPrazoDiasCorridosRegulamentado IS NULL, 0, TabelaObjetosSROLocal.TipoPostalPrazoDiasCorridosRegulamentado), IIf(TabelaObjetosSROLocal.DataLancamento = \"\" OR TabelaObjetosSROLocal.DataLancamento IS NULL, \"01/01/1900 00:00:00\", TabelaObjetosSROLocal.DataLancamento)),\"dd/MM/yyyy\") AS DataVencimento                             ");
             stringSQL.AppendLine(",SWITCH                                                                                                                                                                                                                                                                                                                                                    ");
             stringSQL.AppendLine("(                                                                                                                                                                                                                                                                                                                                                          ");
-            stringSQL.AppendLine("	DATEDIFF(\"d\", FORMAT(DATEADD(\"d\", IIf(TabelaObjetosSROLocal.TipoPostalPrazoDiasCorridosRegulamentado Is Null, 0, TabelaObjetosSROLocal.TipoPostalPrazoDiasCorridosRegulamentado), IIf(TabelaObjetosSROLocal.DataLancamento Is Null, \"01/01/1900 00:00:00\", TabelaObjetosSROLocal.DataLancamento)),\"dd/MM/yyyy\"), Now()) = 0 , \"VENCENDO HOJE\", ");
-            stringSQL.AppendLine("	DATEADD(\"d\", IIf(TabelaObjetosSROLocal.TipoPostalPrazoDiasCorridosRegulamentado Is Null, 0, TabelaObjetosSROLocal.TipoPostalPrazoDiasCorridosRegulamentado), IIf(TabelaObjetosSROLocal.DataLancamento Is Null, \"01/01/1900 00:00:00\", TabelaObjetosSROLocal.DataLancamento)) < NOW() , \"VENCIDO\",                                                  ");
-            stringSQL.AppendLine("	DATEADD(\"d\", IIf(TabelaObjetosSROLocal.TipoPostalPrazoDiasCorridosRegulamentado Is Null, 0, TabelaObjetosSROLocal.TipoPostalPrazoDiasCorridosRegulamentado), IIf(TabelaObjetosSROLocal.DataLancamento Is Null, \"01/01/1900 00:00:00\", TabelaObjetosSROLocal.DataLancamento)) > NOW() , \"A VENCER\"                                                  ");
+            stringSQL.AppendLine("	DATEDIFF(\"d\", FORMAT(DATEADD(\"d\", IIf(TabelaObjetosSROLocal.TipoPostalPrazoDiasCorridosRegulamentado = \"\" OR TabelaObjetosSROLocal.TipoPostalPrazoDiasCorridosRegulamentado IS NULL, 0, TabelaObjetosSROLocal.TipoPostalPrazoDiasCorridosRegulamentado), IIf(TabelaObjetosSROLocal.DataLancamento = \"\" OR TabelaObjetosSROLocal.DataLancamento IS NULL, \"01/01/1900 00:00:00\", TabelaObjetosSROLocal.DataLancamento)),\"dd/MM/yyyy\"), Now()) = 0 , \"VENCENDO HOJE\", ");
+            stringSQL.AppendLine("	DATEADD(\"d\", IIf(TabelaObjetosSROLocal.TipoPostalPrazoDiasCorridosRegulamentado = \"\" OR TabelaObjetosSROLocal.TipoPostalPrazoDiasCorridosRegulamentado IS NULL, 0, TabelaObjetosSROLocal.TipoPostalPrazoDiasCorridosRegulamentado), IIf(TabelaObjetosSROLocal.DataLancamento = \"\" OR TabelaObjetosSROLocal.DataLancamento IS NULL, \"01/01/1900 00:00:00\", TabelaObjetosSROLocal.DataLancamento)) < NOW() , \"VENCIDO\",                                              ");
+            stringSQL.AppendLine("	DATEADD(\"d\", IIf(TabelaObjetosSROLocal.TipoPostalPrazoDiasCorridosRegulamentado = \"\" OR TabelaObjetosSROLocal.TipoPostalPrazoDiasCorridosRegulamentado IS NULL, 0, TabelaObjetosSROLocal.TipoPostalPrazoDiasCorridosRegulamentado), IIf(TabelaObjetosSROLocal.DataLancamento = \"\" OR TabelaObjetosSROLocal.DataLancamento IS NULL, \"01/01/1900 00:00:00\", TabelaObjetosSROLocal.DataLancamento)) > NOW() , \"A VENCER\"                                              ");
             stringSQL.AppendLine(") AS StatusPrazo                                                                                                                                                                                                                                                                                                                                           ");
-            stringSQL.AppendLine(",DATEDIFF(\"d\", FORMAT(DATEADD(\"d\",IIf(TabelaObjetosSROLocal.TipoPostalPrazoDiasCorridosRegulamentado Is Null, 0, TabelaObjetosSROLocal.TipoPostalPrazoDiasCorridosRegulamentado), IIf(TabelaObjetosSROLocal.DataLancamento IS NULL, \"01/01/1900 00:00:00\", TabelaObjetosSROLocal.DataLancamento)),\"dd/MM/yyyy\"), Now()) AS QtdDiasVencidos         ");
+            stringSQL.AppendLine(",DATEDIFF(\"d\", FORMAT(DATEADD(\"d\",IIf(TabelaObjetosSROLocal.TipoPostalPrazoDiasCorridosRegulamentado = \"\" OR TabelaObjetosSROLocal.TipoPostalPrazoDiasCorridosRegulamentado IS NULL, 0, TabelaObjetosSROLocal.TipoPostalPrazoDiasCorridosRegulamentado), IIf(TabelaObjetosSROLocal.DataLancamento = \"\" OR TabelaObjetosSROLocal.DataLancamento IS NULL, \"01/01/1900 00:00:00\", TabelaObjetosSROLocal.DataLancamento)),\"dd/MM/yyyy\"), Now()) AS QtdDiasVencidos         ");
             stringSQL.AppendLine("FROM TabelaObjetosSROLocal                                                                                                                                                                                                                                                                                                                                 ");
             stringSQL.AppendLine("WHERE (TabelaObjetosSROLocal.ObjetoEntregue = FALSE)                                                                                                                                                                                                                                                                                                       ");
             stringSQL.AppendLine(") AS ObjetosNaoEntregues ");
-            return stringSQL;
+            return stringSQL;                                                                                                                                                                                                                                          
         }
 
         private DataTable RetornaListaObjetosNaoEntregues(string filtrosAdicionais)
@@ -454,7 +460,8 @@ namespace SISAPO
             {
                 formularioSRORastreamentoUnificado.WindowState = FormWindowState.Normal;
                 formularioSRORastreamentoUnificado.StartPosition = FormStartPosition.CenterScreen;
-                formularioSRORastreamentoUnificado.Text = string.Format(@"SRO - Rastreamento Unificado - http://websro2.correiosnet.int/rastreamento/sro?opcao=PESQUISA&objetos={0}", CodigoObjeto);
+                //formularioSRORastreamentoUnificado.Text = string.Format(@"SRO - Rastreamento Unificado - http://websro2.correiosnet.int/rastreamento/sro?opcao=PESQUISA&objetos={0}", CodigoObjeto);
+                formularioSRORastreamentoUnificado.Text = string.Format(@"SRO - Rastreamento Unificado - {0}{1}", Configuracoes.EnderecosSRO["EnderecoSROPorObjeto"].ToString(), CodigoObjeto);
                 formularioSRORastreamentoUnificado.ShowDialog();
             }
         }
@@ -611,7 +618,7 @@ namespace SISAPO
             {
                 string incluirCaixaPostal = "AND (CaixaPostal = FALSE)";
                 MontaFiltro = string.Format("{0} {1}", MontaFiltro, incluirCaixaPostal);
-            } 
+            }
             #endregion
 
             #region PorPrevisaoDia
@@ -693,7 +700,7 @@ namespace SISAPO
                     string porPrevisaoDia = string.Format("AND (QtdDiasVencidos IN({0}))", qtd);
                     MontaFiltro = string.Format("{0} {1}", MontaFiltro, porPrevisaoDia);
                 }
-            } 
+            }
             #endregion
 
             bindingSourceObjetosNaoEntregues.Filter = MontaFiltro;
@@ -770,6 +777,46 @@ namespace SISAPO
             ValorDataInicialDateTimePickerSelecionado = DataInicial_dateTimePicker.Value.Date.ToShortDateString();
 
             FiltrosCheckBox();
+        }
+
+        private void alterarSituacaoItensToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.RowCount == 0) return;
+
+            FormularioAlterarSituacaoItensSelecionados formularioAlterarSituacaoItensSelecionados = new FormularioAlterarSituacaoItensSelecionados();
+            formularioAlterarSituacaoItensSelecionados.ShowDialog();
+
+            if (string.IsNullOrEmpty(formularioAlterarSituacaoItensSelecionados.itemMotivoBaixaSelecionado)) return;
+
+            List<string> ListaGridSelecaoAtual = new List<string>();
+
+            //dataGridView1DataGridViewCell cell = DataGridView1.SelectedCells[0]
+            List<int> indicesLinhasSelecionadas = new List<int>();
+            for (int i = this.dataGridView1.SelectedCells.Count - 1; i >= 0; i--)
+            {
+                DataGridViewCell cell = this.dataGridView1.SelectedCells[i];
+                int rowIndex = cell.RowIndex;
+                bool existe = indicesLinhasSelecionadas.AsEnumerable().Any(T => T == rowIndex);
+                if (!existe)
+                    indicesLinhasSelecionadas.Add(rowIndex);
+            }
+
+            foreach (int rowIndex in indicesLinhasSelecionadas)
+            {
+                string CodigoAtual = this.dataGridView1.Rows[rowIndex].Cells["CodigoObjeto"].Value.ToString();
+                ListaGridSelecaoAtual.Add(CodigoAtual.ToUpper().Trim());
+            }
+
+            FormularioConsulta.RetornaComponentesFormularioConsulta().AlterarSituacaoItensSelecionados(ListaGridSelecaoAtual, formularioAlterarSituacaoItensSelecionados.itemMotivoBaixaSelecionado);
+
+            if (Mensagens.Pergunta("Itens atualizado com sucesso! Deseja atualizar grid?") == System.Windows.Forms.DialogResult.Yes)
+            {
+                if (ModeloTelaAberturaSelecionado == ModeloTelaAbertura.TelaAguardandoRetirada)
+                    BtnRetornaTodosNaoEntregues_Click(null, null);
+                if (ModeloTelaAberturaSelecionado == ModeloTelaAbertura.TelaColarItensSRO)
+                    BtnColarConteudoJaCopiado_Click(null, null);
+            }
+
         }
     }
 }

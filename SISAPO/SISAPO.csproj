@@ -149,6 +149,12 @@
   <ItemGroup>
     <Compile Include="ClassesDiversas\CriptografiaHelper.cs" />
     <Compile Include="ClassesDiversas\ImportarArquivos.cs" />
+    <Compile Include="FormularioAlterarSituacaoItensSelecionados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormularioAlterarSituacaoItensSelecionados.Designer.cs">
+      <DependentUpon>FormularioAlterarSituacaoItensSelecionados.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormularioAdicionarItemObjeto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -386,6 +392,9 @@
       <DependentUpon>WaitForm.cs</DependentUpon>
     </Compile>
     <Compile Include="WaitWndFun.cs" />
+    <EmbeddedResource Include="FormularioAlterarSituacaoItensSelecionados.resx">
+      <DependentUpon>FormularioAlterarSituacaoItensSelecionados.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormularioAdicionarItemObjeto.resx">
       <DependentUpon>FormularioAdicionarItemObjeto.cs</DependentUpon>
     </EmbeddedResource>

@@ -36,7 +36,9 @@ namespace SISAPO
         //private string TelaNomeCliente_2_4 = @"C:\Users\MARQUES\Documents\visual studio 2010\Projects\SISAPO\SISAPO\bin\Debug\TelasRastreamento\2-4-TelaNomeCliente.htm";
         private string TelaNomeCliente_2_4 = @"C:\Users\MARQUES\Documents\Visual Studio 2010\Projects\SISAPO\SISAPO\bin\Debug\TelasRastreamento\Rastreamento_Unificado_htm.htm";
 
-        private string enderecoSRO = @"http://websro2/rastreamento/sro?opcao=PESQUISA&objetos=";
+        //private string enderecoSRO = @"http://websro2/rastreamento/sro?opcao=PESQUISA&objetos=";
+		//private string enderecoSRO = @"https://app.correiosnet.int/rastreamento/sro?opcao=PESQUISA&objetos=";
+		private string enderecoSRO = @"" + Configuracoes.EnderecosSRO["EnderecoSROPorObjeto"].ToString();
 
         public FormularioAtualizacaoObjetosAguardandoRetirada(string codigoObjetoIniciado)
         {

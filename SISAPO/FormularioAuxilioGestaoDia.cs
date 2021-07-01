@@ -290,7 +290,7 @@ namespace SISAPO
             {
                 formularioSRORastreamentoUnificado.WindowState = FormWindowState.Normal;
                 formularioSRORastreamentoUnificado.StartPosition = FormStartPosition.CenterScreen;
-                formularioSRORastreamentoUnificado.Text = string.Format(@"SRO - Rastreamento Unificado - http://websro2.correiosnet.int/rastreamento/sro?opcao=PESQUISA&objetos={0}", CodigoObjeto);
+                formularioSRORastreamentoUnificado.Text = string.Format(@"SRO - Rastreamento Unificado - {0}{1}", Configuracoes.EnderecosSRO["EnderecoSROPorObjeto"].ToString(), CodigoObjeto);
                 formularioSRORastreamentoUnificado.ShowDialog();
             }
         }

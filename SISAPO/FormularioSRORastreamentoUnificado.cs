@@ -15,7 +15,9 @@ namespace SISAPO
         //private TipoAmbiente tipoAmbiente = TipoAmbiente.Producao;
         //private enum TipoAmbiente { Producao, Desenvolvimento }
         private static StringBuilder textoConsulta = new StringBuilder();
-        private string enderecoSRO = @"http://websro2/rastreamento/sro";
+        //private string enderecoSRO = @"http://websro2/rastreamento/sro";
+        //private string enderecoSRO = @"https://app.correiosnet.int/rastreamento/sro";
+        private string enderecoSRO = @"" + Configuracoes.EnderecosSRO["EnderecoSRO"].ToString();
         private string enderecoSRODesenvolvimento = @"C:\Users\MARQUES\Documents\visual studio 2010\Projects\SISAPO\SISAPO\bin\Debug\TelasRastreamento\1-1-TelaRastreamento.htm";
         public bool detalhamentoObjetoGridView = false;
 
@@ -40,7 +42,8 @@ namespace SISAPO
                 webBrowser1.Url = new Uri(enderecoSRODesenvolvimento);
             if (Configuracoes.TipoAmbiente == TipoAmbiente.Producao)
             {
-                string link = string.Format(@"http://websro2.correiosnet.int/rastreamento/sro?opcao=PESQUISA&objetos={0}", CodigoRastreamento);
+                //string link = string.Format(@"http://websro2.correiosnet.int/rastreamento/sro?opcao=PESQUISA&objetos={0}", CodigoRastreamento);
+                string link = string.Format(@"{0}{1}", Configuracoes.EnderecosSRO["EnderecoSROPorObjeto"].ToString(), CodigoRastreamento);
                 webBrowser1.Url = new Uri(link);
             }
         }

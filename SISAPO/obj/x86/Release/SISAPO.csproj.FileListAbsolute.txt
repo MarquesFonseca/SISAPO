@@ -1,57 +1,3 @@
-C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\bin\Release\SISAPO.exe.config
-C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\bin\Release\SISAPO.exe.manifest
-C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\bin\Release\SISAPO.application
-C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\bin\Release\SISAPO.exe
-C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\bin\Release\SISAPO.pdb
-C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\bin\Release\Base.dll
-C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\bin\Release\FirebirdSql.Data.FirebirdClient.dll
-C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\bin\Release\FormularioModelo.dll
-C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\bin\Release\Ionic.Utils.Zip.dll
-C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\bin\Release\Microsoft.Practices.EnterpriseLibrary.Validation.dll
-C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\bin\Release\Microsoft.VisualBasic.PowerPacks.Vs.dll
-C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\bin\Release\Mono.Security.dll
-C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\bin\Release\MySql.Data.dll
-C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\bin\Release\MySql.Web.dll
-C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\bin\Release\Npgsql.dll
-C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\bin\Release\Release.dll
-C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\bin\Release\System.Data.SqlServerCe.dll
-C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\bin\Release\Microsoft.VisualBasic.PowerPacks.Vs.xml
-C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioAtualizacaoObjetosCompleto.resources
-C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioAtualizacaoObjetosRequeridosJaEntregues.resources
-C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioAtualizacaoObjetosDestinatarioAusente.resources
-C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioCoordenadasExibicaoMapa.resources
-C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioImpressaoAuxilioGestaoDia.resources
-C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioAtualizacaoObjetosSaiuParaEntrega.resources
-C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioAtualizacaoObjetosPostados.resources
-C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioAlteracaoObjeto.resources
-C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioHistoricoConsulta.resources
-C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioImpressaoEntregaAgruparObjetos.resources
-C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioImpressaoEntregaObjetosModelo2.resources
-C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioImpressaoEntregaObjetosModelo1.resources
-C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioImpressaoEntregaObjetosOpcoesImpressao.resources
-C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioOpcoes.resources
-C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioSobre.resources
-C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioCadastroObjetos.resources
-C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioAtualizacaoObjetosAguardandoRetirada.resources
-C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioPrincipal.resources
-C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioConsulta.resources
-C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioSRORastreamentoUnificado.resources
-C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioAuxilioGestaoDia.resources
-C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormWaiting.resources
-C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\obj\x86\Release\SISAPO.Properties.Resources.resources
-C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\obj\x86\Release\SISAPO.WaitForm.resources
-C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\obj\x86\Release\SISAPO.csproj.GenerateResource.Cache
-C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\obj\x86\Release\SISAPO.exe.manifest
-C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\obj\x86\Release\SISAPO.application
-C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\obj\x86\Release\SISAPO.exe
-C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\obj\x86\Release\SISAPO.pdb
-C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioImpressaoEntregaObjetosOpcoesImpressao2.resources
-C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\obj\x86\Release\SISAPO.csprojResolveAssemblyReference.cache
-C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioImpressaoAvisosChegada.resources
-C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioAlteracaoTiposPostaisMassa.resources
-C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioAuxilioGestaoDiaNovo.resources
-C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioCadastroTiposPostais.resources
-C:\Users\MARQUES\Documents\Visual Studio 2015\Projects\SISAPO\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioTiposPostais.resources
 C:\Projetos\SISAPO\SISAPO\bin\Release\SISAPO.exe.config
 C:\Projetos\SISAPO\SISAPO\bin\Release\SISAPO.exe.manifest
 C:\Projetos\SISAPO\SISAPO\bin\Release\SISAPO.application
@@ -71,6 +17,7 @@ C:\Projetos\SISAPO\SISAPO\bin\Release\Release.dll
 C:\Projetos\SISAPO\SISAPO\bin\Release\System.Data.SqlServerCe.dll
 C:\Projetos\SISAPO\SISAPO\bin\Release\Microsoft.VisualBasic.PowerPacks.Vs.xml
 C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.csprojResolveAssemblyReference.cache
+C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioAlterarSituacaoItensSelecionados.resources
 C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioAdicionarItemObjeto.resources
 C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioAlteracaoEnderecoObjeto.resources
 C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioAlteracaoTiposPostaisMassa.resources
@@ -81,6 +28,7 @@ C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioAuxilioGestaoDiaNovo.
 C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioCadastroTiposPostais.resources
 C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioConsulta.resources
 C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioCoordenadasExibicaoMapa.resources
+C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioImpressaoTestePDF.resources
 C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioImpressaoAuxilioGestaoDiaAgrupados.resources
 C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioImpressaoAuxilioGestaoDia.resources
 C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioAtualizacaoObjetosSaiuParaEntrega.resources
@@ -109,4 +57,3 @@ C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.exe.manifest
 C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.application
 C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.exe
 C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.pdb
-C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioImpressaoTestePDF.resources

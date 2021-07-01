@@ -91,7 +91,7 @@ namespace SISAPO
 
                 Configuracoes.VerificaSquemaBancoDados();
                 Configuracoes.DadosAgencia = Configuracoes.RetornaDadosAgencia();
-                
+                Configuracoes.EnderecosSRO = Configuracoes.RetornaEnderecosSRO();
 
                 //Configuracoes.MetodoDeTesteQualquer();
 

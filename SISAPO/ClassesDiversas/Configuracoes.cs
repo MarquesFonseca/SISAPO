@@ -362,6 +362,10 @@ namespace SISAPO.ClassesDiversas
             CriaColuna("TabelaConfiguracoesSistema", "EnderecoAgenciaLocal", "TEXT(255) NULL DEFAULT NULL");//EnderecoAgenciaLocal
             CriaColuna("TabelaConfiguracoesSistema", "DataInicialPeriodoExibicaoConsulta", "DATETIME NULL DEFAULT NULL");//DataInicialPeriodoExibicaoConsulta
             CriaColuna("TabelaConfiguracoesSistema", "DataFinalPeriodoExibicaoConsulta", "DATETIME NULL DEFAULT NULL");//DataFinalPeriodoExibicaoConsulta
+            CriaColuna("TabelaConfiguracoesSistema", "EnderecoSRO", "TEXT(255) NULL DEFAULT NULL");//EnderecoSRO
+            CriaColuna("TabelaConfiguracoesSistema", "EnderecoSROPorObjeto", "TEXT(255) NULL DEFAULT NULL");//EnderecoSROPorObjeto
+            VerificaCamposEnderecoSRO();
+
 
 
             CriaColuna("TabelaConfiguracoesSistema", "ExibirObjetosEmCaixaPostalNaPesquisa", "YESNO NULL DEFAULT 1");//ExibirObjetosEmCaixaPostalNaPesquisa
@@ -458,6 +462,26 @@ namespace SISAPO.ClassesDiversas
                 throw new NotImplementedException();
             }
 
+        }
+
+        public static DataRow EnderecosSRO { get; set; }
+        public static DataRow RetornaEnderecosSRO()
+        {
+            DataRow drRetornoEnderecosSRO;
+            try
+            {
+                using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
+                {
+                    if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return null; }
+
+                    drRetornoEnderecosSRO = dao.RetornaDataRow("SELECT EnderecoSRO, EnderecoSROPorObjeto FROM TabelaConfiguracoesSistema");
+                }
+                return drRetornoEnderecosSRO;
+            }
+            catch (Exception)
+            {
+                throw new NotImplementedException();
+            }
         }
 
         private static void CriaTiposPostaisIniciais()
@@ -1158,6 +1182,35 @@ namespace SISAPO.ClassesDiversas
             {
                 // Handle your ERRORS!
                 return false;
+            }
+        }
+
+        private static void VerificaCamposEnderecoSRO()
+        {
+            using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
+            {
+                if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+
+                DataRow RetornoEnderecosSRO = dao.RetornaDataRow("SELECT EnderecoSRO, EnderecoSROPorObjeto FROM TabelaConfiguracoesSistema");
+                string EnderecoSRO = RetornoEnderecosSRO["EnderecoSRO"].ToString();
+                string EnderecoSROPorObjeto = RetornoEnderecosSRO["EnderecoSROPorObjeto"].ToString();
+
+                if (string.IsNullOrEmpty(EnderecoSRO))
+                {
+                    EnderecoSRO = "http://websro2/rastreamento/sro";
+                    List<Parametros> pr = new List<Parametros>() {
+                            new Parametros() { Nome = "@EnderecoSRO", Tipo = TipoCampo.Text, Valor = EnderecoSRO }
+                        };
+                    dao.ExecutaSQL("UPDATE TabelaConfiguracoesSistema SET EnderecoSRO = @EnderecoSRO", pr);
+                }
+                if (string.IsNullOrEmpty(EnderecoSROPorObjeto))
+                {
+                    EnderecoSROPorObjeto = "http://websro2.correiosnet.int/rastreamento/sro?opcao=PESQUISA&objetos=";
+                    List<Parametros> pr = new List<Parametros>() {
+                            new Parametros() { Nome = "@EnderecoSROPorObjeto", Tipo = TipoCampo.Text, Valor = EnderecoSROPorObjeto }
+                        };
+                    dao.ExecutaSQL("UPDATE TabelaConfiguracoesSistema SET EnderecoSROPorObjeto = @EnderecoSROPorObjeto", pr);
+                }
             }
         }
 

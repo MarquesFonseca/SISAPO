@@ -285,7 +285,8 @@ namespace SISAPO
             {
                 formularioSRORastreamentoUnificado.WindowState = FormWindowState.Normal;
                 formularioSRORastreamentoUnificado.StartPosition = FormStartPosition.CenterScreen;
-                formularioSRORastreamentoUnificado.Text = string.Format(@"SRO - Rastreamento Unificado - http://websro2.correiosnet.int/rastreamento/sro?opcao=PESQUISA&objetos={0}", TxtPesquisa.Text);
+                //formularioSRORastreamentoUnificado.Text = string.Format(@"SRO - Rastreamento Unificado - http://websro2.correiosnet.int/rastreamento/sro?opcao=PESQUISA&objetos={0}", TxtPesquisa.Text);
+                formularioSRORastreamentoUnificado.Text = string.Format(@"SRO - Rastreamento Unificado - {0}{1}", Configuracoes.EnderecosSRO["EnderecoSROPorObjeto"].ToString(), TxtPesquisa.Text);
                 formularioSRORastreamentoUnificado.ShowDialog();
             }
         }
@@ -1419,6 +1420,75 @@ namespace SISAPO
         private void imprimirAvisosDeChegadaSelecionadosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FormularioPrincipal.RetornaComponentesFormularioPrincipal().imprimirAvisosDeChegadaSelecionadosToolStripMenuItem_Click(sender, e);
+
+
         }
+
+        private void alterarSituaçãoDeItensSelecionadosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count == 0) return;
+
+            FormularioAlterarSituacaoItensSelecionados formularioAlterarSituacaoItensSelecionados = new FormularioAlterarSituacaoItensSelecionados();
+            formularioAlterarSituacaoItensSelecionados.ShowDialog();
+
+            if (string.IsNullOrEmpty(formularioAlterarSituacaoItensSelecionados.itemMotivoBaixaSelecionado)) return;
+
+            List<string> ListaGridSelecaoAtual = new List<string>();
+
+            for (int i = this.dataGridView1.SelectedRows.Count - 1; i >= 0; i--)
+            {
+                bool existe = ListaGridSelecaoAtual.AsEnumerable().Any(t => t == this.dataGridView1.SelectedRows[i].Cells["codigoObjetoDataGridViewTextBoxColumn"].Value.ToString());
+                if (!existe)
+                    ListaGridSelecaoAtual.Add(this.dataGridView1.SelectedRows[i].Cells["codigoObjetoDataGridViewTextBoxColumn"].Value.ToString());
+            }
+
+            if (ListaGridSelecaoAtual.Count == 0) return;
+
+            FormularioConsulta.RetornaComponentesFormularioConsulta().AlterarSituacaoItensSelecionados(ListaGridSelecaoAtual, formularioAlterarSituacaoItensSelecionados.itemMotivoBaixaSelecionado);
+
+            if (Mensagens.Pergunta("Itens atualizado com sucesso! Deseja atualizar grid?") == System.Windows.Forms.DialogResult.Yes)
+            {
+                if (Application.OpenForms["FormularioConsulta"] != null) //verifica se está aberto
+                    FormularioConsulta.RetornaComponentesFormularioConsulta().ConsultaTodosNaoEntreguesOrdenadoNome();
+
+                FormularioPrincipal.RetornaComponentesFormularioPrincipal().BuscaNovoStatusQuantidadeNaoAtualizados();
+            }
+        }
+
+        public void AlterarSituacaoItensSelecionados(List<string> ListaCodigosGrid, string MotivoBaixaInformado)
+        {
+            try
+            {
+                waitForm.Show(this);
+                foreach (string itemCodigo in ListaCodigosGrid)
+                {
+                    using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
+                    {
+                        if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+
+                        string dataHoje = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+                        string dataModificacaoRetornada = dao.RetornaValor("SELECT DataModificacao FROM TabelaObjetosSROLocal WHERE (CodigoObjeto = '" + itemCodigo +"')").ToString();
+                        if (string.IsNullOrEmpty(dataModificacaoRetornada))
+                            dataModificacaoRetornada = dataHoje;
+
+                        List<Parametros> pr = new List<Parametros>() {
+                            new Parametros() { Nome = "@DataModificacao", Tipo = TipoCampo.Text, Valor = dataModificacaoRetornada },
+                            new Parametros() { Nome = "@Situacao", Tipo = TipoCampo.Text, Valor = MotivoBaixaInformado },
+                            new Parametros() { Nome = "@ObjetoEntregue", Tipo = TipoCampo.Boolean, Valor = true },
+
+                            new Parametros() { Nome = "@CodigoObjeto", Tipo = TipoCampo.Text, Valor = itemCodigo }
+                        };
+                        dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET DataModificacao = @DataModificacao, Situacao = @Situacao, ObjetoEntregue = @ObjetoEntregue WHERE (CodigoObjeto = @CodigoObjeto)", pr);
+                    }
+                }
+                waitForm.Close();
+            }
+            catch (Exception EX)
+            {
+                Mensagens.Erro("Ocorreu um erro inesperado ao gravar. \nErro: " + EX.Message);
+            }
+        }
+
+        
     }
 }
