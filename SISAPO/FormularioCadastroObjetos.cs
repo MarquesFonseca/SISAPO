@@ -284,7 +284,7 @@ namespace SISAPO
 
                         //existe na base de dados
                         dao.ExecutaSQL(string.Format("UPDATE TabelaObjetosSROLocal SET DataLancamento = @DataLancamento, DataModificacao = @DataModificacao, Situacao = @Situacao, Atualizado = @Atualizado, ObjetoEntregue = @ObjetoEntregue, TipoPostalServico = @TipoPostalServico, TipoPostalSiglaCodigo = @TipoPostalSiglaCodigo, TipoPostalNomeSiglaCodigo = @TipoPostalNomeSiglaCodigo, TipoPostalPrazoDiasCorridosRegulamentado = @TipoPostalPrazoDiasCorridosRegulamentado WHERE (CodigoObjeto = @CodigoObjeto)"), new List<Parametros>(){
-                                            new Parametros("@DataLancamento", TipoCampo.Text, linhaItemDataLancamento),
+                                            new Parametros("@DataLancamento", TipoCampo.Text, string.IsNullOrEmpty(linhaItemDataLancamento) ? DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss") : linhaItemDataLancamento),
                                             new Parametros("@DataModificacao", TipoCampo.Text, linhaItemDataModificacao),
                                             new Parametros("@Situacao", TipoCampo.Text, linhaItemSituacao),
                                             new Parametros("@Atualizado",TipoCampo.Boolean, jaCadastrado.Tables[0].Rows[0]["NomeCliente"].ToString() == "" ? false : true),
@@ -304,7 +304,7 @@ namespace SISAPO
                                     new Parametros() { Nome = "CodigoObjeto", Tipo = TipoCampo.Text, Valor = linhaItemCodigoObjeto },
                                     new Parametros() { Nome = "CodigoLdi", Tipo = TipoCampo.Text, Valor = "" },
                                     new Parametros() { Nome = "NomeCliente", Tipo = TipoCampo.Text, Valor = "" },
-                                    new Parametros() { Nome = "DataLancamento", Tipo = TipoCampo.Text, Valor = linhaItemDataLancamento },
+                                    new Parametros() { Nome = "DataLancamento", Tipo = TipoCampo.Text, Valor = string.IsNullOrEmpty(linhaItemDataLancamento) ? DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss") : linhaItemDataLancamento},
                                     new Parametros() { Nome = "DataModificacao", Tipo = TipoCampo.Text, Valor = linhaItemDataModificacao },
                                     new Parametros() { Nome = "Situacao", Tipo = TipoCampo.Text, Valor = linhaItemSituacao },
                                     new Parametros() { Nome = "Atualizado", Tipo = TipoCampo.Boolean, Valor = false },

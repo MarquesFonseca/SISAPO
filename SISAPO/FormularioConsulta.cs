@@ -675,16 +675,7 @@ namespace SISAPO
             waitForm.Close();
         }
 
-        public void MarcarSelecionadosComoNaoAtualizado()
-        {
-            //using (FormWaiting frm = new FormWaiting(ProcessandoMarcarSelecionadosComoNaoAtualizado))
-            //{
-            //    frm.ShowDialog(this);
-            //}
-            ProcessandoMarcarSelecionadosComoNaoAtualizado();
-        }
-
-        void ProcessandoMarcarSelecionadosComoNaoAtualizado()
+        public void ProcessandoMarcarSelecionadosComoNaoAtualizado()
         {
             waitForm.Show(this);
             using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
@@ -1467,7 +1458,7 @@ namespace SISAPO
                         if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
 
                         string dataHoje = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
-                        string dataModificacaoRetornada = dao.RetornaValor("SELECT DataModificacao FROM TabelaObjetosSROLocal WHERE (CodigoObjeto = '" + itemCodigo +"')").ToString();
+                        string dataModificacaoRetornada = dao.RetornaValor("SELECT DataModificacao FROM TabelaObjetosSROLocal WHERE (CodigoObjeto = '" + itemCodigo + "')").ToString();
                         if (string.IsNullOrEmpty(dataModificacaoRetornada))
                             dataModificacaoRetornada = dataHoje;
 
@@ -1489,6 +1480,10 @@ namespace SISAPO
             }
         }
 
-        
+        private void AtualizarObjetosSelecionadosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormularioPrincipal.RetornaComponentesFormularioPrincipal().marcarSelecionadosComoNaoAtualizadoToolStripMenuItem_Click(sender, e);
+            FormularioPrincipal.RetornaComponentesFormularioPrincipal().atualizarNovosObjetosToolStripMenuItem_Click(sender, e);
+        }
     }
 }

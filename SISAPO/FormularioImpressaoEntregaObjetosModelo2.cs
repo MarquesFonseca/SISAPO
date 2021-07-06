@@ -208,6 +208,7 @@ namespace SISAPO
                     dr["CodigoObjeto"].ToString().Substring(10, 1),
                     dr["CodigoObjeto"].ToString().Substring(11, 2));
                     string CodigoLdi = dr["CodigoLdi"].ToString();
+                    CodigoLdi = string.IsNullOrEmpty(CodigoLdi) ? "000000000000" : CodigoLdi;
                     string Comentario = dr["Comentario"].ToString();
                     string NomeCliente = dr["NomeCliente"].ToString();
                     DateTime DataLancamento = Convert.ToDateTime(dr["DataLancamento"]);
@@ -234,7 +235,7 @@ namespace SISAPO
                         FormularioPrincipal.RetornaComponentesFormularioPrincipal().timerAtualizacaoNovosRegistros.Start();
                         contador = contador - 1;
                         continue;
-                    }                    
+                    }
 
                     Html.AppendLine("");
                     Html.AppendLine("	    <!-- Inicia objeto [" + CodigoObjeto + "] -->");

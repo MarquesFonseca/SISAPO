@@ -190,8 +190,12 @@ waitForm.Close();
             this.Close();
         }
 
-        private void ObjetosComPrazoGuardaVencido_KeyDown(object sender, KeyEventArgs e)
+        private void FormularioAuxilioGestaoDiaNovo_KeyDown(object sender, KeyEventArgs e)
         {
+            if (e.Control && e.KeyCode == Keys.P)
+            {
+                BtnImprimirListaAtual_Click(sender, e);
+            }
             if (e.KeyCode == Keys.Escape)
             {
                 this.Close();
@@ -355,7 +359,7 @@ waitForm.Close();
             stringSQL.AppendLine("FROM TabelaObjetosSROLocal                                                                                                                                                                                                                                                                                                                                 ");
             stringSQL.AppendLine("WHERE (TabelaObjetosSROLocal.ObjetoEntregue = FALSE)                                                                                                                                                                                                                                                                                                       ");
             stringSQL.AppendLine(") AS ObjetosNaoEntregues ");
-            return stringSQL;                                                                                                                                                                                                                                          
+            return stringSQL;
         }
 
         private DataTable RetornaListaObjetosNaoEntregues(string filtrosAdicionais)
@@ -788,24 +792,8 @@ waitForm.Close();
 
             if (string.IsNullOrEmpty(formularioAlterarSituacaoItensSelecionados.itemMotivoBaixaSelecionado)) return;
 
-            List<string> ListaGridSelecaoAtual = new List<string>();
-
-            //dataGridView1DataGridViewCell cell = DataGridView1.SelectedCells[0]
-            List<int> indicesLinhasSelecionadas = new List<int>();
-            for (int i = this.dataGridView1.SelectedCells.Count - 1; i >= 0; i--)
-            {
-                DataGridViewCell cell = this.dataGridView1.SelectedCells[i];
-                int rowIndex = cell.RowIndex;
-                bool existe = indicesLinhasSelecionadas.AsEnumerable().Any(T => T == rowIndex);
-                if (!existe)
-                    indicesLinhasSelecionadas.Add(rowIndex);
-            }
-
-            foreach (int rowIndex in indicesLinhasSelecionadas)
-            {
-                string CodigoAtual = this.dataGridView1.Rows[rowIndex].Cells["CodigoObjeto"].Value.ToString();
-                ListaGridSelecaoAtual.Add(CodigoAtual.ToUpper().Trim());
-            }
+            List<string> ListaGridSelecaoAtual = RetornaListaCodigosGridSelecaoAtual(dataGridView1);
+            if (ListaGridSelecaoAtual.Count == 0) return;
 
             FormularioConsulta.RetornaComponentesFormularioConsulta().AlterarSituacaoItensSelecionados(ListaGridSelecaoAtual, formularioAlterarSituacaoItensSelecionados.itemMotivoBaixaSelecionado);
 
@@ -817,6 +805,61 @@ waitForm.Close();
                     BtnColarConteudoJaCopiado_Click(null, null);
             }
 
+        }
+
+        private List<string> RetornaListaCodigosGridSelecaoAtual(DataGridView Grid)
+        {
+            List<string> ListaGridSelecaoAtual = new List<string>();
+
+            List<int> indicesLinhasSelecionadas = new List<int>();
+            for (int i = this.dataGridView1.SelectedCells.Count - 1; i >= 0; i--)
+            {
+                DataGridViewCell cell = this.dataGridView1.SelectedCells[i];
+                int rowIndex = cell.RowIndex;
+                bool existe = indicesLinhasSelecionadas.AsEnumerable().Any(T => T == rowIndex);
+                if (!existe)
+                {
+                    indicesLinhasSelecionadas.Add(rowIndex);
+                    string CodigoAtual = this.dataGridView1.Rows[rowIndex].Cells["CodigoObjeto"].Value.ToString();
+                    ListaGridSelecaoAtual.Add(CodigoAtual.ToUpper().Trim());
+                }
+            }
+            return ListaGridSelecaoAtual;
+        }
+
+        private void AtualizarObjetosSelecionadosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ProcessandoMarcarSelecionadosComoNaoAtualizado();
+        }
+
+        public void ProcessandoMarcarSelecionadosComoNaoAtualizado()
+        {
+            if (dataGridView1.RowCount == 0) return;
+
+            waitForm.Show(this);
+
+            List<string> ListaGridSelecaoAtual = RetornaListaCodigosGridSelecaoAtual(dataGridView1);
+            if (ListaGridSelecaoAtual.Count == 0)
+            {
+                waitForm.Close();
+                return;
+            }
+            foreach (string itemCodigo in ListaGridSelecaoAtual)
+            {
+                using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
+                {
+                    if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+                    List<Parametros> pr = new List<Parametros>() {
+                            new Parametros() { Nome = "@Atualizado", Tipo = TipoCampo.Boolean, Valor = false },
+                            new Parametros() { Nome = "@CodigoObjeto", Tipo = TipoCampo.Text, Valor = itemCodigo }
+                        };
+                    dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET Atualizado = @Atualizado  WHERE (CodigoObjeto = @CodigoObjeto)", pr);
+                }
+            }
+
+            waitForm.Close();
+
+            FormularioPrincipal.RetornaComponentesFormularioPrincipal().atualizarNovosObjetosToolStripMenuItem_Click(null, null);
         }
     }
 }

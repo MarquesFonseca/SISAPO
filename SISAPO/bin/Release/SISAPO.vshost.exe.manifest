@@ -175,14 +175,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SISAPO.exe" size="13632512">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SISAPO.exe" size="13634048">
       <assemblyIdentity name="SISAPO" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>Sq3HDXTSDVRydr6MzVlDW/nMvBg=</dsig:DigestValue>
+        <dsig:DigestValue>0sWdDCYa4dVSIdM8OLleYB6YydM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -216,13 +216,13 @@
       <dsig:DigestValue>O2lsvruozBhzGW3nCQFdxTbwvSg=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="DataSetTabelaObjetosSROLocal_xsd.txt" size="171099">
+  <file name="DataSetTabelaObjetosSROLocal_xsd.txt" size="185109">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>zrp/lvmjeUhUXg5iIcElOD75gyg=</dsig:DigestValue>
+      <dsig:DigestValue>ZHnvHoO6jus7Lvmt+DmpOPil25k=</dsig:DigestValue>
     </hash>
   </file>
   <file name="FormularioAtualizacaoObjetoAguardandoRetirada18052021erroComNovasModificacoes.txt" size="38711">

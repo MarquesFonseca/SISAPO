@@ -87,14 +87,16 @@
             this.PrazoTipoClassificacao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DataVencimento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.QtdDiasVencidos = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.alterarSituacaoItensToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.AtualizarObjetosSelecionadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bindingSourceObjetosNaoEntregues = new System.Windows.Forms.BindingSource(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.DataInicial_dateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox = new System.Windows.Forms.CheckBox();
             this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox = new System.Windows.Forms.CheckBox();
-            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.alterarSituacaoItensToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.panel3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.panel7.SuspendLayout();
@@ -102,10 +104,10 @@
             this.groupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.contextMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceObjetosNaoEntregues)).BeginInit();
             this.panel1.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel3
@@ -255,10 +257,9 @@
             this.BtnImprimirListaAtual.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnImprimirListaAtual.Location = new System.Drawing.Point(15, 17);
             this.BtnImprimirListaAtual.Name = "BtnImprimirListaAtual";
-            this.BtnImprimirListaAtual.Size = new System.Drawing.Size(196, 38);
+            this.BtnImprimirListaAtual.Size = new System.Drawing.Size(196, 57);
             this.BtnImprimirListaAtual.TabIndex = 0;
-            this.BtnImprimirListaAtual.Text = "&Imprimir lista atual";
-            this.BtnImprimirListaAtual.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnImprimirListaAtual.Text = "      &Imprimir lista atual       [Ctrl + P]";
             this.BtnImprimirListaAtual.UseVisualStyleBackColor = true;
             this.BtnImprimirListaAtual.Click += new System.EventHandler(this.BtnImprimirListaAtual_Click);
             // 
@@ -272,7 +273,7 @@
             this.groupBox2.Controls.Add(this.FiltrarPorPrazosVENCENDOHOJECheckBox);
             this.groupBox2.Controls.Add(this.FiltrarPorPrazosVENCIDOSCheckBox);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(4, 61);
+            this.groupBox2.Location = new System.Drawing.Point(4, 73);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(214, 119);
             this.groupBox2.TabIndex = 1;
@@ -350,9 +351,9 @@
             this.groupBox1.Controls.Add(this.FiltrarPorClassificacaoSEDEXCheckBox);
             this.groupBox1.Controls.Add(this.FiltrarPorClassificacaoPACCCheckBox);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(4, 186);
+            this.groupBox1.Location = new System.Drawing.Point(4, 193);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(214, 119);
+            this.groupBox1.Size = new System.Drawing.Size(214, 118);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filtrar por classificação";
@@ -647,6 +648,36 @@
             this.QtdDiasVencidos.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.QtdDiasVencidos.Width = 90;
             // 
+            // contextMenuStrip
+            // 
+            this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.alterarSituacaoItensToolStripMenuItem1,
+            this.toolStripSeparator1,
+            this.AtualizarObjetosSelecionadosToolStripMenuItem});
+            this.contextMenuStrip.Name = "contextMenuStripImprimirListaEntrega";
+            this.contextMenuStrip.Size = new System.Drawing.Size(281, 54);
+            // 
+            // alterarSituacaoItensToolStripMenuItem1
+            // 
+            this.alterarSituacaoItensToolStripMenuItem1.Image = global::SISAPO.Properties.Resources.CadastroObjetos;
+            this.alterarSituacaoItensToolStripMenuItem1.Name = "alterarSituacaoItensToolStripMenuItem1";
+            this.alterarSituacaoItensToolStripMenuItem1.Size = new System.Drawing.Size(280, 22);
+            this.alterarSituacaoItensToolStripMenuItem1.Text = "Alterar situação de itens (Selecionados)";
+            this.alterarSituacaoItensToolStripMenuItem1.Click += new System.EventHandler(this.alterarSituacaoItensToolStripMenuItem1_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(277, 6);
+            // 
+            // AtualizarObjetosSelecionadosToolStripMenuItem
+            // 
+            this.AtualizarObjetosSelecionadosToolStripMenuItem.Image = global::SISAPO.Properties.Resources.AtualizarListaObjetos;
+            this.AtualizarObjetosSelecionadosToolStripMenuItem.Name = "AtualizarObjetosSelecionadosToolStripMenuItem";
+            this.AtualizarObjetosSelecionadosToolStripMenuItem.Size = new System.Drawing.Size(280, 22);
+            this.AtualizarObjetosSelecionadosToolStripMenuItem.Text = "Atualizar Objeto(s) (Selecionados)";
+            this.AtualizarObjetosSelecionadosToolStripMenuItem.Click += new System.EventHandler(this.AtualizarObjetosSelecionadosToolStripMenuItem_Click);
+            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.groupBox3);
@@ -666,9 +697,9 @@
             this.groupBox3.Controls.Add(this.FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox);
             this.groupBox3.Controls.Add(this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(4, 311);
+            this.groupBox3.Location = new System.Drawing.Point(4, 312);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(214, 144);
+            this.groupBox3.Size = new System.Drawing.Size(214, 133);
             this.groupBox3.TabIndex = 3;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Mais Filtros";
@@ -679,7 +710,7 @@
             this.DataInicial_dateTimePicker.Enabled = false;
             this.DataInicial_dateTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DataInicial_dateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DataInicial_dateTimePicker.Location = new System.Drawing.Point(36, 89);
+            this.DataInicial_dateTimePicker.Location = new System.Drawing.Point(36, 84);
             this.DataInicial_dateTimePicker.Name = "DataInicial_dateTimePicker";
             this.DataInicial_dateTimePicker.Size = new System.Drawing.Size(172, 31);
             this.DataInicial_dateTimePicker.TabIndex = 2;
@@ -689,7 +720,7 @@
             // 
             this.FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox.AutoSize = true;
             this.FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox.Enabled = false;
-            this.FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox.Location = new System.Drawing.Point(15, 59);
+            this.FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox.Location = new System.Drawing.Point(15, 54);
             this.FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox.Name = "FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox";
             this.FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox.Size = new System.Drawing.Size(130, 24);
             this.FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox.TabIndex = 1;
@@ -701,28 +732,13 @@
             // 
             this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.AutoSize = true;
             this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.Enabled = false;
-            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.Location = new System.Drawing.Point(15, 29);
+            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.Location = new System.Drawing.Point(15, 24);
             this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.Name = "FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox";
             this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.Size = new System.Drawing.Size(181, 24);
             this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.TabIndex = 0;
             this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.Text = "Incluir Caixa Postal";
             this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.UseVisualStyleBackColor = true;
             this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.CheckedChanged += new System.EventHandler(this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox_CheckedChanged);
-            // 
-            // contextMenuStrip
-            // 
-            this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.alterarSituacaoItensToolStripMenuItem1});
-            this.contextMenuStrip.Name = "contextMenuStripImprimirListaEntrega";
-            this.contextMenuStrip.Size = new System.Drawing.Size(281, 26);
-            // 
-            // alterarSituacaoItensToolStripMenuItem1
-            // 
-            this.alterarSituacaoItensToolStripMenuItem1.Image = global::SISAPO.Properties.Resources.CadastroObjetos;
-            this.alterarSituacaoItensToolStripMenuItem1.Name = "alterarSituacaoItensToolStripMenuItem1";
-            this.alterarSituacaoItensToolStripMenuItem1.Size = new System.Drawing.Size(280, 22);
-            this.alterarSituacaoItensToolStripMenuItem1.Text = "Alterar situação de itens (Selecionados)";
-            this.alterarSituacaoItensToolStripMenuItem1.Click += new System.EventHandler(this.alterarSituacaoItensToolStripMenuItem1_Click);
             // 
             // FormularioAuxilioGestaoDiaNovo
             // 
@@ -742,7 +758,7 @@
             this.Text = "Formulário de auxílio à gestão do dia";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormularioAuxilioGestaoDiaNovo_FormClosing);
             this.Load += new System.EventHandler(this.FormularioAuxilioGestaoDia_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ObjetosComPrazoGuardaVencido_KeyDown);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormularioAuxilioGestaoDiaNovo_KeyDown);
             this.panel3.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
@@ -754,11 +770,11 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.contextMenuStrip.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceObjetosNaoEntregues)).EndInit();
             this.panel1.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.contextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -814,5 +830,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn QtdDiasVencidos;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem alterarSituacaoItensToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem AtualizarObjetosSelecionadosToolStripMenuItem;
     }
 }

@@ -854,7 +854,7 @@ namespace SISAPO
             }
         }
 
-        private void marcarSelecionadosComoNaoAtualizadoToolStripMenuItem_Click(object sender, EventArgs e)
+        public void marcarSelecionadosComoNaoAtualizadoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FormularioConsulta formularioConsulta;
             foreach (Form item in Application.OpenForms)
@@ -863,11 +863,12 @@ namespace SISAPO
                 {
                     formularioConsulta = (FormularioConsulta)item;
                     //timerAtualizacaoNovosRegistros.Stop();
-                    formularioConsulta.MarcarSelecionadosComoNaoAtualizado();
+                    formularioConsulta.ProcessandoMarcarSelecionadosComoNaoAtualizado();
                     BuscaNovoStatusQuantidadeNaoAtualizados();
                     //timerAtualizacaoNovosRegistros.Start();
                     break;
                 }
+
             }
         }
 

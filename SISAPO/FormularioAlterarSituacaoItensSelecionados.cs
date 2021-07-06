@@ -27,6 +27,7 @@ namespace SISAPO
             itemMotivoBaixaSelecionado = string.Empty;
 
             ListaItensMotivoBaixa = new Dictionary<string, string>();
+            ListaItensMotivoBaixa.Add("0 - DISTRIBUÍDO AO DESTINATÁRIO", "ENTREGUE");
             ListaItensMotivoBaixa.Add("3 - NÃO PROCURADO PELO REMETENTE", "NAO PROCURADO PELO REMETENTE");
             ListaItensMotivoBaixa.Add("4 - RECUSADO", "RECUSADO");
             ListaItensMotivoBaixa.Add("12 - REFUGADO/DESTRUÍDO", "REFUGADO/DESTRUÍDO");

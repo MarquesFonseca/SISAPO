@@ -420,7 +420,7 @@ namespace SISAPO
                                             WHERE CodigoObjeto = @CodigoObjeto ", new List<Parametros>(){
                                             new Parametros("@CodigoLdi", TipoCampo.Text, Ldi),
                                             new Parametros("@NomeCliente", TipoCampo.Text, NomeCliente),
-                                            new Parametros("@DataLancamento", TipoCampo.Text, DataLancamento),
+                                            new Parametros("@DataLancamento", TipoCampo.Text, string.IsNullOrEmpty(DataLancamento) ? DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss") : DataLancamento),
                                             new Parametros("@Atualizado", TipoCampo.Boolean, true),
                                             new Parametros("@CaixaPostal", TipoCampo.Boolean, SeECaixaPostal),
                                             new Parametros("@Comentario", TipoCampo.Text, Comentario),
