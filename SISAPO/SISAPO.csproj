@@ -149,6 +149,9 @@
   <ItemGroup>
     <Compile Include="ClassesDiversas\CriptografiaHelper.cs" />
     <Compile Include="ClassesDiversas\ImportarArquivos.cs" />
+    <Compile Include="DataSetTabelaObjetosSROLocal.cs">
+      <DependentUpon>DataSetTabelaObjetosSROLocal.xsd</DependentUpon>
+    </Compile>
     <Compile Include="FormularioAlterarSituacaoItensSelecionados.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -287,8 +287,6 @@ namespace SISAPO {
             
             private global::System.Data.DataColumn columnNomeCliente;
             
-            private global::System.Data.DataColumn columnDataLancamento;
-            
             private global::System.Data.DataColumn columnDataModificacao;
             
             private global::System.Data.DataColumn columnSituacao;
@@ -336,6 +334,18 @@ namespace SISAPO {
             private global::System.Data.DataColumn columnAgrupadoDestinatarioAusente;
             
             private global::System.Data.DataColumn columnCoordenadasDestinatarioAusente;
+            
+            private global::System.Data.DataColumn columnComentario;
+            
+            private global::System.Data.DataColumn columnTipoPostalServico;
+            
+            private global::System.Data.DataColumn columnTipoPostalSiglaCodigo;
+            
+            private global::System.Data.DataColumn columnTipoPostalNomeSiglaCodigo;
+            
+            private global::System.Data.DataColumn columnTipoPostalPrazoDiasCorridosRegulamentado;
+            
+            private global::System.Data.DataColumn columnDataLancamento;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -399,14 +409,6 @@ namespace SISAPO {
             public global::System.Data.DataColumn NomeClienteColumn {
                 get {
                     return this.columnNomeCliente;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn DataLancamentoColumn {
-                get {
-                    return this.columnDataLancamento;
                 }
             }
             
@@ -604,6 +606,54 @@ namespace SISAPO {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ComentarioColumn {
+                get {
+                    return this.columnComentario;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn TipoPostalServicoColumn {
+                get {
+                    return this.columnTipoPostalServico;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn TipoPostalSiglaCodigoColumn {
+                get {
+                    return this.columnTipoPostalSiglaCodigo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn TipoPostalNomeSiglaCodigoColumn {
+                get {
+                    return this.columnTipoPostalNomeSiglaCodigo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn TipoPostalPrazoDiasCorridosRegulamentadoColumn {
+                get {
+                    return this.columnTipoPostalPrazoDiasCorridosRegulamentado;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn DataLancamentoColumn {
+                get {
+                    return this.columnDataLancamento;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -643,7 +693,6 @@ namespace SISAPO {
                         string CodigoObjeto, 
                         string CodigoLdi, 
                         string NomeCliente, 
-                        System.DateTime DataLancamento, 
                         string DataModificacao, 
                         string Situacao, 
                         bool Atualizado, 
@@ -667,14 +716,19 @@ namespace SISAPO {
                         string LocalidadeLOEC, 
                         string SituacaoDestinatarioAusente, 
                         string AgrupadoDestinatarioAusente, 
-                        string CoordenadasDestinatarioAusente) {
+                        string CoordenadasDestinatarioAusente, 
+                        string Comentario, 
+                        string TipoPostalServico, 
+                        string TipoPostalSiglaCodigo, 
+                        string TipoPostalNomeSiglaCodigo, 
+                        string TipoPostalPrazoDiasCorridosRegulamentado, 
+                        System.DateTime DataLancamento) {
                 TabelaObjetosSROLocalRow rowTabelaObjetosSROLocalRow = ((TabelaObjetosSROLocalRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         CodigoObjeto,
                         CodigoLdi,
                         NomeCliente,
-                        DataLancamento,
                         DataModificacao,
                         Situacao,
                         Atualizado,
@@ -698,7 +752,13 @@ namespace SISAPO {
                         LocalidadeLOEC,
                         SituacaoDestinatarioAusente,
                         AgrupadoDestinatarioAusente,
-                        CoordenadasDestinatarioAusente};
+                        CoordenadasDestinatarioAusente,
+                        Comentario,
+                        TipoPostalServico,
+                        TipoPostalSiglaCodigo,
+                        TipoPostalNomeSiglaCodigo,
+                        TipoPostalPrazoDiasCorridosRegulamentado,
+                        DataLancamento};
                 rowTabelaObjetosSROLocalRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowTabelaObjetosSROLocalRow);
                 return rowTabelaObjetosSROLocalRow;
@@ -732,7 +792,6 @@ namespace SISAPO {
                 this.columnCodigoObjeto = base.Columns["CodigoObjeto"];
                 this.columnCodigoLdi = base.Columns["CodigoLdi"];
                 this.columnNomeCliente = base.Columns["NomeCliente"];
-                this.columnDataLancamento = base.Columns["DataLancamento"];
                 this.columnDataModificacao = base.Columns["DataModificacao"];
                 this.columnSituacao = base.Columns["Situacao"];
                 this.columnAtualizado = base.Columns["Atualizado"];
@@ -757,6 +816,12 @@ namespace SISAPO {
                 this.columnSituacaoDestinatarioAusente = base.Columns["SituacaoDestinatarioAusente"];
                 this.columnAgrupadoDestinatarioAusente = base.Columns["AgrupadoDestinatarioAusente"];
                 this.columnCoordenadasDestinatarioAusente = base.Columns["CoordenadasDestinatarioAusente"];
+                this.columnComentario = base.Columns["Comentario"];
+                this.columnTipoPostalServico = base.Columns["TipoPostalServico"];
+                this.columnTipoPostalSiglaCodigo = base.Columns["TipoPostalSiglaCodigo"];
+                this.columnTipoPostalNomeSiglaCodigo = base.Columns["TipoPostalNomeSiglaCodigo"];
+                this.columnTipoPostalPrazoDiasCorridosRegulamentado = base.Columns["TipoPostalPrazoDiasCorridosRegulamentado"];
+                this.columnDataLancamento = base.Columns["DataLancamento"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -770,8 +835,6 @@ namespace SISAPO {
                 base.Columns.Add(this.columnCodigoLdi);
                 this.columnNomeCliente = new global::System.Data.DataColumn("NomeCliente", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNomeCliente);
-                this.columnDataLancamento = new global::System.Data.DataColumn("DataLancamento", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDataLancamento);
                 this.columnDataModificacao = new global::System.Data.DataColumn("DataModificacao", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDataModificacao);
                 this.columnSituacao = new global::System.Data.DataColumn("Situacao", typeof(string), null, global::System.Data.MappingType.Element);
@@ -820,6 +883,18 @@ namespace SISAPO {
                 base.Columns.Add(this.columnAgrupadoDestinatarioAusente);
                 this.columnCoordenadasDestinatarioAusente = new global::System.Data.DataColumn("CoordenadasDestinatarioAusente", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCoordenadasDestinatarioAusente);
+                this.columnComentario = new global::System.Data.DataColumn("Comentario", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnComentario);
+                this.columnTipoPostalServico = new global::System.Data.DataColumn("TipoPostalServico", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTipoPostalServico);
+                this.columnTipoPostalSiglaCodigo = new global::System.Data.DataColumn("TipoPostalSiglaCodigo", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTipoPostalSiglaCodigo);
+                this.columnTipoPostalNomeSiglaCodigo = new global::System.Data.DataColumn("TipoPostalNomeSiglaCodigo", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTipoPostalNomeSiglaCodigo);
+                this.columnTipoPostalPrazoDiasCorridosRegulamentado = new global::System.Data.DataColumn("TipoPostalPrazoDiasCorridosRegulamentado", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTipoPostalPrazoDiasCorridosRegulamentado);
+                this.columnDataLancamento = new global::System.Data.DataColumn("DataLancamento", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDataLancamento);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnCodigo}, true));
                 this.columnCodigo.AutoIncrement = true;
@@ -850,6 +925,12 @@ namespace SISAPO {
                 this.columnSituacaoDestinatarioAusente.MaxLength = 255;
                 this.columnAgrupadoDestinatarioAusente.MaxLength = 255;
                 this.columnCoordenadasDestinatarioAusente.MaxLength = 255;
+                this.columnComentario.MaxLength = 255;
+                this.columnTipoPostalServico.MaxLength = 255;
+                this.columnTipoPostalSiglaCodigo.MaxLength = 255;
+                this.columnTipoPostalNomeSiglaCodigo.MaxLength = 255;
+                this.columnTipoPostalPrazoDiasCorridosRegulamentado.MaxLength = 255;
+                this.columnDataLancamento.ReadOnly = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1046,23 +1127,6 @@ namespace SISAPO {
                 }
                 set {
                     this[this.tableTabelaObjetosSROLocal.NomeClienteColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public System.DateTime DataLancamento {
-                get {
-                    try {
-                        return ((global::System.DateTime)(this[this.tableTabelaObjetosSROLocal.DataLancamentoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'DataLancamento\' in table \'TabelaObjetosSROLocal\' is DBNull." +
-                                "", e);
-                    }
-                }
-                set {
-                    this[this.tableTabelaObjetosSROLocal.DataLancamentoColumn] = value;
                 }
             }
             
@@ -1463,6 +1527,107 @@ namespace SISAPO {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Comentario {
+                get {
+                    try {
+                        return ((string)(this[this.tableTabelaObjetosSROLocal.ComentarioColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Comentario\' in table \'TabelaObjetosSROLocal\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTabelaObjetosSROLocal.ComentarioColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string TipoPostalServico {
+                get {
+                    try {
+                        return ((string)(this[this.tableTabelaObjetosSROLocal.TipoPostalServicoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'TipoPostalServico\' in table \'TabelaObjetosSROLocal\' is DBNu" +
+                                "ll.", e);
+                    }
+                }
+                set {
+                    this[this.tableTabelaObjetosSROLocal.TipoPostalServicoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string TipoPostalSiglaCodigo {
+                get {
+                    try {
+                        return ((string)(this[this.tableTabelaObjetosSROLocal.TipoPostalSiglaCodigoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'TipoPostalSiglaCodigo\' in table \'TabelaObjetosSROLocal\' is " +
+                                "DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTabelaObjetosSROLocal.TipoPostalSiglaCodigoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string TipoPostalNomeSiglaCodigo {
+                get {
+                    try {
+                        return ((string)(this[this.tableTabelaObjetosSROLocal.TipoPostalNomeSiglaCodigoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'TipoPostalNomeSiglaCodigo\' in table \'TabelaObjetosSROLocal\'" +
+                                " is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTabelaObjetosSROLocal.TipoPostalNomeSiglaCodigoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string TipoPostalPrazoDiasCorridosRegulamentado {
+                get {
+                    try {
+                        return ((string)(this[this.tableTabelaObjetosSROLocal.TipoPostalPrazoDiasCorridosRegulamentadoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'TipoPostalPrazoDiasCorridosRegulamentado\' in table \'TabelaO" +
+                                "bjetosSROLocal\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTabelaObjetosSROLocal.TipoPostalPrazoDiasCorridosRegulamentadoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public System.DateTime DataLancamento {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableTabelaObjetosSROLocal.DataLancamentoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DataLancamento\' in table \'TabelaObjetosSROLocal\' is DBNull." +
+                                "", e);
+                    }
+                }
+                set {
+                    this[this.tableTabelaObjetosSROLocal.DataLancamentoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsCodigoObjetoNull() {
                 return this.IsNull(this.tableTabelaObjetosSROLocal.CodigoObjetoColumn);
             }
@@ -1495,18 +1660,6 @@ namespace SISAPO {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetNomeClienteNull() {
                 this[this.tableTabelaObjetosSROLocal.NomeClienteColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsDataLancamentoNull() {
-                return this.IsNull(this.tableTabelaObjetosSROLocal.DataLancamentoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetDataLancamentoNull() {
-                this[this.tableTabelaObjetosSROLocal.DataLancamentoColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1796,6 +1949,78 @@ namespace SISAPO {
             public void SetCoordenadasDestinatarioAusenteNull() {
                 this[this.tableTabelaObjetosSROLocal.CoordenadasDestinatarioAusenteColumn] = global::System.Convert.DBNull;
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsComentarioNull() {
+                return this.IsNull(this.tableTabelaObjetosSROLocal.ComentarioColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetComentarioNull() {
+                this[this.tableTabelaObjetosSROLocal.ComentarioColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsTipoPostalServicoNull() {
+                return this.IsNull(this.tableTabelaObjetosSROLocal.TipoPostalServicoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetTipoPostalServicoNull() {
+                this[this.tableTabelaObjetosSROLocal.TipoPostalServicoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsTipoPostalSiglaCodigoNull() {
+                return this.IsNull(this.tableTabelaObjetosSROLocal.TipoPostalSiglaCodigoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetTipoPostalSiglaCodigoNull() {
+                this[this.tableTabelaObjetosSROLocal.TipoPostalSiglaCodigoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsTipoPostalNomeSiglaCodigoNull() {
+                return this.IsNull(this.tableTabelaObjetosSROLocal.TipoPostalNomeSiglaCodigoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetTipoPostalNomeSiglaCodigoNull() {
+                this[this.tableTabelaObjetosSROLocal.TipoPostalNomeSiglaCodigoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsTipoPostalPrazoDiasCorridosRegulamentadoNull() {
+                return this.IsNull(this.tableTabelaObjetosSROLocal.TipoPostalPrazoDiasCorridosRegulamentadoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetTipoPostalPrazoDiasCorridosRegulamentadoNull() {
+                this[this.tableTabelaObjetosSROLocal.TipoPostalPrazoDiasCorridosRegulamentadoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsDataLancamentoNull() {
+                return this.IsNull(this.tableTabelaObjetosSROLocal.DataLancamentoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetDataLancamentoNull() {
+                this[this.tableTabelaObjetosSROLocal.DataLancamentoColumn] = global::System.Convert.DBNull;
+            }
         }
         
         /// <summary>
@@ -1961,7 +2186,6 @@ namespace SISAPO.DataSetTabelaObjetosSROLocalTableAdapters {
             tableMapping.ColumnMappings.Add("CodigoObjeto", "CodigoObjeto");
             tableMapping.ColumnMappings.Add("CodigoLdi", "CodigoLdi");
             tableMapping.ColumnMappings.Add("NomeCliente", "NomeCliente");
-            tableMapping.ColumnMappings.Add("DataLancamento", "DataLancamento");
             tableMapping.ColumnMappings.Add("DataModificacao", "DataModificacao");
             tableMapping.ColumnMappings.Add("Situacao", "Situacao");
             tableMapping.ColumnMappings.Add("Atualizado", "Atualizado");
@@ -1986,6 +2210,12 @@ namespace SISAPO.DataSetTabelaObjetosSROLocalTableAdapters {
             tableMapping.ColumnMappings.Add("SituacaoDestinatarioAusente", "SituacaoDestinatarioAusente");
             tableMapping.ColumnMappings.Add("AgrupadoDestinatarioAusente", "AgrupadoDestinatarioAusente");
             tableMapping.ColumnMappings.Add("CoordenadasDestinatarioAusente", "CoordenadasDestinatarioAusente");
+            tableMapping.ColumnMappings.Add("Comentario", "Comentario");
+            tableMapping.ColumnMappings.Add("TipoPostalServico", "TipoPostalServico");
+            tableMapping.ColumnMappings.Add("TipoPostalSiglaCodigo", "TipoPostalSiglaCodigo");
+            tableMapping.ColumnMappings.Add("TipoPostalNomeSiglaCodigo", "TipoPostalNomeSiglaCodigo");
+            tableMapping.ColumnMappings.Add("TipoPostalPrazoDiasCorridosRegulamentado", "TipoPostalPrazoDiasCorridosRegulamentado");
+            tableMapping.ColumnMappings.Add("DataLancamento", "DataLancamento");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
@@ -1994,11 +2224,13 @@ namespace SISAPO.DataSetTabelaObjetosSROLocalTableAdapters {
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("CodigoObjeto", global::System.Data.OleDb.OleDbType.WChar, 255, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "CodigoObjeto", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.InsertCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO `TabelaObjetosSROLocal` (`CodigoObjeto`, `CodigoLdi`, `NomeCliente`, `Situacao`, `Atualizado`, `ObjetoEntregue`, `CaixaPostal`, `UnidadePostagem`, `MunicipioPostagem`, `CriacaoPostagem`, `CepDestinoPostagem`, `ARPostagem`, `MPPostagem`, `DataMaxPrevistaEntregaPostagem`, `UnidadeLOEC`, `MunicipioLOEC`, `CriacaoLOEC`, `CarteiroLOEC`, `DistritoLOEC`, `NumeroLOEC`, `EnderecoLOEC`, `BairroLOEC`, `LocalidadeLOEC`, `SituacaoDestinatarioAusente`, `AgrupadoDestinatarioAusente`, `CoordenadasDestinatarioAusente`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO `TabelaObjetosSROLocal` (`CodigoObjeto`, `CodigoLdi`, `NomeCliente`, `DataLancamento`, `DataModificacao`, `Situacao`, `Atualizado`, `ObjetoEntregue`, `CaixaPostal`, `UnidadePostagem`, `MunicipioPostagem`, `CriacaoPostagem`, `CepDestinoPostagem`, `ARPostagem`, `MPPostagem`, `DataMaxPrevistaEntregaPostagem`, `UnidadeLOEC`, `MunicipioLOEC`, `CriacaoLOEC`, `CarteiroLOEC`, `DistritoLOEC`, `NumeroLOEC`, `EnderecoLOEC`, `BairroLOEC`, `LocalidadeLOEC`, `SituacaoDestinatarioAusente`, `AgrupadoDestinatarioAusente`, `CoordenadasDestinatarioAusente`, `Comentario`, `TipoPostalServico`, `TipoPostalSiglaCodigo`, `TipoPostalNomeSiglaCodigo`, `TipoPostalPrazoDiasCorridosRegulamentado`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("CodigoObjeto", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "CodigoObjeto", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("CodigoLdi", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "CodigoLdi", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("NomeCliente", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "NomeCliente", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("DataLancamento", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DataLancamento", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("DataModificacao", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DataModificacao", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Situacao", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Situacao", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Atualizado", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Atualizado", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("ObjetoEntregue", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ObjetoEntregue", global::System.Data.DataRowVersion.Current, false, null));
@@ -2022,41 +2254,155 @@ namespace SISAPO.DataSetTabelaObjetosSROLocalTableAdapters {
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("SituacaoDestinatarioAusente", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "SituacaoDestinatarioAusente", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("AgrupadoDestinatarioAusente", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "AgrupadoDestinatarioAusente", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("CoordenadasDestinatarioAusente", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "CoordenadasDestinatarioAusente", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Comentario", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Comentario", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("TipoPostalServico", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "TipoPostalServico", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("TipoPostalSiglaCodigo", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "TipoPostalSiglaCodigo", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("TipoPostalNomeSiglaCodigo", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "TipoPostalNomeSiglaCodigo", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("TipoPostalPrazoDiasCorridosRegulamentado", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "TipoPostalPrazoDiasCorridosRegulamentado", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE       TabelaObjetosSROLocal
-SET                CodigoObjeto = ?, CodigoLdi = ?, NomeCliente = ?, Situacao = ?, Atualizado = ?, ObjetoEntregue = ?, CaixaPostal = ?, UnidadePostagem = ?, MunicipioPostagem = ?, CriacaoPostagem = ?, CepDestinoPostagem = ?, 
-                         ARPostagem = ?, MPPostagem = ?, DataMaxPrevistaEntregaPostagem = ?, UnidadeLOEC = ?, MunicipioLOEC = ?, CriacaoLOEC = ?, CarteiroLOEC = ?, DistritoLOEC = ?, NumeroLOEC = ?, EnderecoLOEC = ?, BairroLOEC = ?, 
-                         LocalidadeLOEC = ?, SituacaoDestinatarioAusente = ?, AgrupadoDestinatarioAusente = ?, CoordenadasDestinatarioAusente = ?
-WHERE        (CodigoObjeto = ?)";
+            this._adapter.UpdateCommand.CommandText = "UPDATE `TabelaObjetosSROLocal` SET `CodigoObjeto` = ?, `CodigoLdi` = ?, `NomeClie" +
+                "nte` = ?, `DataLancamento` = ?, `DataModificacao` = ?, `Situacao` = ?, `Atualiza" +
+                "do` = ?, `ObjetoEntregue` = ?, `CaixaPostal` = ?, `UnidadePostagem` = ?, `Munici" +
+                "pioPostagem` = ?, `CriacaoPostagem` = ?, `CepDestinoPostagem` = ?, `ARPostagem` " +
+                "= ?, `MPPostagem` = ?, `DataMaxPrevistaEntregaPostagem` = ?, `UnidadeLOEC` = ?, " +
+                "`MunicipioLOEC` = ?, `CriacaoLOEC` = ?, `CarteiroLOEC` = ?, `DistritoLOEC` = ?, " +
+                "`NumeroLOEC` = ?, `EnderecoLOEC` = ?, `BairroLOEC` = ?, `LocalidadeLOEC` = ?, `S" +
+                "ituacaoDestinatarioAusente` = ?, `AgrupadoDestinatarioAusente` = ?, `Coordenadas" +
+                "DestinatarioAusente` = ?, `Comentario` = ?, `TipoPostalServico` = ?, `TipoPostal" +
+                "SiglaCodigo` = ?, `TipoPostalNomeSiglaCodigo` = ?, `TipoPostalPrazoDiasCorridosR" +
+                "egulamentado` = ? WHERE ((`Codigo` = ?) AND ((? = 1 AND `CodigoObjeto` IS NULL) " +
+                "OR (`CodigoObjeto` = ?)) AND ((? = 1 AND `CodigoLdi` IS NULL) OR (`CodigoLdi` = " +
+                "?)) AND ((? = 1 AND `NomeCliente` IS NULL) OR (`NomeCliente` = ?)) AND ((? = 1 A" +
+                "ND `DataLancamento` IS NULL) OR (`DataLancamento` = ?)) AND ((? = 1 AND `DataMod" +
+                "ificacao` IS NULL) OR (`DataModificacao` = ?)) AND ((? = 1 AND `Situacao` IS NUL" +
+                "L) OR (`Situacao` = ?)) AND ((? = 1 AND `Atualizado` IS NULL) OR (`Atualizado` =" +
+                " ?)) AND ((? = 1 AND `ObjetoEntregue` IS NULL) OR (`ObjetoEntregue` = ?)) AND ((" +
+                "? = 1 AND `CaixaPostal` IS NULL) OR (`CaixaPostal` = ?)) AND ((? = 1 AND `Unidad" +
+                "ePostagem` IS NULL) OR (`UnidadePostagem` = ?)) AND ((? = 1 AND `MunicipioPostag" +
+                "em` IS NULL) OR (`MunicipioPostagem` = ?)) AND ((? = 1 AND `CriacaoPostagem` IS " +
+                "NULL) OR (`CriacaoPostagem` = ?)) AND ((? = 1 AND `CepDestinoPostagem` IS NULL) " +
+                "OR (`CepDestinoPostagem` = ?)) AND ((? = 1 AND `ARPostagem` IS NULL) OR (`ARPost" +
+                "agem` = ?)) AND ((? = 1 AND `MPPostagem` IS NULL) OR (`MPPostagem` = ?)) AND ((?" +
+                " = 1 AND `DataMaxPrevistaEntregaPostagem` IS NULL) OR (`DataMaxPrevistaEntregaPo" +
+                "stagem` = ?)) AND ((? = 1 AND `UnidadeLOEC` IS NULL) OR (`UnidadeLOEC` = ?)) AND" +
+                " ((? = 1 AND `MunicipioLOEC` IS NULL) OR (`MunicipioLOEC` = ?)) AND ((? = 1 AND " +
+                "`CriacaoLOEC` IS NULL) OR (`CriacaoLOEC` = ?)) AND ((? = 1 AND `CarteiroLOEC` IS" +
+                " NULL) OR (`CarteiroLOEC` = ?)) AND ((? = 1 AND `DistritoLOEC` IS NULL) OR (`Dis" +
+                "tritoLOEC` = ?)) AND ((? = 1 AND `NumeroLOEC` IS NULL) OR (`NumeroLOEC` = ?)) AN" +
+                "D ((? = 1 AND `EnderecoLOEC` IS NULL) OR (`EnderecoLOEC` = ?)) AND ((? = 1 AND `" +
+                "BairroLOEC` IS NULL) OR (`BairroLOEC` = ?)) AND ((? = 1 AND `LocalidadeLOEC` IS " +
+                "NULL) OR (`LocalidadeLOEC` = ?)) AND ((? = 1 AND `SituacaoDestinatarioAusente` I" +
+                "S NULL) OR (`SituacaoDestinatarioAusente` = ?)) AND ((? = 1 AND `AgrupadoDestina" +
+                "tarioAusente` IS NULL) OR (`AgrupadoDestinatarioAusente` = ?)) AND ((? = 1 AND `" +
+                "CoordenadasDestinatarioAusente` IS NULL) OR (`CoordenadasDestinatarioAusente` = " +
+                "?)) AND ((? = 1 AND `Comentario` IS NULL) OR (`Comentario` = ?)) AND ((? = 1 AND" +
+                " `TipoPostalServico` IS NULL) OR (`TipoPostalServico` = ?)) AND ((? = 1 AND `Tip" +
+                "oPostalSiglaCodigo` IS NULL) OR (`TipoPostalSiglaCodigo` = ?)) AND ((? = 1 AND `" +
+                "TipoPostalNomeSiglaCodigo` IS NULL) OR (`TipoPostalNomeSiglaCodigo` = ?)) AND ((" +
+                "? = 1 AND `TipoPostalPrazoDiasCorridosRegulamentado` IS NULL) OR (`TipoPostalPra" +
+                "zoDiasCorridosRegulamentado` = ?)))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("CodigoObjeto", global::System.Data.OleDb.OleDbType.WChar, 255, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "CodigoObjeto", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("CodigoLdi", global::System.Data.OleDb.OleDbType.WChar, 255, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "CodigoLdi", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("NomeCliente", global::System.Data.OleDb.OleDbType.WChar, 255, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "NomeCliente", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Situacao", global::System.Data.OleDb.OleDbType.WChar, 255, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Situacao", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Atualizado", global::System.Data.OleDb.OleDbType.Boolean, 2, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Atualizado", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("ObjetoEntregue", global::System.Data.OleDb.OleDbType.Boolean, 2, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ObjetoEntregue", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("CaixaPostal", global::System.Data.OleDb.OleDbType.Boolean, 2, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "CaixaPostal", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("UnidadePostagem", global::System.Data.OleDb.OleDbType.WChar, 255, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "UnidadePostagem", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("MunicipioPostagem", global::System.Data.OleDb.OleDbType.WChar, 255, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "MunicipioPostagem", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("CriacaoPostagem", global::System.Data.OleDb.OleDbType.WChar, 255, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "CriacaoPostagem", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("CepDestinoPostagem", global::System.Data.OleDb.OleDbType.WChar, 255, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "CepDestinoPostagem", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("ARPostagem", global::System.Data.OleDb.OleDbType.WChar, 255, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ARPostagem", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("MPPostagem", global::System.Data.OleDb.OleDbType.WChar, 255, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "MPPostagem", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("DataMaxPrevistaEntregaPostagem", global::System.Data.OleDb.OleDbType.WChar, 255, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DataMaxPrevistaEntregaPostagem", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("UnidadeLOEC", global::System.Data.OleDb.OleDbType.WChar, 255, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "UnidadeLOEC", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("MunicipioLOEC", global::System.Data.OleDb.OleDbType.WChar, 255, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "MunicipioLOEC", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("CriacaoLOEC", global::System.Data.OleDb.OleDbType.WChar, 255, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "CriacaoLOEC", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("CarteiroLOEC", global::System.Data.OleDb.OleDbType.WChar, 255, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "CarteiroLOEC", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("DistritoLOEC", global::System.Data.OleDb.OleDbType.WChar, 255, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DistritoLOEC", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("NumeroLOEC", global::System.Data.OleDb.OleDbType.WChar, 255, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "NumeroLOEC", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("EnderecoLOEC", global::System.Data.OleDb.OleDbType.WChar, 255, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "EnderecoLOEC", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("BairroLOEC", global::System.Data.OleDb.OleDbType.WChar, 255, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "BairroLOEC", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("LocalidadeLOEC", global::System.Data.OleDb.OleDbType.WChar, 255, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "LocalidadeLOEC", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("SituacaoDestinatarioAusente", global::System.Data.OleDb.OleDbType.WChar, 255, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "SituacaoDestinatarioAusente", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("AgrupadoDestinatarioAusente", global::System.Data.OleDb.OleDbType.WChar, 255, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "AgrupadoDestinatarioAusente", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("CoordenadasDestinatarioAusente", global::System.Data.OleDb.OleDbType.WChar, 255, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "CoordenadasDestinatarioAusente", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_CodigoObjeto", global::System.Data.OleDb.OleDbType.WChar, 255, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "CodigoObjeto", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("CodigoObjeto", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "CodigoObjeto", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("CodigoLdi", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "CodigoLdi", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("NomeCliente", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "NomeCliente", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("DataLancamento", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DataLancamento", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("DataModificacao", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DataModificacao", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Situacao", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Situacao", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Atualizado", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Atualizado", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("ObjetoEntregue", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ObjetoEntregue", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("CaixaPostal", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "CaixaPostal", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("UnidadePostagem", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "UnidadePostagem", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("MunicipioPostagem", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "MunicipioPostagem", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("CriacaoPostagem", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "CriacaoPostagem", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("CepDestinoPostagem", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "CepDestinoPostagem", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("ARPostagem", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ARPostagem", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("MPPostagem", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "MPPostagem", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("DataMaxPrevistaEntregaPostagem", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DataMaxPrevistaEntregaPostagem", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("UnidadeLOEC", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "UnidadeLOEC", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("MunicipioLOEC", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "MunicipioLOEC", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("CriacaoLOEC", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "CriacaoLOEC", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("CarteiroLOEC", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "CarteiroLOEC", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("DistritoLOEC", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DistritoLOEC", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("NumeroLOEC", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "NumeroLOEC", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("EnderecoLOEC", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "EnderecoLOEC", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("BairroLOEC", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "BairroLOEC", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("LocalidadeLOEC", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "LocalidadeLOEC", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("SituacaoDestinatarioAusente", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "SituacaoDestinatarioAusente", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("AgrupadoDestinatarioAusente", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "AgrupadoDestinatarioAusente", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("CoordenadasDestinatarioAusente", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "CoordenadasDestinatarioAusente", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Comentario", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Comentario", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("TipoPostalServico", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "TipoPostalServico", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("TipoPostalSiglaCodigo", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "TipoPostalSiglaCodigo", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("TipoPostalNomeSiglaCodigo", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "TipoPostalNomeSiglaCodigo", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("TipoPostalPrazoDiasCorridosRegulamentado", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "TipoPostalPrazoDiasCorridosRegulamentado", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Codigo", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Codigo", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_CodigoObjeto", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "CodigoObjeto", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_CodigoObjeto", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "CodigoObjeto", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_CodigoLdi", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "CodigoLdi", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_CodigoLdi", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "CodigoLdi", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_NomeCliente", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "NomeCliente", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_NomeCliente", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "NomeCliente", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_DataLancamento", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DataLancamento", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_DataLancamento", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DataLancamento", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_DataModificacao", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DataModificacao", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_DataModificacao", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DataModificacao", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Situacao", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Situacao", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Situacao", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Situacao", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Atualizado", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Atualizado", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Atualizado", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Atualizado", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_ObjetoEntregue", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ObjetoEntregue", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_ObjetoEntregue", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ObjetoEntregue", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_CaixaPostal", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "CaixaPostal", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_CaixaPostal", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "CaixaPostal", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_UnidadePostagem", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "UnidadePostagem", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_UnidadePostagem", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "UnidadePostagem", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_MunicipioPostagem", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "MunicipioPostagem", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_MunicipioPostagem", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "MunicipioPostagem", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_CriacaoPostagem", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "CriacaoPostagem", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_CriacaoPostagem", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "CriacaoPostagem", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_CepDestinoPostagem", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "CepDestinoPostagem", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_CepDestinoPostagem", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "CepDestinoPostagem", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_ARPostagem", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ARPostagem", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_ARPostagem", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ARPostagem", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_MPPostagem", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "MPPostagem", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_MPPostagem", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "MPPostagem", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_DataMaxPrevistaEntregaPostagem", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DataMaxPrevistaEntregaPostagem", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_DataMaxPrevistaEntregaPostagem", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DataMaxPrevistaEntregaPostagem", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_UnidadeLOEC", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "UnidadeLOEC", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_UnidadeLOEC", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "UnidadeLOEC", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_MunicipioLOEC", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "MunicipioLOEC", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_MunicipioLOEC", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "MunicipioLOEC", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_CriacaoLOEC", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "CriacaoLOEC", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_CriacaoLOEC", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "CriacaoLOEC", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_CarteiroLOEC", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "CarteiroLOEC", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_CarteiroLOEC", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "CarteiroLOEC", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_DistritoLOEC", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DistritoLOEC", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_DistritoLOEC", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DistritoLOEC", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_NumeroLOEC", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "NumeroLOEC", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_NumeroLOEC", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "NumeroLOEC", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_EnderecoLOEC", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "EnderecoLOEC", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_EnderecoLOEC", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "EnderecoLOEC", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_BairroLOEC", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "BairroLOEC", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_BairroLOEC", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "BairroLOEC", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_LocalidadeLOEC", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "LocalidadeLOEC", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_LocalidadeLOEC", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "LocalidadeLOEC", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_SituacaoDestinatarioAusente", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "SituacaoDestinatarioAusente", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_SituacaoDestinatarioAusente", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "SituacaoDestinatarioAusente", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_AgrupadoDestinatarioAusente", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "AgrupadoDestinatarioAusente", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_AgrupadoDestinatarioAusente", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "AgrupadoDestinatarioAusente", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_CoordenadasDestinatarioAusente", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "CoordenadasDestinatarioAusente", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_CoordenadasDestinatarioAusente", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "CoordenadasDestinatarioAusente", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Comentario", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Comentario", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Comentario", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Comentario", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_TipoPostalServico", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "TipoPostalServico", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_TipoPostalServico", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "TipoPostalServico", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_TipoPostalSiglaCodigo", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "TipoPostalSiglaCodigo", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_TipoPostalSiglaCodigo", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "TipoPostalSiglaCodigo", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_TipoPostalNomeSiglaCodigo", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "TipoPostalNomeSiglaCodigo", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_TipoPostalNomeSiglaCodigo", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "TipoPostalNomeSiglaCodigo", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_TipoPostalPrazoDiasCorridosRegulamentado", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "TipoPostalPrazoDiasCorridosRegulamentado", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_TipoPostalPrazoDiasCorridosRegulamentado", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "TipoPostalPrazoDiasCorridosRegulamentado", global::System.Data.DataRowVersion.Original, false, null));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2072,15 +2418,10 @@ WHERE        (CodigoObjeto = ?)";
             this._commandCollection = new global::System.Data.OleDb.OleDbCommand[1];
             this._commandCollection[0] = new global::System.Data.OleDb.OleDbCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT        Codigo, CodigoObjeto, CodigoLdi, NomeCliente, Format(DataLancamento, 'dd/MM/yyyy hh:mm:ss') AS DataLancamento, Format(DataModificacao, 'dd/MM/yyyy hh:mm:ss') AS DataModificacao, Situacao, Atualizado, 
-                         ObjetoEntregue, CaixaPostal, UnidadePostagem, MunicipioPostagem, CriacaoPostagem, CepDestinoPostagem, ARPostagem, MPPostagem, DataMaxPrevistaEntregaPostagem, UnidadeLOEC, MunicipioLOEC, CriacaoLOEC, 
-                         CarteiroLOEC, DistritoLOEC, NumeroLOEC, EnderecoLOEC, BairroLOEC, LocalidadeLOEC, SituacaoDestinatarioAusente, AgrupadoDestinatarioAusente, CoordenadasDestinatarioAusente
-FROM            TabelaObjetosSROLocal
-WHERE        (Format(DataLancamento, 'yyyy/MM/dd') BETWEEN Format(?, 'yyyy/MM/dd') AND Format(?, 'yyyy/MM/dd'))
-ORDER BY DataLancamento DESC";
+            this._commandCollection[0].CommandText = @"SELECT Codigo, CodigoObjeto, IIf(CodigoLdi IS NULL OR CodigoLdi = '','000000000000',CodigoLdi) AS CodigoLdi, NomeCliente, Format(IIf(TabelaObjetosSROLocal.DataLancamento IS NULL OR TabelaObjetosSROLocal.DataLancamento = '', Format(NOW(),'dd/MM/yyyy 00:00:01'), TabelaObjetosSROLocal.DataLancamento), 'dd/MM/yyyy hh:mm:ss') AS DataLancamento, Format(DataModificacao, 'dd/MM/yyyy hh:mm:ss') AS DataModificacao, Situacao, Atualizado, ObjetoEntregue, CaixaPostal, UnidadePostagem, MunicipioPostagem, CriacaoPostagem, CepDestinoPostagem, ARPostagem, MPPostagem, DataMaxPrevistaEntregaPostagem, UnidadeLOEC, MunicipioLOEC, CriacaoLOEC, CarteiroLOEC, DistritoLOEC, NumeroLOEC, EnderecoLOEC, BairroLOEC, LocalidadeLOEC, SituacaoDestinatarioAusente, AgrupadoDestinatarioAusente, CoordenadasDestinatarioAusente, Comentario, TipoPostalServico, TipoPostalSiglaCodigo, TipoPostalNomeSiglaCodigo, TipoPostalPrazoDiasCorridosRegulamentado FROM            TabelaObjetosSROLocal WHERE        (Format(DataLancamento, 'yyyy/MM/dd') BETWEEN Format(?, 'yyyy/MM/dd') AND Format(?, 'yyyy/MM/dd')) ORDER BY DataLancamento DESC";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[0].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("DataInicial", global::System.Data.OleDb.OleDbType.VarWChar, 1024, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "", global::System.Data.DataRowVersion.Current, false, null));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("DataFinal", global::System.Data.OleDb.OleDbType.VarWChar, 1024, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("DataInicial", global::System.Data.OleDb.OleDbType.VarChar, 1024, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("DataFinal", global::System.Data.OleDb.OleDbType.VarChar, 1024, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "", global::System.Data.DataRowVersion.Current, false, null));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2195,6 +2536,8 @@ ORDER BY DataLancamento DESC";
                     string CodigoObjeto, 
                     string CodigoLdi, 
                     string NomeCliente, 
+                    string DataLancamento, 
+                    string DataModificacao, 
                     string Situacao, 
                     bool Atualizado, 
                     bool ObjetoEntregue, 
@@ -2217,7 +2560,12 @@ ORDER BY DataLancamento DESC";
                     string LocalidadeLOEC, 
                     string SituacaoDestinatarioAusente, 
                     string AgrupadoDestinatarioAusente, 
-                    string CoordenadasDestinatarioAusente) {
+                    string CoordenadasDestinatarioAusente, 
+                    string Comentario, 
+                    string TipoPostalServico, 
+                    string TipoPostalSiglaCodigo, 
+                    string TipoPostalNomeSiglaCodigo, 
+                    string TipoPostalPrazoDiasCorridosRegulamentado) {
             if ((CodigoObjeto == null)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -2236,128 +2584,170 @@ ORDER BY DataLancamento DESC";
             else {
                 this.Adapter.InsertCommand.Parameters[2].Value = ((string)(NomeCliente));
             }
-            if ((Situacao == null)) {
+            if ((DataLancamento == null)) {
                 this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(Situacao));
+                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(DataLancamento));
             }
-            this.Adapter.InsertCommand.Parameters[4].Value = ((bool)(Atualizado));
-            this.Adapter.InsertCommand.Parameters[5].Value = ((bool)(ObjetoEntregue));
-            this.Adapter.InsertCommand.Parameters[6].Value = ((bool)(CaixaPostal));
+            if ((DataModificacao == null)) {
+                this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(DataModificacao));
+            }
+            if ((Situacao == null)) {
+                this.Adapter.InsertCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[5].Value = ((string)(Situacao));
+            }
+            this.Adapter.InsertCommand.Parameters[6].Value = ((bool)(Atualizado));
+            this.Adapter.InsertCommand.Parameters[7].Value = ((bool)(ObjetoEntregue));
+            this.Adapter.InsertCommand.Parameters[8].Value = ((bool)(CaixaPostal));
             if ((UnidadePostagem == null)) {
-                this.Adapter.InsertCommand.Parameters[7].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[7].Value = ((string)(UnidadePostagem));
-            }
-            if ((MunicipioPostagem == null)) {
-                this.Adapter.InsertCommand.Parameters[8].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[8].Value = ((string)(MunicipioPostagem));
-            }
-            if ((CriacaoPostagem == null)) {
                 this.Adapter.InsertCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[9].Value = ((string)(CriacaoPostagem));
+                this.Adapter.InsertCommand.Parameters[9].Value = ((string)(UnidadePostagem));
             }
-            if ((CepDestinoPostagem == null)) {
+            if ((MunicipioPostagem == null)) {
                 this.Adapter.InsertCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[10].Value = ((string)(CepDestinoPostagem));
+                this.Adapter.InsertCommand.Parameters[10].Value = ((string)(MunicipioPostagem));
             }
-            if ((ARPostagem == null)) {
+            if ((CriacaoPostagem == null)) {
                 this.Adapter.InsertCommand.Parameters[11].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[11].Value = ((string)(ARPostagem));
+                this.Adapter.InsertCommand.Parameters[11].Value = ((string)(CriacaoPostagem));
             }
-            if ((MPPostagem == null)) {
+            if ((CepDestinoPostagem == null)) {
                 this.Adapter.InsertCommand.Parameters[12].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[12].Value = ((string)(MPPostagem));
+                this.Adapter.InsertCommand.Parameters[12].Value = ((string)(CepDestinoPostagem));
             }
-            if ((DataMaxPrevistaEntregaPostagem == null)) {
+            if ((ARPostagem == null)) {
                 this.Adapter.InsertCommand.Parameters[13].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[13].Value = ((string)(DataMaxPrevistaEntregaPostagem));
+                this.Adapter.InsertCommand.Parameters[13].Value = ((string)(ARPostagem));
             }
-            if ((UnidadeLOEC == null)) {
+            if ((MPPostagem == null)) {
                 this.Adapter.InsertCommand.Parameters[14].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[14].Value = ((string)(UnidadeLOEC));
+                this.Adapter.InsertCommand.Parameters[14].Value = ((string)(MPPostagem));
             }
-            if ((MunicipioLOEC == null)) {
+            if ((DataMaxPrevistaEntregaPostagem == null)) {
                 this.Adapter.InsertCommand.Parameters[15].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[15].Value = ((string)(MunicipioLOEC));
+                this.Adapter.InsertCommand.Parameters[15].Value = ((string)(DataMaxPrevistaEntregaPostagem));
             }
-            if ((CriacaoLOEC == null)) {
+            if ((UnidadeLOEC == null)) {
                 this.Adapter.InsertCommand.Parameters[16].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[16].Value = ((string)(CriacaoLOEC));
+                this.Adapter.InsertCommand.Parameters[16].Value = ((string)(UnidadeLOEC));
             }
-            if ((CarteiroLOEC == null)) {
+            if ((MunicipioLOEC == null)) {
                 this.Adapter.InsertCommand.Parameters[17].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[17].Value = ((string)(CarteiroLOEC));
+                this.Adapter.InsertCommand.Parameters[17].Value = ((string)(MunicipioLOEC));
             }
-            if ((DistritoLOEC == null)) {
+            if ((CriacaoLOEC == null)) {
                 this.Adapter.InsertCommand.Parameters[18].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[18].Value = ((string)(DistritoLOEC));
+                this.Adapter.InsertCommand.Parameters[18].Value = ((string)(CriacaoLOEC));
             }
-            if ((NumeroLOEC == null)) {
+            if ((CarteiroLOEC == null)) {
                 this.Adapter.InsertCommand.Parameters[19].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[19].Value = ((string)(NumeroLOEC));
+                this.Adapter.InsertCommand.Parameters[19].Value = ((string)(CarteiroLOEC));
             }
-            if ((EnderecoLOEC == null)) {
+            if ((DistritoLOEC == null)) {
                 this.Adapter.InsertCommand.Parameters[20].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[20].Value = ((string)(EnderecoLOEC));
+                this.Adapter.InsertCommand.Parameters[20].Value = ((string)(DistritoLOEC));
             }
-            if ((BairroLOEC == null)) {
+            if ((NumeroLOEC == null)) {
                 this.Adapter.InsertCommand.Parameters[21].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[21].Value = ((string)(BairroLOEC));
+                this.Adapter.InsertCommand.Parameters[21].Value = ((string)(NumeroLOEC));
             }
-            if ((LocalidadeLOEC == null)) {
+            if ((EnderecoLOEC == null)) {
                 this.Adapter.InsertCommand.Parameters[22].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[22].Value = ((string)(LocalidadeLOEC));
+                this.Adapter.InsertCommand.Parameters[22].Value = ((string)(EnderecoLOEC));
             }
-            if ((SituacaoDestinatarioAusente == null)) {
+            if ((BairroLOEC == null)) {
                 this.Adapter.InsertCommand.Parameters[23].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[23].Value = ((string)(SituacaoDestinatarioAusente));
+                this.Adapter.InsertCommand.Parameters[23].Value = ((string)(BairroLOEC));
             }
-            if ((AgrupadoDestinatarioAusente == null)) {
+            if ((LocalidadeLOEC == null)) {
                 this.Adapter.InsertCommand.Parameters[24].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[24].Value = ((string)(AgrupadoDestinatarioAusente));
+                this.Adapter.InsertCommand.Parameters[24].Value = ((string)(LocalidadeLOEC));
             }
-            if ((CoordenadasDestinatarioAusente == null)) {
+            if ((SituacaoDestinatarioAusente == null)) {
                 this.Adapter.InsertCommand.Parameters[25].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[25].Value = ((string)(CoordenadasDestinatarioAusente));
+                this.Adapter.InsertCommand.Parameters[25].Value = ((string)(SituacaoDestinatarioAusente));
+            }
+            if ((AgrupadoDestinatarioAusente == null)) {
+                this.Adapter.InsertCommand.Parameters[26].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[26].Value = ((string)(AgrupadoDestinatarioAusente));
+            }
+            if ((CoordenadasDestinatarioAusente == null)) {
+                this.Adapter.InsertCommand.Parameters[27].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[27].Value = ((string)(CoordenadasDestinatarioAusente));
+            }
+            if ((Comentario == null)) {
+                this.Adapter.InsertCommand.Parameters[28].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[28].Value = ((string)(Comentario));
+            }
+            if ((TipoPostalServico == null)) {
+                this.Adapter.InsertCommand.Parameters[29].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[29].Value = ((string)(TipoPostalServico));
+            }
+            if ((TipoPostalSiglaCodigo == null)) {
+                this.Adapter.InsertCommand.Parameters[30].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[30].Value = ((string)(TipoPostalSiglaCodigo));
+            }
+            if ((TipoPostalNomeSiglaCodigo == null)) {
+                this.Adapter.InsertCommand.Parameters[31].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[31].Value = ((string)(TipoPostalNomeSiglaCodigo));
+            }
+            if ((TipoPostalPrazoDiasCorridosRegulamentado == null)) {
+                this.Adapter.InsertCommand.Parameters[32].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[32].Value = ((string)(TipoPostalPrazoDiasCorridosRegulamentado));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -2383,6 +2773,8 @@ ORDER BY DataLancamento DESC";
                     string CodigoObjeto, 
                     string CodigoLdi, 
                     string NomeCliente, 
+                    string DataLancamento, 
+                    string DataModificacao, 
                     string Situacao, 
                     bool Atualizado, 
                     bool ObjetoEntregue, 
@@ -2406,7 +2798,45 @@ ORDER BY DataLancamento DESC";
                     string SituacaoDestinatarioAusente, 
                     string AgrupadoDestinatarioAusente, 
                     string CoordenadasDestinatarioAusente, 
-                    string Original_CodigoObjeto) {
+                    string Comentario, 
+                    string TipoPostalServico, 
+                    string TipoPostalSiglaCodigo, 
+                    string TipoPostalNomeSiglaCodigo, 
+                    string TipoPostalPrazoDiasCorridosRegulamentado, 
+                    int Original_Codigo, 
+                    string Original_CodigoObjeto, 
+                    string Original_CodigoLdi, 
+                    string Original_NomeCliente, 
+                    string Original_DataLancamento, 
+                    string Original_DataModificacao, 
+                    string Original_Situacao, 
+                    bool Original_Atualizado, 
+                    bool Original_ObjetoEntregue, 
+                    bool Original_CaixaPostal, 
+                    string Original_UnidadePostagem, 
+                    string Original_MunicipioPostagem, 
+                    string Original_CriacaoPostagem, 
+                    string Original_CepDestinoPostagem, 
+                    string Original_ARPostagem, 
+                    string Original_MPPostagem, 
+                    string Original_DataMaxPrevistaEntregaPostagem, 
+                    string Original_UnidadeLOEC, 
+                    string Original_MunicipioLOEC, 
+                    string Original_CriacaoLOEC, 
+                    string Original_CarteiroLOEC, 
+                    string Original_DistritoLOEC, 
+                    string Original_NumeroLOEC, 
+                    string Original_EnderecoLOEC, 
+                    string Original_BairroLOEC, 
+                    string Original_LocalidadeLOEC, 
+                    string Original_SituacaoDestinatarioAusente, 
+                    string Original_AgrupadoDestinatarioAusente, 
+                    string Original_CoordenadasDestinatarioAusente, 
+                    string Original_Comentario, 
+                    string Original_TipoPostalServico, 
+                    string Original_TipoPostalSiglaCodigo, 
+                    string Original_TipoPostalNomeSiglaCodigo, 
+                    string Original_TipoPostalPrazoDiasCorridosRegulamentado) {
             if ((CodigoObjeto == null)) {
                 this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -2425,134 +2855,417 @@ ORDER BY DataLancamento DESC";
             else {
                 this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(NomeCliente));
             }
-            if ((Situacao == null)) {
+            if ((DataLancamento == null)) {
                 this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(Situacao));
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(DataLancamento));
             }
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((bool)(Atualizado));
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((bool)(ObjetoEntregue));
-            this.Adapter.UpdateCommand.Parameters[6].Value = ((bool)(CaixaPostal));
+            if ((DataModificacao == null)) {
+                this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(DataModificacao));
+            }
+            if ((Situacao == null)) {
+                this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Situacao));
+            }
+            this.Adapter.UpdateCommand.Parameters[6].Value = ((bool)(Atualizado));
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((bool)(ObjetoEntregue));
+            this.Adapter.UpdateCommand.Parameters[8].Value = ((bool)(CaixaPostal));
             if ((UnidadePostagem == null)) {
-                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(UnidadePostagem));
-            }
-            if ((MunicipioPostagem == null)) {
-                this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(MunicipioPostagem));
-            }
-            if ((CriacaoPostagem == null)) {
                 this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(CriacaoPostagem));
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(UnidadePostagem));
             }
-            if ((CepDestinoPostagem == null)) {
+            if ((MunicipioPostagem == null)) {
                 this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(CepDestinoPostagem));
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(MunicipioPostagem));
             }
-            if ((ARPostagem == null)) {
+            if ((CriacaoPostagem == null)) {
                 this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(ARPostagem));
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(CriacaoPostagem));
             }
-            if ((MPPostagem == null)) {
+            if ((CepDestinoPostagem == null)) {
                 this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(MPPostagem));
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(CepDestinoPostagem));
             }
-            if ((DataMaxPrevistaEntregaPostagem == null)) {
+            if ((ARPostagem == null)) {
                 this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(DataMaxPrevistaEntregaPostagem));
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(ARPostagem));
             }
-            if ((UnidadeLOEC == null)) {
+            if ((MPPostagem == null)) {
                 this.Adapter.UpdateCommand.Parameters[14].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((string)(UnidadeLOEC));
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((string)(MPPostagem));
             }
-            if ((MunicipioLOEC == null)) {
+            if ((DataMaxPrevistaEntregaPostagem == null)) {
                 this.Adapter.UpdateCommand.Parameters[15].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((string)(MunicipioLOEC));
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((string)(DataMaxPrevistaEntregaPostagem));
             }
-            if ((CriacaoLOEC == null)) {
+            if ((UnidadeLOEC == null)) {
                 this.Adapter.UpdateCommand.Parameters[16].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((string)(CriacaoLOEC));
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((string)(UnidadeLOEC));
             }
-            if ((CarteiroLOEC == null)) {
+            if ((MunicipioLOEC == null)) {
                 this.Adapter.UpdateCommand.Parameters[17].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((string)(CarteiroLOEC));
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((string)(MunicipioLOEC));
             }
-            if ((DistritoLOEC == null)) {
+            if ((CriacaoLOEC == null)) {
                 this.Adapter.UpdateCommand.Parameters[18].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((string)(DistritoLOEC));
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((string)(CriacaoLOEC));
             }
-            if ((NumeroLOEC == null)) {
+            if ((CarteiroLOEC == null)) {
                 this.Adapter.UpdateCommand.Parameters[19].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[19].Value = ((string)(NumeroLOEC));
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((string)(CarteiroLOEC));
             }
-            if ((EnderecoLOEC == null)) {
+            if ((DistritoLOEC == null)) {
                 this.Adapter.UpdateCommand.Parameters[20].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[20].Value = ((string)(EnderecoLOEC));
+                this.Adapter.UpdateCommand.Parameters[20].Value = ((string)(DistritoLOEC));
             }
-            if ((BairroLOEC == null)) {
+            if ((NumeroLOEC == null)) {
                 this.Adapter.UpdateCommand.Parameters[21].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[21].Value = ((string)(BairroLOEC));
+                this.Adapter.UpdateCommand.Parameters[21].Value = ((string)(NumeroLOEC));
             }
-            if ((LocalidadeLOEC == null)) {
+            if ((EnderecoLOEC == null)) {
                 this.Adapter.UpdateCommand.Parameters[22].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[22].Value = ((string)(LocalidadeLOEC));
+                this.Adapter.UpdateCommand.Parameters[22].Value = ((string)(EnderecoLOEC));
             }
-            if ((SituacaoDestinatarioAusente == null)) {
+            if ((BairroLOEC == null)) {
                 this.Adapter.UpdateCommand.Parameters[23].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[23].Value = ((string)(SituacaoDestinatarioAusente));
+                this.Adapter.UpdateCommand.Parameters[23].Value = ((string)(BairroLOEC));
             }
-            if ((AgrupadoDestinatarioAusente == null)) {
+            if ((LocalidadeLOEC == null)) {
                 this.Adapter.UpdateCommand.Parameters[24].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[24].Value = ((string)(AgrupadoDestinatarioAusente));
+                this.Adapter.UpdateCommand.Parameters[24].Value = ((string)(LocalidadeLOEC));
             }
-            if ((CoordenadasDestinatarioAusente == null)) {
+            if ((SituacaoDestinatarioAusente == null)) {
                 this.Adapter.UpdateCommand.Parameters[25].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[25].Value = ((string)(CoordenadasDestinatarioAusente));
+                this.Adapter.UpdateCommand.Parameters[25].Value = ((string)(SituacaoDestinatarioAusente));
             }
-            if ((Original_CodigoObjeto == null)) {
+            if ((AgrupadoDestinatarioAusente == null)) {
                 this.Adapter.UpdateCommand.Parameters[26].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[26].Value = ((string)(Original_CodigoObjeto));
+                this.Adapter.UpdateCommand.Parameters[26].Value = ((string)(AgrupadoDestinatarioAusente));
+            }
+            if ((CoordenadasDestinatarioAusente == null)) {
+                this.Adapter.UpdateCommand.Parameters[27].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[27].Value = ((string)(CoordenadasDestinatarioAusente));
+            }
+            if ((Comentario == null)) {
+                this.Adapter.UpdateCommand.Parameters[28].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[28].Value = ((string)(Comentario));
+            }
+            if ((TipoPostalServico == null)) {
+                this.Adapter.UpdateCommand.Parameters[29].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[29].Value = ((string)(TipoPostalServico));
+            }
+            if ((TipoPostalSiglaCodigo == null)) {
+                this.Adapter.UpdateCommand.Parameters[30].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[30].Value = ((string)(TipoPostalSiglaCodigo));
+            }
+            if ((TipoPostalNomeSiglaCodigo == null)) {
+                this.Adapter.UpdateCommand.Parameters[31].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[31].Value = ((string)(TipoPostalNomeSiglaCodigo));
+            }
+            if ((TipoPostalPrazoDiasCorridosRegulamentado == null)) {
+                this.Adapter.UpdateCommand.Parameters[32].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[32].Value = ((string)(TipoPostalPrazoDiasCorridosRegulamentado));
+            }
+            this.Adapter.UpdateCommand.Parameters[33].Value = ((int)(Original_Codigo));
+            if ((Original_CodigoObjeto == null)) {
+                this.Adapter.UpdateCommand.Parameters[34].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[35].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[34].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[35].Value = ((string)(Original_CodigoObjeto));
+            }
+            if ((Original_CodigoLdi == null)) {
+                this.Adapter.UpdateCommand.Parameters[36].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[37].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[36].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[37].Value = ((string)(Original_CodigoLdi));
+            }
+            if ((Original_NomeCliente == null)) {
+                this.Adapter.UpdateCommand.Parameters[38].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[39].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[38].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[39].Value = ((string)(Original_NomeCliente));
+            }
+            if ((Original_DataLancamento == null)) {
+                this.Adapter.UpdateCommand.Parameters[40].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[41].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[40].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[41].Value = ((string)(Original_DataLancamento));
+            }
+            if ((Original_DataModificacao == null)) {
+                this.Adapter.UpdateCommand.Parameters[42].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[43].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[42].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[43].Value = ((string)(Original_DataModificacao));
+            }
+            if ((Original_Situacao == null)) {
+                this.Adapter.UpdateCommand.Parameters[44].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[45].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[44].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[45].Value = ((string)(Original_Situacao));
+            }
+            this.Adapter.UpdateCommand.Parameters[46].Value = ((object)(0));
+            this.Adapter.UpdateCommand.Parameters[47].Value = ((bool)(Original_Atualizado));
+            this.Adapter.UpdateCommand.Parameters[48].Value = ((object)(0));
+            this.Adapter.UpdateCommand.Parameters[49].Value = ((bool)(Original_ObjetoEntregue));
+            this.Adapter.UpdateCommand.Parameters[50].Value = ((object)(0));
+            this.Adapter.UpdateCommand.Parameters[51].Value = ((bool)(Original_CaixaPostal));
+            if ((Original_UnidadePostagem == null)) {
+                this.Adapter.UpdateCommand.Parameters[52].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[53].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[52].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[53].Value = ((string)(Original_UnidadePostagem));
+            }
+            if ((Original_MunicipioPostagem == null)) {
+                this.Adapter.UpdateCommand.Parameters[54].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[55].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[54].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[55].Value = ((string)(Original_MunicipioPostagem));
+            }
+            if ((Original_CriacaoPostagem == null)) {
+                this.Adapter.UpdateCommand.Parameters[56].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[57].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[56].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[57].Value = ((string)(Original_CriacaoPostagem));
+            }
+            if ((Original_CepDestinoPostagem == null)) {
+                this.Adapter.UpdateCommand.Parameters[58].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[59].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[58].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[59].Value = ((string)(Original_CepDestinoPostagem));
+            }
+            if ((Original_ARPostagem == null)) {
+                this.Adapter.UpdateCommand.Parameters[60].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[61].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[60].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[61].Value = ((string)(Original_ARPostagem));
+            }
+            if ((Original_MPPostagem == null)) {
+                this.Adapter.UpdateCommand.Parameters[62].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[63].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[62].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[63].Value = ((string)(Original_MPPostagem));
+            }
+            if ((Original_DataMaxPrevistaEntregaPostagem == null)) {
+                this.Adapter.UpdateCommand.Parameters[64].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[65].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[64].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[65].Value = ((string)(Original_DataMaxPrevistaEntregaPostagem));
+            }
+            if ((Original_UnidadeLOEC == null)) {
+                this.Adapter.UpdateCommand.Parameters[66].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[67].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[66].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[67].Value = ((string)(Original_UnidadeLOEC));
+            }
+            if ((Original_MunicipioLOEC == null)) {
+                this.Adapter.UpdateCommand.Parameters[68].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[69].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[68].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[69].Value = ((string)(Original_MunicipioLOEC));
+            }
+            if ((Original_CriacaoLOEC == null)) {
+                this.Adapter.UpdateCommand.Parameters[70].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[71].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[70].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[71].Value = ((string)(Original_CriacaoLOEC));
+            }
+            if ((Original_CarteiroLOEC == null)) {
+                this.Adapter.UpdateCommand.Parameters[72].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[73].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[72].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[73].Value = ((string)(Original_CarteiroLOEC));
+            }
+            if ((Original_DistritoLOEC == null)) {
+                this.Adapter.UpdateCommand.Parameters[74].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[75].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[74].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[75].Value = ((string)(Original_DistritoLOEC));
+            }
+            if ((Original_NumeroLOEC == null)) {
+                this.Adapter.UpdateCommand.Parameters[76].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[77].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[76].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[77].Value = ((string)(Original_NumeroLOEC));
+            }
+            if ((Original_EnderecoLOEC == null)) {
+                this.Adapter.UpdateCommand.Parameters[78].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[79].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[78].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[79].Value = ((string)(Original_EnderecoLOEC));
+            }
+            if ((Original_BairroLOEC == null)) {
+                this.Adapter.UpdateCommand.Parameters[80].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[81].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[80].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[81].Value = ((string)(Original_BairroLOEC));
+            }
+            if ((Original_LocalidadeLOEC == null)) {
+                this.Adapter.UpdateCommand.Parameters[82].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[83].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[82].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[83].Value = ((string)(Original_LocalidadeLOEC));
+            }
+            if ((Original_SituacaoDestinatarioAusente == null)) {
+                this.Adapter.UpdateCommand.Parameters[84].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[85].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[84].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[85].Value = ((string)(Original_SituacaoDestinatarioAusente));
+            }
+            if ((Original_AgrupadoDestinatarioAusente == null)) {
+                this.Adapter.UpdateCommand.Parameters[86].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[87].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[86].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[87].Value = ((string)(Original_AgrupadoDestinatarioAusente));
+            }
+            if ((Original_CoordenadasDestinatarioAusente == null)) {
+                this.Adapter.UpdateCommand.Parameters[88].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[89].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[88].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[89].Value = ((string)(Original_CoordenadasDestinatarioAusente));
+            }
+            if ((Original_Comentario == null)) {
+                this.Adapter.UpdateCommand.Parameters[90].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[91].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[90].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[91].Value = ((string)(Original_Comentario));
+            }
+            if ((Original_TipoPostalServico == null)) {
+                this.Adapter.UpdateCommand.Parameters[92].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[93].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[92].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[93].Value = ((string)(Original_TipoPostalServico));
+            }
+            if ((Original_TipoPostalSiglaCodigo == null)) {
+                this.Adapter.UpdateCommand.Parameters[94].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[95].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[94].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[95].Value = ((string)(Original_TipoPostalSiglaCodigo));
+            }
+            if ((Original_TipoPostalNomeSiglaCodigo == null)) {
+                this.Adapter.UpdateCommand.Parameters[96].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[97].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[96].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[97].Value = ((string)(Original_TipoPostalNomeSiglaCodigo));
+            }
+            if ((Original_TipoPostalPrazoDiasCorridosRegulamentado == null)) {
+                this.Adapter.UpdateCommand.Parameters[98].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[99].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[98].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[99].Value = ((string)(Original_TipoPostalPrazoDiasCorridosRegulamentado));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 

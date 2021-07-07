@@ -340,6 +340,7 @@ namespace SISAPO
 
         private void tabelaObjetosSROLocalBindingSource_CurrentItemChanged(object sender, EventArgs e)
         {
+            #region Se for NULLO
             if (currentRow == null)
             {
                 //FormularioPrincipal.RetornaComponentes().toolStripStatusLabel.Text = "";
@@ -397,23 +398,66 @@ namespace SISAPO
                 BtnCoordenadas.Visible = false;
 
             }
+            #endregion
+            #region Se não for NULLO
             else
             {
+                #region CodigoLdi
                 TxtCodigoLDISelecionado.Text = currentRow["CodigoLdi"].ToString();
+                #endregion
+
+                #region DataLancamento
                 TxtDataLancamento.Text = currentRow["DataLancamento"].ToString();
+                #endregion
 
+                #region CodigoObjetoFormatado
                 string CodigoObjetoFormatado = string.Format("{0} {1} {2} {3} {4}",
-                    currentRow["CodigoObjeto"].ToString().Substring(0, 2),
-                    currentRow["CodigoObjeto"].ToString().Substring(2, 3),
-                    currentRow["CodigoObjeto"].ToString().Substring(5, 3),
-                    currentRow["CodigoObjeto"].ToString().Substring(8, 3),
-                    currentRow["CodigoObjeto"].ToString().Substring(11, 2));
+                            currentRow["CodigoObjeto"].ToString().Substring(0, 2),
+                            currentRow["CodigoObjeto"].ToString().Substring(2, 3),
+                            currentRow["CodigoObjeto"].ToString().Substring(5, 3),
+                            currentRow["CodigoObjeto"].ToString().Substring(8, 3),
+                            currentRow["CodigoObjeto"].ToString().Substring(11, 2));
+                #endregion
 
+                #region CodigoObjeto
                 TxtCodigoObjetoSelecionado.Text = currentRow["CodigoObjeto"].ToString();
-                TxtItemSelecionado.Text = string.Format("{0} - {1}", CodigoObjetoFormatado, currentRow["NomeCliente"].ToString());
-                TxtSituacaoAtual.Text = currentRow["Situacao"].ToString().Replace("NAO", "NÃO").Replace("DISTRIBUIDO", "DISTRIBUÍDO").Replace("DESTINATARIO", "DESTINATÁRIO");
+                #endregion
 
-                //this.Text += TxtItemSelecionado.Text;
+                #region CodigoObjetoFormatado + NomeCliente
+                //TxtItemSelecionado.Text = string.Format("{0} - {1}", CodigoObjetoFormatado, currentRow["NomeCliente"].ToString());
+                TxtItemSelecionado.Text = string.Format("{0}", currentRow["NomeCliente"].ToString());
+                #endregion
+
+                #region Situacao
+                TxtSituacaoAtual.Text = currentRow["Situacao"].ToString().Replace("NAO", "NÃO").Replace("DISTRIBUIDO", "DISTRIBUÍDO").Replace("DESTINATARIO", "DESTINATÁRIO");
+                #endregion
+
+                #region DataModificacao
+                TxtDataBaixa.Text = currentRow["DataModificacao"].ToString();
+                #endregion
+
+                #region Prazo Dias
+                string PrazoDestinoCaixaPostal = currentRow["TipoPostalPrazoDiasCorridosRegulamentado"].ToString();
+                TxtPrazoDias.Text = PrazoDestinoCaixaPostal;
+                #endregion
+
+                #region DataVencimento
+                if (string.IsNullOrEmpty(PrazoDestinoCaixaPostal))
+                {
+                    PrazoDestinoCaixaPostal = "0";
+                    TxtDataVencimento.Text = "";
+                    //drTipoPostal["PrazoDestinoCaixaPostal"].ToString();
+                    //PrazoDestinoCaixaPostal = FormularioPrincipal.TiposPostais.AsEnumerable().First(T => T["Sigla"].Equals(currentRow["CodigoObjeto"].ToString().Substring(0, 2)))["PrazoDestinoCaixaPostal"].ToString();
+                }
+                else
+                {
+                    TxtDataVencimento.Text = currentRow["DataLancamento"].ToDateTime().Date.AddDays(Convert.ToDouble(PrazoDestinoCaixaPostal)).ToDateTime().ToShortDateString();
+                }
+                #endregion
+
+
+
+                #region CoordenadasDestinatarioAusente
                 if (string.IsNullOrEmpty(currentRow["CoordenadasDestinatarioAusente"].ToString()))
                 {
                     BtnCoordenadas.Visible = false;
@@ -422,7 +466,9 @@ namespace SISAPO
                 {
                     BtnCoordenadas.Visible = true;
                 }
+                #endregion
 
+                #region Dados de Postagem
                 if (string.IsNullOrEmpty(currentRow["UnidadePostagem"].ToString()))
                 {
                     LblDadosPostagemIndisponivel.Visible = true;
@@ -477,7 +523,9 @@ namespace SISAPO
                     else LblMPPostagem.ForeColor = SystemColors.ControlText;
                     LblDataMaxPrevistaEntregaPostagem.Text = currentRow["DataMaxPrevistaEntregaPostagem"].ToString() == "" ? "Dado indisponível" : currentRow["DataMaxPrevistaEntregaPostagem"].ToString();
                 }
+                #endregion
 
+                #region Dados LOEC
                 if (string.IsNullOrEmpty(currentRow["UnidadeLOEC"].ToString()))
                 {
                     LblDadosTentativaEntregaIndisponivel.Visible = true;
@@ -538,7 +586,9 @@ namespace SISAPO
                     LblBairroLOEC.Text = currentRow["BairroLOEC"].ToString();
                     LblLocalidadeLOEC.Text = currentRow["LocalidadeLOEC"].ToString();
                 }
+                #endregion
             }
+            #endregion
         }
 
         public DataRow currentRow
