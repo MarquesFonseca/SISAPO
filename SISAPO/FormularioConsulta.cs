@@ -23,6 +23,23 @@ namespace SISAPO
         public FormularioConsulta()
         {
             InitializeComponent();
+
+            //tabelaObjetosSROLocalTableAdapter
+            //this.tabelaObjetosSROLocalTableAdapter.Update(dataSetTabelaObjetosSROLocal.TabelaObjetosSROLocal);
+
+            //StringBuilder selectCommand = new StringBuilder();
+            //selectCommand.AppendLine("");
+            //selectCommand.AppendLine("SELECT        Codigo, CodigoObjeto, IIf(CodigoLdi IS NULL OR                                                                                                                                                                              ");
+            //selectCommand.AppendLine("                         CodigoLdi = '', '000000000000', CodigoLdi) AS CodigoLdi, NomeCliente, Format(IIf(TabelaObjetosSROLocal.DataLancamento IS NULL OR                                                                                 ");
+            //selectCommand.AppendLine("                         TabelaObjetosSROLocal.DataLancamento = '', Format(NOW(), 'dd/MM/yyyy 00:00:01'), TabelaObjetosSROLocal.DataLancamento), 'dd/MM/yyyy hh:mm:ss') AS DataLancamento, Format(DataModificacao, 'dd/MM/yyyy hh:mm:ss') ");
+            //selectCommand.AppendLine("                          AS DataModificacao, Situacao, Atualizado, ObjetoEntregue, CaixaPostal, UnidadePostagem, MunicipioPostagem, CriacaoPostagem, CepDestinoPostagem, ARPostagem, MPPostagem, DataMaxPrevistaEntregaPostagem,         ");
+            //selectCommand.AppendLine("                         UnidadeLOEC, MunicipioLOEC, CriacaoLOEC, CarteiroLOEC, DistritoLOEC, NumeroLOEC, EnderecoLOEC, BairroLOEC, LocalidadeLOEC, SituacaoDestinatarioAusente, AgrupadoDestinatarioAusente,                             ");
+            //selectCommand.AppendLine("                         CoordenadasDestinatarioAusente, Comentario, TipoPostalServico, TipoPostalSiglaCodigo, TipoPostalNomeSiglaCodigo, TipoPostalPrazoDiasCorridosRegulamentado                                                        ");
+            //selectCommand.AppendLine("FROM            TabelaObjetosSROLocal                                                                                                                                                                                                     ");
+            //selectCommand.AppendLine("WHERE        (Format(DataLancamento, 'yyyy/MM/dd') BETWEEN Format(?, 'yyyy/MM/dd') AND Format(?, 'yyyy/MM/dd'))                                                                                                                           ");
+
+
+            
         }
 
         private void FormularioConsulta_Load(object sender, EventArgs e)
@@ -643,6 +660,10 @@ namespace SISAPO
 
                 waitForm.Show(this);
                 this.tabelaObjetosSROLocalTableAdapter.Connection.ConnectionString = ClassesDiversas.Configuracoes.strConexao;
+
+                //string commandText = @"SELECT Codigo, CodigoObjeto, IIf(CodigoLdi IS NULL OR CodigoLdi = '','000000000000',CodigoLdi) AS CodigoLdi, NomeCliente, Format(IIf(TabelaObjetosSROLocal.DataLancamento IS NULL OR TabelaObjetosSROLocal.DataLancamento = '', Format(NOW(),'dd/MM/yyyy 00:00:01'), TabelaObjetosSROLocal.DataLancamento), 'dd/MM/yyyy hh:mm:ss') AS DataLancamento, Format(DataModificacao, 'dd/MM/yyyy hh:mm:ss') AS DataModificacao, Situacao, Atualizado, ObjetoEntregue, CaixaPostal, UnidadePostagem, MunicipioPostagem, CriacaoPostagem, CepDestinoPostagem, ARPostagem, MPPostagem, DataMaxPrevistaEntregaPostagem, UnidadeLOEC, MunicipioLOEC, CriacaoLOEC, CarteiroLOEC, DistritoLOEC, NumeroLOEC, EnderecoLOEC, BairroLOEC, LocalidadeLOEC, SituacaoDestinatarioAusente, AgrupadoDestinatarioAusente, CoordenadasDestinatarioAusente, Comentario, TipoPostalServico, TipoPostalSiglaCodigo, TipoPostalNomeSiglaCodigo, TipoPostalPrazoDiasCorridosRegulamentado FROM            TabelaObjetosSROLocal WHERE        (Format(DataLancamento, 'yyyy/MM/dd') BETWEEN Format(?, 'yyyy/MM/dd') AND Format(?, 'yyyy/MM/dd')) ORDER BY DataLancamento DESC";
+                //this.tabelaObjetosSROLocalTableAdapter.Adapter.SelectCommand =  new System.Data.OleDb.OleDbCommand(commandText);
+                
                 this.tabelaObjetosSROLocalTableAdapter.Fill(this.dataSetTabelaObjetosSROLocal.TabelaObjetosSROLocal, dataInicial, datafinal);
                 this.MontaFiltro();
                 waitForm.Close();
@@ -799,13 +820,23 @@ namespace SISAPO
 
             if (estaAberto == true) return;
 
+            //ultimoCodigoDetalhado = currentRow["CodigoObjeto"].ToString();
+            //FormularioSRORastreamentoUnificado formularioSRORastreamentoUnificado = new FormularioSRORastreamentoUnificado(ultimoCodigoDetalhado);
+            //formularioSRORastreamentoUnificado.MdiParent = MdiParent;
+            //formularioSRORastreamentoUnificado.Text = string.Format(@"SRO - Rastreamento Unificado Detalhado [{0}]", ultimoCodigoDetalhado);
+            //formularioSRORastreamentoUnificado.Show();
+            //formularioSRORastreamentoUnificado.WindowState = FormWindowState.Maximized;
+            //formularioSRORastreamentoUnificado.Activate();
+
             ultimoCodigoDetalhado = currentRow["CodigoObjeto"].ToString();
-            FormularioSRORastreamentoUnificado formularioSRORastreamentoUnificado = new FormularioSRORastreamentoUnificado(currentRow["CodigoObjeto"].ToString());
-            formularioSRORastreamentoUnificado.MdiParent = MdiParent;
-            formularioSRORastreamentoUnificado.Text = string.Format(@"SRO - Rastreamento Unificado Detalhado [{0}]", currentRow["CodigoObjeto"].ToString());
-            formularioSRORastreamentoUnificado.Show();
-            formularioSRORastreamentoUnificado.WindowState = FormWindowState.Maximized;
-            formularioSRORastreamentoUnificado.Activate();
+            using (FormularioSRORastreamentoUnificado formularioSRORastreamentoUnificado = new FormularioSRORastreamentoUnificado(ultimoCodigoDetalhado))
+            {
+                formularioSRORastreamentoUnificado.WindowState = FormWindowState.Normal;
+                formularioSRORastreamentoUnificado.StartPosition = FormStartPosition.CenterScreen;
+                //formularioSRORastreamentoUnificado.Text = string.Format(@"SRO - Rastreamento Unificado - http://websro2.correiosnet.int/rastreamento/sro?opcao=PESQUISA&objetos={0}", ultimoCodigoDetalhado);
+                formularioSRORastreamentoUnificado.Text = string.Format(@"SRO - Rastreamento Unificado Detalhado [{0}]", ultimoCodigoDetalhado);
+                formularioSRORastreamentoUnificado.ShowDialog();
+            }
         }
 
         private void ChkIncluirItensEntreguesNaPesquisa_CheckedChanged(object sender, EventArgs e)
@@ -1283,7 +1314,8 @@ namespace SISAPO
 
         private void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            alterarItemToolStripMenuItem_Click(sender, e);
+            //alterarItemToolStripMenuItem_Click(sender, e);
+            BtnDetalharObjetosSelecionado_Click(sender, e);
         }
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

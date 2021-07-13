@@ -78,16 +78,16 @@ waitForm.Show(this);
                 }
 
                 FiltrarPorPrazosVENCIDOSCheckBox.Enabled = FiltrarPorPrazosVENCENDOHOJECheckBox.Enabled = FiltrarPorPrazosAVENCERCheckBox.Enabled = true;
-                FiltrarPorPrazosVENCIDOSCheckBox.Checked = FiltrarPorPrazosVENCENDOHOJECheckBox.Checked = FiltrarPorPrazosAVENCERCheckBox.Checked = true;
+                //FiltrarPorPrazosVENCIDOSCheckBox.Checked = FiltrarPorPrazosVENCENDOHOJECheckBox.Checked = FiltrarPorPrazosAVENCERCheckBox.Checked = true;
 
                 FiltrarPorClassificacaoPACCCheckBox.Enabled = FiltrarPorClassificacaoSEDEXCheckBox.Enabled = FiltrarPorClassificacaoDIVERSOSCheckBox.Enabled = true;
-                FiltrarPorClassificacaoPACCCheckBox.Checked = FiltrarPorClassificacaoSEDEXCheckBox.Checked = FiltrarPorClassificacaoDIVERSOSCheckBox.Checked = true;
+                //FiltrarPorClassificacaoPACCCheckBox.Checked = FiltrarPorClassificacaoSEDEXCheckBox.Checked = FiltrarPorClassificacaoDIVERSOSCheckBox.Checked = true;
 
                 FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.Enabled = true;
-                FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.Checked = true;
+                //FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.Checked = true;
 
                 FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox.Enabled = true;
-                FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox.Checked = false;
+                //FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox.Checked = false;
 
                 bindingSourceObjetosNaoEntregues = new BindingSource();
                 bindingSourceObjetosNaoEntregues.DataSource = listaObjetos;

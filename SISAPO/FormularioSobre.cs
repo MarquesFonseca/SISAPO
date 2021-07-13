@@ -13,11 +13,22 @@ namespace SISAPO
         public FormularioSobre()
         {
             InitializeComponent();
-            
+
+            string curDir = System.IO.Path.GetDirectoryName(System.AppDomain.CurrentDomain.BaseDirectory.ToString());
+            string nomeArquivo = "SISAPO.exe";
+            string nomeEnderecoArquivo = string.Format(@"{0}\{1}", curDir, nomeArquivo);
+            string DataModificacaoArquivo = string.Empty;
+
+            if (Arquivos.Existe(nomeArquivo, false))
+            {
+                DateTime modification = System.IO.File.GetLastWriteTime(nomeEnderecoArquivo);
+                DataModificacaoArquivo = " - " + modification.ToString();
+            }
+
             this.Text = String.Format("Sobre {0}", AssemblyTitle);
             this.labelProductName.Text = AssemblyProduct;
-            this.labelVersion.Text = String.Format("Versão {0}", AssemblyVersion);
-            this.labelCopyright.Text = string.Format("{0} - {1}", AssemblyCopyright.Replace("Microsoft","iQUES Sistemas"), DateTime.Now.Date.Year);
+            this.labelVersion.Text = String.Format("Versão {0}{1}", AssemblyVersion, DataModificacaoArquivo);
+            this.labelCopyright.Text = string.Format("{0} - {1}", AssemblyCopyright.Replace("Microsoft", "iQUES Sistemas"), DateTime.Now.Date.Year);
             this.labelCompanyName.Text = AssemblyCompany;
             this.textBoxDescription.Text = string.Format("{0} {1}", AssemblyDescription, "E-mail: marques-fonseca@hotmail.com / Telefone: +55 63 99208-2269");
         }
@@ -114,7 +125,7 @@ namespace SISAPO
                 this.Close();
                 return;
             }
-            
+
         }
 
     }

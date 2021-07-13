@@ -365,7 +365,12 @@ namespace SISAPO
                         #region Tratamento NomeCliente
                         NomeCliente = NomeCliente.Trim() == "" ? DsCliente.Tables[0].Rows[0]["NomeCliente"].ToString().ToUpper().RemoveAcentos() : NomeCliente.Trim().ToUpper().RemoveAcentos();
                         NomeCliente = NomeCliente.Replace("- " + Comentario, "").Trim();//evita repetir o mesmo comentario varias vezes
-                        NomeCliente = string.Format("{0} - {1}", NomeCliente, Comentario);
+
+                        if (!string.IsNullOrEmpty(NomeCliente))//se o NomeCliente for fazio.... não colocar o Comentario (se não ficaria assim: " - PCT") / Eu quero assim: "" (sem nada já que não tem nome...)
+                        {
+                            NomeCliente = string.Format("{0} - {1}", NomeCliente, Comentario);
+                        }
+
                         #endregion
 
                         #region Tratamento SeECaixaPostal

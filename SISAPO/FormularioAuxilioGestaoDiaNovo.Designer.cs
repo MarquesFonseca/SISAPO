@@ -311,6 +311,8 @@
             // FiltrarPorPrazosAVENCERCheckBox
             // 
             this.FiltrarPorPrazosAVENCERCheckBox.AutoSize = true;
+            this.FiltrarPorPrazosAVENCERCheckBox.Checked = true;
+            this.FiltrarPorPrazosAVENCERCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.FiltrarPorPrazosAVENCERCheckBox.Enabled = false;
             this.FiltrarPorPrazosAVENCERCheckBox.Location = new System.Drawing.Point(14, 89);
             this.FiltrarPorPrazosAVENCERCheckBox.Name = "FiltrarPorPrazosAVENCERCheckBox";
@@ -323,6 +325,8 @@
             // FiltrarPorPrazosVENCENDOHOJECheckBox
             // 
             this.FiltrarPorPrazosVENCENDOHOJECheckBox.AutoSize = true;
+            this.FiltrarPorPrazosVENCENDOHOJECheckBox.Checked = true;
+            this.FiltrarPorPrazosVENCENDOHOJECheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.FiltrarPorPrazosVENCENDOHOJECheckBox.Enabled = false;
             this.FiltrarPorPrazosVENCENDOHOJECheckBox.Location = new System.Drawing.Point(14, 59);
             this.FiltrarPorPrazosVENCENDOHOJECheckBox.Name = "FiltrarPorPrazosVENCENDOHOJECheckBox";
@@ -335,6 +339,8 @@
             // FiltrarPorPrazosVENCIDOSCheckBox
             // 
             this.FiltrarPorPrazosVENCIDOSCheckBox.AutoSize = true;
+            this.FiltrarPorPrazosVENCIDOSCheckBox.Checked = true;
+            this.FiltrarPorPrazosVENCIDOSCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.FiltrarPorPrazosVENCIDOSCheckBox.Enabled = false;
             this.FiltrarPorPrazosVENCIDOSCheckBox.Location = new System.Drawing.Point(14, 29);
             this.FiltrarPorPrazosVENCIDOSCheckBox.Name = "FiltrarPorPrazosVENCIDOSCheckBox";
@@ -361,6 +367,8 @@
             // FiltrarPorClassificacaoDIVERSOSCheckBox
             // 
             this.FiltrarPorClassificacaoDIVERSOSCheckBox.AutoSize = true;
+            this.FiltrarPorClassificacaoDIVERSOSCheckBox.Checked = true;
+            this.FiltrarPorClassificacaoDIVERSOSCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.FiltrarPorClassificacaoDIVERSOSCheckBox.Enabled = false;
             this.FiltrarPorClassificacaoDIVERSOSCheckBox.Location = new System.Drawing.Point(15, 89);
             this.FiltrarPorClassificacaoDIVERSOSCheckBox.Name = "FiltrarPorClassificacaoDIVERSOSCheckBox";
@@ -373,6 +381,8 @@
             // FiltrarPorClassificacaoSEDEXCheckBox
             // 
             this.FiltrarPorClassificacaoSEDEXCheckBox.AutoSize = true;
+            this.FiltrarPorClassificacaoSEDEXCheckBox.Checked = true;
+            this.FiltrarPorClassificacaoSEDEXCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.FiltrarPorClassificacaoSEDEXCheckBox.Enabled = false;
             this.FiltrarPorClassificacaoSEDEXCheckBox.Location = new System.Drawing.Point(15, 59);
             this.FiltrarPorClassificacaoSEDEXCheckBox.Name = "FiltrarPorClassificacaoSEDEXCheckBox";
@@ -385,6 +395,8 @@
             // FiltrarPorClassificacaoPACCCheckBox
             // 
             this.FiltrarPorClassificacaoPACCCheckBox.AutoSize = true;
+            this.FiltrarPorClassificacaoPACCCheckBox.Checked = true;
+            this.FiltrarPorClassificacaoPACCCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.FiltrarPorClassificacaoPACCCheckBox.Enabled = false;
             this.FiltrarPorClassificacaoPACCCheckBox.Location = new System.Drawing.Point(15, 29);
             this.FiltrarPorClassificacaoPACCCheckBox.Name = "FiltrarPorClassificacaoPACCCheckBox";
@@ -731,6 +743,8 @@
             // FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox
             // 
             this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.AutoSize = true;
+            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.Checked = true;
+            this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.Enabled = false;
             this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.Location = new System.Drawing.Point(15, 24);
             this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.Name = "FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox";
