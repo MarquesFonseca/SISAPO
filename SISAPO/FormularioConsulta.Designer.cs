@@ -33,14 +33,22 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormularioConsulta));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormularioConsulta));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.codigoObjetoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStripImprimirListaEntrega = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItemImprimirListaEntrega = new System.Windows.Forms.ToolStripMenuItem();
             this.imprimirModeloLDIToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -53,12 +61,41 @@
             this.alterarItemToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.AtualizarObjetosSelecionadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CaixaPostal = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.nomeClienteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DataLancamento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DataModificacao = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Situacao = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CodigoLdi = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ObjetoEntregue = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.MarcarComoEntregueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.UnidadePostagem = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MunicipioPostagem = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CriacaoPostagem = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CepDestinoPostagem = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ARPostagem = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MPPostagem = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DataMaxPrevistaEntregaPostagem = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NumeroLOEC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UnidadeLOEC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MunicipioLOEC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CriacaoLOEC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CarteiroLOEC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DistritoLOEC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EnderecoLOEC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BairroLOEC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LocalidadeLOEC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SituacaoDestinatarioAusente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AgrupadoDestinatarioAusente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CoordenadasDestinatarioAusente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.atualizadoDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.contextMenuStripAtualizacao = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.MarcarAtualizadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removerItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.alterarItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tabelaObjetosSROLocalBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dataSetTabelaObjetosSROLocal = new SISAPO.DataSetTabelaObjetosSROLocal();
             this.panel1 = new System.Windows.Forms.Panel();
             this.LblTituloFormulario = new System.Windows.Forms.Label();
             this.TxtPesquisa = new System.Windows.Forms.TextBox();
@@ -115,6 +152,8 @@
             this.labelUnidadePostagem = new System.Windows.Forms.Label();
             this.LblDadosPostagemIndisponivel = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -138,42 +177,18 @@
             this.labelUnidadeLOEC = new System.Windows.Forms.Label();
             this.LblDadosTentativaEntregaIndisponivel = new System.Windows.Forms.Label();
             this.LblUnidadeLOEC = new System.Windows.Forms.Label();
-            this.tabelaObjetosSROLocalBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dataSetTabelaObjetosSROLocal = new SISAPO.DataSetTabelaObjetosSROLocal();
             this.tabelaObjetosSROLocalTableAdapter = new SISAPO.DataSetTabelaObjetosSROLocalTableAdapters.TabelaObjetosSROLocalTableAdapter();
             this.tableAdapterManager = new SISAPO.DataSetTabelaObjetosSROLocalTableAdapters.TableAdapterManager();
-            this.codigoObjetoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CaixaPostal = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.nomeClienteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DataLancamento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DataModificacao = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Situacao = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CodigoLdi = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ObjetoEntregue = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.UnidadePostagem = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MunicipioPostagem = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CriacaoPostagem = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CepDestinoPostagem = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ARPostagem = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MPPostagem = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DataMaxPrevistaEntregaPostagem = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NumeroLOEC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UnidadeLOEC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MunicipioLOEC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CriacaoLOEC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CarteiroLOEC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DistritoLOEC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EnderecoLOEC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BairroLOEC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LocalidadeLOEC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SituacaoDestinatarioAusente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AgrupadoDestinatarioAusente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CoordenadasDestinatarioAusente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.atualizadoDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.bindingSource2 = new System.Windows.Forms.BindingSource(this.components);
+            this.dataGridViewTextBoxColumnCodigoObjeto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumnNomeCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumnEnderecoLOEC = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStripImprimirListaEntrega.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStripAtualizacao.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tabelaObjetosSROLocalBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetTabelaObjetosSROLocal)).BeginInit();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -184,14 +199,15 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tabelaObjetosSROLocalBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSetTabelaObjetosSROLocal)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -264,10 +280,25 @@
             this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.dataGridView1.RowHeadersWidth = 30;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(721, 310);
+            this.dataGridView1.Size = new System.Drawing.Size(721, 146);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dataGridView1_KeyPress);
             this.dataGridView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDoubleClick);
+            // 
+            // codigoObjetoDataGridViewTextBoxColumn
+            // 
+            this.codigoObjetoDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.codigoObjetoDataGridViewTextBoxColumn.ContextMenuStrip = this.contextMenuStripImprimirListaEntrega;
+            this.codigoObjetoDataGridViewTextBoxColumn.DataPropertyName = "CodigoObjeto";
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.NullValue = null;
+            this.codigoObjetoDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            this.codigoObjetoDataGridViewTextBoxColumn.FillWeight = 140F;
+            this.codigoObjetoDataGridViewTextBoxColumn.Frozen = true;
+            this.codigoObjetoDataGridViewTextBoxColumn.HeaderText = "Código";
+            this.codigoObjetoDataGridViewTextBoxColumn.Name = "codigoObjetoDataGridViewTextBoxColumn";
+            this.codigoObjetoDataGridViewTextBoxColumn.ReadOnly = true;
+            this.codigoObjetoDataGridViewTextBoxColumn.Width = 65;
             // 
             // contextMenuStripImprimirListaEntrega
             // 
@@ -276,13 +307,13 @@
             this.toolStripSeparator2,
             this.imprimirAvisosDeChegadaSelecionadosToolStripMenuItem,
             this.toolStripSeparator1,
-            this.alterarSituaçãoDeItensSelecionadosToolStripMenuItem,
-            this.toolStripSeparator3,
             this.alterarItemToolStripMenuItem1,
+            this.toolStripSeparator3,
+            this.alterarSituaçãoDeItensSelecionadosToolStripMenuItem,
             this.toolStripSeparator4,
             this.AtualizarObjetosSelecionadosToolStripMenuItem});
             this.contextMenuStripImprimirListaEntrega.Name = "contextMenuStripImprimirListaEntrega";
-            this.contextMenuStripImprimirListaEntrega.Size = new System.Drawing.Size(372, 138);
+            this.contextMenuStripImprimirListaEntrega.Size = new System.Drawing.Size(372, 160);
             // 
             // toolStripMenuItemImprimirListaEntrega
             // 
@@ -334,7 +365,7 @@
             this.alterarSituaçãoDeItensSelecionadosToolStripMenuItem.Image = global::SISAPO.Properties.Resources.CadastroObjetos;
             this.alterarSituaçãoDeItensSelecionadosToolStripMenuItem.Name = "alterarSituaçãoDeItensSelecionadosToolStripMenuItem";
             this.alterarSituaçãoDeItensSelecionadosToolStripMenuItem.Size = new System.Drawing.Size(371, 22);
-            this.alterarSituaçãoDeItensSelecionadosToolStripMenuItem.Text = "Alterar Situação Atual de itens (Selecionados)";
+            this.alterarSituaçãoDeItensSelecionadosToolStripMenuItem.Text = "Situação da baixa (Selecionados)";
             this.alterarSituaçãoDeItensSelecionadosToolStripMenuItem.Click += new System.EventHandler(this.alterarSituaçãoDeItensSelecionadosToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
@@ -347,7 +378,7 @@
             this.alterarItemToolStripMenuItem1.Image = global::SISAPO.Properties.Resources.CadastroObjetos;
             this.alterarItemToolStripMenuItem1.Name = "alterarItemToolStripMenuItem1";
             this.alterarItemToolStripMenuItem1.Size = new System.Drawing.Size(371, 22);
-            this.alterarItemToolStripMenuItem1.Text = "Detalhes/Alterar item (Somente atual)";
+            this.alterarItemToolStripMenuItem1.Text = "Alterar item (Somente atual)";
             this.alterarItemToolStripMenuItem1.Click += new System.EventHandler(this.alterarItemToolStripMenuItem1_Click);
             // 
             // toolStripSeparator4
@@ -363,6 +394,85 @@
             this.AtualizarObjetosSelecionadosToolStripMenuItem.Text = "Atualizar Objeto(s) (Selecionados)";
             this.AtualizarObjetosSelecionadosToolStripMenuItem.Click += new System.EventHandler(this.AtualizarObjetosSelecionadosToolStripMenuItem_Click);
             // 
+            // CaixaPostal
+            // 
+            this.CaixaPostal.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.CaixaPostal.ContextMenuStrip = this.contextMenuStripImprimirListaEntrega;
+            this.CaixaPostal.DataPropertyName = "CaixaPostal";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.CaixaPostal.DefaultCellStyle = dataGridViewCellStyle4;
+            this.CaixaPostal.HeaderText = "Caixa Postal?";
+            this.CaixaPostal.Name = "CaixaPostal";
+            this.CaixaPostal.ReadOnly = true;
+            this.CaixaPostal.Width = 77;
+            // 
+            // nomeClienteDataGridViewTextBoxColumn
+            // 
+            this.nomeClienteDataGridViewTextBoxColumn.DataPropertyName = "NomeCliente";
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.nomeClienteDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
+            this.nomeClienteDataGridViewTextBoxColumn.HeaderText = "Nome do cliente";
+            this.nomeClienteDataGridViewTextBoxColumn.MinimumWidth = 100;
+            this.nomeClienteDataGridViewTextBoxColumn.Name = "nomeClienteDataGridViewTextBoxColumn";
+            this.nomeClienteDataGridViewTextBoxColumn.ReadOnly = true;
+            this.nomeClienteDataGridViewTextBoxColumn.Width = 400;
+            // 
+            // DataLancamento
+            // 
+            this.DataLancamento.ContextMenuStrip = this.contextMenuStripImprimirListaEntrega;
+            this.DataLancamento.DataPropertyName = "DataLancamento";
+            dataGridViewCellStyle6.Format = "G";
+            dataGridViewCellStyle6.NullValue = null;
+            this.DataLancamento.DefaultCellStyle = dataGridViewCellStyle6;
+            this.DataLancamento.FillWeight = 120F;
+            this.DataLancamento.HeaderText = "Lançamento LDI";
+            this.DataLancamento.Name = "DataLancamento";
+            this.DataLancamento.ReadOnly = true;
+            this.DataLancamento.Width = 120;
+            // 
+            // DataModificacao
+            // 
+            this.DataModificacao.ContextMenuStrip = this.contextMenuStripImprimirListaEntrega;
+            this.DataModificacao.DataPropertyName = "DataModificacao";
+            this.DataModificacao.FillWeight = 120F;
+            this.DataModificacao.HeaderText = "Baixa LDI";
+            this.DataModificacao.Name = "DataModificacao";
+            this.DataModificacao.ReadOnly = true;
+            this.DataModificacao.Width = 120;
+            // 
+            // Situacao
+            // 
+            this.Situacao.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Situacao.ContextMenuStrip = this.contextMenuStripImprimirListaEntrega;
+            this.Situacao.DataPropertyName = "Situacao";
+            this.Situacao.HeaderText = "Situação Atual";
+            this.Situacao.Name = "Situacao";
+            this.Situacao.ReadOnly = true;
+            this.Situacao.Width = 101;
+            // 
+            // CodigoLdi
+            // 
+            this.CodigoLdi.ContextMenuStrip = this.contextMenuStripImprimirListaEntrega;
+            this.CodigoLdi.DataPropertyName = "CodigoLdi";
+            this.CodigoLdi.FillWeight = 90F;
+            this.CodigoLdi.HeaderText = "Número LDI";
+            this.CodigoLdi.Name = "CodigoLdi";
+            this.CodigoLdi.ReadOnly = true;
+            this.CodigoLdi.Width = 90;
+            // 
+            // ObjetoEntregue
+            // 
+            this.ObjetoEntregue.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.ObjetoEntregue.ContextMenuStrip = this.contextMenuStrip1;
+            this.ObjetoEntregue.DataPropertyName = "ObjetoEntregue";
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.ObjetoEntregue.DefaultCellStyle = dataGridViewCellStyle7;
+            this.ObjetoEntregue.HeaderText = "Objeto Entregue?";
+            this.ObjetoEntregue.Name = "ObjetoEntregue";
+            this.ObjetoEntregue.ReadOnly = true;
+            this.ObjetoEntregue.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ObjetoEntregue.Width = 96;
+            // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -377,6 +487,191 @@
             this.MarcarComoEntregueToolStripMenuItem.Name = "MarcarComoEntregueToolStripMenuItem";
             this.MarcarComoEntregueToolStripMenuItem.Size = new System.Drawing.Size(42, 22);
             this.MarcarComoEntregueToolStripMenuItem.Click += new System.EventHandler(this.MarcarComoEntregueToolStripMenuItem_Click);
+            // 
+            // UnidadePostagem
+            // 
+            this.UnidadePostagem.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.UnidadePostagem.DataPropertyName = "UnidadePostagem";
+            this.UnidadePostagem.HeaderText = "Unidade Postagem";
+            this.UnidadePostagem.Name = "UnidadePostagem";
+            this.UnidadePostagem.ReadOnly = true;
+            this.UnidadePostagem.Width = 122;
+            // 
+            // MunicipioPostagem
+            // 
+            this.MunicipioPostagem.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.MunicipioPostagem.DataPropertyName = "MunicipioPostagem";
+            this.MunicipioPostagem.HeaderText = "Município Postagem";
+            this.MunicipioPostagem.Name = "MunicipioPostagem";
+            this.MunicipioPostagem.ReadOnly = true;
+            this.MunicipioPostagem.Width = 129;
+            // 
+            // CriacaoPostagem
+            // 
+            this.CriacaoPostagem.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.CriacaoPostagem.DataPropertyName = "CriacaoPostagem";
+            this.CriacaoPostagem.HeaderText = "Data Postagem";
+            this.CriacaoPostagem.Name = "CriacaoPostagem";
+            this.CriacaoPostagem.ReadOnly = true;
+            this.CriacaoPostagem.Width = 105;
+            // 
+            // CepDestinoPostagem
+            // 
+            this.CepDestinoPostagem.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.CepDestinoPostagem.DataPropertyName = "CepDestinoPostagem";
+            this.CepDestinoPostagem.HeaderText = "CEP Destino";
+            this.CepDestinoPostagem.Name = "CepDestinoPostagem";
+            this.CepDestinoPostagem.ReadOnly = true;
+            this.CepDestinoPostagem.Width = 92;
+            // 
+            // ARPostagem
+            // 
+            this.ARPostagem.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.ARPostagem.DataPropertyName = "ARPostagem";
+            this.ARPostagem.HeaderText = "AR";
+            this.ARPostagem.Name = "ARPostagem";
+            this.ARPostagem.ReadOnly = true;
+            this.ARPostagem.Width = 47;
+            // 
+            // MPPostagem
+            // 
+            this.MPPostagem.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.MPPostagem.DataPropertyName = "MPPostagem";
+            this.MPPostagem.HeaderText = "MP";
+            this.MPPostagem.Name = "MPPostagem";
+            this.MPPostagem.ReadOnly = true;
+            this.MPPostagem.Width = 48;
+            // 
+            // DataMaxPrevistaEntregaPostagem
+            // 
+            this.DataMaxPrevistaEntregaPostagem.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.DataMaxPrevistaEntregaPostagem.DataPropertyName = "DataMaxPrevistaEntregaPostagem";
+            this.DataMaxPrevistaEntregaPostagem.HeaderText = "Data Max Prevista Entrega";
+            this.DataMaxPrevistaEntregaPostagem.Name = "DataMaxPrevistaEntregaPostagem";
+            this.DataMaxPrevistaEntregaPostagem.ReadOnly = true;
+            this.DataMaxPrevistaEntregaPostagem.Width = 159;
+            // 
+            // NumeroLOEC
+            // 
+            this.NumeroLOEC.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.NumeroLOEC.DataPropertyName = "NumeroLOEC";
+            this.NumeroLOEC.HeaderText = "Número LOEC";
+            this.NumeroLOEC.Name = "NumeroLOEC";
+            this.NumeroLOEC.ReadOnly = true;
+            // 
+            // UnidadeLOEC
+            // 
+            this.UnidadeLOEC.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.UnidadeLOEC.DataPropertyName = "UnidadeLOEC";
+            this.UnidadeLOEC.HeaderText = "Unidade LOEC";
+            this.UnidadeLOEC.Name = "UnidadeLOEC";
+            this.UnidadeLOEC.ReadOnly = true;
+            this.UnidadeLOEC.Width = 103;
+            // 
+            // MunicipioLOEC
+            // 
+            this.MunicipioLOEC.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.MunicipioLOEC.DataPropertyName = "MunicipioLOEC";
+            this.MunicipioLOEC.HeaderText = "Município LOEC";
+            this.MunicipioLOEC.Name = "MunicipioLOEC";
+            this.MunicipioLOEC.ReadOnly = true;
+            this.MunicipioLOEC.Width = 110;
+            // 
+            // CriacaoLOEC
+            // 
+            this.CriacaoLOEC.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.CriacaoLOEC.DataPropertyName = "CriacaoLOEC";
+            this.CriacaoLOEC.HeaderText = "Data LOEC";
+            this.CriacaoLOEC.Name = "CriacaoLOEC";
+            this.CriacaoLOEC.ReadOnly = true;
+            this.CriacaoLOEC.Width = 86;
+            // 
+            // CarteiroLOEC
+            // 
+            this.CarteiroLOEC.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.CarteiroLOEC.DataPropertyName = "CarteiroLOEC";
+            this.CarteiroLOEC.HeaderText = "Carteiro LOEC";
+            this.CarteiroLOEC.Name = "CarteiroLOEC";
+            this.CarteiroLOEC.ReadOnly = true;
+            this.CarteiroLOEC.Width = 99;
+            // 
+            // DistritoLOEC
+            // 
+            this.DistritoLOEC.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.DistritoLOEC.DataPropertyName = "DistritoLOEC";
+            this.DistritoLOEC.HeaderText = "Distrito LOEC";
+            this.DistritoLOEC.Name = "DistritoLOEC";
+            this.DistritoLOEC.ReadOnly = true;
+            this.DistritoLOEC.Width = 95;
+            // 
+            // EnderecoLOEC
+            // 
+            this.EnderecoLOEC.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.EnderecoLOEC.DataPropertyName = "EnderecoLOEC";
+            this.EnderecoLOEC.HeaderText = "Endereço Entrega LOEC";
+            this.EnderecoLOEC.Name = "EnderecoLOEC";
+            this.EnderecoLOEC.ReadOnly = true;
+            this.EnderecoLOEC.Width = 149;
+            // 
+            // BairroLOEC
+            // 
+            this.BairroLOEC.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.BairroLOEC.DataPropertyName = "BairroLOEC";
+            this.BairroLOEC.HeaderText = "Bairro Entrega LOEC";
+            this.BairroLOEC.Name = "BairroLOEC";
+            this.BairroLOEC.ReadOnly = true;
+            this.BairroLOEC.Visible = false;
+            // 
+            // LocalidadeLOEC
+            // 
+            this.LocalidadeLOEC.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.LocalidadeLOEC.DataPropertyName = "LocalidadeLOEC";
+            this.LocalidadeLOEC.HeaderText = "Cidade Entrega LOEC";
+            this.LocalidadeLOEC.Name = "LocalidadeLOEC";
+            this.LocalidadeLOEC.ReadOnly = true;
+            this.LocalidadeLOEC.Width = 136;
+            // 
+            // SituacaoDestinatarioAusente
+            // 
+            this.SituacaoDestinatarioAusente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.SituacaoDestinatarioAusente.DataPropertyName = "SituacaoDestinatarioAusente";
+            this.SituacaoDestinatarioAusente.HeaderText = "Situação Ausente";
+            this.SituacaoDestinatarioAusente.Name = "SituacaoDestinatarioAusente";
+            this.SituacaoDestinatarioAusente.ReadOnly = true;
+            this.SituacaoDestinatarioAusente.Width = 116;
+            // 
+            // AgrupadoDestinatarioAusente
+            // 
+            this.AgrupadoDestinatarioAusente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.AgrupadoDestinatarioAusente.DataPropertyName = "AgrupadoDestinatarioAusente";
+            this.AgrupadoDestinatarioAusente.HeaderText = "Agrupado Ausente";
+            this.AgrupadoDestinatarioAusente.Name = "AgrupadoDestinatarioAusente";
+            this.AgrupadoDestinatarioAusente.ReadOnly = true;
+            this.AgrupadoDestinatarioAusente.Width = 120;
+            // 
+            // CoordenadasDestinatarioAusente
+            // 
+            this.CoordenadasDestinatarioAusente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.CoordenadasDestinatarioAusente.DataPropertyName = "CoordenadasDestinatarioAusente";
+            this.CoordenadasDestinatarioAusente.HeaderText = "Coordenadas Ausente";
+            this.CoordenadasDestinatarioAusente.Name = "CoordenadasDestinatarioAusente";
+            this.CoordenadasDestinatarioAusente.ReadOnly = true;
+            this.CoordenadasDestinatarioAusente.Width = 137;
+            // 
+            // atualizadoDataGridViewCheckBoxColumn
+            // 
+            this.atualizadoDataGridViewCheckBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.atualizadoDataGridViewCheckBoxColumn.ContextMenuStrip = this.contextMenuStripAtualizacao;
+            this.atualizadoDataGridViewCheckBoxColumn.DataPropertyName = "Atualizado";
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.atualizadoDataGridViewCheckBoxColumn.DefaultCellStyle = dataGridViewCellStyle8;
+            this.atualizadoDataGridViewCheckBoxColumn.FalseValue = "";
+            this.atualizadoDataGridViewCheckBoxColumn.HeaderText = "Já atualizado?";
+            this.atualizadoDataGridViewCheckBoxColumn.Name = "atualizadoDataGridViewCheckBoxColumn";
+            this.atualizadoDataGridViewCheckBoxColumn.ReadOnly = true;
+            this.atualizadoDataGridViewCheckBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.atualizadoDataGridViewCheckBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.atualizadoDataGridViewCheckBoxColumn.TrueValue = "";
             // 
             // contextMenuStripAtualizacao
             // 
@@ -411,6 +706,18 @@
             this.alterarItemToolStripMenuItem.Text = "Alterar Item";
             this.alterarItemToolStripMenuItem.Visible = false;
             this.alterarItemToolStripMenuItem.Click += new System.EventHandler(this.alterarItemToolStripMenuItem_Click);
+            // 
+            // tabelaObjetosSROLocalBindingSource
+            // 
+            this.tabelaObjetosSROLocalBindingSource.DataMember = "TabelaObjetosSROLocal";
+            this.tabelaObjetosSROLocalBindingSource.DataSource = this.dataSetTabelaObjetosSROLocal;
+            this.tabelaObjetosSROLocalBindingSource.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.tabelaObjetosSROLocalBindingSource_BindingComplete);
+            this.tabelaObjetosSROLocalBindingSource.CurrentItemChanged += new System.EventHandler(this.tabelaObjetosSROLocalBindingSource_CurrentItemChanged);
+            // 
+            // dataSetTabelaObjetosSROLocal
+            // 
+            this.dataSetTabelaObjetosSROLocal.DataSetName = "DataSetTabelaObjetosSROLocal";
+            this.dataSetTabelaObjetosSROLocal.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // panel1
             // 
@@ -1091,6 +1398,7 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.Controls.Add(this.dataGridView1);
+            this.splitContainer1.Panel1.Controls.Add(this.panel2);
             // 
             // splitContainer1.Panel2
             // 
@@ -1098,6 +1406,63 @@
             this.splitContainer1.Size = new System.Drawing.Size(984, 310);
             this.splitContainer1.SplitterDistance = 721;
             this.splitContainer1.TabIndex = 4;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.dataGridView2);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 146);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(721, 164);
+            this.panel2.TabIndex = 1;
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.AllowUserToAddRows = false;
+            this.dataGridView2.AllowUserToDeleteRows = false;
+            this.dataGridView2.AllowUserToOrderColumns = true;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle11;
+            this.dataGridView2.AutoGenerateColumns = false;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumnCodigoObjeto,
+            this.dataGridViewTextBoxColumnNomeCliente,
+            this.dataGridViewTextBoxColumnEnderecoLOEC});
+            this.dataGridView2.ContextMenuStrip = this.contextMenuStripImprimirListaEntrega;
+            this.dataGridView2.DataSource = this.bindingSource2;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle16;
+            this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView2.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.ReadOnly = true;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView2.RowHeadersDefaultCellStyle = dataGridViewCellStyle17;
+            this.dataGridView2.RowHeadersWidth = 30;
+            this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView2.Size = new System.Drawing.Size(721, 164);
+            this.dataGridView2.TabIndex = 1;
             // 
             // splitContainer2
             // 
@@ -1354,18 +1719,6 @@
             this.LblUnidadeLOEC.TabIndex = 1;
             this.LblUnidadeLOEC.Text = "UnidadeLOEC";
             // 
-            // tabelaObjetosSROLocalBindingSource
-            // 
-            this.tabelaObjetosSROLocalBindingSource.DataMember = "TabelaObjetosSROLocal";
-            this.tabelaObjetosSROLocalBindingSource.DataSource = this.dataSetTabelaObjetosSROLocal;
-            this.tabelaObjetosSROLocalBindingSource.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.tabelaObjetosSROLocalBindingSource_BindingComplete);
-            this.tabelaObjetosSROLocalBindingSource.CurrentItemChanged += new System.EventHandler(this.tabelaObjetosSROLocalBindingSource_CurrentItemChanged);
-            // 
-            // dataSetTabelaObjetosSROLocal
-            // 
-            this.dataSetTabelaObjetosSROLocal.DataSetName = "DataSetTabelaObjetosSROLocal";
-            this.dataSetTabelaObjetosSROLocal.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // tabelaObjetosSROLocalTableAdapter
             // 
             this.tabelaObjetosSROLocalTableAdapter.ClearBeforeFill = true;
@@ -1376,285 +1729,37 @@
             this.tableAdapterManager.TabelaObjetosSROLocalTableAdapter = this.tabelaObjetosSROLocalTableAdapter;
             this.tableAdapterManager.UpdateOrder = SISAPO.DataSetTabelaObjetosSROLocalTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
-            // codigoObjetoDataGridViewTextBoxColumn
+            // dataGridViewTextBoxColumnCodigoObjeto
             // 
-            this.codigoObjetoDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.codigoObjetoDataGridViewTextBoxColumn.ContextMenuStrip = this.contextMenuStripImprimirListaEntrega;
-            this.codigoObjetoDataGridViewTextBoxColumn.DataPropertyName = "CodigoObjeto";
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.NullValue = null;
-            this.codigoObjetoDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
-            this.codigoObjetoDataGridViewTextBoxColumn.FillWeight = 140F;
-            this.codigoObjetoDataGridViewTextBoxColumn.Frozen = true;
-            this.codigoObjetoDataGridViewTextBoxColumn.HeaderText = "Código";
-            this.codigoObjetoDataGridViewTextBoxColumn.Name = "codigoObjetoDataGridViewTextBoxColumn";
-            this.codigoObjetoDataGridViewTextBoxColumn.ReadOnly = true;
-            this.codigoObjetoDataGridViewTextBoxColumn.Width = 65;
+            this.dataGridViewTextBoxColumnCodigoObjeto.DataPropertyName = "CodigoObjeto";
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
+            this.dataGridViewTextBoxColumnCodigoObjeto.DefaultCellStyle = dataGridViewCellStyle13;
+            this.dataGridViewTextBoxColumnCodigoObjeto.FillWeight = 227F;
+            this.dataGridViewTextBoxColumnCodigoObjeto.HeaderText = "Código";
+            this.dataGridViewTextBoxColumnCodigoObjeto.Name = "dataGridViewTextBoxColumnCodigoObjeto";
+            this.dataGridViewTextBoxColumnCodigoObjeto.ReadOnly = true;
+            this.dataGridViewTextBoxColumnCodigoObjeto.Width = 227;
             // 
-            // CaixaPostal
+            // dataGridViewTextBoxColumnNomeCliente
             // 
-            this.CaixaPostal.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.CaixaPostal.ContextMenuStrip = this.contextMenuStripImprimirListaEntrega;
-            this.CaixaPostal.DataPropertyName = "CaixaPostal";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.CaixaPostal.DefaultCellStyle = dataGridViewCellStyle4;
-            this.CaixaPostal.HeaderText = "Caixa Postal?";
-            this.CaixaPostal.Name = "CaixaPostal";
-            this.CaixaPostal.ReadOnly = true;
-            this.CaixaPostal.Width = 77;
+            this.dataGridViewTextBoxColumnNomeCliente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumnNomeCliente.DataPropertyName = "NomeCliente";
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.dataGridViewTextBoxColumnNomeCliente.DefaultCellStyle = dataGridViewCellStyle14;
+            this.dataGridViewTextBoxColumnNomeCliente.HeaderText = "Nome do cliente";
+            this.dataGridViewTextBoxColumnNomeCliente.Name = "dataGridViewTextBoxColumnNomeCliente";
+            this.dataGridViewTextBoxColumnNomeCliente.ReadOnly = true;
             // 
-            // nomeClienteDataGridViewTextBoxColumn
+            // dataGridViewTextBoxColumnEnderecoLOEC
             // 
-            this.nomeClienteDataGridViewTextBoxColumn.DataPropertyName = "NomeCliente";
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.nomeClienteDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
-            this.nomeClienteDataGridViewTextBoxColumn.HeaderText = "Nome do cliente";
-            this.nomeClienteDataGridViewTextBoxColumn.MinimumWidth = 100;
-            this.nomeClienteDataGridViewTextBoxColumn.Name = "nomeClienteDataGridViewTextBoxColumn";
-            this.nomeClienteDataGridViewTextBoxColumn.ReadOnly = true;
-            this.nomeClienteDataGridViewTextBoxColumn.Width = 400;
-            // 
-            // DataLancamento
-            // 
-            this.DataLancamento.ContextMenuStrip = this.contextMenuStripImprimirListaEntrega;
-            this.DataLancamento.DataPropertyName = "DataLancamento";
-            dataGridViewCellStyle6.Format = "G";
-            dataGridViewCellStyle6.NullValue = null;
-            this.DataLancamento.DefaultCellStyle = dataGridViewCellStyle6;
-            this.DataLancamento.FillWeight = 120F;
-            this.DataLancamento.HeaderText = "Lançamento LDI";
-            this.DataLancamento.Name = "DataLancamento";
-            this.DataLancamento.ReadOnly = true;
-            this.DataLancamento.Width = 120;
-            // 
-            // DataModificacao
-            // 
-            this.DataModificacao.ContextMenuStrip = this.contextMenuStripImprimirListaEntrega;
-            this.DataModificacao.DataPropertyName = "DataModificacao";
-            this.DataModificacao.FillWeight = 120F;
-            this.DataModificacao.HeaderText = "Baixa LDI";
-            this.DataModificacao.Name = "DataModificacao";
-            this.DataModificacao.ReadOnly = true;
-            this.DataModificacao.Width = 120;
-            // 
-            // Situacao
-            // 
-            this.Situacao.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Situacao.ContextMenuStrip = this.contextMenuStripImprimirListaEntrega;
-            this.Situacao.DataPropertyName = "Situacao";
-            this.Situacao.HeaderText = "Situação Atual";
-            this.Situacao.Name = "Situacao";
-            this.Situacao.ReadOnly = true;
-            this.Situacao.Width = 101;
-            // 
-            // CodigoLdi
-            // 
-            this.CodigoLdi.ContextMenuStrip = this.contextMenuStripImprimirListaEntrega;
-            this.CodigoLdi.DataPropertyName = "CodigoLdi";
-            this.CodigoLdi.FillWeight = 90F;
-            this.CodigoLdi.HeaderText = "Número LDI";
-            this.CodigoLdi.Name = "CodigoLdi";
-            this.CodigoLdi.ReadOnly = true;
-            this.CodigoLdi.Width = 90;
-            // 
-            // ObjetoEntregue
-            // 
-            this.ObjetoEntregue.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.ObjetoEntregue.ContextMenuStrip = this.contextMenuStrip1;
-            this.ObjetoEntregue.DataPropertyName = "ObjetoEntregue";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.ObjetoEntregue.DefaultCellStyle = dataGridViewCellStyle7;
-            this.ObjetoEntregue.HeaderText = "Objeto Entregue?";
-            this.ObjetoEntregue.Name = "ObjetoEntregue";
-            this.ObjetoEntregue.ReadOnly = true;
-            this.ObjetoEntregue.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ObjetoEntregue.Width = 96;
-            // 
-            // UnidadePostagem
-            // 
-            this.UnidadePostagem.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.UnidadePostagem.DataPropertyName = "UnidadePostagem";
-            this.UnidadePostagem.HeaderText = "Unidade Postagem";
-            this.UnidadePostagem.Name = "UnidadePostagem";
-            this.UnidadePostagem.ReadOnly = true;
-            this.UnidadePostagem.Width = 122;
-            // 
-            // MunicipioPostagem
-            // 
-            this.MunicipioPostagem.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.MunicipioPostagem.DataPropertyName = "MunicipioPostagem";
-            this.MunicipioPostagem.HeaderText = "Município Postagem";
-            this.MunicipioPostagem.Name = "MunicipioPostagem";
-            this.MunicipioPostagem.ReadOnly = true;
-            this.MunicipioPostagem.Width = 129;
-            // 
-            // CriacaoPostagem
-            // 
-            this.CriacaoPostagem.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.CriacaoPostagem.DataPropertyName = "CriacaoPostagem";
-            this.CriacaoPostagem.HeaderText = "Data Postagem";
-            this.CriacaoPostagem.Name = "CriacaoPostagem";
-            this.CriacaoPostagem.ReadOnly = true;
-            this.CriacaoPostagem.Width = 105;
-            // 
-            // CepDestinoPostagem
-            // 
-            this.CepDestinoPostagem.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.CepDestinoPostagem.DataPropertyName = "CepDestinoPostagem";
-            this.CepDestinoPostagem.HeaderText = "CEP Destino";
-            this.CepDestinoPostagem.Name = "CepDestinoPostagem";
-            this.CepDestinoPostagem.ReadOnly = true;
-            this.CepDestinoPostagem.Width = 92;
-            // 
-            // ARPostagem
-            // 
-            this.ARPostagem.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.ARPostagem.DataPropertyName = "ARPostagem";
-            this.ARPostagem.HeaderText = "AR";
-            this.ARPostagem.Name = "ARPostagem";
-            this.ARPostagem.ReadOnly = true;
-            this.ARPostagem.Width = 47;
-            // 
-            // MPPostagem
-            // 
-            this.MPPostagem.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.MPPostagem.DataPropertyName = "MPPostagem";
-            this.MPPostagem.HeaderText = "MP";
-            this.MPPostagem.Name = "MPPostagem";
-            this.MPPostagem.ReadOnly = true;
-            this.MPPostagem.Width = 48;
-            // 
-            // DataMaxPrevistaEntregaPostagem
-            // 
-            this.DataMaxPrevistaEntregaPostagem.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.DataMaxPrevistaEntregaPostagem.DataPropertyName = "DataMaxPrevistaEntregaPostagem";
-            this.DataMaxPrevistaEntregaPostagem.HeaderText = "Data Max Prevista Entrega";
-            this.DataMaxPrevistaEntregaPostagem.Name = "DataMaxPrevistaEntregaPostagem";
-            this.DataMaxPrevistaEntregaPostagem.ReadOnly = true;
-            this.DataMaxPrevistaEntregaPostagem.Width = 159;
-            // 
-            // NumeroLOEC
-            // 
-            this.NumeroLOEC.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.NumeroLOEC.DataPropertyName = "NumeroLOEC";
-            this.NumeroLOEC.HeaderText = "Número LOEC";
-            this.NumeroLOEC.Name = "NumeroLOEC";
-            this.NumeroLOEC.ReadOnly = true;
-            // 
-            // UnidadeLOEC
-            // 
-            this.UnidadeLOEC.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.UnidadeLOEC.DataPropertyName = "UnidadeLOEC";
-            this.UnidadeLOEC.HeaderText = "Unidade LOEC";
-            this.UnidadeLOEC.Name = "UnidadeLOEC";
-            this.UnidadeLOEC.ReadOnly = true;
-            this.UnidadeLOEC.Width = 103;
-            // 
-            // MunicipioLOEC
-            // 
-            this.MunicipioLOEC.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.MunicipioLOEC.DataPropertyName = "MunicipioLOEC";
-            this.MunicipioLOEC.HeaderText = "Município LOEC";
-            this.MunicipioLOEC.Name = "MunicipioLOEC";
-            this.MunicipioLOEC.ReadOnly = true;
-            this.MunicipioLOEC.Width = 110;
-            // 
-            // CriacaoLOEC
-            // 
-            this.CriacaoLOEC.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.CriacaoLOEC.DataPropertyName = "CriacaoLOEC";
-            this.CriacaoLOEC.HeaderText = "Data LOEC";
-            this.CriacaoLOEC.Name = "CriacaoLOEC";
-            this.CriacaoLOEC.ReadOnly = true;
-            this.CriacaoLOEC.Width = 86;
-            // 
-            // CarteiroLOEC
-            // 
-            this.CarteiroLOEC.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.CarteiroLOEC.DataPropertyName = "CarteiroLOEC";
-            this.CarteiroLOEC.HeaderText = "Carteiro LOEC";
-            this.CarteiroLOEC.Name = "CarteiroLOEC";
-            this.CarteiroLOEC.ReadOnly = true;
-            this.CarteiroLOEC.Width = 99;
-            // 
-            // DistritoLOEC
-            // 
-            this.DistritoLOEC.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.DistritoLOEC.DataPropertyName = "DistritoLOEC";
-            this.DistritoLOEC.HeaderText = "Distrito LOEC";
-            this.DistritoLOEC.Name = "DistritoLOEC";
-            this.DistritoLOEC.ReadOnly = true;
-            this.DistritoLOEC.Width = 95;
-            // 
-            // EnderecoLOEC
-            // 
-            this.EnderecoLOEC.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.EnderecoLOEC.DataPropertyName = "EnderecoLOEC";
-            this.EnderecoLOEC.HeaderText = "Endereço Entrega LOEC";
-            this.EnderecoLOEC.Name = "EnderecoLOEC";
-            this.EnderecoLOEC.ReadOnly = true;
-            this.EnderecoLOEC.Width = 149;
-            // 
-            // BairroLOEC
-            // 
-            this.BairroLOEC.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.BairroLOEC.DataPropertyName = "BairroLOEC";
-            this.BairroLOEC.HeaderText = "Bairro Entrega LOEC";
-            this.BairroLOEC.Name = "BairroLOEC";
-            this.BairroLOEC.ReadOnly = true;
-            this.BairroLOEC.Visible = false;
-            this.BairroLOEC.Width = 130;
-            // 
-            // LocalidadeLOEC
-            // 
-            this.LocalidadeLOEC.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.LocalidadeLOEC.DataPropertyName = "LocalidadeLOEC";
-            this.LocalidadeLOEC.HeaderText = "Cidade Entrega LOEC";
-            this.LocalidadeLOEC.Name = "LocalidadeLOEC";
-            this.LocalidadeLOEC.ReadOnly = true;
-            this.LocalidadeLOEC.Width = 136;
-            // 
-            // SituacaoDestinatarioAusente
-            // 
-            this.SituacaoDestinatarioAusente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.SituacaoDestinatarioAusente.DataPropertyName = "SituacaoDestinatarioAusente";
-            this.SituacaoDestinatarioAusente.HeaderText = "Situação Ausente";
-            this.SituacaoDestinatarioAusente.Name = "SituacaoDestinatarioAusente";
-            this.SituacaoDestinatarioAusente.ReadOnly = true;
-            this.SituacaoDestinatarioAusente.Width = 116;
-            // 
-            // AgrupadoDestinatarioAusente
-            // 
-            this.AgrupadoDestinatarioAusente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.AgrupadoDestinatarioAusente.DataPropertyName = "AgrupadoDestinatarioAusente";
-            this.AgrupadoDestinatarioAusente.HeaderText = "Agrupado Ausente";
-            this.AgrupadoDestinatarioAusente.Name = "AgrupadoDestinatarioAusente";
-            this.AgrupadoDestinatarioAusente.ReadOnly = true;
-            this.AgrupadoDestinatarioAusente.Width = 120;
-            // 
-            // CoordenadasDestinatarioAusente
-            // 
-            this.CoordenadasDestinatarioAusente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.CoordenadasDestinatarioAusente.DataPropertyName = "CoordenadasDestinatarioAusente";
-            this.CoordenadasDestinatarioAusente.HeaderText = "Coordenadas Ausente";
-            this.CoordenadasDestinatarioAusente.Name = "CoordenadasDestinatarioAusente";
-            this.CoordenadasDestinatarioAusente.ReadOnly = true;
-            this.CoordenadasDestinatarioAusente.Width = 137;
-            // 
-            // atualizadoDataGridViewCheckBoxColumn
-            // 
-            this.atualizadoDataGridViewCheckBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.atualizadoDataGridViewCheckBoxColumn.ContextMenuStrip = this.contextMenuStripAtualizacao;
-            this.atualizadoDataGridViewCheckBoxColumn.DataPropertyName = "Atualizado";
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.atualizadoDataGridViewCheckBoxColumn.DefaultCellStyle = dataGridViewCellStyle8;
-            this.atualizadoDataGridViewCheckBoxColumn.FalseValue = "";
-            this.atualizadoDataGridViewCheckBoxColumn.HeaderText = "Já atualizado?";
-            this.atualizadoDataGridViewCheckBoxColumn.Name = "atualizadoDataGridViewCheckBoxColumn";
-            this.atualizadoDataGridViewCheckBoxColumn.ReadOnly = true;
-            this.atualizadoDataGridViewCheckBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.atualizadoDataGridViewCheckBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.atualizadoDataGridViewCheckBoxColumn.TrueValue = "";
+            this.dataGridViewTextBoxColumnEnderecoLOEC.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dataGridViewTextBoxColumnEnderecoLOEC.DataPropertyName = "EnderecoLOEC";
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.dataGridViewTextBoxColumnEnderecoLOEC.DefaultCellStyle = dataGridViewCellStyle15;
+            this.dataGridViewTextBoxColumnEnderecoLOEC.HeaderText = "Endereço Entrega LOEC";
+            this.dataGridViewTextBoxColumnEnderecoLOEC.Name = "dataGridViewTextBoxColumnEnderecoLOEC";
+            this.dataGridViewTextBoxColumnEnderecoLOEC.ReadOnly = true;
+            this.dataGridViewTextBoxColumnEnderecoLOEC.Width = 149;
             // 
             // FormularioConsulta
             // 
@@ -1679,6 +1784,8 @@
             this.contextMenuStripImprimirListaEntrega.ResumeLayout(false);
             this.contextMenuStrip1.ResumeLayout(false);
             this.contextMenuStripAtualizacao.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.tabelaObjetosSROLocalBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetTabelaObjetosSROLocal)).EndInit();
             this.panel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -1692,6 +1799,8 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
@@ -1699,8 +1808,7 @@
             this.tabControl2.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tabelaObjetosSROLocalBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSetTabelaObjetosSROLocal)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1837,5 +1945,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn AgrupadoDestinatarioAusente;
         private System.Windows.Forms.DataGridViewTextBoxColumn CoordenadasDestinatarioAusente;
         private System.Windows.Forms.DataGridViewCheckBoxColumn atualizadoDataGridViewCheckBoxColumn;
+        private System.Windows.Forms.Panel panel2;
+        public System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.BindingSource bindingSource2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumnCodigoObjeto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumnNomeCliente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumnEnderecoLOEC;
     }
 }

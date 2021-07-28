@@ -137,6 +137,8 @@ namespace SISAPO
         {
             string Html = RetornaHtml().ToString();
             webBrowser1.DocumentText = Html;
+
+
         }
 
         private StringBuilder RetornaHtml()
@@ -283,7 +285,7 @@ namespace SISAPO
         }
 
         private StringBuilder CarregaHTMLTipoComentario(StringBuilder Html, DataTable Dt, string DescricaoTiopo)
-        {            
+        {
             if (Dt.Rows.Count > 0)
             {
                 string qtd = Dt.Rows.Count.ToString();
@@ -337,7 +339,8 @@ namespace SISAPO
 
         private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
-
+            //webBrowser1.ShowPrintPreviewDialog();
+            //this.Close();
         }
 
         private void FormularioSRORastreamentoUnificado_KeyDown(object sender, KeyEventArgs e)

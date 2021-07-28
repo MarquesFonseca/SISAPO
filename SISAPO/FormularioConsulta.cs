@@ -39,11 +39,13 @@ namespace SISAPO
             //selectCommand.AppendLine("WHERE        (Format(DataLancamento, 'yyyy/MM/dd') BETWEEN Format(?, 'yyyy/MM/dd') AND Format(?, 'yyyy/MM/dd'))                                                                                                                           ");
 
 
-            
+
         }
 
         private void FormularioConsulta_Load(object sender, EventArgs e)
         {
+            panel2.Visible = false;
+
             DataFinal_dateTimePicker.Text = DateTime.Now.Date.ToShortDateString();
             DataInicial_dateTimePicker.Text = DateTime.Today.AddMonths(-1).Date.ToShortDateString();
 
@@ -219,6 +221,14 @@ namespace SISAPO
 
         private void FormularioConsulta_KeyDown(object sender, KeyEventArgs e)
         {
+            //if (e.Control && e.Shift == Keys.P && e.KeyCode == Keys.L)
+            //{
+            //    imprimirModeloLDIToolStripMenuItem_Click(sender, e);
+            //}
+            //if (e.Control && e.KeyCode == Keys.P && e.KeyCode == Keys.A)
+            //{
+            //    imprimirAvisosDeChegadaSelecionadosToolStripMenuItem_Click(sender, e);
+            //}
             if (e.KeyCode == Keys.Escape)
             {
                 e.SuppressKeyPress = true;
@@ -604,6 +614,35 @@ namespace SISAPO
                     LblLocalidadeLOEC.Text = currentRow["LocalidadeLOEC"].ToString();
                 }
                 #endregion
+
+
+                if (string.IsNullOrEmpty(currentRow["EnderecoLOEC"].ToString()))
+                {
+                    //vazio
+                    panel2.Visible = false;
+                    bindingSource2.DataSource = null;
+                }
+                if (!string.IsNullOrEmpty(currentRow["EnderecoLOEC"].ToString()))
+                {
+                    //não vazio
+                    var Resultado = ((System.Windows.Forms.BindingSource)dataGridView1.DataSource).Cast<DataRowView>().Where(T => 
+                    (T["NomeCliente"].ToString().Contains(currentRow["NomeCliente"].ToString()) || T["EnderecoLOEC"].ToString().Contains(currentRow["EnderecoLOEC"].ToString())) && 
+                    Convert.ToBoolean(T["ObjetoEntregue"]) == false);
+                    if (Resultado.Count() <= 1)
+                    {
+                        panel2.Visible = false;
+                        bindingSource2.DataSource = null;
+                    }
+                    if (Resultado.Count() > 1)
+                    {
+                        panel2.Visible = true;
+                        bindingSource2.DataSource = Resultado;
+                    }
+
+                }
+
+
+
             }
             #endregion
         }
@@ -663,10 +702,63 @@ namespace SISAPO
 
                 //string commandText = @"SELECT Codigo, CodigoObjeto, IIf(CodigoLdi IS NULL OR CodigoLdi = '','000000000000',CodigoLdi) AS CodigoLdi, NomeCliente, Format(IIf(TabelaObjetosSROLocal.DataLancamento IS NULL OR TabelaObjetosSROLocal.DataLancamento = '', Format(NOW(),'dd/MM/yyyy 00:00:01'), TabelaObjetosSROLocal.DataLancamento), 'dd/MM/yyyy hh:mm:ss') AS DataLancamento, Format(DataModificacao, 'dd/MM/yyyy hh:mm:ss') AS DataModificacao, Situacao, Atualizado, ObjetoEntregue, CaixaPostal, UnidadePostagem, MunicipioPostagem, CriacaoPostagem, CepDestinoPostagem, ARPostagem, MPPostagem, DataMaxPrevistaEntregaPostagem, UnidadeLOEC, MunicipioLOEC, CriacaoLOEC, CarteiroLOEC, DistritoLOEC, NumeroLOEC, EnderecoLOEC, BairroLOEC, LocalidadeLOEC, SituacaoDestinatarioAusente, AgrupadoDestinatarioAusente, CoordenadasDestinatarioAusente, Comentario, TipoPostalServico, TipoPostalSiglaCodigo, TipoPostalNomeSiglaCodigo, TipoPostalPrazoDiasCorridosRegulamentado FROM            TabelaObjetosSROLocal WHERE        (Format(DataLancamento, 'yyyy/MM/dd') BETWEEN Format(?, 'yyyy/MM/dd') AND Format(?, 'yyyy/MM/dd')) ORDER BY DataLancamento DESC";
                 //this.tabelaObjetosSROLocalTableAdapter.Adapter.SelectCommand =  new System.Data.OleDb.OleDbCommand(commandText);
-                
+
                 this.tabelaObjetosSROLocalTableAdapter.Fill(this.dataSetTabelaObjetosSROLocal.TabelaObjetosSROLocal, dataInicial, datafinal);
                 this.MontaFiltro();
                 waitForm.Close();
+
+                #region 1 tentativa nao deu certo
+                ////BindingSource bs2 = new BindingSource();
+                //object dataSourceGridView1 = dataGridView1.DataSource;
+                //bindingSource2.DataSource = dataSourceGridView1;
+                ////dataGridView2.DataSource = bindingSource2;
+
+                //foreach (DataGridViewColumn item in dataGridView2.Columns)
+                //{
+                //    if (item.Name == "dataGridViewTextBoxColumnCodigoObjeto" ||
+                //       item.Name == "dataGridViewTextBoxColumnNomeCliente" ||
+                //       item.Name == "dataGridViewTextBoxColumnEnderecoLOEC")
+                //    {
+                //        continue;
+                //    }
+                //    else
+                //    {
+                //        item.Visible = false;
+                //    }
+                //}
+                //bindingSource2.Filter = "EnderecoLOEC = '804 SUL ALAMEDA 6 20'";
+                ////EnderecoLOEC = '804 SUL ALAMEDA 6 20' 
+                #endregion
+
+                //foreach (DataGridViewColumn item in dataGridView2.Columns)
+                //{
+                //    if (item.Name == "dataGridViewTextBoxColumnCodigoObjeto" ||
+                //       item.Name == "dataGridViewTextBoxColumnNomeCliente" ||
+                //       item.Name == "dataGridViewTextBoxColumnEnderecoLOEC")
+                //    {
+                //        continue;
+                //    }
+                //    else
+                //    {
+                //        item.Visible = false;
+                //    }
+                //}
+                //dataGridView2.DataSource = dataGridView1.DataSource.
+
+                //var tbl = ((System.Windows.Forms.BindingSource)dataGridView1.DataSource).Cast<DataRowView>().Where(T => T["EnderecoLOEC"].ToString().Contains("804 SUL ALAMEDA 6 20"));//.AsEnumerable().Where(T => T.Rows .ToString().Contains("804 SUL ALAMEDA 6 20"));
+                //bindingSource2.DataSource = tbl;
+
+
+
+
+
+
+
+
+
+
+
+
 
                 tabelaObjetosSROLocalBindingSource.Position = posicao;
                 dataGridView1.Focus();

@@ -1,4 +1,3 @@
-C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.exe
 C:\Projetos\SISAPO\SISAPO\bin\Release\SISAPO.exe.config
 C:\Projetos\SISAPO\SISAPO\bin\Release\SISAPO.exe.manifest
 C:\Projetos\SISAPO\SISAPO\bin\Release\SISAPO.application
@@ -55,4 +54,5 @@ C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.WaitForm.resources
 C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.csproj.GenerateResource.Cache
 C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.exe.manifest
 C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.application
+C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.exe
 C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.pdb

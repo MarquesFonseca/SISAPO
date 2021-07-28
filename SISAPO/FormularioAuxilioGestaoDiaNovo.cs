@@ -63,7 +63,7 @@ namespace SISAPO
                 BtnRetornaTodosNaoEntregues.Enabled = false;
 
 #if !DEBUG
-waitForm.Show(this);
+                waitForm.Show(this);
 #endif
 
                 listaObjetos = RetornaListaObjetosNaoEntregues();
@@ -97,13 +97,13 @@ waitForm.Show(this);
                 FiltrosCheckBox();
 
 #if !DEBUG
-waitForm.Close();
+                waitForm.Close();
 #endif
             }
             catch (IOException)
             {
 #if !DEBUG
-waitForm.Close();
+                waitForm.Close();
 #endif
             }
             finally
@@ -424,11 +424,11 @@ waitForm.Close();
 
             //FormularioImpressaoAuxilioGestaoDia formularioImpressaoAuxilioGestaoDia = new FormularioImpressaoAuxilioGestaoDia(listaObjetos);
             FormularioImpressaoAuxilioGestaoDiaAgrupados formularioImpressaoAuxilioGestaoDiaAgrupados = new FormularioImpressaoAuxilioGestaoDiaAgrupados(listaObjetos);
-            formularioImpressaoAuxilioGestaoDiaAgrupados.MdiParent = MdiParent;
-            formularioImpressaoAuxilioGestaoDiaAgrupados.Show();
-            formularioImpressaoAuxilioGestaoDiaAgrupados.WindowState = FormWindowState.Normal;
-            formularioImpressaoAuxilioGestaoDiaAgrupados.WindowState = FormWindowState.Maximized;
-            formularioImpressaoAuxilioGestaoDiaAgrupados.Activate();
+            //formularioImpressaoAuxilioGestaoDiaAgrupados.MdiParent = MdiParent;
+            formularioImpressaoAuxilioGestaoDiaAgrupados.ShowDialog();
+            //formularioImpressaoAuxilioGestaoDiaAgrupados.WindowState = FormWindowState.Normal;
+            //formularioImpressaoAuxilioGestaoDiaAgrupados.WindowState = FormWindowState.Maximized;
+            //formularioImpressaoAuxilioGestaoDiaAgrupados.Activate();
         }
 
         private void MudaCorLinhasGridView()
@@ -505,15 +505,21 @@ waitForm.Close();
             FiltrosCheckBox();
         }
 
+        bool filtrarPorPrazoAVencerAntesDoCheckPorPrevisaoDia = false;
         private void FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             if (FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox.Checked)
             {
+                filtrarPorPrazoAVencerAntesDoCheckPorPrevisaoDia = FiltrarPorPrazosAVENCERCheckBox.Checked;
+
+                FiltrarPorPrazosAVENCERCheckBox.Checked = true;
+
                 DataInicial_dateTimePicker.Enabled = true;
                 DataInicial_dateTimePicker.Focus();//CHAMA O METODO DataInicial_dateTimePicker_GotFocus()
             }
             else
             {
+                FiltrarPorPrazosAVENCERCheckBox.Checked = filtrarPorPrazoAVencerAntesDoCheckPorPrevisaoDia;
                 DataInicial_dateTimePicker.Enabled = false;
                 DataInicial_dateTimePicker.Value = DateTime.Now.Date;
             }

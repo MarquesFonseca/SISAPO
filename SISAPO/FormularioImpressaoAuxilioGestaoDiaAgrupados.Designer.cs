@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormularioImpressaoAuxilioGestaoDia));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormularioImpressaoAuxilioGestaoDiaAgrupados));
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.panel1 = new System.Windows.Forms.Panel();
             this.BtnImprimirPagina = new System.Windows.Forms.Button();
@@ -41,8 +41,9 @@
             this.webBrowser1.Location = new System.Drawing.Point(0, 51);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(739, 411);
+            this.webBrowser1.Size = new System.Drawing.Size(939, 611);
             this.webBrowser1.TabIndex = 1;
+            this.webBrowser1.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webBrowser1_DocumentCompleted);
             // 
             // panel1
             // 
@@ -50,7 +51,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(739, 51);
+            this.panel1.Size = new System.Drawing.Size(939, 51);
             this.panel1.TabIndex = 2;
             // 
             // BtnImprimirPagina
@@ -62,7 +63,7 @@
             this.BtnImprimirPagina.Location = new System.Drawing.Point(0, 0);
             this.BtnImprimirPagina.Name = "BtnImprimirPagina";
             this.BtnImprimirPagina.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.BtnImprimirPagina.Size = new System.Drawing.Size(739, 51);
+            this.BtnImprimirPagina.Size = new System.Drawing.Size(939, 51);
             this.BtnImprimirPagina.TabIndex = 0;
             this.BtnImprimirPagina.Tag = "Imprimir lista";
             this.BtnImprimirPagina.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -70,20 +71,21 @@
             this.BtnImprimirPagina.UseVisualStyleBackColor = true;
             this.BtnImprimirPagina.Click += new System.EventHandler(this.BtnImprimirPagina_Click);
             // 
-            // FormularioImpressaoAuxilioGestaoDia
+            // FormularioImpressaoAuxilioGestaoDiaAgrupados
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(739, 462);
+            this.ClientSize = new System.Drawing.Size(939, 662);
             this.Controls.Add(this.webBrowser1);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
-            this.Name = "FormularioImpressaoAuxilioGestaoDia";
+            this.MinimizeBox = false;
+            this.Name = "FormularioImpressaoAuxilioGestaoDiaAgrupados";
             this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Formulário impressão auxílio gestão do dia";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FormularioImpressaoAuxilioGestaoDiaAgrupados_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormularioSRORastreamentoUnificado_KeyDown);
             this.panel1.ResumeLayout(false);

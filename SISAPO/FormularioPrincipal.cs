@@ -566,10 +566,10 @@ namespace SISAPO
 
         public void atualizarNovosObjetosToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            BuscaNovoStatusQuantidadeNaoAtualizados();
             if (AtualizandoNovosObjetos == true) return;
             AtualizandoNovosObjetos = true;
             DataSet ObjetosConsultaRastreamento = new DataSet();
-            BuscaNovoStatusQuantidadeNaoAtualizados();
             using (DAO dao = new DAO(TipoBanco.OleDb, Configuracoes.strConexao))
             {
                 if (!dao.TestaConexao()) { this.toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
