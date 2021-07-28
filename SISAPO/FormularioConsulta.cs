@@ -616,6 +616,7 @@ namespace SISAPO
                 #endregion
 
 
+                #region Carregamento GridView2
                 if (string.IsNullOrEmpty(currentRow["EnderecoLOEC"].ToString()))
                 {
                     //vazio
@@ -625,9 +626,9 @@ namespace SISAPO
                 if (!string.IsNullOrEmpty(currentRow["EnderecoLOEC"].ToString()))
                 {
                     //não vazio
-                    var Resultado = ((System.Windows.Forms.BindingSource)dataGridView1.DataSource).Cast<DataRowView>().Where(T => 
-                    (T["NomeCliente"].ToString().Contains(currentRow["NomeCliente"].ToString()) || T["EnderecoLOEC"].ToString().Contains(currentRow["EnderecoLOEC"].ToString())) && 
-                    Convert.ToBoolean(T["ObjetoEntregue"]) == false);
+                    var Resultado = ((System.Windows.Forms.BindingSource)dataGridView1.DataSource).Cast<DataRowView>().Where(T =>
+                    (T["NomeCliente"].ToString().Contains(currentRow["NomeCliente"].ToString()) && Convert.ToBoolean(T["ObjetoEntregue"]) == false) ||
+                    (T["EnderecoLOEC"].ToString().Contains(currentRow["EnderecoLOEC"].ToString()) && Convert.ToBoolean(T["ObjetoEntregue"]) == false));
                     if (Resultado.Count() <= 1)
                     {
                         panel2.Visible = false;
@@ -638,11 +639,8 @@ namespace SISAPO
                         panel2.Visible = true;
                         bindingSource2.DataSource = Resultado;
                     }
-
-                }
-
-
-
+                } 
+                #endregion
             }
             #endregion
         }
