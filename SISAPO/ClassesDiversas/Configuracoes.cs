@@ -354,6 +354,22 @@ namespace SISAPO.ClassesDiversas
         /// </summary>
         public static string MensagemPerdaConexao = "A conexão com o banco de dados foi perdida.";
 
+        public static void LimpaBancoTornaBancoVazio()
+        {
+            using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
+            {
+                if (!dao.TestaConexao())
+                {
+                    FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao;
+                    return;
+                }
+                dao.ExecutaSQL("DELETE FROM TabelaHistoricoConsulta");
+                dao.ExecutaSQL("ALTER TABLE TabelaHistoricoConsulta ALTER COLUMN Codigo COUNTER(1, 1)");
+
+                dao.ExecutaSQL("DELETE FROM TabelaObjetosSROLocal");
+                dao.ExecutaSQL("ALTER TABLE TabelaObjetosSROLocal ALTER COLUMN Codigo COUNTER(1, 1)");
+            }
+        }
 
         public static void VerificaSquemaBancoDados()
         {
@@ -941,26 +957,26 @@ namespace SISAPO.ClassesDiversas
             textoFormatado = texto.RemoveAcentos();
             textoFormatado = textoFormatado.ToUpper();
 
-            if (textoFormatado.Contains(" - ORIGEM")) return true;
-            if (textoFormatado.Contains(" - DEVOLUCAO")) return true;
-            if (textoFormatado.Contains(" - DEVOLUCA")) return true;
-            if (textoFormatado.Contains(" - DEVOLUC")) return true;
-            if (textoFormatado.Contains(" - DEVOLU")) return true;
-            if (textoFormatado.Contains(" - DEVOL")) return true;
-            if (textoFormatado.Contains(" - REMETENTE")) return true;
-            if (textoFormatado.Contains(" - REMETENT")) return true;
-            if (textoFormatado.Contains(" - REMETEN")) return true;
-            if (textoFormatado.Contains(" - REMETE")) return true;
-            if (textoFormatado.Contains(" - REMET")) return true;
-            if (textoFormatado.Contains(" - REME")) return true;
-            if (textoFormatado.Contains(" - REM")) return true;
-            if (textoFormatado.Contains(" - AO REMETENTE")) return true;
-            if (textoFormatado.Contains(" - AO REMETENT")) return true;
-            if (textoFormatado.Contains(" - AO REMETEN")) return true;
-            if (textoFormatado.Contains(" - AO REMETE")) return true;
-            if (textoFormatado.Contains(" - AO REMET")) return true;
-            if (textoFormatado.Contains(" - AO REME")) return true;
-            if (textoFormatado.Contains(" - AO REM")) return true;
+            if (textoFormatado.Replace("  ", " ").Contains(" - ORIGEM")) return true;
+            if (textoFormatado.Replace("  ", " ").Contains(" - DEVOLUCAO")) return true;
+            if (textoFormatado.Replace("  ", " ").Contains(" - DEVOLUCA")) return true;
+            if (textoFormatado.Replace("  ", " ").Contains(" - DEVOLUC")) return true;
+            if (textoFormatado.Replace("  ", " ").Contains(" - DEVOLU")) return true;
+            if (textoFormatado.Replace("  ", " ").Contains(" - DEVOL")) return true;
+            if (textoFormatado.Replace("  ", " ").Contains(" - REMETENTE")) return true;
+            if (textoFormatado.Replace("  ", " ").Contains(" - REMETENT")) return true;
+            if (textoFormatado.Replace("  ", " ").Contains(" - REMETEN")) return true;
+            if (textoFormatado.Replace("  ", " ").Contains(" - REMETE")) return true;
+            if (textoFormatado.Replace("  ", " ").Contains(" - REMET")) return true;
+            if (textoFormatado.Replace("  ", " ").Contains(" - REME")) return true;
+            if (textoFormatado.Replace("  ", " ").Contains(" - REM")) return true;
+            if (textoFormatado.Replace("  ", " ").Contains(" - AO REMETENTE")) return true;
+            if (textoFormatado.Replace("  ", " ").Contains(" - AO REMETENT")) return true;
+            if (textoFormatado.Replace("  ", " ").Contains(" - AO REMETEN")) return true;
+            if (textoFormatado.Replace("  ", " ").Contains(" - AO REMETE")) return true;
+            if (textoFormatado.Replace("  ", " ").Contains(" - AO REMET")) return true;
+            if (textoFormatado.Replace("  ", " ").Contains(" - AO REME")) return true;
+            if (textoFormatado.Replace("  ", " ").Contains(" - AO REM")) return true;
             return false;
         }
 

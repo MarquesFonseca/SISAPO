@@ -18,14 +18,15 @@ namespace SISAPO
         public FormularioHistoricoConsulta()
         {
             InitializeComponent();
-            CodigoRetorno = "";            
+            CodigoRetorno = "";
         }
 
         private void FormularioHistoricoConsulta_Load(object sender, EventArgs e)
         {
             listBox1.DataSource = RetornaListaUltimasConsultas();
             listBox1.Focus();
-            listBox1.SelectedIndex = 0;
+            if (listBox1.Items.Count > 0)
+                listBox1.SelectedIndex = 0;
 
         }
 
@@ -77,6 +78,8 @@ namespace SISAPO
 
         private void btnAlterar_Click(object sender, EventArgs e)
         {
+            if (listBox1.SelectedItem == null)
+                return;
             if (listBox1.SelectedItem.ToString().Length <= 13)
                 CodigoRetorno = CodigoRetorno = listBox1.SelectedItem.ToString().Substring(0, listBox1.SelectedItem.ToString().Length);
             else

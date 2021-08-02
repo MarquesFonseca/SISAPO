@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using SISAPO.ClassesDiversas;
+using System.IO;
 
 namespace SISAPO
 {
@@ -37,7 +38,25 @@ namespace SISAPO
                 if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
 
                 DataRow RetornoEnderecosSRO = dao.RetornaDataRow("SELECT EnderecoSRO, EnderecoSROPorObjeto FROM TabelaConfiguracoesSistema");
+
+                if (RetornoEnderecosSRO["EnderecoSRO"].ToString().Contains("websro2"))
+                {
+                    radioButtonEnderecoSROWebsro2.Checked = true;
+                }
+                if (RetornoEnderecosSRO["EnderecoSRO"].ToString().Contains("app"))
+                {
+                    radioButtonEnderecoApp.Checked = true;
+                }
                 TxtEnderecoSRO.Text = RetornoEnderecosSRO["EnderecoSRO"].ToString();
+
+                if (RetornoEnderecosSRO["EnderecoSROPorObjeto"].ToString().Contains("websro2"))
+                {
+                    radioButtonEnderecoSROWebsro2oCampo2.Checked = true;
+                }
+                if (RetornoEnderecosSRO["EnderecoSROPorObjeto"].ToString().Contains("app"))
+                {
+                    radioButtonEnderecoAppCampo2.Checked = true;
+                }
                 TxtEnderecoSROEspecificoObjeto.Text = RetornoEnderecosSRO["EnderecoSROPorObjeto"].ToString() + "QB378038055BR";
             }
         }
@@ -212,5 +231,130 @@ namespace SISAPO
             }
 
         }
+
+        private void radioButtonEnderecoSROWebsro2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButtonEnderecoSROWebsro2.Checked)
+            {
+                TxtEnderecoSRO.Text = "http://websro2.correiosnet.int/rastreamento/sro";
+                label10.Text = "Exemplo: http://websro2.correiosnet.int/rastreamento/sro";
+            }
+        }
+
+        private void radioButtonEnderecoApp_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButtonEnderecoApp.Checked)
+            {
+                TxtEnderecoSRO.Text = "http://app.correiosnet.int/rastreamento/sro";
+                label10.Text = "Exemplo: http://app.correiosnet.int/rastreamento/sro";
+            }
+        }
+
+        private void radioButtonEnderecoSROWebsro2oCampo2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButtonEnderecoSROWebsro2oCampo2.Checked)
+            {
+                TxtEnderecoSROEspecificoObjeto.Text = "http://websro2.correiosnet.int/rastreamento/sro?opcao=PESQUISA&objetos=QB378038055BR";
+                label11.Text = "Exemplo: http://websro2.correiosnet.int/rastreamento/sro?opcao=PESQUISA&objetos=QB378038055BR";
+            }
+        }
+
+        private void radioButtonEnderecoAppCampo2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButtonEnderecoAppCampo2.Checked)
+            {
+                TxtEnderecoSROEspecificoObjeto.Text = "http://app.correiosnet.int/rastreamento/sro?opcao=PESQUISA&objetos=QB378038055BR";
+                label11.Text = "Exemplo: http://app.correiosnet.int/rastreamento/sro?opcao=PESQUISA&objetos=QB378038055BR";
+            }
+        }
+        
+        private void BtnTornarBancoVazio_Click(object sender, EventArgs e)
+        {
+            if (Mensagens.Pergunta("Realmente quer limpar banco e torná-lo um Banco vazio?") == DialogResult.Yes)
+            {
+                using (FormAcesso acesso = new FormAcesso())
+                {
+                    acesso.ShowDialog();
+                    if (!acesso.Autenticado) return;
+                    if (acesso.Autenticado)
+                    {
+                        Configuracoes.LimpaBancoTornaBancoVazio();
+                        Mensagens2.MsgSucesso();
+                    }
+                }
+            }
+            else
+            {
+                return;
+            }
+        }
+
+        private void BtnBuscarEnderecoParaBackup_Click(object sender, EventArgs e)
+        {
+            string curDir = System.IO.Path.GetDirectoryName(System.AppDomain.CurrentDomain.BaseDirectory.ToString());
+
+            string nomeEnderecoArquivo = string.Format("Backup_cadastro_{0}.mdb", DateTime.Now).Replace("/", "").Replace(":", "");
+
+            Arquivos.CriarDiretorio(curDir + @"\Backup");
+
+            folderBrowserDialog1.Description = "Selecione uma pasta para realizar o Backup";
+            //folderBrowserDialog1.RootFolder = Environment.SpecialFolder.MyComputer;
+            folderBrowserDialog1.SelectedPath = curDir + @"\Backup";
+            folderBrowserDialog1.ShowNewFolderButton = true;
+            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+            {
+                label13.Text = "Endereço de backup selecionado";
+                labelResultadoFolderBackup.Text = string.Format(@"{0}\{1}", folderBrowserDialog1.SelectedPath, nomeEnderecoArquivo);
+            }
+            else
+            {
+                label13.Text = "Selecione o endereço desejado para backup";
+                labelResultadoFolderBackup.Text = "";
+            }
+        }
+
+        private void BtnSalvarBackup_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(labelResultadoFolderBackup.Text))
+                return;
+            else
+            {
+                string curDir = System.IO.Path.GetDirectoryName(System.AppDomain.CurrentDomain.BaseDirectory.ToString());
+                string arquivo = "cadastro.mdb";
+                string nomeEnderecoArquivo = string.Format(@"{0}\{1}", curDir, arquivo);
+                File.Copy(nomeEnderecoArquivo, labelResultadoFolderBackup.Text, true);
+                Mensagens2.MsgSucesso();
+            }
+        }
+
+        private void BtnRestaurarBackup_Click(object sender, EventArgs e)
+        {
+            string curDir = System.IO.Path.GetDirectoryName(System.AppDomain.CurrentDomain.BaseDirectory.ToString());
+
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.Title = "Selecione um arquivo para backup";
+            openFileDialog1.Filter = "Microsoft Access File | *.mdb"; //"Microsoft Access File|*.mdb"
+            openFileDialog1.FileName = "";
+            openFileDialog1.InitialDirectory = curDir + @"\Backup";
+            openFileDialog1.CheckFileExists = true;
+            openFileDialog1.CheckPathExists = true;
+            openFileDialog1.Multiselect = false;
+            DialogResult result = openFileDialog1.ShowDialog(); // Show the dialog.
+            if (result == DialogResult.OK) // Test result.
+            {
+                string file = openFileDialog1.FileName;
+
+                try
+                {
+                    string arquivo = "cadastro.mdb";
+                    string nomeEnderecoArquivo = string.Format(@"{0}\{1}", curDir, arquivo);
+                    File.Copy(file, nomeEnderecoArquivo, true);
+                    Mensagens2.MsgSucesso();
+                }
+                catch (IOException) { }
+            }
+        }
+
+
     }
 }

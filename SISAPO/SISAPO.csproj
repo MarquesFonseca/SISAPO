@@ -152,6 +152,12 @@
     <Compile Include="DataSetTabelaObjetosSROLocal.cs">
       <DependentUpon>DataSetTabelaObjetosSROLocal.xsd</DependentUpon>
     </Compile>
+    <Compile Include="FormAcesso.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAcesso.Designer.cs">
+      <DependentUpon>FormAcesso.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormularioAlterarSituacaoItensSelecionados.cs">
       <SubType>Form</SubType>
     </Compile>

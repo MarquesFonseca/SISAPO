@@ -9,7 +9,7 @@ namespace SISAPO.ClassesDiversas
 
         static Mensagens2()
         {
-            Mensagens2.Titulo = "Rensoftware AutoNF-e";
+            Mensagens2.Titulo = "iQUES Desenvolvimento de Sistemas";
         }
 
         #region MesagensEstaticas

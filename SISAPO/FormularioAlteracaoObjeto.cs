@@ -13,8 +13,6 @@ namespace SISAPO
 {
     public partial class FormularioAlteracaoObjeto : Form
     {
-
-
         public string CodigoObjeto = string.Empty;
         public string NomeCliente = string.Empty;
         public string NumeroLDI = string.Empty;
@@ -24,6 +22,7 @@ namespace SISAPO
         public bool ObjetoEmCaixaPostal = false;
         public bool ObjetoJaEntregue = false;
         public bool ObjetoJaAtualizado = false;
+        public string Comentario = string.Empty;
 
         public string UnidadePostagem = string.Empty;
         public string MunicipioPostagem = string.Empty;
@@ -87,6 +86,8 @@ namespace SISAPO
             checkBoxObjetoCaixaPostal.Checked = ObjetoEmCaixaPostal;
             checkBoxObjetoJaEntregue.Checked = ObjetoJaEntregue;
             checkBoxObjetoJaAtualizado.Checked = ObjetoJaAtualizado;
+            TxtComentario.Text = Comentario;
+            checkBoxAoRemetente.Checked = Configuracoes.RetornaSeEAoRemetente(NomeCliente);
         }
 
         private void RetornaDadosPostagem()
@@ -128,6 +129,12 @@ namespace SISAPO
             TxtDistritoLOEC.Text = DistritoLOEC;
             TxtNumeroLOEC.Text = NumeroLOEC;
             TxtEnderecoLOEC.Text = string.Format("{0} - {1} - {2} - {3}", EnderecoLOEC, BairroLOEC, MunicipioLOEC, LocalidadeLOEC);
+
+            TxtEndereco.Text = EnderecoLOEC;
+            TxtBairro.Text = BairroLOEC;
+            TxtCidade.Text = MunicipioLOEC.Contains("/") ? MunicipioLOEC.Split('/')[0].Trim() : "";
+            TxtUF.Text = MunicipioLOEC.Contains("/") ? MunicipioLOEC.Split('/')[1].Trim() : "";
+            TxtCep.Text = LocalidadeLOEC;
         }
 
         private void RetornaDadosDestinatarioAusente()
@@ -153,6 +160,7 @@ namespace SISAPO
             ObjetoEmCaixaPostal = checkBoxObjetoCaixaPostal.Checked;
             ObjetoJaEntregue = checkBoxObjetoJaEntregue.Checked;
             ObjetoJaAtualizado = checkBoxObjetoJaAtualizado.Checked;
+            Comentario = TxtComentario.Text;
 
             this.Close();
         }
@@ -236,12 +244,12 @@ namespace SISAPO
 
             if (formularioAlteracaoEnderecoObjeto.cancelar) return;//não faz nada. Cancelou
 
-            EnderecoLOEC = formularioAlteracaoEnderecoObjeto.TxtEndereco.Text;
-            BairroLOEC = formularioAlteracaoEnderecoObjeto.TxtBairro.Text;
-            MunicipioDestino = formularioAlteracaoEnderecoObjeto.TxtCidade.Text;
-            EstadoDestino = formularioAlteracaoEnderecoObjeto.TxtUF.Text;
+            TxtEndereco.Text = EnderecoLOEC = formularioAlteracaoEnderecoObjeto.TxtEndereco.Text;
+            TxtBairro.Text = BairroLOEC = formularioAlteracaoEnderecoObjeto.TxtBairro.Text;
+            TxtCidade.Text = MunicipioDestino = formularioAlteracaoEnderecoObjeto.TxtCidade.Text;
+            TxtUF.Text = EstadoDestino = formularioAlteracaoEnderecoObjeto.TxtUF.Text;
             MunicipioLOEC = MunicipioDestino + " / " + EstadoDestino;
-            LocalidadeLOEC = formularioAlteracaoEnderecoObjeto.TxtCep.Text;
+            TxtCep.Text = LocalidadeLOEC = formularioAlteracaoEnderecoObjeto.TxtCep.Text;
 
             TxtEnderecoLOEC.Text = string.Format("{0} - {1} - {2} - {3}", EnderecoLOEC, BairroLOEC, MunicipioDestino + " / " + EstadoDestino, LocalidadeLOEC);
             TxtMunicipioLOEC.Text = MunicipioLOEC;

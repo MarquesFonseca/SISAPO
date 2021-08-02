@@ -77,16 +77,8 @@ namespace SISAPO
 
             if (Configuracoes.VerificaChaveAcesso())
             {
-                //LIMPA TABELAS 
-                //using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
-                //{
-                //    if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
-                //    dao.ExecutaSQL("DELETE FROM TabelaHistoricoConsulta");
-                //    dao.ExecutaSQL("ALTER TABLE TabelaHistoricoConsulta ALTER COLUMN Codigo COUNTER(1, 1)");
-
-                //    dao.ExecutaSQL("DELETE FROM TabelaObjetosSROLocal");
-                //    dao.ExecutaSQL("ALTER TABLE TabelaObjetosSROLocal ALTER COLUMN Codigo COUNTER(1, 1)");
-                //}
+                //LIMPA TABELAS
+                //Configuracoes.LimpaBancoTornaBancoVazio();
 
                 Configuracoes.VerificaSquemaBancoDados();
                 Configuracoes.DadosAgencia = Configuracoes.RetornaDadosAgencia();

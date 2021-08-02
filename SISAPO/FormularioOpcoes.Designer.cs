@@ -35,6 +35,14 @@
             this.checkBoxExibirItensJaEntregues = new System.Windows.Forms.CheckBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageObjetosAguardandoRetirada = new System.Windows.Forms.TabPage();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.TxtEnderecoSROEspecificoObjeto = new System.Windows.Forms.TextBox();
+            this.TxtEnderecoSRO = new System.Windows.Forms.TextBox();
+            this.BtnAtualizarEnderecoSROObjetoEspecifico = new System.Windows.Forms.Button();
+            this.BtnAtualizarEnderecoSRO = new System.Windows.Forms.Button();
             this.BtnMarcarTodosAtualizados = new System.Windows.Forms.Button();
             this.BtnRequererVerificacaoDeObjetosJaEntregues = new System.Windows.Forms.Button();
             this.tabPageExibirItensJaEntregues = new System.Windows.Forms.TabPage();
@@ -57,24 +65,39 @@
             this.txtTelefoneAgenciaLocal = new System.Windows.Forms.TextBox();
             this.txtCidadeAgenciaLocal = new System.Windows.Forms.TextBox();
             this.txtNomeAgencia = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.TxtEnderecoSRO = new System.Windows.Forms.TextBox();
+            this.tabPageBackup = new System.Windows.Forms.TabPage();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.radioButtonEnderecoSROWebsro2 = new System.Windows.Forms.RadioButton();
+            this.radioButtonEnderecoApp = new System.Windows.Forms.RadioButton();
+            this.BtnSalvarBackup = new System.Windows.Forms.Button();
+            this.label13 = new System.Windows.Forms.Label();
+            this.BtnTornarBancoVazio = new System.Windows.Forms.Button();
+            this.BtnBuscarEnderecoParaBackup = new System.Windows.Forms.Button();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.labelResultadoFolderBackup = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.BtnRestaurarBackup = new System.Windows.Forms.Button();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.radioButtonEnderecoSROWebsro2oCampo2 = new System.Windows.Forms.RadioButton();
+            this.radioButtonEnderecoAppCampo2 = new System.Windows.Forms.RadioButton();
             this.bindingSourceTabelaConfiguracoesSistema = new System.Windows.Forms.BindingSource(this.components);
             this.dataSetConfiguracoes = new SISAPO.DataSetConfiguracoes();
             this.tabelaConfiguracoesSistemaTableAdapter = new SISAPO.DataSetConfiguracoesTableAdapters.TabelaConfiguracoesSistemaTableAdapter();
-            this.label10 = new System.Windows.Forms.Label();
-            this.TxtEnderecoSROEspecificoObjeto = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.BtnAtualizarEnderecoSRO = new System.Windows.Forms.Button();
-            this.BtnAtualizarEnderecoSROObjetoEspecifico = new System.Windows.Forms.Button();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageObjetosAguardandoRetirada.SuspendLayout();
             this.tabPageExibirItensJaEntregues.SuspendLayout();
             this.tabPageConfiguracoesAgencia.SuspendLayout();
+            this.tabPageBackup.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceTabelaConfiguracoesSistema)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetConfiguracoes)).BeginInit();
+            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // LblTituloFormulario
@@ -104,7 +127,7 @@
             this.checkBoxExibirItensJaEntregues.Location = new System.Drawing.Point(8, 38);
             this.checkBoxExibirItensJaEntregues.Name = "checkBoxExibirItensJaEntregues";
             this.checkBoxExibirItensJaEntregues.Size = new System.Drawing.Size(211, 17);
-            this.checkBoxExibirItensJaEntregues.TabIndex = 0;
+            this.checkBoxExibirItensJaEntregues.TabIndex = 1;
             this.checkBoxExibirItensJaEntregues.Text = "Exibir Objetos já entregues na pesquisa";
             this.checkBoxExibirItensJaEntregues.UseVisualStyleBackColor = true;
             this.checkBoxExibirItensJaEntregues.CheckedChanged += new System.EventHandler(this.checkBoxExibirItensJaEntregues_CheckedChanged);
@@ -114,6 +137,7 @@
             this.tabControl1.Controls.Add(this.tabPageObjetosAguardandoRetirada);
             this.tabControl1.Controls.Add(this.tabPageExibirItensJaEntregues);
             this.tabControl1.Controls.Add(this.tabPageConfiguracoesAgencia);
+            this.tabControl1.Controls.Add(this.tabPageBackup);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 51);
             this.tabControl1.Name = "tabControl1";
@@ -123,14 +147,8 @@
             // 
             // tabPageObjetosAguardandoRetirada
             // 
-            this.tabPageObjetosAguardandoRetirada.Controls.Add(this.label11);
-            this.tabPageObjetosAguardandoRetirada.Controls.Add(this.label10);
-            this.tabPageObjetosAguardandoRetirada.Controls.Add(this.label9);
-            this.tabPageObjetosAguardandoRetirada.Controls.Add(this.label8);
-            this.tabPageObjetosAguardandoRetirada.Controls.Add(this.TxtEnderecoSROEspecificoObjeto);
-            this.tabPageObjetosAguardandoRetirada.Controls.Add(this.TxtEnderecoSRO);
-            this.tabPageObjetosAguardandoRetirada.Controls.Add(this.BtnAtualizarEnderecoSROObjetoEspecifico);
-            this.tabPageObjetosAguardandoRetirada.Controls.Add(this.BtnAtualizarEnderecoSRO);
+            this.tabPageObjetosAguardandoRetirada.Controls.Add(this.groupBox5);
+            this.tabPageObjetosAguardandoRetirada.Controls.Add(this.groupBox1);
             this.tabPageObjetosAguardandoRetirada.Controls.Add(this.BtnMarcarTodosAtualizados);
             this.tabPageObjetosAguardandoRetirada.Controls.Add(this.BtnRequererVerificacaoDeObjetosJaEntregues);
             this.tabPageObjetosAguardandoRetirada.Location = new System.Drawing.Point(4, 22);
@@ -141,12 +159,94 @@
             this.tabPageObjetosAguardandoRetirada.Text = "Objetos aguardando retirada";
             this.tabPageObjetosAguardandoRetirada.UseVisualStyleBackColor = true;
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(6, 64);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(530, 16);
+            this.label11.TabIndex = 7;
+            this.label11.Text = "Exemplo: http://websro2/rastreamento/sro?opcao=PESQUISA&objetos=QB378038055BR";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(6, 64);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(256, 16);
+            this.label10.TabIndex = 3;
+            this.label10.Text = "Exemplo: http://websro2/rastreamento/sro";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(6, 47);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(295, 16);
+            this.label9.TabIndex = 6;
+            this.label9.Text = "Endereço SRO para um objeto específico";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(6, 47);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(111, 16);
+            this.label8.TabIndex = 2;
+            this.label8.Text = "Endereço SRO";
+            // 
+            // TxtEnderecoSROEspecificoObjeto
+            // 
+            this.TxtEnderecoSROEspecificoObjeto.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TxtEnderecoSROEspecificoObjeto.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtEnderecoSROEspecificoObjeto.Location = new System.Drawing.Point(6, 83);
+            this.TxtEnderecoSROEspecificoObjeto.Name = "TxtEnderecoSROEspecificoObjeto";
+            this.TxtEnderecoSROEspecificoObjeto.Size = new System.Drawing.Size(584, 26);
+            this.TxtEnderecoSROEspecificoObjeto.TabIndex = 8;
+            // 
+            // TxtEnderecoSRO
+            // 
+            this.TxtEnderecoSRO.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TxtEnderecoSRO.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtEnderecoSRO.Location = new System.Drawing.Point(6, 83);
+            this.TxtEnderecoSRO.Name = "TxtEnderecoSRO";
+            this.TxtEnderecoSRO.Size = new System.Drawing.Size(584, 26);
+            this.TxtEnderecoSRO.TabIndex = 4;
+            // 
+            // BtnAtualizarEnderecoSROObjetoEspecifico
+            // 
+            this.BtnAtualizarEnderecoSROObjetoEspecifico.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnAtualizarEnderecoSROObjetoEspecifico.Location = new System.Drawing.Point(596, 83);
+            this.BtnAtualizarEnderecoSROObjetoEspecifico.Name = "BtnAtualizarEnderecoSROObjetoEspecifico";
+            this.BtnAtualizarEnderecoSROObjetoEspecifico.Size = new System.Drawing.Size(113, 28);
+            this.BtnAtualizarEnderecoSROObjetoEspecifico.TabIndex = 9;
+            this.BtnAtualizarEnderecoSROObjetoEspecifico.Text = "Atualizar";
+            this.BtnAtualizarEnderecoSROObjetoEspecifico.UseVisualStyleBackColor = true;
+            this.BtnAtualizarEnderecoSROObjetoEspecifico.Click += new System.EventHandler(this.BtnAtualizarEnderecoSROObjetoEspecifico_Click);
+            // 
+            // BtnAtualizarEnderecoSRO
+            // 
+            this.BtnAtualizarEnderecoSRO.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnAtualizarEnderecoSRO.Location = new System.Drawing.Point(596, 83);
+            this.BtnAtualizarEnderecoSRO.Name = "BtnAtualizarEnderecoSRO";
+            this.BtnAtualizarEnderecoSRO.Size = new System.Drawing.Size(113, 28);
+            this.BtnAtualizarEnderecoSRO.TabIndex = 5;
+            this.BtnAtualizarEnderecoSRO.Text = "Atualizar";
+            this.BtnAtualizarEnderecoSRO.UseVisualStyleBackColor = true;
+            this.BtnAtualizarEnderecoSRO.Click += new System.EventHandler(this.BtnAtualizarEnderecoSRO_Click);
+            // 
             // BtnMarcarTodosAtualizados
             // 
             this.BtnMarcarTodosAtualizados.Location = new System.Drawing.Point(188, 15);
             this.BtnMarcarTodosAtualizados.Name = "BtnMarcarTodosAtualizados";
             this.BtnMarcarTodosAtualizados.Size = new System.Drawing.Size(174, 23);
-            this.BtnMarcarTodosAtualizados.TabIndex = 2;
+            this.BtnMarcarTodosAtualizados.TabIndex = 1;
             this.BtnMarcarTodosAtualizados.Text = "&Marcar todos Atualizados";
             this.BtnMarcarTodosAtualizados.UseVisualStyleBackColor = true;
             this.BtnMarcarTodosAtualizados.Click += new System.EventHandler(this.BtnMarcarTodosAtualizados_Click);
@@ -156,7 +256,7 @@
             this.BtnRequererVerificacaoDeObjetosJaEntregues.Location = new System.Drawing.Point(8, 15);
             this.BtnRequererVerificacaoDeObjetosJaEntregues.Name = "BtnRequererVerificacaoDeObjetosJaEntregues";
             this.BtnRequererVerificacaoDeObjetosJaEntregues.Size = new System.Drawing.Size(174, 23);
-            this.BtnRequererVerificacaoDeObjetosJaEntregues.TabIndex = 2;
+            this.BtnRequererVerificacaoDeObjetosJaEntregues.TabIndex = 0;
             this.BtnRequererVerificacaoDeObjetosJaEntregues.Text = "&Solicitar verificação de Objetos ainda não Entregues?";
             this.BtnRequererVerificacaoDeObjetosJaEntregues.UseVisualStyleBackColor = true;
             this.BtnRequererVerificacaoDeObjetosJaEntregues.Click += new System.EventHandler(this.BtnRequererVerificacaoDeObjetosJaEntregues_Click);
@@ -213,6 +313,7 @@
             // 
             // comboBoxUFAgenciaLocal
             // 
+            this.comboBoxUFAgenciaLocal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxUFAgenciaLocal.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceTabelaConfiguracoesSistema, "UFAgenciaLocal", true));
             this.comboBoxUFAgenciaLocal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxUFAgenciaLocal.FormattingEnabled = true;
@@ -251,6 +352,7 @@
             // 
             // comboBoxSupEst
             // 
+            this.comboBoxSupEst.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxSupEst.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxSupEst.FormattingEnabled = true;
             this.comboBoxSupEst.Items.AddRange(new object[] {
@@ -308,6 +410,7 @@
             // 
             // label5
             // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(436, 96);
@@ -318,6 +421,7 @@
             // 
             // label3
             // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(601, 8);
@@ -328,6 +432,7 @@
             // 
             // label2
             // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(545, 7);
@@ -338,6 +443,7 @@
             // 
             // label6
             // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(491, 97);
@@ -404,8 +510,7 @@
             // 
             // txtCepUnidade
             // 
-            this.txtCepUnidade.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtCepUnidade.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCepUnidade.DataBindings.Add(new System.Windows.Forms.Binding("Tag", this.bindingSourceTabelaConfiguracoesSistema, "CepUnidade", true));
             this.txtCepUnidade.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceTabelaConfiguracoesSistema, "CepUnidade", true));
             this.txtCepUnidade.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -416,8 +521,7 @@
             // 
             // txtTelefoneAgenciaLocal
             // 
-            this.txtTelefoneAgenciaLocal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtTelefoneAgenciaLocal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTelefoneAgenciaLocal.DataBindings.Add(new System.Windows.Forms.Binding("Tag", this.bindingSourceTabelaConfiguracoesSistema, "TelefoneAgenciaLocal", true));
             this.txtTelefoneAgenciaLocal.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceTabelaConfiguracoesSistema, "TelefoneAgenciaLocal", true));
             this.txtTelefoneAgenciaLocal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -450,27 +554,179 @@
             this.txtNomeAgencia.Size = new System.Drawing.Size(532, 26);
             this.txtNomeAgencia.TabIndex = 1;
             // 
-            // label8
+            // tabPageBackup
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(8, 53);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(111, 16);
-            this.label8.TabIndex = 3;
-            this.label8.Text = "Endereço SRO";
+            this.tabPageBackup.Controls.Add(this.groupBox2);
+            this.tabPageBackup.Controls.Add(this.groupBox4);
+            this.tabPageBackup.Controls.Add(this.groupBox3);
+            this.tabPageBackup.Location = new System.Drawing.Point(4, 22);
+            this.tabPageBackup.Name = "tabPageBackup";
+            this.tabPageBackup.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageBackup.Size = new System.Drawing.Size(731, 385);
+            this.tabPageBackup.TabIndex = 3;
+            this.tabPageBackup.Text = "Configurações de Backup";
+            this.tabPageBackup.UseVisualStyleBackColor = true;
             // 
-            // TxtEnderecoSRO
+            // groupBox1
             // 
-            this.TxtEnderecoSRO.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtEnderecoSRO.DataBindings.Add(new System.Windows.Forms.Binding("Tag", this.bindingSourceTabelaConfiguracoesSistema, "NomeAgenciaLocal", true));
-            this.TxtEnderecoSRO.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceTabelaConfiguracoesSistema, "NomeAgenciaLocal", true));
-            this.TxtEnderecoSRO.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtEnderecoSRO.Location = new System.Drawing.Point(8, 89);
-            this.TxtEnderecoSRO.Name = "TxtEnderecoSRO";
-            this.TxtEnderecoSRO.Size = new System.Drawing.Size(596, 26);
-            this.TxtEnderecoSRO.TabIndex = 4;
+            this.groupBox1.Controls.Add(this.radioButtonEnderecoApp);
+            this.groupBox1.Controls.Add(this.radioButtonEnderecoSROWebsro2);
+            this.groupBox1.Controls.Add(this.label10);
+            this.groupBox1.Controls.Add(this.TxtEnderecoSRO);
+            this.groupBox1.Controls.Add(this.BtnAtualizarEnderecoSRO);
+            this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Location = new System.Drawing.Point(8, 58);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(715, 119);
+            this.groupBox1.TabIndex = 2;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Endereço SRO";
+            // 
+            // radioButtonEnderecoSROWebsro2
+            // 
+            this.radioButtonEnderecoSROWebsro2.AutoSize = true;
+            this.radioButtonEnderecoSROWebsro2.Location = new System.Drawing.Point(24, 20);
+            this.radioButtonEnderecoSROWebsro2.Name = "radioButtonEnderecoSROWebsro2";
+            this.radioButtonEnderecoSROWebsro2.Size = new System.Drawing.Size(124, 17);
+            this.radioButtonEnderecoSROWebsro2.TabIndex = 0;
+            this.radioButtonEnderecoSROWebsro2.TabStop = true;
+            this.radioButtonEnderecoSROWebsro2.Text = "Endereço \"websro2\"";
+            this.radioButtonEnderecoSROWebsro2.UseVisualStyleBackColor = true;
+            this.radioButtonEnderecoSROWebsro2.CheckedChanged += new System.EventHandler(this.radioButtonEnderecoSROWebsro2_CheckedChanged);
+            // 
+            // radioButtonEnderecoApp
+            // 
+            this.radioButtonEnderecoApp.AutoSize = true;
+            this.radioButtonEnderecoApp.Location = new System.Drawing.Point(180, 19);
+            this.radioButtonEnderecoApp.Name = "radioButtonEnderecoApp";
+            this.radioButtonEnderecoApp.Size = new System.Drawing.Size(102, 17);
+            this.radioButtonEnderecoApp.TabIndex = 1;
+            this.radioButtonEnderecoApp.TabStop = true;
+            this.radioButtonEnderecoApp.Text = "Endereço \"app\"";
+            this.radioButtonEnderecoApp.UseVisualStyleBackColor = true;
+            this.radioButtonEnderecoApp.CheckedChanged += new System.EventHandler(this.radioButtonEnderecoApp_CheckedChanged);
+            // 
+            // BtnSalvarBackup
+            // 
+            this.BtnSalvarBackup.Location = new System.Drawing.Point(129, 19);
+            this.BtnSalvarBackup.Name = "BtnSalvarBackup";
+            this.BtnSalvarBackup.Size = new System.Drawing.Size(113, 28);
+            this.BtnSalvarBackup.TabIndex = 2;
+            this.BtnSalvarBackup.Text = "Salvar Backup";
+            this.BtnSalvarBackup.UseVisualStyleBackColor = true;
+            this.BtnSalvarBackup.Click += new System.EventHandler(this.BtnSalvarBackup_Click);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(8, 50);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(365, 20);
+            this.label13.TabIndex = 0;
+            this.label13.Text = "Selecione o endereço desejado para backup";
+            // 
+            // BtnTornarBancoVazio
+            // 
+            this.BtnTornarBancoVazio.Location = new System.Drawing.Point(10, 26);
+            this.BtnTornarBancoVazio.Name = "BtnTornarBancoVazio";
+            this.BtnTornarBancoVazio.Size = new System.Drawing.Size(202, 28);
+            this.BtnTornarBancoVazio.TabIndex = 3;
+            this.BtnTornarBancoVazio.Text = "Limpar Banco / Tornar Banco Vazio";
+            this.BtnTornarBancoVazio.UseVisualStyleBackColor = true;
+            this.BtnTornarBancoVazio.Click += new System.EventHandler(this.BtnTornarBancoVazio_Click);
+            // 
+            // BtnBuscarEnderecoParaBackup
+            // 
+            this.BtnBuscarEnderecoParaBackup.Location = new System.Drawing.Point(10, 19);
+            this.BtnBuscarEnderecoParaBackup.Name = "BtnBuscarEnderecoParaBackup";
+            this.BtnBuscarEnderecoParaBackup.Size = new System.Drawing.Size(113, 28);
+            this.BtnBuscarEnderecoParaBackup.TabIndex = 2;
+            this.BtnBuscarEnderecoParaBackup.Text = "Buscar Endereço";
+            this.BtnBuscarEnderecoParaBackup.UseVisualStyleBackColor = true;
+            this.BtnBuscarEnderecoParaBackup.Click += new System.EventHandler(this.BtnBuscarEnderecoParaBackup_Click);
+            // 
+            // labelResultadoFolderBackup
+            // 
+            this.labelResultadoFolderBackup.AutoSize = true;
+            this.labelResultadoFolderBackup.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelResultadoFolderBackup.ForeColor = System.Drawing.Color.DarkRed;
+            this.labelResultadoFolderBackup.Location = new System.Drawing.Point(8, 68);
+            this.labelResultadoFolderBackup.Name = "labelResultadoFolderBackup";
+            this.labelResultadoFolderBackup.Size = new System.Drawing.Size(0, 20);
+            this.labelResultadoFolderBackup.TabIndex = 4;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.BtnTornarBancoVazio);
+            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox2.Location = new System.Drawing.Point(3, 208);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(725, 94);
+            this.groupBox2.TabIndex = 5;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Limpar banco de dados";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.label13);
+            this.groupBox3.Controls.Add(this.BtnSalvarBackup);
+            this.groupBox3.Controls.Add(this.labelResultadoFolderBackup);
+            this.groupBox3.Controls.Add(this.BtnBuscarEnderecoParaBackup);
+            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox3.Location = new System.Drawing.Point(3, 3);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(725, 111);
+            this.groupBox3.TabIndex = 6;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Dados de backup";
+            // 
+            // BtnRestaurarBackup
+            // 
+            this.BtnRestaurarBackup.Location = new System.Drawing.Point(10, 27);
+            this.BtnRestaurarBackup.Name = "BtnRestaurarBackup";
+            this.BtnRestaurarBackup.Size = new System.Drawing.Size(202, 28);
+            this.BtnRestaurarBackup.TabIndex = 3;
+            this.BtnRestaurarBackup.Text = "Restaurar backup";
+            this.BtnRestaurarBackup.UseVisualStyleBackColor = true;
+            this.BtnRestaurarBackup.Click += new System.EventHandler(this.BtnRestaurarBackup_Click);
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.BtnRestaurarBackup);
+            this.groupBox4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox4.Location = new System.Drawing.Point(3, 114);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(725, 94);
+            this.groupBox4.TabIndex = 7;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Restaurar Backup";
+            // 
+            // radioButtonEnderecoSROWebsro2oCampo2
+            // 
+            this.radioButtonEnderecoSROWebsro2oCampo2.AutoSize = true;
+            this.radioButtonEnderecoSROWebsro2oCampo2.Location = new System.Drawing.Point(24, 19);
+            this.radioButtonEnderecoSROWebsro2oCampo2.Name = "radioButtonEnderecoSROWebsro2oCampo2";
+            this.radioButtonEnderecoSROWebsro2oCampo2.Size = new System.Drawing.Size(124, 17);
+            this.radioButtonEnderecoSROWebsro2oCampo2.TabIndex = 0;
+            this.radioButtonEnderecoSROWebsro2oCampo2.TabStop = true;
+            this.radioButtonEnderecoSROWebsro2oCampo2.Text = "Endereço \"websro2\"";
+            this.radioButtonEnderecoSROWebsro2oCampo2.UseVisualStyleBackColor = true;
+            this.radioButtonEnderecoSROWebsro2oCampo2.CheckedChanged += new System.EventHandler(this.radioButtonEnderecoSROWebsro2oCampo2_CheckedChanged);
+            // 
+            // radioButtonEnderecoAppCampo2
+            // 
+            this.radioButtonEnderecoAppCampo2.AutoSize = true;
+            this.radioButtonEnderecoAppCampo2.Location = new System.Drawing.Point(180, 18);
+            this.radioButtonEnderecoAppCampo2.Name = "radioButtonEnderecoAppCampo2";
+            this.radioButtonEnderecoAppCampo2.Size = new System.Drawing.Size(102, 17);
+            this.radioButtonEnderecoAppCampo2.TabIndex = 1;
+            this.radioButtonEnderecoAppCampo2.TabStop = true;
+            this.radioButtonEnderecoAppCampo2.Text = "Endereço \"app\"";
+            this.radioButtonEnderecoAppCampo2.UseVisualStyleBackColor = true;
+            this.radioButtonEnderecoAppCampo2.CheckedChanged += new System.EventHandler(this.radioButtonEnderecoAppCampo2_CheckedChanged);
             // 
             // bindingSourceTabelaConfiguracoesSistema
             // 
@@ -486,65 +742,22 @@
             // 
             this.tabelaConfiguracoesSistemaTableAdapter.ClearBeforeFill = true;
             // 
-            // label10
+            // groupBox5
             // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(8, 70);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(256, 16);
-            this.label10.TabIndex = 3;
-            this.label10.Text = "Exemplo: http://websro2/rastreamento/sro";
-            // 
-            // TxtEnderecoSROEspecificoObjeto
-            // 
-            this.TxtEnderecoSROEspecificoObjeto.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtEnderecoSROEspecificoObjeto.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtEnderecoSROEspecificoObjeto.Location = new System.Drawing.Point(8, 163);
-            this.TxtEnderecoSROEspecificoObjeto.Name = "TxtEnderecoSROEspecificoObjeto";
-            this.TxtEnderecoSROEspecificoObjeto.Size = new System.Drawing.Size(596, 26);
-            this.TxtEnderecoSROEspecificoObjeto.TabIndex = 4;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(8, 127);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(295, 16);
-            this.label9.TabIndex = 3;
-            this.label9.Text = "Endereço SRO para um obejto específico";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(8, 144);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(530, 16);
-            this.label11.TabIndex = 3;
-            this.label11.Text = "Exemplo: http://websro2/rastreamento/sro?opcao=PESQUISA&objetos=QB378038055BR";
-            // 
-            // BtnAtualizarEnderecoSRO
-            // 
-            this.BtnAtualizarEnderecoSRO.Location = new System.Drawing.Point(610, 88);
-            this.BtnAtualizarEnderecoSRO.Name = "BtnAtualizarEnderecoSRO";
-            this.BtnAtualizarEnderecoSRO.Size = new System.Drawing.Size(113, 28);
-            this.BtnAtualizarEnderecoSRO.TabIndex = 2;
-            this.BtnAtualizarEnderecoSRO.Text = "Atualizar";
-            this.BtnAtualizarEnderecoSRO.UseVisualStyleBackColor = true;
-            this.BtnAtualizarEnderecoSRO.Click += new System.EventHandler(this.BtnAtualizarEnderecoSRO_Click);
-            // 
-            // BtnAtualizarEnderecoSROObjetoEspecifico
-            // 
-            this.BtnAtualizarEnderecoSROObjetoEspecifico.Location = new System.Drawing.Point(610, 161);
-            this.BtnAtualizarEnderecoSROObjetoEspecifico.Name = "BtnAtualizarEnderecoSROObjetoEspecifico";
-            this.BtnAtualizarEnderecoSROObjetoEspecifico.Size = new System.Drawing.Size(113, 28);
-            this.BtnAtualizarEnderecoSROObjetoEspecifico.TabIndex = 2;
-            this.BtnAtualizarEnderecoSROObjetoEspecifico.Text = "Atualizar";
-            this.BtnAtualizarEnderecoSROObjetoEspecifico.UseVisualStyleBackColor = true;
-            this.BtnAtualizarEnderecoSROObjetoEspecifico.Click += new System.EventHandler(this.BtnAtualizarEnderecoSROObjetoEspecifico_Click);
+            this.groupBox5.Controls.Add(this.radioButtonEnderecoSROWebsro2oCampo2);
+            this.groupBox5.Controls.Add(this.radioButtonEnderecoAppCampo2);
+            this.groupBox5.Controls.Add(this.TxtEnderecoSROEspecificoObjeto);
+            this.groupBox5.Controls.Add(this.label9);
+            this.groupBox5.Controls.Add(this.BtnAtualizarEnderecoSROObjetoEspecifico);
+            this.groupBox5.Controls.Add(this.label11);
+            this.groupBox5.Location = new System.Drawing.Point(8, 183);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(715, 119);
+            this.groupBox5.TabIndex = 10;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Endereço SRO para um objeto específico";
             // 
             // FormularioOpcoes
             // 
@@ -566,13 +779,21 @@
             this.panel1.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabPageObjetosAguardandoRetirada.ResumeLayout(false);
-            this.tabPageObjetosAguardandoRetirada.PerformLayout();
             this.tabPageExibirItensJaEntregues.ResumeLayout(false);
             this.tabPageExibirItensJaEntregues.PerformLayout();
             this.tabPageConfiguracoesAgencia.ResumeLayout(false);
             this.tabPageConfiguracoesAgencia.PerformLayout();
+            this.tabPageBackup.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceTabelaConfiguracoesSistema)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetConfiguracoes)).EndInit();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -617,5 +838,22 @@
         private System.Windows.Forms.TextBox TxtEnderecoSROEspecificoObjeto;
         private System.Windows.Forms.Button BtnAtualizarEnderecoSROObjetoEspecifico;
         private System.Windows.Forms.Button BtnAtualizarEnderecoSRO;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton radioButtonEnderecoApp;
+        private System.Windows.Forms.RadioButton radioButtonEnderecoSROWebsro2;
+        private System.Windows.Forms.TabPage tabPageBackup;
+        private System.Windows.Forms.Button BtnSalvarBackup;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Button BtnTornarBancoVazio;
+        private System.Windows.Forms.Button BtnBuscarEnderecoParaBackup;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        private System.Windows.Forms.Label labelResultadoFolderBackup;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Button BtnRestaurarBackup;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.RadioButton radioButtonEnderecoAppCampo2;
+        private System.Windows.Forms.RadioButton radioButtonEnderecoSROWebsro2oCampo2;
+        private System.Windows.Forms.GroupBox groupBox5;
     }
 }

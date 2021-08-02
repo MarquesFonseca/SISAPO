@@ -40,10 +40,10 @@
             // BtnAcesso
             // 
             this.BtnAcesso.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnAcesso.Location = new System.Drawing.Point(185, 168);
+            this.BtnAcesso.Location = new System.Drawing.Point(56, 168);
             this.BtnAcesso.Name = "BtnAcesso";
             this.BtnAcesso.Size = new System.Drawing.Size(109, 30);
-            this.BtnAcesso.TabIndex = 6;
+            this.BtnAcesso.TabIndex = 5;
             this.BtnAcesso.Text = "&Acessar";
             this.BtnAcesso.UseVisualStyleBackColor = true;
             this.BtnAcesso.Click += new System.EventHandler(this.BtnAcesso_Click);
@@ -91,10 +91,10 @@
             // BtnCancelar
             // 
             this.BtnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnCancelar.Location = new System.Drawing.Point(70, 168);
+            this.BtnCancelar.Location = new System.Drawing.Point(185, 168);
             this.BtnCancelar.Name = "BtnCancelar";
             this.BtnCancelar.Size = new System.Drawing.Size(109, 30);
-            this.BtnCancelar.TabIndex = 5;
+            this.BtnCancelar.TabIndex = 6;
             this.BtnCancelar.Text = "&Cancelar";
             this.BtnCancelar.UseVisualStyleBackColor = true;
             this.BtnCancelar.Click += new System.EventHandler(this.BtnCancelar_Click);

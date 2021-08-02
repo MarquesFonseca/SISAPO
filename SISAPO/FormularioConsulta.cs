@@ -221,14 +221,14 @@ namespace SISAPO
 
         private void FormularioConsulta_KeyDown(object sender, KeyEventArgs e)
         {
-            //if (e.Control && e.Shift == Keys.P && e.KeyCode == Keys.L)
-            //{
-            //    imprimirModeloLDIToolStripMenuItem_Click(sender, e);
-            //}
-            //if (e.Control && e.KeyCode == Keys.P && e.KeyCode == Keys.A)
-            //{
-            //    imprimirAvisosDeChegadaSelecionadosToolStripMenuItem_Click(sender, e);
-            //}
+            if (e.Control && e.Shift && e.KeyCode == Keys.L)
+            {
+                imprimirModeloLDIToolStripMenuItem_Click(sender, e);
+            }
+            if (e.Control && e.Shift && e.KeyCode == Keys.A)
+            {
+                imprimirAvisosDeChegadaSelecionadosToolStripMenuItem_Click(sender, e);
+            }
             if (e.KeyCode == Keys.Escape)
             {
                 e.SuppressKeyPress = true;
@@ -375,7 +375,10 @@ namespace SISAPO
                 TxtCodigoObjetoSelecionado.Text = "";
                 TxtCodigoLDISelecionado.Text = "";
                 TxtDataLancamento.Text = "";
+                TxtDataBaixa.Text = "";
                 TxtSituacaoAtual.Text = "";
+                TxtPrazoDias.Text = "";
+                TxtDataVencimento.Text = "";
 
                 LblDadosPostagemIndisponivel.Visible = true;
                 LblDadosPostagemIndisponivel.Text = "Dados de postagem não disponível";
@@ -617,18 +620,19 @@ namespace SISAPO
 
 
                 #region Carregamento GridView2
+
+                string nomeCliente = string.IsNullOrEmpty(currentRow["NomeCliente"].ToString()) ? "" : currentRow["NomeCliente"].ToString();
+                string enderecoLOEC = string.IsNullOrEmpty(currentRow["EnderecoLOEC"].ToString()) ? "" : currentRow["EnderecoLOEC"].ToString();
+
                 if (string.IsNullOrEmpty(currentRow["EnderecoLOEC"].ToString()))
                 {
                     //vazio
                     panel2.Visible = false;
                     bindingSource2.DataSource = null;
-                }
-                if (!string.IsNullOrEmpty(currentRow["EnderecoLOEC"].ToString()))
-                {
+
                     //não vazio
                     var Resultado = ((System.Windows.Forms.BindingSource)dataGridView1.DataSource).Cast<DataRowView>().Where(T =>
-                    (T["NomeCliente"].ToString().Contains(currentRow["NomeCliente"].ToString()) && Convert.ToBoolean(T["ObjetoEntregue"]) == false) ||
-                    (T["EnderecoLOEC"].ToString().Contains(currentRow["EnderecoLOEC"].ToString()) && Convert.ToBoolean(T["ObjetoEntregue"]) == false));
+                    (T["NomeCliente"].ToString().Contains(nomeCliente) && Convert.ToBoolean(T["ObjetoEntregue"]) == false));
                     if (Resultado.Count() <= 1)
                     {
                         panel2.Visible = false;
@@ -639,7 +643,24 @@ namespace SISAPO
                         panel2.Visible = true;
                         bindingSource2.DataSource = Resultado;
                     }
-                } 
+                }
+                if (!string.IsNullOrEmpty(currentRow["EnderecoLOEC"].ToString()))
+                {
+                    //não vazio
+                    var Resultado = ((System.Windows.Forms.BindingSource)dataGridView1.DataSource).Cast<DataRowView>().Where(T =>
+                    (T["NomeCliente"].ToString().Contains(nomeCliente) && Convert.ToBoolean(T["ObjetoEntregue"]) == false) ||
+                    (T["EnderecoLOEC"].ToString().Contains(enderecoLOEC) && Convert.ToBoolean(T["ObjetoEntregue"]) == false));
+                    if (Resultado.Count() <= 1)
+                    {
+                        panel2.Visible = false;
+                        bindingSource2.DataSource = null;
+                    }
+                    if (Resultado.Count() > 1)
+                    {
+                        panel2.Visible = true;
+                        bindingSource2.DataSource = Resultado;
+                    }
+                }
                 #endregion
             }
             #endregion
@@ -1250,6 +1271,8 @@ namespace SISAPO
         {
             try
             {
+                if(currentRow == null) return;
+
                 if (!DAO.TestaConexao(ClassesDiversas.Configuracoes.strConexao, TipoBanco.OleDb))
                 {
                     FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao;
@@ -1265,6 +1288,7 @@ namespace SISAPO
                 int ObjetoEmCaixaPostal = currentRow["CaixaPostal"].ToInt();//bool CaixaPostal,
                 int ObjetoJaEntregue = currentRow["ObjetoEntregue"].ToInt();//bool ObjetoEntregue,
                 int ObjetoJaAtualizado = currentRow["Atualizado"].ToInt();//bool Atualizado,
+                string Comentario = currentRow["Comentario"].ToString();//string Comentario,
 
                 string UnidadePostagem = currentRow["UnidadePostagem"].ToString();//UnidadePostagem
                 string MunicipioPostagem = currentRow["MunicipioPostagem"].ToString();//MunicipioPostagem
@@ -1298,6 +1322,7 @@ namespace SISAPO
                 frm.ObjetoEmCaixaPostal = ObjetoEmCaixaPostal == 0 ? false : true;
                 frm.ObjetoJaEntregue = ObjetoJaEntregue == 0 ? false : true;
                 frm.ObjetoJaAtualizado = ObjetoJaAtualizado == 0 ? false : true;
+                frm.Comentario = Comentario;
 
                 frm.UnidadePostagem = UnidadePostagem;
                 frm.MunicipioPostagem = MunicipioPostagem;
@@ -1334,6 +1359,7 @@ namespace SISAPO
                 currentRow["CaixaPostal"] = frm.ObjetoEmCaixaPostal;//bool CaixaPostal,
                 currentRow["ObjetoEntregue"] = frm.ObjetoJaEntregue;//bool ObjetoEntregue,
                 currentRow["Atualizado"] = frm.ObjetoJaAtualizado;//bool Atualizado,
+                currentRow["Comentario"] = frm.Comentario;//string Comentario,
 
                 //string UnidadePostagem,
                 //string MunicipioPostagem,
@@ -1358,6 +1384,27 @@ namespace SISAPO
                 //string CoordenadasDestinatarioAusente
 
                 waitForm.Show(this);
+
+
+                bool SeEAoRemetente = frm.checkBoxAoRemetente.Checked;
+
+                string TipoPostalServico = string.Empty;
+                string TipoPostalSiglaCodigo = string.Empty;
+                string TipoPostalNomeSiglaCodigo = string.Empty;
+                string TipoPostalPrazoDiasCorridosRegulamentado = string.Empty;
+
+                TipoPostalPrazoDiasCorridosRegulamentado = Configuracoes.RetornaTipoPostalPrazoDiasCorridosRegulamentado(CodigoObjeto, SeEAoRemetente, frm.ObjetoEmCaixaPostal, ref TipoPostalServico, ref TipoPostalSiglaCodigo, ref TipoPostalNomeSiglaCodigo);
+                if (string.IsNullOrEmpty(TipoPostalPrazoDiasCorridosRegulamentado))
+                {
+                    Mensagens.Erro(string.Format("Não foi encontrado o Tipo Postal [ {0} ].\nUma gestão de tipos postais é necessário.", CodigoObjeto.Substring(0, 2)));
+                    //continua mesmo não tendo o tipo postal desejado....
+                }
+
+                currentRow["TipoPostalServico"] = TipoPostalServico;//string TipoPostalServico,
+                currentRow["TipoPostalSiglaCodigo"] = TipoPostalSiglaCodigo;//string TipoPostalSiglaCodigo,
+                currentRow["TipoPostalNomeSiglaCodigo"] = TipoPostalNomeSiglaCodigo;//string TipoPostalNomeSiglaCodigo,
+                currentRow["TipoPostalPrazoDiasCorridosRegulamentado"] = TipoPostalPrazoDiasCorridosRegulamentado;//string TipoPostalPrazoDiasCorridosRegulamentado,
+
                 this.tabelaObjetosSROLocalTableAdapter.Connection.ConnectionString = ClassesDiversas.Configuracoes.strConexao;
                 this.tabelaObjetosSROLocalTableAdapter.Update(dataSetTabelaObjetosSROLocal.TabelaObjetosSROLocal);
 
