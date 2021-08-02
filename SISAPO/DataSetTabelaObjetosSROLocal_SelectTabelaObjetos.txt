@@ -4,3 +4,8 @@
 FROM            TabelaObjetosSROLocal
 WHERE        (Format(DataLancamento, 'yyyy/MM/dd') BETWEEN Format(?, 'yyyy/MM/dd') AND Format(?, 'yyyy/MM/dd'))
 ORDER BY DataLancamento DESC
+
+
+
+//dia 02/08/2021
+this._commandCollection[0].CommandText = @"SELECT Codigo, CodigoObjeto, IIf(CodigoLdi IS NULL OR CodigoLdi = '','000000000000',CodigoLdi) AS CodigoLdi, NomeCliente & IIf(Comentario IS NULL OR Comentario = '','', ' - ' & Comentario) AS NomeCliente, Format(IIf(TabelaObjetosSROLocal.DataLancamento IS NULL OR TabelaObjetosSROLocal.DataLancamento = '', Format(NOW(),'dd/MM/yyyy 00:00:01'), TabelaObjetosSROLocal.DataLancamento), 'dd/MM/yyyy hh:mm:ss') AS DataLancamento, Format(DataModificacao, 'dd/MM/yyyy hh:mm:ss') AS DataModificacao, Situacao, Atualizado, ObjetoEntregue, CaixaPostal, UnidadePostagem, MunicipioPostagem, CriacaoPostagem, CepDestinoPostagem, ARPostagem, MPPostagem, DataMaxPrevistaEntregaPostagem, UnidadeLOEC, MunicipioLOEC, CriacaoLOEC, CarteiroLOEC, DistritoLOEC, NumeroLOEC, EnderecoLOEC, BairroLOEC, LocalidadeLOEC, SituacaoDestinatarioAusente, AgrupadoDestinatarioAusente, CoordenadasDestinatarioAusente, Comentario, TipoPostalServico, TipoPostalSiglaCodigo, TipoPostalNomeSiglaCodigo, TipoPostalPrazoDiasCorridosRegulamentado FROM            TabelaObjetosSROLocal WHERE        (Format(DataLancamento, 'yyyy/MM/dd') BETWEEN Format(?, 'yyyy/MM/dd') AND Format(?, 'yyyy/MM/dd')) ORDER BY DataLancamento DESC";

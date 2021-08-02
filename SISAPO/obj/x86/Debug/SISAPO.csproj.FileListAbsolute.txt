@@ -16,6 +16,7 @@ C:\Projetos\SISAPO\SISAPO\bin\Debug\Npgsql.dll
 C:\Projetos\SISAPO\SISAPO\bin\Debug\Release.dll
 C:\Projetos\SISAPO\SISAPO\bin\Debug\System.Data.SqlServerCe.dll
 C:\Projetos\SISAPO\SISAPO\bin\Debug\Microsoft.VisualBasic.PowerPacks.Vs.xml
+C:\Projetos\SISAPO\SISAPO\obj\x86\Debug\SISAPO.csprojResolveAssemblyReference.cache
 C:\Projetos\SISAPO\SISAPO\obj\x86\Debug\SISAPO.FormularioAlterarSituacaoItensSelecionados.resources
 C:\Projetos\SISAPO\SISAPO\obj\x86\Debug\SISAPO.FormularioAdicionarItemObjeto.resources
 C:\Projetos\SISAPO\SISAPO\obj\x86\Debug\SISAPO.FormularioAlteracaoEnderecoObjeto.resources
@@ -56,4 +57,3 @@ C:\Projetos\SISAPO\SISAPO\obj\x86\Debug\SISAPO.exe.manifest
 C:\Projetos\SISAPO\SISAPO\obj\x86\Debug\SISAPO.application
 C:\Projetos\SISAPO\SISAPO\obj\x86\Debug\SISAPO.exe
 C:\Projetos\SISAPO\SISAPO\obj\x86\Debug\SISAPO.pdb
-C:\Projetos\SISAPO\SISAPO\obj\x86\Debug\SISAPO.csprojResolveAssemblyReference.cache

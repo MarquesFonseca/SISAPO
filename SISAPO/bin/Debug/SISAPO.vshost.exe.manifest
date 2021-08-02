@@ -175,14 +175,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SISAPO.exe" size="13712896">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SISAPO.exe" size="13713408">
       <assemblyIdentity name="SISAPO" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>40hbHwU7bfhB37a+44fzbey5XlQ=</dsig:DigestValue>
+        <dsig:DigestValue>ggR4RkmNEVMUccRd4YWMx8rNvVE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
