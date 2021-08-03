@@ -33,12 +33,9 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormularioConsulta));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -47,8 +44,10 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.codigoObjetoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStripImprimirListaEntrega = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItemImprimirListaEntrega = new System.Windows.Forms.ToolStripMenuItem();
             this.imprimirModeloLDIToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,13 +55,12 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.imprimirAvisosDeChegadaSelecionadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.alterarSituaçãoDeItensSelecionadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.alterarItemToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.alterarSituaçãoDeItensSelecionadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.AtualizarObjetosSelecionadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CaixaPostal = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.nomeClienteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DataLancamento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DataModificacao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Situacao = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -89,13 +87,10 @@
             this.SituacaoDestinatarioAusente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AgrupadoDestinatarioAusente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CoordenadasDestinatarioAusente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.atualizadoDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.contextMenuStripAtualizacao = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.MarcarAtualizadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removerItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.alterarItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tabelaObjetosSROLocalBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dataSetTabelaObjetosSROLocal = new SISAPO.DataSetTabelaObjetosSROLocal();
             this.panel1 = new System.Windows.Forms.Panel();
             this.LblTituloFormulario = new System.Windows.Forms.Label();
             this.TxtPesquisa = new System.Windows.Forms.TextBox();
@@ -154,6 +149,10 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumnCodigoObjeto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumnNomeCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumnEnderecoLOEC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -177,18 +176,19 @@
             this.labelUnidadeLOEC = new System.Windows.Forms.Label();
             this.LblDadosTentativaEntregaIndisponivel = new System.Windows.Forms.Label();
             this.LblUnidadeLOEC = new System.Windows.Forms.Label();
+            this.codigoObjetoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nomeClienteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.atualizadoDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.tabelaObjetosSROLocalBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dataSetTabelaObjetosSROLocal = new SISAPO.DataSetTabelaObjetosSROLocal();
             this.tabelaObjetosSROLocalTableAdapter = new SISAPO.DataSetTabelaObjetosSROLocalTableAdapters.TabelaObjetosSROLocalTableAdapter();
             this.tableAdapterManager = new SISAPO.DataSetTabelaObjetosSROLocalTableAdapters.TableAdapterManager();
-            this.bindingSource2 = new System.Windows.Forms.BindingSource(this.components);
-            this.dataGridViewTextBoxColumnCodigoObjeto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumnNomeCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumnEnderecoLOEC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.alterarComentárioSelecionadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStripImprimirListaEntrega.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStripAtualizacao.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tabelaObjetosSROLocalBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSetTabelaObjetosSROLocal)).BeginInit();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -201,13 +201,15 @@
             this.splitContainer1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tabelaObjetosSROLocalBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetTabelaObjetosSROLocal)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -285,21 +287,6 @@
             this.dataGridView1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dataGridView1_KeyPress);
             this.dataGridView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDoubleClick);
             // 
-            // codigoObjetoDataGridViewTextBoxColumn
-            // 
-            this.codigoObjetoDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.codigoObjetoDataGridViewTextBoxColumn.ContextMenuStrip = this.contextMenuStripImprimirListaEntrega;
-            this.codigoObjetoDataGridViewTextBoxColumn.DataPropertyName = "CodigoObjeto";
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.NullValue = null;
-            this.codigoObjetoDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
-            this.codigoObjetoDataGridViewTextBoxColumn.FillWeight = 140F;
-            this.codigoObjetoDataGridViewTextBoxColumn.Frozen = true;
-            this.codigoObjetoDataGridViewTextBoxColumn.HeaderText = "Código";
-            this.codigoObjetoDataGridViewTextBoxColumn.Name = "codigoObjetoDataGridViewTextBoxColumn";
-            this.codigoObjetoDataGridViewTextBoxColumn.ReadOnly = true;
-            this.codigoObjetoDataGridViewTextBoxColumn.Width = 65;
-            // 
             // contextMenuStripImprimirListaEntrega
             // 
             this.contextMenuStripImprimirListaEntrega.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -311,9 +298,11 @@
             this.toolStripSeparator3,
             this.alterarSituaçãoDeItensSelecionadosToolStripMenuItem,
             this.toolStripSeparator4,
+            this.alterarComentárioSelecionadosToolStripMenuItem,
+            this.toolStripSeparator5,
             this.AtualizarObjetosSelecionadosToolStripMenuItem});
             this.contextMenuStripImprimirListaEntrega.Name = "contextMenuStripImprimirListaEntrega";
-            this.contextMenuStripImprimirListaEntrega.Size = new System.Drawing.Size(372, 160);
+            this.contextMenuStripImprimirListaEntrega.Size = new System.Drawing.Size(372, 188);
             // 
             // toolStripMenuItemImprimirListaEntrega
             // 
@@ -360,19 +349,6 @@
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(368, 6);
             // 
-            // alterarSituaçãoDeItensSelecionadosToolStripMenuItem
-            // 
-            this.alterarSituaçãoDeItensSelecionadosToolStripMenuItem.Image = global::SISAPO.Properties.Resources.CadastroObjetos;
-            this.alterarSituaçãoDeItensSelecionadosToolStripMenuItem.Name = "alterarSituaçãoDeItensSelecionadosToolStripMenuItem";
-            this.alterarSituaçãoDeItensSelecionadosToolStripMenuItem.Size = new System.Drawing.Size(371, 22);
-            this.alterarSituaçãoDeItensSelecionadosToolStripMenuItem.Text = "Situação da baixa (Selecionados)";
-            this.alterarSituaçãoDeItensSelecionadosToolStripMenuItem.Click += new System.EventHandler(this.alterarSituaçãoDeItensSelecionadosToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(368, 6);
-            // 
             // alterarItemToolStripMenuItem1
             // 
             this.alterarItemToolStripMenuItem1.Image = global::SISAPO.Properties.Resources.CadastroObjetos;
@@ -380,6 +356,19 @@
             this.alterarItemToolStripMenuItem1.Size = new System.Drawing.Size(371, 22);
             this.alterarItemToolStripMenuItem1.Text = "Alterar item (Somente atual)";
             this.alterarItemToolStripMenuItem1.Click += new System.EventHandler(this.alterarItemToolStripMenuItem1_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(368, 6);
+            // 
+            // alterarSituaçãoDeItensSelecionadosToolStripMenuItem
+            // 
+            this.alterarSituaçãoDeItensSelecionadosToolStripMenuItem.Image = global::SISAPO.Properties.Resources.CadastroObjetos;
+            this.alterarSituaçãoDeItensSelecionadosToolStripMenuItem.Name = "alterarSituaçãoDeItensSelecionadosToolStripMenuItem";
+            this.alterarSituaçãoDeItensSelecionadosToolStripMenuItem.Size = new System.Drawing.Size(371, 22);
+            this.alterarSituaçãoDeItensSelecionadosToolStripMenuItem.Text = "Situação da baixa (Selecionados)";
+            this.alterarSituaçãoDeItensSelecionadosToolStripMenuItem.Click += new System.EventHandler(this.alterarSituaçãoDeItensSelecionadosToolStripMenuItem_Click);
             // 
             // toolStripSeparator4
             // 
@@ -405,17 +394,6 @@
             this.CaixaPostal.Name = "CaixaPostal";
             this.CaixaPostal.ReadOnly = true;
             this.CaixaPostal.Width = 77;
-            // 
-            // nomeClienteDataGridViewTextBoxColumn
-            // 
-            this.nomeClienteDataGridViewTextBoxColumn.DataPropertyName = "NomeCliente";
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.nomeClienteDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
-            this.nomeClienteDataGridViewTextBoxColumn.HeaderText = "Nome do cliente";
-            this.nomeClienteDataGridViewTextBoxColumn.MinimumWidth = 100;
-            this.nomeClienteDataGridViewTextBoxColumn.Name = "nomeClienteDataGridViewTextBoxColumn";
-            this.nomeClienteDataGridViewTextBoxColumn.ReadOnly = true;
-            this.nomeClienteDataGridViewTextBoxColumn.Width = 400;
             // 
             // DataLancamento
             // 
@@ -621,6 +599,7 @@
             this.BairroLOEC.Name = "BairroLOEC";
             this.BairroLOEC.ReadOnly = true;
             this.BairroLOEC.Visible = false;
+            this.BairroLOEC.Width = 130;
             // 
             // LocalidadeLOEC
             // 
@@ -658,21 +637,6 @@
             this.CoordenadasDestinatarioAusente.ReadOnly = true;
             this.CoordenadasDestinatarioAusente.Width = 137;
             // 
-            // atualizadoDataGridViewCheckBoxColumn
-            // 
-            this.atualizadoDataGridViewCheckBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.atualizadoDataGridViewCheckBoxColumn.ContextMenuStrip = this.contextMenuStripAtualizacao;
-            this.atualizadoDataGridViewCheckBoxColumn.DataPropertyName = "Atualizado";
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.atualizadoDataGridViewCheckBoxColumn.DefaultCellStyle = dataGridViewCellStyle8;
-            this.atualizadoDataGridViewCheckBoxColumn.FalseValue = "";
-            this.atualizadoDataGridViewCheckBoxColumn.HeaderText = "Já atualizado?";
-            this.atualizadoDataGridViewCheckBoxColumn.Name = "atualizadoDataGridViewCheckBoxColumn";
-            this.atualizadoDataGridViewCheckBoxColumn.ReadOnly = true;
-            this.atualizadoDataGridViewCheckBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.atualizadoDataGridViewCheckBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.atualizadoDataGridViewCheckBoxColumn.TrueValue = "";
-            // 
             // contextMenuStripAtualizacao
             // 
             this.contextMenuStripAtualizacao.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -706,18 +670,6 @@
             this.alterarItemToolStripMenuItem.Text = "Alterar Item";
             this.alterarItemToolStripMenuItem.Visible = false;
             this.alterarItemToolStripMenuItem.Click += new System.EventHandler(this.alterarItemToolStripMenuItem_Click);
-            // 
-            // tabelaObjetosSROLocalBindingSource
-            // 
-            this.tabelaObjetosSROLocalBindingSource.DataMember = "TabelaObjetosSROLocal";
-            this.tabelaObjetosSROLocalBindingSource.DataSource = this.dataSetTabelaObjetosSROLocal;
-            this.tabelaObjetosSROLocalBindingSource.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.tabelaObjetosSROLocalBindingSource_BindingComplete);
-            this.tabelaObjetosSROLocalBindingSource.CurrentItemChanged += new System.EventHandler(this.tabelaObjetosSROLocalBindingSource_CurrentItemChanged);
-            // 
-            // dataSetTabelaObjetosSROLocal
-            // 
-            this.dataSetTabelaObjetosSROLocal.DataSetName = "DataSetTabelaObjetosSROLocal";
-            this.dataSetTabelaObjetosSROLocal.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // panel1
             // 
@@ -1464,6 +1416,38 @@
             this.dataGridView2.Size = new System.Drawing.Size(721, 164);
             this.dataGridView2.TabIndex = 1;
             // 
+            // dataGridViewTextBoxColumnCodigoObjeto
+            // 
+            this.dataGridViewTextBoxColumnCodigoObjeto.DataPropertyName = "CodigoObjeto";
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
+            this.dataGridViewTextBoxColumnCodigoObjeto.DefaultCellStyle = dataGridViewCellStyle13;
+            this.dataGridViewTextBoxColumnCodigoObjeto.FillWeight = 227F;
+            this.dataGridViewTextBoxColumnCodigoObjeto.HeaderText = "Código";
+            this.dataGridViewTextBoxColumnCodigoObjeto.Name = "dataGridViewTextBoxColumnCodigoObjeto";
+            this.dataGridViewTextBoxColumnCodigoObjeto.ReadOnly = true;
+            this.dataGridViewTextBoxColumnCodigoObjeto.Width = 227;
+            // 
+            // dataGridViewTextBoxColumnNomeCliente
+            // 
+            this.dataGridViewTextBoxColumnNomeCliente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumnNomeCliente.DataPropertyName = "NomeCliente";
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.dataGridViewTextBoxColumnNomeCliente.DefaultCellStyle = dataGridViewCellStyle14;
+            this.dataGridViewTextBoxColumnNomeCliente.HeaderText = "Nome do cliente";
+            this.dataGridViewTextBoxColumnNomeCliente.Name = "dataGridViewTextBoxColumnNomeCliente";
+            this.dataGridViewTextBoxColumnNomeCliente.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumnEnderecoLOEC
+            // 
+            this.dataGridViewTextBoxColumnEnderecoLOEC.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dataGridViewTextBoxColumnEnderecoLOEC.DataPropertyName = "EnderecoLOEC";
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.dataGridViewTextBoxColumnEnderecoLOEC.DefaultCellStyle = dataGridViewCellStyle15;
+            this.dataGridViewTextBoxColumnEnderecoLOEC.HeaderText = "Endereço Entrega LOEC";
+            this.dataGridViewTextBoxColumnEnderecoLOEC.Name = "dataGridViewTextBoxColumnEnderecoLOEC";
+            this.dataGridViewTextBoxColumnEnderecoLOEC.ReadOnly = true;
+            this.dataGridViewTextBoxColumnEnderecoLOEC.Width = 149;
+            // 
             // splitContainer2
             // 
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1719,6 +1703,59 @@
             this.LblUnidadeLOEC.TabIndex = 1;
             this.LblUnidadeLOEC.Text = "UnidadeLOEC";
             // 
+            // codigoObjetoDataGridViewTextBoxColumn
+            // 
+            this.codigoObjetoDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.codigoObjetoDataGridViewTextBoxColumn.ContextMenuStrip = this.contextMenuStripImprimirListaEntrega;
+            this.codigoObjetoDataGridViewTextBoxColumn.DataPropertyName = "CodigoObjeto";
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.NullValue = null;
+            this.codigoObjetoDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            this.codigoObjetoDataGridViewTextBoxColumn.FillWeight = 140F;
+            this.codigoObjetoDataGridViewTextBoxColumn.Frozen = true;
+            this.codigoObjetoDataGridViewTextBoxColumn.HeaderText = "Código";
+            this.codigoObjetoDataGridViewTextBoxColumn.Name = "codigoObjetoDataGridViewTextBoxColumn";
+            this.codigoObjetoDataGridViewTextBoxColumn.ReadOnly = true;
+            this.codigoObjetoDataGridViewTextBoxColumn.Width = 65;
+            // 
+            // nomeClienteDataGridViewTextBoxColumn
+            // 
+            this.nomeClienteDataGridViewTextBoxColumn.DataPropertyName = "NomeCliente";
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.nomeClienteDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
+            this.nomeClienteDataGridViewTextBoxColumn.HeaderText = "Nome do cliente";
+            this.nomeClienteDataGridViewTextBoxColumn.MinimumWidth = 100;
+            this.nomeClienteDataGridViewTextBoxColumn.Name = "nomeClienteDataGridViewTextBoxColumn";
+            this.nomeClienteDataGridViewTextBoxColumn.ReadOnly = true;
+            this.nomeClienteDataGridViewTextBoxColumn.Width = 400;
+            // 
+            // atualizadoDataGridViewCheckBoxColumn
+            // 
+            this.atualizadoDataGridViewCheckBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.atualizadoDataGridViewCheckBoxColumn.ContextMenuStrip = this.contextMenuStripAtualizacao;
+            this.atualizadoDataGridViewCheckBoxColumn.DataPropertyName = "Atualizado";
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.atualizadoDataGridViewCheckBoxColumn.DefaultCellStyle = dataGridViewCellStyle8;
+            this.atualizadoDataGridViewCheckBoxColumn.FalseValue = "";
+            this.atualizadoDataGridViewCheckBoxColumn.HeaderText = "Já atualizado?";
+            this.atualizadoDataGridViewCheckBoxColumn.Name = "atualizadoDataGridViewCheckBoxColumn";
+            this.atualizadoDataGridViewCheckBoxColumn.ReadOnly = true;
+            this.atualizadoDataGridViewCheckBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.atualizadoDataGridViewCheckBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.atualizadoDataGridViewCheckBoxColumn.TrueValue = "";
+            // 
+            // tabelaObjetosSROLocalBindingSource
+            // 
+            this.tabelaObjetosSROLocalBindingSource.DataMember = "TabelaObjetosSROLocal";
+            this.tabelaObjetosSROLocalBindingSource.DataSource = this.dataSetTabelaObjetosSROLocal;
+            this.tabelaObjetosSROLocalBindingSource.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.tabelaObjetosSROLocalBindingSource_BindingComplete);
+            this.tabelaObjetosSROLocalBindingSource.CurrentItemChanged += new System.EventHandler(this.tabelaObjetosSROLocalBindingSource_CurrentItemChanged);
+            // 
+            // dataSetTabelaObjetosSROLocal
+            // 
+            this.dataSetTabelaObjetosSROLocal.DataSetName = "DataSetTabelaObjetosSROLocal";
+            this.dataSetTabelaObjetosSROLocal.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // tabelaObjetosSROLocalTableAdapter
             // 
             this.tabelaObjetosSROLocalTableAdapter.ClearBeforeFill = true;
@@ -1729,37 +1766,18 @@
             this.tableAdapterManager.TabelaObjetosSROLocalTableAdapter = this.tabelaObjetosSROLocalTableAdapter;
             this.tableAdapterManager.UpdateOrder = SISAPO.DataSetTabelaObjetosSROLocalTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
-            // dataGridViewTextBoxColumnCodigoObjeto
+            // alterarComentárioSelecionadosToolStripMenuItem
             // 
-            this.dataGridViewTextBoxColumnCodigoObjeto.DataPropertyName = "CodigoObjeto";
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
-            this.dataGridViewTextBoxColumnCodigoObjeto.DefaultCellStyle = dataGridViewCellStyle13;
-            this.dataGridViewTextBoxColumnCodigoObjeto.FillWeight = 227F;
-            this.dataGridViewTextBoxColumnCodigoObjeto.HeaderText = "Código";
-            this.dataGridViewTextBoxColumnCodigoObjeto.Name = "dataGridViewTextBoxColumnCodigoObjeto";
-            this.dataGridViewTextBoxColumnCodigoObjeto.ReadOnly = true;
-            this.dataGridViewTextBoxColumnCodigoObjeto.Width = 227;
+            this.alterarComentárioSelecionadosToolStripMenuItem.Image = global::SISAPO.Properties.Resources.CadastroObjetos;
+            this.alterarComentárioSelecionadosToolStripMenuItem.Name = "alterarComentárioSelecionadosToolStripMenuItem";
+            this.alterarComentárioSelecionadosToolStripMenuItem.Size = new System.Drawing.Size(371, 22);
+            this.alterarComentárioSelecionadosToolStripMenuItem.Text = "Alterar Comentário (Selecionados)";
+            this.alterarComentárioSelecionadosToolStripMenuItem.Click += new System.EventHandler(this.alterarComentarioSelecionadosToolStripMenuItem_Click);
             // 
-            // dataGridViewTextBoxColumnNomeCliente
+            // toolStripSeparator5
             // 
-            this.dataGridViewTextBoxColumnNomeCliente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumnNomeCliente.DataPropertyName = "NomeCliente";
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.dataGridViewTextBoxColumnNomeCliente.DefaultCellStyle = dataGridViewCellStyle14;
-            this.dataGridViewTextBoxColumnNomeCliente.HeaderText = "Nome do cliente";
-            this.dataGridViewTextBoxColumnNomeCliente.Name = "dataGridViewTextBoxColumnNomeCliente";
-            this.dataGridViewTextBoxColumnNomeCliente.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumnEnderecoLOEC
-            // 
-            this.dataGridViewTextBoxColumnEnderecoLOEC.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dataGridViewTextBoxColumnEnderecoLOEC.DataPropertyName = "EnderecoLOEC";
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.dataGridViewTextBoxColumnEnderecoLOEC.DefaultCellStyle = dataGridViewCellStyle15;
-            this.dataGridViewTextBoxColumnEnderecoLOEC.HeaderText = "Endereço Entrega LOEC";
-            this.dataGridViewTextBoxColumnEnderecoLOEC.Name = "dataGridViewTextBoxColumnEnderecoLOEC";
-            this.dataGridViewTextBoxColumnEnderecoLOEC.ReadOnly = true;
-            this.dataGridViewTextBoxColumnEnderecoLOEC.Width = 149;
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(368, 6);
             // 
             // FormularioConsulta
             // 
@@ -1784,8 +1802,6 @@
             this.contextMenuStripImprimirListaEntrega.ResumeLayout(false);
             this.contextMenuStrip1.ResumeLayout(false);
             this.contextMenuStripAtualizacao.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.tabelaObjetosSROLocalBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSetTabelaObjetosSROLocal)).EndInit();
             this.panel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -1801,6 +1817,7 @@
             this.splitContainer1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).EndInit();
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
@@ -1808,7 +1825,8 @@
             this.tabControl2.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tabelaObjetosSROLocalBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetTabelaObjetosSROLocal)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1951,5 +1969,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumnCodigoObjeto;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumnNomeCliente;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumnEnderecoLOEC;
+        private System.Windows.Forms.ToolStripMenuItem alterarComentárioSelecionadosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
     }
 }

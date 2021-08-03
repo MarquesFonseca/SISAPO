@@ -624,7 +624,7 @@ namespace SISAPO
                 string nomeCliente = string.IsNullOrEmpty(currentRow["NomeCliente"].ToString()) ? "" : currentRow["NomeCliente"].ToString();
                 string enderecoLOEC = string.IsNullOrEmpty(currentRow["EnderecoLOEC"].ToString()) ? "" : currentRow["EnderecoLOEC"].ToString();
 
-                if (string.IsNullOrEmpty(currentRow["EnderecoLOEC"].ToString()))
+                if (!string.IsNullOrWhiteSpace(nomeCliente) && string.IsNullOrEmpty(currentRow["EnderecoLOEC"].ToString()))
                 {
                     //vazio
                     panel2.Visible = false;
@@ -644,7 +644,7 @@ namespace SISAPO
                         bindingSource2.DataSource = Resultado;
                     }
                 }
-                if (!string.IsNullOrEmpty(currentRow["EnderecoLOEC"].ToString()))
+                if (!string.IsNullOrWhiteSpace(nomeCliente) && !string.IsNullOrEmpty(currentRow["EnderecoLOEC"].ToString()))
                 {
                     //não vazio
                     var Resultado = ((System.Windows.Forms.BindingSource)dataGridView1.DataSource).Cast<DataRowView>().Where(T =>
@@ -1695,6 +1695,67 @@ namespace SISAPO
             }
             catch (Exception EX)
             {
+                Mensagens.Erro("Ocorreu um erro inesperado ao gravar. \nErro: " + EX.Message);
+            }
+        }
+
+        private void alterarComentarioSelecionadosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count == 0) return;
+            
+            FormularioAlterarComentarioItensSelecionados formularioAlterarComentarioItensSelecionados = new FormularioAlterarComentarioItensSelecionados();
+            formularioAlterarComentarioItensSelecionados.ShowDialog();
+
+            if (formularioAlterarComentarioItensSelecionados.ClicouCancelar) return;
+
+            if (string.IsNullOrEmpty(formularioAlterarComentarioItensSelecionados.comboBoxComentario.Text)) return;
+
+            List<string> ListaGridSelecaoAtual = new List<string>();
+
+            for (int i = this.dataGridView1.SelectedRows.Count - 1; i >= 0; i--)
+            {
+                bool existe = ListaGridSelecaoAtual.AsEnumerable().Any(t => t == this.dataGridView1.SelectedRows[i].Cells["codigoObjetoDataGridViewTextBoxColumn"].Value.ToString());
+                if (!existe)
+                    ListaGridSelecaoAtual.Add(this.dataGridView1.SelectedRows[i].Cells["codigoObjetoDataGridViewTextBoxColumn"].Value.ToString());
+            }
+
+            if (ListaGridSelecaoAtual.Count == 0) return;
+
+           FormularioConsulta.RetornaComponentesFormularioConsulta().AlterarComentarioItensSelecionados(ListaGridSelecaoAtual, formularioAlterarComentarioItensSelecionados.comboBoxComentario.Text);
+
+            if (Mensagens.Pergunta("Itens atualizado com sucesso! Deseja atualizar grid?") == System.Windows.Forms.DialogResult.Yes)
+            {
+                if (Application.OpenForms["FormularioConsulta"] != null) //verifica se está aberto
+                    FormularioConsulta.RetornaComponentesFormularioConsulta().ConsultaTodosNaoEntreguesOrdenadoNome();
+
+                FormularioPrincipal.RetornaComponentesFormularioPrincipal().BuscaNovoStatusQuantidadeNaoAtualizados();
+            }
+        }
+
+        public void AlterarComentarioItensSelecionados(List<string> ListaCodigosGrid, string Comentario)
+        {
+            try
+            {
+                waitForm.Show(this);
+                foreach (string itemCodigo in ListaCodigosGrid)
+                {
+                    using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
+                    {
+                        if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+
+                        List<Parametros> pr = new List<Parametros>() {
+                            new Parametros() { Nome = "@Comentario", Tipo = TipoCampo.Text, Valor = Comentario },
+
+                            new Parametros() { Nome = "@CodigoObjeto", Tipo = TipoCampo.Text, Valor = itemCodigo }
+                        };
+                        dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET Comentario = @Comentario WHERE (CodigoObjeto = @CodigoObjeto)", pr);
+                    }
+                }
+                waitForm.Close();
+            }
+            catch (Exception EX)
+            {
+                waitForm.Close();
                 Mensagens.Erro("Ocorreu um erro inesperado ao gravar. \nErro: " + EX.Message);
             }
         }

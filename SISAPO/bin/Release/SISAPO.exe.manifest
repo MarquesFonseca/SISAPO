@@ -175,14 +175,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SISAPO.exe" size="13673984">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SISAPO.exe" size="14050304">
       <assemblyIdentity name="SISAPO" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>3STIhbkaMmRCRVdr0+B0IL8P9hk=</dsig:DigestValue>
+        <dsig:DigestValue>hpB+n99ar3B/jG8A3aMxbdLrf6A=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -207,22 +207,22 @@
       <dsig:DigestValue>91dC57dCO6XmE+4/uVKsjxR7Avw=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="DataSetTabelaObjetosSROLocal_SelectTabelaObjetos.txt" size="822">
+  <file name="DataSetTabelaObjetosSROLocal_SelectTabelaObjetos.txt" size="2078">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>O2lsvruozBhzGW3nCQFdxTbwvSg=</dsig:DigestValue>
+      <dsig:DigestValue>TpjRR78RM1z6YVr1lm0JV6P3Z2k=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="DataSetTabelaObjetosSROLocal_xsd.txt" size="185109">
+  <file name="DataSetTabelaObjetosSROLocal_xsd.txt" size="209562">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>ZHnvHoO6jus7Lvmt+DmpOPil25k=</dsig:DigestValue>
+      <dsig:DigestValue>6t0tZzlLYHkZ+VoQk/ut0yQeSrA=</dsig:DigestValue>
     </hash>
   </file>
   <file name="FormularioAtualizacaoObjetoAguardandoRetirada18052021erroComNovasModificacoes.txt" size="38711">

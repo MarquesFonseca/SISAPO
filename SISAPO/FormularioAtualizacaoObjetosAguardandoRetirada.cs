@@ -55,9 +55,10 @@ namespace SISAPO
                 //webBrowser1.Url = new Uri(TelaRastreamento_1_1);
                 CodigoObjetoAtual = "QB156597975BR";
                 //string TelaNomeCliente_2_4 = @"J:\Rastreamento_Unificado_SC349045411BR.htm";
-                string TelaNomeCliente_2_4 = @"J:\Rastreamento_Unificado_S_QB137892122BR.htm";
+                string TelaNomeCliente_2_4 = @"J:\Objeto_Nao_Procurado_Pelo_Destinatario.htm";
                 //"J:\Rastreamento_Unificado_SC349045411BR.htm";
-                tipoTela = TipoTela.NomeCliente4;
+                //tipoTela = TipoTela.NomeCliente4;
+                tipoTela = TipoTela.DetalhesDeObjetos3;
                 webBrowser1.Url = new Uri(TelaNomeCliente_2_4);
             }
             if (Configuracoes.TipoAmbiente == TipoAmbiente.Producao)
@@ -364,12 +365,12 @@ namespace SISAPO
 
                         #region Tratamento NomeCliente
                         NomeCliente = NomeCliente.Trim() == "" ? DsCliente.Tables[0].Rows[0]["NomeCliente"].ToString().ToUpper().RemoveAcentos() : NomeCliente.Trim().ToUpper().RemoveAcentos();
-                        NomeCliente = NomeCliente.Replace("- " + Comentario, "").Trim();//evita repetir o mesmo comentario varias vezes
+                        //NomeCliente = NomeCliente.Replace("- " + Comentario, "").Trim();//evita repetir o mesmo comentario varias vezes
 
-                        if (!string.IsNullOrEmpty(NomeCliente))//se o NomeCliente for fazio.... não colocar o Comentario (se não ficaria assim: " - PCT") / Eu quero assim: "" (sem nada já que não tem nome...)
-                        {
-                            NomeCliente = string.Format("{0} - {1}", NomeCliente, Comentario);
-                        }
+                        //if (!string.IsNullOrEmpty(NomeCliente))//se o NomeCliente for fazio.... não colocar o Comentario (se não ficaria assim: " - PCT") / Eu quero assim: "" (sem nada já que não tem nome...)
+                        //{
+                        //    NomeCliente = string.Format("{0} - {1}", NomeCliente, Comentario);
+                        //}
 
                         #endregion
 
@@ -492,12 +493,27 @@ namespace SISAPO
             textBox1.Text = textoTextBox.ToString();
             textBox1.ScrollToCaret();
         }
-
+        private DataTable DtTipoBaixaTelaAtual;
+        private void CriaDataTableTiposBaixasTelaAtual()
+        {
+            DtTipoBaixaTelaAtual = new DataTable();
+            DtTipoBaixaTelaAtual.Clear();
+            DtTipoBaixaTelaAtual.Columns.Add("DataBaixa");
+            DtTipoBaixaTelaAtual.Columns.Add("DescricaoBaixa");
+            DtTipoBaixaTelaAtual.Columns.Add("LinkBaixa");
+        }
+        private DataTable AddItensDataTableTiposBaixasTelaAtual(DataTable dt, string DataBaixa, string DescricaoBaixa, string LinkBaixa)
+        {
+            object[] Objeto = { DataBaixa, DescricaoBaixa, LinkBaixa };
+            object[] o = { "Ravi", 500 };
+            dt.Rows.Add(o);
+            return dt;
+        }
 
         private void SeparaLinksDosObjetosRastreados()
         {
-            //string CidadeAgenciaLocal = Configuracoes.DadosAgencia.Tables[0].Rows[0]["CidadeAgenciaLocal"].ToString().RemoveAcentos().ToUpper().Trim();
-            //string UFAgenciaLocal = Configuracoes.DadosAgencia.Tables[0].Rows[0]["UFAgenciaLocal"].ToString().RemoveAcentos().ToUpper().Trim();
+            string CidadeAgenciaLocal = Configuracoes.DadosAgencia.Tables[0].Rows[0]["CidadeAgenciaLocal"].ToString().RemoveAcentos().ToUpper().Trim();
+            string UFAgenciaLocal = Configuracoes.DadosAgencia.Tables[0].Rows[0]["UFAgenciaLocal"].ToString().RemoveAcentos().ToUpper().Trim();
             string NomeAgenciaLocal = Configuracoes.DadosAgencia.Tables[0].Rows[0]["NomeAgenciaLocal"].ToString().RemoveAcentos().ToUpper().Trim();
 
             bool objetoJaEntregue = false;
@@ -505,6 +521,40 @@ namespace SISAPO
 
             var itensss = webBrowser1.Document.All.Cast<HtmlElement>().AsEnumerable();
             var linhas = itensss.Cast<HtmlElement>().AsEnumerable().Where(x => x.TagName.ToUpper() == "TR");
+
+            //CriaDataTableTiposBaixasTelaAtual();
+
+            //foreach (HtmlElement item in linhas)
+            //{
+            //    if (item.InnerText == null || string.IsNullOrEmpty(item.InnerText.Trim())) continue;
+            //    string LinhaAtual = item.InnerText.Trim().ToUpper().RemoveAcentos();
+            //    if (!VerificaSeELinhaDesejada(LinhaAtual)) continue;
+
+            //    //verifica se é da agencia atual
+            //    if (!LinhaAtual.Contains(NomeAgenciaLocal.ToUpper()) && !LinhaAtual.Contains(string.Format("{0} / {1}", CidadeAgenciaLocal, UFAgenciaLocal).ToUpper()) == false) continue;
+
+            //    var LKJL = item.All.Cast<HtmlElement>().Where(x => x.TagName.ToString() == "TD");
+
+            //    var tds = item.All.Cast<HtmlElement>().AsEnumerable();
+                
+            //    foreach (HtmlElement itemtd in tds)
+            //    {
+            //        //var linkAtual = ((System.Windows.Forms.HtmlElement)(itemtd)).GetElementsByTagName("A")[0].OuterHtml.Replace("%20", " ");
+            //        //string link = linkAtual.Substring(21, 102);
+
+
+            //        //string DataBaixa = itemtd.InnerHtml[3].ToString();
+            //        //string DescricaoBaixa = itemtd.InnerHtml[3].ToString();
+
+
+            //        AddItensDataTableTiposBaixasTelaAtual(DtTipoBaixaTelaAtual, DataBaixa: "", DescricaoBaixa: "", LinkBaixa: "");
+            //    }
+            //}
+
+
+
+
+            //fim do teste
             foreach (HtmlElement item in linhas)
             {
                 if (item.InnerText == null || string.IsNullOrEmpty(item.InnerText.Trim())) continue;
@@ -674,7 +724,16 @@ namespace SISAPO
                             {
                                 if (linhaAtual.Contains("Aguardando retirada - Area sem entrega".RemoveAcentos().ToUpper()) == false)
                                 {
-                                    return false;
+                                    if (linhaAtual.Contains("Objeto expedido".RemoveAcentos().ToUpper()) == false)
+                                    {
+                                        if (linhaAtual.Contains("Não procurado pelo destinatário".RemoveAcentos().ToUpper()) == false)
+                                        {
+                                            if (linhaAtual.Contains("Não procurado pelo remetente".RemoveAcentos().ToUpper()) == false)
+                                            {
+                                                return false;
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
