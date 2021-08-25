@@ -355,6 +355,9 @@ namespace SISAPO
             }
         }
 
-
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Mensagens.Informa(string.Format("UserName: {0} \nUserDomainName: {1} \nHostName: {2}", Environment.UserName, Environment.UserDomainName, System.Net.Dns.GetHostEntry(Environment.MachineName).HostName));
+        }
     }
 }

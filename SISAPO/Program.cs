@@ -26,8 +26,7 @@ namespace SISAPO
             Configuracoes.TipoAmbiente = TipoAmbiente.Desenvolvimento;
 #endif
 #if !DEBUG
-            Configuracoes.TipoAmbiente = TipoAmbiente.Producao;
-            Mensagens.Informa(string.Format("UserName: {0} \nUserDomainName: {1} \nHostName: {2}", Environment.UserName, Environment.UserDomainName, Dns.GetHostEntry(Environment.MachineName).HostName));
+            Configuracoes.TipoAmbiente = TipoAmbiente.Producao;            
 #endif
             #endregion
 
