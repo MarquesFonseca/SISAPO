@@ -68,7 +68,7 @@ namespace SISAPO
             //    habilitarCapturaDeDadosDeDestinatárioAusenteToolStripMenuItem.Checked = Convert.ToBoolean(dao.RetornaValor("SELECT TOP 1 HabilitarCapturaDeDadosDeDestinatarioAusente FROM TabelaConfiguracoesSistema"));
             //}
 
-            ExibirCaixaPostalPesquisa_toolStripMenuItem.Checked = true;
+            ExibirCaixaPostalPesquisa_toolStripMenuItem.Checked = true;            
             ExibirItensJaEntreguesToolStripMenuItem.Checked = true;
             manterConsultaSempreAtualizadaToolStripMenuItem.Checked = true;
 
@@ -1208,7 +1208,7 @@ namespace SISAPO
             FormularioImpressaoEntregaObjetosModelo2 formularioImpressaoEntregaObjetos = new FormularioImpressaoEntregaObjetosModelo2(ListaCodigoOrdenadosPelaDataLancamento, true, false);
         }
 
-        private void imprimirListaLDIsAssinaturasPorOrdemAlfabéticaToolStripMenuItem_Click(object sender, EventArgs e)
+        public void imprimirListaLDIsAssinaturasPorOrdemAlfabéticaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DataSet dsResultDao = new DataSet();
             string dataInicial = DateTime.Now.Date.ToString("yyyy/MM/dd");
@@ -1238,7 +1238,7 @@ namespace SISAPO
             FormularioImpressaoEntregaObjetosModelo2 formularioImpressaoEntregaObjetos = new FormularioImpressaoEntregaObjetosModelo2(ListaCodigoOrdenadosPeloNomeCliente, false, true);
         }
 
-        private void imprimirAvisoDeChegadaHOJEExcetoEntreguesECaixaPostalToolStripMenuItem_Click(object sender, EventArgs e)
+        public void imprimirAvisoDeChegadaHOJEExcetoEntreguesECaixaPostalToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DataSet dsResultDao = new DataSet();
             string dataInicial = DateTime.Now.Date.ToString("yyyy/MM/dd");
@@ -1277,6 +1277,25 @@ namespace SISAPO
         private void FormularioPrincipal_FormClosed(object sender, FormClosedEventArgs e)
         {
             Dispose();
+        }
+
+        private void relatorioTesteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (Form item in MdiChildren)
+            {
+                if (item.Name == "RelatorioPrincipal")
+                {
+                    item.Activate();
+                    break;
+                }
+            }
+
+            RelatorioPrincipal relatorioPrincipal = new RelatorioPrincipal();
+            relatorioPrincipal.MdiParent = this;
+            relatorioPrincipal.Show();
+            //relatorioPrincipal.WindowState = FormWindowState.Normal;
+            relatorioPrincipal.WindowState = FormWindowState.Maximized;
+            relatorioPrincipal.Activate();
         }
     }
 }

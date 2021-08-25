@@ -66,7 +66,7 @@ namespace SISAPO
             RetornaDadosDestinatarioAusente();
 
             tabControlPrincipal.TabPages[0].Focus();
-            SendKeys.Send("{TAB}");
+            //SendKeys.Send("{TAB}");
             SendKeys.Send("{TAB}");
             SendKeys.Send("{TAB}");
             TxtNomeCliente.ScrollToCaret();

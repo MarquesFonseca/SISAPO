@@ -175,14 +175,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SISAPO.exe" size="13673984">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SISAPO.exe" size="14436864">
       <assemblyIdentity name="SISAPO" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>3STIhbkaMmRCRVdr0+B0IL8P9hk=</dsig:DigestValue>
+        <dsig:DigestValue>Whjp2PFfVLTf2kA0GAOkW0gn6zM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -207,22 +207,22 @@
       <dsig:DigestValue>91dC57dCO6XmE+4/uVKsjxR7Avw=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="DataSetTabelaObjetosSROLocal_SelectTabelaObjetos.txt" size="822">
+  <file name="DataSetTabelaObjetosSROLocal_SelectTabelaObjetos.txt" size="2078">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>O2lsvruozBhzGW3nCQFdxTbwvSg=</dsig:DigestValue>
+      <dsig:DigestValue>TpjRR78RM1z6YVr1lm0JV6P3Z2k=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="DataSetTabelaObjetosSROLocal_xsd.txt" size="185109">
+  <file name="DataSetTabelaObjetosSROLocal_xsd.txt" size="209562">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>ZHnvHoO6jus7Lvmt+DmpOPil25k=</dsig:DigestValue>
+      <dsig:DigestValue>6t0tZzlLYHkZ+VoQk/ut0yQeSrA=</dsig:DigestValue>
     </hash>
   </file>
   <file name="FormularioAtualizacaoObjetoAguardandoRetirada18052021erroComNovasModificacoes.txt" size="38711">
@@ -378,6 +378,87 @@
       <dsig:DigestValue>ZH76Wm1fCRyR0wJR94bYtvXy3Jw=</dsig:DigestValue>
     </hash>
   </file>
+  <file name="Relatorios\LancamentosPorDiaPeriodo\LancamentosPorDiaPeriodo.css" size="296">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>uSq13I6+kcXdT18mumxIRFMZPKQ=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Relatorios\LancamentosPorDiaPeriodo\LancamentosPorDiaPeriodo.html" size="412">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>DfiR9e4OEBhtobEwpNa3L4dXe60=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Relatorios\LancamentosPorDiaPeriodo\LancamentosPorDiaPeriodo.js" size="2301">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>J3lcy3YiL+NgOQ07F8QRfgumKK8=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Relatorios\TiposPostaisMaisUsados\TiposPostaisMaisUsados.css" size="296">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>uSq13I6+kcXdT18mumxIRFMZPKQ=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Relatorios\TiposPostaisMaisUsados\TiposPostaisMaisUsados.html" size="419">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>RIz0AZw5BeoGduWdF4nfp5aHN+M=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Relatorios\TiposPostaisMaisUsados\TiposPostaisMaisUsados.js" size="1824">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>XftsKH5oBSFV4wDsEDwgS/3wmEI=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\animated.js" size="2247">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>B1d9SdqAE1gjvZ4qHJfcp3N1WGA=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\charts.js" size="146957">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>AdHJbxp/5oC9TRpLx5e3jUS7IDY=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\core.js" size="1052249">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>O9PNolATqxHPj2XrvLtKyrrWs1g=</dsig:DigestValue>
+    </hash>
+  </file>
   <file name="Resources\icons8-colar-26.png" size="572">
     <hash>
       <dsig:Transforms>
@@ -394,6 +475,15 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
       <dsig:DigestValue>EtNIZSJqhoBXI8dM9LNt/6O5mpM=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\maps.js" size="137953">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>cNzOa7mrRpbodz+hRSR+QIsFeQw=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Resources\timg11.gif" size="8485">

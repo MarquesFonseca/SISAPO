@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.label2 = new System.Windows.Forms.Label();
+            this.LbnMensagem = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // progressBar1
@@ -41,15 +41,15 @@
             this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.progressBar1.TabIndex = 1;
             // 
-            // label2
+            // LbnMensagem
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(29, 23);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(128, 20);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Processando...";
+            this.LbnMensagem.AutoSize = true;
+            this.LbnMensagem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LbnMensagem.Location = new System.Drawing.Point(29, 23);
+            this.LbnMensagem.Name = "LbnMensagem";
+            this.LbnMensagem.Size = new System.Drawing.Size(128, 20);
+            this.LbnMensagem.TabIndex = 2;
+            this.LbnMensagem.Text = "Processando...";
             // 
             // FormWaiting
             // 
@@ -58,10 +58,11 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(380, 99);
             this.ControlBox = false;
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.LbnMensagem);
             this.Controls.Add(this.progressBar1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormWaiting";
+            this.Opacity = 0.9D;
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
@@ -74,6 +75,6 @@
         #endregion
 
         public System.Windows.Forms.ProgressBar progressBar1;
-        private System.Windows.Forms.Label label2;
+        public System.Windows.Forms.Label LbnMensagem;
     }
 }

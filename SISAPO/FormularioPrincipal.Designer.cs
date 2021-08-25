@@ -87,6 +87,8 @@ namespace SISAPO
             this.closeAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.relatóriosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.relatorioTesteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.RastreamentoSRO_toolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -116,7 +118,8 @@ namespace SISAPO
             this.opçõesToolStripMenuItem,
             this.viewMenu,
             this.windowsMenu,
-            this.helpMenu});
+            this.helpMenu,
+            this.relatóriosToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.MdiWindowListItem = this.windowsMenu;
             this.menuStrip.Name = "menuStrip";
@@ -601,6 +604,22 @@ namespace SISAPO
             this.aboutToolStripMenuItem.Text = "&Sobre";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
+            // relatóriosToolStripMenuItem
+            // 
+            this.relatóriosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.relatorioTesteToolStripMenuItem});
+            this.relatóriosToolStripMenuItem.Name = "relatóriosToolStripMenuItem";
+            this.relatóriosToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
+            this.relatóriosToolStripMenuItem.Text = "Relatórios";
+            this.relatóriosToolStripMenuItem.Visible = false;
+            // 
+            // relatorioTesteToolStripMenuItem
+            // 
+            this.relatorioTesteToolStripMenuItem.Name = "relatorioTesteToolStripMenuItem";
+            this.relatorioTesteToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.relatorioTesteToolStripMenuItem.Text = "Relatorio teste";
+            this.relatorioTesteToolStripMenuItem.Click += new System.EventHandler(this.relatorioTesteToolStripMenuItem_Click);
+            // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
@@ -817,6 +836,8 @@ namespace SISAPO
         private System.Windows.Forms.ToolStripMenuItem imprimirAvisoDeChegadaHOJEExcetoEntreguesECaixaPostalToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem imprimirListaLDIsExpediçãoPorOrdemDeDecrescenteAoLançamentoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem auxílioÀGestaoDoDiaItensColadosSROToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem relatóriosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem relatorioTesteToolStripMenuItem;
     }
 }
 

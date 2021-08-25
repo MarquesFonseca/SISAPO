@@ -8,6 +8,7 @@ using SISAPO.ClassesDiversas;
 using System.Data;
 
 using System.Management;
+using System.Runtime.InteropServices;
 
 namespace SISAPO
 {
@@ -17,20 +18,37 @@ namespace SISAPO
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
+        
         static void Main(string[] args)
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("pt-BR");
-            System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("pt-BR");
+            #region TipoAmbiente
 #if DEBUG
             Configuracoes.TipoAmbiente = TipoAmbiente.Desenvolvimento;
 #endif
 #if !DEBUG
             Configuracoes.TipoAmbiente = TipoAmbiente.Producao;
+            Mensagens.Informa(string.Format("UserName: {0} \nUserDomainName: {1} \nHostName: {2}", Environment.UserName, Environment.UserDomainName, Dns.GetHostEntry(Environment.MachineName).HostName));
 #endif
+            #endregion
 
-            //inicio teste retorno excel
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("pt-BR");
+            System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("pt-BR");
+
+            FormularioPrincipal formularioPrincipal = new FormularioPrincipal();
+
+            var processo = System.Diagnostics.Process.GetCurrentProcess();
+            var jaEstaRodando = System.Diagnostics.Process.GetProcessesByName(processo.ProcessName).Any(p => p.Id != processo.Id);
+
+            if (jaEstaRodando)
+            {
+                //Mensagens.Informa(string.Format("Está rodando: {0}", jaEstaRodando));
+                formularioPrincipal.Activate();
+                return;
+            }
+
+            #region inicio teste retorno excel
             //string NomeEndereco = string.Format(@"{0}Tipos_Postais.xls", System.AppDomain.CurrentDomain.BaseDirectory);
             //string NomePlanilha = string.Format("{0}$", "Planilha1");
             //string ColunasBusca = string.Format("" 
@@ -61,92 +79,96 @@ namespace SISAPO
             //{
             //    MessageBox.Show(string.Format("Não foi possível carregar o arquivo: {0}", ex.Message));
             //}
-            //fim teste retorno excel
+            #endregion fim teste retorno excel
 
-            Configuracoes.VerificaAplicacaoSeAbertaFechar();
-            
+            //Configuracoes.MetodoDeTesteQualquer();
 
-
-
-
-
-
-
+            //Configuracoes.VerificaAplicacaoSeAbertaFechar();
             Configuracoes.GeraArquivoConfig();
+
             Configuracoes.VerificaSeFecharAplicacaoParaAtualizacao();
 
-            if (Configuracoes.VerificaChaveAcesso())
-            {
-                //LIMPA TABELAS
-                //Configuracoes.LimpaBancoTornaBancoVazio();
-
-                Configuracoes.VerificaSquemaBancoDados();
-                Configuracoes.DadosAgencia = Configuracoes.RetornaDadosAgencia();
-                Configuracoes.EnderecosSRO = Configuracoes.RetornaEnderecosSRO();
-
-                //Configuracoes.MetodoDeTesteQualquer();
-
-                //string data = ClassesDiversas.CriptografiaHelper.Criptografa("30-09-2019");
-                Application.Run(new FormularioPrincipal());
-            }
-            else
+            if (!Configuracoes.VerificaChaveAcesso())
             {
                 Mensagens.Alerta("Versão demonstração.\nFavor contactar o administrador do sistema. \nMarques Fonseca (63) 99208-2269");
                 return;
             }
+
+            using (FormWaiting frm = new FormWaiting(ProcessandoItensBancoBadosInicial))
+            {
+                frm.LbnMensagem.Text = "Iniciando. Aguarde...";
+                frm.ShowDialog(new Form() { WindowState = FormWindowState.Maximized });
+            }            
+
+            Application.Run(formularioPrincipal);
         }
 
-
-        public static string GetProcessOwner(string processName)
+        private static void ProcessandoItensBancoBadosInicial()
         {
-            string query = "Select * from Win32_Process Where Name = \"" + processName + "\"";
-            //query = "Select * from Win32_Process";
-            ManagementObjectSearcher searcher = new ManagementObjectSearcher(query);
-            ManagementObjectCollection processList = searcher.Get();
-
-            foreach (ManagementObject obj in processList)
-            {
-                string[] argList = new string[] { string.Empty, string.Empty };
-                int returnVal = Convert.ToInt32(obj.InvokeMethod("GetOwner", argList));
-                if (returnVal == 0)
-                {
-                    // return DOMAIN\user
-                    string owner = argList[1] + "\\" + argList[0];
-                    return owner;
-                }
-            }
-
-            return "NO OWNER";
+            //LIMPA TABELAS
+            //Configuracoes.LimpaBancoTornaBancoVazio();
+            Configuracoes.VerificaSquemaBancoDados();
+            Configuracoes.DadosAgencia = Configuracoes.RetornaDadosAgencia();
+            Configuracoes.EnderecosSRO = Configuracoes.RetornaEnderecosSRO();
         }
 
-        private static string GetProcessUser(Process process)
-        {
-            IntPtr processHandle = IntPtr.Zero;
-            try
-            {
-                OpenProcessToken(process.Handle, 8, out processHandle);
-                System.Security.Principal.WindowsIdentity wi = new System.Security.Principal.WindowsIdentity(processHandle);
-                string user = wi.Name;
-                return user.Contains(@"\") ? user.Substring(user.IndexOf(@"\") + 1) : user;
-            }
-            catch
-            {
-                return null;
-            }
-            finally
-            {
-                if (processHandle != IntPtr.Zero)
-                {
-                    CloseHandle(processHandle);
-                }
-            }
-        }
 
-        [System.Runtime.InteropServices.DllImport("advapi32.dll", SetLastError = true)]
-        private static extern bool OpenProcessToken(IntPtr ProcessHandle, uint DesiredAccess, out IntPtr TokenHandle);
-        [System.Runtime.InteropServices.DllImport("kernel32.dll", SetLastError = true)]
-        [return: System.Runtime.InteropServices.MarshalAs(System.Runtime.InteropServices.UnmanagedType.Bool)]
-        private static extern bool CloseHandle(IntPtr hObject);
+
+        //[DllImport("user32.dll")]
+        //private static extern IntPtr GetForegroundWindow();
+        //[DllImport("user32.dll")]
+        //private static extern Int32 GetWindowThreadProcessId(IntPtr hWnd, out uint lpdwProcessId);
+
+        //public static string GetProcessOwner(string processName)
+        //{
+        //    string query = "Select * from Win32_Process Where Name = \"" + processName + "\"";
+        //    //query = "Select * from Win32_Process";
+        //    ManagementObjectSearcher searcher = new ManagementObjectSearcher(query);
+        //    ManagementObjectCollection processList = searcher.Get();
+
+        //    foreach (ManagementObject obj in processList)
+        //    {
+        //        string[] argList = new string[] { string.Empty, string.Empty };
+        //        int returnVal = Convert.ToInt32(obj.InvokeMethod("GetOwner", argList));
+        //        if (returnVal == 0)
+        //        {
+        //            // return DOMAIN\user
+        //            string owner = argList[1] + "\\" + argList[0];
+        //            return owner;
+        //        }
+        //    }
+
+        //    return "NO OWNER";
+        //}
+
+        //private static string GetProcessUser(Process process)
+        //{
+        //    IntPtr processHandle = IntPtr.Zero;
+        //    try
+        //    {
+        //        OpenProcessToken(process.Handle, 8, out processHandle);
+        //        System.Security.Principal.WindowsIdentity wi = new System.Security.Principal.WindowsIdentity(processHandle);
+        //        string user = wi.Name;
+        //        return user.Contains(@"\") ? user.Substring(user.IndexOf(@"\") + 1) : user;
+        //    }
+        //    catch
+        //    {
+        //        return null;
+        //    }
+        //    finally
+        //    {
+        //        if (processHandle != IntPtr.Zero)
+        //        {
+        //            CloseHandle(processHandle);
+        //        }
+        //    }
+        //}
+
+        //[System.Runtime.InteropServices.DllImport("advapi32.dll", SetLastError = true)]
+        //private static extern bool OpenProcessToken(IntPtr ProcessHandle, uint DesiredAccess, out IntPtr TokenHandle);
+        //[System.Runtime.InteropServices.DllImport("kernel32.dll", SetLastError = true)]
+        //[return: System.Runtime.InteropServices.MarshalAs(System.Runtime.InteropServices.UnmanagedType.Bool)]
+        //private static extern bool CloseHandle(IntPtr hObject);
 
     }
 }

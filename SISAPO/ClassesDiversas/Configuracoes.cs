@@ -148,6 +148,11 @@ namespace SISAPO.ClassesDiversas
             //}
         }
 
+        public static void VerificaAplicacaoSeAberta()
+        {
+
+        }
+
         public static void VerificaAplicacaoSeAbertaFechar()
         {
             var processo = System.Diagnostics.Process.GetCurrentProcess();
@@ -343,7 +348,7 @@ namespace SISAPO.ClassesDiversas
                 }
                 return TipoPostalPrazoDiasCorridosRegulamentado;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return TipoPostalPrazoDiasCorridosRegulamentado;
             }
@@ -1194,7 +1199,7 @@ namespace SISAPO.ClassesDiversas
                 conn.Close();
                 return TableExists;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 // Handle your ERRORS!
                 return false;

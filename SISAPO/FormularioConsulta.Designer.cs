@@ -29,25 +29,23 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormularioConsulta));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormularioConsulta));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.codigoObjetoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStripImprimirListaEntrega = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItemImprimirListaEntrega = new System.Windows.Forms.ToolStripMenuItem();
             this.imprimirModeloLDIToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -59,8 +57,11 @@
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.alterarSituaçãoDeItensSelecionadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.alterarComentárioSelecionadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.AtualizarObjetosSelecionadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CaixaPostal = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.nomeClienteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DataLancamento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DataModificacao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Situacao = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -87,10 +88,13 @@
             this.SituacaoDestinatarioAusente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AgrupadoDestinatarioAusente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CoordenadasDestinatarioAusente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.atualizadoDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.contextMenuStripAtualizacao = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.MarcarAtualizadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removerItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.alterarItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tabelaObjetosSROLocalBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dataSetTabelaObjetosSROLocal = new SISAPO.DataSetTabelaObjetosSROLocal();
             this.panel1 = new System.Windows.Forms.Panel();
             this.LblTituloFormulario = new System.Windows.Forms.Label();
             this.TxtPesquisa = new System.Windows.Forms.TextBox();
@@ -147,12 +151,25 @@
             this.labelUnidadePostagem = new System.Windows.Forms.Label();
             this.LblDadosPostagemIndisponivel = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
+            this.groupBoxSemelhantes = new System.Windows.Forms.GroupBox();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumnCodigoObjeto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumnNomeCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumnEnderecoLOEC = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bindingSource2 = new System.Windows.Forms.BindingSource(this.components);
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.checkBoxIncluirBaixados = new System.Windows.Forms.CheckBox();
+            this.checkBoxIncluirCaixaPostal = new System.Windows.Forms.CheckBox();
+            this.Btn0SelecionarLinhas = new System.Windows.Forms.Button();
+            this.BtnImprimirAvisosHoje = new System.Windows.Forms.Button();
+            this.BtnImprimirAssinaturasHoje = new System.Windows.Forms.Button();
+            this.Btn6Atualizar = new System.Windows.Forms.Button();
+            this.Btn5Comentario = new System.Windows.Forms.Button();
+            this.Btn4SituacaoBaixa = new System.Windows.Forms.Button();
+            this.Btn3AlterarItem = new System.Windows.Forms.Button();
+            this.Btn2ImprimirAvisos = new System.Windows.Forms.Button();
+            this.Btn1ImprimirLDI = new System.Windows.Forms.Button();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -176,19 +193,14 @@
             this.labelUnidadeLOEC = new System.Windows.Forms.Label();
             this.LblDadosTentativaEntregaIndisponivel = new System.Windows.Forms.Label();
             this.LblUnidadeLOEC = new System.Windows.Forms.Label();
-            this.codigoObjetoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nomeClienteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.atualizadoDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.tabelaObjetosSROLocalBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dataSetTabelaObjetosSROLocal = new SISAPO.DataSetTabelaObjetosSROLocal();
             this.tabelaObjetosSROLocalTableAdapter = new SISAPO.DataSetTabelaObjetosSROLocalTableAdapters.TabelaObjetosSROLocalTableAdapter();
             this.tableAdapterManager = new SISAPO.DataSetTabelaObjetosSROLocalTableAdapters.TableAdapterManager();
-            this.alterarComentárioSelecionadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStripImprimirListaEntrega.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStripAtualizacao.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tabelaObjetosSROLocalBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetTabelaObjetosSROLocal)).BeginInit();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -199,17 +211,20 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
+            this.splitContainer3.Panel1.SuspendLayout();
+            this.splitContainer3.Panel2.SuspendLayout();
+            this.splitContainer3.SuspendLayout();
+            this.groupBoxSemelhantes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).BeginInit();
+            this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tabelaObjetosSROLocalBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSetTabelaObjetosSROLocal)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -217,17 +232,17 @@
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle11;
             this.dataGridView1.AutoGenerateColumns = false;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle20;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.codigoObjetoDataGridViewTextBoxColumn,
@@ -260,32 +275,47 @@
             this.atualizadoDataGridViewCheckBoxColumn});
             this.dataGridView1.ContextMenuStrip = this.contextMenuStripImprimirListaEntrega;
             this.dataGridView1.DataSource = this.tabelaObjetosSROLocalBindingSource;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle7;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle23.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle23.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle23;
             this.dataGridView1.RowHeadersWidth = 30;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(721, 146);
+            this.dataGridView1.Size = new System.Drawing.Size(645, 201);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dataGridView1_KeyPress);
             this.dataGridView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDoubleClick);
+            // 
+            // codigoObjetoDataGridViewTextBoxColumn
+            // 
+            this.codigoObjetoDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.codigoObjetoDataGridViewTextBoxColumn.ContextMenuStrip = this.contextMenuStripImprimirListaEntrega;
+            this.codigoObjetoDataGridViewTextBoxColumn.DataPropertyName = "CodigoObjeto";
+            dataGridViewCellStyle21.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle21.NullValue = null;
+            this.codigoObjetoDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle21;
+            this.codigoObjetoDataGridViewTextBoxColumn.FillWeight = 140F;
+            this.codigoObjetoDataGridViewTextBoxColumn.Frozen = true;
+            this.codigoObjetoDataGridViewTextBoxColumn.HeaderText = "Código";
+            this.codigoObjetoDataGridViewTextBoxColumn.Name = "codigoObjetoDataGridViewTextBoxColumn";
+            this.codigoObjetoDataGridViewTextBoxColumn.ReadOnly = true;
+            this.codigoObjetoDataGridViewTextBoxColumn.Width = 65;
             // 
             // contextMenuStripImprimirListaEntrega
             // 
@@ -302,7 +332,7 @@
             this.toolStripSeparator5,
             this.AtualizarObjetosSelecionadosToolStripMenuItem});
             this.contextMenuStripImprimirListaEntrega.Name = "contextMenuStripImprimirListaEntrega";
-            this.contextMenuStripImprimirListaEntrega.Size = new System.Drawing.Size(372, 188);
+            this.contextMenuStripImprimirListaEntrega.Size = new System.Drawing.Size(372, 166);
             // 
             // toolStripMenuItemImprimirListaEntrega
             // 
@@ -375,6 +405,19 @@
             this.toolStripSeparator4.Name = "toolStripSeparator4";
             this.toolStripSeparator4.Size = new System.Drawing.Size(368, 6);
             // 
+            // alterarComentárioSelecionadosToolStripMenuItem
+            // 
+            this.alterarComentárioSelecionadosToolStripMenuItem.Image = global::SISAPO.Properties.Resources.CadastroObjetos;
+            this.alterarComentárioSelecionadosToolStripMenuItem.Name = "alterarComentárioSelecionadosToolStripMenuItem";
+            this.alterarComentárioSelecionadosToolStripMenuItem.Size = new System.Drawing.Size(371, 22);
+            this.alterarComentárioSelecionadosToolStripMenuItem.Text = "Alterar Comentário (Selecionados)";
+            this.alterarComentárioSelecionadosToolStripMenuItem.Click += new System.EventHandler(this.alterarComentarioSelecionadosToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(368, 6);
+            // 
             // AtualizarObjetosSelecionadosToolStripMenuItem
             // 
             this.AtualizarObjetosSelecionadosToolStripMenuItem.Image = global::SISAPO.Properties.Resources.AtualizarListaObjetos;
@@ -388,20 +431,31 @@
             this.CaixaPostal.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.CaixaPostal.ContextMenuStrip = this.contextMenuStripImprimirListaEntrega;
             this.CaixaPostal.DataPropertyName = "CaixaPostal";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.CaixaPostal.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.CaixaPostal.DefaultCellStyle = dataGridViewCellStyle17;
             this.CaixaPostal.HeaderText = "Caixa Postal?";
             this.CaixaPostal.Name = "CaixaPostal";
             this.CaixaPostal.ReadOnly = true;
             this.CaixaPostal.Width = 77;
             // 
+            // nomeClienteDataGridViewTextBoxColumn
+            // 
+            this.nomeClienteDataGridViewTextBoxColumn.DataPropertyName = "NomeCliente";
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.nomeClienteDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            this.nomeClienteDataGridViewTextBoxColumn.HeaderText = "Nome do cliente";
+            this.nomeClienteDataGridViewTextBoxColumn.MinimumWidth = 100;
+            this.nomeClienteDataGridViewTextBoxColumn.Name = "nomeClienteDataGridViewTextBoxColumn";
+            this.nomeClienteDataGridViewTextBoxColumn.ReadOnly = true;
+            this.nomeClienteDataGridViewTextBoxColumn.Width = 400;
+            // 
             // DataLancamento
             // 
             this.DataLancamento.ContextMenuStrip = this.contextMenuStripImprimirListaEntrega;
             this.DataLancamento.DataPropertyName = "DataLancamento";
-            dataGridViewCellStyle6.Format = "G";
-            dataGridViewCellStyle6.NullValue = null;
-            this.DataLancamento.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle22.Format = "G";
+            dataGridViewCellStyle22.NullValue = null;
+            this.DataLancamento.DefaultCellStyle = dataGridViewCellStyle22;
             this.DataLancamento.FillWeight = 120F;
             this.DataLancamento.HeaderText = "Lançamento LDI";
             this.DataLancamento.Name = "DataLancamento";
@@ -443,8 +497,8 @@
             this.ObjetoEntregue.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.ObjetoEntregue.ContextMenuStrip = this.contextMenuStrip1;
             this.ObjetoEntregue.DataPropertyName = "ObjetoEntregue";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.ObjetoEntregue.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.ObjetoEntregue.DefaultCellStyle = dataGridViewCellStyle18;
             this.ObjetoEntregue.HeaderText = "Objeto Entregue?";
             this.ObjetoEntregue.Name = "ObjetoEntregue";
             this.ObjetoEntregue.ReadOnly = true;
@@ -599,7 +653,6 @@
             this.BairroLOEC.Name = "BairroLOEC";
             this.BairroLOEC.ReadOnly = true;
             this.BairroLOEC.Visible = false;
-            this.BairroLOEC.Width = 130;
             // 
             // LocalidadeLOEC
             // 
@@ -637,6 +690,21 @@
             this.CoordenadasDestinatarioAusente.ReadOnly = true;
             this.CoordenadasDestinatarioAusente.Width = 137;
             // 
+            // atualizadoDataGridViewCheckBoxColumn
+            // 
+            this.atualizadoDataGridViewCheckBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.atualizadoDataGridViewCheckBoxColumn.ContextMenuStrip = this.contextMenuStripAtualizacao;
+            this.atualizadoDataGridViewCheckBoxColumn.DataPropertyName = "Atualizado";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.atualizadoDataGridViewCheckBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
+            this.atualizadoDataGridViewCheckBoxColumn.FalseValue = "";
+            this.atualizadoDataGridViewCheckBoxColumn.HeaderText = "Já atualizado?";
+            this.atualizadoDataGridViewCheckBoxColumn.Name = "atualizadoDataGridViewCheckBoxColumn";
+            this.atualizadoDataGridViewCheckBoxColumn.ReadOnly = true;
+            this.atualizadoDataGridViewCheckBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.atualizadoDataGridViewCheckBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.atualizadoDataGridViewCheckBoxColumn.TrueValue = "";
+            // 
             // contextMenuStripAtualizacao
             // 
             this.contextMenuStripAtualizacao.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -670,6 +738,18 @@
             this.alterarItemToolStripMenuItem.Text = "Alterar Item";
             this.alterarItemToolStripMenuItem.Visible = false;
             this.alterarItemToolStripMenuItem.Click += new System.EventHandler(this.alterarItemToolStripMenuItem_Click);
+            // 
+            // tabelaObjetosSROLocalBindingSource
+            // 
+            this.tabelaObjetosSROLocalBindingSource.DataMember = "TabelaObjetosSROLocal";
+            this.tabelaObjetosSROLocalBindingSource.DataSource = this.dataSetTabelaObjetosSROLocal;
+            this.tabelaObjetosSROLocalBindingSource.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.tabelaObjetosSROLocalBindingSource_BindingComplete);
+            this.tabelaObjetosSROLocalBindingSource.CurrentItemChanged += new System.EventHandler(this.tabelaObjetosSROLocalBindingSource_CurrentItemChanged);
+            // 
+            // dataSetTabelaObjetosSROLocal
+            // 
+            this.dataSetTabelaObjetosSROLocal.DataSetName = "DataSetTabelaObjetosSROLocal";
+            this.dataSetTabelaObjetosSROLocal.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // panel1
             // 
@@ -758,7 +838,7 @@
             this.LbnQuantidadeRegistros.Location = new System.Drawing.Point(932, 25);
             this.LbnQuantidadeRegistros.Name = "LbnQuantidadeRegistros";
             this.LbnQuantidadeRegistros.Size = new System.Drawing.Size(16, 16);
-            this.LbnQuantidadeRegistros.TabIndex = 17;
+            this.LbnQuantidadeRegistros.TabIndex = 11;
             this.LbnQuantidadeRegistros.Text = "0";
             this.LbnQuantidadeRegistros.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -770,7 +850,7 @@
             this.LblCodigoForaDoPadraoBrasileiro.Location = new System.Drawing.Point(3, 68);
             this.LblCodigoForaDoPadraoBrasileiro.Name = "LblCodigoForaDoPadraoBrasileiro";
             this.LblCodigoForaDoPadraoBrasileiro.Size = new System.Drawing.Size(252, 13);
-            this.LblCodigoForaDoPadraoBrasileiro.TabIndex = 18;
+            this.LblCodigoForaDoPadraoBrasileiro.TabIndex = 12;
             this.LblCodigoForaDoPadraoBrasileiro.Text = "Fora do padrão brasileiro: AA123456789BR";
             this.LblCodigoForaDoPadraoBrasileiro.Visible = false;
             // 
@@ -782,7 +862,7 @@
             this.label10.Location = new System.Drawing.Point(769, 80);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(64, 13);
-            this.label10.TabIndex = 23;
+            this.label10.TabIndex = 19;
             this.label10.Text = "Prazo [Dias]";
             // 
             // label7
@@ -792,7 +872,7 @@
             this.label7.Location = new System.Drawing.Point(5, 80);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(72, 13);
-            this.label7.TabIndex = 23;
+            this.label7.TabIndex = 13;
             this.label7.Text = "Código objeto";
             // 
             // labelDataInicial
@@ -804,7 +884,7 @@
             this.labelDataInicial.Location = new System.Drawing.Point(568, 29);
             this.labelDataInicial.Name = "labelDataInicial";
             this.labelDataInicial.Size = new System.Drawing.Size(60, 13);
-            this.labelDataInicial.TabIndex = 10;
+            this.labelDataInicial.TabIndex = 7;
             this.labelDataInicial.Text = "Data Inicial";
             // 
             // DataInicial_dateTimePicker
@@ -815,7 +895,7 @@
             this.DataInicial_dateTimePicker.Location = new System.Drawing.Point(571, 43);
             this.DataInicial_dateTimePicker.Name = "DataInicial_dateTimePicker";
             this.DataInicial_dateTimePicker.Size = new System.Drawing.Size(103, 27);
-            this.DataInicial_dateTimePicker.TabIndex = 11;
+            this.DataInicial_dateTimePicker.TabIndex = 8;
             this.DataInicial_dateTimePicker.ValueChanged += new System.EventHandler(this.DataInicial_dateTimePicker_ValueChanged);
             this.DataInicial_dateTimePicker.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DataInicial_dateTimePicker_KeyDown);
             // 
@@ -826,7 +906,7 @@
             this.label5.Location = new System.Drawing.Point(431, 125);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(75, 13);
-            this.label5.TabIndex = 21;
+            this.label5.TabIndex = 28;
             this.label5.Text = "Situação atual";
             // 
             // label6
@@ -837,7 +917,7 @@
             this.label6.Location = new System.Drawing.Point(831, 80);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(146, 13);
-            this.label6.TabIndex = 21;
+            this.label6.TabIndex = 22;
             this.label6.Text = "Data Vencimento/Devolução";
             // 
             // label9
@@ -847,7 +927,7 @@
             this.label9.Location = new System.Drawing.Point(195, 125);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(59, 13);
-            this.label9.TabIndex = 21;
+            this.label9.TabIndex = 26;
             this.label9.Text = "Data Baixa";
             // 
             // LblDataLancamento
@@ -858,7 +938,7 @@
             this.LblDataLancamento.Location = new System.Drawing.Point(535, 80);
             this.LblDataLancamento.Name = "LblDataLancamento";
             this.LblDataLancamento.Size = new System.Drawing.Size(92, 13);
-            this.LblDataLancamento.TabIndex = 21;
+            this.LblDataLancamento.TabIndex = 17;
             this.LblDataLancamento.Text = "Data Lançamento";
             // 
             // pictureBox1
@@ -883,7 +963,7 @@
             this.DataFinal_dateTimePicker.Location = new System.Drawing.Point(676, 43);
             this.DataFinal_dateTimePicker.Name = "DataFinal_dateTimePicker";
             this.DataFinal_dateTimePicker.Size = new System.Drawing.Size(103, 27);
-            this.DataFinal_dateTimePicker.TabIndex = 13;
+            this.DataFinal_dateTimePicker.TabIndex = 10;
             this.DataFinal_dateTimePicker.ValueChanged += new System.EventHandler(this.DataFinal_dateTimePicker_ValueChanged);
             this.DataFinal_dateTimePicker.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DataFinal_dateTimePicker_KeyDown);
             // 
@@ -896,7 +976,7 @@
             this.labelDataFinal.Location = new System.Drawing.Point(673, 30);
             this.labelDataFinal.Name = "labelDataFinal";
             this.labelDataFinal.Size = new System.Drawing.Size(52, 13);
-            this.labelDataFinal.TabIndex = 12;
+            this.labelDataFinal.TabIndex = 9;
             this.labelDataFinal.Text = "Data final";
             // 
             // btnPesquisarSRO
@@ -938,7 +1018,7 @@
             this.label8.Location = new System.Drawing.Point(6, 125);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(57, 13);
-            this.label8.TabIndex = 25;
+            this.label8.TabIndex = 24;
             this.label8.Text = "Código Ldi";
             // 
             // label2
@@ -948,7 +1028,7 @@
             this.label2.Location = new System.Drawing.Point(195, 80);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(69, 13);
-            this.label2.TabIndex = 19;
+            this.label2.TabIndex = 15;
             this.label2.Text = "Nome cliente";
             // 
             // BtnDetalharObjetosSelecionado
@@ -958,7 +1038,7 @@
             this.BtnDetalharObjetosSelecionado.Location = new System.Drawing.Point(747, 137);
             this.BtnDetalharObjetosSelecionado.Name = "BtnDetalharObjetosSelecionado";
             this.BtnDetalharObjetosSelecionado.Size = new System.Drawing.Size(231, 33);
-            this.BtnDetalharObjetosSelecionado.TabIndex = 14;
+            this.BtnDetalharObjetosSelecionado.TabIndex = 0;
             this.BtnDetalharObjetosSelecionado.TabStop = false;
             this.BtnDetalharObjetosSelecionado.Text = "&Detalhar selecionado [F6]";
             this.BtnDetalharObjetosSelecionado.UseVisualStyleBackColor = true;
@@ -1006,7 +1086,7 @@
             this.TxtCodigoLDISelecionado.Name = "TxtCodigoLDISelecionado";
             this.TxtCodigoLDISelecionado.ReadOnly = true;
             this.TxtCodigoLDISelecionado.Size = new System.Drawing.Size(186, 31);
-            this.TxtCodigoLDISelecionado.TabIndex = 22;
+            this.TxtCodigoLDISelecionado.TabIndex = 25;
             this.TxtCodigoLDISelecionado.TabStop = false;
             // 
             // TxtSituacaoAtual
@@ -1020,7 +1100,7 @@
             this.TxtSituacaoAtual.Name = "TxtSituacaoAtual";
             this.TxtSituacaoAtual.ReadOnly = true;
             this.TxtSituacaoAtual.Size = new System.Drawing.Size(310, 31);
-            this.TxtSituacaoAtual.TabIndex = 22;
+            this.TxtSituacaoAtual.TabIndex = 29;
             this.TxtSituacaoAtual.TabStop = false;
             // 
             // TxtPrazoDias
@@ -1033,7 +1113,7 @@
             this.TxtPrazoDias.Name = "TxtPrazoDias";
             this.TxtPrazoDias.ReadOnly = true;
             this.TxtPrazoDias.Size = new System.Drawing.Size(59, 31);
-            this.TxtPrazoDias.TabIndex = 22;
+            this.TxtPrazoDias.TabIndex = 20;
             this.TxtPrazoDias.TabStop = false;
             this.TxtPrazoDias.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -1046,7 +1126,7 @@
             this.TxtCodigoObjetoSelecionado.Name = "TxtCodigoObjetoSelecionado";
             this.TxtCodigoObjetoSelecionado.ReadOnly = true;
             this.TxtCodigoObjetoSelecionado.Size = new System.Drawing.Size(187, 31);
-            this.TxtCodigoObjetoSelecionado.TabIndex = 22;
+            this.TxtCodigoObjetoSelecionado.TabIndex = 14;
             this.TxtCodigoObjetoSelecionado.TabStop = false;
             // 
             // TxtItemSelecionado
@@ -1060,7 +1140,7 @@
             this.TxtItemSelecionado.Name = "TxtItemSelecionado";
             this.TxtItemSelecionado.ReadOnly = true;
             this.TxtItemSelecionado.Size = new System.Drawing.Size(338, 31);
-            this.TxtItemSelecionado.TabIndex = 22;
+            this.TxtItemSelecionado.TabIndex = 16;
             this.TxtItemSelecionado.TabStop = false;
             // 
             // TxtDataVencimento
@@ -1073,7 +1153,7 @@
             this.TxtDataVencimento.Name = "TxtDataVencimento";
             this.TxtDataVencimento.ReadOnly = true;
             this.TxtDataVencimento.Size = new System.Drawing.Size(145, 31);
-            this.TxtDataVencimento.TabIndex = 22;
+            this.TxtDataVencimento.TabIndex = 23;
             this.TxtDataVencimento.TabStop = false;
             this.TxtDataVencimento.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -1086,7 +1166,7 @@
             this.TxtDataBaixa.Name = "TxtDataBaixa";
             this.TxtDataBaixa.ReadOnly = true;
             this.TxtDataBaixa.Size = new System.Drawing.Size(231, 31);
-            this.TxtDataBaixa.TabIndex = 22;
+            this.TxtDataBaixa.TabIndex = 27;
             this.TxtDataBaixa.TabStop = false;
             // 
             // TxtDataLancamento
@@ -1099,7 +1179,7 @@
             this.TxtDataLancamento.Name = "TxtDataLancamento";
             this.TxtDataLancamento.ReadOnly = true;
             this.TxtDataLancamento.Size = new System.Drawing.Size(231, 31);
-            this.TxtDataLancamento.TabIndex = 22;
+            this.TxtDataLancamento.TabIndex = 18;
             this.TxtDataLancamento.TabStop = false;
             // 
             // groupBox2
@@ -1128,7 +1208,7 @@
             this.label1.Location = new System.Drawing.Point(220, 16);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(155, 16);
-            this.label1.TabIndex = 15;
+            this.label1.TabIndex = 1;
             this.label1.Text = "Quantidade de registros:";
             // 
             // checkBoxSomenteHoje
@@ -1140,7 +1220,7 @@
             this.checkBoxSomenteHoje.Location = new System.Drawing.Point(8, 1);
             this.checkBoxSomenteHoje.Name = "checkBoxSomenteHoje";
             this.checkBoxSomenteHoje.Size = new System.Drawing.Size(129, 20);
-            this.checkBoxSomenteHoje.TabIndex = 9;
+            this.checkBoxSomenteHoje.TabIndex = 0;
             this.checkBoxSomenteHoje.Text = "Lançados hoje";
             this.checkBoxSomenteHoje.UseVisualStyleBackColor = false;
             this.checkBoxSomenteHoje.CheckedChanged += new System.EventHandler(this.checkBoxSomenteHoje_CheckedChanged);
@@ -1153,7 +1233,7 @@
             this.BtnConsultar.Location = new System.Drawing.Point(221, 32);
             this.BtnConsultar.Name = "BtnConsultar";
             this.BtnConsultar.Size = new System.Drawing.Size(191, 29);
-            this.BtnConsultar.TabIndex = 14;
+            this.BtnConsultar.TabIndex = 2;
             this.BtnConsultar.TabStop = false;
             this.BtnConsultar.Text = "Consultar [F5]";
             this.BtnConsultar.UseVisualStyleBackColor = true;
@@ -1166,11 +1246,12 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(259, 146);
+            this.tabControl1.Size = new System.Drawing.Size(211, 146);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
+            this.tabPage1.AutoScroll = true;
             this.tabPage1.Controls.Add(this.LblMPPostagem);
             this.tabPage1.Controls.Add(this.LblDataMaxPrevistaEntregaPostagem);
             this.tabPage1.Controls.Add(this.LblARPostagem);
@@ -1189,7 +1270,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(251, 120);
+            this.tabPage1.Size = new System.Drawing.Size(203, 120);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Dados de postagem";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -1223,7 +1304,7 @@
             this.LblARPostagem.Location = new System.Drawing.Point(6, 138);
             this.LblARPostagem.Name = "LblARPostagem";
             this.LblARPostagem.Size = new System.Drawing.Size(99, 16);
-            this.LblARPostagem.TabIndex = 10;
+            this.LblARPostagem.TabIndex = 9;
             this.LblARPostagem.Text = "ARPostagem";
             // 
             // LblCepDestinoPostagem
@@ -1263,7 +1344,7 @@
             this.labelMPPostagem.Location = new System.Drawing.Point(81, 124);
             this.labelMPPostagem.Name = "labelMPPostagem";
             this.labelMPPostagem.Size = new System.Drawing.Size(60, 13);
-            this.labelMPPostagem.TabIndex = 9;
+            this.labelMPPostagem.TabIndex = 10;
             this.labelMPPostagem.Text = "Possui MP:";
             // 
             // LblUnidadePostagem
@@ -1349,41 +1430,54 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.dataGridView1);
-            this.splitContainer1.Panel1.Controls.Add(this.panel2);
+            this.splitContainer1.Panel1.Controls.Add(this.splitContainer3);
+            this.splitContainer1.Panel1.Controls.Add(this.panel3);
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
             this.splitContainer1.Size = new System.Drawing.Size(984, 310);
-            this.splitContainer1.SplitterDistance = 721;
+            this.splitContainer1.SplitterDistance = 769;
             this.splitContainer1.TabIndex = 4;
             // 
-            // panel2
+            // splitContainer3
             // 
-            this.panel2.Controls.Add(this.dataGridView2);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 146);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(721, 164);
-            this.panel2.TabIndex = 1;
+            this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer3.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer3.Name = "splitContainer3";
+            this.splitContainer3.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer3.Panel1
+            // 
+            this.splitContainer3.Panel1.Controls.Add(this.dataGridView1);
+            // 
+            // splitContainer3.Panel2
+            // 
+            this.splitContainer3.Panel2.Controls.Add(this.groupBoxSemelhantes);
+            this.splitContainer3.Size = new System.Drawing.Size(645, 310);
+            this.splitContainer3.SplitterDistance = 201;
+            this.splitContainer3.TabIndex = 0;
+            // 
+            // groupBoxSemelhantes
+            // 
+            this.groupBoxSemelhantes.Controls.Add(this.dataGridView2);
+            this.groupBoxSemelhantes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBoxSemelhantes.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBoxSemelhantes.Location = new System.Drawing.Point(0, 0);
+            this.groupBoxSemelhantes.Name = "groupBoxSemelhantes";
+            this.groupBoxSemelhantes.Size = new System.Drawing.Size(645, 105);
+            this.groupBoxSemelhantes.TabIndex = 0;
+            this.groupBoxSemelhantes.TabStop = false;
+            this.groupBoxSemelhantes.Text = "Semelhantes";
             // 
             // dataGridView2
             // 
             this.dataGridView2.AllowUserToAddRows = false;
             this.dataGridView2.AllowUserToDeleteRows = false;
             this.dataGridView2.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle8;
             this.dataGridView2.AutoGenerateColumns = false;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumnCodigoObjeto,
@@ -1391,36 +1485,20 @@
             this.dataGridViewTextBoxColumnEnderecoLOEC});
             this.dataGridView2.ContextMenuStrip = this.contextMenuStripImprimirListaEntrega;
             this.dataGridView2.DataSource = this.bindingSource2;
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle16;
             this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView2.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView2.Location = new System.Drawing.Point(3, 20);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.ReadOnly = true;
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView2.RowHeadersDefaultCellStyle = dataGridViewCellStyle17;
             this.dataGridView2.RowHeadersWidth = 30;
             this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView2.Size = new System.Drawing.Size(721, 164);
-            this.dataGridView2.TabIndex = 1;
+            this.dataGridView2.Size = new System.Drawing.Size(639, 82);
+            this.dataGridView2.TabIndex = 0;
             // 
             // dataGridViewTextBoxColumnCodigoObjeto
             // 
             this.dataGridViewTextBoxColumnCodigoObjeto.DataPropertyName = "CodigoObjeto";
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
-            this.dataGridViewTextBoxColumnCodigoObjeto.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
+            this.dataGridViewTextBoxColumnCodigoObjeto.DefaultCellStyle = dataGridViewCellStyle15;
             this.dataGridViewTextBoxColumnCodigoObjeto.FillWeight = 227F;
             this.dataGridViewTextBoxColumnCodigoObjeto.HeaderText = "Código";
             this.dataGridViewTextBoxColumnCodigoObjeto.Name = "dataGridViewTextBoxColumnCodigoObjeto";
@@ -1431,8 +1509,8 @@
             // 
             this.dataGridViewTextBoxColumnNomeCliente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.dataGridViewTextBoxColumnNomeCliente.DataPropertyName = "NomeCliente";
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.dataGridViewTextBoxColumnNomeCliente.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.dataGridViewTextBoxColumnNomeCliente.DefaultCellStyle = dataGridViewCellStyle16;
             this.dataGridViewTextBoxColumnNomeCliente.HeaderText = "Nome do cliente";
             this.dataGridViewTextBoxColumnNomeCliente.Name = "dataGridViewTextBoxColumnNomeCliente";
             this.dataGridViewTextBoxColumnNomeCliente.ReadOnly = true;
@@ -1441,12 +1519,163 @@
             // 
             this.dataGridViewTextBoxColumnEnderecoLOEC.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.dataGridViewTextBoxColumnEnderecoLOEC.DataPropertyName = "EnderecoLOEC";
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.dataGridViewTextBoxColumnEnderecoLOEC.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.dataGridViewTextBoxColumnEnderecoLOEC.DefaultCellStyle = dataGridViewCellStyle19;
             this.dataGridViewTextBoxColumnEnderecoLOEC.HeaderText = "Endereço Entrega LOEC";
             this.dataGridViewTextBoxColumnEnderecoLOEC.Name = "dataGridViewTextBoxColumnEnderecoLOEC";
             this.dataGridViewTextBoxColumnEnderecoLOEC.ReadOnly = true;
-            this.dataGridViewTextBoxColumnEnderecoLOEC.Width = 149;
+            this.dataGridViewTextBoxColumnEnderecoLOEC.Width = 218;
+            // 
+            // panel3
+            // 
+            this.panel3.AutoScroll = true;
+            this.panel3.Controls.Add(this.checkBoxIncluirBaixados);
+            this.panel3.Controls.Add(this.checkBoxIncluirCaixaPostal);
+            this.panel3.Controls.Add(this.Btn0SelecionarLinhas);
+            this.panel3.Controls.Add(this.BtnImprimirAvisosHoje);
+            this.panel3.Controls.Add(this.BtnImprimirAssinaturasHoje);
+            this.panel3.Controls.Add(this.Btn6Atualizar);
+            this.panel3.Controls.Add(this.Btn5Comentario);
+            this.panel3.Controls.Add(this.Btn4SituacaoBaixa);
+            this.panel3.Controls.Add(this.Btn3AlterarItem);
+            this.panel3.Controls.Add(this.Btn2ImprimirAvisos);
+            this.panel3.Controls.Add(this.Btn1ImprimirLDI);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel3.Location = new System.Drawing.Point(645, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(124, 310);
+            this.panel3.TabIndex = 0;
+            // 
+            // checkBoxIncluirBaixados
+            // 
+            this.checkBoxIncluirBaixados.AutoSize = true;
+            this.checkBoxIncluirBaixados.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxIncluirBaixados.Location = new System.Drawing.Point(6, 328);
+            this.checkBoxIncluirBaixados.Name = "checkBoxIncluirBaixados";
+            this.checkBoxIncluirBaixados.Size = new System.Drawing.Size(89, 16);
+            this.checkBoxIncluirBaixados.TabIndex = 10;
+            this.checkBoxIncluirBaixados.Text = "Incluir Baixados";
+            this.checkBoxIncluirBaixados.UseVisualStyleBackColor = true;
+            this.checkBoxIncluirBaixados.CheckedChanged += new System.EventHandler(this.checkBoxIncluirBaixados_CheckedChanged);
+            // 
+            // checkBoxIncluirCaixaPostal
+            // 
+            this.checkBoxIncluirCaixaPostal.AutoSize = true;
+            this.checkBoxIncluirCaixaPostal.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxIncluirCaixaPostal.Location = new System.Drawing.Point(6, 308);
+            this.checkBoxIncluirCaixaPostal.Name = "checkBoxIncluirCaixaPostal";
+            this.checkBoxIncluirCaixaPostal.Size = new System.Drawing.Size(103, 16);
+            this.checkBoxIncluirCaixaPostal.TabIndex = 9;
+            this.checkBoxIncluirCaixaPostal.Text = "Incluir Caixa Postal";
+            this.checkBoxIncluirCaixaPostal.UseVisualStyleBackColor = true;
+            this.checkBoxIncluirCaixaPostal.CheckedChanged += new System.EventHandler(this.checkBoxIncluirCaixaPostal_CheckedChanged);
+            // 
+            // Btn0SelecionarLinhas
+            // 
+            this.Btn0SelecionarLinhas.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn0SelecionarLinhas.Location = new System.Drawing.Point(3, 1);
+            this.Btn0SelecionarLinhas.Name = "Btn0SelecionarLinhas";
+            this.Btn0SelecionarLinhas.Size = new System.Drawing.Size(121, 23);
+            this.Btn0SelecionarLinhas.TabIndex = 0;
+            this.Btn0SelecionarLinhas.Tag = "";
+            this.Btn0SelecionarLinhas.Text = "&0 - Selecionar linhas";
+            this.Btn0SelecionarLinhas.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Btn0SelecionarLinhas.UseVisualStyleBackColor = true;
+            this.Btn0SelecionarLinhas.Click += new System.EventHandler(this.Btn0SelecionarLinhas_Click);
+            // 
+            // BtnImprimirAvisosHoje
+            // 
+            this.BtnImprimirAvisosHoje.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnImprimirAvisosHoje.Location = new System.Drawing.Point(3, 245);
+            this.BtnImprimirAvisosHoje.Name = "BtnImprimirAvisosHoje";
+            this.BtnImprimirAvisosHoje.Size = new System.Drawing.Size(121, 59);
+            this.BtnImprimirAvisosHoje.TabIndex = 8;
+            this.BtnImprimirAvisosHoje.Text = "Imprimir Avisos de chegada [HOJE] - (Exceto: Baixados e Caixa Postal)";
+            this.BtnImprimirAvisosHoje.UseVisualStyleBackColor = true;
+            this.BtnImprimirAvisosHoje.Click += new System.EventHandler(this.BtnImprimirAvisosHoje_Click);
+            // 
+            // BtnImprimirAssinaturasHoje
+            // 
+            this.BtnImprimirAssinaturasHoje.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnImprimirAssinaturasHoje.Location = new System.Drawing.Point(3, 183);
+            this.BtnImprimirAssinaturasHoje.Name = "BtnImprimirAssinaturasHoje";
+            this.BtnImprimirAssinaturasHoje.Size = new System.Drawing.Size(121, 59);
+            this.BtnImprimirAssinaturasHoje.TabIndex = 7;
+            this.BtnImprimirAssinaturasHoje.Text = "Imprimir LDIs-Assinaturas [HOJE] (Por ordem alfabética)";
+            this.BtnImprimirAssinaturasHoje.UseVisualStyleBackColor = true;
+            this.BtnImprimirAssinaturasHoje.Click += new System.EventHandler(this.BtnImprimirAssinaturasHoje_Click);
+            // 
+            // Btn6Atualizar
+            // 
+            this.Btn6Atualizar.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn6Atualizar.Location = new System.Drawing.Point(3, 157);
+            this.Btn6Atualizar.Name = "Btn6Atualizar";
+            this.Btn6Atualizar.Size = new System.Drawing.Size(121, 23);
+            this.Btn6Atualizar.TabIndex = 6;
+            this.Btn6Atualizar.Text = "&6 - Buscar/Atualizar (Sel)";
+            this.Btn6Atualizar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Btn6Atualizar.UseVisualStyleBackColor = true;
+            this.Btn6Atualizar.Click += new System.EventHandler(this.Btn6Atualizar_Click);
+            // 
+            // Btn5Comentario
+            // 
+            this.Btn5Comentario.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn5Comentario.Location = new System.Drawing.Point(3, 131);
+            this.Btn5Comentario.Name = "Btn5Comentario";
+            this.Btn5Comentario.Size = new System.Drawing.Size(121, 23);
+            this.Btn5Comentario.TabIndex = 5;
+            this.Btn5Comentario.Text = "&5 - Comentário (Sel)";
+            this.Btn5Comentario.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Btn5Comentario.UseVisualStyleBackColor = true;
+            this.Btn5Comentario.Click += new System.EventHandler(this.Btn5Comentario_Click);
+            // 
+            // Btn4SituacaoBaixa
+            // 
+            this.Btn4SituacaoBaixa.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn4SituacaoBaixa.Location = new System.Drawing.Point(3, 105);
+            this.Btn4SituacaoBaixa.Name = "Btn4SituacaoBaixa";
+            this.Btn4SituacaoBaixa.Size = new System.Drawing.Size(121, 23);
+            this.Btn4SituacaoBaixa.TabIndex = 4;
+            this.Btn4SituacaoBaixa.Text = "&4 - Situação baixa (Sel)";
+            this.Btn4SituacaoBaixa.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Btn4SituacaoBaixa.UseVisualStyleBackColor = true;
+            this.Btn4SituacaoBaixa.Click += new System.EventHandler(this.Btn4SituacaoBaixa_Click);
+            // 
+            // Btn3AlterarItem
+            // 
+            this.Btn3AlterarItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn3AlterarItem.Location = new System.Drawing.Point(3, 79);
+            this.Btn3AlterarItem.Name = "Btn3AlterarItem";
+            this.Btn3AlterarItem.Size = new System.Drawing.Size(121, 23);
+            this.Btn3AlterarItem.TabIndex = 3;
+            this.Btn3AlterarItem.Text = "&3 - Alterar Item";
+            this.Btn3AlterarItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Btn3AlterarItem.UseVisualStyleBackColor = true;
+            this.Btn3AlterarItem.Click += new System.EventHandler(this.Btn3AlterarItem_Click);
+            // 
+            // Btn2ImprimirAvisos
+            // 
+            this.Btn2ImprimirAvisos.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn2ImprimirAvisos.Location = new System.Drawing.Point(3, 53);
+            this.Btn2ImprimirAvisos.Name = "Btn2ImprimirAvisos";
+            this.Btn2ImprimirAvisos.Size = new System.Drawing.Size(121, 23);
+            this.Btn2ImprimirAvisos.TabIndex = 2;
+            this.Btn2ImprimirAvisos.Text = "&2 - Imprimir. Avisos(Sel)";
+            this.Btn2ImprimirAvisos.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Btn2ImprimirAvisos.UseVisualStyleBackColor = true;
+            this.Btn2ImprimirAvisos.Click += new System.EventHandler(this.Btn2ImprimirAvisos_Click);
+            // 
+            // Btn1ImprimirLDI
+            // 
+            this.Btn1ImprimirLDI.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn1ImprimirLDI.Location = new System.Drawing.Point(3, 27);
+            this.Btn1ImprimirLDI.Name = "Btn1ImprimirLDI";
+            this.Btn1ImprimirLDI.Size = new System.Drawing.Size(121, 23);
+            this.Btn1ImprimirLDI.TabIndex = 1;
+            this.Btn1ImprimirLDI.Text = "&1 - Imprimir LDI (Sel)";
+            this.Btn1ImprimirLDI.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Btn1ImprimirLDI.UseVisualStyleBackColor = true;
+            this.Btn1ImprimirLDI.Click += new System.EventHandler(this.Btn1ImprimirLDI_Click);
             // 
             // splitContainer2
             // 
@@ -1462,7 +1691,7 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.tabControl2);
-            this.splitContainer2.Size = new System.Drawing.Size(259, 310);
+            this.splitContainer2.Size = new System.Drawing.Size(211, 310);
             this.splitContainer2.SplitterDistance = 146;
             this.splitContainer2.TabIndex = 4;
             // 
@@ -1474,11 +1703,12 @@
             this.tabControl2.Multiline = true;
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(259, 160);
+            this.tabControl2.Size = new System.Drawing.Size(211, 160);
             this.tabControl2.TabIndex = 0;
             // 
             // tabPage2
             // 
+            this.tabPage2.AutoScroll = true;
             this.tabPage2.Controls.Add(this.BtnCoordenadas);
             this.tabPage2.Controls.Add(this.labelDistritoLOEC);
             this.tabPage2.Controls.Add(this.LblDistritoLOEC);
@@ -1502,7 +1732,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(251, 134);
+            this.tabPage2.Size = new System.Drawing.Size(203, 134);
             this.tabPage2.TabIndex = 0;
             this.tabPage2.Text = "Dados da última tentativa de entrega";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -1515,10 +1745,10 @@
             this.BtnCoordenadas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.BtnCoordenadas.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BtnCoordenadas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnCoordenadas.Location = new System.Drawing.Point(185, 3);
+            this.BtnCoordenadas.Location = new System.Drawing.Point(200, 3);
             this.BtnCoordenadas.Name = "BtnCoordenadas";
             this.BtnCoordenadas.Size = new System.Drawing.Size(64, 44);
-            this.BtnCoordenadas.TabIndex = 18;
+            this.BtnCoordenadas.TabIndex = 4;
             this.BtnCoordenadas.UseVisualStyleBackColor = false;
             this.BtnCoordenadas.Click += new System.EventHandler(this.BtnCoordenadas_Click);
             // 
@@ -1528,7 +1758,7 @@
             this.labelDistritoLOEC.Location = new System.Drawing.Point(79, 89);
             this.labelDistritoLOEC.Name = "labelDistritoLOEC";
             this.labelDistritoLOEC.Size = new System.Drawing.Size(42, 13);
-            this.labelDistritoLOEC.TabIndex = 9;
+            this.labelDistritoLOEC.TabIndex = 8;
             this.labelDistritoLOEC.Text = "Distrito:";
             // 
             // LblDistritoLOEC
@@ -1538,7 +1768,7 @@
             this.LblDistritoLOEC.Location = new System.Drawing.Point(79, 103);
             this.LblDistritoLOEC.Name = "LblDistritoLOEC";
             this.LblDistritoLOEC.Size = new System.Drawing.Size(96, 16);
-            this.LblDistritoLOEC.TabIndex = 11;
+            this.LblDistritoLOEC.TabIndex = 12;
             this.LblDistritoLOEC.Text = "DistritoLOEC";
             // 
             // labelLocalidadeLOEC
@@ -1547,7 +1777,7 @@
             this.labelLocalidadeLOEC.Location = new System.Drawing.Point(7, 183);
             this.labelLocalidadeLOEC.Name = "labelLocalidadeLOEC";
             this.labelLocalidadeLOEC.Size = new System.Drawing.Size(62, 13);
-            this.labelLocalidadeLOEC.TabIndex = 16;
+            this.labelLocalidadeLOEC.TabIndex = 17;
             this.labelLocalidadeLOEC.Text = "Localidade:";
             // 
             // labelBairroLOEC
@@ -1556,7 +1786,7 @@
             this.labelBairroLOEC.Location = new System.Drawing.Point(7, 152);
             this.labelBairroLOEC.Name = "labelBairroLOEC";
             this.labelBairroLOEC.Size = new System.Drawing.Size(37, 13);
-            this.labelBairroLOEC.TabIndex = 14;
+            this.labelBairroLOEC.TabIndex = 15;
             this.labelBairroLOEC.Text = "Bairro:";
             // 
             // LblLocalidadeLOEC
@@ -1566,7 +1796,7 @@
             this.LblLocalidadeLOEC.Location = new System.Drawing.Point(7, 197);
             this.LblLocalidadeLOEC.Name = "LblLocalidadeLOEC";
             this.LblLocalidadeLOEC.Size = new System.Drawing.Size(125, 16);
-            this.LblLocalidadeLOEC.TabIndex = 17;
+            this.LblLocalidadeLOEC.TabIndex = 18;
             this.LblLocalidadeLOEC.Text = "LocalidadeLOEC";
             // 
             // LblBairroLOEC
@@ -1576,7 +1806,7 @@
             this.LblBairroLOEC.Location = new System.Drawing.Point(7, 166);
             this.LblBairroLOEC.Name = "LblBairroLOEC";
             this.LblBairroLOEC.Size = new System.Drawing.Size(89, 16);
-            this.LblBairroLOEC.TabIndex = 15;
+            this.LblBairroLOEC.TabIndex = 16;
             this.LblBairroLOEC.Text = "BairroLOEC";
             // 
             // labelEnderecoLOEC
@@ -1585,7 +1815,7 @@
             this.labelEnderecoLOEC.Location = new System.Drawing.Point(6, 121);
             this.labelEnderecoLOEC.Name = "labelEnderecoLOEC";
             this.labelEnderecoLOEC.Size = new System.Drawing.Size(56, 13);
-            this.labelEnderecoLOEC.TabIndex = 12;
+            this.labelEnderecoLOEC.TabIndex = 13;
             this.labelEnderecoLOEC.Text = "Endereço:";
             // 
             // LblEnderecoLOEC
@@ -1595,7 +1825,7 @@
             this.LblEnderecoLOEC.Location = new System.Drawing.Point(6, 135);
             this.LblEnderecoLOEC.Name = "LblEnderecoLOEC";
             this.LblEnderecoLOEC.Size = new System.Drawing.Size(114, 16);
-            this.LblEnderecoLOEC.TabIndex = 13;
+            this.LblEnderecoLOEC.TabIndex = 14;
             this.LblEnderecoLOEC.Text = "EnderecoLOEC";
             // 
             // labelCarteiroLOEC
@@ -1604,7 +1834,7 @@
             this.labelCarteiroLOEC.Location = new System.Drawing.Point(6, 89);
             this.labelCarteiroLOEC.Name = "labelCarteiroLOEC";
             this.labelCarteiroLOEC.Size = new System.Drawing.Size(46, 13);
-            this.labelCarteiroLOEC.TabIndex = 8;
+            this.labelCarteiroLOEC.TabIndex = 7;
             this.labelCarteiroLOEC.Text = "Carteiro:";
             // 
             // LblCarteiroLOEC
@@ -1614,7 +1844,7 @@
             this.LblCarteiroLOEC.Location = new System.Drawing.Point(6, 103);
             this.LblCarteiroLOEC.Name = "LblCarteiroLOEC";
             this.LblCarteiroLOEC.Size = new System.Drawing.Size(102, 16);
-            this.LblCarteiroLOEC.TabIndex = 10;
+            this.LblCarteiroLOEC.TabIndex = 11;
             this.LblCarteiroLOEC.Text = "CarteiroLOEC";
             // 
             // labelNumeroLOEC
@@ -1623,7 +1853,7 @@
             this.labelNumeroLOEC.Location = new System.Drawing.Point(6, 60);
             this.labelNumeroLOEC.Name = "labelNumeroLOEC";
             this.labelNumeroLOEC.Size = new System.Drawing.Size(93, 13);
-            this.labelNumeroLOEC.TabIndex = 4;
+            this.labelNumeroLOEC.TabIndex = 5;
             this.labelNumeroLOEC.Text = "Número da LOEC:";
             // 
             // LblNumeroLOEC
@@ -1642,7 +1872,7 @@
             this.labelCriacaoLOEC.Location = new System.Drawing.Point(123, 60);
             this.labelCriacaoLOEC.Name = "labelCriacaoLOEC";
             this.labelCriacaoLOEC.Size = new System.Drawing.Size(87, 13);
-            this.labelCriacaoLOEC.TabIndex = 5;
+            this.labelCriacaoLOEC.TabIndex = 10;
             this.labelCriacaoLOEC.Text = "Data de Criação:";
             // 
             // LblCriacaoLOEC
@@ -1652,7 +1882,7 @@
             this.LblCriacaoLOEC.Location = new System.Drawing.Point(123, 74);
             this.LblCriacaoLOEC.Name = "LblCriacaoLOEC";
             this.LblCriacaoLOEC.Size = new System.Drawing.Size(101, 16);
-            this.LblCriacaoLOEC.TabIndex = 7;
+            this.LblCriacaoLOEC.TabIndex = 9;
             this.LblCriacaoLOEC.Text = "CriacaoLOEC";
             // 
             // labelMunicipioLOEC
@@ -1703,59 +1933,6 @@
             this.LblUnidadeLOEC.TabIndex = 1;
             this.LblUnidadeLOEC.Text = "UnidadeLOEC";
             // 
-            // codigoObjetoDataGridViewTextBoxColumn
-            // 
-            this.codigoObjetoDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.codigoObjetoDataGridViewTextBoxColumn.ContextMenuStrip = this.contextMenuStripImprimirListaEntrega;
-            this.codigoObjetoDataGridViewTextBoxColumn.DataPropertyName = "CodigoObjeto";
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.NullValue = null;
-            this.codigoObjetoDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
-            this.codigoObjetoDataGridViewTextBoxColumn.FillWeight = 140F;
-            this.codigoObjetoDataGridViewTextBoxColumn.Frozen = true;
-            this.codigoObjetoDataGridViewTextBoxColumn.HeaderText = "Código";
-            this.codigoObjetoDataGridViewTextBoxColumn.Name = "codigoObjetoDataGridViewTextBoxColumn";
-            this.codigoObjetoDataGridViewTextBoxColumn.ReadOnly = true;
-            this.codigoObjetoDataGridViewTextBoxColumn.Width = 65;
-            // 
-            // nomeClienteDataGridViewTextBoxColumn
-            // 
-            this.nomeClienteDataGridViewTextBoxColumn.DataPropertyName = "NomeCliente";
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.nomeClienteDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
-            this.nomeClienteDataGridViewTextBoxColumn.HeaderText = "Nome do cliente";
-            this.nomeClienteDataGridViewTextBoxColumn.MinimumWidth = 100;
-            this.nomeClienteDataGridViewTextBoxColumn.Name = "nomeClienteDataGridViewTextBoxColumn";
-            this.nomeClienteDataGridViewTextBoxColumn.ReadOnly = true;
-            this.nomeClienteDataGridViewTextBoxColumn.Width = 400;
-            // 
-            // atualizadoDataGridViewCheckBoxColumn
-            // 
-            this.atualizadoDataGridViewCheckBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.atualizadoDataGridViewCheckBoxColumn.ContextMenuStrip = this.contextMenuStripAtualizacao;
-            this.atualizadoDataGridViewCheckBoxColumn.DataPropertyName = "Atualizado";
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.atualizadoDataGridViewCheckBoxColumn.DefaultCellStyle = dataGridViewCellStyle8;
-            this.atualizadoDataGridViewCheckBoxColumn.FalseValue = "";
-            this.atualizadoDataGridViewCheckBoxColumn.HeaderText = "Já atualizado?";
-            this.atualizadoDataGridViewCheckBoxColumn.Name = "atualizadoDataGridViewCheckBoxColumn";
-            this.atualizadoDataGridViewCheckBoxColumn.ReadOnly = true;
-            this.atualizadoDataGridViewCheckBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.atualizadoDataGridViewCheckBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.atualizadoDataGridViewCheckBoxColumn.TrueValue = "";
-            // 
-            // tabelaObjetosSROLocalBindingSource
-            // 
-            this.tabelaObjetosSROLocalBindingSource.DataMember = "TabelaObjetosSROLocal";
-            this.tabelaObjetosSROLocalBindingSource.DataSource = this.dataSetTabelaObjetosSROLocal;
-            this.tabelaObjetosSROLocalBindingSource.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.tabelaObjetosSROLocalBindingSource_BindingComplete);
-            this.tabelaObjetosSROLocalBindingSource.CurrentItemChanged += new System.EventHandler(this.tabelaObjetosSROLocalBindingSource_CurrentItemChanged);
-            // 
-            // dataSetTabelaObjetosSROLocal
-            // 
-            this.dataSetTabelaObjetosSROLocal.DataSetName = "DataSetTabelaObjetosSROLocal";
-            this.dataSetTabelaObjetosSROLocal.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // tabelaObjetosSROLocalTableAdapter
             // 
             this.tabelaObjetosSROLocalTableAdapter.ClearBeforeFill = true;
@@ -1765,19 +1942,6 @@
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
             this.tableAdapterManager.TabelaObjetosSROLocalTableAdapter = this.tabelaObjetosSROLocalTableAdapter;
             this.tableAdapterManager.UpdateOrder = SISAPO.DataSetTabelaObjetosSROLocalTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            // 
-            // alterarComentárioSelecionadosToolStripMenuItem
-            // 
-            this.alterarComentárioSelecionadosToolStripMenuItem.Image = global::SISAPO.Properties.Resources.CadastroObjetos;
-            this.alterarComentárioSelecionadosToolStripMenuItem.Name = "alterarComentárioSelecionadosToolStripMenuItem";
-            this.alterarComentárioSelecionadosToolStripMenuItem.Size = new System.Drawing.Size(371, 22);
-            this.alterarComentárioSelecionadosToolStripMenuItem.Text = "Alterar Comentário (Selecionados)";
-            this.alterarComentárioSelecionadosToolStripMenuItem.Click += new System.EventHandler(this.alterarComentarioSelecionadosToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(368, 6);
             // 
             // FormularioConsulta
             // 
@@ -1802,6 +1966,8 @@
             this.contextMenuStripImprimirListaEntrega.ResumeLayout(false);
             this.contextMenuStrip1.ResumeLayout(false);
             this.contextMenuStripAtualizacao.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.tabelaObjetosSROLocalBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetTabelaObjetosSROLocal)).EndInit();
             this.panel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -1815,9 +1981,15 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
+            this.splitContainer3.Panel1.ResumeLayout(false);
+            this.splitContainer3.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
+            this.splitContainer3.ResumeLayout(false);
+            this.groupBoxSemelhantes.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).EndInit();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
@@ -1825,8 +1997,6 @@
             this.tabControl2.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tabelaObjetosSROLocalBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSetTabelaObjetosSROLocal)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1963,7 +2133,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn AgrupadoDestinatarioAusente;
         private System.Windows.Forms.DataGridViewTextBoxColumn CoordenadasDestinatarioAusente;
         private System.Windows.Forms.DataGridViewCheckBoxColumn atualizadoDataGridViewCheckBoxColumn;
-        private System.Windows.Forms.Panel panel2;
         public System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.BindingSource bindingSource2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumnCodigoObjeto;
@@ -1971,5 +2140,19 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumnEnderecoLOEC;
         private System.Windows.Forms.ToolStripMenuItem alterarComentárioSelecionadosToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        private System.Windows.Forms.SplitContainer splitContainer3;
+        private System.Windows.Forms.GroupBox groupBoxSemelhantes;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Button Btn6Atualizar;
+        private System.Windows.Forms.Button Btn5Comentario;
+        private System.Windows.Forms.Button Btn4SituacaoBaixa;
+        private System.Windows.Forms.Button Btn3AlterarItem;
+        private System.Windows.Forms.Button Btn2ImprimirAvisos;
+        private System.Windows.Forms.Button Btn1ImprimirLDI;
+        private System.Windows.Forms.Button Btn0SelecionarLinhas;
+        private System.Windows.Forms.CheckBox checkBoxIncluirBaixados;
+        private System.Windows.Forms.CheckBox checkBoxIncluirCaixaPostal;
+        private System.Windows.Forms.Button BtnImprimirAssinaturasHoje;
+        private System.Windows.Forms.Button BtnImprimirAvisosHoje;
     }
 }

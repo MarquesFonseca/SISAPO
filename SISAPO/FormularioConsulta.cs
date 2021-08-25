@@ -44,7 +44,10 @@ namespace SISAPO
 
         private void FormularioConsulta_Load(object sender, EventArgs e)
         {
-            panel2.Visible = false;
+            checkBoxIncluirCaixaPostal.Checked = FormularioPrincipal.RetornaComponentesFormularioPrincipal().ExibirCaixaPostalPesquisa_toolStripMenuItem.Checked;
+            checkBoxIncluirBaixados.Checked = FormularioPrincipal.RetornaComponentesFormularioPrincipal().ExibirItensJaEntreguesToolStripMenuItem.Checked;
+
+            splitContainer3.Panel2Collapsed = true;
 
             DataFinal_dateTimePicker.Text = DateTime.Now.Date.ToShortDateString();
             DataInicial_dateTimePicker.Text = DateTime.Today.AddMonths(-1).Date.ToShortDateString();
@@ -121,6 +124,7 @@ namespace SISAPO
             tabelaObjetosSROLocalBindingSource.Filter = NovoFiltro;
 
             LbnQuantidadeRegistros.Text = string.Format("{0}", tabelaObjetosSROLocalBindingSource.Count);
+            Btn0SelecionarLinhas.Text = string.Format("&0 - Selecionar {0} linhas", tabelaObjetosSROLocalBindingSource.Count);
             if (tabelaObjetosSROLocalBindingSource.Count == 0)
             {
                 LblDadosPostagemIndisponivel.Visible = true;
@@ -239,6 +243,10 @@ namespace SISAPO
             {
                 e.SuppressKeyPress = true;
                 btnPesquisarSRO_Click(sender, e);
+            }
+            if (e.KeyCode == Keys.F2)
+            {
+                alterarItemToolStripMenuItem1_Click(sender, e);
             }
             if (e.KeyCode == Keys.F3)
             {
@@ -623,41 +631,51 @@ namespace SISAPO
 
                 string nomeCliente = string.IsNullOrEmpty(currentRow["NomeCliente"].ToString()) ? "" : currentRow["NomeCliente"].ToString();
                 string enderecoLOEC = string.IsNullOrEmpty(currentRow["EnderecoLOEC"].ToString()) ? "" : currentRow["EnderecoLOEC"].ToString();
+                string NomeMaisEndereco = string.Format("{0} {1}", nomeCliente, enderecoLOEC);
 
                 if (!string.IsNullOrWhiteSpace(nomeCliente) && string.IsNullOrEmpty(currentRow["EnderecoLOEC"].ToString()))
                 {
                     //vazio
-                    panel2.Visible = false;
+                    splitContainer3.Panel2Collapsed = true;
                     bindingSource2.DataSource = null;
 
                     //não vazio
                     var Resultado = ((System.Windows.Forms.BindingSource)dataGridView1.DataSource).Cast<DataRowView>().Where(T =>
+                    //(string.Format("{0} {1}", T["NomeCliente"], T["EnderecoLOEC"]).Contains(NomeMaisEndereco) && Convert.ToBoolean(T["ObjetoEntregue"]) == false));
                     (T["NomeCliente"].ToString().Contains(nomeCliente) && Convert.ToBoolean(T["ObjetoEntregue"]) == false));
+                    //(nomeCliente.Contains(T["NomeCliente"].ToString()) && Convert.ToBoolean(T["ObjetoEntregue"]) == false));
+
+                    groupBoxSemelhantes.Text = string.Format("Semelhantes - QTD.: {0}", Resultado.Count());
                     if (Resultado.Count() <= 1)
                     {
-                        panel2.Visible = false;
+                        splitContainer3.Panel2Collapsed = true;
                         bindingSource2.DataSource = null;
                     }
                     if (Resultado.Count() > 1)
                     {
-                        panel2.Visible = true;
+                        splitContainer3.Panel2Collapsed = false;
                         bindingSource2.DataSource = Resultado;
                     }
                 }
                 if (!string.IsNullOrWhiteSpace(nomeCliente) && !string.IsNullOrEmpty(currentRow["EnderecoLOEC"].ToString()))
                 {
                     //não vazio
+
                     var Resultado = ((System.Windows.Forms.BindingSource)dataGridView1.DataSource).Cast<DataRowView>().Where(T =>
+                    //(string.Format("{0} {1}", T["NomeCliente"], T["EnderecoLOEC"]).Contains(NomeMaisEndereco) && Convert.ToBoolean(T["ObjetoEntregue"]) == false) ||
                     (T["NomeCliente"].ToString().Contains(nomeCliente) && Convert.ToBoolean(T["ObjetoEntregue"]) == false) ||
+                    //(nomeCliente.Contains(T["NomeCliente"].ToString()) && Convert.ToBoolean(T["ObjetoEntregue"]) == false) ||
                     (T["EnderecoLOEC"].ToString().Contains(enderecoLOEC) && Convert.ToBoolean(T["ObjetoEntregue"]) == false));
+
+                    groupBoxSemelhantes.Text = string.Format("Semelhantes - QTD.: {0}", Resultado.Count());
                     if (Resultado.Count() <= 1)
                     {
-                        panel2.Visible = false;
+                        splitContainer3.Panel2Collapsed = true;
                         bindingSource2.DataSource = null;
                     }
                     if (Resultado.Count() > 1)
                     {
-                        panel2.Visible = true;
+                        splitContainer3.Panel2Collapsed = false;
                         bindingSource2.DataSource = Resultado;
                     }
                 }
@@ -1028,16 +1046,27 @@ namespace SISAPO
 
             if (_modeloImpressaoListaObjetos == ModeloImpressaoListaObjetos.ModeloLDI)
             {
-                using (FormularioImpressaoEntregaObjetosOpcoesImpressao2 formularioImpressaoEntregaObjetosOpcoesImpressao = new FormularioImpressaoEntregaObjetosOpcoesImpressao2(_modeloImpressaoListaObjetos))
+                if (this.dataGridView1.SelectedRows.Count == 1)
                 {
-                    formularioImpressaoEntregaObjetosOpcoesImpressao.ShowDialog();
-                    if (formularioImpressaoEntregaObjetosOpcoesImpressao.Cancelou == true) return;
+                    FormularioPrincipal.OpcoesImpressaoOrdenacaoPorNomeDestinatario = true;
+                    FormularioPrincipal.OpcoesImpressaoOrdenacaoPorDataLancamento = false;
+                    FormularioPrincipal.OpcoesImpressaoOrdenacaoPorOrdemCrescente = true;
+                    FormularioPrincipal.OpcoesImpressaoImprimirUmPorFolha = true;
+                    FormularioPrincipal.OpcoesImpressaoImprimirVariosPorFolha = false;
+                }
+                if (this.dataGridView1.SelectedRows.Count > 1)
+                {
+                    using (FormularioImpressaoEntregaObjetosOpcoesImpressao2 formularioImpressaoEntregaObjetosOpcoesImpressao = new FormularioImpressaoEntregaObjetosOpcoesImpressao2(_modeloImpressaoListaObjetos))
+                    {
+                        formularioImpressaoEntregaObjetosOpcoesImpressao.ShowDialog();
+                        if (formularioImpressaoEntregaObjetosOpcoesImpressao.Cancelou == true) return;
 
-                    FormularioPrincipal.OpcoesImpressaoOrdenacaoPorNomeDestinatario = formularioImpressaoEntregaObjetosOpcoesImpressao.OrdenacaoPorNomeDestinatario;
-                    FormularioPrincipal.OpcoesImpressaoOrdenacaoPorDataLancamento = formularioImpressaoEntregaObjetosOpcoesImpressao.OrdenacaoPorDataLancamento;
-                    FormularioPrincipal.OpcoesImpressaoOrdenacaoPorOrdemCrescente = formularioImpressaoEntregaObjetosOpcoesImpressao.OrdenacaoPorOrdemCrescente;
-                    FormularioPrincipal.OpcoesImpressaoImprimirUmPorFolha = formularioImpressaoEntregaObjetosOpcoesImpressao.ImprimirUmPorFolha;
-                    FormularioPrincipal.OpcoesImpressaoImprimirVariosPorFolha = formularioImpressaoEntregaObjetosOpcoesImpressao.ImprimirVariosPorFolha;
+                        FormularioPrincipal.OpcoesImpressaoOrdenacaoPorNomeDestinatario = formularioImpressaoEntregaObjetosOpcoesImpressao.OrdenacaoPorNomeDestinatario;
+                        FormularioPrincipal.OpcoesImpressaoOrdenacaoPorDataLancamento = formularioImpressaoEntregaObjetosOpcoesImpressao.OrdenacaoPorDataLancamento;
+                        FormularioPrincipal.OpcoesImpressaoOrdenacaoPorOrdemCrescente = formularioImpressaoEntregaObjetosOpcoesImpressao.OrdenacaoPorOrdemCrescente;
+                        FormularioPrincipal.OpcoesImpressaoImprimirUmPorFolha = formularioImpressaoEntregaObjetosOpcoesImpressao.ImprimirUmPorFolha;
+                        FormularioPrincipal.OpcoesImpressaoImprimirVariosPorFolha = formularioImpressaoEntregaObjetosOpcoesImpressao.ImprimirVariosPorFolha;
+                    }
                 }
             }
             if (_modeloImpressaoListaObjetos == ModeloImpressaoListaObjetos.ModeloComum)
@@ -1267,11 +1296,16 @@ namespace SISAPO
             AlterarItem(sender, e);
         }
 
+        private void alterarItemToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            AlterarItem(sender, e);
+        }
+
         private void AlterarItem(object sender, EventArgs e)
         {
             try
             {
-                if(currentRow == null) return;
+                if (currentRow == null) return;
 
                 if (!DAO.TestaConexao(ClassesDiversas.Configuracoes.strConexao, TipoBanco.OleDb))
                 {
@@ -1289,6 +1323,7 @@ namespace SISAPO
                 int ObjetoJaEntregue = currentRow["ObjetoEntregue"].ToInt();//bool ObjetoEntregue,
                 int ObjetoJaAtualizado = currentRow["Atualizado"].ToInt();//bool Atualizado,
                 string Comentario = currentRow["Comentario"].ToString();//string Comentario,
+                NomeCliente = NomeCliente.Replace(string.Format(" - {0}", Comentario), "");//string NomeCliente,
 
                 string UnidadePostagem = currentRow["UnidadePostagem"].ToString();//UnidadePostagem
                 string MunicipioPostagem = currentRow["MunicipioPostagem"].ToString();//MunicipioPostagem
@@ -1359,7 +1394,7 @@ namespace SISAPO
                 currentRow["CaixaPostal"] = frm.ObjetoEmCaixaPostal;//bool CaixaPostal,
                 currentRow["ObjetoEntregue"] = frm.ObjetoJaEntregue;//bool ObjetoEntregue,
                 currentRow["Atualizado"] = frm.ObjetoJaAtualizado;//bool Atualizado,
-                currentRow["Comentario"] = frm.Comentario;//string Comentario,
+                currentRow["Comentario"] = frm.Comentario.ToUpper().RemoveAcentos();//string Comentario,
 
                 //string UnidadePostagem,
                 //string MunicipioPostagem,
@@ -1383,7 +1418,7 @@ namespace SISAPO
                 //string AgrupadoDestinatarioAusente,
                 //string CoordenadasDestinatarioAusente
 
-                waitForm.Show(this);
+                //waitForm.Show(this);
 
 
                 bool SeEAoRemetente = frm.checkBoxAoRemetente.Checked;
@@ -1405,14 +1440,21 @@ namespace SISAPO
                 currentRow["TipoPostalNomeSiglaCodigo"] = TipoPostalNomeSiglaCodigo;//string TipoPostalNomeSiglaCodigo,
                 currentRow["TipoPostalPrazoDiasCorridosRegulamentado"] = TipoPostalPrazoDiasCorridosRegulamentado;//string TipoPostalPrazoDiasCorridosRegulamentado,
 
+
+
+
                 this.tabelaObjetosSROLocalTableAdapter.Connection.ConnectionString = ClassesDiversas.Configuracoes.strConexao;
-                this.tabelaObjetosSROLocalTableAdapter.Update(dataSetTabelaObjetosSROLocal.TabelaObjetosSROLocal);
+                //this.tabelaObjetosSROLocalTableAdapter.Update(dataSetTabelaObjetosSROLocal.TabelaObjetosSROLocal);
+                this.tabelaObjetosSROLocalTableAdapter.Update(currentRow);
+                currentRow["NomeCliente"] = string.Format("{0} - {1}", frm.NomeCliente.ToUpper().RemoveAcentos(), frm.Comentario);//string NomeCliente,
+
+
 
                 int position = this.BindingContext[tabelaObjetosSROLocalBindingSource].Position;
                 if (position > -1) this.BindingContext[tabelaObjetosSROLocalBindingSource].Position = position;
 
                 FormularioPrincipal.RetornaComponentesFormularioPrincipal().BuscaNovoStatusQuantidadeNaoAtualizados();
-                waitForm.Close();
+                //waitForm.Close();
 
                 FormularioConsulta_Activated(sender, e);
             }
@@ -1482,11 +1524,6 @@ namespace SISAPO
             this.ConsultaTodosNaoEntreguesOrdenadoNome();
         }
 
-        private void alterarItemToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            AlterarItem(sender, e);
-        }
-
         private void BtnCoordenadas_Click(object sender, EventArgs e)
         {
             if (currentRow == null) return;
@@ -1554,7 +1591,7 @@ namespace SISAPO
         private bool VerificaNavegador()
         {
             int versaoNavegador;
-            int RegVal;
+            int RegVal = 0;
             try
             {
                 // obtem a versão instalada do IE
@@ -1630,8 +1667,6 @@ namespace SISAPO
         private void imprimirAvisosDeChegadaSelecionadosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FormularioPrincipal.RetornaComponentesFormularioPrincipal().imprimirAvisosDeChegadaSelecionadosToolStripMenuItem_Click(sender, e);
-
-
         }
 
         private void alterarSituaçãoDeItensSelecionadosToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1702,7 +1737,7 @@ namespace SISAPO
         private void alterarComentarioSelecionadosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count == 0) return;
-            
+
             FormularioAlterarComentarioItensSelecionados formularioAlterarComentarioItensSelecionados = new FormularioAlterarComentarioItensSelecionados();
             formularioAlterarComentarioItensSelecionados.ShowDialog();
 
@@ -1721,7 +1756,7 @@ namespace SISAPO
 
             if (ListaGridSelecaoAtual.Count == 0) return;
 
-           FormularioConsulta.RetornaComponentesFormularioConsulta().AlterarComentarioItensSelecionados(ListaGridSelecaoAtual, formularioAlterarComentarioItensSelecionados.comboBoxComentario.Text);
+            FormularioConsulta.RetornaComponentesFormularioConsulta().AlterarComentarioItensSelecionados(ListaGridSelecaoAtual, formularioAlterarComentarioItensSelecionados.comboBoxComentario.Text);
 
             if (Mensagens.Pergunta("Itens atualizado com sucesso! Deseja atualizar grid?") == System.Windows.Forms.DialogResult.Yes)
             {
@@ -1765,5 +1800,71 @@ namespace SISAPO
             FormularioPrincipal.RetornaComponentesFormularioPrincipal().marcarSelecionadosComoNaoAtualizadoToolStripMenuItem_Click(sender, e);
             FormularioPrincipal.RetornaComponentesFormularioPrincipal().atualizarNovosObjetosToolStripMenuItem_Click(sender, e);
         }
+
+
+        private void Btn1ImprimirLDI_Click(object sender, EventArgs e)
+        {
+            if (this.dataGridView1.SelectedRows.Count == 0) return; 
+            FormularioPrincipal.RetornaComponentesFormularioPrincipal().modeloLDIToolStripMenuItem_Click(sender, e);
+        }
+
+        private void Btn2ImprimirAvisos_Click(object sender, EventArgs e)
+        {
+            if (this.dataGridView1.SelectedRows.Count == 0) return;
+            FormularioPrincipal.RetornaComponentesFormularioPrincipal().imprimirAvisosDeChegadaSelecionadosToolStripMenuItem_Click(sender, e);
+        }
+
+        private void Btn3AlterarItem_Click(object sender, EventArgs e)
+        {
+            if (this.dataGridView1.SelectedRows.Count == 0) return;
+            AlterarItem(sender, e);
+        }
+
+        private void Btn4SituacaoBaixa_Click(object sender, EventArgs e)
+        {
+            if (this.dataGridView1.SelectedRows.Count == 0) return;
+            alterarSituaçãoDeItensSelecionadosToolStripMenuItem_Click(sender, e);
+        }
+
+        private void Btn5Comentario_Click(object sender, EventArgs e)
+        {
+            if (this.dataGridView1.SelectedRows.Count == 0) return;
+            alterarComentarioSelecionadosToolStripMenuItem_Click(sender, e);
+        }
+
+        private void Btn6Atualizar_Click(object sender, EventArgs e)
+        {
+            if (this.dataGridView1.SelectedRows.Count == 0) return;
+            AtualizarObjetosSelecionadosToolStripMenuItem_Click(sender, e);
+        }
+
+        private void Btn0SelecionarLinhas_Click(object sender, EventArgs e)
+        {
+            dataGridView1.SelectAll();
+        }
+
+        private void BtnImprimirAssinaturasHoje_Click(object sender, EventArgs e)
+        {
+            FormularioPrincipal.RetornaComponentesFormularioPrincipal().imprimirListaLDIsAssinaturasPorOrdemAlfabéticaToolStripMenuItem_Click(sender, e);
+        }
+
+        private void BtnImprimirAvisosHoje_Click(object sender, EventArgs e)
+        {
+            FormularioPrincipal.RetornaComponentesFormularioPrincipal().imprimirAvisoDeChegadaHOJEExcetoEntreguesECaixaPostalToolStripMenuItem_Click(sender, e);
+        }
+
+        private void checkBoxIncluirCaixaPostal_CheckedChanged(object sender, EventArgs e)
+        {
+            FormularioPrincipal.RetornaComponentesFormularioPrincipal().ExibirCaixaPostalPesquisa_toolStripMenuItem.Checked = checkBoxIncluirCaixaPostal.Checked;
+            FormularioPrincipal.RetornaComponentesFormularioPrincipal().ExibirCaixaPostalPesquisa_toolStripMenuItem_Click(sender, e);
+        }
+
+        private void checkBoxIncluirBaixados_CheckedChanged(object sender, EventArgs e)
+        {
+            FormularioPrincipal.RetornaComponentesFormularioPrincipal().ExibirItensJaEntreguesToolStripMenuItem.Checked = checkBoxIncluirBaixados.Checked;
+            FormularioPrincipal.RetornaComponentesFormularioPrincipal().ExibirItensJaEntreguesToolStripMenuItem_Click(sender, e);
+        }
     }
 }
+
+
