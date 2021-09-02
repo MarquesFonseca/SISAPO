@@ -374,6 +374,17 @@ namespace SISAPO
 
                         #endregion
 
+                        #region Tratamento Comentario
+                        Comentario = Comentario.Trim() == "" ? DsCliente.Tables[0].Rows[0]["Comentario"].ToString().ToUpper().RemoveAcentos() : Comentario.Trim().ToUpper().RemoveAcentos();
+                        //NomeCliente = NomeCliente.Replace("- " + Comentario, "").Trim();//evita repetir o mesmo comentario varias vezes
+
+                        //if (!string.IsNullOrEmpty(NomeCliente))//se o NomeCliente for fazio.... não colocar o Comentario (se não ficaria assim: " - PCT") / Eu quero assim: "" (sem nada já que não tem nome...)
+                        //{
+                        //    NomeCliente = string.Format("{0} - {1}", NomeCliente, Comentario);
+                        //}
+
+                        #endregion
+
                         #region Tratamento SeECaixaPostal
                         SeECaixaPostal = Convert.ToBoolean(DsCliente.Tables[0].Rows[0]["CaixaPostal"]);
                         SeECaixaPostal = !SeECaixaPostal ? Configuracoes.RetornaSeECaixaPostal(NomeCliente) : SeECaixaPostal;
@@ -561,6 +572,79 @@ namespace SISAPO
                 string LinhaAtual = item.InnerText.Trim().ToUpper().RemoveAcentos();
                 if (!VerificaSeELinhaDesejada(LinhaAtual)) continue;
 
+
+
+                #region "Não procurado pelo destinatário"
+                if (LinhaAtual.Contains("NAO PROCURADO PELO DESTINATARIO".ToUpper().RemoveAcentos()))
+                {
+                    objetoJaEntregue = true;
+                    Mensagens.InformaDesenvolvedor("Gravando no banco: " + "NAO PROCURADO PELO DESTINATARIO".ToUpper());
+                    string DataModificacao = LinhaAtual.Trim().Substring(0, 19);
+                    #region UPDATE TabelaObjetosSROLocal
+                    using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
+                    {
+                        if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+                        dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET DataModificacao = @DataModificacao, Situacao = @Situacao, ObjetoEntregue = @ObjetoEntregue WHERE (CodigoObjeto = @CodigoObjeto)"
+                            , new List<Parametros>() {
+                                new Parametros { Nome = "@DataModificacao", Tipo = TipoCampo.Text, Valor = DataModificacao },
+                                new Parametros { Nome = "@Situacao", Tipo = TipoCampo.Text, Valor = "NAO PROCURADO PELO DESTINATARIO".ToUpper() },
+                                new Parametros { Nome = "@ObjetoEntregue", Tipo = TipoCampo.Boolean, Valor = true },
+                                new Parametros { Nome = "@CodigoObjeto", Tipo = TipoCampo.Text, Valor = CodigoObjetoAtual }
+                            });
+                    }
+                    #endregion
+                    continue;
+                }
+                #endregion
+
+                #region "Não procurado pelo remetente"
+                if (LinhaAtual.Contains("NAO PROCURADO PELO REMETENTE".ToUpper().RemoveAcentos()))
+                {
+                    objetoJaEntregue = true;
+                    Mensagens.InformaDesenvolvedor("Gravando no banco: " + "NAO PROCURADO PELO REMETENTE".ToUpper());
+                    string DataModificacao = LinhaAtual.Trim().Substring(0, 19);
+                    #region UPDATE TabelaObjetosSROLocal
+                    using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
+                    {
+                        if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+                        dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET DataModificacao = @DataModificacao, Situacao = @Situacao, ObjetoEntregue = @ObjetoEntregue WHERE (CodigoObjeto = @CodigoObjeto)"
+                            , new List<Parametros>() {
+                                new Parametros { Nome = "@DataModificacao", Tipo = TipoCampo.Text, Valor = DataModificacao },
+                                new Parametros { Nome = "@Situacao", Tipo = TipoCampo.Text, Valor = "NAO PROCURADO PELO REMETENTE".ToUpper() },
+                                new Parametros { Nome = "@ObjetoEntregue", Tipo = TipoCampo.Boolean, Valor = true },
+                                new Parametros { Nome = "@CodigoObjeto", Tipo = TipoCampo.Text, Valor = CodigoObjetoAtual }
+                            });
+                    }
+                    #endregion
+                    continue;
+                }
+                #endregion
+
+                #region "Recusado"
+                if (LinhaAtual.Contains("RECUSADO".ToUpper().RemoveAcentos()))
+                {
+                    objetoJaEntregue = true;
+                    Mensagens.InformaDesenvolvedor("Gravando no banco: " + "RECUSADO".ToUpper());
+                    string DataModificacao = LinhaAtual.Trim().Substring(0, 19);
+                    #region UPDATE TabelaObjetosSROLocal
+                    using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
+                    {
+                        if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+                        dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET DataModificacao = @DataModificacao, Situacao = @Situacao, ObjetoEntregue = @ObjetoEntregue WHERE (CodigoObjeto = @CodigoObjeto)"
+                            , new List<Parametros>() {
+                                new Parametros { Nome = "@DataModificacao", Tipo = TipoCampo.Text, Valor = DataModificacao },
+                                new Parametros { Nome = "@Situacao", Tipo = TipoCampo.Text, Valor = "RECUSADO".ToUpper() },
+                                new Parametros { Nome = "@ObjetoEntregue", Tipo = TipoCampo.Boolean, Valor = true },
+                                new Parametros { Nome = "@CodigoObjeto", Tipo = TipoCampo.Text, Valor = CodigoObjetoAtual }
+                            });
+                    }
+                    #endregion
+                    continue;
+                }
+                #endregion
+
+                
+                
                 #region "Entregue"
                 if (LinhaAtual.Contains("Entregue".ToUpper()))
                 {

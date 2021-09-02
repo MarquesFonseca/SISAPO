@@ -1,4 +1,3 @@
-C:\Projetos\SISAPO\SISAPO\bin\Release\Npgsql.dll
 C:\Projetos\SISAPO\SISAPO\bin\Release\SISAPO.exe.config
 C:\Projetos\SISAPO\SISAPO\bin\Release\SISAPO.exe.manifest
 C:\Projetos\SISAPO\SISAPO\bin\Release\SISAPO.application
@@ -13,9 +12,11 @@ C:\Projetos\SISAPO\SISAPO\bin\Release\Microsoft.VisualBasic.PowerPacks.Vs.dll
 C:\Projetos\SISAPO\SISAPO\bin\Release\Mono.Security.dll
 C:\Projetos\SISAPO\SISAPO\bin\Release\MySql.Data.dll
 C:\Projetos\SISAPO\SISAPO\bin\Release\MySql.Web.dll
+C:\Projetos\SISAPO\SISAPO\bin\Release\Npgsql.dll
 C:\Projetos\SISAPO\SISAPO\bin\Release\Release.dll
 C:\Projetos\SISAPO\SISAPO\bin\Release\System.Data.SqlServerCe.dll
 C:\Projetos\SISAPO\SISAPO\bin\Release\Microsoft.VisualBasic.PowerPacks.Vs.xml
+C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.csprojResolveAssemblyReference.cache
 C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioAlterarComentarioItensSelecionados.resources
 C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioAlterarSituacaoItensSelecionados.resources
 C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioAdicionarItemObjeto.resources

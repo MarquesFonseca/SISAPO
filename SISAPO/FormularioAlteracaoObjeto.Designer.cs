@@ -37,7 +37,6 @@
             this.label28 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
             this.TxtCep = new System.Windows.Forms.TextBox();
-            this.TxtUF = new System.Windows.Forms.TextBox();
             this.TxtCidade = new System.Windows.Forms.TextBox();
             this.TxtBairro = new System.Windows.Forms.TextBox();
             this.TxtEndereco = new System.Windows.Forms.TextBox();
@@ -49,7 +48,6 @@
             this.label30 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.checkBoxObjetoJaAtualizado = new System.Windows.Forms.CheckBox();
-            this.TxtComentario = new System.Windows.Forms.TextBox();
             this.TxtNomeCliente = new System.Windows.Forms.TextBox();
             this.checkBoxObjetoCaixaPostal = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -104,6 +102,9 @@
             this.btnAlterar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.panelPrincipal = new System.Windows.Forms.Panel();
+            this.TxtUF = new System.Windows.Forms.TextBox();
+            this.comboBoxComentario = new System.Windows.Forms.ComboBox();
+            this.label31 = new System.Windows.Forms.Label();
             this.tabControlPrincipal.SuspendLayout();
             this.tabPagePrincipal.SuspendLayout();
             this.tabPageDadosPostagem.SuspendLayout();
@@ -128,13 +129,15 @@
             // 
             // tabPagePrincipal
             // 
+            this.tabPagePrincipal.Controls.Add(this.label31);
+            this.tabPagePrincipal.Controls.Add(this.comboBoxComentario);
+            this.tabPagePrincipal.Controls.Add(this.TxtUF);
             this.tabPagePrincipal.Controls.Add(this.label25);
             this.tabPagePrincipal.Controls.Add(this.label26);
             this.tabPagePrincipal.Controls.Add(this.label27);
             this.tabPagePrincipal.Controls.Add(this.label28);
             this.tabPagePrincipal.Controls.Add(this.label29);
             this.tabPagePrincipal.Controls.Add(this.TxtCep);
-            this.tabPagePrincipal.Controls.Add(this.TxtUF);
             this.tabPagePrincipal.Controls.Add(this.TxtCidade);
             this.tabPagePrincipal.Controls.Add(this.TxtBairro);
             this.tabPagePrincipal.Controls.Add(this.TxtEndereco);
@@ -146,7 +149,6 @@
             this.tabPagePrincipal.Controls.Add(this.label30);
             this.tabPagePrincipal.Controls.Add(this.label2);
             this.tabPagePrincipal.Controls.Add(this.checkBoxObjetoJaAtualizado);
-            this.tabPagePrincipal.Controls.Add(this.TxtComentario);
             this.tabPagePrincipal.Controls.Add(this.TxtNomeCliente);
             this.tabPagePrincipal.Controls.Add(this.checkBoxObjetoCaixaPostal);
             this.tabPagePrincipal.Controls.Add(this.label3);
@@ -179,7 +181,7 @@
             // 
             this.label26.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(555, 257);
+            this.label26.Location = new System.Drawing.Point(557, 257);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(21, 13);
             this.label26.TabIndex = 24;
@@ -189,7 +191,7 @@
             // 
             this.label27.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(381, 257);
+            this.label27.Location = new System.Drawing.Point(383, 257);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(40, 13);
             this.label27.TabIndex = 22;
@@ -220,20 +222,8 @@
             this.TxtCep.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtCep.Location = new System.Drawing.Point(608, 273);
             this.TxtCep.Name = "TxtCep";
-            this.TxtCep.ReadOnly = true;
             this.TxtCep.Size = new System.Drawing.Size(153, 24);
             this.TxtCep.TabIndex = 27;
-            // 
-            // TxtUF
-            // 
-            this.TxtUF.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtUF.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.TxtUF.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtUF.Location = new System.Drawing.Point(558, 273);
-            this.TxtUF.Name = "TxtUF";
-            this.TxtUF.ReadOnly = true;
-            this.TxtUF.Size = new System.Drawing.Size(44, 24);
-            this.TxtUF.TabIndex = 25;
             // 
             // TxtCidade
             // 
@@ -242,7 +232,6 @@
             this.TxtCidade.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtCidade.Location = new System.Drawing.Point(384, 273);
             this.TxtCidade.Name = "TxtCidade";
-            this.TxtCidade.ReadOnly = true;
             this.TxtCidade.Size = new System.Drawing.Size(168, 24);
             this.TxtCidade.TabIndex = 23;
             // 
@@ -254,7 +243,6 @@
             this.TxtBairro.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtBairro.Location = new System.Drawing.Point(6, 273);
             this.TxtBairro.Name = "TxtBairro";
-            this.TxtBairro.ReadOnly = true;
             this.TxtBairro.Size = new System.Drawing.Size(372, 24);
             this.TxtBairro.TabIndex = 21;
             // 
@@ -266,7 +254,6 @@
             this.TxtEndereco.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtEndereco.Location = new System.Drawing.Point(6, 218);
             this.TxtEndereco.Name = "TxtEndereco";
-            this.TxtEndereco.ReadOnly = true;
             this.TxtEndereco.Size = new System.Drawing.Size(755, 24);
             this.TxtEndereco.TabIndex = 19;
             // 
@@ -275,7 +262,7 @@
             this.BtnAlterarEndereco.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnAlterarEndereco.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnAlterarEndereco.Location = new System.Drawing.Point(6, 320);
+            this.BtnAlterarEndereco.Location = new System.Drawing.Point(586, 326);
             this.BtnAlterarEndereco.Name = "BtnAlterarEndereco";
             this.BtnAlterarEndereco.Size = new System.Drawing.Size(172, 36);
             this.BtnAlterarEndereco.TabIndex = 28;
@@ -352,17 +339,6 @@
             this.checkBoxObjetoJaAtualizado.Text = "Objeto já atualizado?";
             this.checkBoxObjetoJaAtualizado.UseVisualStyleBackColor = true;
             // 
-            // TxtComentario
-            // 
-            this.TxtComentario.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtComentario.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.TxtComentario.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtComentario.Location = new System.Drawing.Point(6, 121);
-            this.TxtComentario.Name = "TxtComentario";
-            this.TxtComentario.Size = new System.Drawing.Size(755, 24);
-            this.TxtComentario.TabIndex = 13;
-            // 
             // TxtNomeCliente
             // 
             this.TxtNomeCliente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -411,7 +387,6 @@
             this.TxtNumeroLDI.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtNumeroLDI.Location = new System.Drawing.Point(611, 24);
             this.TxtNumeroLDI.Name = "TxtNumeroLDI";
-            this.TxtNumeroLDI.ReadOnly = true;
             this.TxtNumeroLDI.Size = new System.Drawing.Size(150, 24);
             this.TxtNumeroLDI.TabIndex = 5;
             // 
@@ -450,7 +425,6 @@
             this.TxtDataLancamento.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtDataLancamento.Location = new System.Drawing.Point(6, 71);
             this.TxtDataLancamento.Name = "TxtDataLancamento";
-            this.TxtDataLancamento.ReadOnly = true;
             this.TxtDataLancamento.Size = new System.Drawing.Size(157, 24);
             this.TxtDataLancamento.TabIndex = 7;
             // 
@@ -936,6 +910,44 @@
             this.panelPrincipal.Size = new System.Drawing.Size(778, 410);
             this.panelPrincipal.TabIndex = 0;
             // 
+            // TxtUF
+            // 
+            this.TxtUF.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.TxtUF.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.TxtUF.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtUF.Location = new System.Drawing.Point(558, 273);
+            this.TxtUF.Name = "TxtUF";
+            this.TxtUF.Size = new System.Drawing.Size(44, 24);
+            this.TxtUF.TabIndex = 29;
+            // 
+            // comboBoxComentario
+            // 
+            this.comboBoxComentario.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxComentario.FormattingEnabled = true;
+            this.comboBoxComentario.Items.AddRange(new object[] {
+            "PCT",
+            "PCTINT",
+            "ENV",
+            "PCT AO REMETENTE",
+            "PCT INT AO REMETENTE",
+            "ENV AO REMETENTE",
+            "PCT TERMO CONSTATACAO",
+            "PCT INT TERMO CONSTATACAO",
+            "ENV TERMO CONSTATACAO"});
+            this.comboBoxComentario.Location = new System.Drawing.Point(6, 121);
+            this.comboBoxComentario.Name = "comboBoxComentario";
+            this.comboBoxComentario.Size = new System.Drawing.Size(401, 28);
+            this.comboBoxComentario.TabIndex = 30;
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(443, 121);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(41, 13);
+            this.label31.TabIndex = 31;
+            this.label31.Text = "label31";
+            // 
             // FormularioAlteracaoObjeto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1039,11 +1051,12 @@
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Label label29;
         public System.Windows.Forms.TextBox TxtCep;
-        public System.Windows.Forms.TextBox TxtUF;
         public System.Windows.Forms.TextBox TxtCidade;
         public System.Windows.Forms.TextBox TxtBairro;
         public System.Windows.Forms.TextBox TxtEndereco;
         private System.Windows.Forms.Label label30;
-        public System.Windows.Forms.TextBox TxtComentario;
+        public System.Windows.Forms.TextBox TxtUF;
+        public System.Windows.Forms.ComboBox comboBoxComentario;
+        private System.Windows.Forms.Label label31;
     }
 }

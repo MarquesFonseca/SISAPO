@@ -633,7 +633,7 @@ namespace SISAPO
                 string enderecoLOEC = string.IsNullOrEmpty(currentRow["EnderecoLOEC"].ToString()) ? "" : currentRow["EnderecoLOEC"].ToString();
                 string NomeMaisEndereco = string.Format("{0} {1}", nomeCliente, enderecoLOEC);
 
-                if (!string.IsNullOrWhiteSpace(nomeCliente) && string.IsNullOrEmpty(currentRow["EnderecoLOEC"].ToString()))
+                if (!string.IsNullOrWhiteSpace(nomeCliente) && string.IsNullOrEmpty(enderecoLOEC))
                 {
                     //vazio
                     splitContainer3.Panel2Collapsed = true;
@@ -657,7 +657,7 @@ namespace SISAPO
                         bindingSource2.DataSource = Resultado;
                     }
                 }
-                if (!string.IsNullOrWhiteSpace(nomeCliente) && !string.IsNullOrEmpty(currentRow["EnderecoLOEC"].ToString()))
+                if (!string.IsNullOrWhiteSpace(nomeCliente) && !string.IsNullOrEmpty(enderecoLOEC))
                 {
                     //não vazio
 
@@ -667,7 +667,7 @@ namespace SISAPO
                     //(nomeCliente.Contains(T["NomeCliente"].ToString()) && Convert.ToBoolean(T["ObjetoEntregue"]) == false) ||
                     (T["EnderecoLOEC"].ToString().Contains(enderecoLOEC) && Convert.ToBoolean(T["ObjetoEntregue"]) == false));
 
-                    groupBoxSemelhantes.Text = string.Format("Semelhantes - QTD.: {0}", Resultado.Count());
+                     groupBoxSemelhantes.Text = string.Format("Semelhantes - QTD.: {0}", Resultado.Count());
                     if (Resultado.Count() <= 1)
                     {
                         splitContainer3.Panel2Collapsed = true;
@@ -1770,8 +1770,7 @@ namespace SISAPO
         public void AlterarComentarioItensSelecionados(List<string> ListaCodigosGrid, string Comentario)
         {
             try
-            {
-                waitForm.Show(this);
+            {                
                 foreach (string itemCodigo in ListaCodigosGrid)
                 {
                     using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
@@ -1786,11 +1785,9 @@ namespace SISAPO
                         dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET Comentario = @Comentario WHERE (CodigoObjeto = @CodigoObjeto)", pr);
                     }
                 }
-                waitForm.Close();
             }
             catch (Exception EX)
             {
-                waitForm.Close();
                 Mensagens.Erro("Ocorreu um erro inesperado ao gravar. \nErro: " + EX.Message);
             }
         }

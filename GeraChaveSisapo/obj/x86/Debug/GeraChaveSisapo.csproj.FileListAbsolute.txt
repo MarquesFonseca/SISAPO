@@ -15,3 +15,4 @@ C:\Projetos\SISAPO\GeraChaveSisapo\obj\x86\Debug\GeraChaveSisapo.Properties.Reso
 C:\Projetos\SISAPO\GeraChaveSisapo\obj\x86\Debug\GeraChaveSisapo.csproj.GenerateResource.Cache
 C:\Projetos\SISAPO\GeraChaveSisapo\obj\x86\Debug\GeraChaveSisapo.exe
 C:\Projetos\SISAPO\GeraChaveSisapo\obj\x86\Debug\GeraChaveSisapo.pdb
+C:\Projetos\SISAPO\GeraChaveSisapo\obj\x86\Debug\GeraChaveSisapo.csprojResolveAssemblyReference.cache
