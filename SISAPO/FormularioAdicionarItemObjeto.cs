@@ -15,6 +15,8 @@ namespace SISAPO
         public bool ClicouConfirmar = false;
         public bool ClicouCancelar = false;
 
+        private List<string> ListaItensMotivoBaixa = new List<string>();
+
         public FormularioAdicionarItemObjeto()
         {
             InitializeComponent();
@@ -27,6 +29,31 @@ namespace SISAPO
             dtbLista.Columns.Add("DataLancamento", typeof(DateTime));
             dtbLista.Columns.Add("DataModificacao", typeof(string));
             dtbLista.Columns.Add("Situacao", typeof(string));
+            dtbLista.Columns.Add("Comentario", typeof(string));
+
+
+
+            ListaItensMotivoBaixa = new List<string>();
+            ListaItensMotivoBaixa.Add("PCT");
+            ListaItensMotivoBaixa.Add("PCT INT");
+            ListaItensMotivoBaixa.Add("ENV");
+
+            ListaItensMotivoBaixa.Add("PCT AO REMETENTE");
+            ListaItensMotivoBaixa.Add("PCT INT AO REMETENTE");
+            ListaItensMotivoBaixa.Add("ENV AO REMETENTE");
+
+            ListaItensMotivoBaixa.Add("PCT TERMO CONSTATACAO");
+            ListaItensMotivoBaixa.Add("PCT INT TERMO CONSTATACAO");
+            ListaItensMotivoBaixa.Add("ENV TERMO CONSTATACAO");
+
+            comboBoxComentario.DataSource = ListaItensMotivoBaixa;
+            //comboBoxComentario.Focus();
+
+            SendKeys.Send("{TAB}");
+
+
+
+
 
             TxtObjetoAtual.Focus();
             TxtObjetoAtual.ScrollToCaret();
@@ -63,11 +90,12 @@ namespace SISAPO
             string DataLancamento = DateTime.Now.ToString();
             string DataModificacao = "";
             string Situacao = "Aguardando retirada".ToUpper();
+            string Comentario = comboBoxComentario.Text;
             try
             {
                 bool existe = dtbLista.AsEnumerable().Any(t => t["CodigoObjeto"].ToString() == CodigoAtual);
                 if (!existe)
-                    dtbLista.Rows.Add(CodigoAtual, Convert.ToDateTime(DataLancamento), DataModificacao, Situacao);
+                    dtbLista.Rows.Add(CodigoAtual, Convert.ToDateTime(DataLancamento), DataModificacao, Situacao, Comentario.RemoveAcentos().ToUpper());
 
                 dataGridView1.DataSource = dtbLista;
                 dtbLista.DefaultView.Sort = "DataLancamento DESC";
@@ -132,6 +160,7 @@ namespace SISAPO
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
+            ClicouConfirmar = false;
             ClicouCancelar = true;
             this.Close();
         }

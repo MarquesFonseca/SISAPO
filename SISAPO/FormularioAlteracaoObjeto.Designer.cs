@@ -31,6 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormularioAlteracaoObjeto));
             this.tabControlPrincipal = new System.Windows.Forms.TabControl();
             this.tabPagePrincipal = new System.Windows.Forms.TabPage();
+            this.comboBoxComentario = new System.Windows.Forms.ComboBox();
+            this.TxtUF = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
@@ -102,9 +104,6 @@
             this.btnAlterar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.panelPrincipal = new System.Windows.Forms.Panel();
-            this.TxtUF = new System.Windows.Forms.TextBox();
-            this.comboBoxComentario = new System.Windows.Forms.ComboBox();
-            this.label31 = new System.Windows.Forms.Label();
             this.tabControlPrincipal.SuspendLayout();
             this.tabPagePrincipal.SuspendLayout();
             this.tabPageDadosPostagem.SuspendLayout();
@@ -129,7 +128,6 @@
             // 
             // tabPagePrincipal
             // 
-            this.tabPagePrincipal.Controls.Add(this.label31);
             this.tabPagePrincipal.Controls.Add(this.comboBoxComentario);
             this.tabPagePrincipal.Controls.Add(this.TxtUF);
             this.tabPagePrincipal.Controls.Add(this.label25);
@@ -166,6 +164,35 @@
             this.tabPagePrincipal.TabIndex = 0;
             this.tabPagePrincipal.Text = "Principal";
             this.tabPagePrincipal.UseVisualStyleBackColor = true;
+            // 
+            // comboBoxComentario
+            // 
+            this.comboBoxComentario.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxComentario.FormattingEnabled = true;
+            this.comboBoxComentario.Items.AddRange(new object[] {
+            "PCT",
+            "PCTINT",
+            "ENV",
+            "PCT AO REMETENTE",
+            "PCT INT AO REMETENTE",
+            "ENV AO REMETENTE",
+            "PCT TERMO CONSTATACAO",
+            "PCT INT TERMO CONSTATACAO",
+            "ENV TERMO CONSTATACAO"});
+            this.comboBoxComentario.Location = new System.Drawing.Point(6, 121);
+            this.comboBoxComentario.Name = "comboBoxComentario";
+            this.comboBoxComentario.Size = new System.Drawing.Size(401, 28);
+            this.comboBoxComentario.TabIndex = 30;
+            // 
+            // TxtUF
+            // 
+            this.TxtUF.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.TxtUF.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.TxtUF.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtUF.Location = new System.Drawing.Point(558, 273);
+            this.TxtUF.Name = "TxtUF";
+            this.TxtUF.Size = new System.Drawing.Size(44, 24);
+            this.TxtUF.TabIndex = 29;
             // 
             // label25
             // 
@@ -377,7 +404,6 @@
             this.TxtDataBaixa.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtDataBaixa.Location = new System.Drawing.Point(611, 71);
             this.TxtDataBaixa.Name = "TxtDataBaixa";
-            this.TxtDataBaixa.ReadOnly = true;
             this.TxtDataBaixa.Size = new System.Drawing.Size(150, 24);
             this.TxtDataBaixa.TabIndex = 11;
             // 
@@ -910,44 +936,6 @@
             this.panelPrincipal.Size = new System.Drawing.Size(778, 410);
             this.panelPrincipal.TabIndex = 0;
             // 
-            // TxtUF
-            // 
-            this.TxtUF.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtUF.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.TxtUF.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtUF.Location = new System.Drawing.Point(558, 273);
-            this.TxtUF.Name = "TxtUF";
-            this.TxtUF.Size = new System.Drawing.Size(44, 24);
-            this.TxtUF.TabIndex = 29;
-            // 
-            // comboBoxComentario
-            // 
-            this.comboBoxComentario.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxComentario.FormattingEnabled = true;
-            this.comboBoxComentario.Items.AddRange(new object[] {
-            "PCT",
-            "PCTINT",
-            "ENV",
-            "PCT AO REMETENTE",
-            "PCT INT AO REMETENTE",
-            "ENV AO REMETENTE",
-            "PCT TERMO CONSTATACAO",
-            "PCT INT TERMO CONSTATACAO",
-            "ENV TERMO CONSTATACAO"});
-            this.comboBoxComentario.Location = new System.Drawing.Point(6, 121);
-            this.comboBoxComentario.Name = "comboBoxComentario";
-            this.comboBoxComentario.Size = new System.Drawing.Size(401, 28);
-            this.comboBoxComentario.TabIndex = 30;
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(443, 121);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(41, 13);
-            this.label31.TabIndex = 31;
-            this.label31.Text = "label31";
-            // 
             // FormularioAlteracaoObjeto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1057,6 +1045,5 @@
         private System.Windows.Forms.Label label30;
         public System.Windows.Forms.TextBox TxtUF;
         public System.Windows.Forms.ComboBox comboBoxComentario;
-        private System.Windows.Forms.Label label31;
     }
 }

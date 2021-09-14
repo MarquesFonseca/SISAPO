@@ -49,7 +49,7 @@ namespace SISAPO
             else
             {
                 ClicouConfirmar = true;
-                comboBoxComentario.Text = comboBoxComentario.Text.ToUpper();
+                comboBoxComentario.Text = comboBoxComentario.Text.RemoveAcentos().ToUpper();
                 this.Close();
             }
         }

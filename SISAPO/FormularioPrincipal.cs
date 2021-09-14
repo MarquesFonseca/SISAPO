@@ -53,6 +53,20 @@ namespace SISAPO
 
         private void FormularioPrincipal_Load(object sender, EventArgs e)
         {
+            string curDir = System.IO.Path.GetDirectoryName(System.AppDomain.CurrentDomain.BaseDirectory.ToString());
+            string nomeArquivo = "SISAPO.exe";
+            string nomeEnderecoArquivo = string.Format(@"{0}\{1}", curDir, nomeArquivo);
+            string DataModificacaoArquivo = string.Empty;
+
+            if (Arquivos.Existe(nomeArquivo, false))
+            {
+                DateTime modification = System.IO.File.GetLastWriteTime(nomeEnderecoArquivo);
+                DataModificacaoArquivo = modification.ToString();
+            }
+
+            this.Text += string.Format(" - Versão:{0}", DataModificacaoArquivo.Replace("/","").Replace(":",""));
+
+
             //não posso usar o banco para as configurações pois o usuário tem habito diferente dos demais. portante tenho que deixar a configuraçao por maquina...
             //using (DAO dao = new DAO(TipoBanco.OleDb, Configuracoes.strConexao))
             //{

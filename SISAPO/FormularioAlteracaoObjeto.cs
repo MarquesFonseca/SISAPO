@@ -24,26 +24,26 @@ namespace SISAPO
         public bool ObjetoJaAtualizado = false;
         public string Comentario = string.Empty;
 
-        public string UnidadePostagem = string.Empty;
-        public string MunicipioPostagem = string.Empty;
-        public string CriacaoPostagem = string.Empty;
-        public string CepDestinoPostagem = string.Empty;
-        public string ARPostagem = string.Empty;
-        public string MPPostagem = string.Empty;
-        public string DataMaxPrevistaEntregaPostagem = string.Empty;
+        //public string UnidadePostagem = string.Empty;
+        //public string MunicipioPostagem = string.Empty;
+        //public string CriacaoPostagem = string.Empty;
+        //public string CepDestinoPostagem = string.Empty;
+        //public string ARPostagem = string.Empty;
+        //public string MPPostagem = string.Empty;
+        //public string DataMaxPrevistaEntregaPostagem = string.Empty;
 
-        public string UnidadeLOEC = string.Empty;
+        //public string UnidadeLOEC = string.Empty;
         public string MunicipioLOEC = string.Empty;
-        public string CriacaoLOEC = string.Empty;
-        public string CarteiroLOEC = string.Empty;
-        public string DistritoLOEC = string.Empty;
-        public string NumeroLOEC = string.Empty;
+        //public string CriacaoLOEC = string.Empty;
+        //public string CarteiroLOEC = string.Empty;
+        //public string DistritoLOEC = string.Empty;
+        //public string NumeroLOEC = string.Empty;
         public string EnderecoLOEC = string.Empty;
         public string BairroLOEC = string.Empty;
         public string LocalidadeLOEC = string.Empty;
 
-        public string SituacaoDestinatarioAusente = string.Empty;
-        public string AgrupadoDestinatarioAusente = string.Empty;
+        //public string SituacaoDestinatarioAusente = string.Empty;
+        //public string AgrupadoDestinatarioAusente = string.Empty;
         public string CoordenadasDestinatarioAusente = string.Empty;
 
         public bool Cancelando = false;
@@ -54,17 +54,15 @@ namespace SISAPO
             Cancelando = false;
             clicouEmAlterar = false;
             InitializeComponent();
-
-            TxtNomeCliente.Focus();
         }
 
         private void FormularioAlteracaoObjeto_Load(object sender, EventArgs e)
         {
-            RetornaDadosPrincipal();
-            RetornaDadosPostagem();
-            RetornaDadosSaiuParaEntrega();
-            RetornaDadosDestinatarioAusente();
-
+            DataRow dr = RetornaDadosBanco(CodigoObjeto);
+            RetornaDadosPrincipal(dr);
+            RetornaDadosPostagem(dr);
+            RetornaDadosSaiuParaEntrega(dr);
+            RetornaDadosDestinatarioAusente(dr);
             CarregaComboBoxComentatio();
 
             tabControlPrincipal.TabPages[0].Focus();
@@ -75,6 +73,46 @@ namespace SISAPO
             TxtNomeCliente.ScrollToCaret();
 
             TxtNomeCliente.Select(TxtNomeCliente.Text.Length, 0);
+        }
+
+        private DataRow RetornaDadosBanco(string codigoObjeto)
+        {
+            DataRow dataRow = null;
+            try
+            {
+                using (DAO dao = new DAO(TipoBanco.OleDb, Configuracoes.strConexao))
+                {
+                    if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return null; }
+
+                    List<Parametros> pr = new List<Parametros>() {
+                        new Parametros() { Nome = "@CodigoObjeto", Tipo = TipoCampo.Text, Valor = CodigoObjeto }
+                    };
+
+                    dataRow = dao.RetornaDataSet(
+                    @"SELECT  Codigo, CodigoObjeto, CodigoLdi, NomeCliente, DataLancamento, DataModificacao, Situacao, Atualizado, ObjetoEntregue, CaixaPostal, UnidadePostagem, MunicipioPostagem, CriacaoPostagem, CepDestinoPostagem, ARPostagem, MPPostagem, DataMaxPrevistaEntregaPostagem, UnidadeLOEC, MunicipioLOEC, CriacaoLOEC, CarteiroLOEC, DistritoLOEC, NumeroLOEC, EnderecoLOEC, BairroLOEC, LocalidadeLOEC, SituacaoDestinatarioAusente, AgrupadoDestinatarioAusente, CoordenadasDestinatarioAusente, Comentario, TipoPostalServico, TipoPostalSiglaCodigo, TipoPostalNomeSiglaCodigo, TipoPostalPrazoDiasCorridosRegulamentado
+                        FROM TabelaObjetosSROLocal WHERE CodigoObjeto IN(@CodigoObjeto)", pr).Tables[0].Rows[0];
+                }
+            }
+            catch (Exception ex)
+            {
+                Mensagens.Erro(ex.Message);
+            }
+            return dataRow;
+        }
+
+        private void RetornaDadosPrincipal(DataRow dr)
+        {
+            TxtCodigoObjeto.Text = dr["CodigoObjeto"].ToString();
+            TxtNomeCliente.Text = dr["NomeCliente"].ToString();
+            TxtNumeroLDI.Text = dr["CodigoLdi"].ToString();
+            TxtDataLancamento.Text = dr["DataLancamento"].ToString();
+            TxtSituacao.Text = dr["Situacao"].ToString();
+            TxtDataBaixa.Text = dr["DataModificacao"].ToString();
+            checkBoxObjetoCaixaPostal.Checked = Convert.ToBoolean(dr["CaixaPostal"]);
+            checkBoxObjetoJaEntregue.Checked = Convert.ToBoolean(dr["ObjetoEntregue"]);
+            checkBoxObjetoJaAtualizado.Checked = Convert.ToBoolean(dr["Atualizado"]);
+            comboBoxComentario.SelectedText = dr["Comentario"].ToString();
+            checkBoxAoRemetente.Checked = Configuracoes.RetornaSeEAoRemetente(dr["NomeCliente"].ToString());
         }
 
         private void CarregaComboBoxComentatio()
@@ -96,82 +134,64 @@ namespace SISAPO
 
 
             //comboBoxComentario.DataSource = ListaItensMotivoBaixa;
-
-
-
-            
         }
 
-        private void RetornaDadosPrincipal()
+        private void RetornaDadosPostagem(DataRow dr)
         {
-            TxtCodigoObjeto.Text = CodigoObjeto;
-            TxtNomeCliente.Text = NomeCliente;
-            TxtNumeroLDI.Text = NumeroLDI;
-            TxtDataLancamento.Text = DataLancamento;
-            TxtSituacao.Text = Situacao;
-            TxtDataBaixa.Text = DataModificacao;
-            checkBoxObjetoCaixaPostal.Checked = ObjetoEmCaixaPostal;
-            checkBoxObjetoJaEntregue.Checked = ObjetoJaEntregue;
-            checkBoxObjetoJaAtualizado.Checked = ObjetoJaAtualizado;
-            comboBoxComentario.SelectedText = Comentario;
-            checkBoxAoRemetente.Checked = Configuracoes.RetornaSeEAoRemetente(NomeCliente);
-        }
-
-        private void RetornaDadosPostagem()
-        {
-            TxtUnidadePostagem.Text = UnidadePostagem;
-            TxtMunicipioPostagem.Text = MunicipioPostagem;
-            TxtCriacaoPostagem.Text = CriacaoPostagem;
-            //TxtCepDestinoPostagem.Text = CepDestinoPostagem;
+            TxtUnidadePostagem.Text = dr["UnidadePostagem"].ToString();
+            TxtMunicipioPostagem.Text = dr["MunicipioPostagem"].ToString();
+            TxtCriacaoPostagem.Text = dr["CriacaoPostagem"].ToString();
+            //TxtCepDestinoPostagem.Text = dr["CepDestinoPostagem"].ToString();
+            string CepDestinoPostagem = dr["CepDestinoPostagem"].ToString();
             TxtCepDestinoPostagem.Text = CepDestinoPostagem.Length >= 8 ? string.Format("{0}{1}", CepDestinoPostagem.Substring(0, 5), CepDestinoPostagem.Substring(5, CepDestinoPostagem.Length - 5)) : CepDestinoPostagem;
-            //TxtDataMaxPrevistaEntregaPostagem.Text = DataMaxPrevistaEntregaPostagem;
+            //TxtDataMaxPrevistaEntregaPostagem.Text = dr["DataMaxPrevistaEntregaPostagem"].ToString(;
             DateTime dataValida; //Verifica Se a data for valida
-            TxtDataMaxPrevistaEntregaPostagem.Text = (DateTime.TryParse(DataMaxPrevistaEntregaPostagem, out dataValida)) ?
-                            DataMaxPrevistaEntregaPostagem.ToDateTime().GetDateTimeFormats()[14].ToUpper() : DataMaxPrevistaEntregaPostagem;
+            TxtDataMaxPrevistaEntregaPostagem.Text = (DateTime.TryParse(dr["DataMaxPrevistaEntregaPostagem"].ToString(), out dataValida)) ?
+                            dr["DataMaxPrevistaEntregaPostagem"].ToDateTime().GetDateTimeFormats()[14].ToUpper() : dr["DataMaxPrevistaEntregaPostagem"].ToString();
             if (string.IsNullOrEmpty(TxtDataMaxPrevistaEntregaPostagem.Text))
             {
                 TxtDataMaxPrevistaEntregaPostagem.Text = "DADO INDISPONÍVEL";
             }
-            TxtARPostagem.Text = ARPostagem;
-            if (ARPostagem == "S")
+            TxtARPostagem.Text = dr["ARPostagem"].ToString();
+            if (dr["ARPostagem"].ToString() == "S")
                 TxtARPostagem.Text = "SIM";
-            if (ARPostagem == "N")
+            if (dr["ARPostagem"].ToString() == "N")
                 TxtARPostagem.Text = "NÃO";
 
-            TxtMPPostagem.Text = MPPostagem;
-            if (MPPostagem == "S")
+            TxtMPPostagem.Text = dr["MPPostagem"].ToString();
+            if (dr["MPPostagem"].ToString() == "S")
                 TxtMPPostagem.Text = "SIM";
-            if (MPPostagem == "N")
+            if (dr["MPPostagem"].ToString() == "N")
                 TxtMPPostagem.Text = "NÃO";
 
             return;
         }
 
-        private void RetornaDadosSaiuParaEntrega()
+        private void RetornaDadosSaiuParaEntrega(DataRow dr)
         {
-            TxtUnidadeLOEC.Text = UnidadeLOEC;
-            TxtMunicipioLOEC.Text = MunicipioLOEC;
-            TxtCriacaoLOEC.Text = CriacaoLOEC;
-            TxtCarteiroLOEC.Text = CarteiroLOEC;
-            TxtDistritoLOEC.Text = DistritoLOEC;
-            TxtNumeroLOEC.Text = NumeroLOEC;
-            TxtEnderecoLOEC.Text = string.Format("{0} - {1} - {2} - {3}", EnderecoLOEC, BairroLOEC, MunicipioLOEC, LocalidadeLOEC);
+            TxtUnidadeLOEC.Text = dr["UnidadeLOEC"].ToString();
+            TxtMunicipioLOEC.Text = dr["MunicipioLOEC"].ToString();
+            TxtCriacaoLOEC.Text = dr["CriacaoLOEC"].ToString();
+            TxtCarteiroLOEC.Text = dr["CarteiroLOEC"].ToString();
+            TxtDistritoLOEC.Text = dr["DistritoLOEC"].ToString();
+            TxtNumeroLOEC.Text = dr["NumeroLOEC"].ToString();
+            TxtEnderecoLOEC.Text = string.Format("{0} - {1} - {2} - {3}", dr["EnderecoLOEC"].ToString(), dr["BairroLOEC"].ToString(), dr["MunicipioLOEC"].ToString(), dr["LocalidadeLOEC"].ToString());
 
-            TxtEndereco.Text = EnderecoLOEC;
-            TxtBairro.Text = BairroLOEC;
-            TxtCidade.Text = MunicipioLOEC.Contains("/") ? MunicipioLOEC.Split('/')[0].Trim() : "";
-            TxtUF.Text = MunicipioLOEC.Contains("/") ? MunicipioLOEC.Split('/')[1].Trim() : "";
-            TxtCep.Text = LocalidadeLOEC;
+            TxtEndereco.Text = dr["EnderecoLOEC"].ToString();
+            TxtBairro.Text = dr["BairroLOEC"].ToString();
+            TxtCidade.Text = dr["MunicipioLOEC"].ToString().Contains(" / ") ? dr["MunicipioLOEC"].ToString().Split('/')[0].Trim() : "";
+            TxtUF.Text = dr["MunicipioLOEC"].ToString().Contains(" / ") ? dr["MunicipioLOEC"].ToString().Split('/')[1].Trim() : "";
+            TxtCep.Text = dr["LocalidadeLOEC"].ToString();
         }
 
-        private void RetornaDadosDestinatarioAusente()
+        private void RetornaDadosDestinatarioAusente(DataRow dr)
         {
-            TxtSituacaoDestinatarioAusente.Text = SituacaoDestinatarioAusente;
-            TxtAgrupadoDestinatarioAusente.Text = AgrupadoDestinatarioAusente;
-            TxtCoordenadasDestinatarioAusente.Text = CoordenadasDestinatarioAusente;
-            TxtEnderecoCoordenadasDestinatarioAusente.Text = string.Format("https://www.google.com.br/maps/search/{0}", CoordenadasDestinatarioAusente);
-            if (string.IsNullOrEmpty(CoordenadasDestinatarioAusente))
-                TxtEnderecoCoordenadasDestinatarioAusente.Text = CoordenadasDestinatarioAusente;
+            TxtSituacaoDestinatarioAusente.Text = dr["SituacaoDestinatarioAusente"].ToString();
+            TxtAgrupadoDestinatarioAusente.Text = dr["AgrupadoDestinatarioAusente"].ToString();
+            TxtCoordenadasDestinatarioAusente.Text = dr["CoordenadasDestinatarioAusente"].ToString();
+            TxtEnderecoCoordenadasDestinatarioAusente.Text = string.Format("https://www.google.com.br/maps/search/{0}", dr["CoordenadasDestinatarioAusente"].ToString());
+            if (string.IsNullOrEmpty(dr["CoordenadasDestinatarioAusente"].ToString()))
+                TxtEnderecoCoordenadasDestinatarioAusente.Text = dr["CoordenadasDestinatarioAusente"].ToString();
         }
 
         private void btnAlterar_Click(object sender, EventArgs e)
@@ -190,13 +210,13 @@ namespace SISAPO
             ObjetoEmCaixaPostal = checkBoxObjetoCaixaPostal.Checked;
             ObjetoJaEntregue = checkBoxObjetoJaEntregue.Checked;
             ObjetoJaAtualizado = checkBoxObjetoJaAtualizado.Checked;
-            Comentario = comboBoxComentario.Text.ToUpper();
+            Comentario = comboBoxComentario.Text.RemoveAcentos().ToUpper();
 
-            EnderecoLOEC = TxtEndereco.Text.ToUpper();
-            BairroLOEC = TxtBairro.Text.ToUpper();
-            MunicipioLOEC = string.Format("{0} / {1}", TxtCidade.Text.ToUpper(), TxtUF.Text.ToUpper());
+            EnderecoLOEC = TxtEndereco.Text.RemoveAcentos().ToUpper();
+            BairroLOEC = TxtBairro.Text.RemoveAcentos().ToUpper();
+            MunicipioLOEC = string.Format("{0} / {1}", TxtCidade.Text.RemoveAcentos().ToUpper(), TxtUF.Text.RemoveAcentos().ToUpper());
             //TxtUF.Text = MunicipioLOEC.Contains("/") ? MunicipioLOEC.Split('/')[1].Trim() : "";
-            LocalidadeLOEC = TxtCep.Text.ToUpper();
+            LocalidadeLOEC = TxtCep.Text.RemoveAcentos().ToUpper();
 
             #region TiposPostais
             bool SeEAoRemetente = checkBoxAoRemetente.Checked;

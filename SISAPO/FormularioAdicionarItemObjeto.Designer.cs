@@ -31,16 +31,19 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormularioAdicionarItemObjeto));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.CodigoObjeto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DataLancamento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DataModificacao = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Situacao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnConfirmar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.TxtObjetoAtual = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.comboBoxComentario = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.CodigoObjeto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DataLancamento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DataModificacao = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Situacao = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Comentario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -60,43 +63,15 @@
             this.CodigoObjeto,
             this.DataLancamento,
             this.DataModificacao,
-            this.Situacao});
+            this.Situacao,
+            this.Comentario});
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 63);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 123);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(615, 221);
+            this.dataGridView1.Size = new System.Drawing.Size(615, 161);
             this.dataGridView1.TabIndex = 1;
-            // 
-            // CodigoObjeto
-            // 
-            this.CodigoObjeto.DataPropertyName = "CodigoObjeto";
-            this.CodigoObjeto.HeaderText = "Código Objeto";
-            this.CodigoObjeto.Name = "CodigoObjeto";
-            this.CodigoObjeto.ReadOnly = true;
-            // 
-            // DataLancamento
-            // 
-            this.DataLancamento.DataPropertyName = "DataLancamento";
-            this.DataLancamento.HeaderText = "Data lançamento";
-            this.DataLancamento.Name = "DataLancamento";
-            this.DataLancamento.ReadOnly = true;
-            // 
-            // DataModificacao
-            // 
-            this.DataModificacao.DataPropertyName = "DataModificacao";
-            this.DataModificacao.HeaderText = "Data modificação";
-            this.DataModificacao.Name = "DataModificacao";
-            this.DataModificacao.ReadOnly = true;
-            // 
-            // Situacao
-            // 
-            this.Situacao.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Situacao.DataPropertyName = "Situacao";
-            this.Situacao.HeaderText = "Situação baixa";
-            this.Situacao.Name = "Situacao";
-            this.Situacao.ReadOnly = true;
             // 
             // btnConfirmar
             // 
@@ -138,10 +113,10 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(18, 11);
+            this.label2.Location = new System.Drawing.Point(15, 70);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(74, 13);
-            this.label2.TabIndex = 0;
+            this.label2.TabIndex = 2;
             this.label2.Text = "Código Objeto";
             // 
             // TxtObjetoAtual
@@ -149,22 +124,83 @@
             this.TxtObjetoAtual.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TxtObjetoAtual.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.TxtObjetoAtual.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtObjetoAtual.Location = new System.Drawing.Point(21, 27);
+            this.TxtObjetoAtual.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.TxtObjetoAtual.Location = new System.Drawing.Point(15, 86);
             this.TxtObjetoAtual.Name = "TxtObjetoAtual";
-            this.TxtObjetoAtual.Size = new System.Drawing.Size(569, 24);
-            this.TxtObjetoAtual.TabIndex = 1;
+            this.TxtObjetoAtual.Size = new System.Drawing.Size(588, 26);
+            this.TxtObjetoAtual.TabIndex = 3;
             this.TxtObjetoAtual.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtObjetoAtual_KeyDown);
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.comboBoxComentario);
             this.panel1.Controls.Add(this.TxtObjetoAtual);
+            this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(615, 63);
+            this.panel1.Size = new System.Drawing.Size(615, 123);
             this.panel1.TabIndex = 0;
+            // 
+            // comboBoxComentario
+            // 
+            this.comboBoxComentario.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxComentario.FormattingEnabled = true;
+            this.comboBoxComentario.Location = new System.Drawing.Point(15, 31);
+            this.comboBoxComentario.Name = "comboBoxComentario";
+            this.comboBoxComentario.Size = new System.Drawing.Size(296, 28);
+            this.comboBoxComentario.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(15, 15);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(60, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Comentário";
+            // 
+            // CodigoObjeto
+            // 
+            this.CodigoObjeto.DataPropertyName = "CodigoObjeto";
+            this.CodigoObjeto.HeaderText = "Código Objeto";
+            this.CodigoObjeto.Name = "CodigoObjeto";
+            this.CodigoObjeto.ReadOnly = true;
+            // 
+            // DataLancamento
+            // 
+            this.DataLancamento.DataPropertyName = "DataLancamento";
+            this.DataLancamento.HeaderText = "Data lançamento";
+            this.DataLancamento.Name = "DataLancamento";
+            this.DataLancamento.ReadOnly = true;
+            this.DataLancamento.Visible = false;
+            // 
+            // DataModificacao
+            // 
+            this.DataModificacao.DataPropertyName = "DataModificacao";
+            this.DataModificacao.HeaderText = "Data modificação";
+            this.DataModificacao.Name = "DataModificacao";
+            this.DataModificacao.ReadOnly = true;
+            this.DataModificacao.Visible = false;
+            // 
+            // Situacao
+            // 
+            this.Situacao.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Situacao.DataPropertyName = "Situacao";
+            this.Situacao.HeaderText = "Situação baixa";
+            this.Situacao.Name = "Situacao";
+            this.Situacao.ReadOnly = true;
+            this.Situacao.Visible = false;
+            // 
+            // Comentario
+            // 
+            this.Comentario.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.Comentario.DataPropertyName = "Comentario";
+            this.Comentario.HeaderText = "Comentário";
+            this.Comentario.Name = "Comentario";
+            this.Comentario.ReadOnly = true;
+            this.Comentario.Width = 85;
             // 
             // FormularioAdicionarItemObjeto
             // 
@@ -195,15 +231,18 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CodigoObjeto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DataLancamento;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DataModificacao;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Situacao;
         private System.Windows.Forms.Button btnConfirmar;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label2;
         public System.Windows.Forms.TextBox TxtObjetoAtual;
         private System.Windows.Forms.Panel panel1;
+        public System.Windows.Forms.ComboBox comboBoxComentario;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CodigoObjeto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DataLancamento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DataModificacao;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Situacao;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Comentario;
     }
 }

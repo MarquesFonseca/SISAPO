@@ -21,7 +21,8 @@ namespace SISAPO
         public FormularioCadastroObjetos()
         {
             InitializeComponent();
-            tabControl1.Visible = false;
+            //tabControl1.Visible = false;
+            this.BtnGravar.Enabled = false;
             this.backgroundWorker1 = new BackgroundWorker();
             this.backgroundWorker1.DoWork += new DoWorkEventHandler(bw_DoWork);
             this.backgroundWorker1.ProgressChanged += new ProgressChangedEventHandler(bw_ProgressChanged);
@@ -135,7 +136,7 @@ namespace SISAPO
                     progressBar1.Value = 0;
                     string tempTXT = textoColadoAreaTransferencia.ToString().Replace("\t", " ");
                     while (tempTXT.IndexOf("  ") >= 0) tempTXT = tempTXT.Replace("  ", " ");
-                    textBox1.Text = tempTXT;
+                    //textBox1.Text = tempTXT;
 
                     LblMensagem.Text = "Certifique-se que o conteúdo na caixa de texto é o mesmo desejado!";
 
@@ -145,16 +146,16 @@ namespace SISAPO
                     if (listaObjetos.Rows.Count == 0)
                     {
                         LblQuantidadeImportados.Text = "";
-                        tabControl1.Visible = false;
+                        //tabControl1.Visible = false;
                         this.BtnGravar.Enabled = false;
                         label2.Text = "";
                         progressBar1.Visible = false;
                     }
                     if (listaObjetos.Rows.Count > 0)
                     {
-                        LblQuantidadeImportados.Text = string.Format("Listados para importação: '{0}' objetos", listaObjetos.Rows.Count);
+                        LblQuantidadeImportados.Text = string.Format("Quantidade de objetos para importação: '{0}' objetos", listaObjetos.Rows.Count);
                         dataGridView1.DataSource = listaObjetos;
-                        tabControl1.Visible = true;
+                        //tabControl1.Visible = true;
                         this.BtnGravar.Enabled = true;
                         label2.Text = "Barra de progresso";
                         progressBar1.Visible = true;
@@ -183,7 +184,7 @@ namespace SISAPO
                     {
                         StringBuilder arquivo = new StringBuilder();
                         arquivo.Append(File.ReadAllText(file).ToString());
-                        textBox1.Text = arquivo.ToString();
+                        //textBox1.Text = arquivo.ToString();
                         BtnGravar.Focus();
                     }
                     catch (IOException) { }
@@ -200,9 +201,9 @@ namespace SISAPO
                 //dataGridView1.DataSource = listaObjetos;
                 if (listaObjetos.Rows.Count == 0)
                 {
-                    Mensagens.Informa("Não foi possível gravar. O campo está vazio."); return;
+                    Mensagens.Informa("Não foi possível importar. Nenhuma lista encontrada."); return;
                 }
-                textBox1.Enabled = false;
+                //textBox1.Enabled = false;
                 //int contador = 0;
                 progressBar1.Value = 0;
                 label2.Text = "Barra de progresso";
@@ -237,7 +238,8 @@ namespace SISAPO
                 string linhaItemDataLancamento = item["DataLancamento"].ToString();
                 string linhaItemDataModificacao = item["DataModificacao"].ToString();
                 string linhaItemSituacao = item["Situacao"].ToString();
-                temp = string.Format("{0}-{1}-{2}-{3}", linhaItemCodigoObjeto, linhaItemDataLancamento, linhaItemDataModificacao, linhaItemSituacao);
+                string linhaItemComentario = item["Comentario"].ToString();
+                temp = string.Format("{0}-{1}-{2}-{3}", linhaItemCodigoObjeto, linhaItemDataLancamento, linhaItemDataModificacao, linhaItemSituacao, linhaItemComentario);
 
                 contador++;
                 int progresso = (contador * 100) / listaObjetos.Rows.Count;
@@ -283,23 +285,28 @@ namespace SISAPO
                         TipoPostalPrazoDiasCorridosRegulamentado = Configuracoes.RetornaTipoPostalPrazoDiasCorridosRegulamentado(CodigoObjetoAtual, SeEAoRemetente, SeECaixaPostal, ref TipoPostalServico, ref TipoPostalSiglaCodigo, ref TipoPostalNomeSiglaCodigo);
 
                         //existe na base de dados
-                        dao.ExecutaSQL(string.Format("UPDATE TabelaObjetosSROLocal SET DataLancamento = @DataLancamento, DataModificacao = @DataModificacao, Situacao = @Situacao, Atualizado = @Atualizado, ObjetoEntregue = @ObjetoEntregue, TipoPostalServico = @TipoPostalServico, TipoPostalSiglaCodigo = @TipoPostalSiglaCodigo, TipoPostalNomeSiglaCodigo = @TipoPostalNomeSiglaCodigo, TipoPostalPrazoDiasCorridosRegulamentado = @TipoPostalPrazoDiasCorridosRegulamentado WHERE (CodigoObjeto = @CodigoObjeto)"), new List<Parametros>(){
-                                            new Parametros("@DataLancamento", TipoCampo.Text, string.IsNullOrEmpty(linhaItemDataLancamento) ? DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss") : linhaItemDataLancamento),
+                        if (string.IsNullOrEmpty(linhaItemDataModificacao))//se não tem modificação... não alterar o campo situação e data modificação.
+                        {
+                            dao.ExecutaSQL(string.Format("UPDATE TabelaObjetosSROLocal SET Comentario = @Comentario, Atualizado = @Atualizado WHERE (CodigoObjeto = @CodigoObjeto)"), new List<Parametros>(){
+                                            new Parametros("@Comentario", TipoCampo.Text, linhaItemComentario),
+                                            new Parametros("@Atualizado",TipoCampo.Boolean, jaCadastrado.Tables[0].Rows[0]["NomeCliente"].ToString() == "" ? false : true),
+                                            new Parametros("@CodigoObjeto", TipoCampo.Text, linhaItemCodigoObjeto)});
+                        }
+                        if (!string.IsNullOrEmpty(linhaItemDataModificacao))//se não tem modificação... não alterar o campo situação e data modificação.
+                        {
+                            dao.ExecutaSQL(string.Format("UPDATE TabelaObjetosSROLocal SET DataModificacao = @DataModificacao, Situacao = @Situacao, Comentario = @Comentario, Atualizado = @Atualizado, ObjetoEntregue = @ObjetoEntregue WHERE (CodigoObjeto = @CodigoObjeto)"), new List<Parametros>(){
                                             new Parametros("@DataModificacao", TipoCampo.Text, linhaItemDataModificacao),
                                             new Parametros("@Situacao", TipoCampo.Text, linhaItemSituacao),
+                                            new Parametros("@Comentario", TipoCampo.Text, linhaItemComentario),
                                             new Parametros("@Atualizado",TipoCampo.Boolean, jaCadastrado.Tables[0].Rows[0]["NomeCliente"].ToString() == "" ? false : true),
                                             new Parametros("@ObjetoEntregue", TipoCampo.Boolean, linhaItemDataModificacao == "" ? false : true),
 
-                                            new Parametros("@TipoPostalServico", TipoCampo.Text, TipoPostalServico == "" ? (object)DBNull.Value : TipoPostalServico),
-                                            new Parametros("@TipoPostalSiglaCodigo", TipoCampo.Text, TipoPostalSiglaCodigo == "" ? (object)DBNull.Value : TipoPostalSiglaCodigo),
-                                            new Parametros("@TipoPostalNomeSiglaCodigo", TipoCampo.Text, TipoPostalNomeSiglaCodigo == "" ? (object)DBNull.Value : TipoPostalNomeSiglaCodigo),
-                                            new Parametros("@TipoPostalPrazoDiasCorridosRegulamentado", TipoCampo.Text, TipoPostalPrazoDiasCorridosRegulamentado == "" ? "7" : TipoPostalPrazoDiasCorridosRegulamentado),
-
                                             new Parametros("@CodigoObjeto", TipoCampo.Text, linhaItemCodigoObjeto)});
+                        }
                     }
                     else//não existe na base de dados
                     {
-                        dao.ExecutaSQL("INSERT INTO TabelaObjetosSROLocal (CodigoObjeto, CodigoLdi, NomeCliente, DataLancamento, DataModificacao, Situacao, Atualizado, ObjetoEntregue, CaixaPostal) VALUES (@CodigoObjeto, @CodigoLdi, @NomeCliente, @DataLancamento, @DataModificacao, @Situacao, @Atualizado, @ObjetoEntregue, @CaixaPostal)",
+                        dao.ExecutaSQL("INSERT INTO TabelaObjetosSROLocal (CodigoObjeto, CodigoLdi, NomeCliente, DataLancamento, DataModificacao, Situacao, Comentario, Atualizado, ObjetoEntregue, CaixaPostal) VALUES (@CodigoObjeto, @CodigoLdi, @NomeCliente, @DataLancamento, @DataModificacao, @Situacao, @Comentario, @Atualizado, @ObjetoEntregue, @CaixaPostal)",
                         new List<Parametros>() {
                                     new Parametros() { Nome = "CodigoObjeto", Tipo = TipoCampo.Text, Valor = linhaItemCodigoObjeto },
                                     new Parametros() { Nome = "CodigoLdi", Tipo = TipoCampo.Text, Valor = "" },
@@ -307,6 +314,7 @@ namespace SISAPO
                                     new Parametros() { Nome = "DataLancamento", Tipo = TipoCampo.Text, Valor = string.IsNullOrEmpty(linhaItemDataLancamento) ? DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss") : linhaItemDataLancamento},
                                     new Parametros() { Nome = "DataModificacao", Tipo = TipoCampo.Text, Valor = linhaItemDataModificacao },
                                     new Parametros() { Nome = "Situacao", Tipo = TipoCampo.Text, Valor = linhaItemSituacao },
+                                    new Parametros() { Nome = "Comentario", Tipo = TipoCampo.Text, Valor = linhaItemComentario },
                                     new Parametros() { Nome = "Atualizado", Tipo = TipoCampo.Boolean, Valor = false },
                                     new Parametros() { Nome = "ObjetoEntregue", Tipo = TipoCampo.Boolean, Valor = (linhaItemDataModificacao == "" ? false : true) },
                                     new Parametros() { Nome = "CaixaPostal", Tipo = TipoCampo.Boolean, Valor = false },//considera todos com não caixa postal
@@ -329,7 +337,7 @@ namespace SISAPO
 
         private void bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            textBox1.Enabled = true;
+            //textBox1.Enabled = true;
             if (e.Cancelled)
             {
                 Mensagens.Informa("Rotina Cancelada!!", MessageBoxIcon.Hand, MessageBoxButtons.OK);
@@ -340,7 +348,7 @@ namespace SISAPO
                 FormularioPrincipal.RetornaComponentesFormularioPrincipal().AtualizaDataHoraUltimaAtualizacaoImportacao();
                 this.label2.Text = "Total atualizados: " + e.Result.ToString();
                 this.BtnGravar.Enabled = true;
-                this.textBox1.Enabled = true;
+                //this.textBox1.Enabled = true;
                 this.BtnAdicionarItem.Enabled = true;
             }
 
@@ -405,10 +413,11 @@ namespace SISAPO
                             listaObjetos.Columns.Add("DataLancamento", typeof(DateTime));
                             listaObjetos.Columns.Add("DataModificacao", typeof(string));
                             listaObjetos.Columns.Add("Situacao", typeof(string));
+                            listaObjetos.Columns.Add("Comentario", typeof(string));
                         }
                         bool existe = listaObjetos.AsEnumerable().Any(t => t["CodigoObjeto"].ToString() == item["CodigoObjeto"].ToString());
                         if (!existe)
-                            listaObjetos.Rows.Add(item["CodigoObjeto"].ToString(), item["DataLancamento"], item["DataModificacao"].ToString(), item["Situacao"].ToString());
+                            listaObjetos.Rows.Add(item["CodigoObjeto"].ToString(), item["DataLancamento"], item["DataModificacao"].ToString(), item["Situacao"].ToString(), item["Comentario"].ToString());
 
                         listaObjetos.DefaultView.Sort = "DataLancamento DESC";
                         listaObjetos = listaObjetos.DefaultView.ToTable();
@@ -417,16 +426,16 @@ namespace SISAPO
                     if (listaObjetos.Rows.Count == 0)
                     {
                         LblQuantidadeImportados.Text = "";
-                        tabControl1.Visible = false;
+                        //tabControl1.Visible = false;
                         this.BtnGravar.Enabled = false;
                         label2.Text = "";
                         progressBar1.Visible = false;
                     }
                     if (listaObjetos.Rows.Count > 0)
                     {
-                        LblQuantidadeImportados.Text = string.Format("Listados para importação: '{0}' objetos", listaObjetos.Rows.Count);
+                        LblQuantidadeImportados.Text = string.Format("Quantidade de objetos para importação: '{0}' objetos", listaObjetos.Rows.Count);
                         dataGridView1.DataSource = listaObjetos;
-                        tabControl1.Visible = true;
+                        //tabControl1.Visible = true;
                         this.BtnGravar.Enabled = true;
                         label2.Text = "Barra de progresso";
                         progressBar1.Visible = true;
@@ -436,6 +445,16 @@ namespace SISAPO
 
                 }
             }
+        }
+
+        private void BtnLimparListaAtual_Click(object sender, EventArgs e)
+        {
+            dataGridView1.DataSource = listaObjetos = new DataTable();
+            LblQuantidadeImportados.Text = "";
+            //tabControl1.Visible = false;
+            this.BtnGravar.Enabled = false;
+            label2.Text = "";
+            progressBar1.Visible = false;
         }
     }
 }

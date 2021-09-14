@@ -667,7 +667,7 @@ namespace SISAPO
                     //(nomeCliente.Contains(T["NomeCliente"].ToString()) && Convert.ToBoolean(T["ObjetoEntregue"]) == false) ||
                     (T["EnderecoLOEC"].ToString().Contains(enderecoLOEC) && Convert.ToBoolean(T["ObjetoEntregue"]) == false));
 
-                     groupBoxSemelhantes.Text = string.Format("Semelhantes - QTD.: {0}", Resultado.Count());
+                    groupBoxSemelhantes.Text = string.Format("Semelhantes - QTD.: {0}", Resultado.Count());
                     if (Resultado.Count() <= 1)
                     {
                         splitContainer3.Panel2Collapsed = true;
@@ -1305,88 +1305,28 @@ namespace SISAPO
         {
             try
             {
-                if (currentRow == null) return;
-
                 if (!DAO.TestaConexao(ClassesDiversas.Configuracoes.strConexao, TipoBanco.OleDb))
                 {
                     FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao;
                     return;
                 }
+                if (currentRow == null) return;
+                if (dataGridView1.SelectedRows.Count == 0) return;
 
-                string CodigoObjeto = currentRow["CodigoObjeto"].ToString();//string CodigoObjeto,
-                string NomeCliente = currentRow["NomeCliente"].ToString();//string NomeCliente,
-                string NumeroLDI = currentRow["CodigoLdi"].ToString();//string CodigoLdi,
-                string DataLancamento = currentRow["DataLancamento"].ToString();
-                string Situacao = currentRow["Situacao"].ToString();//string Situacao,
-                string DataModificacao = currentRow["DataModificacao"].ToString();
-                int ObjetoEmCaixaPostal = currentRow["CaixaPostal"].ToInt();//bool CaixaPostal,
-                int ObjetoJaEntregue = currentRow["ObjetoEntregue"].ToInt();//bool ObjetoEntregue,
-                int ObjetoJaAtualizado = currentRow["Atualizado"].ToInt();//bool Atualizado,
-                string Comentario = currentRow["Comentario"].ToString();//string Comentario,
-                NomeCliente = NomeCliente.Replace(string.Format(" - {0}", Comentario), "");//string NomeCliente,
+                string CodigoObjetoSelecionado = "";
+                for (int i = this.dataGridView1.SelectedRows.Count - 1; i >= 0; i--)
+                {
+                    CodigoObjetoSelecionado = this.dataGridView1.SelectedRows[i].Cells["codigoObjetoDataGridViewTextBoxColumn"].Value.ToString();
+                    break;
+                }
 
-                string UnidadePostagem = currentRow["UnidadePostagem"].ToString();//UnidadePostagem
-                string MunicipioPostagem = currentRow["MunicipioPostagem"].ToString();//MunicipioPostagem
-                string CriacaoPostagem = currentRow["CriacaoPostagem"].ToString();//CriacaoPostagem
-                string CepDestinoPostagem = currentRow["CepDestinoPostagem"].ToString();//CepDestinoPostagem
-                string ARPostagem = currentRow["ARPostagem"].ToString();//ARPostagem
-                string MPPostagem = currentRow["MPPostagem"].ToString();//MPPostagem
-                string DataMaxPrevistaEntregaPostagem = currentRow["DataMaxPrevistaEntregaPostagem"].ToString();//DataMaxPrevistaEntregaPostagem
-
-                string UnidadeLOEC = currentRow["UnidadeLOEC"].ToString();//UnidadeLOEC
-                string MunicipioLOEC = currentRow["MunicipioLOEC"].ToString();//MunicipioLOEC
-                string CriacaoLOEC = currentRow["CriacaoLOEC"].ToString();//CriacaoLOEC
-                string CarteiroLOEC = currentRow["CarteiroLOEC"].ToString();//CarteiroLOEC
-                string DistritoLOEC = currentRow["DistritoLOEC"].ToString();//DistritoLOEC
-                string NumeroLOEC = currentRow["NumeroLOEC"].ToString();//NumeroLOEC
-                string EnderecoLOEC = currentRow["EnderecoLOEC"].ToString();//EnderecoLOEC
-                string BairroLOEC = currentRow["BairroLOEC"].ToString();//BairroLOEC
-                string LocalidadeLOEC = currentRow["LocalidadeLOEC"].ToString();//LocalidadeLOEC
-
-                string SituacaoDestinatarioAusente = currentRow["SituacaoDestinatarioAusente"].ToString();//SituacaoDestinatarioAusente
-                string AgrupadoDestinatarioAusente = currentRow["AgrupadoDestinatarioAusente"].ToString();//AgrupadoDestinatarioAusente
-                string CoordenadasDestinatarioAusente = currentRow["CoordenadasDestinatarioAusente"].ToString();//CoordenadasDestinatarioAusente
-
-                FormularioAlteracaoObjeto frm = new FormularioAlteracaoObjeto();
-                frm.CodigoObjeto = CodigoObjeto;
-                frm.NomeCliente = NomeCliente;
-                frm.NumeroLDI = NumeroLDI;
-                frm.DataLancamento = DataLancamento;
-                frm.Situacao = Situacao;
-                frm.DataModificacao = DataModificacao;
-                frm.ObjetoEmCaixaPostal = ObjetoEmCaixaPostal == 0 ? false : true;
-                frm.ObjetoJaEntregue = ObjetoJaEntregue == 0 ? false : true;
-                frm.ObjetoJaAtualizado = ObjetoJaAtualizado == 0 ? false : true;
-                frm.Comentario = Comentario;
-
-                frm.UnidadePostagem = UnidadePostagem;
-                frm.MunicipioPostagem = MunicipioPostagem;
-                frm.CriacaoPostagem = CriacaoPostagem;
-                frm.CepDestinoPostagem = CepDestinoPostagem;
-                frm.ARPostagem = ARPostagem;
-                frm.MPPostagem = MPPostagem;
-                frm.DataMaxPrevistaEntregaPostagem = DataMaxPrevistaEntregaPostagem;
-
-                frm.UnidadeLOEC = UnidadeLOEC;
-                frm.MunicipioLOEC = MunicipioLOEC;
-                frm.CriacaoLOEC = CriacaoLOEC;
-                frm.CarteiroLOEC = CarteiroLOEC;
-                frm.DistritoLOEC = DistritoLOEC;
-                frm.NumeroLOEC = NumeroLOEC;
-                frm.EnderecoLOEC = EnderecoLOEC;
-                frm.BairroLOEC = BairroLOEC;
-                frm.LocalidadeLOEC = LocalidadeLOEC;
-
-                frm.SituacaoDestinatarioAusente = SituacaoDestinatarioAusente;
-                frm.AgrupadoDestinatarioAusente = AgrupadoDestinatarioAusente;
-                frm.CoordenadasDestinatarioAusente = CoordenadasDestinatarioAusente;
-
+                FormularioAlteracaoObjeto frm = new FormularioAlteracaoObjeto() { CodigoObjeto = CodigoObjetoSelecionado };
                 frm.ShowDialog();
 
                 if (frm.Cancelando) return;
 
                 currentRow["CodigoObjeto"] = frm.CodigoObjeto;//string CodigoObjeto,
-                currentRow["NomeCliente"] = frm.NomeCliente.ToUpper().RemoveAcentos();//string NomeCliente,
+                currentRow["NomeCliente"] = string.Format("{0} - {1}", frm.NomeCliente.ToUpper().RemoveAcentos(), frm.Comentario);//string NomeCliente,
                 currentRow["CodigoLdi"] = frm.NumeroLDI;//string CodigoLdi,
                 currentRow["DataLancamento"] = frm.DataLancamento;
                 currentRow["Situacao"] = frm.Situacao;//string Situacao,
@@ -1418,9 +1358,6 @@ namespace SISAPO
                 //string AgrupadoDestinatarioAusente,
                 //string CoordenadasDestinatarioAusente
 
-                //waitForm.Show(this);
-
-
                 bool SeEAoRemetente = frm.checkBoxAoRemetente.Checked;
 
                 string TipoPostalServico = string.Empty;
@@ -1428,10 +1365,10 @@ namespace SISAPO
                 string TipoPostalNomeSiglaCodigo = string.Empty;
                 string TipoPostalPrazoDiasCorridosRegulamentado = string.Empty;
 
-                TipoPostalPrazoDiasCorridosRegulamentado = Configuracoes.RetornaTipoPostalPrazoDiasCorridosRegulamentado(CodigoObjeto, SeEAoRemetente, frm.ObjetoEmCaixaPostal, ref TipoPostalServico, ref TipoPostalSiglaCodigo, ref TipoPostalNomeSiglaCodigo);
+                TipoPostalPrazoDiasCorridosRegulamentado = Configuracoes.RetornaTipoPostalPrazoDiasCorridosRegulamentado(CodigoObjetoSelecionado, SeEAoRemetente, frm.ObjetoEmCaixaPostal, ref TipoPostalServico, ref TipoPostalSiglaCodigo, ref TipoPostalNomeSiglaCodigo);
                 if (string.IsNullOrEmpty(TipoPostalPrazoDiasCorridosRegulamentado))
                 {
-                    Mensagens.Erro(string.Format("Não foi encontrado o Tipo Postal [ {0} ].\nUma gestão de tipos postais é necessário.", CodigoObjeto.Substring(0, 2)));
+                    Mensagens.Erro(string.Format("Não foi encontrado o Tipo Postal [ {0} ].\nUma gestão de tipos postais é necessário.", CodigoObjetoSelecionado.Substring(0, 2)));
                     //continua mesmo não tendo o tipo postal desejado....
                 }
 
@@ -1440,21 +1377,10 @@ namespace SISAPO
                 currentRow["TipoPostalNomeSiglaCodigo"] = TipoPostalNomeSiglaCodigo;//string TipoPostalNomeSiglaCodigo,
                 currentRow["TipoPostalPrazoDiasCorridosRegulamentado"] = TipoPostalPrazoDiasCorridosRegulamentado;//string TipoPostalPrazoDiasCorridosRegulamentado,
 
-
-
-
-                this.tabelaObjetosSROLocalTableAdapter.Connection.ConnectionString = ClassesDiversas.Configuracoes.strConexao;
-                //this.tabelaObjetosSROLocalTableAdapter.Update(dataSetTabelaObjetosSROLocal.TabelaObjetosSROLocal);
-                this.tabelaObjetosSROLocalTableAdapter.Update(currentRow);
-                currentRow["NomeCliente"] = string.Format("{0} - {1}", frm.NomeCliente.ToUpper().RemoveAcentos(), frm.Comentario);//string NomeCliente,
-
-
-
                 int position = this.BindingContext[tabelaObjetosSROLocalBindingSource].Position;
                 if (position > -1) this.BindingContext[tabelaObjetosSROLocalBindingSource].Position = position;
 
                 FormularioPrincipal.RetornaComponentesFormularioPrincipal().BuscaNovoStatusQuantidadeNaoAtualizados();
-                //waitForm.Close();
 
                 FormularioConsulta_Activated(sender, e);
             }
@@ -1756,21 +1682,18 @@ namespace SISAPO
 
             if (ListaGridSelecaoAtual.Count == 0) return;
 
-            FormularioConsulta.RetornaComponentesFormularioConsulta().AlterarComentarioItensSelecionados(ListaGridSelecaoAtual, formularioAlterarComentarioItensSelecionados.comboBoxComentario.Text);
+            FormularioConsulta.RetornaComponentesFormularioConsulta().AlterarComentarioItensSelecionados(ListaGridSelecaoAtual, formularioAlterarComentarioItensSelecionados.comboBoxComentario.Text.RemoveAcentos().ToUpper());
 
-            if (Mensagens.Pergunta("Itens atualizado com sucesso! Deseja atualizar grid?") == System.Windows.Forms.DialogResult.Yes)
-            {
-                if (Application.OpenForms["FormularioConsulta"] != null) //verifica se está aberto
-                    FormularioConsulta.RetornaComponentesFormularioConsulta().ConsultaTodosNaoEntreguesOrdenadoNome();
+            if (Application.OpenForms["FormularioConsulta"] != null) //verifica se está aberto
+                FormularioConsulta.RetornaComponentesFormularioConsulta().ConsultaTodosNaoEntreguesOrdenadoNome();
 
-                FormularioPrincipal.RetornaComponentesFormularioPrincipal().BuscaNovoStatusQuantidadeNaoAtualizados();
-            }
+            FormularioPrincipal.RetornaComponentesFormularioPrincipal().BuscaNovoStatusQuantidadeNaoAtualizados();
         }
 
         public void AlterarComentarioItensSelecionados(List<string> ListaCodigosGrid, string Comentario)
         {
             try
-            {                
+            {
                 foreach (string itemCodigo in ListaCodigosGrid)
                 {
                     using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
@@ -1801,7 +1724,7 @@ namespace SISAPO
 
         private void Btn1ImprimirLDI_Click(object sender, EventArgs e)
         {
-            if (this.dataGridView1.SelectedRows.Count == 0) return; 
+            if (this.dataGridView1.SelectedRows.Count == 0) return;
             FormularioPrincipal.RetornaComponentesFormularioPrincipal().modeloLDIToolStripMenuItem_Click(sender, e);
         }
 

@@ -30,7 +30,6 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormularioCadastroObjetos));
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.BtnGravar = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
@@ -40,45 +39,33 @@
             this.label2 = new System.Windows.Forms.Label();
             this.BtnCancelar = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.BtnFechar = new System.Windows.Forms.Button();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPageListaObjetosImportados = new System.Windows.Forms.TabPage();
+            this.LblQuantidadeImportados = new System.Windows.Forms.Label();
+            this.BtnAdicionarItem = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.BtnLimparListaAtual = new System.Windows.Forms.Button();
             this.CodigoObjeto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DataLancamento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DataModificacao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Situacao = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BtnFechar = new System.Windows.Forms.Button();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPageListaObjetosImportados = new System.Windows.Forms.TabPage();
-            this.tabPageConteudoSROImportado = new System.Windows.Forms.TabPage();
-            this.LblQuantidadeImportados = new System.Windows.Forms.Label();
-            this.BtnAdicionarItem = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.Comentario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPageListaObjetosImportados.SuspendLayout();
-            this.tabPageConteudoSROImportado.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // textBox1
-            // 
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(3, 3);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox1.Size = new System.Drawing.Size(725, 264);
-            this.textBox1.TabIndex = 1;
             // 
             // BtnGravar
             // 
             this.BtnGravar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnGravar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnGravar.Location = new System.Drawing.Point(526, 28);
+            this.BtnGravar.Location = new System.Drawing.Point(557, 320);
             this.BtnGravar.Name = "BtnGravar";
-            this.BtnGravar.Size = new System.Drawing.Size(126, 38);
+            this.BtnGravar.Size = new System.Drawing.Size(190, 54);
             this.BtnGravar.TabIndex = 4;
-            this.BtnGravar.Text = "&Importar lista";
+            this.BtnGravar.Text = "&Iniciar importação da lista atual";
             this.BtnGravar.UseVisualStyleBackColor = true;
             this.BtnGravar.Click += new System.EventHandler(this.BtnGravar_Click);
             // 
@@ -86,9 +73,9 @@
             // 
             this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.progressBar1.Location = new System.Drawing.Point(12, 32);
+            this.progressBar1.Location = new System.Drawing.Point(12, 29);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(247, 31);
+            this.progressBar1.Size = new System.Drawing.Size(399, 36);
             this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.progressBar1.TabIndex = 1;
             // 
@@ -98,15 +85,14 @@
             // 
             // BtnColarConteudoJaCopiado
             // 
-            this.BtnColarConteudoJaCopiado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnColarConteudoJaCopiado.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnColarConteudoJaCopiado.Image = global::SISAPO.Properties.Resources.icons8_colar_26;
             this.BtnColarConteudoJaCopiado.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnColarConteudoJaCopiado.Location = new System.Drawing.Point(499, 12);
+            this.BtnColarConteudoJaCopiado.Location = new System.Drawing.Point(12, 33);
             this.BtnColarConteudoJaCopiado.Name = "BtnColarConteudoJaCopiado";
-            this.BtnColarConteudoJaCopiado.Size = new System.Drawing.Size(252, 53);
+            this.BtnColarConteudoJaCopiado.Size = new System.Drawing.Size(325, 53);
             this.BtnColarConteudoJaCopiado.TabIndex = 2;
-            this.BtnColarConteudoJaCopiado.Text = "&Colar conteúdo já copiado";
+            this.BtnColarConteudoJaCopiado.Text = "&Colar conteúdo já copiado do SRO";
             this.BtnColarConteudoJaCopiado.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BtnColarConteudoJaCopiado.UseVisualStyleBackColor = true;
             this.BtnColarConteudoJaCopiado.Click += new System.EventHandler(this.BtnColarConteudoJaCopiado_Click);
@@ -138,11 +124,11 @@
             // 
             this.BtnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnCancelar.Location = new System.Drawing.Point(265, 28);
+            this.BtnCancelar.Location = new System.Drawing.Point(417, 28);
             this.BtnCancelar.Name = "BtnCancelar";
-            this.BtnCancelar.Size = new System.Drawing.Size(103, 38);
+            this.BtnCancelar.Size = new System.Drawing.Size(208, 38);
             this.BtnCancelar.TabIndex = 2;
-            this.BtnCancelar.Text = "&Cancelar";
+            this.BtnCancelar.Text = "&Cancelar carregamento";
             this.BtnCancelar.UseVisualStyleBackColor = true;
             this.BtnCancelar.Click += new System.EventHandler(this.BtnCancelar_Click);
             // 
@@ -160,14 +146,101 @@
             this.CodigoObjeto,
             this.DataLancamento,
             this.DataModificacao,
-            this.Situacao});
+            this.Situacao,
+            this.Comentario});
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(3, 3);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(725, 264);
+            this.dataGridView1.Size = new System.Drawing.Size(515, 215);
             this.dataGridView1.TabIndex = 0;
+            // 
+            // BtnFechar
+            // 
+            this.BtnFechar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnFechar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnFechar.Location = new System.Drawing.Point(631, 28);
+            this.BtnFechar.Name = "BtnFechar";
+            this.BtnFechar.Size = new System.Drawing.Size(116, 38);
+            this.BtnFechar.TabIndex = 5;
+            this.BtnFechar.Text = "&Fechar Tela";
+            this.BtnFechar.UseVisualStyleBackColor = true;
+            this.BtnFechar.Click += new System.EventHandler(this.BtnFechar_Click);
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl1.Controls.Add(this.tabPageListaObjetosImportados);
+            this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabControl1.Location = new System.Drawing.Point(12, 120);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(529, 258);
+            this.tabControl1.TabIndex = 3;
+            // 
+            // tabPageListaObjetosImportados
+            // 
+            this.tabPageListaObjetosImportados.Controls.Add(this.dataGridView1);
+            this.tabPageListaObjetosImportados.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabPageListaObjetosImportados.Location = new System.Drawing.Point(4, 33);
+            this.tabPageListaObjetosImportados.Name = "tabPageListaObjetosImportados";
+            this.tabPageListaObjetosImportados.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageListaObjetosImportados.Size = new System.Drawing.Size(521, 221);
+            this.tabPageListaObjetosImportados.TabIndex = 0;
+            this.tabPageListaObjetosImportados.Text = "Lista para importação";
+            this.tabPageListaObjetosImportados.UseVisualStyleBackColor = true;
+            // 
+            // LblQuantidadeImportados
+            // 
+            this.LblQuantidadeImportados.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.LblQuantidadeImportados.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblQuantidadeImportados.ForeColor = System.Drawing.Color.Blue;
+            this.LblQuantidadeImportados.Location = new System.Drawing.Point(14, 89);
+            this.LblQuantidadeImportados.Name = "LblQuantidadeImportados";
+            this.LblQuantidadeImportados.Size = new System.Drawing.Size(733, 28);
+            this.LblQuantidadeImportados.TabIndex = 1;
+            this.LblQuantidadeImportados.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // BtnAdicionarItem
+            // 
+            this.BtnAdicionarItem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnAdicionarItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnAdicionarItem.Location = new System.Drawing.Point(557, 213);
+            this.BtnAdicionarItem.Name = "BtnAdicionarItem";
+            this.BtnAdicionarItem.Size = new System.Drawing.Size(190, 54);
+            this.BtnAdicionarItem.TabIndex = 3;
+            this.BtnAdicionarItem.Text = "&Adicionar Item à lista";
+            this.BtnAdicionarItem.UseVisualStyleBackColor = true;
+            this.BtnAdicionarItem.Click += new System.EventHandler(this.BtnAdicionarItem_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.panel1.Controls.Add(this.progressBar1);
+            this.panel1.Controls.Add(this.BtnFechar);
+            this.panel1.Controls.Add(this.BtnCancelar);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 384);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(763, 78);
+            this.panel1.TabIndex = 4;
+            // 
+            // BtnLimparListaAtual
+            // 
+            this.BtnLimparListaAtual.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnLimparListaAtual.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnLimparListaAtual.Location = new System.Drawing.Point(557, 153);
+            this.BtnLimparListaAtual.Name = "BtnLimparListaAtual";
+            this.BtnLimparListaAtual.Size = new System.Drawing.Size(190, 54);
+            this.BtnLimparListaAtual.TabIndex = 4;
+            this.BtnLimparListaAtual.Text = "&Limpar lista atual";
+            this.BtnLimparListaAtual.UseVisualStyleBackColor = true;
+            this.BtnLimparListaAtual.Click += new System.EventHandler(this.BtnLimparListaAtual_Click);
             // 
             // CodigoObjeto
             // 
@@ -198,91 +271,12 @@
             this.Situacao.Name = "Situacao";
             this.Situacao.ReadOnly = true;
             // 
-            // BtnFechar
+            // Comentario
             // 
-            this.BtnFechar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnFechar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnFechar.Location = new System.Drawing.Point(658, 28);
-            this.BtnFechar.Name = "BtnFechar";
-            this.BtnFechar.Size = new System.Drawing.Size(89, 38);
-            this.BtnFechar.TabIndex = 5;
-            this.BtnFechar.Text = "&Fechar";
-            this.BtnFechar.UseVisualStyleBackColor = true;
-            this.BtnFechar.Click += new System.EventHandler(this.BtnFechar_Click);
-            // 
-            // tabControl1
-            // 
-            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabControl1.Controls.Add(this.tabPageListaObjetosImportados);
-            this.tabControl1.Controls.Add(this.tabPageConteudoSROImportado);
-            this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControl1.Location = new System.Drawing.Point(12, 71);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(739, 307);
-            this.tabControl1.TabIndex = 3;
-            // 
-            // tabPageListaObjetosImportados
-            // 
-            this.tabPageListaObjetosImportados.Controls.Add(this.dataGridView1);
-            this.tabPageListaObjetosImportados.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabPageListaObjetosImportados.Location = new System.Drawing.Point(4, 33);
-            this.tabPageListaObjetosImportados.Name = "tabPageListaObjetosImportados";
-            this.tabPageListaObjetosImportados.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageListaObjetosImportados.Size = new System.Drawing.Size(731, 270);
-            this.tabPageListaObjetosImportados.TabIndex = 0;
-            this.tabPageListaObjetosImportados.Text = "Listados para importar";
-            this.tabPageListaObjetosImportados.UseVisualStyleBackColor = true;
-            // 
-            // tabPageConteudoSROImportado
-            // 
-            this.tabPageConteudoSROImportado.Controls.Add(this.textBox1);
-            this.tabPageConteudoSROImportado.Location = new System.Drawing.Point(4, 33);
-            this.tabPageConteudoSROImportado.Name = "tabPageConteudoSROImportado";
-            this.tabPageConteudoSROImportado.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageConteudoSROImportado.Size = new System.Drawing.Size(731, 270);
-            this.tabPageConteudoSROImportado.TabIndex = 1;
-            this.tabPageConteudoSROImportado.Text = "Conteúdo SRO recém colado";
-            this.tabPageConteudoSROImportado.UseVisualStyleBackColor = true;
-            // 
-            // LblQuantidadeImportados
-            // 
-            this.LblQuantidadeImportados.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblQuantidadeImportados.ForeColor = System.Drawing.Color.Blue;
-            this.LblQuantidadeImportados.Location = new System.Drawing.Point(9, 40);
-            this.LblQuantidadeImportados.Name = "LblQuantidadeImportados";
-            this.LblQuantidadeImportados.Size = new System.Drawing.Size(459, 28);
-            this.LblQuantidadeImportados.TabIndex = 1;
-            this.LblQuantidadeImportados.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // BtnAdicionarItem
-            // 
-            this.BtnAdicionarItem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnAdicionarItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnAdicionarItem.Location = new System.Drawing.Point(374, 28);
-            this.BtnAdicionarItem.Name = "BtnAdicionarItem";
-            this.BtnAdicionarItem.Size = new System.Drawing.Size(146, 38);
-            this.BtnAdicionarItem.TabIndex = 3;
-            this.BtnAdicionarItem.Text = "&Adicionar Item";
-            this.BtnAdicionarItem.UseVisualStyleBackColor = true;
-            this.BtnAdicionarItem.Click += new System.EventHandler(this.BtnAdicionarItem_Click);
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.panel1.Controls.Add(this.progressBar1);
-            this.panel1.Controls.Add(this.BtnGravar);
-            this.panel1.Controls.Add(this.BtnAdicionarItem);
-            this.panel1.Controls.Add(this.BtnFechar);
-            this.panel1.Controls.Add(this.BtnCancelar);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 384);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(763, 78);
-            this.panel1.TabIndex = 4;
+            this.Comentario.DataPropertyName = "Comentario";
+            this.Comentario.HeaderText = "Comentário";
+            this.Comentario.Name = "Comentario";
+            this.Comentario.ReadOnly = true;
             // 
             // FormularioCadastroObjetos
             // 
@@ -290,14 +284,16 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(763, 462);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.BtnLimparListaAtual);
+            this.Controls.Add(this.BtnGravar);
             this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.BtnAdicionarItem);
             this.Controls.Add(this.BtnColarConteudoJaCopiado);
             this.Controls.Add(this.LblQuantidadeImportados);
             this.Controls.Add(this.LblMensagem);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Name = "FormularioCadastroObjetos";
-            this.ShowInTaskbar = false;
             this.Text = "Importar Novo(s) Objeto(s)";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormularioCadastroObjetos_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -305,8 +301,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPageListaObjetosImportados.ResumeLayout(false);
-            this.tabPageConteudoSROImportado.ResumeLayout(false);
-            this.tabPageConteudoSROImportado.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -315,8 +309,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button BtnGravar;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
@@ -329,14 +321,15 @@
         private System.Windows.Forms.Button BtnFechar;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPageListaObjetosImportados;
-        private System.Windows.Forms.TabPage tabPageConteudoSROImportado;
         private System.Windows.Forms.Label LblQuantidadeImportados;
+        private System.Windows.Forms.Button BtnAdicionarItem;
+        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridViewTextBoxColumn CodigoObjeto;
         private System.Windows.Forms.DataGridViewTextBoxColumn DataLancamento;
         private System.Windows.Forms.DataGridViewTextBoxColumn DataModificacao;
         private System.Windows.Forms.DataGridViewTextBoxColumn Situacao;
-        private System.Windows.Forms.Button BtnAdicionarItem;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Comentario;
+        private System.Windows.Forms.Button BtnLimparListaAtual;
     }
 }
 

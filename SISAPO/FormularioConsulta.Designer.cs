@@ -310,7 +310,7 @@
             this.toolStripSeparator5,
             this.AtualizarObjetosSelecionadosToolStripMenuItem});
             this.contextMenuStripImprimirListaEntrega.Name = "contextMenuStripImprimirListaEntrega";
-            this.contextMenuStripImprimirListaEntrega.Size = new System.Drawing.Size(372, 166);
+            this.contextMenuStripImprimirListaEntrega.Size = new System.Drawing.Size(372, 188);
             // 
             // toolStripMenuItemImprimirListaEntrega
             // 
@@ -1624,7 +1624,7 @@
             this.BtnCoordenadas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.BtnCoordenadas.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BtnCoordenadas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnCoordenadas.Location = new System.Drawing.Point(242, 3);
+            this.BtnCoordenadas.Location = new System.Drawing.Point(141, 3);
             this.BtnCoordenadas.Name = "BtnCoordenadas";
             this.BtnCoordenadas.Size = new System.Drawing.Size(64, 44);
             this.BtnCoordenadas.TabIndex = 4;
@@ -1644,7 +1644,7 @@
             // 
             this.LblDistritoLOEC.AutoSize = true;
             this.LblDistritoLOEC.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblDistritoLOEC.Location = new System.Drawing.Point(79, 103);
+            this.LblDistritoLOEC.Location = new System.Drawing.Point(77, 103);
             this.LblDistritoLOEC.Name = "LblDistritoLOEC";
             this.LblDistritoLOEC.Size = new System.Drawing.Size(96, 16);
             this.LblDistritoLOEC.TabIndex = 12;
@@ -1653,7 +1653,7 @@
             // labelLocalidadeLOEC
             // 
             this.labelLocalidadeLOEC.AutoSize = true;
-            this.labelLocalidadeLOEC.Location = new System.Drawing.Point(7, 183);
+            this.labelLocalidadeLOEC.Location = new System.Drawing.Point(5, 183);
             this.labelLocalidadeLOEC.Name = "labelLocalidadeLOEC";
             this.labelLocalidadeLOEC.Size = new System.Drawing.Size(62, 13);
             this.labelLocalidadeLOEC.TabIndex = 17;
@@ -1662,7 +1662,7 @@
             // labelBairroLOEC
             // 
             this.labelBairroLOEC.AutoSize = true;
-            this.labelBairroLOEC.Location = new System.Drawing.Point(7, 152);
+            this.labelBairroLOEC.Location = new System.Drawing.Point(5, 152);
             this.labelBairroLOEC.Name = "labelBairroLOEC";
             this.labelBairroLOEC.Size = new System.Drawing.Size(37, 13);
             this.labelBairroLOEC.TabIndex = 15;
@@ -1672,7 +1672,7 @@
             // 
             this.LblLocalidadeLOEC.AutoSize = true;
             this.LblLocalidadeLOEC.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblLocalidadeLOEC.Location = new System.Drawing.Point(7, 197);
+            this.LblLocalidadeLOEC.Location = new System.Drawing.Point(5, 197);
             this.LblLocalidadeLOEC.Name = "LblLocalidadeLOEC";
             this.LblLocalidadeLOEC.Size = new System.Drawing.Size(125, 16);
             this.LblLocalidadeLOEC.TabIndex = 18;
@@ -1682,7 +1682,7 @@
             // 
             this.LblBairroLOEC.AutoSize = true;
             this.LblBairroLOEC.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblBairroLOEC.Location = new System.Drawing.Point(7, 166);
+            this.LblBairroLOEC.Location = new System.Drawing.Point(5, 166);
             this.LblBairroLOEC.Name = "LblBairroLOEC";
             this.LblBairroLOEC.Size = new System.Drawing.Size(89, 16);
             this.LblBairroLOEC.TabIndex = 16;
@@ -1691,7 +1691,7 @@
             // labelEnderecoLOEC
             // 
             this.labelEnderecoLOEC.AutoSize = true;
-            this.labelEnderecoLOEC.Location = new System.Drawing.Point(6, 121);
+            this.labelEnderecoLOEC.Location = new System.Drawing.Point(4, 121);
             this.labelEnderecoLOEC.Name = "labelEnderecoLOEC";
             this.labelEnderecoLOEC.Size = new System.Drawing.Size(56, 13);
             this.labelEnderecoLOEC.TabIndex = 13;
@@ -1701,7 +1701,7 @@
             // 
             this.LblEnderecoLOEC.AutoSize = true;
             this.LblEnderecoLOEC.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblEnderecoLOEC.Location = new System.Drawing.Point(6, 135);
+            this.LblEnderecoLOEC.Location = new System.Drawing.Point(4, 135);
             this.LblEnderecoLOEC.Name = "LblEnderecoLOEC";
             this.LblEnderecoLOEC.Size = new System.Drawing.Size(114, 16);
             this.LblEnderecoLOEC.TabIndex = 14;
@@ -1720,7 +1720,7 @@
             // 
             this.LblCarteiroLOEC.AutoSize = true;
             this.LblCarteiroLOEC.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblCarteiroLOEC.Location = new System.Drawing.Point(6, 103);
+            this.LblCarteiroLOEC.Location = new System.Drawing.Point(4, 103);
             this.LblCarteiroLOEC.Name = "LblCarteiroLOEC";
             this.LblCarteiroLOEC.Size = new System.Drawing.Size(102, 16);
             this.LblCarteiroLOEC.TabIndex = 11;
