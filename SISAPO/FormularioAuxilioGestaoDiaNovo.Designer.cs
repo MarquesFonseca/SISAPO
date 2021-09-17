@@ -97,6 +97,8 @@
             this.DataInicial_dateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox = new System.Windows.Forms.CheckBox();
             this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox = new System.Windows.Forms.CheckBox();
+            this.alterarItemSomenteAtualToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.panel3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.panel7.SuspendLayout();
@@ -665,29 +667,31 @@
             this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.alterarSituacaoItensToolStripMenuItem1,
             this.toolStripSeparator1,
-            this.AtualizarObjetosSelecionadosToolStripMenuItem});
+            this.AtualizarObjetosSelecionadosToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.alterarItemSomenteAtualToolStripMenuItem});
             this.contextMenuStrip.Name = "contextMenuStripImprimirListaEntrega";
-            this.contextMenuStrip.Size = new System.Drawing.Size(281, 54);
+            this.contextMenuStrip.Size = new System.Drawing.Size(291, 104);
             // 
             // alterarSituacaoItensToolStripMenuItem1
             // 
             this.alterarSituacaoItensToolStripMenuItem1.Image = global::SISAPO.Properties.Resources.CadastroObjetos;
             this.alterarSituacaoItensToolStripMenuItem1.Name = "alterarSituacaoItensToolStripMenuItem1";
-            this.alterarSituacaoItensToolStripMenuItem1.Size = new System.Drawing.Size(280, 22);
-            this.alterarSituacaoItensToolStripMenuItem1.Text = "Alterar situação de itens (Selecionados)";
+            this.alterarSituacaoItensToolStripMenuItem1.Size = new System.Drawing.Size(290, 22);
+            this.alterarSituacaoItensToolStripMenuItem1.Text = "Situação de baixa (Selecionados)";
             this.alterarSituacaoItensToolStripMenuItem1.Click += new System.EventHandler(this.alterarSituacaoItensToolStripMenuItem1_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(277, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(287, 6);
             // 
             // AtualizarObjetosSelecionadosToolStripMenuItem
             // 
             this.AtualizarObjetosSelecionadosToolStripMenuItem.Image = global::SISAPO.Properties.Resources.AtualizarListaObjetos;
             this.AtualizarObjetosSelecionadosToolStripMenuItem.Name = "AtualizarObjetosSelecionadosToolStripMenuItem";
-            this.AtualizarObjetosSelecionadosToolStripMenuItem.Size = new System.Drawing.Size(280, 22);
-            this.AtualizarObjetosSelecionadosToolStripMenuItem.Text = "Atualizar Objeto(s) (Selecionados)";
+            this.AtualizarObjetosSelecionadosToolStripMenuItem.Size = new System.Drawing.Size(290, 22);
+            this.AtualizarObjetosSelecionadosToolStripMenuItem.Text = "Buscar novas atualizações (Selecionados)";
             this.AtualizarObjetosSelecionadosToolStripMenuItem.Click += new System.EventHandler(this.AtualizarObjetosSelecionadosToolStripMenuItem_Click);
             // 
             // panel1
@@ -753,6 +757,19 @@
             this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.Text = "Incluir Caixa Postal";
             this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.UseVisualStyleBackColor = true;
             this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.CheckedChanged += new System.EventHandler(this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox_CheckedChanged);
+            // 
+            // alterarItemSomenteAtualToolStripMenuItem
+            // 
+            this.alterarItemSomenteAtualToolStripMenuItem.Image = global::SISAPO.Properties.Resources.CadastroObjetos;
+            this.alterarItemSomenteAtualToolStripMenuItem.Name = "alterarItemSomenteAtualToolStripMenuItem";
+            this.alterarItemSomenteAtualToolStripMenuItem.Size = new System.Drawing.Size(290, 22);
+            this.alterarItemSomenteAtualToolStripMenuItem.Text = "Alterar item (Somente atual)";
+            this.alterarItemSomenteAtualToolStripMenuItem.Click += new System.EventHandler(this.alterarItemSomenteAtualToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(287, 6);
             // 
             // FormularioAuxilioGestaoDiaNovo
             // 
@@ -846,5 +863,7 @@
         private System.Windows.Forms.ToolStripMenuItem alterarSituacaoItensToolStripMenuItem1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem AtualizarObjetosSelecionadosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem alterarItemSomenteAtualToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }

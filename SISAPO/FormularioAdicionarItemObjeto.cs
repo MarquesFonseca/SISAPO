@@ -86,6 +86,11 @@ namespace SISAPO
             if (TxtObjetoAtual.Text.Length > 13)
                 return;
 
+            AdicionaItemLista();
+        }
+
+        private void AdicionaItemLista()
+        {
             string CodigoAtual = TxtObjetoAtual.Text;
             string DataLancamento = DateTime.Now.ToString();
             string DataModificacao = "";
@@ -144,7 +149,18 @@ namespace SISAPO
         }
 
         private void btnConfirmar_Click(object sender, EventArgs e)
-        {
+        {            
+            if(!string.IsNullOrWhiteSpace(TxtObjetoAtual.Text))
+            {
+                if (VerificaCodigoRastreamentoPadraoBrasileiro(TxtObjetoAtual.Text) == false)
+                    return;
+
+                if (TxtObjetoAtual.Text.Length > 13)
+                    return;
+
+                AdicionaItemLista();
+            }
+
             if (dtbLista.Rows.Count == 0)
             {
                 ClicouConfirmar = false;
@@ -175,6 +191,31 @@ namespace SISAPO
             {
                 btnCancelar_Click(sender, e);
             }
+        }
+
+        private void comboBoxComentario_Leave(object sender, EventArgs e)
+        {
+            //deletar
+        }
+
+        private void comboBoxComentario_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBoxComentario.SelectedIndex != -1)
+            {
+                //SendKeys.Send("{TAB}");
+                TxtObjetoAtual.Focus();
+                TxtObjetoAtual.ScrollToCaret();
+
+                TxtObjetoAtual.Select(TxtObjetoAtual.Text.Length, 0);
+            }
+        }
+
+        private void comboBoxComentario_TextChanged(object sender, EventArgs e)
+        {
+            int Pos = comboBoxComentario.SelectionStart;
+            comboBoxComentario.Text = comboBoxComentario.Text.ToUpper();
+            comboBoxComentario.SelectionStart = Pos;
+            //comboBoxComentario.Text = comboBoxComentario.Text.ToUpper();
         }
     }
 }

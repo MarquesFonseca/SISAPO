@@ -160,6 +160,12 @@
     <Compile Include="FormAcesso.Designer.cs">
       <DependentUpon>FormAcesso.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormularioVerObjetosNaoAtualizados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormularioVerObjetosNaoAtualizados.Designer.cs">
+      <DependentUpon>FormularioVerObjetosNaoAtualizados.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormularioAlterarComentarioItensSelecionados.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -415,6 +421,9 @@
       <DependentUpon>WaitForm.cs</DependentUpon>
     </Compile>
     <Compile Include="WaitWndFun.cs" />
+    <EmbeddedResource Include="FormularioVerObjetosNaoAtualizados.resx">
+      <DependentUpon>FormularioVerObjetosNaoAtualizados.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormularioAlterarComentarioItensSelecionados.resx">
       <DependentUpon>FormularioAlterarComentarioItensSelecionados.cs</DependentUpon>
     </EmbeddedResource>
@@ -639,6 +648,7 @@
     <Content Include="Resources\animated.js" />
     <Content Include="Resources\charts.js" />
     <Content Include="Resources\core.js" />
+    <None Include="Resources\Desfazer.png" />
     <Content Include="Resources\maps.js" />
     <Content Include="Relatorios\TiposPostaisMaisUsados\TiposPostaisMaisUsados.css" />
     <Content Include="Relatorios\TiposPostaisMaisUsados\TiposPostaisMaisUsados.html" />

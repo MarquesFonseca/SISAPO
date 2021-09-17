@@ -295,6 +295,7 @@
             this.BtnAlterarEndereco.TabIndex = 28;
             this.BtnAlterarEndereco.Text = "&Alterar Endereço";
             this.BtnAlterarEndereco.UseVisualStyleBackColor = true;
+            this.BtnAlterarEndereco.Visible = false;
             this.BtnAlterarEndereco.Click += new System.EventHandler(this.BtnAlterarEndereco_Click);
             // 
             // label1

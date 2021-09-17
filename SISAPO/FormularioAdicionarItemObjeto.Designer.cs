@@ -31,6 +31,11 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormularioAdicionarItemObjeto));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.CodigoObjeto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DataLancamento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DataModificacao = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Situacao = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Comentario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnConfirmar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -39,11 +44,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.comboBoxComentario = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.CodigoObjeto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DataLancamento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DataModificacao = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Situacao = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Comentario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -72,6 +72,47 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(615, 161);
             this.dataGridView1.TabIndex = 1;
+            // 
+            // CodigoObjeto
+            // 
+            this.CodigoObjeto.DataPropertyName = "CodigoObjeto";
+            this.CodigoObjeto.HeaderText = "Código Objeto";
+            this.CodigoObjeto.Name = "CodigoObjeto";
+            this.CodigoObjeto.ReadOnly = true;
+            // 
+            // DataLancamento
+            // 
+            this.DataLancamento.DataPropertyName = "DataLancamento";
+            this.DataLancamento.HeaderText = "Data lançamento";
+            this.DataLancamento.Name = "DataLancamento";
+            this.DataLancamento.ReadOnly = true;
+            this.DataLancamento.Visible = false;
+            // 
+            // DataModificacao
+            // 
+            this.DataModificacao.DataPropertyName = "DataModificacao";
+            this.DataModificacao.HeaderText = "Data modificação";
+            this.DataModificacao.Name = "DataModificacao";
+            this.DataModificacao.ReadOnly = true;
+            this.DataModificacao.Visible = false;
+            // 
+            // Situacao
+            // 
+            this.Situacao.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Situacao.DataPropertyName = "Situacao";
+            this.Situacao.HeaderText = "Situação baixa";
+            this.Situacao.Name = "Situacao";
+            this.Situacao.ReadOnly = true;
+            this.Situacao.Visible = false;
+            // 
+            // Comentario
+            // 
+            this.Comentario.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.Comentario.DataPropertyName = "Comentario";
+            this.Comentario.HeaderText = "Comentário";
+            this.Comentario.Name = "Comentario";
+            this.Comentario.ReadOnly = true;
+            this.Comentario.Width = 85;
             // 
             // btnConfirmar
             // 
@@ -151,6 +192,9 @@
             this.comboBoxComentario.Name = "comboBoxComentario";
             this.comboBoxComentario.Size = new System.Drawing.Size(296, 28);
             this.comboBoxComentario.TabIndex = 1;
+            this.comboBoxComentario.SelectedIndexChanged += new System.EventHandler(this.comboBoxComentario_SelectedIndexChanged);
+            this.comboBoxComentario.TextChanged += new System.EventHandler(this.comboBoxComentario_TextChanged);
+            this.comboBoxComentario.Leave += new System.EventHandler(this.comboBoxComentario_Leave);
             // 
             // label1
             // 
@@ -160,47 +204,6 @@
             this.label1.Size = new System.Drawing.Size(60, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Comentário";
-            // 
-            // CodigoObjeto
-            // 
-            this.CodigoObjeto.DataPropertyName = "CodigoObjeto";
-            this.CodigoObjeto.HeaderText = "Código Objeto";
-            this.CodigoObjeto.Name = "CodigoObjeto";
-            this.CodigoObjeto.ReadOnly = true;
-            // 
-            // DataLancamento
-            // 
-            this.DataLancamento.DataPropertyName = "DataLancamento";
-            this.DataLancamento.HeaderText = "Data lançamento";
-            this.DataLancamento.Name = "DataLancamento";
-            this.DataLancamento.ReadOnly = true;
-            this.DataLancamento.Visible = false;
-            // 
-            // DataModificacao
-            // 
-            this.DataModificacao.DataPropertyName = "DataModificacao";
-            this.DataModificacao.HeaderText = "Data modificação";
-            this.DataModificacao.Name = "DataModificacao";
-            this.DataModificacao.ReadOnly = true;
-            this.DataModificacao.Visible = false;
-            // 
-            // Situacao
-            // 
-            this.Situacao.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Situacao.DataPropertyName = "Situacao";
-            this.Situacao.HeaderText = "Situação baixa";
-            this.Situacao.Name = "Situacao";
-            this.Situacao.ReadOnly = true;
-            this.Situacao.Visible = false;
-            // 
-            // Comentario
-            // 
-            this.Comentario.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.Comentario.DataPropertyName = "Comentario";
-            this.Comentario.HeaderText = "Comentário";
-            this.Comentario.Name = "Comentario";
-            this.Comentario.ReadOnly = true;
-            this.Comentario.Width = 85;
             // 
             // FormularioAdicionarItemObjeto
             // 

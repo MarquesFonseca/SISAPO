@@ -1597,33 +1597,41 @@ namespace SISAPO
 
         private void alterarSituaçãoDeItensSelecionadosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.SelectedRows.Count == 0) return;
-
-            FormularioAlterarSituacaoItensSelecionados formularioAlterarSituacaoItensSelecionados = new FormularioAlterarSituacaoItensSelecionados();
-            formularioAlterarSituacaoItensSelecionados.ShowDialog();
-
-            if (string.IsNullOrEmpty(formularioAlterarSituacaoItensSelecionados.itemMotivoBaixaSelecionado)) return;
-
-            List<string> ListaGridSelecaoAtual = new List<string>();
-
-            for (int i = this.dataGridView1.SelectedRows.Count - 1; i >= 0; i--)
+            try
             {
-                bool existe = ListaGridSelecaoAtual.AsEnumerable().Any(t => t == this.dataGridView1.SelectedRows[i].Cells["codigoObjetoDataGridViewTextBoxColumn"].Value.ToString());
-                if (!existe)
-                    ListaGridSelecaoAtual.Add(this.dataGridView1.SelectedRows[i].Cells["codigoObjetoDataGridViewTextBoxColumn"].Value.ToString());
+                if (dataGridView1.SelectedRows.Count == 0) return;
+
+                FormularioAlterarSituacaoItensSelecionados formularioAlterarSituacaoItensSelecionados = new FormularioAlterarSituacaoItensSelecionados();
+                formularioAlterarSituacaoItensSelecionados.ShowDialog();
+
+                if (string.IsNullOrEmpty(formularioAlterarSituacaoItensSelecionados.itemMotivoBaixaSelecionado)) return;
+
+                List<string> ListaGridSelecaoAtual = new List<string>();
+
+                for (int i = this.dataGridView1.SelectedRows.Count - 1; i >= 0; i--)
+                {
+                    bool existe = ListaGridSelecaoAtual.AsEnumerable().Any(t => t == this.dataGridView1.SelectedRows[i].Cells["codigoObjetoDataGridViewTextBoxColumn"].Value.ToString());
+                    if (!existe)
+                        ListaGridSelecaoAtual.Add(this.dataGridView1.SelectedRows[i].Cells["codigoObjetoDataGridViewTextBoxColumn"].Value.ToString());
+                }
+
+                if (ListaGridSelecaoAtual.Count == 0) return;
+
+                FormularioConsulta.RetornaComponentesFormularioConsulta().AlterarSituacaoItensSelecionados(ListaGridSelecaoAtual, formularioAlterarSituacaoItensSelecionados.itemMotivoBaixaSelecionado);
+
+                //if (Mensagens.Pergunta("Itens atualizado com sucesso! Deseja atualizar grid?") == System.Windows.Forms.DialogResult.Yes)
+                //{
+                    if (Application.OpenForms["FormularioConsulta"] != null) //verifica se está aberto
+                        FormularioConsulta.RetornaComponentesFormularioConsulta().ConsultaTodosNaoEntreguesOrdenadoNome();
+
+                    FormularioPrincipal.RetornaComponentesFormularioPrincipal().BuscaNovoStatusQuantidadeNaoAtualizados();
+                //}
+            }
+            catch (Exception ex)
+            {
+                Mensagens.Erro("Ocorreu um erro ao realizar a tarefa: " + ex);
             }
 
-            if (ListaGridSelecaoAtual.Count == 0) return;
-
-            FormularioConsulta.RetornaComponentesFormularioConsulta().AlterarSituacaoItensSelecionados(ListaGridSelecaoAtual, formularioAlterarSituacaoItensSelecionados.itemMotivoBaixaSelecionado);
-
-            if (Mensagens.Pergunta("Itens atualizado com sucesso! Deseja atualizar grid?") == System.Windows.Forms.DialogResult.Yes)
-            {
-                if (Application.OpenForms["FormularioConsulta"] != null) //verifica se está aberto
-                    FormularioConsulta.RetornaComponentesFormularioConsulta().ConsultaTodosNaoEntreguesOrdenadoNome();
-
-                FormularioPrincipal.RetornaComponentesFormularioPrincipal().BuscaNovoStatusQuantidadeNaoAtualizados();
-            }
         }
 
         public void AlterarSituacaoItensSelecionados(List<string> ListaCodigosGrid, string MotivoBaixaInformado)
@@ -1783,6 +1791,55 @@ namespace SISAPO
         {
             FormularioPrincipal.RetornaComponentesFormularioPrincipal().ExibirItensJaEntreguesToolStripMenuItem.Checked = checkBoxIncluirBaixados.Checked;
             FormularioPrincipal.RetornaComponentesFormularioPrincipal().ExibirItensJaEntreguesToolStripMenuItem_Click(sender, e);
+        }
+
+        private void desfazerBaixaAnteriorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count == 0) return;
+
+            List<string> ListaGridSelecaoAtual = new List<string>();
+
+            try
+            {
+                for (int i = this.dataGridView1.SelectedRows.Count - 1; i >= 0; i--)
+                {
+                    bool existe = ListaGridSelecaoAtual.AsEnumerable().Any(t => t == this.dataGridView1.SelectedRows[i].Cells["codigoObjetoDataGridViewTextBoxColumn"].Value.ToString());
+                    if (!existe)
+                        ListaGridSelecaoAtual.Add(this.dataGridView1.SelectedRows[i].Cells["codigoObjetoDataGridViewTextBoxColumn"].Value.ToString());
+                }
+
+                if (ListaGridSelecaoAtual.Count == 0) return;
+
+                #region atualiza tabela
+                using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
+                {
+                    if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+
+                    foreach (string itemCodigoAtual in ListaGridSelecaoAtual)
+                    {
+                        dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET DataModificacao = @DataModificacao, Situacao = @Situacao, ObjetoEntregue = @ObjetoEntregue WHERE (CodigoObjeto = @CodigoObjeto)"
+                            , new List<Parametros>() {
+                                new Parametros { Nome = "@DataModificacao", Tipo = TipoCampo.Text, Valor = DBNull.Value },
+                                new Parametros { Nome = "@Situacao", Tipo = TipoCampo.Text, Valor = "AGUARDANDO RETIRADA".ToUpper() },
+                                new Parametros { Nome = "@ObjetoEntregue", Tipo = TipoCampo.Boolean, Valor = false },
+                                new Parametros { Nome = "@CodigoObjeto", Tipo = TipoCampo.Text, Valor = itemCodigoAtual }
+                            });
+                    }
+
+                }
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                Mensagens.Erro("Ocorreu o seguinte erro: " + ex);
+            }
+            finally
+            {
+                if (Application.OpenForms["FormularioConsulta"] != null) //verifica se está aberto
+                    FormularioConsulta.RetornaComponentesFormularioConsulta().ConsultaTodosNaoEntreguesOrdenadoNome();
+
+                FormularioPrincipal.RetornaComponentesFormularioPrincipal().BuscaNovoStatusQuantidadeNaoAtualizados();
+            }
         }
     }
 }

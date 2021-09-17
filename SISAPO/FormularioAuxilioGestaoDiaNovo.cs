@@ -342,7 +342,8 @@ namespace SISAPO
             stringSQL.AppendLine(",Left(TabelaObjetosSROLocal.CodigoObjeto, 2) AS Sigla                                                                                                                                                                                                                                                                                                      ");
             stringSQL.AppendLine(",TabelaObjetosSROLocal.CodigoObjeto                                                                                                                                                                                                                                                                                                                        ");
             stringSQL.AppendLine(",(SELECT TiposPostais.TipoClassificacao from TiposPostais WHERE TiposPostais.Sigla = Left(TabelaObjetosSROLocal.CodigoObjeto, 2)) AS TipoClassificacao                                                                                                                                                                                                     ");
-            stringSQL.AppendLine(",TabelaObjetosSROLocal.NomeCliente                                                                                                                                                                                                                                                                                                                         ");
+            //stringSQL.AppendLine(",TabelaObjetosSROLocal.NomeCliente                                                                                                                                                                                                                                                                                                                         ");
+            stringSQL.AppendLine(",TabelaObjetosSROLocal.NomeCliente & IIf(TabelaObjetosSROLocal.Comentario IS NULL OR TabelaObjetosSROLocal.Comentario = '','', ' - ' & TabelaObjetosSROLocal.Comentario) AS NomeCliente                                                                                                                                                                                                                                                                                                                         ");
             stringSQL.AppendLine(",TabelaObjetosSROLocal.Comentario                                                                                                                                                                                                                                                                                                                          ");
             stringSQL.AppendLine(",TabelaObjetosSROLocal.CaixaPostal                                                                                                                                                                                                                                                                                                                         ");
             stringSQL.AppendLine(",FORMAT(IIf(TabelaObjetosSROLocal.DataLancamento = \"\" OR TabelaObjetosSROLocal.DataLancamento IS NULL, \"01/01/1900 00:00:00\", TabelaObjetosSROLocal.DataLancamento), \"dd/MM/yyyy\") AS DataLancamento                                                                                                                                                                                                ");
@@ -803,13 +804,13 @@ namespace SISAPO
 
             FormularioConsulta.RetornaComponentesFormularioConsulta().AlterarSituacaoItensSelecionados(ListaGridSelecaoAtual, formularioAlterarSituacaoItensSelecionados.itemMotivoBaixaSelecionado);
 
-            if (Mensagens.Pergunta("Itens atualizado com sucesso! Deseja atualizar grid?") == System.Windows.Forms.DialogResult.Yes)
-            {
-                if (ModeloTelaAberturaSelecionado == ModeloTelaAbertura.TelaAguardandoRetirada)
-                    BtnRetornaTodosNaoEntregues_Click(null, null);
-                if (ModeloTelaAberturaSelecionado == ModeloTelaAbertura.TelaColarItensSRO)
-                    BtnColarConteudoJaCopiado_Click(null, null);
-            }
+            //if (Mensagens.Pergunta("Itens atualizado com sucesso! Deseja atualizar grid?") == System.Windows.Forms.DialogResult.Yes)
+            //{
+            if (ModeloTelaAberturaSelecionado == ModeloTelaAbertura.TelaAguardandoRetirada)
+                BtnRetornaTodosNaoEntregues_Click(null, null);
+            if (ModeloTelaAberturaSelecionado == ModeloTelaAbertura.TelaColarItensSRO)
+                BtnColarConteudoJaCopiado_Click(null, null);
+            //}
 
         }
 
@@ -867,5 +868,46 @@ namespace SISAPO
 
             FormularioPrincipal.RetornaComponentesFormularioPrincipal().atualizarNovosObjetosToolStripMenuItem_Click(null, null);
         }
+
+        private void alterarItemSomenteAtualToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AlterarItem(sender, e);
+        }
+
+        private void AlterarItem(object sender, EventArgs e)
+        {
+            int position = this.BindingContext[dataGridView1].Position;
+            try
+            {
+
+                if (dataGridView1.RowCount == 0) return;
+
+                List<string> ListaGridSelecaoAtual = RetornaListaCodigosGridSelecaoAtual(dataGridView1);
+                if (ListaGridSelecaoAtual.Count == 0) return;
+
+                FormularioAlteracaoObjeto frm = new FormularioAlteracaoObjeto() { CodigoObjeto = ListaGridSelecaoAtual[0] };
+                frm.ShowDialog();
+
+                if (frm.Cancelando) return;
+            }
+            catch (Exception ex)
+            {
+                Mensagens.Erro("Ocorreu um erro inesperado.\nErro: " + ex);
+                //throw;
+            }
+            finally
+            {
+                
+                if (position > -1) this.BindingContext[dataGridView1].Position = position;
+
+                FormularioPrincipal.RetornaComponentesFormularioPrincipal().BuscaNovoStatusQuantidadeNaoAtualizados();
+
+                if (ModeloTelaAberturaSelecionado == ModeloTelaAbertura.TelaAguardandoRetirada)
+                    BtnRetornaTodosNaoEntregues_Click(null, null);
+                if (ModeloTelaAberturaSelecionado == ModeloTelaAbertura.TelaColarItensSRO)
+                    BtnColarConteudoJaCopiado_Click(null, null);
+            }
+        }
+
     }
 }

@@ -36,6 +36,7 @@ namespace SISAPO
             progressBar1.Value = 0;
             //label2.Text = "Barra de progresso";
             LblMensagem.Text = "";
+            panel3.Visible = false;
         }
 
         private DataTable RetornaListaObjetos(string Texto)
@@ -45,6 +46,7 @@ namespace SISAPO
             dtbLista.Columns.Add("DataLancamento", typeof(DateTime));
             dtbLista.Columns.Add("DataModificacao", typeof(string));
             dtbLista.Columns.Add("Situacao", typeof(string));
+            dtbLista.Columns.Add("Comentario", typeof(string));
             try
             {
                 string[] linha = Texto.Split('\n');
@@ -61,14 +63,18 @@ namespace SISAPO
                     ParteLinhaSituacao = ParteLinhaSituacao == "OBJETO DISTRIBUIDO" ? "Entregue".ToUpper() : ParteLinhaSituacao;
                     ParteLinhaSituacao = ParteLinhaSituacao == "" ? "Aguardando retirada".ToUpper() : ParteLinhaSituacao;
                     ParteLinhaSituacao = ParteLinhaSituacao.RemoveAcento_DICIONARIO();
+                    string ParteLinhaComentario = "PCT";
 
                     if (ParteLinhaCodigoObjeto != "")
                     {
-                        dtbLista.Rows.Add(
-                            ParteLinhaCodigoObjeto,
-                            Convert.ToDateTime(ParteLinhaDataLancamento),
-                            ParteLinhaDataModificacao,
-                            ParteLinhaSituacao);
+                        dtbLista.Rows.Add
+                            (
+                                ParteLinhaCodigoObjeto,
+                                Convert.ToDateTime(ParteLinhaDataLancamento),
+                                ParteLinhaDataModificacao,
+                                ParteLinhaSituacao,
+                                ParteLinhaComentario
+                            );
                     }
                 }
 
@@ -402,6 +408,9 @@ namespace SISAPO
             {
                 formularioAdicionarItemObjeto.ShowDialog();
 
+                if (formularioAdicionarItemObjeto.ClicouCancelar) return;
+                if (formularioAdicionarItemObjeto.ClicouConfirmar == false) return;
+
                 if (formularioAdicionarItemObjeto.dtbLista.Rows.Count > 0)
                 {
                     foreach (DataRow item in formularioAdicionarItemObjeto.dtbLista.Rows)
@@ -410,6 +419,8 @@ namespace SISAPO
                         {
                             listaObjetos = new DataTable();
                             listaObjetos.Columns.Add("CodigoObjeto", typeof(string));
+                            listaObjetos.PrimaryKey = new DataColumn[] { listaObjetos.Columns["CodigoObjeto"] };
+
                             listaObjetos.Columns.Add("DataLancamento", typeof(DateTime));
                             listaObjetos.Columns.Add("DataModificacao", typeof(string));
                             listaObjetos.Columns.Add("Situacao", typeof(string));
@@ -417,7 +428,10 @@ namespace SISAPO
                         }
                         bool existe = listaObjetos.AsEnumerable().Any(t => t["CodigoObjeto"].ToString() == item["CodigoObjeto"].ToString());
                         if (!existe)
+                        {
                             listaObjetos.Rows.Add(item["CodigoObjeto"].ToString(), item["DataLancamento"], item["DataModificacao"].ToString(), item["Situacao"].ToString(), item["Comentario"].ToString());
+                        }
+
 
                         listaObjetos.DefaultView.Sort = "DataLancamento DESC";
                         listaObjetos = listaObjetos.DefaultView.ToTable();
@@ -455,6 +469,25 @@ namespace SISAPO
             this.BtnGravar.Enabled = false;
             label2.Text = "";
             progressBar1.Visible = false;
+        }
+
+        private void BtnVerObjetosNaoAtualizados_Click(object sender, EventArgs e)
+        {
+            panel3.Visible = true;
+            #region atualiza grid
+            using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
+            {
+                if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+
+                dataGridView2.DataSource = dao.RetornaDataTable("SELECT CodigoObjeto from TabelaObjetosSROLocal WHERE Atualizado = FALSE");
+            }
+            #endregion
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            panel3.Visible = false;
+            return;
         }
     }
 }
