@@ -91,14 +91,14 @@
             this.alterarSituacaoItensToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.AtualizarObjetosSelecionadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.alterarItemSomenteAtualToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bindingSourceObjetosNaoEntregues = new System.Windows.Forms.BindingSource(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.DataInicial_dateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox = new System.Windows.Forms.CheckBox();
             this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox = new System.Windows.Forms.CheckBox();
-            this.alterarItemSomenteAtualToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.panel3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.panel7.SuspendLayout();
@@ -671,7 +671,7 @@
             this.toolStripSeparator2,
             this.alterarItemSomenteAtualToolStripMenuItem});
             this.contextMenuStrip.Name = "contextMenuStripImprimirListaEntrega";
-            this.contextMenuStrip.Size = new System.Drawing.Size(291, 104);
+            this.contextMenuStrip.Size = new System.Drawing.Size(291, 82);
             // 
             // alterarSituacaoItensToolStripMenuItem1
             // 
@@ -693,6 +693,19 @@
             this.AtualizarObjetosSelecionadosToolStripMenuItem.Size = new System.Drawing.Size(290, 22);
             this.AtualizarObjetosSelecionadosToolStripMenuItem.Text = "Buscar novas atualizações (Selecionados)";
             this.AtualizarObjetosSelecionadosToolStripMenuItem.Click += new System.EventHandler(this.AtualizarObjetosSelecionadosToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(287, 6);
+            // 
+            // alterarItemSomenteAtualToolStripMenuItem
+            // 
+            this.alterarItemSomenteAtualToolStripMenuItem.Image = global::SISAPO.Properties.Resources.CadastroObjetos;
+            this.alterarItemSomenteAtualToolStripMenuItem.Name = "alterarItemSomenteAtualToolStripMenuItem";
+            this.alterarItemSomenteAtualToolStripMenuItem.Size = new System.Drawing.Size(290, 22);
+            this.alterarItemSomenteAtualToolStripMenuItem.Text = "Alterar item (Somente atual)";
+            this.alterarItemSomenteAtualToolStripMenuItem.Click += new System.EventHandler(this.alterarItemSomenteAtualToolStripMenuItem_Click);
             // 
             // panel1
             // 
@@ -757,19 +770,6 @@
             this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.Text = "Incluir Caixa Postal";
             this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.UseVisualStyleBackColor = true;
             this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox.CheckedChanged += new System.EventHandler(this.FiltrarPorMaisFiltrosIncluirCaixaPostalCheckBox_CheckedChanged);
-            // 
-            // alterarItemSomenteAtualToolStripMenuItem
-            // 
-            this.alterarItemSomenteAtualToolStripMenuItem.Image = global::SISAPO.Properties.Resources.CadastroObjetos;
-            this.alterarItemSomenteAtualToolStripMenuItem.Name = "alterarItemSomenteAtualToolStripMenuItem";
-            this.alterarItemSomenteAtualToolStripMenuItem.Size = new System.Drawing.Size(290, 22);
-            this.alterarItemSomenteAtualToolStripMenuItem.Text = "Alterar item (Somente atual)";
-            this.alterarItemSomenteAtualToolStripMenuItem.Click += new System.EventHandler(this.alterarItemSomenteAtualToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(287, 6);
             // 
             // FormularioAuxilioGestaoDiaNovo
             // 

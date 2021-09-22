@@ -255,7 +255,11 @@ namespace SISAPO
                     Html.AppendLine("	    		jsbarcode-marginleft=\"30\" jsbarcode-marginRight=\"205px\" jsbarcode-margintop=\"0\" jsbarcode-width=\"1\"");
                     Html.AppendLine("	    		jsbarcode-height=\"50\"></svg>");
                     Html.AppendLine("	    	<div style=\"font-size: 56px; font-family: Arial; font-weight: bold; color: #DCDCDC; padding-top: 1px; margin-left: 0px; float: left; height: 65px; border: 0px solid rgb(248, 6, 216)\">");
-                    Html.AppendLine("	    		" + NomeCliente.Substring(0, 1) + "</div>");
+
+                    if (string.IsNullOrWhiteSpace(NomeCliente))
+                        Html.AppendLine("	    		" + " " + "</div>");
+                    else
+                        Html.AppendLine("	    		" + NomeCliente.Substring(0, 1) + "</div>");
                     Html.AppendLine("	    	<div style=\"font-size: 18px; font-family: Arial; width: 748px; float: left; border: 0px solid rgb(252, 0, 0)\">");
                     Html.AppendLine("	    		Unidade&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:" + CepUnidade + " - " + NomeAgenciaLocal + "</div>");
                     Html.AppendLine("	    	<div style=\"text-align: right; font-size: 18px; font-family: Arial;width: 100px; float: left; border: 0px solid rgb(252, 0, 0)\">");
