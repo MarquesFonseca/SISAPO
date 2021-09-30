@@ -53,9 +53,9 @@ namespace SISAPO
                 //caminho para tela de consulta atraves de códigos de objetos rastreadores
                 //tipoTela = TipoTela.Rastreamento1;
                 //webBrowser1.Url = new Uri(TelaRastreamento_1_1);
-                CodigoObjetoAtual = "QB156597975BR";
+                CodigoObjetoAtual = "OO813557390BR";
                 //string TelaNomeCliente_2_4 = @"J:\Rastreamento_Unificado_SC349045411BR.htm";
-                string TelaNomeCliente_2_4 = @"J:\Objeto_Nao_Procurado_Pelo_Destinatario.htm";
+                string TelaNomeCliente_2_4 = @"C:/Users/MARQUES/Downloads/OBJETO_SANTA_ROSA_TOCANTINS.htm";
                 //"J:\Rastreamento_Unificado_SC349045411BR.htm";
                 //tipoTela = TipoTela.NomeCliente4;
                 tipoTela = TipoTela.DetalhesDeObjetos3;
@@ -547,7 +547,7 @@ namespace SISAPO
             //    var LKJL = item.All.Cast<HtmlElement>().Where(x => x.TagName.ToString() == "TD");
 
             //    var tds = item.All.Cast<HtmlElement>().AsEnumerable();
-                
+
             //    foreach (HtmlElement itemtd in tds)
             //    {
             //        //var linkAtual = ((System.Windows.Forms.HtmlElement)(itemtd)).GetElementsByTagName("A")[0].OuterHtml.Replace("%20", " ");
@@ -571,6 +571,8 @@ namespace SISAPO
                 if (item.InnerText == null || string.IsNullOrEmpty(item.InnerText.Trim())) continue;
                 string LinhaAtual = item.InnerText.Trim().ToUpper().RemoveAcentos();
                 if (!VerificaSeELinhaDesejada(LinhaAtual)) continue;
+
+                if (VerificaAgenciaAtual(LinhaAtual, CidadeAgenciaLocal, UFAgenciaLocal, NomeAgenciaLocal) == false) continue;
 
 
 
@@ -643,8 +645,8 @@ namespace SISAPO
                 }
                 #endregion
 
-                
-                
+
+
                 #region "Entregue"
                 if (LinhaAtual.Contains("Entregue".ToUpper()))
                 {
@@ -696,8 +698,6 @@ namespace SISAPO
                 if (LinhaAtual.Contains("Disponivel em Caixa Postal".RemoveAcentos().ToUpper()) ||
                     LinhaAtual.Contains("Aguardando retirada em Caixa Postal".RemoveAcentos().ToUpper()))
                 {
-                    if (LinhaAtual.Contains(string.Format("{0}", NomeAgenciaLocal)) == false) continue;
-
                     var linkAtual = ((System.Windows.Forms.HtmlElement)(item)).GetElementsByTagName("A")[0].OuterHtml.Replace("%20", " ");
                     ListaLinksJavaScript.Add(linkAtual.Substring(21, 102));
 
@@ -731,8 +731,6 @@ namespace SISAPO
                 #region "Aguardando retirada"
                 if (LinhaAtual.Contains("Aguardando retirada".RemoveAcentos().ToUpper()))
                 {
-                    if (LinhaAtual.Contains(string.Format("{0}", NomeAgenciaLocal)) == false) continue;
-
                     var linkAtual = ((System.Windows.Forms.HtmlElement)(item)).GetElementsByTagName("A")[0].OuterHtml.Replace("%20", " ");
                     ListaLinksJavaScript.Add(linkAtual.Substring(21, 102));
 
@@ -758,8 +756,6 @@ namespace SISAPO
                 #region "Aguardando retirada - Área sem entrega"
                 if (LinhaAtual.Contains("Aguardando retirada - Area sem entrega".RemoveAcentos().ToUpper()))
                 {
-                    if (LinhaAtual.Contains(string.Format("{0}", NomeAgenciaLocal)) == false) continue;
-
                     var linkAtual = ((System.Windows.Forms.HtmlElement)(item)).GetElementsByTagName("A")[0].OuterHtml.Replace("%20", " ");
                     ListaLinksJavaScript.Add(linkAtual.Substring(21, 102));
 
@@ -791,6 +787,37 @@ namespace SISAPO
                 Mensagens.InformaDesenvolvedor("Vou fechar... Não tem nunhum campo: Disponivel em Caixa Postal ou Aguardando Retirada");
                 this.Close();
             }
+        }
+
+        private bool VerificaAgenciaAtual(string linhaAtual, string cidadeAgenciaLocal, string uFAgenciaLocal, string nomeAgenciaLocal)
+        {
+            bool retono = false;
+            string agenciaLinha = string.Empty;
+            string cidadeLinha = string.Empty;
+            string estadoLinha = string.Empty;
+
+            if (linhaAtual.Length >= 19)
+            {
+                string agenciaCidadeEstadoLinha = linhaAtual.Remove(0, 19).Trim().ToUpper();
+                agenciaLinha = agenciaCidadeEstadoLinha.Split('-')[0].Trim().ToUpper();
+                cidadeLinha = agenciaCidadeEstadoLinha.Split('/')[0].Trim().ToUpper();
+                cidadeLinha = cidadeLinha.Split('-')[1].Trim().ToUpper();
+                estadoLinha = agenciaCidadeEstadoLinha.Split('/')[1].Trim().ToUpper();
+                estadoLinha = estadoLinha.Substring(0, 2);
+            }
+
+            if (nomeAgenciaLocal == agenciaLinha &&
+                cidadeAgenciaLocal == cidadeLinha &&
+                uFAgenciaLocal == estadoLinha)
+            {
+                retono = true;
+            }
+            else
+            {
+                retono = false;
+            }
+
+            return retono;
         }
 
         private bool VerificaSeELinhaDesejada(string linhaAtual)

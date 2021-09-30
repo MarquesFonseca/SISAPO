@@ -160,6 +160,18 @@
     <Compile Include="FormAcesso.Designer.cs">
       <DependentUpon>FormAcesso.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormularioInformarCodigo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormularioInformarCodigo.Designer.cs">
+      <DependentUpon>FormularioInformarCodigo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormularioRetornaDadosInicialAgenciaBancoVazio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormularioRetornaDadosInicialAgenciaBancoVazio.Designer.cs">
+      <DependentUpon>FormularioRetornaDadosInicialAgenciaBancoVazio.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormularioVerObjetosNaoAtualizados.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -421,6 +433,13 @@
       <DependentUpon>WaitForm.cs</DependentUpon>
     </Compile>
     <Compile Include="WaitWndFun.cs" />
+    <EmbeddedResource Include="FormularioInformarCodigo.resx">
+      <DependentUpon>FormularioInformarCodigo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormularioRetornaDadosInicialAgenciaBancoVazio.resx">
+      <DependentUpon>FormularioRetornaDadosInicialAgenciaBancoVazio.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormularioVerObjetosNaoAtualizados.resx">
       <DependentUpon>FormularioVerObjetosNaoAtualizados.cs</DependentUpon>
     </EmbeddedResource>

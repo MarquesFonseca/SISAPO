@@ -122,12 +122,32 @@ namespace SISAPO
             {
                 if (string.IsNullOrEmpty(txtNomeAgencia.Text))
                 {
-                    Mensagens.Erro("O campo Nome da Agência se encontra vazio.");
+                    Mensagens.Erro("O campo \"Nome da agência\" se encontra vazio.");
+                    return;
+                }
+                if (string.IsNullOrEmpty(comboBoxSupEst.Text))
+                {
+                    Mensagens.Erro("O campo \"Sup. Est.\" se encontra vazio.");
+                    return;
+                }
+                if (string.IsNullOrEmpty(txtCepUnidade.Text))
+                {
+                    Mensagens.Erro("O campo \"CEP Unidade\" se encontra vazio.");
                     return;
                 }
                 if (string.IsNullOrEmpty(txtEnderecoAgencia.Text))
                 {
-                    Mensagens.Erro("O campo Endereço da Agência se encontra vazio.");
+                    Mensagens.Erro("O campo \"Endereço da agência\" se encontra vazio.");
+                    return;
+                }
+                if (string.IsNullOrEmpty(txtCidadeAgenciaLocal.Text))
+                {
+                    Mensagens.Erro("O campo \"Cidade\" se encontra vazio.");
+                    return;
+                }
+                if (string.IsNullOrEmpty(comboBoxUFAgenciaLocal.Text))
+                {
+                    Mensagens.Erro("O campo \"Estado\" se encontra vazio.");
                     return;
                 }
                 using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
@@ -147,6 +167,7 @@ namespace SISAPO
                                             new Parametros("@Codigo", TipoCampo.Int, 2)});
 
                 }
+                Configuracoes.DadosAgencia = Configuracoes.RetornaDadosAgencia();
                 Mensagens.Informa("Gravado com sucesso!", MessageBoxIcon.Information, MessageBoxButtons.OK);
             }
             catch (Exception ex)
@@ -267,7 +288,7 @@ namespace SISAPO
                 label11.Text = "Exemplo: http://app.correiosnet.int/rastreamento/sro?opcao=PESQUISA&objetos=QB378038055BR";
             }
         }
-        
+
         private void BtnTornarBancoVazio_Click(object sender, EventArgs e)
         {
             if (Mensagens.Pergunta("Realmente quer limpar banco e torná-lo um Banco vazio?") == DialogResult.Yes)
@@ -358,6 +379,38 @@ namespace SISAPO
         private void button1_Click(object sender, EventArgs e)
         {
             Mensagens.Informa(string.Format("UserName: {0} \nUserDomainName: {1} \nHostName: {2}", Environment.UserName, Environment.UserDomainName, System.Net.Dns.GetHostEntry(Environment.MachineName).HostName));
+        }
+
+        private void BtnBuscarDadosAgenciaCodigoInformado_Click(object sender, EventArgs e)
+        {
+            string CodigoRetornado = string.Empty;
+            using (FormularioInformarCodigo formularioInformarCodigo = new FormularioInformarCodigo())
+            {
+                formularioInformarCodigo.ShowDialog();
+                if (formularioInformarCodigo.ClicouCancelar) return;
+                if (formularioInformarCodigo.ClicouConfirmar)
+                {
+                    CodigoRetornado = formularioInformarCodigo.CodigoObjetoInformado;
+                }
+            }
+
+            if (string.IsNullOrWhiteSpace(CodigoRetornado)) return;
+
+            FormularioRetornaDadosInicialAgenciaBancoVazio formularioRetornaDadosInicialAgenciaBancoVazio = new FormularioRetornaDadosInicialAgenciaBancoVazio(CodigoRetornado);
+            formularioRetornaDadosInicialAgenciaBancoVazio.ShowDialog();
+            string CidadeAgenciaLinha = formularioRetornaDadosInicialAgenciaBancoVazio.CidadeAgenciaLinha;
+            string UFAgenciaLinha = formularioRetornaDadosInicialAgenciaBancoVazio.UFAgenciaLinha;
+            string NomeAgenciaLinha = formularioRetornaDadosInicialAgenciaBancoVazio.NomeAgenciaLinha;
+            string EnderecoAgenciaLinha = formularioRetornaDadosInicialAgenciaBancoVazio.EnderecoAgenciaLinha;
+
+
+            txtNomeAgencia.Text = NomeAgenciaLinha;
+            comboBoxSupEst.Text = UFAgenciaLinha;
+            txtEnderecoAgencia.Text = EnderecoAgenciaLinha;
+            txtCidadeAgenciaLocal.Text = CidadeAgenciaLinha;
+            comboBoxUFAgenciaLocal.Text = UFAgenciaLinha;
+
+            Configuracoes.DadosAgencia = Configuracoes.RetornaDadosAgencia();
         }
     }
 }

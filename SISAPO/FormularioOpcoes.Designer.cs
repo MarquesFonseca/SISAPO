@@ -86,6 +86,7 @@
             this.BtnBuscarEnderecoParaBackup = new System.Windows.Forms.Button();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.tabelaConfiguracoesSistemaTableAdapter = new SISAPO.DataSetConfiguracoesTableAdapters.TabelaConfiguracoesSistemaTableAdapter();
+            this.BtnBuscarDadosAgenciaCodigoInformado = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageObjetosAguardandoRetirada.SuspendLayout();
@@ -379,6 +380,7 @@
             this.tabPageConfiguracoesAgencia.Controls.Add(this.label6);
             this.tabPageConfiguracoesAgencia.Controls.Add(this.label4);
             this.tabPageConfiguracoesAgencia.Controls.Add(this.LblNomeAgencia);
+            this.tabPageConfiguracoesAgencia.Controls.Add(this.BtnBuscarDadosAgenciaCodigoInformado);
             this.tabPageConfiguracoesAgencia.Controls.Add(this.BtnAtualizarConfiguracoesAgencia);
             this.tabPageConfiguracoesAgencia.Controls.Add(this.txtHorarioFuncionamentoAgenciaLocal);
             this.tabPageConfiguracoesAgencia.Controls.Add(this.txtEnderecoAgencia);
@@ -570,9 +572,9 @@
             this.BtnAtualizarConfiguracoesAgencia.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnAtualizarConfiguracoesAgencia.Location = new System.Drawing.Point(8, 211);
             this.BtnAtualizarConfiguracoesAgencia.Name = "BtnAtualizarConfiguracoesAgencia";
-            this.BtnAtualizarConfiguracoesAgencia.Size = new System.Drawing.Size(143, 39);
+            this.BtnAtualizarConfiguracoesAgencia.Size = new System.Drawing.Size(235, 87);
             this.BtnAtualizarConfiguracoesAgencia.TabIndex = 16;
-            this.BtnAtualizarConfiguracoesAgencia.Text = "Atualizar";
+            this.BtnAtualizarConfiguracoesAgencia.Text = "Atualizar / Gravar alterações";
             this.BtnAtualizarConfiguracoesAgencia.UseVisualStyleBackColor = true;
             this.BtnAtualizarConfiguracoesAgencia.Click += new System.EventHandler(this.BtnAtualizarConfiguracoesAgencia_Click);
             // 
@@ -772,6 +774,17 @@
             // 
             this.tabelaConfiguracoesSistemaTableAdapter.ClearBeforeFill = true;
             // 
+            // BtnBuscarDadosAgenciaCodigoInformado
+            // 
+            this.BtnBuscarDadosAgenciaCodigoInformado.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnBuscarDadosAgenciaCodigoInformado.Location = new System.Drawing.Point(492, 211);
+            this.BtnBuscarDadosAgenciaCodigoInformado.Name = "BtnBuscarDadosAgenciaCodigoInformado";
+            this.BtnBuscarDadosAgenciaCodigoInformado.Size = new System.Drawing.Size(231, 87);
+            this.BtnBuscarDadosAgenciaCodigoInformado.TabIndex = 16;
+            this.BtnBuscarDadosAgenciaCodigoInformado.Text = "Buscar dados da Agência por um código informado";
+            this.BtnBuscarDadosAgenciaCodigoInformado.UseVisualStyleBackColor = true;
+            this.BtnBuscarDadosAgenciaCodigoInformado.Click += new System.EventHandler(this.BtnBuscarDadosAgenciaCodigoInformado_Click);
+            // 
             // FormularioOpcoes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -869,5 +882,6 @@
         private System.Windows.Forms.RadioButton radioButtonEnderecoSROWebsro2oCampo2;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button BtnBuscarDadosAgenciaCodigoInformado;
     }
 }

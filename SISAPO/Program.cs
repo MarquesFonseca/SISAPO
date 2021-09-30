@@ -18,7 +18,7 @@ namespace SISAPO
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        
+
         static void Main(string[] args)
         {
             #region TipoAmbiente
@@ -34,7 +34,7 @@ namespace SISAPO
             Application.SetCompatibleTextRenderingDefault(false);
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("pt-BR");
             System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("pt-BR");
-            
+
             FormularioPrincipal formularioPrincipal = new FormularioPrincipal();
 
             var processo = System.Diagnostics.Process.GetCurrentProcess();
@@ -98,7 +98,7 @@ namespace SISAPO
                 frm.LbnMensagem.Text = "Iniciando. Aguarde...";
                 frm.ShowDialog(new Form() { WindowState = FormWindowState.Maximized });
             }
-
+            
             Application.Run(formularioPrincipal);            
         }
 
