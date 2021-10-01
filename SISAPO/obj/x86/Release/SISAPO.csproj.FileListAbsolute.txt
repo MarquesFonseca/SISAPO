@@ -16,6 +16,8 @@ C:\Projetos\SISAPO\SISAPO\bin\Release\Npgsql.dll
 C:\Projetos\SISAPO\SISAPO\bin\Release\Release.dll
 C:\Projetos\SISAPO\SISAPO\bin\Release\System.Data.SqlServerCe.dll
 C:\Projetos\SISAPO\SISAPO\bin\Release\Microsoft.VisualBasic.PowerPacks.Vs.xml
+C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioInformarCodigo.resources
+C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioRetornaDadosInicialAgenciaBancoVazio.resources
 C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioVerObjetosNaoAtualizados.resources
 C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioAlterarComentarioItensSelecionados.resources
 C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioAlterarSituacaoItensSelecionados.resources

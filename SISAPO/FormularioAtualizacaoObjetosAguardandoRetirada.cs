@@ -53,9 +53,9 @@ namespace SISAPO
                 //caminho para tela de consulta atraves de códigos de objetos rastreadores
                 //tipoTela = TipoTela.Rastreamento1;
                 //webBrowser1.Url = new Uri(TelaRastreamento_1_1);
-                CodigoObjetoAtual = "OO813557390BR";
+                CodigoObjetoAtual = "BY059347974BR";
                 //string TelaNomeCliente_2_4 = @"J:\Rastreamento_Unificado_SC349045411BR.htm";
-                string TelaNomeCliente_2_4 = @"C:/Users/MARQUES/Downloads/OBJETO_SANTA_ROSA_TOCANTINS.htm";
+                string TelaNomeCliente_2_4 = @"C:\Users\MARQUES\Downloads\BY059347974BR_AC_LUZIMANGUES.htm";
                 //"J:\Rastreamento_Unificado_SC349045411BR.htm";
                 //tipoTela = TipoTela.NomeCliente4;
                 tipoTela = TipoTela.DetalhesDeObjetos3;
@@ -573,9 +573,7 @@ namespace SISAPO
                 if (!VerificaSeELinhaDesejada(LinhaAtual)) continue;
 
                 if (VerificaAgenciaAtual(LinhaAtual, CidadeAgenciaLocal, UFAgenciaLocal, NomeAgenciaLocal) == false) continue;
-
-
-
+                
                 #region "Não procurado pelo destinatário"
                 if (LinhaAtual.Contains("NAO PROCURADO PELO DESTINATARIO".ToUpper().RemoveAcentos()))
                 {
@@ -800,9 +798,11 @@ namespace SISAPO
             {
                 string agenciaCidadeEstadoLinha = linhaAtual.Remove(0, 19).Trim().ToUpper();
                 agenciaLinha = agenciaCidadeEstadoLinha.Split('-')[0].Trim().ToUpper();
-                cidadeLinha = agenciaCidadeEstadoLinha.Split('/')[0].Trim().ToUpper();
-                cidadeLinha = cidadeLinha.Split('-')[1].Trim().ToUpper();
-                estadoLinha = agenciaCidadeEstadoLinha.Split('/')[1].Trim().ToUpper();
+                string tempCidadeLinha = agenciaCidadeEstadoLinha.Split('-')[1].Trim().ToUpper();
+                cidadeLinha = tempCidadeLinha.Split('/')[0].Trim().ToUpper();
+                //cidadeLinha = tempCidadeLinha.Split('-')[1].Trim().ToUpper();
+                estadoLinha = tempCidadeLinha.Split('/')[1].Trim().ToUpper();
+                //estadoLinha = agenciaCidadeEstadoLinha.Split('/')[1].Trim().ToUpper();
                 estadoLinha = estadoLinha.Substring(0, 2);
             }
 
