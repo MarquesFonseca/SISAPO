@@ -1841,7 +1841,72 @@ namespace SISAPO
                 FormularioPrincipal.RetornaComponentesFormularioPrincipal().BuscaNovoStatusQuantidadeNaoAtualizados();
             }
         }
+
+        private void emitirCHECKOUTEncaminhamentoSelecionadosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count == 0) return;
+
+            //FormularioAlterarComentarioItensSelecionados formularioAlterarComentarioItensSelecionados = new FormularioAlterarComentarioItensSelecionados();
+            //formularioAlterarComentarioItensSelecionados.ShowDialog();
+
+            //if (formularioAlterarComentarioItensSelecionados.ClicouCancelar) return;
+
+            //if (string.IsNullOrEmpty(formularioAlterarComentarioItensSelecionados.comboBoxComentario.Text)) return;
+
+            StringBuilder lista = new StringBuilder();
+
+            List<string> ListaGridSelecaoAtual = new List<string>();
+
+            for (int i = this.dataGridView1.SelectedRows.Count - 1; i >= 0; i--)
+            {
+                //bool existe = ListaGridSelecaoAtual.AsEnumerable().Any(t => t == this.dataGridView1.SelectedRows[i].Cells["codigoObjetoDataGridViewTextBoxColumn"].Value.ToString());
+                //if (!existe)
+                //    ListaGridSelecaoAtual.Add(this.dataGridView1.SelectedRows[i].Cells["codigoObjetoDataGridViewTextBoxColumn"].Value.ToString());
+                string CodigoObjeto = this.dataGridView1.SelectedRows[i].Cells["codigoObjetoDataGridViewTextBoxColumn"].Value.ToString();
+                string NomeCliente = this.dataGridView1.SelectedRows[i].Cells["nomeClienteDataGridViewTextBoxColumn"].Value.ToString();
+                string DataLancamento = this.dataGridView1.SelectedRows[i].Cells["DataLancamento"].Value.ToString();
+                string DataModificacao = this.dataGridView1.SelectedRows[i].Cells["DataModificacao"].Value.ToString();
+                string Situacao = this.dataGridView1.SelectedRows[i].Cells["Situacao"].Value.ToString();
+                string NumeroLDI = this.dataGridView1.SelectedRows[i].Cells["CodigoLdi"].Value.ToString();
+                string ObjetoEntregue = this.dataGridView1.SelectedRows[i].Cells["ObjetoEntregue"].Value.ToString();
+                string ARPostagem = this.dataGridView1.SelectedRows[i].Cells["ARPostagem"].Value.ToString();
+                string MPPostagem = this.dataGridView1.SelectedRows[i].Cells["MPPostagem"].Value.ToString();
+                string CepDestinoPostagem = this.dataGridView1.SelectedRows[i].Cells["CepDestinoPostagem"].Value.ToString();
+                string NumeroLOEC = this.dataGridView1.SelectedRows[i].Cells["NumeroLOEC"].Value.ToString();
+                string UnidadeLOEC = this.dataGridView1.SelectedRows[i].Cells["UnidadeLOEC"].Value.ToString();
+                string EnderecoLOEC = this.dataGridView1.SelectedRows[i].Cells["EnderecoLOEC"].Value.ToString();
+                string BairroLOEC = this.dataGridView1.SelectedRows[i].Cells["BairroLOEC"].Value.ToString();
+                string MunicipioLOEC = this.dataGridView1.SelectedRows[i].Cells["MunicipioLOEC"].Value.ToString();
+                string Atualizado = this.dataGridView1.SelectedRows[i].Cells["atualizadoDataGridViewCheckBoxColumn"].Value.ToString();
+                
+                lista.Append(string.Format("{0}#tab{1}#tab{2}#tab{3}#tab{4}#tab{5}#tab{6}#tab{7}#tab{8}#tab{9}#tab{10}#tab{11}#tab{12}#tab{13}#tab{14}#tab{15}#tab\n",
+
+                    CodigoObjeto,
+                    NomeCliente,
+                    DataLancamento,
+                    DataModificacao,
+                    Situacao,
+                    NumeroLDI,
+                    ObjetoEntregue,
+                    ARPostagem,
+                    MPPostagem,
+                    CepDestinoPostagem,
+                    NumeroLOEC,
+                    UnidadeLOEC,
+                    EnderecoLOEC,
+                    BairroLOEC,
+                    MunicipioLOEC,
+                    Atualizado
+                    ));
+            }
+            string linhallll = lista.ToString();
+            string compacta = FormataString.Compacta(linhallll);
+            string descompacta = FormataString.Descompacta(compacta);
+            if (ListaGridSelecaoAtual.Count == 0) return;
+        }
     }
+
+    
 }
 
 

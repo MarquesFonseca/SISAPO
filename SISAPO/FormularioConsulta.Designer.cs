@@ -57,10 +57,11 @@
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.alterarSituaçãoDeItensSelecionadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.alterarComentárioSelecionadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.AtualizarObjetosSelecionadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.desfazerBaixaAnteriorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.alterarComentárioSelecionadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.AtualizarObjetosSelecionadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CaixaPostal = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.nomeClienteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DataLancamento = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -185,7 +186,8 @@
             this.LblUnidadeLOEC = new System.Windows.Forms.Label();
             this.tabelaObjetosSROLocalTableAdapter = new SISAPO.DataSetTabelaObjetosSROLocalTableAdapters.TabelaObjetosSROLocalTableAdapter();
             this.tableAdapterManager = new SISAPO.DataSetTabelaObjetosSROLocalTableAdapters.TableAdapterManager();
-            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.emitirCHECKOUTEncaminhamentoSelecionadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStripImprimirListaEntrega.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -312,9 +314,11 @@
             this.toolStripSeparator5,
             this.alterarComentárioSelecionadosToolStripMenuItem,
             this.toolStripSeparator6,
+            this.emitirCHECKOUTEncaminhamentoSelecionadosToolStripMenuItem,
+            this.toolStripSeparator7,
             this.AtualizarObjetosSelecionadosToolStripMenuItem});
             this.contextMenuStripImprimirListaEntrega.Name = "contextMenuStripImprimirListaEntrega";
-            this.contextMenuStripImprimirListaEntrega.Size = new System.Drawing.Size(372, 216);
+            this.contextMenuStripImprimirListaEntrega.Size = new System.Drawing.Size(372, 244);
             // 
             // toolStripMenuItemImprimirListaEntrega
             // 
@@ -387,6 +391,19 @@
             this.toolStripSeparator4.Name = "toolStripSeparator4";
             this.toolStripSeparator4.Size = new System.Drawing.Size(368, 6);
             // 
+            // desfazerBaixaAnteriorToolStripMenuItem
+            // 
+            this.desfazerBaixaAnteriorToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("desfazerBaixaAnteriorToolStripMenuItem.Image")));
+            this.desfazerBaixaAnteriorToolStripMenuItem.Name = "desfazerBaixaAnteriorToolStripMenuItem";
+            this.desfazerBaixaAnteriorToolStripMenuItem.Size = new System.Drawing.Size(371, 22);
+            this.desfazerBaixaAnteriorToolStripMenuItem.Text = "Desfazer baixa anterior (Selecionados)";
+            this.desfazerBaixaAnteriorToolStripMenuItem.Click += new System.EventHandler(this.desfazerBaixaAnteriorToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(368, 6);
+            // 
             // alterarComentárioSelecionadosToolStripMenuItem
             // 
             this.alterarComentárioSelecionadosToolStripMenuItem.Image = global::SISAPO.Properties.Resources.CadastroObjetos;
@@ -395,10 +412,10 @@
             this.alterarComentárioSelecionadosToolStripMenuItem.Text = "Alterar Comentário (Selecionados)";
             this.alterarComentárioSelecionadosToolStripMenuItem.Click += new System.EventHandler(this.alterarComentarioSelecionadosToolStripMenuItem_Click);
             // 
-            // toolStripSeparator5
+            // toolStripSeparator6
             // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(368, 6);
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(368, 6);
             // 
             // AtualizarObjetosSelecionadosToolStripMenuItem
             // 
@@ -407,14 +424,6 @@
             this.AtualizarObjetosSelecionadosToolStripMenuItem.Size = new System.Drawing.Size(371, 22);
             this.AtualizarObjetosSelecionadosToolStripMenuItem.Text = "Atualizar Objeto(s) (Selecionados)";
             this.AtualizarObjetosSelecionadosToolStripMenuItem.Click += new System.EventHandler(this.AtualizarObjetosSelecionadosToolStripMenuItem_Click);
-            // 
-            // desfazerBaixaAnteriorToolStripMenuItem
-            // 
-            this.desfazerBaixaAnteriorToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("desfazerBaixaAnteriorToolStripMenuItem.Image")));
-            this.desfazerBaixaAnteriorToolStripMenuItem.Name = "desfazerBaixaAnteriorToolStripMenuItem";
-            this.desfazerBaixaAnteriorToolStripMenuItem.Size = new System.Drawing.Size(371, 22);
-            this.desfazerBaixaAnteriorToolStripMenuItem.Text = "Desfazer baixa anterior (Selecionados)";
-            this.desfazerBaixaAnteriorToolStripMenuItem.Click += new System.EventHandler(this.desfazerBaixaAnteriorToolStripMenuItem_Click);
             // 
             // CaixaPostal
             // 
@@ -1636,7 +1645,7 @@
             this.BtnCoordenadas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.BtnCoordenadas.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BtnCoordenadas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnCoordenadas.Location = new System.Drawing.Point(183, 3);
+            this.BtnCoordenadas.Location = new System.Drawing.Point(204, 3);
             this.BtnCoordenadas.Name = "BtnCoordenadas";
             this.BtnCoordenadas.Size = new System.Drawing.Size(64, 44);
             this.BtnCoordenadas.TabIndex = 4;
@@ -1834,10 +1843,18 @@
             this.tableAdapterManager.TabelaObjetosSROLocalTableAdapter = this.tabelaObjetosSROLocalTableAdapter;
             this.tableAdapterManager.UpdateOrder = SISAPO.DataSetTabelaObjetosSROLocalTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
-            // toolStripSeparator6
+            // emitirCHECKOUTEncaminhamentoSelecionadosToolStripMenuItem
             // 
-            this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(368, 6);
+            this.emitirCHECKOUTEncaminhamentoSelecionadosToolStripMenuItem.Image = global::SISAPO.Properties.Resources.AtualizarListaObjetos;
+            this.emitirCHECKOUTEncaminhamentoSelecionadosToolStripMenuItem.Name = "emitirCHECKOUTEncaminhamentoSelecionadosToolStripMenuItem";
+            this.emitirCHECKOUTEncaminhamentoSelecionadosToolStripMenuItem.Size = new System.Drawing.Size(371, 22);
+            this.emitirCHECKOUTEncaminhamentoSelecionadosToolStripMenuItem.Text = "Emitir CHECK-OUT Encaminhamento (Selecionados)";
+            this.emitirCHECKOUTEncaminhamentoSelecionadosToolStripMenuItem.Click += new System.EventHandler(this.emitirCHECKOUTEncaminhamentoSelecionadosToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator7
+            // 
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(368, 6);
             // 
             // FormularioConsulta
             // 
@@ -2041,5 +2058,7 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn atualizadoDataGridViewCheckBoxColumn;
         private System.Windows.Forms.ToolStripMenuItem desfazerBaixaAnteriorToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
+        private System.Windows.Forms.ToolStripMenuItem emitirCHECKOUTEncaminhamentoSelecionadosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
     }
 }

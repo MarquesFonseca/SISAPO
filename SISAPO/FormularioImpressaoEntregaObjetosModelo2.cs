@@ -319,6 +319,12 @@ namespace SISAPO
                     if (contador == CodigosSelecionadoAgrupados.Rows.Count) continue;
                     if (ImprimirUmPorFolha)
                     {
+                        Bitmap textoBitmap = GerarQRCode(300, 300, @"http://www.google.com.br");
+                        byte[] TextoByte = BitmapToBytes(textoBitmap);
+                        //<img src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(Model.imageBytes))" />
+                        Html.AppendLine("		<div style=\"width: 100%; height:300px; border: 1px solid rgb(16, 238, 8); float: center; \">          <img src=" + string.Format("data:image/png;base64,{0}", Convert.ToBase64String(TextoByte)) + " />           </div>");
+
+
                         Html.AppendLine("		<div class=\"quebrapagina\"></div>");
                     }
                     if (ImprimirVariosPorFolha)
@@ -333,6 +339,32 @@ namespace SISAPO
                         }
                     }
                 }
+            }
+        }
+
+        private static Byte[] BitmapToBytes(Bitmap img)
+        {
+            using (MemoryStream stream = new MemoryStream())
+            {
+                img.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
+                return stream.ToArray();
+            }
+        }
+
+        private Bitmap GerarQRCode(int width, int height, string text)
+        {
+            try
+            {
+                var bw = new ZXing.BarcodeWriter();
+                var encOptions = new ZXing.Common.EncodingOptions() { Width = width, Height = height, Margin = 0 };
+                bw.Options = encOptions;
+                bw.Format = ZXing.BarcodeFormat.QR_CODE;
+                var resultado = new Bitmap(bw.Write(text));
+                return resultado;
+            }
+            catch
+            {
+                throw;
             }
         }
 
