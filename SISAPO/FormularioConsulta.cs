@@ -47,6 +47,8 @@ namespace SISAPO
             checkBoxIncluirCaixaPostal.Checked = FormularioPrincipal.RetornaComponentesFormularioPrincipal().ExibirCaixaPostalPesquisa_toolStripMenuItem.Checked;
             checkBoxIncluirBaixados.Checked = FormularioPrincipal.RetornaComponentesFormularioPrincipal().ExibirItensJaEntreguesToolStripMenuItem.Checked;
 
+            ConfiguraMenusEBotoesParaACCAgenciaComunitaria(Configuracoes.ACCAgenciaComunitaria);
+
             splitContainer3.Panel2Collapsed = true;
 
             DataFinal_dateTimePicker.Text = DateTime.Now.Date.ToShortDateString();
@@ -299,6 +301,20 @@ namespace SISAPO
             {
                 FormularioPrincipal.RetornaComponentesFormularioPrincipal().visualizarListaDeObjetosToolStripMenuItem_Click(sender, e);
             }
+        }
+
+        public void ConfiguraMenusEBotoesParaACCAgenciaComunitaria(bool @ModoACCAgenciaComunitaria)
+        {
+            toolStripMenuItemImprimirListaEntrega.Enabled = !@ModoACCAgenciaComunitaria;
+            imprimirAvisosDeChegadaSelecionadosToolStripMenuItem.Enabled = !@ModoACCAgenciaComunitaria;
+            alterarItemToolStripMenuItem1.Enabled = !@ModoACCAgenciaComunitaria;
+            alterarSituaçãoDeItensSelecionadosToolStripMenuItem.Enabled = !@ModoACCAgenciaComunitaria;
+            alterarComentárioSelecionadosToolStripMenuItem.Enabled = !@ModoACCAgenciaComunitaria;
+            emitirCHECKOUTEncaminhamentoSelecionadosToolStripMenuItem.Enabled = !@ModoACCAgenciaComunitaria;
+            AtualizarObjetosSelecionadosToolStripMenuItem.Enabled = !@ModoACCAgenciaComunitaria;
+            Btn6Atualizar.Enabled = !@ModoACCAgenciaComunitaria;
+            BtnImprimirAssinaturasHoje.Enabled = !@ModoACCAgenciaComunitaria;
+            BtnImprimirAvisosHoje.Enabled = !@ModoACCAgenciaComunitaria;
         }
 
         private void btnPesquisarSRO_Click(object sender, EventArgs e)
@@ -1621,10 +1637,10 @@ namespace SISAPO
 
                 //if (Mensagens.Pergunta("Itens atualizado com sucesso! Deseja atualizar grid?") == System.Windows.Forms.DialogResult.Yes)
                 //{
-                    if (Application.OpenForms["FormularioConsulta"] != null) //verifica se está aberto
-                        FormularioConsulta.RetornaComponentesFormularioConsulta().ConsultaTodosNaoEntreguesOrdenadoNome();
+                if (Application.OpenForms["FormularioConsulta"] != null) //verifica se está aberto
+                    FormularioConsulta.RetornaComponentesFormularioConsulta().ConsultaTodosNaoEntreguesOrdenadoNome();
 
-                    FormularioPrincipal.RetornaComponentesFormularioPrincipal().BuscaNovoStatusQuantidadeNaoAtualizados();
+                FormularioPrincipal.RetornaComponentesFormularioPrincipal().BuscaNovoStatusQuantidadeNaoAtualizados();
                 //}
             }
             catch (Exception ex)
@@ -1797,6 +1813,9 @@ namespace SISAPO
         {
             if (dataGridView1.SelectedRows.Count == 0) return;
 
+            if (Mensagens.Pergunta("Atenção! Esta operação altera a situação de baixa anterior.\n\nDeseja realmente prosseguir com esta operação?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                return;
+
             List<string> ListaGridSelecaoAtual = new List<string>();
 
             try
@@ -1878,7 +1897,7 @@ namespace SISAPO
                 string BairroLOEC = this.dataGridView1.SelectedRows[i].Cells["BairroLOEC"].Value.ToString();
                 string MunicipioLOEC = this.dataGridView1.SelectedRows[i].Cells["MunicipioLOEC"].Value.ToString();
                 string Atualizado = this.dataGridView1.SelectedRows[i].Cells["atualizadoDataGridViewCheckBoxColumn"].Value.ToString();
-                
+
                 lista.Append(string.Format("{0}#tab{1}#tab{2}#tab{3}#tab{4}#tab{5}#tab{6}#tab{7}#tab{8}#tab{9}#tab{10}#tab{11}#tab{12}#tab{13}#tab{14}#tab{15}#tab\n",
 
                     CodigoObjeto,
@@ -1906,7 +1925,7 @@ namespace SISAPO
         }
     }
 
-    
+
 }
 
 

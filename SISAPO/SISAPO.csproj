@@ -171,6 +171,12 @@
     <Compile Include="FormAcesso.Designer.cs">
       <DependentUpon>FormAcesso.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormularioAdicionarItemObjetoQRCode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormularioAdicionarItemObjetoQRCode.Designer.cs">
+      <DependentUpon>FormularioAdicionarItemObjetoQRCode.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormularioInformarCodigo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -444,6 +450,9 @@
       <DependentUpon>WaitForm.cs</DependentUpon>
     </Compile>
     <Compile Include="WaitWndFun.cs" />
+    <EmbeddedResource Include="FormularioAdicionarItemObjetoQRCode.resx">
+      <DependentUpon>FormularioAdicionarItemObjetoQRCode.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormularioInformarCodigo.resx">
       <DependentUpon>FormularioInformarCodigo.cs</DependentUpon>
     </EmbeddedResource>
@@ -677,6 +686,7 @@
     <Content Include="Relatorios\LancamentosPorDiaPeriodo\LancamentosPorDiaPeriodo.html" />
     <Content Include="Relatorios\LancamentosPorDiaPeriodo\LancamentosPorDiaPeriodo.js" />
     <Content Include="Resources\animated.js" />
+    <None Include="Resources\barcode-scanner.png" />
     <Content Include="Resources\charts.js" />
     <Content Include="Resources\core.js" />
     <None Include="Resources\Desfazer.png" />
@@ -687,6 +697,7 @@
     <Content Include="Resources\icons8-colar-26.png" />
     <Content Include="Resources\imp01.gif" />
     <None Include="Resources\local-map-google.png" />
+    <None Include="Resources\seta-diagonal.png" />
     <Content Include="Resources\timg11.gif" />
     <Content Include="SelectDataSet.txt" />
     <None Include="Resources\LogoCorreios.jpg" />

@@ -73,9 +73,29 @@ namespace SISAPO.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap barcode_scanner {
+            get {
+                object obj = ResourceManager.GetObject("barcode-scanner", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap CadastroObjetos {
             get {
                 object obj = ResourceManager.GetObject("CadastroObjetos", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Desfazer {
+            get {
+                object obj = ResourceManager.GetObject("Desfazer", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -155,6 +175,16 @@ namespace SISAPO.Properties {
         public static System.Drawing.Bitmap LogoCorreios {
             get {
                 object obj = ResourceManager.GetObject("LogoCorreios", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap seta_diagonal {
+            get {
+                object obj = ResourceManager.GetObject("seta-diagonal", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

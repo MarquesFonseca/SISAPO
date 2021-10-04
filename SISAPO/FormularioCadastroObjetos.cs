@@ -31,12 +31,49 @@ namespace SISAPO
             this.backgroundWorker1.WorkerSupportsCancellation = true;
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void FormularioCadastroObjetos_Load(object sender, EventArgs e)
         {
             progressBar1.Value = 0;
             //label2.Text = "Barra de progresso";
             LblMensagem.Text = "";
             panel3.Visible = false;
+
+            ConfiguraMenusBotoesParaACCAgenciaComunitaria(Configuracoes.ACCAgenciaComunitaria);
+        }
+
+        public void ConfiguraMenusBotoesParaACCAgenciaComunitaria(bool @ModoACCAgenciaComunitaria)
+        {
+            if (Configuracoes.ReceberObjetosViaQRCodePLRDaAgenciaMae)
+            {
+                BtnAdicionarPorPLRPreListaRemessa.Visible = true;
+                dataGridView1.Visible = false;
+                dataGridViewQRCode.Visible = true;
+            }
+            else
+            {
+                BtnAdicionarPorPLRPreListaRemessa.Visible = false;
+                dataGridView1.Visible = true;
+                dataGridViewQRCode.Visible = false;
+            }
+
+
+            LblMensagem.Visible = !@ModoACCAgenciaComunitaria;
+            BtnColarConteudoJaCopiado.Visible = !@ModoACCAgenciaComunitaria;
+            BtnAdicionarItem.Enabled = !@ModoACCAgenciaComunitaria;
+        }
+
+        public static FormularioCadastroObjetos RetornaComponentesFormularioCadastroObjetos()
+        {
+            FormularioCadastroObjetos formularioCadastroObjetos;
+            foreach (Form item in Application.OpenForms)
+            {
+                if (item.Name == "FormularioCadastroObjetos")
+                {
+                    formularioCadastroObjetos = (FormularioCadastroObjetos)item;
+                    return (FormularioCadastroObjetos)item;
+                }
+            }
+            return null;
         }
 
         private DataTable RetornaListaObjetos(string Texto)
@@ -463,7 +500,15 @@ namespace SISAPO
 
         private void BtnLimparListaAtual_Click(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = listaObjetos = new DataTable();
+            //dataGridView1.DataSource = listaObjetos = new DataTable();
+            if (dataGridView1.Rows.Count > 0)
+                listaObjetos.Clear();
+
+            if (dataGridViewQRCode.Rows.Count > 0)
+                listaObjetos.Clear();
+
+
+
             LblQuantidadeImportados.Text = "";
             //tabControl1.Visible = false;
             this.BtnGravar.Enabled = false;
@@ -488,6 +533,165 @@ namespace SISAPO
         {
             panel3.Visible = false;
             return;
+        }
+
+        private void BtnAdicionarPorPLRPreListaRemessa_Click(object sender, EventArgs e)
+        {
+            //LV221247464CN#tab287077020401#tabJULIANA RODRIGUES#tab29/09/2021 10:40:11#tab29/09/2021 14:44:46#tabENTREGUE#tabTrue#tabTrue#tabFalse#tab00156-000 / CHINA#tab#tab22/08/2021 14:26:00#tab77019-096#tab#tab#tab#tab77100-970 / CDD PALMAS#tabPALMAS / TO#tab28/09/2021 11:52:52#tab83454624#tab502#tab112100021778#tabQUADRA ARSO 112 ALAMEDA 13 17#tabPLANO DIRETOR SUL#tab77019096#tabAUSENTE ENCAMINHADO ENTREGA INTERNA#tabNÃO#tab-10.25075,-48.34432#tabPCT INT#tabNAO URGENTE#tabLV#tabOBJETO INTERNACIONAL PRIME#tab20#tab
+
+            //BtnLimparListaAtual_Click(sender, e);
+
+            using (FormularioAdicionarItemObjetoQRCode formularioAdicionarItemObjetoQRCode = new FormularioAdicionarItemObjetoQRCode())
+            {
+                formularioAdicionarItemObjetoQRCode.ShowDialog();
+
+                if (formularioAdicionarItemObjetoQRCode.ClicouCancelar) return;
+                if (formularioAdicionarItemObjetoQRCode.ClicouConfirmar == false) return;
+
+                if (formularioAdicionarItemObjetoQRCode.dtbLista.Rows.Count > 0)
+                {
+                    foreach (DataRow item in formularioAdicionarItemObjetoQRCode.dtbLista.Rows)
+                    {
+                        if (listaObjetos == null || listaObjetos.Rows.Count == 0)
+                        {
+                            listaObjetos = new DataTable();
+                            listaObjetos.Columns.Add("CodigoObjeto", typeof(string));
+                            listaObjetos.PrimaryKey = new DataColumn[] { listaObjetos.Columns["CodigoObjeto"] };
+                            listaObjetos.Columns.Add("CodigoLdi", typeof(string));
+                            listaObjetos.Columns.Add("NomeCliente", typeof(string));
+                            listaObjetos.Columns.Add("DataLancamento", typeof(DateTime));
+                            listaObjetos.Columns.Add("DataModificacao", typeof(string));
+                            listaObjetos.Columns.Add("Situacao", typeof(string));
+                            listaObjetos.Columns.Add("Atualizado", typeof(bool));
+                            listaObjetos.Columns.Add("ObjetoEntregue", typeof(bool));
+                            listaObjetos.Columns.Add("CaixaPostal", typeof(bool));
+                            listaObjetos.Columns.Add("UnidadePostagem", typeof(string));
+                            listaObjetos.Columns.Add("MunicipioPostagem", typeof(string));
+                            listaObjetos.Columns.Add("CriacaoPostagem", typeof(string));
+                            listaObjetos.Columns.Add("CepDestinoPostagem", typeof(string));
+                            listaObjetos.Columns.Add("ARPostagem", typeof(string));
+                            listaObjetos.Columns.Add("MPPostagem", typeof(string));
+                            listaObjetos.Columns.Add("DataMaxPrevistaEntregaPostagem", typeof(string));
+                            listaObjetos.Columns.Add("UnidadeLOEC", typeof(string));
+                            listaObjetos.Columns.Add("MunicipioLOEC", typeof(string));
+                            listaObjetos.Columns.Add("CriacaoLOEC", typeof(string));
+                            listaObjetos.Columns.Add("CarteiroLOEC", typeof(string));
+                            listaObjetos.Columns.Add("DistritoLOEC", typeof(string));
+                            listaObjetos.Columns.Add("NumeroLOEC", typeof(string));
+                            listaObjetos.Columns.Add("EnderecoLOEC", typeof(string));
+                            listaObjetos.Columns.Add("BairroLOEC", typeof(string));
+                            listaObjetos.Columns.Add("LocalidadeLOEC", typeof(string));
+                            listaObjetos.Columns.Add("SituacaoDestinatarioAusente", typeof(string));
+                            listaObjetos.Columns.Add("AgrupadoDestinatarioAusente", typeof(string));
+                            listaObjetos.Columns.Add("CoordenadasDestinatarioAusente", typeof(string));
+                            listaObjetos.Columns.Add("Comentario", typeof(string));
+                            listaObjetos.Columns.Add("TipoPostalServico", typeof(string));
+                            listaObjetos.Columns.Add("TipoPostalSiglaCodigo", typeof(string));
+                            listaObjetos.Columns.Add("TipoPostalNomeSiglaCodigo", typeof(string));
+                            listaObjetos.Columns.Add("TipoPostalPrazoDiasCorridosRegulamentado", typeof(string));
+                        }
+
+                        string CodigoObjeto = item["CodigoObjeto"].ToString();
+                        string CodigoLdi = item["CodigoLdi"].ToString();
+                        string NomeCliente = item["NomeCliente"].ToString();
+                        DateTime DataLancamento = Convert.ToDateTime(item["DataLancamento"].ToString());
+                        string DataModificacao = item["DataModificacao"].ToString();
+                        string Situacao = item["Situacao"].ToString();
+                        bool Atualizado = Convert.ToBoolean(item["Atualizado"].ToString());
+                        bool ObjetoEntregue = Convert.ToBoolean(item["ObjetoEntregue"].ToString());
+                        bool CaixaPostal = Convert.ToBoolean(item["CaixaPostal"].ToString());
+                        string UnidadePostagem = item["UnidadePostagem"].ToString();
+                        string MunicipioPostagem = item["MunicipioPostagem"].ToString();
+                        string CriacaoPostagem = item["CriacaoPostagem"].ToString();
+                        string CepDestinoPostagem = item["CepDestinoPostagem"].ToString();
+                        string ARPostagem = item["ARPostagem"].ToString();
+                        string MPPostagem = item["MPPostagem"].ToString();
+                        string DataMaxPrevistaEntregaPostagem = item["DataMaxPrevistaEntregaPostagem"].ToString();
+                        string UnidadeLOEC = item["UnidadeLOEC"].ToString();
+                        string MunicipioLOEC = item["MunicipioLOEC"].ToString();
+                        string CriacaoLOEC = item["CriacaoLOEC"].ToString();
+                        string CarteiroLOEC = item["CarteiroLOEC"].ToString();
+                        string DistritoLOEC = item["DistritoLOEC"].ToString();
+                        string NumeroLOEC = item["NumeroLOEC"].ToString();
+                        string EnderecoLOEC = item["EnderecoLOEC"].ToString();
+                        string BairroLOEC = item["BairroLOEC"].ToString();
+                        string LocalidadeLOEC = item["LocalidadeLOEC"].ToString();
+                        string SituacaoDestinatarioAusente = item["SituacaoDestinatarioAusente"].ToString();
+                        string AgrupadoDestinatarioAusente = item["AgrupadoDestinatarioAusente"].ToString();
+                        string CoordenadasDestinatarioAusente = item["CoordenadasDestinatarioAusente"].ToString();
+                        string Comentario = item["Comentario"].ToString();
+                        string TipoPostalServico = item["TipoPostalServico"].ToString();
+                        string TipoPostalSiglaCodigo = item["TipoPostalSiglaCodigo"].ToString();
+                        string TipoPostalNomeSiglaCodigo = item["TipoPostalNomeSiglaCodigo"].ToString();
+                        string TipoPostalPrazoDiasCorridosRegulamentado = item["TipoPostalPrazoDiasCorridosRegulamentado"].ToString();
+
+                        bool existe = listaObjetos.AsEnumerable().Any(t => t["CodigoObjeto"].ToString() == item["CodigoObjeto"].ToString());
+                        if (!existe)
+                        {
+                            listaObjetos.Rows.Add(
+                                CodigoObjeto,
+                                CodigoLdi,
+                                NomeCliente,
+                                DataLancamento,
+                                DataModificacao,
+                                Situacao,
+                                Atualizado,
+                                ObjetoEntregue,
+                                CaixaPostal,
+                                UnidadePostagem,
+                                MunicipioPostagem,
+                                CriacaoPostagem,
+                                CepDestinoPostagem,
+                                ARPostagem,
+                                MPPostagem,
+                                DataMaxPrevistaEntregaPostagem,
+                                UnidadeLOEC,
+                                MunicipioLOEC,
+                                CriacaoLOEC,
+                                CarteiroLOEC,
+                                DistritoLOEC,
+                                NumeroLOEC,
+                                EnderecoLOEC,
+                                BairroLOEC,
+                                LocalidadeLOEC,
+                                SituacaoDestinatarioAusente,
+                                AgrupadoDestinatarioAusente,
+                                CoordenadasDestinatarioAusente,
+                                Comentario,
+                                TipoPostalServico,
+                                TipoPostalSiglaCodigo,
+                                TipoPostalNomeSiglaCodigo,
+                                TipoPostalPrazoDiasCorridosRegulamentado
+                                );
+                        }
+
+
+                        listaObjetos.DefaultView.Sort = "DataLancamento DESC";
+                        listaObjetos = listaObjetos.DefaultView.ToTable();
+                    }
+
+                    if (listaObjetos.Rows.Count == 0)
+                    {
+                        LblQuantidadeImportados.Text = "";
+                        //tabControl1.Visible = false;
+                        this.BtnGravar.Enabled = false;
+                        label2.Text = "";
+                        progressBar1.Visible = false;
+                    }
+                    if (listaObjetos.Rows.Count > 0)
+                    {
+                        LblQuantidadeImportados.Text = string.Format("Quantidade de objetos para importação: '{0}' objetos", listaObjetos.Rows.Count);
+                        dataGridViewQRCode.DataSource = listaObjetos;
+                        //tabControl1.Visible = true;
+                        this.BtnGravar.Enabled = true;
+                        label2.Text = "Barra de progresso";
+                        progressBar1.Visible = true;
+                        BtnGravar.Focus();
+                    }
+
+
+                }
+            }
         }
     }
 }

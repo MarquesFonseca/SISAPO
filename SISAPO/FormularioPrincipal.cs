@@ -24,6 +24,9 @@ namespace SISAPO
         public static bool OpcoesImpressaoImprimirUmPorFolha = false;
         public static bool OpcoesImpressaoImprimirVariosPorFolha = false;
 
+        //public bool GerarQRCodePLRNaLdi { get; internal set; }
+        //public bool ACCAgenciaComunitaria { get; internal set; }
+        //public bool ReceberObjetosViaQRCodePLRDaAgenciaMae { get; internal set; }
 
         public FormularioPrincipal()
         {
@@ -64,7 +67,7 @@ namespace SISAPO
                 DataModificacaoArquivo = modification.ToString();
             }
 
-            this.Text += string.Format(" - Versão:{0}", DataModificacaoArquivo.Replace("/","").Replace(":",""));
+            this.Text += string.Format(" - Versão:{0}", DataModificacaoArquivo.Replace("/", "").Replace(":", ""));
 
 
             //não posso usar o banco para as configurações pois o usuário tem habito diferente dos demais. portante tenho que deixar a configuraçao por maquina...
@@ -82,7 +85,7 @@ namespace SISAPO
             //    habilitarCapturaDeDadosDeDestinatárioAusenteToolStripMenuItem.Checked = Convert.ToBoolean(dao.RetornaValor("SELECT TOP 1 HabilitarCapturaDeDadosDeDestinatarioAusente FROM TabelaConfiguracoesSistema"));
             //}
 
-            ExibirCaixaPostalPesquisa_toolStripMenuItem.Checked = true;            
+            ExibirCaixaPostalPesquisa_toolStripMenuItem.Checked = true;
             ExibirItensJaEntreguesToolStripMenuItem.Checked = true;
             manterConsultaSempreAtualizadaToolStripMenuItem.Checked = true;
 
@@ -94,7 +97,9 @@ namespace SISAPO
             VisualizarListaObjetos_toolStripButton_Click(sender, e);
 
             BuscaNovoStatusQuantidadeNaoAtualizados();
-            BuscaDataHoraUltimaAtualizacaoImportacao();
+            BuscaDataHoraUltimaAtualizacaoImportacao();            
+
+            ConfiguraMenusParaACCAgenciaComunitaria(Configuracoes.ACCAgenciaComunitaria);
         }
 
         public void BuscaNovoStatusQuantidadeNaoAtualizados()
@@ -270,6 +275,19 @@ namespace SISAPO
             //formularioSRORastreamentoUnificado.WindowState = FormWindowState.Normal;
             formularioSRORastreamentoUnificado.WindowState = FormWindowState.Maximized;
             formularioSRORastreamentoUnificado.Activate();
+        }
+
+        public void ConfiguraMenusParaACCAgenciaComunitaria(bool @ModoACCAgenciaComunitaria)
+        {
+            TiposPostaisToolStripMenuItem.Enabled = !@ModoACCAgenciaComunitaria;
+            atualizarNovosObjetosToolStripMenuItem.Enabled = !@ModoACCAgenciaComunitaria;
+            solicitarVerificacaoDeObjetosAindaNaoEntreguesToolStripMenuItem.Enabled = !@ModoACCAgenciaComunitaria;
+            auxílioÀGestaoDoDiaItensColadosSROToolStripMenuItem.Enabled = !@ModoACCAgenciaComunitaria;
+            opçõesTelaConsultaToolStripMenuItem.Enabled = !@ModoACCAgenciaComunitaria;
+            habilitarCapturaDeDadosDePostagemToolStripMenuItem.Enabled = !@ModoACCAgenciaComunitaria;
+            habilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatárioToolStripMenuItem.Enabled = !@ModoACCAgenciaComunitaria;
+            habilitarCapturaDeDadosDeDestinatárioAusenteToolStripMenuItem.Enabled = !@ModoACCAgenciaComunitaria;
+            exibirMensagensAoDesevolvedorToolStripMenuItem.Enabled = !@ModoACCAgenciaComunitaria;
         }
 
         int contadorTime = 0;
@@ -639,7 +657,7 @@ namespace SISAPO
                 formularioAtualizacaoObjetosAguardandoRetirada.WindowState = FormWindowState.Normal;
                 formularioAtualizacaoObjetosAguardandoRetirada.ShowDialog();
                 abortarAtualizacao = formularioAtualizacaoObjetosAguardandoRetirada.abortarAtualizacao;
-                if (abortarAtualizacao) break; 
+                if (abortarAtualizacao) break;
                 #endregion
 
                 BuscaNovoStatusQuantidadeNaoAtualizados();

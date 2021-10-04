@@ -319,6 +319,16 @@ namespace SISAPO {
             
             private global::System.Data.DataColumn columnHorarioFuncionamentoAgenciaLocal;
             
+            private global::System.Data.DataColumn columnEnderecoSRO;
+            
+            private global::System.Data.DataColumn columnEnderecoSROPorObjeto;
+            
+            private global::System.Data.DataColumn columnGerarQRCodePLRNaLdi;
+            
+            private global::System.Data.DataColumn columnACCAgenciaComunitaria;
+            
+            private global::System.Data.DataColumn columnReceberObjetosViaQRCodePLRDaAgenciaMae;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public TabelaConfiguracoesSistemaDataTable() {
@@ -514,6 +524,46 @@ namespace SISAPO {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn EnderecoSROColumn {
+                get {
+                    return this.columnEnderecoSRO;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn EnderecoSROPorObjetoColumn {
+                get {
+                    return this.columnEnderecoSROPorObjeto;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn GerarQRCodePLRNaLdiColumn {
+                get {
+                    return this.columnGerarQRCodePLRNaLdi;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ACCAgenciaComunitariaColumn {
+                get {
+                    return this.columnACCAgenciaComunitaria;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ReceberObjetosViaQRCodePLRDaAgenciaMaeColumn {
+                get {
+                    return this.columnReceberObjetosViaQRCodePLRDaAgenciaMae;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -568,7 +618,12 @@ namespace SISAPO {
                         string CidadeAgenciaLocal, 
                         string UFAgenciaLocal, 
                         string TelefoneAgenciaLocal, 
-                        string HorarioFuncionamentoAgenciaLocal) {
+                        string HorarioFuncionamentoAgenciaLocal, 
+                        string EnderecoSRO, 
+                        string EnderecoSROPorObjeto, 
+                        bool GerarQRCodePLRNaLdi, 
+                        bool ACCAgenciaComunitaria, 
+                        bool ReceberObjetosViaQRCodePLRDaAgenciaMae) {
                 TabelaConfiguracoesSistemaRow rowTabelaConfiguracoesSistemaRow = ((TabelaConfiguracoesSistemaRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -590,7 +645,12 @@ namespace SISAPO {
                         CidadeAgenciaLocal,
                         UFAgenciaLocal,
                         TelefoneAgenciaLocal,
-                        HorarioFuncionamentoAgenciaLocal};
+                        HorarioFuncionamentoAgenciaLocal,
+                        EnderecoSRO,
+                        EnderecoSROPorObjeto,
+                        GerarQRCodePLRNaLdi,
+                        ACCAgenciaComunitaria,
+                        ReceberObjetosViaQRCodePLRDaAgenciaMae};
                 rowTabelaConfiguracoesSistemaRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowTabelaConfiguracoesSistemaRow);
                 return rowTabelaConfiguracoesSistemaRow;
@@ -640,6 +700,11 @@ namespace SISAPO {
                 this.columnUFAgenciaLocal = base.Columns["UFAgenciaLocal"];
                 this.columnTelefoneAgenciaLocal = base.Columns["TelefoneAgenciaLocal"];
                 this.columnHorarioFuncionamentoAgenciaLocal = base.Columns["HorarioFuncionamentoAgenciaLocal"];
+                this.columnEnderecoSRO = base.Columns["EnderecoSRO"];
+                this.columnEnderecoSROPorObjeto = base.Columns["EnderecoSROPorObjeto"];
+                this.columnGerarQRCodePLRNaLdi = base.Columns["GerarQRCodePLRNaLdi"];
+                this.columnACCAgenciaComunitaria = base.Columns["ACCAgenciaComunitaria"];
+                this.columnReceberObjetosViaQRCodePLRDaAgenciaMae = base.Columns["ReceberObjetosViaQRCodePLRDaAgenciaMae"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -685,6 +750,16 @@ namespace SISAPO {
                 base.Columns.Add(this.columnTelefoneAgenciaLocal);
                 this.columnHorarioFuncionamentoAgenciaLocal = new global::System.Data.DataColumn("HorarioFuncionamentoAgenciaLocal", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnHorarioFuncionamentoAgenciaLocal);
+                this.columnEnderecoSRO = new global::System.Data.DataColumn("EnderecoSRO", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEnderecoSRO);
+                this.columnEnderecoSROPorObjeto = new global::System.Data.DataColumn("EnderecoSROPorObjeto", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEnderecoSROPorObjeto);
+                this.columnGerarQRCodePLRNaLdi = new global::System.Data.DataColumn("GerarQRCodePLRNaLdi", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnGerarQRCodePLRNaLdi);
+                this.columnACCAgenciaComunitaria = new global::System.Data.DataColumn("ACCAgenciaComunitaria", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnACCAgenciaComunitaria);
+                this.columnReceberObjetosViaQRCodePLRDaAgenciaMae = new global::System.Data.DataColumn("ReceberObjetosViaQRCodePLRDaAgenciaMae", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnReceberObjetosViaQRCodePLRDaAgenciaMae);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnCodigo}, true));
                 this.columnCodigo.AutoIncrement = true;
@@ -701,6 +776,8 @@ namespace SISAPO {
                 this.columnUFAgenciaLocal.MaxLength = 255;
                 this.columnTelefoneAgenciaLocal.MaxLength = 255;
                 this.columnHorarioFuncionamentoAgenciaLocal.MaxLength = 255;
+                this.columnEnderecoSRO.MaxLength = 255;
+                this.columnEnderecoSROPorObjeto.MaxLength = 255;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1177,6 +1254,91 @@ namespace SISAPO {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string EnderecoSRO {
+                get {
+                    try {
+                        return ((string)(this[this.tableTabelaConfiguracoesSistema.EnderecoSROColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'EnderecoSRO\' in table \'TabelaConfiguracoesSistema\' is DBNul" +
+                                "l.", e);
+                    }
+                }
+                set {
+                    this[this.tableTabelaConfiguracoesSistema.EnderecoSROColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string EnderecoSROPorObjeto {
+                get {
+                    try {
+                        return ((string)(this[this.tableTabelaConfiguracoesSistema.EnderecoSROPorObjetoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'EnderecoSROPorObjeto\' in table \'TabelaConfiguracoesSistema\'" +
+                                " is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTabelaConfiguracoesSistema.EnderecoSROPorObjetoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool GerarQRCodePLRNaLdi {
+                get {
+                    try {
+                        return ((bool)(this[this.tableTabelaConfiguracoesSistema.GerarQRCodePLRNaLdiColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'GerarQRCodePLRNaLdi\' in table \'TabelaConfiguracoesSistema\' " +
+                                "is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTabelaConfiguracoesSistema.GerarQRCodePLRNaLdiColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool ACCAgenciaComunitaria {
+                get {
+                    try {
+                        return ((bool)(this[this.tableTabelaConfiguracoesSistema.ACCAgenciaComunitariaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ACCAgenciaComunitaria\' in table \'TabelaConfiguracoesSistema" +
+                                "\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTabelaConfiguracoesSistema.ACCAgenciaComunitariaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool ReceberObjetosViaQRCodePLRDaAgenciaMae {
+                get {
+                    try {
+                        return ((bool)(this[this.tableTabelaConfiguracoesSistema.ReceberObjetosViaQRCodePLRDaAgenciaMaeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ReceberObjetosViaQRCodePLRDaAgenciaMae\' in table \'TabelaCon" +
+                                "figuracoesSistema\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTabelaConfiguracoesSistema.ReceberObjetosViaQRCodePLRDaAgenciaMaeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsNomeAgenciaLocalNull() {
                 return this.IsNull(this.tableTabelaConfiguracoesSistema.NomeAgenciaLocalColumn);
             }
@@ -1402,6 +1564,66 @@ namespace SISAPO {
             public void SetHorarioFuncionamentoAgenciaLocalNull() {
                 this[this.tableTabelaConfiguracoesSistema.HorarioFuncionamentoAgenciaLocalColumn] = global::System.Convert.DBNull;
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsEnderecoSRONull() {
+                return this.IsNull(this.tableTabelaConfiguracoesSistema.EnderecoSROColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetEnderecoSRONull() {
+                this[this.tableTabelaConfiguracoesSistema.EnderecoSROColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsEnderecoSROPorObjetoNull() {
+                return this.IsNull(this.tableTabelaConfiguracoesSistema.EnderecoSROPorObjetoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetEnderecoSROPorObjetoNull() {
+                this[this.tableTabelaConfiguracoesSistema.EnderecoSROPorObjetoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsGerarQRCodePLRNaLdiNull() {
+                return this.IsNull(this.tableTabelaConfiguracoesSistema.GerarQRCodePLRNaLdiColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetGerarQRCodePLRNaLdiNull() {
+                this[this.tableTabelaConfiguracoesSistema.GerarQRCodePLRNaLdiColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsACCAgenciaComunitariaNull() {
+                return this.IsNull(this.tableTabelaConfiguracoesSistema.ACCAgenciaComunitariaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetACCAgenciaComunitariaNull() {
+                this[this.tableTabelaConfiguracoesSistema.ACCAgenciaComunitariaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsReceberObjetosViaQRCodePLRDaAgenciaMaeNull() {
+                return this.IsNull(this.tableTabelaConfiguracoesSistema.ReceberObjetosViaQRCodePLRDaAgenciaMaeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetReceberObjetosViaQRCodePLRDaAgenciaMaeNull() {
+                this[this.tableTabelaConfiguracoesSistema.ReceberObjetosViaQRCodePLRDaAgenciaMaeColumn] = global::System.Convert.DBNull;
+            }
         }
         
         /// <summary>
@@ -1583,6 +1805,11 @@ namespace SISAPO.DataSetConfiguracoesTableAdapters {
             tableMapping.ColumnMappings.Add("UFAgenciaLocal", "UFAgenciaLocal");
             tableMapping.ColumnMappings.Add("TelefoneAgenciaLocal", "TelefoneAgenciaLocal");
             tableMapping.ColumnMappings.Add("HorarioFuncionamentoAgenciaLocal", "HorarioFuncionamentoAgenciaLocal");
+            tableMapping.ColumnMappings.Add("EnderecoSRO", "EnderecoSRO");
+            tableMapping.ColumnMappings.Add("EnderecoSROPorObjeto", "EnderecoSROPorObjeto");
+            tableMapping.ColumnMappings.Add("GerarQRCodePLRNaLdi", "GerarQRCodePLRNaLdi");
+            tableMapping.ColumnMappings.Add("ACCAgenciaComunitaria", "ACCAgenciaComunitaria");
+            tableMapping.ColumnMappings.Add("ReceberObjetosViaQRCodePLRDaAgenciaMae", "ReceberObjetosViaQRCodePLRDaAgenciaMae");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
@@ -1591,7 +1818,7 @@ namespace SISAPO.DataSetConfiguracoesTableAdapters {
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Codigo", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Codigo", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.InsertCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO `TabelaConfiguracoesSistema` (`NomeAgenciaLocal`, `EnderecoAgenciaLocal`, `DataInicialPeriodoExibicaoConsulta`, `DataFinalPeriodoExibicaoConsulta`, `ExibirObjetosEmCaixaPostalNaPesquisa`, `ExibirObjetosJaEntreguesNaPesquisa`, `ManterConsultaSempreAtualizada`, `TempoAtualizacaoConsultaSempreAtualizada`, `PermitirBuscarPorLDINaPesquisa`, `HabilitarCapturaDeDadosDePostagem`, `HabilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatario`, `HabilitarCapturaDeDadosDeDestinatarioAusente`, `DataHoraUltimaAtualizacaoImportacao`, `SuperintendenciaEstadual`, `CepUnidade`, `CidadeAgenciaLocal`, `UFAgenciaLocal`, `TelefoneAgenciaLocal`, `HorarioFuncionamentoAgenciaLocal`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO `TabelaConfiguracoesSistema` (`NomeAgenciaLocal`, `EnderecoAgenciaLocal`, `DataInicialPeriodoExibicaoConsulta`, `DataFinalPeriodoExibicaoConsulta`, `ExibirObjetosEmCaixaPostalNaPesquisa`, `ExibirObjetosJaEntreguesNaPesquisa`, `ManterConsultaSempreAtualizada`, `TempoAtualizacaoConsultaSempreAtualizada`, `PermitirBuscarPorLDINaPesquisa`, `HabilitarCapturaDeDadosDePostagem`, `HabilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatario`, `HabilitarCapturaDeDadosDeDestinatarioAusente`, `DataHoraUltimaAtualizacaoImportacao`, `SuperintendenciaEstadual`, `CepUnidade`, `CidadeAgenciaLocal`, `UFAgenciaLocal`, `TelefoneAgenciaLocal`, `HorarioFuncionamentoAgenciaLocal`, `EnderecoSRO`, `EnderecoSROPorObjeto`, `GerarQRCodePLRNaLdi`, `ACCAgenciaComunitaria`, `ReceberObjetosViaQRCodePLRDaAgenciaMae`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("NomeAgenciaLocal", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "NomeAgenciaLocal", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("EnderecoAgenciaLocal", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "EnderecoAgenciaLocal", global::System.Data.DataRowVersion.Current, false, null));
@@ -1612,13 +1839,19 @@ namespace SISAPO.DataSetConfiguracoesTableAdapters {
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("UFAgenciaLocal", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "UFAgenciaLocal", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("TelefoneAgenciaLocal", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "TelefoneAgenciaLocal", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("HorarioFuncionamentoAgenciaLocal", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "HorarioFuncionamentoAgenciaLocal", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("EnderecoSRO", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "EnderecoSRO", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("EnderecoSROPorObjeto", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "EnderecoSROPorObjeto", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("GerarQRCodePLRNaLdi", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "GerarQRCodePLRNaLdi", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("ACCAgenciaComunitaria", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ACCAgenciaComunitaria", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("ReceberObjetosViaQRCodePLRDaAgenciaMae", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ReceberObjetosViaQRCodePLRDaAgenciaMae", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
             this._adapter.UpdateCommand.CommandText = @"UPDATE       TabelaConfiguracoesSistema
 SET                NomeAgenciaLocal = ?, EnderecoAgenciaLocal = ?, DataInicialPeriodoExibicaoConsulta = ?, DataFinalPeriodoExibicaoConsulta = ?, ExibirObjetosEmCaixaPostalNaPesquisa = ?, ExibirObjetosJaEntreguesNaPesquisa = ?, 
                          ManterConsultaSempreAtualizada = ?, TempoAtualizacaoConsultaSempreAtualizada = ?, PermitirBuscarPorLDINaPesquisa = ?, HabilitarCapturaDeDadosDePostagem = ?, 
                          HabilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatario = ?, HabilitarCapturaDeDadosDeDestinatarioAusente = ?, DataHoraUltimaAtualizacaoImportacao = ?, SuperintendenciaEstadual = ?, CepUnidade = ?, 
-                         CidadeAgenciaLocal = ?, UFAgenciaLocal = ?, TelefoneAgenciaLocal = ?, HorarioFuncionamentoAgenciaLocal = ?
+                         CidadeAgenciaLocal = ?, UFAgenciaLocal = ?, TelefoneAgenciaLocal = ?, HorarioFuncionamentoAgenciaLocal = ?, EnderecoSRO = ?, EnderecoSROPorObjeto = ?, GerarQRCodePLRNaLdi = ?, ACCAgenciaComunitaria = ?, 
+                         ReceberObjetosViaQRCodePLRDaAgenciaMae = ?
 WHERE        (Codigo = ?)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("NomeAgenciaLocal", global::System.Data.OleDb.OleDbType.WChar, 255, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "NomeAgenciaLocal", global::System.Data.DataRowVersion.Current, false, null));
@@ -1640,6 +1873,11 @@ WHERE        (Codigo = ?)";
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("UFAgenciaLocal", global::System.Data.OleDb.OleDbType.WChar, 255, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "UFAgenciaLocal", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("TelefoneAgenciaLocal", global::System.Data.OleDb.OleDbType.WChar, 255, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "TelefoneAgenciaLocal", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("HorarioFuncionamentoAgenciaLocal", global::System.Data.OleDb.OleDbType.WChar, 255, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "HorarioFuncionamentoAgenciaLocal", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("EnderecoSRO", global::System.Data.OleDb.OleDbType.WChar, 255, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "EnderecoSRO", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("EnderecoSROPorObjeto", global::System.Data.OleDb.OleDbType.WChar, 255, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "EnderecoSROPorObjeto", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("GerarQRCodePLRNaLdi", global::System.Data.OleDb.OleDbType.Boolean, 2, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "GerarQRCodePLRNaLdi", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("ACCAgenciaComunitaria", global::System.Data.OleDb.OleDbType.Boolean, 2, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ACCAgenciaComunitaria", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("ReceberObjetosViaQRCodePLRDaAgenciaMae", global::System.Data.OleDb.OleDbType.Boolean, 2, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ReceberObjetosViaQRCodePLRDaAgenciaMae", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Codigo", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Codigo", global::System.Data.DataRowVersion.Original, false, null));
         }
         
@@ -1659,7 +1897,7 @@ WHERE        (Codigo = ?)";
             this._commandCollection[0].CommandText = @"SELECT        Codigo, NomeAgenciaLocal, EnderecoAgenciaLocal, DataInicialPeriodoExibicaoConsulta, DataFinalPeriodoExibicaoConsulta, ExibirObjetosEmCaixaPostalNaPesquisa, ExibirObjetosJaEntreguesNaPesquisa, 
                          ManterConsultaSempreAtualizada, TempoAtualizacaoConsultaSempreAtualizada, PermitirBuscarPorLDINaPesquisa, HabilitarCapturaDeDadosDePostagem, HabilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatario, 
                          HabilitarCapturaDeDadosDeDestinatarioAusente, DataHoraUltimaAtualizacaoImportacao, SuperintendenciaEstadual, CepUnidade, CidadeAgenciaLocal, UFAgenciaLocal, TelefoneAgenciaLocal, 
-                         HorarioFuncionamentoAgenciaLocal
+                         HorarioFuncionamentoAgenciaLocal, EnderecoSRO, EnderecoSROPorObjeto, GerarQRCodePLRNaLdi, ACCAgenciaComunitaria, ReceberObjetosViaQRCodePLRDaAgenciaMae
 FROM            TabelaConfiguracoesSistema";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
@@ -1762,7 +2000,12 @@ FROM            TabelaConfiguracoesSistema";
                     string CidadeAgenciaLocal, 
                     string UFAgenciaLocal, 
                     string TelefoneAgenciaLocal, 
-                    string HorarioFuncionamentoAgenciaLocal) {
+                    string HorarioFuncionamentoAgenciaLocal, 
+                    string EnderecoSRO, 
+                    string EnderecoSROPorObjeto, 
+                    bool GerarQRCodePLRNaLdi, 
+                    bool ACCAgenciaComunitaria, 
+                    bool ReceberObjetosViaQRCodePLRDaAgenciaMae) {
             if ((NomeAgenciaLocal == null)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -1842,6 +2085,21 @@ FROM            TabelaConfiguracoesSistema";
             else {
                 this.Adapter.InsertCommand.Parameters[18].Value = ((string)(HorarioFuncionamentoAgenciaLocal));
             }
+            if ((EnderecoSRO == null)) {
+                this.Adapter.InsertCommand.Parameters[19].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[19].Value = ((string)(EnderecoSRO));
+            }
+            if ((EnderecoSROPorObjeto == null)) {
+                this.Adapter.InsertCommand.Parameters[20].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[20].Value = ((string)(EnderecoSROPorObjeto));
+            }
+            this.Adapter.InsertCommand.Parameters[21].Value = ((bool)(GerarQRCodePLRNaLdi));
+            this.Adapter.InsertCommand.Parameters[22].Value = ((bool)(ACCAgenciaComunitaria));
+            this.Adapter.InsertCommand.Parameters[23].Value = ((bool)(ReceberObjetosViaQRCodePLRDaAgenciaMae));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -1882,6 +2140,11 @@ FROM            TabelaConfiguracoesSistema";
                     string UFAgenciaLocal, 
                     string TelefoneAgenciaLocal, 
                     string HorarioFuncionamentoAgenciaLocal, 
+                    string EnderecoSRO, 
+                    string EnderecoSROPorObjeto, 
+                    bool GerarQRCodePLRNaLdi, 
+                    bool ACCAgenciaComunitaria, 
+                    bool ReceberObjetosViaQRCodePLRDaAgenciaMae, 
                     int Original_Codigo) {
             if ((NomeAgenciaLocal == null)) {
                 this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
@@ -1962,7 +2225,22 @@ FROM            TabelaConfiguracoesSistema";
             else {
                 this.Adapter.UpdateCommand.Parameters[18].Value = ((string)(HorarioFuncionamentoAgenciaLocal));
             }
-            this.Adapter.UpdateCommand.Parameters[19].Value = ((int)(Original_Codigo));
+            if ((EnderecoSRO == null)) {
+                this.Adapter.UpdateCommand.Parameters[19].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((string)(EnderecoSRO));
+            }
+            if ((EnderecoSROPorObjeto == null)) {
+                this.Adapter.UpdateCommand.Parameters[20].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[20].Value = ((string)(EnderecoSROPorObjeto));
+            }
+            this.Adapter.UpdateCommand.Parameters[21].Value = ((bool)(GerarQRCodePLRNaLdi));
+            this.Adapter.UpdateCommand.Parameters[22].Value = ((bool)(ACCAgenciaComunitaria));
+            this.Adapter.UpdateCommand.Parameters[23].Value = ((bool)(ReceberObjetosViaQRCodePLRDaAgenciaMae));
+            this.Adapter.UpdateCommand.Parameters[24].Value = ((int)(Original_Codigo));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {

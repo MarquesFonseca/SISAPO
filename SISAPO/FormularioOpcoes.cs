@@ -28,7 +28,50 @@ namespace SISAPO
             if (Configuracoes.TipoAmbiente == TipoAmbiente.Desenvolvimento) BtnMarcarTodosAtualizados.Visible = true;
             else BtnMarcarTodosAtualizados.Visible = false;
 
-            buscaEnderecoSRO();
+            #region FormataEnderecoSRO
+            //buscaEnderecoSRO();
+            FormataEnderecoSRO();
+            #endregion
+
+            #region Formata ComboBox ACCAgenciaComunitaria
+            FormataACCAgenciaComunitaria();
+            #endregion
+        }
+
+        private void FormataACCAgenciaComunitaria()
+        {
+            DataRow dataRow = ((DataRowView)bindingSourceTabelaConfiguracoesSistema.Current).Row;
+            if (dataRow != null)
+            {
+                checkBoxReceberObjetosViaQRCodePLRDaAgenciaMae.Enabled = Convert.ToBoolean(dataRow["ACCAgenciaComunitaria"]);
+            }
+        }
+
+        private void FormataEnderecoSRO()
+        {
+            DataRow dataRow = ((DataRowView)bindingSourceTabelaConfiguracoesSistema.Current).Row;
+            if (dataRow != null)
+            {
+                if (dataRow["EnderecoSRO"].ToString().Contains("websro2"))
+                {
+                    radioButtonEnderecoSROWebsro2.Checked = true;
+                }
+                if (dataRow["EnderecoSRO"].ToString().Contains("app"))
+                {
+                    radioButtonEnderecoApp.Checked = true;
+                }
+                TxtEnderecoSRO.Text = dataRow["EnderecoSRO"].ToString();
+
+                if (dataRow["EnderecoSROPorObjeto"].ToString().Contains("websro2"))
+                {
+                    radioButtonEnderecoSROWebsro2oCampo2.Checked = true;
+                }
+                if (dataRow["EnderecoSROPorObjeto"].ToString().Contains("app"))
+                {
+                    radioButtonEnderecoAppCampo2.Checked = true;
+                }
+                TxtEnderecoSROEspecificoObjeto.Text = dataRow["EnderecoSROPorObjeto"].ToString() + "QB378038055BR";
+            }
         }
 
         private void buscaEnderecoSRO()
@@ -153,7 +196,7 @@ namespace SISAPO
                 using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
                 {
                     if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
-                    dao.ExecutaSQL(string.Format("UPDATE TabelaConfiguracoesSistema SET NomeAgenciaLocal = @NomeAgenciaLocal, EnderecoAgenciaLocal = @EnderecoAgenciaLocal, SuperintendenciaEstadual = @SuperintendenciaEstadual, CepUnidade = @CepUnidade, CidadeAgenciaLocal = @CidadeAgenciaLocal, UFAgenciaLocal = @UFAgenciaLocal, TelefoneAgenciaLocal = @TelefoneAgenciaLocal, HorarioFuncionamentoAgenciaLocal = @HorarioFuncionamentoAgenciaLocal Where Codigo = @Codigo"), new List<Parametros>(){
+                    dao.ExecutaSQL(string.Format("UPDATE TabelaConfiguracoesSistema SET NomeAgenciaLocal = @NomeAgenciaLocal, EnderecoAgenciaLocal = @EnderecoAgenciaLocal, SuperintendenciaEstadual = @SuperintendenciaEstadual, CepUnidade = @CepUnidade, CidadeAgenciaLocal = @CidadeAgenciaLocal, UFAgenciaLocal = @UFAgenciaLocal, TelefoneAgenciaLocal = @TelefoneAgenciaLocal, HorarioFuncionamentoAgenciaLocal = @HorarioFuncionamentoAgenciaLocal, GerarQRCodePLRNaLdi = @GerarQRCodePLRNaLdi, ACCAgenciaComunitaria = @ACCAgenciaComunitaria, ReceberObjetosViaQRCodePLRDaAgenciaMae = @ReceberObjetosViaQRCodePLRDaAgenciaMae Where Codigo = @Codigo"), new List<Parametros>(){
                                             new Parametros("@NomeAgenciaLocal", TipoCampo.Text, txtNomeAgencia.Text),
                                             new Parametros("@EnderecoAgenciaLocal", TipoCampo.Text, txtEnderecoAgencia.Text),
                                             new Parametros("@SuperintendenciaEstadual", TipoCampo.Text, string.Format("{0}", comboBoxSupEst.Text)),
@@ -164,10 +207,27 @@ namespace SISAPO
                                             new Parametros("@TelefoneAgenciaLocal", TipoCampo.Text, txtTelefoneAgenciaLocal.Text),
                                             new Parametros("@HorarioFuncionamentoAgenciaLocal", TipoCampo.Text, txtHorarioFuncionamentoAgenciaLocal.Text),
 
+                                            new Parametros("@GerarQRCodePLRNaLdi", TipoCampo.Boolean, checkBoxGerarQRCodePLRNaLdi.Checked),
+                                            new Parametros("@ACCAgenciaComunitaria", TipoCampo.Boolean, checkBoxACCAgenciaComunitaria.Checked),
+                                            new Parametros("@ReceberObjetosViaQRCodePLRDaAgenciaMae", TipoCampo.Boolean, checkBoxReceberObjetosViaQRCodePLRDaAgenciaMae.Checked),
+
                                             new Parametros("@Codigo", TipoCampo.Int, 2)});
 
                 }
                 Configuracoes.DadosAgencia = Configuracoes.RetornaDadosAgencia();
+                Configuracoes.GerarQRCodePLRNaLdi = checkBoxGerarQRCodePLRNaLdi.Checked;
+                Configuracoes.ACCAgenciaComunitaria = checkBoxACCAgenciaComunitaria.Checked;
+                Configuracoes.ReceberObjetosViaQRCodePLRDaAgenciaMae = checkBoxReceberObjetosViaQRCodePLRDaAgenciaMae.Checked;
+                FormularioPrincipal.RetornaComponentesFormularioPrincipal().ConfiguraMenusParaACCAgenciaComunitaria(checkBoxACCAgenciaComunitaria.Checked);
+
+                if (FormularioCadastroObjetos.RetornaComponentesFormularioCadastroObjetos() != null) //FormularioCadastroObjetos está aberto
+                {
+                    FormularioCadastroObjetos.RetornaComponentesFormularioCadastroObjetos().ConfiguraMenusBotoesParaACCAgenciaComunitaria(checkBoxACCAgenciaComunitaria.Checked);
+                }
+                if (FormularioConsulta.RetornaComponentesFormularioConsulta() != null) //FormularioConsulta está aberto
+                {
+                    FormularioConsulta.RetornaComponentesFormularioConsulta().ConfiguraMenusEBotoesParaACCAgenciaComunitaria(checkBoxACCAgenciaComunitaria.Checked);
+                }
                 Mensagens.Informa("Gravado com sucesso!", MessageBoxIcon.Information, MessageBoxButtons.OK);
             }
             catch (Exception ex)
@@ -411,6 +471,21 @@ namespace SISAPO
             comboBoxUFAgenciaLocal.Text = UFAgenciaLinha;
 
             Configuracoes.DadosAgencia = Configuracoes.RetornaDadosAgencia();
+        }
+
+        private void checkBoxGerarQRCodePLRNaLdi_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBoxACCAgenciaComunitaria_CheckedChanged(object sender, EventArgs e)
+        {
+            checkBoxReceberObjetosViaQRCodePLRDaAgenciaMae.Enabled = checkBoxACCAgenciaComunitaria.Checked;
+        }
+
+        private void checkBoxReceberObjetosViaQRCodePLRDaAgenciaMae_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

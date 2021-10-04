@@ -39,7 +39,7 @@
             this.btnConfirmar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
+            this.LblLeitura = new System.Windows.Forms.Label();
             this.TxtObjetoAtual = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.comboBoxComentario = new System.Windows.Forms.ComboBox();
@@ -151,14 +151,14 @@
             this.panel2.Size = new System.Drawing.Size(615, 51);
             this.panel2.TabIndex = 2;
             // 
-            // label2
+            // LblLeitura
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(15, 70);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(74, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Código Objeto";
+            this.LblLeitura.AutoSize = true;
+            this.LblLeitura.Location = new System.Drawing.Point(15, 70);
+            this.LblLeitura.Name = "LblLeitura";
+            this.LblLeitura.Size = new System.Drawing.Size(74, 13);
+            this.LblLeitura.TabIndex = 2;
+            this.LblLeitura.Text = "Código Objeto";
             // 
             // TxtObjetoAtual
             // 
@@ -175,9 +175,9 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.comboBoxComentario);
-            this.panel1.Controls.Add(this.TxtObjetoAtual);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.TxtObjetoAtual);
+            this.panel1.Controls.Add(this.LblLeitura);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
@@ -237,7 +237,7 @@
         private System.Windows.Forms.Button btnConfirmar;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label LblLeitura;
         public System.Windows.Forms.TextBox TxtObjetoAtual;
         private System.Windows.Forms.Panel panel1;
         public System.Windows.Forms.ComboBox comboBoxComentario;

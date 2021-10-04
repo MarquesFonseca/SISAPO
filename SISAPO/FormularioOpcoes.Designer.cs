@@ -54,6 +54,11 @@
             this.tabPageExibirItensJaEntregues = new System.Windows.Forms.TabPage();
             this.checkBoxExibirObjetosEmCaixaPostal = new System.Windows.Forms.CheckBox();
             this.tabPageConfiguracoesAgencia = new System.Windows.Forms.TabPage();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.checkBoxReceberObjetosViaQRCodePLRDaAgenciaMae = new System.Windows.Forms.CheckBox();
+            this.checkBoxACCAgenciaComunitaria = new System.Windows.Forms.CheckBox();
+            this.checkBoxGerarQRCodePLRNaLdi = new System.Windows.Forms.CheckBox();
             this.comboBoxUFAgenciaLocal = new System.Windows.Forms.ComboBox();
             this.bindingSourceTabelaConfiguracoesSistema = new System.Windows.Forms.BindingSource(this.components);
             this.dataSetConfiguracoes = new SISAPO.DataSetConfiguracoes();
@@ -66,6 +71,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.LblNomeAgencia = new System.Windows.Forms.Label();
+            this.BtnBuscarDadosAgenciaCodigoInformado = new System.Windows.Forms.Button();
             this.BtnAtualizarConfiguracoesAgencia = new System.Windows.Forms.Button();
             this.txtHorarioFuncionamentoAgenciaLocal = new System.Windows.Forms.TextBox();
             this.txtEnderecoAgencia = new System.Windows.Forms.TextBox();
@@ -86,7 +92,6 @@
             this.BtnBuscarEnderecoParaBackup = new System.Windows.Forms.Button();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.tabelaConfiguracoesSistemaTableAdapter = new SISAPO.DataSetConfiguracoesTableAdapters.TabelaConfiguracoesSistemaTableAdapter();
-            this.BtnBuscarDadosAgenciaCodigoInformado = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageObjetosAguardandoRetirada.SuspendLayout();
@@ -94,6 +99,7 @@
             this.groupBox1.SuspendLayout();
             this.tabPageExibirItensJaEntregues.SuspendLayout();
             this.tabPageConfiguracoesAgencia.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceTabelaConfiguracoesSistema)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetConfiguracoes)).BeginInit();
             this.tabPageBackup.SuspendLayout();
@@ -144,8 +150,8 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 51);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(739, 411);
-            this.tabControl1.TabIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(739, 431);
+            this.tabControl1.TabIndex = 1;
             // 
             // tabPageObjetosAguardandoRetirada
             // 
@@ -156,7 +162,7 @@
             this.tabPageObjetosAguardandoRetirada.Location = new System.Drawing.Point(4, 22);
             this.tabPageObjetosAguardandoRetirada.Name = "tabPageObjetosAguardandoRetirada";
             this.tabPageObjetosAguardandoRetirada.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageObjetosAguardandoRetirada.Size = new System.Drawing.Size(731, 385);
+            this.tabPageObjetosAguardandoRetirada.Size = new System.Drawing.Size(731, 405);
             this.tabPageObjetosAguardandoRetirada.TabIndex = 0;
             this.tabPageObjetosAguardandoRetirada.Text = "Objetos aguardando retirada";
             this.tabPageObjetosAguardandoRetirada.UseVisualStyleBackColor = true;
@@ -206,6 +212,8 @@
             // 
             this.TxtEnderecoSROEspecificoObjeto.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.TxtEnderecoSROEspecificoObjeto.DataBindings.Add(new System.Windows.Forms.Binding("Tag", this.bindingSourceTabelaConfiguracoesSistema, "EnderecoSROPorObjeto", true));
+            this.TxtEnderecoSROEspecificoObjeto.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceTabelaConfiguracoesSistema, "EnderecoSROPorObjeto", true));
             this.TxtEnderecoSROEspecificoObjeto.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtEnderecoSROEspecificoObjeto.Location = new System.Drawing.Point(6, 83);
             this.TxtEnderecoSROEspecificoObjeto.Name = "TxtEnderecoSROEspecificoObjeto";
@@ -218,7 +226,7 @@
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(6, 47);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(295, 16);
+            this.label9.Size = new System.Drawing.Size(304, 16);
             this.label9.TabIndex = 6;
             this.label9.Text = "Endereço SRO para um objeto específico";
             // 
@@ -298,6 +306,8 @@
             // 
             this.TxtEnderecoSRO.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.TxtEnderecoSRO.DataBindings.Add(new System.Windows.Forms.Binding("Tag", this.bindingSourceTabelaConfiguracoesSistema, "EnderecoSRO", true));
+            this.TxtEnderecoSRO.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceTabelaConfiguracoesSistema, "EnderecoSRO", true));
             this.TxtEnderecoSRO.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtEnderecoSRO.Location = new System.Drawing.Point(6, 83);
             this.TxtEnderecoSRO.Name = "TxtEnderecoSRO";
@@ -321,7 +331,7 @@
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(6, 47);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(111, 16);
+            this.label8.Size = new System.Drawing.Size(116, 16);
             this.label8.TabIndex = 2;
             this.label8.Text = "Endereço SRO";
             // 
@@ -352,7 +362,7 @@
             this.tabPageExibirItensJaEntregues.Location = new System.Drawing.Point(4, 22);
             this.tabPageExibirItensJaEntregues.Name = "tabPageExibirItensJaEntregues";
             this.tabPageExibirItensJaEntregues.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageExibirItensJaEntregues.Size = new System.Drawing.Size(731, 385);
+            this.tabPageExibirItensJaEntregues.Size = new System.Drawing.Size(731, 405);
             this.tabPageExibirItensJaEntregues.TabIndex = 1;
             this.tabPageExibirItensJaEntregues.Text = "Consulta de objetos aguardando retirada";
             this.tabPageExibirItensJaEntregues.UseVisualStyleBackColor = true;
@@ -370,6 +380,11 @@
             // 
             // tabPageConfiguracoesAgencia
             // 
+            this.tabPageConfiguracoesAgencia.Controls.Add(this.pictureBox1);
+            this.tabPageConfiguracoesAgencia.Controls.Add(this.label12);
+            this.tabPageConfiguracoesAgencia.Controls.Add(this.checkBoxReceberObjetosViaQRCodePLRDaAgenciaMae);
+            this.tabPageConfiguracoesAgencia.Controls.Add(this.checkBoxACCAgenciaComunitaria);
+            this.tabPageConfiguracoesAgencia.Controls.Add(this.checkBoxGerarQRCodePLRNaLdi);
             this.tabPageConfiguracoesAgencia.Controls.Add(this.comboBoxUFAgenciaLocal);
             this.tabPageConfiguracoesAgencia.Controls.Add(this.comboBoxSupEst);
             this.tabPageConfiguracoesAgencia.Controls.Add(this.label7);
@@ -391,10 +406,73 @@
             this.tabPageConfiguracoesAgencia.Location = new System.Drawing.Point(4, 22);
             this.tabPageConfiguracoesAgencia.Name = "tabPageConfiguracoesAgencia";
             this.tabPageConfiguracoesAgencia.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageConfiguracoesAgencia.Size = new System.Drawing.Size(731, 385);
+            this.tabPageConfiguracoesAgencia.Size = new System.Drawing.Size(731, 405);
             this.tabPageConfiguracoesAgencia.TabIndex = 2;
             this.tabPageConfiguracoesAgencia.Text = "Configurações da agência";
             this.tabPageConfiguracoesAgencia.UseVisualStyleBackColor = true;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::SISAPO.Properties.Resources.seta_diagonal;
+            this.pictureBox1.Location = new System.Drawing.Point(25, 277);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(22, 19);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 22;
+            this.pictureBox1.TabStop = false;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.ForeColor = System.Drawing.Color.DarkRed;
+            this.label12.Location = new System.Drawing.Point(46, 221);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(347, 16);
+            this.label12.TabIndex = 17;
+            this.label12.Text = "(Obs.: Disponível apenas quando gerado 1 LDI por folha)";
+            // 
+            // checkBoxReceberObjetosViaQRCodePLRDaAgenciaMae
+            // 
+            this.checkBoxReceberObjetosViaQRCodePLRDaAgenciaMae.AutoSize = true;
+            this.checkBoxReceberObjetosViaQRCodePLRDaAgenciaMae.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bindingSourceTabelaConfiguracoesSistema, "ReceberObjetosViaQRCodePLRDaAgenciaMae", true));
+            this.checkBoxReceberObjetosViaQRCodePLRDaAgenciaMae.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.bindingSourceTabelaConfiguracoesSistema, "ReceberObjetosViaQRCodePLRDaAgenciaMae", true));
+            this.checkBoxReceberObjetosViaQRCodePLRDaAgenciaMae.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxReceberObjetosViaQRCodePLRDaAgenciaMae.Location = new System.Drawing.Point(56, 277);
+            this.checkBoxReceberObjetosViaQRCodePLRDaAgenciaMae.Name = "checkBoxReceberObjetosViaQRCodePLRDaAgenciaMae";
+            this.checkBoxReceberObjetosViaQRCodePLRDaAgenciaMae.Size = new System.Drawing.Size(629, 24);
+            this.checkBoxReceberObjetosViaQRCodePLRDaAgenciaMae.TabIndex = 19;
+            this.checkBoxReceberObjetosViaQRCodePLRDaAgenciaMae.Text = "Receber objetos via QR Code PLR (Pré Lista de Remessa) de agência mãe";
+            this.checkBoxReceberObjetosViaQRCodePLRDaAgenciaMae.UseVisualStyleBackColor = true;
+            this.checkBoxReceberObjetosViaQRCodePLRDaAgenciaMae.CheckedChanged += new System.EventHandler(this.checkBoxReceberObjetosViaQRCodePLRDaAgenciaMae_CheckedChanged);
+            // 
+            // checkBoxACCAgenciaComunitaria
+            // 
+            this.checkBoxACCAgenciaComunitaria.AutoSize = true;
+            this.checkBoxACCAgenciaComunitaria.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bindingSourceTabelaConfiguracoesSistema, "ACCAgenciaComunitaria", true));
+            this.checkBoxACCAgenciaComunitaria.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.bindingSourceTabelaConfiguracoesSistema, "ACCAgenciaComunitaria", true));
+            this.checkBoxACCAgenciaComunitaria.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxACCAgenciaComunitaria.Location = new System.Drawing.Point(25, 247);
+            this.checkBoxACCAgenciaComunitaria.Name = "checkBoxACCAgenciaComunitaria";
+            this.checkBoxACCAgenciaComunitaria.Size = new System.Drawing.Size(343, 24);
+            this.checkBoxACCAgenciaComunitaria.TabIndex = 18;
+            this.checkBoxACCAgenciaComunitaria.Text = "ACC - Agência de Correios Comunitária";
+            this.checkBoxACCAgenciaComunitaria.UseVisualStyleBackColor = true;
+            this.checkBoxACCAgenciaComunitaria.CheckedChanged += new System.EventHandler(this.checkBoxACCAgenciaComunitaria_CheckedChanged);
+            // 
+            // checkBoxGerarQRCodePLRNaLdi
+            // 
+            this.checkBoxGerarQRCodePLRNaLdi.AutoSize = true;
+            this.checkBoxGerarQRCodePLRNaLdi.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bindingSourceTabelaConfiguracoesSistema, "GerarQRCodePLRNaLdi", true));
+            this.checkBoxGerarQRCodePLRNaLdi.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.bindingSourceTabelaConfiguracoesSistema, "GerarQRCodePLRNaLdi", true));
+            this.checkBoxGerarQRCodePLRNaLdi.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxGerarQRCodePLRNaLdi.Location = new System.Drawing.Point(25, 202);
+            this.checkBoxGerarQRCodePLRNaLdi.Name = "checkBoxGerarQRCodePLRNaLdi";
+            this.checkBoxGerarQRCodePLRNaLdi.Size = new System.Drawing.Size(443, 24);
+            this.checkBoxGerarQRCodePLRNaLdi.TabIndex = 16;
+            this.checkBoxGerarQRCodePLRNaLdi.Text = "Gerar QR Code PLR (Pré Lista de Remessa) na LDI";
+            this.checkBoxGerarQRCodePLRNaLdi.UseVisualStyleBackColor = true;
+            this.checkBoxGerarQRCodePLRNaLdi.CheckedChanged += new System.EventHandler(this.checkBoxGerarQRCodePLRNaLdi_CheckedChanged);
             // 
             // comboBoxUFAgenciaLocal
             // 
@@ -567,13 +645,24 @@
             this.LblNomeAgencia.TabIndex = 0;
             this.LblNomeAgencia.Text = "Nome da agência:";
             // 
+            // BtnBuscarDadosAgenciaCodigoInformado
+            // 
+            this.BtnBuscarDadosAgenciaCodigoInformado.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnBuscarDadosAgenciaCodigoInformado.Location = new System.Drawing.Point(492, 310);
+            this.BtnBuscarDadosAgenciaCodigoInformado.Name = "BtnBuscarDadosAgenciaCodigoInformado";
+            this.BtnBuscarDadosAgenciaCodigoInformado.Size = new System.Drawing.Size(231, 87);
+            this.BtnBuscarDadosAgenciaCodigoInformado.TabIndex = 21;
+            this.BtnBuscarDadosAgenciaCodigoInformado.Text = "Buscar dados da Agência por um código informado";
+            this.BtnBuscarDadosAgenciaCodigoInformado.UseVisualStyleBackColor = true;
+            this.BtnBuscarDadosAgenciaCodigoInformado.Click += new System.EventHandler(this.BtnBuscarDadosAgenciaCodigoInformado_Click);
+            // 
             // BtnAtualizarConfiguracoesAgencia
             // 
             this.BtnAtualizarConfiguracoesAgencia.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnAtualizarConfiguracoesAgencia.Location = new System.Drawing.Point(8, 211);
+            this.BtnAtualizarConfiguracoesAgencia.Location = new System.Drawing.Point(8, 310);
             this.BtnAtualizarConfiguracoesAgencia.Name = "BtnAtualizarConfiguracoesAgencia";
             this.BtnAtualizarConfiguracoesAgencia.Size = new System.Drawing.Size(235, 87);
-            this.BtnAtualizarConfiguracoesAgencia.TabIndex = 16;
+            this.BtnAtualizarConfiguracoesAgencia.TabIndex = 20;
             this.BtnAtualizarConfiguracoesAgencia.Text = "Atualizar / Gravar alterações";
             this.BtnAtualizarConfiguracoesAgencia.UseVisualStyleBackColor = true;
             this.BtnAtualizarConfiguracoesAgencia.Click += new System.EventHandler(this.BtnAtualizarConfiguracoesAgencia_Click);
@@ -657,7 +746,7 @@
             this.tabPageBackup.Location = new System.Drawing.Point(4, 22);
             this.tabPageBackup.Name = "tabPageBackup";
             this.tabPageBackup.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageBackup.Size = new System.Drawing.Size(731, 385);
+            this.tabPageBackup.Size = new System.Drawing.Size(731, 405);
             this.tabPageBackup.TabIndex = 3;
             this.tabPageBackup.Text = "Configurações de Backup";
             this.tabPageBackup.UseVisualStyleBackColor = true;
@@ -774,22 +863,11 @@
             // 
             this.tabelaConfiguracoesSistemaTableAdapter.ClearBeforeFill = true;
             // 
-            // BtnBuscarDadosAgenciaCodigoInformado
-            // 
-            this.BtnBuscarDadosAgenciaCodigoInformado.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnBuscarDadosAgenciaCodigoInformado.Location = new System.Drawing.Point(492, 211);
-            this.BtnBuscarDadosAgenciaCodigoInformado.Name = "BtnBuscarDadosAgenciaCodigoInformado";
-            this.BtnBuscarDadosAgenciaCodigoInformado.Size = new System.Drawing.Size(231, 87);
-            this.BtnBuscarDadosAgenciaCodigoInformado.TabIndex = 16;
-            this.BtnBuscarDadosAgenciaCodigoInformado.Text = "Buscar dados da Agência por um código informado";
-            this.BtnBuscarDadosAgenciaCodigoInformado.UseVisualStyleBackColor = true;
-            this.BtnBuscarDadosAgenciaCodigoInformado.Click += new System.EventHandler(this.BtnBuscarDadosAgenciaCodigoInformado_Click);
-            // 
             // FormularioOpcoes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(739, 462);
+            this.ClientSize = new System.Drawing.Size(739, 482);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -813,6 +891,7 @@
             this.tabPageExibirItensJaEntregues.PerformLayout();
             this.tabPageConfiguracoesAgencia.ResumeLayout(false);
             this.tabPageConfiguracoesAgencia.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceTabelaConfiguracoesSistema)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetConfiguracoes)).EndInit();
             this.tabPageBackup.ResumeLayout(false);
@@ -883,5 +962,10 @@
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button BtnBuscarDadosAgenciaCodigoInformado;
+        private System.Windows.Forms.CheckBox checkBoxGerarQRCodePLRNaLdi;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.CheckBox checkBoxReceberObjetosViaQRCodePLRDaAgenciaMae;
+        private System.Windows.Forms.CheckBox checkBoxACCAgenciaComunitaria;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

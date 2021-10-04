@@ -25,6 +25,9 @@ namespace SISAPO.ClassesDiversas
         private static string _strConexao = System.Configuration.ConfigurationManager.ConnectionStrings["cadastroConnectionString"].ConnectionString + ";Jet OLEDB:Database Password=9342456;";
 #endif
 
+        public static bool GerarQRCodePLRNaLdi { get; internal set; }
+        public static bool ACCAgenciaComunitaria { get; internal set; }
+        public static bool ReceberObjetosViaQRCodePLRDaAgenciaMae { get; internal set; }
 
         public static string strConexao
         {
@@ -146,6 +149,36 @@ namespace SISAPO.ClassesDiversas
             //{
             //    Mensagens.Erro(ex.Message);
             //}
+        }
+
+        public static void SetaConfiguracoesGerarQRCodePLRNaLdi()
+        {
+            using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
+            {
+                if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+
+                Configuracoes.GerarQRCodePLRNaLdi = Convert.ToBoolean(dao.RetornaValor("SELECT TOP 1 GerarQRCodePLRNaLdi FROM TabelaConfiguracoesSistema"));
+            }
+        }
+
+        public static void SetaConfiguracoesACCAgenciaComunitaria()
+        {
+            using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
+            {
+                if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+
+                Configuracoes.ACCAgenciaComunitaria = Convert.ToBoolean(dao.RetornaValor("SELECT TOP 1 ACCAgenciaComunitaria FROM TabelaConfiguracoesSistema"));
+            }
+        }
+
+        public static void SetaConfiguracoesReceberObjetosViaQRCodePLRDaAgenciaMae()
+        {
+            using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
+            {
+                if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+
+                Configuracoes.ReceberObjetosViaQRCodePLRDaAgenciaMae = Convert.ToBoolean(dao.RetornaValor("SELECT TOP 1 ReceberObjetosViaQRCodePLRDaAgenciaMae FROM TabelaConfiguracoesSistema"));
+            }
         }
 
         public static void VerificaAplicacaoSeAberta()
@@ -385,7 +418,7 @@ namespace SISAPO.ClassesDiversas
             CriaColuna("TabelaConfiguracoesSistema", "DataFinalPeriodoExibicaoConsulta", "DATETIME NULL DEFAULT NULL");//DataFinalPeriodoExibicaoConsulta
             CriaColuna("TabelaConfiguracoesSistema", "EnderecoSRO", "TEXT(255) NULL DEFAULT NULL");//EnderecoSRO
             CriaColuna("TabelaConfiguracoesSistema", "EnderecoSROPorObjeto", "TEXT(255) NULL DEFAULT NULL");//EnderecoSROPorObjeto
-            VerificaCamposEnderecoSRO();
+            SetaCamposEnderecoSRO();
 
 
 
@@ -405,6 +438,10 @@ namespace SISAPO.ClassesDiversas
             CriaColuna("TabelaConfiguracoesSistema", "UFAgenciaLocal", "TEXT(255) NULL DEFAULT NULL");//UFAgenciaLocal
             CriaColuna("TabelaConfiguracoesSistema", "TelefoneAgenciaLocal", "TEXT(255) NULL DEFAULT NULL");//TelefoneAgenciaLocal
             CriaColuna("TabelaConfiguracoesSistema", "HorarioFuncionamentoAgenciaLocal", "TEXT(255) NULL DEFAULT NULL");//HorarioFuncionamentoAgenciaLocal
+            CriaColuna("TabelaConfiguracoesSistema", "GerarQRCodePLRNaLdi", "YESNO NULL DEFAULT 0");//GerarQRCodePLRNaLdi
+            CriaColuna("TabelaConfiguracoesSistema", "ACCAgenciaComunitaria", "YESNO NULL DEFAULT 0");//ACCAgenciaComunitaria
+            CriaColuna("TabelaConfiguracoesSistema", "ReceberObjetosViaQRCodePLRDaAgenciaMae", "YESNO NULL DEFAULT 0");//ReceberObjetosViaQRCodePLRDaAgenciaMae
+            
 
             //CriaColuna("TabelaHistoricoConsulta", "Codigo", "INTEGER");//Codigo
             CriaColuna("TabelaHistoricoConsulta", "CodigoObjeto", "TEXT(255) NULL DEFAULT NULL");//CodigoObjeto
@@ -1206,7 +1243,7 @@ namespace SISAPO.ClassesDiversas
             }
         }
 
-        private static void VerificaCamposEnderecoSRO()
+        private static void SetaCamposEnderecoSRO()
         {
             using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
             {

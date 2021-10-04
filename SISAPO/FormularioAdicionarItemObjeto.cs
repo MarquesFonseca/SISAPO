@@ -15,7 +15,7 @@ namespace SISAPO
         public bool ClicouConfirmar = false;
         public bool ClicouCancelar = false;
 
-        private List<string> ListaItensMotivoBaixa = new List<string>();
+        private List<string> ListaComentariosPadrao = new List<string>();
 
         public FormularioAdicionarItemObjeto()
         {
@@ -31,30 +31,25 @@ namespace SISAPO
             dtbLista.Columns.Add("Situacao", typeof(string));
             dtbLista.Columns.Add("Comentario", typeof(string));
 
+            #region Carrega Comentários padrão
+            ListaComentariosPadrao = new List<string>();
+            ListaComentariosPadrao.Add("PCT");
+            ListaComentariosPadrao.Add("PCT INT");
+            ListaComentariosPadrao.Add("ENV");
 
+            ListaComentariosPadrao.Add("PCT AO REMETENTE");
+            ListaComentariosPadrao.Add("PCT INT AO REMETENTE");
+            ListaComentariosPadrao.Add("ENV AO REMETENTE");
 
-            ListaItensMotivoBaixa = new List<string>();
-            ListaItensMotivoBaixa.Add("PCT");
-            ListaItensMotivoBaixa.Add("PCT INT");
-            ListaItensMotivoBaixa.Add("ENV");
+            ListaComentariosPadrao.Add("PCT TERMO CONSTATACAO");
+            ListaComentariosPadrao.Add("PCT INT TERMO CONSTATACAO");
+            ListaComentariosPadrao.Add("ENV TERMO CONSTATACAO");
 
-            ListaItensMotivoBaixa.Add("PCT AO REMETENTE");
-            ListaItensMotivoBaixa.Add("PCT INT AO REMETENTE");
-            ListaItensMotivoBaixa.Add("ENV AO REMETENTE");
-
-            ListaItensMotivoBaixa.Add("PCT TERMO CONSTATACAO");
-            ListaItensMotivoBaixa.Add("PCT INT TERMO CONSTATACAO");
-            ListaItensMotivoBaixa.Add("ENV TERMO CONSTATACAO");
-
-            comboBoxComentario.DataSource = ListaItensMotivoBaixa;
-            //comboBoxComentario.Focus();
+            comboBoxComentario.DataSource = ListaComentariosPadrao;
+            //comboBoxComentario.Focus();  
+            #endregion
 
             SendKeys.Send("{TAB}");
-
-
-
-
-
             TxtObjetoAtual.Focus();
             TxtObjetoAtual.ScrollToCaret();
             TxtObjetoAtual.ScrollToCaret();
@@ -149,8 +144,8 @@ namespace SISAPO
         }
 
         private void btnConfirmar_Click(object sender, EventArgs e)
-        {            
-            if(!string.IsNullOrWhiteSpace(TxtObjetoAtual.Text))
+        {
+            if (!string.IsNullOrWhiteSpace(TxtObjetoAtual.Text))
             {
                 if (VerificaCodigoRastreamentoPadraoBrasileiro(TxtObjetoAtual.Text) == false)
                     return;
@@ -183,7 +178,7 @@ namespace SISAPO
 
         private void FormularioAdicionarItemObjeto_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.F5)
+            if (e.KeyCode == Keys.F5)
             {
                 btnConfirmar_Click(sender, e);
             }
