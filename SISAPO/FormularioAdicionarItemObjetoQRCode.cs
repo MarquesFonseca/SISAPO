@@ -58,8 +58,10 @@ namespace SISAPO
             dtbLista.Columns.Add("TipoPostalSiglaCodigo", typeof(string));
             dtbLista.Columns.Add("TipoPostalNomeSiglaCodigo", typeof(string));
             dtbLista.Columns.Add("TipoPostalPrazoDiasCorridosRegulamentado", typeof(string));
-
-
+            dtbLista.Columns.Add("DataListaAtual", typeof(string));
+            dtbLista.Columns.Add("NumeroListaAtual", typeof(string));
+            dtbLista.Columns.Add("ItemAtual", typeof(string));
+            dtbLista.Columns.Add("QtdTotal", typeof(string));
 
             //SendKeys.Send("{TAB}");
             TxtObjetoAtual.Focus();
@@ -88,18 +90,44 @@ namespace SISAPO
 
             if (e.KeyData != Keys.Enter) return;
 
-            //if (VerificaCodigoRastreamentoPadraoBrasileiro(TxtObjetoAtual.Text) == false)
-            //    return;
-            //if (TxtObjetoAtual.Text.Length > 13)
-            //    return;
+            if (VerificaPadraoLeitura(TxtObjetoAtual.Text) == false)
+            {
+                TxtObjetoAtual.Text = "";
+                TxtObjetoAtual.Focus();
+                TxtObjetoAtual.ScrollToCaret();
+                TxtObjetoAtual.ScrollToCaret();
+
+                TxtObjetoAtual.Select(TxtObjetoAtual.Text.Length, 0);
+                return;
+            }
 
             AdicionaItemLista();
+        }
+
+        private bool VerificaPadraoLeitura(string text)
+        {
+            bool retorno = true;
+            try
+            {
+                string QRCode = TxtObjetoAtual.Text.ToUpper();
+                //string descompacta = ClassesDiversas.FormataString.Descompacta(QRCode);
+                string[] CelulasCampos = QRCode.Split(new string[] { "#TAB" }, StringSplitOptions.None);
+                if (CelulasCampos.Count() < 37)
+                    retorno = false;
+            }
+            catch (Exception ex)
+            {
+                retorno = false;
+            }
+
+            return retorno;
         }
 
         private void AdicionaItemLista()
         {
             //LV221247464CN#tab287077020401#tabJULIANA RODRIGUES#tab29/09/2021 10:40:11#tab29/09/2021 14:44:46#tabENTREGUE#tabTrue#tabTrue#tabFalse#tab00156-000 / CHINA#tab#tab22/08/2021 14:26:00#tab77019-096#tab#tab#tab#tab77100-970 / CDD PALMAS#tabPALMAS / TO#tab28/09/2021 11:52:52#tab83454624#tab502#tab112100021778#tabQUADRA ARSO 112 ALAMEDA 13 17#tabPLANO DIRETOR SUL#tab77019096#tabAUSENTE ENCAMINHADO ENTREGA INTERNA#tabNÃO#tab-10.25075,-48.34432#tabPCT INT#tabNAO URGENTE#tabLV#tabOBJETO INTERNACIONAL PRIME#tab20#tab
             string QRCode = TxtObjetoAtual.Text.ToUpper();
+            //string descompacta = ClassesDiversas.FormataString.Descompacta(QRCode);
             string[] CelulasCampos = QRCode.Split(new string[] { "#TAB" }, StringSplitOptions.None);
 
             string CodigoObjeto = CelulasCampos[0];
@@ -135,8 +163,11 @@ namespace SISAPO
             string TipoPostalSiglaCodigo = CelulasCampos[30];
             string TipoPostalNomeSiglaCodigo = CelulasCampos[31];
             string TipoPostalPrazoDiasCorridosRegulamentado = CelulasCampos[32];
+            string DataListaAtual = CelulasCampos[33];
+            string NumeroListaAtual = CelulasCampos[34];
+            string ItemAtual = CelulasCampos[35];
+            string QtdTotal = CelulasCampos[36];
 
-            
             try
             {
                 bool existe = dtbLista.AsEnumerable().Any(t => t["CodigoObjeto"].ToString() == CodigoObjeto);
@@ -174,7 +205,11 @@ namespace SISAPO
                     TipoPostalServico,
                     TipoPostalSiglaCodigo,
                     TipoPostalNomeSiglaCodigo,
-                    TipoPostalPrazoDiasCorridosRegulamentado                        
+                    TipoPostalPrazoDiasCorridosRegulamentado,
+                    DataListaAtual,
+                    NumeroListaAtual,
+                    ItemAtual,
+                    QtdTotal
                         );
 
                 dataGridView1.DataSource = dtbLista;
@@ -196,41 +231,11 @@ namespace SISAPO
             }
         }
 
-        private bool VerificaCodigoRastreamentoPadraoBrasileiro(string TxtPesquisa)
-        {
-            if (TxtPesquisa.Length < 13)
-            {
-                return false;
-            }
-
-            for (int i = 0; i < TxtPesquisa.Length; i++)
-            {
-                //PrimeiroCaracter / SegundoCaracter / DecimoCaracter / DecimoPrimeiroCaracter nao pode ser número
-                if (i == 0 || i == 1 || i == 11 || i == 12)
-                {
-                    //verifica se é letra. Não pode ser número
-                    if (!System.Text.RegularExpressions.Regex.IsMatch(TxtPesquisa.Substring(i, 1), "^[0-9]")) continue;
-                    else return false;
-                }
-                if (i >= 2 && i <= 10)
-                {
-                    //verifica se é número. Não pode ser Letra
-                    if (System.Text.RegularExpressions.Regex.IsMatch(TxtPesquisa.Substring(i, 1), "^[0-9]")) continue;
-                    else return false;
-                }
-            }
-
-            return true;
-        }
-
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(TxtObjetoAtual.Text))
             {
-                if (VerificaCodigoRastreamentoPadraoBrasileiro(TxtObjetoAtual.Text) == false)
-                    return;
-
-                if (TxtObjetoAtual.Text.Length > 13)
+                if (VerificaPadraoLeitura(TxtObjetoAtual.Text) == false)
                     return;
 
                 AdicionaItemLista();

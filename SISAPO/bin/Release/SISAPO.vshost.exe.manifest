@@ -91,6 +91,18 @@
     </dependentAssembly>
   </dependency>
   <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MessagingToolkit.QRCode.dll" size="6197248">
+      <assemblyIdentity name="MessagingToolkit.QRCode" version="1.3.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>wytb3wzeOX+ZJ5+fxKqaJw4Pp4A=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Microsoft.Practices.EnterpriseLibrary.Validation.dll" size="404280">
       <assemblyIdentity name="Microsoft.Practices.EnterpriseLibrary.Validation" version="5.0.414.0" publicKeyToken="31BF3856AD364E35" language="neutral" processorArchitecture="msil" />
       <hash>
@@ -175,14 +187,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SISAPO.exe" size="15624192">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SISAPO.exe" size="16407552">
       <assemblyIdentity name="SISAPO" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>1VjDQPWyJrDyXXr2zIjxk3d90HQ=</dsig:DigestValue>
+        <dsig:DigestValue>mqoLeINKy3uCl0l/vsRS5zma4Z4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -195,6 +207,30 @@
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
         <dsig:DigestValue>cpPKAcX5H9Y39O6BSqXLiw7FhKM=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="zxing.dll" size="499712">
+      <assemblyIdentity name="zxing" version="0.16.6.0" publicKeyToken="4E88037AC681FE60" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>DO6fNketvyTTUjQsuPyd3JLbZcU=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="zxing.presentation.dll" size="20992">
+      <assemblyIdentity name="zxing.presentation" version="0.16.6.0" publicKeyToken="4E88037AC681FE60" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>4ef7N1PZvEIEXZWfoVCRc+d/uic=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

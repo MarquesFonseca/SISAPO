@@ -788,7 +788,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Formulário de auxílio à gestão do dia";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormularioAuxilioGestaoDiaNovo_FormClosing);
-            this.Load += new System.EventHandler(this.FormularioAuxilioGestaoDia_Load);
+            this.Load += new System.EventHandler(this.FormularioAuxilioGestaoDiaNovo_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormularioAuxilioGestaoDiaNovo_KeyDown);
             this.panel3.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);

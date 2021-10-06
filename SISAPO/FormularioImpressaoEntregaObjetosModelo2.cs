@@ -22,6 +22,10 @@ namespace SISAPO
         public bool ImprimirVariosPorFolha = false;
         private StringBuilder Html = new StringBuilder();
 
+        private string DataListaAtual = string.Empty;
+        private string NumeroListaAtual = string.Empty;
+        private string NomeArquivoHtml = string.Empty;
+
         public FormularioImpressaoEntregaObjetosModelo2(List<string> _codigosSelecionados, bool _ImprimirUmPorFolha, bool _ImprimirVariosPorFolha)
         {
             InitializeComponent();
@@ -44,8 +48,12 @@ namespace SISAPO
             //CodigosSelecionadoAgrupados.DefaultView.Sort = "NomeCliente";
             CodigosSelecionadoAgrupados = CodigosSelecionadoAgrupados.DefaultView.ToTable();
 
+            DataListaAtual = DateTime.Now.ToString();
+            NumeroListaAtual = string.Format("{0:yyyyMMddHHmmss}", DateTime.Now);
+            NomeArquivoHtml = string.Format("SISAPO-SRO-Lista-de-entrega-[Modelo-LDI-{0:yyyyMMddHHmmss}].html", NumeroListaAtual);
+
             string Html = RetornaHtml().ToString();
-            GeraArquivoProntoHTMLImpressao(Html, string.Format("SISAPO-SRO-Lista-de-entrega-[Modelo-LDI-{0:yyyyMMddHHmmss}].html", DateTime.Now));
+            GeraArquivoProntoHTMLImpressao(Html, NomeArquivoHtml);
         }
 
         private void FormularioImpressaoEntregaObjetosModelo2_Load(object sender, EventArgs e)
@@ -64,6 +72,7 @@ namespace SISAPO
             CodigosSelecionadoAgrupados = _formularioImpressaoEntregaAgruparObjetos.DadosAgrupados;
             CodigosSelecionadoAgrupados.DefaultView.Sort = "NomeCliente";
             CodigosSelecionadoAgrupados = CodigosSelecionadoAgrupados.DefaultView.ToTable();
+
 
             string Html = RetornaHtml().ToString();
             GeraArquivoProntoHTMLImpressao(Html, string.Format("SISAPO-SRO-Lista-de-entrega-[Modelo-LDI-{0:yyyyMMddHHmmss}].html", DateTime.Now));
@@ -156,6 +165,7 @@ namespace SISAPO
             Html.AppendLine("            margin: auto;");
             Html.AppendLine("            min-height: 1100px;");
             Html.AppendLine("        }");
+            Html.AppendLine("");
             Html.AppendLine("        table.TabelaPLR {");
             Html.AppendLine("          font-family: \"Courier New\", Courier, monospace;");
             Html.AppendLine("          border: 0px dotted #000000;");
@@ -172,6 +182,9 @@ namespace SISAPO
             Html.AppendLine("          font-size: 12px;");
             Html.AppendLine("          font-weight: bold;");
             Html.AppendLine("        }");
+            Html.AppendLine("        table.TabelaPLR tr:nth - child(even) {");
+            Html.AppendLine("            background: #C1C1C1;");
+            Html.AppendLine("        }");
             Html.AppendLine("        table.TabelaPLR thead {");
             Html.AppendLine("          background: #ADADAD;");
             Html.AppendLine("        }");
@@ -183,6 +196,36 @@ namespace SISAPO
             Html.AppendLine("        }");
             Html.AppendLine("        table.TabelaPLR tfoot td {");
             Html.AppendLine("          font-size: 21px;");
+            Html.AppendLine("        }");
+            Html.AppendLine("");
+            Html.AppendLine("        table.Consolidado {");
+            Html.AppendLine("          font-family: Arial, Helvetica, sans-serif;");
+            Html.AppendLine("          border: 1px solid #000000;");
+            Html.AppendLine("          background-color: #EEEEEE;");
+            Html.AppendLine("          width: 100%;");
+            Html.AppendLine("          text-align: left;");
+            Html.AppendLine("        }");
+            Html.AppendLine("        table.Consolidado td, table.Consolidado th {");
+            Html.AppendLine("          padding: 3px 2px;");
+            Html.AppendLine("        }");
+            Html.AppendLine("        table.Consolidado tbody td {");
+            Html.AppendLine("          font-size: 14px;");
+            Html.AppendLine("        }");
+            Html.AppendLine("        table.Consolidado tr:nth-child(even) {");
+            Html.AppendLine("          background: #C1C1C1;");
+            Html.AppendLine("        }");
+            Html.AppendLine("        table.Consolidado thead {");
+            Html.AppendLine("          background: #C4C4C4;");
+            Html.AppendLine("          border-bottom: 2px solid #444444;");
+            Html.AppendLine("        }");
+            Html.AppendLine("        table.Consolidado thead th {");
+            Html.AppendLine("          font-size: 15px;");
+            Html.AppendLine("          font-weight: bold;");
+            Html.AppendLine("          color: #000000;");
+            Html.AppendLine("          border-left: 2px solid #C4C4C4;");
+            Html.AppendLine("        }");
+            Html.AppendLine("        table.Consolidado thead th:first-child {");
+            Html.AppendLine("          border-left: none;");
             Html.AppendLine("        }");
             Html.AppendLine("    </style>");
             Html.AppendLine("</head>");
@@ -220,9 +263,9 @@ namespace SISAPO
                     contador++;
                     string codigoAtual = itemCodigoSelecionado["CodigoObjeto"].ToString();
                     string nomeAtual = itemCodigoSelecionado["NomeCliente"].ToString();
-                    List<object> ListaCodigoAgrupados = CodigosSelecionadoAgrupados.AsEnumerable()
-                        .Where(G => G["Grupo"].ToString() == itemCodigoSelecionado["CodigoObjeto"].ToString() && G["Impresso"].ToInt() == 0)
-                        .Select(C => C["CodigoObjeto"]).ToList();
+                    //List<object> ListaCodigoAgrupados = CodigosSelecionadoAgrupados.AsEnumerable()
+                    //    .Where(G => G["Grupo"].ToString() == itemCodigoSelecionado["CodigoObjeto"].ToString() && G["Impresso"].ToInt() == 0)
+                    //    .Select(C => C["CodigoObjeto"]).ToList();
 
                     DataRow dr = dao.RetornaDataRow("SELECT top 1 Codigo, CodigoObjeto, CodigoLdi, NomeCliente, DataLancamento, DataModificacao, Situacao, Atualizado, ObjetoEntregue, CaixaPostal, UnidadePostagem, MunicipioPostagem, CriacaoPostagem, CepDestinoPostagem, ARPostagem, MPPostagem, DataMaxPrevistaEntregaPostagem, UnidadeLOEC, MunicipioLOEC, CriacaoLOEC, CarteiroLOEC, DistritoLOEC, NumeroLOEC, EnderecoLOEC, BairroLOEC, LocalidadeLOEC, SituacaoDestinatarioAusente, AgrupadoDestinatarioAusente, CoordenadasDestinatarioAusente, Comentario, TipoPostalServico, TipoPostalSiglaCodigo, TipoPostalNomeSiglaCodigo, TipoPostalPrazoDiasCorridosRegulamentado FROM TabelaObjetosSROLocal WHERE(CodigoObjeto IN('" + codigoAtual + "')) ORDER BY NomeCliente");
 
@@ -265,6 +308,10 @@ namespace SISAPO
                     string TipoPostalSiglaCodigo = dr["TipoPostalSiglaCodigo"].ToString();
                     string TipoPostalNomeSiglaCodigo = dr["TipoPostalNomeSiglaCodigo"].ToString();
                     string TipoPostalPrazoDiasCorridosRegulamentado = dr["TipoPostalPrazoDiasCorridosRegulamentado"].ToString();
+                    //string DataListaAtual = DataListaAtual;
+                    //string NumeroListaAtual = NumeroListaAtual;
+                    //string item = string.empty;
+                    string QtdTotal = CodigosSelecionadoAgrupados.Rows.ToString();
 
                     if (string.IsNullOrEmpty(CodigoLdi))
                     {
@@ -370,135 +417,181 @@ namespace SISAPO
 
                             #region Escreve Texto para o QR Code
                             StringBuilder Str = new StringBuilder();
-                            Str.Append(CodigoObjeto);
-                            Str.Append("#tab");
-                            Str.Append(CodigoLdi);
-                            Str.Append("#tab");
-                            Str.Append(NomeCliente);
-                            Str.Append("#tab");
-                            Str.Append(DataLancamento);
-                            Str.Append("#tab");
-                            Str.Append(DataModificacao);
-                            Str.Append("#tab");
-                            Str.Append(Situacao);
-                            Str.Append("#tab");
-                            Str.Append(Atualizado);
-                            Str.Append("#tab");
-                            Str.Append(ObjetoEntregue);
-                            Str.Append("#tab");
-                            Str.Append(CaixaPostal);
-                            Str.Append("#tab");
-                            Str.Append(UnidadePostagem);
-                            Str.Append("#tab");
-                            Str.Append(MunicipioPostagem);
-                            Str.Append("#tab");
-                            Str.Append(CriacaoPostagem);
-                            Str.Append("#tab");
-                            Str.Append(CepDestinoPostagem);
-                            Str.Append("#tab");
-                            Str.Append(ARPostagem);
-                            Str.Append("#tab");
-                            Str.Append(MPPostagem);
-                            Str.Append("#tab");
-                            Str.Append(DataMaxPrevistaEntregaPostagem);
-                            Str.Append("#tab");
-                            Str.Append(UnidadeLOEC);
-                            Str.Append("#tab");
-                            Str.Append(MunicipioLOEC);
-                            Str.Append("#tab");
-                            Str.Append(CriacaoLOEC);
-                            Str.Append("#tab");
-                            Str.Append(CarteiroLOEC);
-                            Str.Append("#tab");
-                            Str.Append(DistritoLOEC);
-                            Str.Append("#tab");
-                            Str.Append(NumeroLOEC);
-                            Str.Append("#tab");
-                            Str.Append(EnderecoLOEC);
-                            Str.Append("#tab");
-                            Str.Append(BairroLOEC);
-                            Str.Append("#tab");
-                            Str.Append(LocalidadeLOEC);
-                            Str.Append("#tab");
-                            Str.Append(SituacaoDestinatarioAusente);
-                            Str.Append("#tab");
-                            Str.Append(AgrupadoDestinatarioAusente);
-                            Str.Append("#tab");
-                            Str.Append(CoordenadasDestinatarioAusente);
-                            Str.Append("#tab");
-                            Str.Append(Comentario);
-                            Str.Append("#tab");
-                            Str.Append(TipoPostalServico);
-                            Str.Append("#tab");
-                            Str.Append(TipoPostalSiglaCodigo);
-                            Str.Append("#tab");
-                            Str.Append(TipoPostalNomeSiglaCodigo);
-                            Str.Append("#tab");
-                            Str.Append(TipoPostalPrazoDiasCorridosRegulamentado);
-                            string ObjetoLinhaQRCode = Str.ToString();
+                            Str.Append(CodigoObjeto); Str.Append("#tab");
+                            Str.Append(CodigoLdi); Str.Append("#tab");
+                            Str.Append(NomeCliente); Str.Append("#tab");
+                            Str.Append(DataLancamento); Str.Append("#tab");
+                            Str.Append(DataModificacao); Str.Append("#tab");
+                            Str.Append(Situacao); Str.Append("#tab");
+                            Str.Append(Atualizado); Str.Append("#tab");
+                            Str.Append(ObjetoEntregue); Str.Append("#tab");
+                            Str.Append(CaixaPostal); Str.Append("#tab");
+                            Str.Append(UnidadePostagem); Str.Append("#tab");
+                            Str.Append(MunicipioPostagem); Str.Append("#tab");
+                            Str.Append(CriacaoPostagem); Str.Append("#tab");
+                            Str.Append(CepDestinoPostagem); Str.Append("#tab");
+                            Str.Append(ARPostagem); Str.Append("#tab");
+                            Str.Append(MPPostagem); Str.Append("#tab");
+                            Str.Append(DataMaxPrevistaEntregaPostagem); Str.Append("#tab");
+                            Str.Append(UnidadeLOEC); Str.Append("#tab");
+                            Str.Append(MunicipioLOEC); Str.Append("#tab");
+                            Str.Append(CriacaoLOEC); Str.Append("#tab");
+                            Str.Append(CarteiroLOEC); Str.Append("#tab");
+                            Str.Append(DistritoLOEC); Str.Append("#tab");
+                            Str.Append(NumeroLOEC); Str.Append("#tab");
+                            Str.Append(EnderecoLOEC); Str.Append("#tab");
+                            Str.Append(BairroLOEC); Str.Append("#tab");
+                            Str.Append(LocalidadeLOEC); Str.Append("#tab");
+                            Str.Append(SituacaoDestinatarioAusente); Str.Append("#tab");
+                            Str.Append(AgrupadoDestinatarioAusente); Str.Append("#tab");
+                            Str.Append(CoordenadasDestinatarioAusente); Str.Append("#tab");
+                            Str.Append(Comentario); Str.Append("#tab");
+                            Str.Append(TipoPostalServico); Str.Append("#tab");
+                            Str.Append(TipoPostalSiglaCodigo); Str.Append("#tab");
+                            Str.Append(TipoPostalNomeSiglaCodigo); Str.Append("#tab");
+                            Str.Append(TipoPostalPrazoDiasCorridosRegulamentado); Str.Append("#tab");
+                            Str.Append(DataListaAtual); Str.Append("#tab");
+                            Str.Append(NumeroListaAtual); Str.Append("#tab");
+                            Str.Append(contador); Str.Append("#tab");
+                            Str.Append(CodigosSelecionadoAgrupados.Rows.Count);
                             #endregion
 
                             #region Monta Imagem QR Code
+                            string ObjetoLinhaQRCode = Str.ToString();
                             //string compacta = ClassesDiversas.FormataString.Compacta(Str.ToString());
                             //string descompacta = ClassesDiversas.FormataString.Descompacta(compacta); 
-                            //Bitmap textoBitmap = GerarQRCode(200, 200, compacta);
+                            //Bitmap textoBitmap = GerarQRCode(250, 250, compacta);
                             Bitmap textoBitmap = GerarQRCode(250, 250, ObjetoLinhaQRCode);
                             byte[] TextoByte = BitmapToBytes(textoBitmap);
                             #endregion
 
                             #region Tabela PLR - Pré Lista de Remessa
-                            Html.AppendLine("<table class=\"TabelaPLR\" style=\"margin-top: 50px; margin-left: 100px; margin-bottom: 50px\">");
-                            Html.AppendLine("<tbody>");
-                            Html.AppendLine("<tr>");
-                            Html.AppendLine("<td><div style=\"width: 100%; height:250px; border: 0px solid rgb(16, 238, 8);\">  <center>          <img src=" + string.Format("data:image/png;base64,{0}", Convert.ToBase64String(TextoByte)) + " />     </center>  </div></td>");
-                            Html.AppendLine("<td><table class=\"TabelaPLR\">");
-                            Html.AppendLine("<thead>");
-                            Html.AppendLine("<tr>");
-                            Html.AppendLine("<th colspan=\"3\">PLR - Pr&eacute; Lista de Remessa</th>");
-                            Html.AppendLine("</tr>");
-                            Html.AppendLine("</thead>");
-                            Html.AppendLine("<tbody>");
-                            Html.AppendLine("<tr>");
-                            Html.AppendLine("<td>Data da emiss&atilde;o da lista</td>");
-                            Html.AppendLine("<td>" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString() + "</td>");
-                            Html.AppendLine("</tr>");
-                            Html.AppendLine("<tr>");
-                            Html.AppendLine("<td>Qtd. Total da lista</td>");
-                            Html.AppendLine("<td>" + CodigosSelecionadoAgrupados.Rows.Count.ToString() + "</td>");
-                            Html.AppendLine("</tr>");
-                            Html.AppendLine("<tr>");
-                            Html.AppendLine("<td>Item atual</td>");
-                            Html.AppendLine("<td>" + string.Format("{0}/{1}", contador, CodigosSelecionadoAgrupados.Rows.Count) + "</td>");
-                            Html.AppendLine("</tr>");
-                            Html.AppendLine("<tr>");
-                            Html.AppendLine("<td>C&oacute;digo Objeto atual</td>");
-                            Html.AppendLine("<td>" + CodigoObjeto + "</td>");
-                            Html.AppendLine("</tr>");
-                            Html.AppendLine("<tr>");
-                            Html.AppendLine("<td>N&uacute;mero LDI Lan&ccedil;amento</td>");
-                            Html.AppendLine("<td>" + CodigoLdi + "</td>");
-                            Html.AppendLine("</tr>");
-                            Html.AppendLine("<tr>");
-                            Html.AppendLine("<td>Data Lan&ccedil;amento LDI</td>");
-                            Html.AppendLine("<td>" + DataLancamento.ToShortDateString() + " " + DataLancamento.ToShortTimeString() + "</td>");
-                            Html.AppendLine("</tr>");
-                            Html.AppendLine("<tr>");
-                            Html.AppendLine("<td>Prazo do item</td>");
+                            Html.AppendLine("       <table class=\"TabelaPLR\" style=\"margin-top: 650px; margin-left: 100px; border: 0px solid rgb(252, 0, 0); \">");
+                            Html.AppendLine("       <tbody>");
+                            Html.AppendLine("       <tr>");
+                            Html.AppendLine("       <td><div style=\"width: 100%; height:250px; border: 0px solid rgb(16, 238, 8);\">  <center>          <img src=" + string.Format("data:image/png;base64,{0}", Convert.ToBase64String(TextoByte)) + " />     </center>  </div></td>");
+                            Html.AppendLine("       <td><table class=\"TabelaPLR\">");
+                            Html.AppendLine("       <thead>");
+                            Html.AppendLine("       <tr>");
+                            Html.AppendLine("       <th colspan=\"3\">PLR - Pr&eacute; Lista de Remessa</th>");
+                            Html.AppendLine("       </tr>");
+                            Html.AppendLine("       </thead>");
+                            Html.AppendLine("       <tbody>");
+                            Html.AppendLine("       <tr>");
+                            Html.AppendLine("       <td>Data da emiss&atilde;o da lista</td>");
+                            Html.AppendLine("       <td>" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString() + "</td>");
+                            Html.AppendLine("       </tr>");
+                            Html.AppendLine("       <tr>");
+                            Html.AppendLine("       <td>Qtd. Total da lista</td>");
+                            Html.AppendLine("       <td>" + CodigosSelecionadoAgrupados.Rows.Count.ToString() + "</td>");
+                            Html.AppendLine("       </tr>");
+                            Html.AppendLine("       <tr>");
+                            Html.AppendLine("       <td>Item atual</td>");
+                            Html.AppendLine("       <td>" + string.Format("{0}/{1}", contador, CodigosSelecionadoAgrupados.Rows.Count) + "</td>");
+                            Html.AppendLine("       </tr>");
+                            Html.AppendLine("       <tr>");
+                            Html.AppendLine("       <td>C&oacute;digo Objeto atual</td>");
+                            Html.AppendLine("       <td>" + CodigoObjeto + "</td>");
+                            Html.AppendLine("       </tr>");
+                            Html.AppendLine("       <tr>");
+                            Html.AppendLine("       <td>N&uacute;mero LDI Lan&ccedil;amento</td>");
+                            Html.AppendLine("       <td>" + CodigoLdi + "</td>");
+                            Html.AppendLine("       </tr>");
+                            Html.AppendLine("       <tr>");
+                            Html.AppendLine("       <td>Data Lan&ccedil;amento LDI</td>");
+                            Html.AppendLine("       <td>" + DataLancamento.ToShortDateString() + " " + DataLancamento.ToShortTimeString() + "</td>");
+                            Html.AppendLine("       </tr>");
+                            Html.AppendLine("       <tr>");
+                            Html.AppendLine("       <td>Prazo do item</td>");
                             if (string.IsNullOrWhiteSpace(TipoPostalPrazoDiasCorridosRegulamentado))
-                                Html.AppendLine("<td>Não encontrado</td>");
+                                Html.AppendLine("       <td>Não encontrado</td>");
                             else
-                                Html.AppendLine("<td>" + TipoPostalPrazoDiasCorridosRegulamentado + " dias corridos</td>");
-                            Html.AppendLine("<tr>");
-                            Html.AppendLine("<td>Data&nbsp;limite devolu&ccedil;&atilde;o</td>");
-                            Html.AppendLine("<td>" + DataLancamento.ToDateTime().Date.AddDays(Convert.ToDouble(string.IsNullOrWhiteSpace(TipoPostalPrazoDiasCorridosRegulamentado) ? "0" : TipoPostalPrazoDiasCorridosRegulamentado)).ToDateTime().ToShortDateString() + "</td>");
-                            Html.AppendLine("</tr>");
-                            Html.AppendLine("</tbody>");
-                            Html.AppendLine("</table></td>");
-                            Html.AppendLine("</tr>");
-                            Html.AppendLine("</tbody>");
-                            Html.AppendLine("</table>");
+                                Html.AppendLine("       <td>" + TipoPostalPrazoDiasCorridosRegulamentado + " dias corridos</td>");
+                            Html.AppendLine("       <tr>");
+                            Html.AppendLine("       <td>Data&nbsp;limite devolu&ccedil;&atilde;o</td>");
+                            Html.AppendLine("       <td>" + DataLancamento.ToDateTime().Date.AddDays(Convert.ToDouble(string.IsNullOrWhiteSpace(TipoPostalPrazoDiasCorridosRegulamentado) ? "0" : TipoPostalPrazoDiasCorridosRegulamentado)).ToDateTime().ToShortDateString() + "</td>");
+                            Html.AppendLine("       </tr>");
+                            Html.AppendLine("       </tbody>");
+                            Html.AppendLine("       </table></td>");
+                            Html.AppendLine("       </tr>");
+                            Html.AppendLine("       </tbody>");
+                            Html.AppendLine("       </table>");
                             #endregion
 
+                            #endregion
+
+                            #region Consolidado [Última Página]
+                            Html.AppendLine("		<div class=\"quebrapagina\"></div>");
+                            #region Cabeçalho Consolidado
+                            Html.AppendLine("       <table class=\"Consolidado\">");
+                            Html.AppendLine("       <thead>");
+                            Html.AppendLine("       <tr>");
+                            Html.AppendLine("       <th>PLR - Pr&eacute Lista de Remessa - Consolidado</th>");
+                            Html.AppendLine("       </tr>");
+                            Html.AppendLine("       </thead>");
+                            Html.AppendLine("       <tbody>");
+                            Html.AppendLine("       </tbody>");
+                            Html.AppendLine("       </table>");
+                            Html.AppendLine("");
+                            Html.AppendLine("       <table class=\"Consolidado\">");
+                            Html.AppendLine("       <thead>");
+                            Html.AppendLine("       <tr>");
+                            Html.AppendLine("       <th>N&uacute;mero da Lista</th>");
+                            Html.AppendLine("       <th>Data da emiss&atilde;o</th>");
+                            Html.AppendLine("       <th>Qtd. total</th>");
+                            Html.AppendLine("       </tr>");
+                            Html.AppendLine("       </thead>");
+                            Html.AppendLine("       <tbody>");
+                            Html.AppendLine("       <tr>");
+                            Html.AppendLine("       <td>" + NumeroListaAtual + "</td>");
+                            Html.AppendLine("       <td>" + DataListaAtual + "</td>");
+                            Html.AppendLine("       <td>" + CodigosSelecionadoAgrupados.Rows.Count.ToString() + "</td>");
+                            Html.AppendLine("       </tr>");
+                            Html.AppendLine("       </tbody>");
+                            Html.AppendLine("       </table>");
+                            Html.AppendLine("");
+                            #endregion
+                            #region Lista Relação Objetos                            
+                            Html.AppendLine("       <table class=\"Consolidado\">");
+                            Html.AppendLine("       <thead>");
+                            Html.AppendLine("       <tr>");
+                            Html.AppendLine("       <th>Item/Qtd.</th>"); //Item/Qtd.
+                            Html.AppendLine("       <th>C&oacute;digo Objeto</th>");//Codigo Objeto
+                            Html.AppendLine("       <th>Nome Cliente</th>"); //Nome Cliente
+                            Html.AppendLine("       <th>N&uacute;m. LDI</th>"); //Núm. LDI
+                            Html.AppendLine("       <th>Data LDI</th>"); //Data LDI
+                            Html.AppendLine("       <th>Comentário</th>"); //Comentario
+                            //Html.AppendLine("       <th>Serviço Postal</th>"); //TipoPostalNomeSiglaCodigo
+                            Html.AppendLine("       <th>Prazo</th>"); // Prazo
+                            Html.AppendLine("       <th>Data devolu&ccedil;&atilde;o</th>");//Data Devolução
+                            Html.AppendLine("       </tr>");
+                            Html.AppendLine("       </thead>");
+                            Html.AppendLine("       <tbody>");
+
+                            int contadorConsolidado = 0;
+                            foreach (DataRow itemConsolidado in CodigosSelecionadoAgrupados.Rows)
+                            {
+                                contadorConsolidado++;
+                                DataRow drConsolidado = dao.RetornaDataRow("SELECT top 1 CodigoObjeto, CodigoLdi, NomeCliente, DataLancamento, Comentario, TipoPostalNomeSiglaCodigo, TipoPostalPrazoDiasCorridosRegulamentado FROM TabelaObjetosSROLocal WHERE(CodigoObjeto IN('" + itemConsolidado["CodigoObjeto"].ToString() + "')) ORDER BY NomeCliente");
+                                Html.AppendLine("       <tr>");
+                                Html.AppendLine("       <td>" + string.Format("{0}/{1}", contadorConsolidado, CodigosSelecionadoAgrupados.Rows.Count) + "</td>");//Item/Qtd.
+                                Html.AppendLine("       <td>" + drConsolidado["CodigoObjeto"].ToString() + "</td>");//Código Objeto
+                                Html.AppendLine("       <td>" + drConsolidado["NomeCliente"].ToString() + "</td>"); //Nome Cliente
+                                Html.AppendLine("       <td>" + drConsolidado["CodigoLdi"].ToString() + "</td>"); //Num. LDI
+                                Html.AppendLine("       <td>" + drConsolidado["DataLancamento"].ToString() + "</td>"); //Data LDI
+                                Html.AppendLine("       <td>" + drConsolidado["Comentario"].ToString() + "</td>"); //Comentario
+                                //Html.AppendLine("       <td>" + drConsolidado["TipoPostalNomeSiglaCodigo"].ToString() + "</td>"); //TipoPostalNomeSiglaCodigo
+
+                                if (string.IsNullOrWhiteSpace(drConsolidado["TipoPostalPrazoDiasCorridosRegulamentado"].ToString()))
+                                    Html.AppendLine("       <td>Não encontrado</td>"); //Prazo
+                                else
+                                    Html.AppendLine("       <td>" + drConsolidado["TipoPostalPrazoDiasCorridosRegulamentado"].ToString() + "</td>"); //Prazo
+                                Html.AppendLine("       <td>" + drConsolidado["DataLancamento"].ToDateTime().Date.AddDays(Convert.ToDouble(string.IsNullOrWhiteSpace(drConsolidado["TipoPostalPrazoDiasCorridosRegulamentado"].ToString()) ? "0" : drConsolidado["TipoPostalPrazoDiasCorridosRegulamentado"].ToString())).ToDateTime().ToShortDateString() + "</td>"); //Data devolução
+                                Html.AppendLine("       </tr>");
+                            }
+                            Html.AppendLine("       </tbody>");
+                            Html.AppendLine("       </table>");
+                            #endregion
                             #endregion
                         }
                         continue;
@@ -511,133 +604,105 @@ namespace SISAPO
 
                             #region Escreve Texto para o QR Code
                             StringBuilder Str = new StringBuilder();
-                            Str.Append(CodigoObjeto);
-                            Str.Append("#tab");
-                            Str.Append(CodigoLdi);
-                            Str.Append("#tab");
-                            Str.Append(NomeCliente);
-                            Str.Append("#tab");
-                            Str.Append(DataLancamento);
-                            Str.Append("#tab");
-                            Str.Append(DataModificacao);
-                            Str.Append("#tab");
-                            Str.Append(Situacao);
-                            Str.Append("#tab");
-                            Str.Append(Atualizado);
-                            Str.Append("#tab");
-                            Str.Append(ObjetoEntregue);
-                            Str.Append("#tab");
-                            Str.Append(CaixaPostal);
-                            Str.Append("#tab");
-                            Str.Append(UnidadePostagem);
-                            Str.Append("#tab");
-                            Str.Append(MunicipioPostagem);
-                            Str.Append("#tab");
-                            Str.Append(CriacaoPostagem);
-                            Str.Append("#tab");
-                            Str.Append(CepDestinoPostagem);
-                            Str.Append("#tab");
-                            Str.Append(ARPostagem);
-                            Str.Append("#tab");
-                            Str.Append(MPPostagem);
-                            Str.Append("#tab");
-                            Str.Append(DataMaxPrevistaEntregaPostagem);
-                            Str.Append("#tab");
-                            Str.Append(UnidadeLOEC);
-                            Str.Append("#tab");
-                            Str.Append(MunicipioLOEC);
-                            Str.Append("#tab");
-                            Str.Append(CriacaoLOEC);
-                            Str.Append("#tab");
-                            Str.Append(CarteiroLOEC);
-                            Str.Append("#tab");
-                            Str.Append(DistritoLOEC);
-                            Str.Append("#tab");
-                            Str.Append(NumeroLOEC);
-                            Str.Append("#tab");
-                            Str.Append(EnderecoLOEC);
-                            Str.Append("#tab");
-                            Str.Append(BairroLOEC);
-                            Str.Append("#tab");
-                            Str.Append(LocalidadeLOEC);
-                            Str.Append("#tab");
-                            Str.Append(SituacaoDestinatarioAusente);
-                            Str.Append("#tab");
-                            Str.Append(AgrupadoDestinatarioAusente);
-                            Str.Append("#tab");
-                            Str.Append(CoordenadasDestinatarioAusente);
-                            Str.Append("#tab");
-                            Str.Append(Comentario);
-                            Str.Append("#tab");
-                            Str.Append(TipoPostalServico);
-                            Str.Append("#tab");
-                            Str.Append(TipoPostalSiglaCodigo);
-                            Str.Append("#tab");
-                            Str.Append(TipoPostalNomeSiglaCodigo);
-                            Str.Append("#tab");
-                            Str.Append(TipoPostalPrazoDiasCorridosRegulamentado);
-                            string ObjetoLinhaQRCode = Str.ToString();
-                            #endregion
+                            Str.Append(CodigoObjeto); Str.Append("#tab");
+                            Str.Append(CodigoLdi); Str.Append("#tab");
+                            Str.Append(NomeCliente); Str.Append("#tab");
+                            Str.Append(DataLancamento); Str.Append("#tab");
+                            Str.Append(DataModificacao); Str.Append("#tab");
+                            Str.Append(Situacao); Str.Append("#tab");
+                            Str.Append(Atualizado); Str.Append("#tab");
+                            Str.Append(ObjetoEntregue); Str.Append("#tab");
+                            Str.Append(CaixaPostal); Str.Append("#tab");
+                            Str.Append(UnidadePostagem); Str.Append("#tab");
+                            Str.Append(MunicipioPostagem); Str.Append("#tab");
+                            Str.Append(CriacaoPostagem); Str.Append("#tab");
+                            Str.Append(CepDestinoPostagem); Str.Append("#tab");
+                            Str.Append(ARPostagem); Str.Append("#tab");
+                            Str.Append(MPPostagem); Str.Append("#tab");
+                            Str.Append(DataMaxPrevistaEntregaPostagem); Str.Append("#tab");
+                            Str.Append(UnidadeLOEC); Str.Append("#tab");
+                            Str.Append(MunicipioLOEC); Str.Append("#tab");
+                            Str.Append(CriacaoLOEC); Str.Append("#tab");
+                            Str.Append(CarteiroLOEC); Str.Append("#tab");
+                            Str.Append(DistritoLOEC); Str.Append("#tab");
+                            Str.Append(NumeroLOEC); Str.Append("#tab");
+                            Str.Append(EnderecoLOEC); Str.Append("#tab");
+                            Str.Append(BairroLOEC); Str.Append("#tab");
+                            Str.Append(LocalidadeLOEC); Str.Append("#tab");
+                            Str.Append(SituacaoDestinatarioAusente); Str.Append("#tab");
+                            Str.Append(AgrupadoDestinatarioAusente); Str.Append("#tab");
+                            Str.Append(CoordenadasDestinatarioAusente); Str.Append("#tab");
+                            Str.Append(Comentario); Str.Append("#tab");
+                            Str.Append(TipoPostalServico); Str.Append("#tab");
+                            Str.Append(TipoPostalSiglaCodigo); Str.Append("#tab");
+                            Str.Append(TipoPostalNomeSiglaCodigo); Str.Append("#tab");
+                            Str.Append(TipoPostalPrazoDiasCorridosRegulamentado); Str.Append("#tab");
+                            Str.Append(DataListaAtual); Str.Append("#tab");
+                            Str.Append(NumeroListaAtual); Str.Append("#tab");
+                            Str.Append(contador); Str.Append("#tab");
+                            Str.Append(CodigosSelecionadoAgrupados.Rows.Count);
+                            #endregion                      
 
                             #region Monta Imagem QR Code
+                            string ObjetoLinhaQRCode = Str.ToString();
                             //string compacta = ClassesDiversas.FormataString.Compacta(Str.ToString());
                             //string descompacta = ClassesDiversas.FormataString.Descompacta(compacta); 
-                            //Bitmap textoBitmap = GerarQRCode(200, 200, compacta);
+                            //Bitmap textoBitmap = GerarQRCode(250, 250, compacta);
                             Bitmap textoBitmap = GerarQRCode(250, 250, ObjetoLinhaQRCode);
                             byte[] TextoByte = BitmapToBytes(textoBitmap);
                             #endregion
 
                             #region Tabela PLR - Pré Lista de Remessa
-                            Html.AppendLine("<table class=\"TabelaPLR\" style=\"margin-top: 50px; margin-left: 100px; margin-bottom: 50px\">");
-                            Html.AppendLine("<tbody>");
-                            Html.AppendLine("<tr>");
-                            Html.AppendLine("<td><div style=\"width: 100%; height:250px; border: 0px solid rgb(16, 238, 8);\">  <center>          <img src=" + string.Format("data:image/png;base64,{0}", Convert.ToBase64String(TextoByte)) + " />     </center>  </div></td>");
-                            Html.AppendLine("<td><table class=\"TabelaPLR\">");
-                            Html.AppendLine("<thead>");
-                            Html.AppendLine("<tr>");
-                            Html.AppendLine("<th colspan=\"3\">PLR - Pr&eacute; Lista de Remessa</th>");
-                            Html.AppendLine("</tr>");
-                            Html.AppendLine("</thead>");
-                            Html.AppendLine("<tbody>");
-                            Html.AppendLine("<tr>");
-                            Html.AppendLine("<td>Data da emiss&atilde;o da lista</td>");
-                            Html.AppendLine("<td>" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString() + "</td>");
-                            Html.AppendLine("</tr>");
-                            Html.AppendLine("<tr>");
-                            Html.AppendLine("<td>Qtd. Total da lista</td>");
-                            Html.AppendLine("<td>" + CodigosSelecionadoAgrupados.Rows.Count.ToString() + "</td>");
-                            Html.AppendLine("</tr>");
-                            Html.AppendLine("<tr>");
-                            Html.AppendLine("<td>Item atual</td>");
-                            Html.AppendLine("<td>" + string.Format("{0}/{1}", contador, CodigosSelecionadoAgrupados.Rows.Count) + "</td>");
-                            Html.AppendLine("</tr>");
-                            Html.AppendLine("<tr>");
-                            Html.AppendLine("<td>C&oacute;digo Objeto atual</td>");
-                            Html.AppendLine("<td>" + CodigoObjeto + "</td>");
-                            Html.AppendLine("</tr>");
-                            Html.AppendLine("<tr>");
-                            Html.AppendLine("<td>N&uacute;mero LDI Lan&ccedil;amento</td>");
-                            Html.AppendLine("<td>" + CodigoLdi + "</td>");
-                            Html.AppendLine("</tr>");
-                            Html.AppendLine("<tr>");
-                            Html.AppendLine("<td>Data Lan&ccedil;amento LDI</td>");
-                            Html.AppendLine("<td>" + DataLancamento.ToShortDateString() + " " + DataLancamento.ToShortTimeString() + "</td>");
-                            Html.AppendLine("</tr>");
-                            Html.AppendLine("<tr>");
-                            Html.AppendLine("<td>Prazo do item</td>");
+                            Html.AppendLine("       <table class=\"TabelaPLR\" style=\"margin-top: 650px; margin-left: 100px; border: 0px solid rgb(252, 0, 0); \">");
+                            Html.AppendLine("       <tbody>");
+                            Html.AppendLine("       <tr>");
+                            Html.AppendLine("       <td><div style=\"width: 100%; height:250px; border: 0px solid rgb(16, 238, 8);\">  <center>          <img src=" + string.Format("data:image/png;base64,{0}", Convert.ToBase64String(TextoByte)) + " />     </center>  </div></td>");
+                            Html.AppendLine("       <td><table class=\"TabelaPLR\">");
+                            Html.AppendLine("       <thead>");
+                            Html.AppendLine("       <tr>");
+                            Html.AppendLine("       <th colspan=\"3\">PLR - Pr&eacute; Lista de Remessa</th>");
+                            Html.AppendLine("       </tr>");
+                            Html.AppendLine("       </thead>");
+                            Html.AppendLine("       <tbody>");
+                            Html.AppendLine("       <tr>");
+                            Html.AppendLine("       <td>Data da emiss&atilde;o da lista</td>");
+                            Html.AppendLine("       <td>" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString() + "</td>");
+                            Html.AppendLine("       </tr>");
+                            Html.AppendLine("       <tr>");
+                            Html.AppendLine("       <td>Qtd. Total da lista</td>");
+                            Html.AppendLine("       <td>" + CodigosSelecionadoAgrupados.Rows.Count.ToString() + "</td>");
+                            Html.AppendLine("       </tr>");
+                            Html.AppendLine("       <tr>");
+                            Html.AppendLine("       <td>Item atual</td>");
+                            Html.AppendLine("       <td>" + string.Format("{0}/{1}", contador, CodigosSelecionadoAgrupados.Rows.Count) + "</td>");
+                            Html.AppendLine("       </tr>");
+                            Html.AppendLine("       <tr>");
+                            Html.AppendLine("       <td>C&oacute;digo Objeto atual</td>");
+                            Html.AppendLine("       <td>" + CodigoObjeto + "</td>");
+                            Html.AppendLine("       </tr>");
+                            Html.AppendLine("       <tr>");
+                            Html.AppendLine("       <td>N&uacute;mero LDI Lan&ccedil;amento</td>");
+                            Html.AppendLine("       <td>" + CodigoLdi + "</td>");
+                            Html.AppendLine("       </tr>");
+                            Html.AppendLine("       <tr>");
+                            Html.AppendLine("       <td>Data Lan&ccedil;amento LDI</td>");
+                            Html.AppendLine("       <td>" + DataLancamento.ToShortDateString() + " " + DataLancamento.ToShortTimeString() + "</td>");
+                            Html.AppendLine("       </tr>");
+                            Html.AppendLine("       <tr>");
+                            Html.AppendLine("       <td>Prazo do item</td>");
                             if (string.IsNullOrWhiteSpace(TipoPostalPrazoDiasCorridosRegulamentado))
-                                Html.AppendLine("<td>Não encontrado</td>");
+                                Html.AppendLine("       <td>Não encontrado</td>");
                             else
-                                Html.AppendLine("<td>" + TipoPostalPrazoDiasCorridosRegulamentado + " dias corridos</td>");
-                            Html.AppendLine("<tr>");
-                            Html.AppendLine("<td>Data&nbsp;limite devolu&ccedil;&atilde;o</td>");
-                            Html.AppendLine("<td>" + DataLancamento.ToDateTime().Date.AddDays(Convert.ToDouble(string.IsNullOrWhiteSpace(TipoPostalPrazoDiasCorridosRegulamentado) ? "0" : TipoPostalPrazoDiasCorridosRegulamentado)).ToDateTime().ToShortDateString() + "</td>");
-                            Html.AppendLine("</tr>");
-                            Html.AppendLine("</tbody>");
-                            Html.AppendLine("</table></td>");
-                            Html.AppendLine("</tr>");
-                            Html.AppendLine("</tbody>");
-                            Html.AppendLine("</table>");
+                                Html.AppendLine("       <td>" + TipoPostalPrazoDiasCorridosRegulamentado + " dias corridos</td>");
+                            Html.AppendLine("       <tr>");
+                            Html.AppendLine("       <td>Data&nbsp;limite devolu&ccedil;&atilde;o</td>");
+                            Html.AppendLine("       <td>" + DataLancamento.ToDateTime().Date.AddDays(Convert.ToDouble(string.IsNullOrWhiteSpace(TipoPostalPrazoDiasCorridosRegulamentado) ? "0" : TipoPostalPrazoDiasCorridosRegulamentado)).ToDateTime().ToShortDateString() + "</td>");
+                            Html.AppendLine("       </tr>");
+                            Html.AppendLine("       </tbody>");
+                            Html.AppendLine("       </table></td>");
+                            Html.AppendLine("       </tr>");
+                            Html.AppendLine("       </tbody>");
+                            Html.AppendLine("       </table>");
                             #endregion
 
                             #endregion

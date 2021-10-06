@@ -37,8 +37,10 @@ namespace SISAPO
             ModeloTelaAberturaSelecionado = modeloTelaAberturaSelecionado;
         }
 
-        private void FormularioAuxilioGestaoDia_Load(object sender, EventArgs e)
+        private void FormularioAuxilioGestaoDiaNovo_Load(object sender, EventArgs e)
         {
+            this.ConfiguraMenusEBotoesParaACCAgenciaComunitaria(Configuracoes.ACCAgenciaComunitaria);
+
             if (ModeloTelaAberturaSelecionado == ModeloTelaAbertura.TelaAguardandoRetirada)
             {
                 BtnColarConteudoJaCopiado.Visible = false;
@@ -53,7 +55,26 @@ namespace SISAPO
                 FiltrarPorMaisFiltrosPorPrevisaoDiaCheckBox.Visible = false;
                 DataInicial_dateTimePicker.Visible = false;
             }
+        }
 
+        public static FormularioAuxilioGestaoDiaNovo RetornaComponentesFormularioAuxilioGestaoDiaNovo()
+        {
+            FormularioAuxilioGestaoDiaNovo formularioAuxilioGestaoDiaNovo;
+            foreach (Form item in Application.OpenForms)
+            {
+                if (item.Name == "FormularioAuxilioGestaoDiaNovo")
+                {
+                    formularioAuxilioGestaoDiaNovo = (FormularioAuxilioGestaoDiaNovo)item;
+                    return (FormularioAuxilioGestaoDiaNovo)item;
+                }
+                if (item.Name == "FormularioAuxilioGestaoDiaNovoItensNaoEntregues")
+                {
+                    formularioAuxilioGestaoDiaNovo = (FormularioAuxilioGestaoDiaNovo)item;
+                    return (FormularioAuxilioGestaoDiaNovo)item;
+                }
+                
+            }
+            return null;
         }
 
         private void BtnRetornaTodosNaoEntregues_Click(object sender, EventArgs e)
@@ -276,6 +297,11 @@ namespace SISAPO
             }
         }
 
+        public void ConfiguraMenusEBotoesParaACCAgenciaComunitaria(bool @ModoACCAgenciaComunitaria)
+        {
+            AtualizarObjetosSelecionadosToolStripMenuItem.Enabled = !@ModoACCAgenciaComunitaria;
+        }
+
         private DataTable RetornaListaObjetosNaoEntregues()
         {
             DataTable dtbLista = new DataTable();
@@ -459,6 +485,9 @@ namespace SISAPO
 
         private void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
+            if (Configuracoes.ACCAgenciaComunitaria)
+                return;
+
             if (this.dataGridView1.CurrentRow == null) return;
             string CodigoObjeto = this.dataGridView1.CurrentRow.Cells["CodigoObjeto"].Value.ToString();
             using (FormularioSRORastreamentoUnificado formularioSRORastreamentoUnificado = new FormularioSRORastreamentoUnificado(CodigoObjeto))
@@ -897,7 +926,7 @@ namespace SISAPO
             }
             finally
             {
-                
+
                 if (position > -1) this.BindingContext[dataGridView1].Position = position;
 
                 FormularioPrincipal.RetornaComponentesFormularioPrincipal().BuscaNovoStatusQuantidadeNaoAtualizados();

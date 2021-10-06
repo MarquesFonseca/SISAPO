@@ -29,21 +29,21 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormularioConsulta));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormularioConsulta));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.codigoObjetoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStripImprimirListaEntrega = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -225,17 +225,17 @@
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle15;
             this.dataGridView1.AutoGenerateColumns = false;
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle20.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.codigoObjetoDataGridViewTextBoxColumn,
@@ -257,26 +257,26 @@
             this.atualizadoDataGridViewCheckBoxColumn});
             this.dataGridView1.ContextMenuStrip = this.contextMenuStripImprimirListaEntrega;
             this.dataGridView1.DataSource = this.tabelaObjetosSROLocalBindingSource;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle8;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle23.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle23.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle19;
             this.dataGridView1.RowHeadersWidth = 30;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(645, 201);
@@ -289,9 +289,9 @@
             this.codigoObjetoDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.codigoObjetoDataGridViewTextBoxColumn.ContextMenuStrip = this.contextMenuStripImprimirListaEntrega;
             this.codigoObjetoDataGridViewTextBoxColumn.DataPropertyName = "CodigoObjeto";
-            dataGridViewCellStyle21.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle21.NullValue = null;
-            this.codigoObjetoDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle17.NullValue = null;
+            this.codigoObjetoDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle17;
             this.codigoObjetoDataGridViewTextBoxColumn.FillWeight = 140F;
             this.codigoObjetoDataGridViewTextBoxColumn.Frozen = true;
             this.codigoObjetoDataGridViewTextBoxColumn.HeaderText = "Código";
@@ -444,8 +444,8 @@
             this.CaixaPostal.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.CaixaPostal.ContextMenuStrip = this.contextMenuStripImprimirListaEntrega;
             this.CaixaPostal.DataPropertyName = "CaixaPostal";
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.CaixaPostal.DefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.CaixaPostal.DefaultCellStyle = dataGridViewCellStyle3;
             this.CaixaPostal.HeaderText = "Caixa Postal?";
             this.CaixaPostal.Name = "CaixaPostal";
             this.CaixaPostal.ReadOnly = true;
@@ -454,8 +454,8 @@
             // nomeClienteDataGridViewTextBoxColumn
             // 
             this.nomeClienteDataGridViewTextBoxColumn.DataPropertyName = "NomeCliente";
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.nomeClienteDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.nomeClienteDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
             this.nomeClienteDataGridViewTextBoxColumn.HeaderText = "Nome do cliente";
             this.nomeClienteDataGridViewTextBoxColumn.MinimumWidth = 100;
             this.nomeClienteDataGridViewTextBoxColumn.Name = "nomeClienteDataGridViewTextBoxColumn";
@@ -466,9 +466,9 @@
             // 
             this.DataLancamento.ContextMenuStrip = this.contextMenuStripImprimirListaEntrega;
             this.DataLancamento.DataPropertyName = "DataLancamento";
-            dataGridViewCellStyle22.Format = "G";
-            dataGridViewCellStyle22.NullValue = null;
-            this.DataLancamento.DefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle18.Format = "G";
+            dataGridViewCellStyle18.NullValue = null;
+            this.DataLancamento.DefaultCellStyle = dataGridViewCellStyle18;
             this.DataLancamento.FillWeight = 120F;
             this.DataLancamento.HeaderText = "Lançamento LDI";
             this.DataLancamento.Name = "DataLancamento";
@@ -510,8 +510,8 @@
             this.ObjetoEntregue.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.ObjetoEntregue.ContextMenuStrip = this.contextMenuStrip1;
             this.ObjetoEntregue.DataPropertyName = "ObjetoEntregue";
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.ObjetoEntregue.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.ObjetoEntregue.DefaultCellStyle = dataGridViewCellStyle6;
             this.ObjetoEntregue.HeaderText = "Objeto Entregue?";
             this.ObjetoEntregue.Name = "ObjetoEntregue";
             this.ObjetoEntregue.ReadOnly = true;
@@ -609,8 +609,8 @@
             this.atualizadoDataGridViewCheckBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.atualizadoDataGridViewCheckBoxColumn.ContextMenuStrip = this.contextMenuStripAtualizacao;
             this.atualizadoDataGridViewCheckBoxColumn.DataPropertyName = "Atualizado";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.atualizadoDataGridViewCheckBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.atualizadoDataGridViewCheckBoxColumn.DefaultCellStyle = dataGridViewCellStyle7;
             this.atualizadoDataGridViewCheckBoxColumn.FalseValue = "";
             this.atualizadoDataGridViewCheckBoxColumn.HeaderText = "Já atualizado?";
             this.atualizadoDataGridViewCheckBoxColumn.Name = "atualizadoDataGridViewCheckBoxColumn";
@@ -751,7 +751,7 @@
             this.LbnQuantidadeRegistros.ForeColor = System.Drawing.Color.Red;
             this.LbnQuantidadeRegistros.Location = new System.Drawing.Point(932, 25);
             this.LbnQuantidadeRegistros.Name = "LbnQuantidadeRegistros";
-            this.LbnQuantidadeRegistros.Size = new System.Drawing.Size(17, 16);
+            this.LbnQuantidadeRegistros.Size = new System.Drawing.Size(16, 16);
             this.LbnQuantidadeRegistros.TabIndex = 11;
             this.LbnQuantidadeRegistros.Text = "0";
             this.LbnQuantidadeRegistros.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1196,7 +1196,7 @@
             this.LblMPPostagem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.LblMPPostagem.Location = new System.Drawing.Point(81, 138);
             this.LblMPPostagem.Name = "LblMPPostagem";
-            this.LblMPPostagem.Size = new System.Drawing.Size(103, 16);
+            this.LblMPPostagem.Size = new System.Drawing.Size(100, 16);
             this.LblMPPostagem.TabIndex = 11;
             this.LblMPPostagem.Text = "MPPostagem";
             // 
@@ -1206,7 +1206,7 @@
             this.LblDataMaxPrevistaEntregaPostagem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblDataMaxPrevistaEntregaPostagem.Location = new System.Drawing.Point(6, 167);
             this.LblDataMaxPrevistaEntregaPostagem.Name = "LblDataMaxPrevistaEntregaPostagem";
-            this.LblDataMaxPrevistaEntregaPostagem.Size = new System.Drawing.Size(255, 16);
+            this.LblDataMaxPrevistaEntregaPostagem.Size = new System.Drawing.Size(250, 16);
             this.LblDataMaxPrevistaEntregaPostagem.TabIndex = 13;
             this.LblDataMaxPrevistaEntregaPostagem.Text = "DataMaxPrevistaEntregaPostagem";
             // 
@@ -1217,7 +1217,7 @@
             this.LblARPostagem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.LblARPostagem.Location = new System.Drawing.Point(6, 138);
             this.LblARPostagem.Name = "LblARPostagem";
-            this.LblARPostagem.Size = new System.Drawing.Size(102, 16);
+            this.LblARPostagem.Size = new System.Drawing.Size(99, 16);
             this.LblARPostagem.TabIndex = 9;
             this.LblARPostagem.Text = "ARPostagem";
             // 
@@ -1227,7 +1227,7 @@
             this.LblCepDestinoPostagem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblCepDestinoPostagem.Location = new System.Drawing.Point(6, 107);
             this.LblCepDestinoPostagem.Name = "LblCepDestinoPostagem";
-            this.LblCepDestinoPostagem.Size = new System.Drawing.Size(163, 16);
+            this.LblCepDestinoPostagem.Size = new System.Drawing.Size(159, 16);
             this.LblCepDestinoPostagem.TabIndex = 7;
             this.LblCepDestinoPostagem.Text = "CepDestinoPostagem";
             // 
@@ -1237,7 +1237,7 @@
             this.LblCriacaoPostagem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblCriacaoPostagem.Location = new System.Drawing.Point(6, 78);
             this.LblCriacaoPostagem.Name = "LblCriacaoPostagem";
-            this.LblCriacaoPostagem.Size = new System.Drawing.Size(135, 16);
+            this.LblCriacaoPostagem.Size = new System.Drawing.Size(132, 16);
             this.LblCriacaoPostagem.TabIndex = 5;
             this.LblCriacaoPostagem.Text = "CriacaoPostagem";
             // 
@@ -1247,7 +1247,7 @@
             this.LblMunicipioPostagem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblMunicipioPostagem.Location = new System.Drawing.Point(6, 48);
             this.LblMunicipioPostagem.Name = "LblMunicipioPostagem";
-            this.LblMunicipioPostagem.Size = new System.Drawing.Size(146, 16);
+            this.LblMunicipioPostagem.Size = new System.Drawing.Size(144, 16);
             this.LblMunicipioPostagem.TabIndex = 3;
             this.LblMunicipioPostagem.Text = "MunicipioPostagem";
             // 
@@ -1267,7 +1267,7 @@
             this.LblUnidadePostagem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblUnidadePostagem.Location = new System.Drawing.Point(6, 18);
             this.LblUnidadePostagem.Name = "LblUnidadePostagem";
-            this.LblUnidadePostagem.Size = new System.Drawing.Size(139, 16);
+            this.LblUnidadePostagem.Size = new System.Drawing.Size(137, 16);
             this.LblUnidadePostagem.TabIndex = 1;
             this.LblUnidadePostagem.Text = "UnidadePostagem";
             // 
@@ -1332,7 +1332,7 @@
             this.LblDadosPostagemIndisponivel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblDadosPostagemIndisponivel.Location = new System.Drawing.Point(7, 5);
             this.LblDadosPostagemIndisponivel.Name = "LblDadosPostagemIndisponivel";
-            this.LblDadosPostagemIndisponivel.Size = new System.Drawing.Size(139, 16);
+            this.LblDadosPostagemIndisponivel.Size = new System.Drawing.Size(137, 16);
             this.LblDadosPostagemIndisponivel.TabIndex = 0;
             this.LblDadosPostagemIndisponivel.Text = "UnidadePostagem";
             // 
@@ -1389,8 +1389,8 @@
             this.dataGridView2.AllowUserToAddRows = false;
             this.dataGridView2.AllowUserToDeleteRows = false;
             this.dataGridView2.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView2.AutoGenerateColumns = false;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -1411,8 +1411,8 @@
             // dataGridViewTextBoxColumnCodigoObjeto
             // 
             this.dataGridViewTextBoxColumnCodigoObjeto.DataPropertyName = "CodigoObjeto";
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
-            this.dataGridViewTextBoxColumnCodigoObjeto.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
+            this.dataGridViewTextBoxColumnCodigoObjeto.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewTextBoxColumnCodigoObjeto.FillWeight = 227F;
             this.dataGridViewTextBoxColumnCodigoObjeto.HeaderText = "Código";
             this.dataGridViewTextBoxColumnCodigoObjeto.Name = "dataGridViewTextBoxColumnCodigoObjeto";
@@ -1423,8 +1423,8 @@
             // 
             this.dataGridViewTextBoxColumnNomeCliente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.dataGridViewTextBoxColumnNomeCliente.DataPropertyName = "NomeCliente";
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.dataGridViewTextBoxColumnNomeCliente.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.dataGridViewTextBoxColumnNomeCliente.DefaultCellStyle = dataGridViewCellStyle9;
             this.dataGridViewTextBoxColumnNomeCliente.HeaderText = "Nome do cliente";
             this.dataGridViewTextBoxColumnNomeCliente.Name = "dataGridViewTextBoxColumnNomeCliente";
             this.dataGridViewTextBoxColumnNomeCliente.ReadOnly = true;
@@ -1433,8 +1433,8 @@
             // 
             this.dataGridViewTextBoxColumnEnderecoLOEC.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.dataGridViewTextBoxColumnEnderecoLOEC.DataPropertyName = "EnderecoLOEC";
-            dataGridViewCellStyle19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.dataGridViewTextBoxColumnEnderecoLOEC.DefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.dataGridViewTextBoxColumnEnderecoLOEC.DefaultCellStyle = dataGridViewCellStyle10;
             this.dataGridViewTextBoxColumnEnderecoLOEC.HeaderText = "Endereço Entrega LOEC";
             this.dataGridViewTextBoxColumnEnderecoLOEC.Name = "dataGridViewTextBoxColumnEnderecoLOEC";
             this.dataGridViewTextBoxColumnEnderecoLOEC.ReadOnly = true;
@@ -1659,7 +1659,7 @@
             this.BtnCoordenadas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.BtnCoordenadas.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BtnCoordenadas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnCoordenadas.Location = new System.Drawing.Point(232, 3);
+            this.BtnCoordenadas.Location = new System.Drawing.Point(133, 3);
             this.BtnCoordenadas.Name = "BtnCoordenadas";
             this.BtnCoordenadas.Size = new System.Drawing.Size(64, 44);
             this.BtnCoordenadas.TabIndex = 4;
@@ -1681,7 +1681,7 @@
             this.LblDistritoLOEC.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblDistritoLOEC.Location = new System.Drawing.Point(77, 103);
             this.LblDistritoLOEC.Name = "LblDistritoLOEC";
-            this.LblDistritoLOEC.Size = new System.Drawing.Size(102, 16);
+            this.LblDistritoLOEC.Size = new System.Drawing.Size(96, 16);
             this.LblDistritoLOEC.TabIndex = 12;
             this.LblDistritoLOEC.Text = "DistritoLOEC";
             // 
@@ -1709,7 +1709,7 @@
             this.LblLocalidadeLOEC.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblLocalidadeLOEC.Location = new System.Drawing.Point(5, 197);
             this.LblLocalidadeLOEC.Name = "LblLocalidadeLOEC";
-            this.LblLocalidadeLOEC.Size = new System.Drawing.Size(131, 16);
+            this.LblLocalidadeLOEC.Size = new System.Drawing.Size(125, 16);
             this.LblLocalidadeLOEC.TabIndex = 18;
             this.LblLocalidadeLOEC.Text = "LocalidadeLOEC";
             // 
@@ -1719,7 +1719,7 @@
             this.LblBairroLOEC.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblBairroLOEC.Location = new System.Drawing.Point(5, 166);
             this.LblBairroLOEC.Name = "LblBairroLOEC";
-            this.LblBairroLOEC.Size = new System.Drawing.Size(95, 16);
+            this.LblBairroLOEC.Size = new System.Drawing.Size(89, 16);
             this.LblBairroLOEC.TabIndex = 16;
             this.LblBairroLOEC.Text = "BairroLOEC";
             // 
@@ -1738,7 +1738,7 @@
             this.LblEnderecoLOEC.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblEnderecoLOEC.Location = new System.Drawing.Point(4, 135);
             this.LblEnderecoLOEC.Name = "LblEnderecoLOEC";
-            this.LblEnderecoLOEC.Size = new System.Drawing.Size(120, 16);
+            this.LblEnderecoLOEC.Size = new System.Drawing.Size(114, 16);
             this.LblEnderecoLOEC.TabIndex = 14;
             this.LblEnderecoLOEC.Text = "EnderecoLOEC";
             // 
@@ -1757,7 +1757,7 @@
             this.LblCarteiroLOEC.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblCarteiroLOEC.Location = new System.Drawing.Point(4, 103);
             this.LblCarteiroLOEC.Name = "LblCarteiroLOEC";
-            this.LblCarteiroLOEC.Size = new System.Drawing.Size(109, 16);
+            this.LblCarteiroLOEC.Size = new System.Drawing.Size(102, 16);
             this.LblCarteiroLOEC.TabIndex = 11;
             this.LblCarteiroLOEC.Text = "CarteiroLOEC";
             // 
@@ -1776,7 +1776,7 @@
             this.LblNumeroLOEC.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblNumeroLOEC.Location = new System.Drawing.Point(6, 74);
             this.LblNumeroLOEC.Name = "LblNumeroLOEC";
-            this.LblNumeroLOEC.Size = new System.Drawing.Size(107, 16);
+            this.LblNumeroLOEC.Size = new System.Drawing.Size(101, 16);
             this.LblNumeroLOEC.TabIndex = 6;
             this.LblNumeroLOEC.Text = "NumeroLOEC";
             // 
@@ -1795,7 +1795,7 @@
             this.LblCriacaoLOEC.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblCriacaoLOEC.Location = new System.Drawing.Point(123, 74);
             this.LblCriacaoLOEC.Name = "LblCriacaoLOEC";
-            this.LblCriacaoLOEC.Size = new System.Drawing.Size(108, 16);
+            this.LblCriacaoLOEC.Size = new System.Drawing.Size(101, 16);
             this.LblCriacaoLOEC.TabIndex = 9;
             this.LblCriacaoLOEC.Text = "CriacaoLOEC";
             // 
@@ -1814,7 +1814,7 @@
             this.LblMunicipioLOEC.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblMunicipioLOEC.Location = new System.Drawing.Point(6, 43);
             this.LblMunicipioLOEC.Name = "LblMunicipioLOEC";
-            this.LblMunicipioLOEC.Size = new System.Drawing.Size(119, 16);
+            this.LblMunicipioLOEC.Size = new System.Drawing.Size(113, 16);
             this.LblMunicipioLOEC.TabIndex = 3;
             this.LblMunicipioLOEC.Text = "MunicipioLOEC";
             // 
@@ -1833,7 +1833,7 @@
             this.LblDadosTentativaEntregaIndisponivel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblDadosTentativaEntregaIndisponivel.Location = new System.Drawing.Point(7, 3);
             this.LblDadosTentativaEntregaIndisponivel.Name = "LblDadosTentativaEntregaIndisponivel";
-            this.LblDadosTentativaEntregaIndisponivel.Size = new System.Drawing.Size(112, 16);
+            this.LblDadosTentativaEntregaIndisponivel.Size = new System.Drawing.Size(106, 16);
             this.LblDadosTentativaEntregaIndisponivel.TabIndex = 0;
             this.LblDadosTentativaEntregaIndisponivel.Text = "UnidadeLOEC";
             // 
@@ -1843,7 +1843,7 @@
             this.LblUnidadeLOEC.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblUnidadeLOEC.Location = new System.Drawing.Point(6, 14);
             this.LblUnidadeLOEC.Name = "LblUnidadeLOEC";
-            this.LblUnidadeLOEC.Size = new System.Drawing.Size(112, 16);
+            this.LblUnidadeLOEC.Size = new System.Drawing.Size(106, 16);
             this.LblUnidadeLOEC.TabIndex = 1;
             this.LblUnidadeLOEC.Text = "UnidadeLOEC";
             // 

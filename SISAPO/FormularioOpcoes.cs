@@ -220,15 +220,19 @@ namespace SISAPO
                 Configuracoes.ReceberObjetosViaQRCodePLRDaAgenciaMae = checkBoxReceberObjetosViaQRCodePLRDaAgenciaMae.Checked;
                 FormularioPrincipal.RetornaComponentesFormularioPrincipal().ConfiguraMenusParaACCAgenciaComunitaria(checkBoxACCAgenciaComunitaria.Checked);
 
-                if (FormularioCadastroObjetos.RetornaComponentesFormularioCadastroObjetos() != null) //FormularioCadastroObjetos está aberto
-                {
-                    FormularioCadastroObjetos.RetornaComponentesFormularioCadastroObjetos().ConfiguraMenusBotoesParaACCAgenciaComunitaria(checkBoxACCAgenciaComunitaria.Checked);
-                }
                 if (FormularioConsulta.RetornaComponentesFormularioConsulta() != null) //FormularioConsulta está aberto
                 {
                     FormularioConsulta.RetornaComponentesFormularioConsulta().ConfiguraMenusEBotoesParaACCAgenciaComunitaria(checkBoxACCAgenciaComunitaria.Checked);
                 }
+
+                if (FormularioAuxilioGestaoDiaNovo.RetornaComponentesFormularioAuxilioGestaoDiaNovo() != null) //FormularioAuxilioGestaoDiaNovo está aberto
+                {
+                    FormularioAuxilioGestaoDiaNovo.RetornaComponentesFormularioAuxilioGestaoDiaNovo().ConfiguraMenusEBotoesParaACCAgenciaComunitaria(checkBoxACCAgenciaComunitaria.Checked);
+                }
+
                 Mensagens.Informa("Gravado com sucesso!", MessageBoxIcon.Information, MessageBoxButtons.OK);
+
+
             }
             catch (Exception ex)
             {

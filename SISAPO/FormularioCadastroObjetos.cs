@@ -37,29 +37,6 @@ namespace SISAPO
             //label2.Text = "Barra de progresso";
             LblMensagem.Text = "";
             panel3.Visible = false;
-
-            ConfiguraMenusBotoesParaACCAgenciaComunitaria(Configuracoes.ACCAgenciaComunitaria);
-        }
-
-        public void ConfiguraMenusBotoesParaACCAgenciaComunitaria(bool @ModoACCAgenciaComunitaria)
-        {
-            if (Configuracoes.ReceberObjetosViaQRCodePLRDaAgenciaMae)
-            {
-                BtnAdicionarPorPLRPreListaRemessa.Visible = true;
-                dataGridView1.Visible = false;
-                dataGridViewQRCode.Visible = true;
-            }
-            else
-            {
-                BtnAdicionarPorPLRPreListaRemessa.Visible = false;
-                dataGridView1.Visible = true;
-                dataGridViewQRCode.Visible = false;
-            }
-
-
-            LblMensagem.Visible = !@ModoACCAgenciaComunitaria;
-            BtnColarConteudoJaCopiado.Visible = !@ModoACCAgenciaComunitaria;
-            BtnAdicionarItem.Enabled = !@ModoACCAgenciaComunitaria;
         }
 
         public static FormularioCadastroObjetos RetornaComponentesFormularioCadastroObjetos()
@@ -500,14 +477,8 @@ namespace SISAPO
 
         private void BtnLimparListaAtual_Click(object sender, EventArgs e)
         {
-            //dataGridView1.DataSource = listaObjetos = new DataTable();
             if (dataGridView1.Rows.Count > 0)
                 listaObjetos.Clear();
-
-            if (dataGridViewQRCode.Rows.Count > 0)
-                listaObjetos.Clear();
-
-
 
             LblQuantidadeImportados.Text = "";
             //tabControl1.Visible = false;
@@ -681,7 +652,7 @@ namespace SISAPO
                     if (listaObjetos.Rows.Count > 0)
                     {
                         LblQuantidadeImportados.Text = string.Format("Quantidade de objetos para importação: '{0}' objetos", listaObjetos.Rows.Count);
-                        dataGridViewQRCode.DataSource = listaObjetos;
+                        dataGridView1.DataSource = listaObjetos;
                         //tabControl1.Visible = true;
                         this.BtnGravar.Enabled = true;
                         label2.Text = "Barra de progresso";

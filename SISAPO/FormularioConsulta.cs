@@ -1435,6 +1435,9 @@ namespace SISAPO
 
         private void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
+            if (Configuracoes.ACCAgenciaComunitaria)
+                return;
+
             //alterarItemToolStripMenuItem_Click(sender, e);
             BtnDetalharObjetosSelecionado_Click(sender, e);
         }

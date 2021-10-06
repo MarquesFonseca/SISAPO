@@ -103,6 +103,7 @@ namespace SISAPO
             this.toolStripStatusLabelDataHora = new System.Windows.Forms.ToolStripStatusLabel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.timerAtualizaDataHoraAtualBarraStatus = new System.Windows.Forms.Timer(this.components);
+            this.cadastrarNovosObjetosViaQRCodePLRDaAgenciaMaeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -134,6 +135,7 @@ namespace SISAPO
             this.visualizarListaDeObjetosToolStripMenuItem,
             this.toolStripSeparator7,
             this.cadastrarNovosObjetosToolStripMenuItem,
+            this.cadastrarNovosObjetosViaQRCodePLRDaAgenciaMaeToolStripMenuItem,
             this.TiposPostaisToolStripMenuItem,
             this.toolStripSeparator1,
             this.atualizarNovosObjetosCompletoToolStripMenuItem,
@@ -730,6 +732,14 @@ namespace SISAPO
             this.timerAtualizaDataHoraAtualBarraStatus.Interval = 1000;
             this.timerAtualizaDataHoraAtualBarraStatus.Tick += new System.EventHandler(this.timerAtualizaDataHoraAtualBarraStatus_Tick);
             // 
+            // cadastrarNovosObjetosViaQRCodePLRDaAgenciaMaeToolStripMenuItem
+            // 
+            this.cadastrarNovosObjetosViaQRCodePLRDaAgenciaMaeToolStripMenuItem.Image = global::SISAPO.Properties.Resources.CadastroObjetos;
+            this.cadastrarNovosObjetosViaQRCodePLRDaAgenciaMaeToolStripMenuItem.Name = "cadastrarNovosObjetosViaQRCodePLRDaAgenciaMaeToolStripMenuItem";
+            this.cadastrarNovosObjetosViaQRCodePLRDaAgenciaMaeToolStripMenuItem.Size = new System.Drawing.Size(379, 22);
+            this.cadastrarNovosObjetosViaQRCodePLRDaAgenciaMaeToolStripMenuItem.Text = "Importar Novo(s) Objeto(s)";
+            this.cadastrarNovosObjetosViaQRCodePLRDaAgenciaMaeToolStripMenuItem.Click += new System.EventHandler(this.cadastrarNovosObjetosViaQRCodePLRDaAgenciaMaeToolStripMenuItem_Click);
+            // 
             // FormularioPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -838,6 +848,7 @@ namespace SISAPO
         private System.Windows.Forms.ToolStripMenuItem auxílioÀGestaoDoDiaItensColadosSROToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem relatóriosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem relatorioTesteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cadastrarNovosObjetosViaQRCodePLRDaAgenciaMaeToolStripMenuItem;
     }
 }
 

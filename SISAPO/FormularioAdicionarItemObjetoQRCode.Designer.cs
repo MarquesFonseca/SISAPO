@@ -37,8 +37,8 @@
             this.LblLeitura = new System.Windows.Forms.Label();
             this.TxtObjetoAtual = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.LblLeituraPreListaRemessaLDI = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.CodigoObjeto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CodigoLdi = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NomeCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -72,6 +72,10 @@
             this.TipoPostalSiglaCodigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TipoPostalNomeSiglaCodigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TipoPostalPrazoDiasCorridosRegulamentado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DataListaAtual = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NumeroListaAtual = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ItemAtual = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.QtdTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -121,7 +125,11 @@
             this.TipoPostalServico,
             this.TipoPostalSiglaCodigo,
             this.TipoPostalNomeSiglaCodigo,
-            this.TipoPostalPrazoDiasCorridosRegulamentado});
+            this.TipoPostalPrazoDiasCorridosRegulamentado,
+            this.DataListaAtual,
+            this.NumeroListaAtual,
+            this.ItemAtual,
+            this.QtdTotal});
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 123);
             this.dataGridView1.Name = "dataGridView1";
@@ -201,16 +209,6 @@
             this.panel1.Size = new System.Drawing.Size(615, 123);
             this.panel1.TabIndex = 0;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::SISAPO.Properties.Resources.barcode_scanner;
-            this.pictureBox1.Location = new System.Drawing.Point(3, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(66, 44);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox1.TabIndex = 4;
-            this.pictureBox1.TabStop = false;
-            // 
             // LblLeituraPreListaRemessaLDI
             // 
             this.LblLeituraPreListaRemessaLDI.AutoSize = true;
@@ -220,6 +218,16 @@
             this.LblLeituraPreListaRemessaLDI.Size = new System.Drawing.Size(532, 31);
             this.LblLeituraPreListaRemessaLDI.TabIndex = 2;
             this.LblLeituraPreListaRemessaLDI.Text = "Leitura da Pré Lista de Remessa da LDI";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::SISAPO.Properties.Resources.barcode_scanner;
+            this.pictureBox1.Location = new System.Drawing.Point(3, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(66, 44);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox1.TabIndex = 4;
+            this.pictureBox1.TabStop = false;
             // 
             // CodigoObjeto
             // 
@@ -486,6 +494,38 @@
             this.TipoPostalPrazoDiasCorridosRegulamentado.ReadOnly = true;
             this.TipoPostalPrazoDiasCorridosRegulamentado.Visible = false;
             // 
+            // DataListaAtual
+            // 
+            this.DataListaAtual.DataPropertyName = "DataListaAtual";
+            this.DataListaAtual.HeaderText = "DataListaAtual";
+            this.DataListaAtual.Name = "DataListaAtual";
+            this.DataListaAtual.ReadOnly = true;
+            this.DataListaAtual.Visible = false;
+            // 
+            // NumeroListaAtual
+            // 
+            this.NumeroListaAtual.DataPropertyName = "NumeroListaAtual";
+            this.NumeroListaAtual.HeaderText = "NumeroListaAtual";
+            this.NumeroListaAtual.Name = "NumeroListaAtual";
+            this.NumeroListaAtual.ReadOnly = true;
+            this.NumeroListaAtual.Visible = false;
+            // 
+            // ItemAtual
+            // 
+            this.ItemAtual.DataPropertyName = "ItemAtual";
+            this.ItemAtual.HeaderText = "ItemAtual";
+            this.ItemAtual.Name = "ItemAtual";
+            this.ItemAtual.ReadOnly = true;
+            this.ItemAtual.Visible = false;
+            // 
+            // QtdTotal
+            // 
+            this.QtdTotal.DataPropertyName = "QtdTotal";
+            this.QtdTotal.HeaderText = "QtdTotal";
+            this.QtdTotal.Name = "QtdTotal";
+            this.QtdTotal.ReadOnly = true;
+            this.QtdTotal.Visible = false;
+            // 
             // FormularioAdicionarItemObjetoQRCode
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -557,5 +597,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn TipoPostalSiglaCodigo;
         private System.Windows.Forms.DataGridViewTextBoxColumn TipoPostalNomeSiglaCodigo;
         private System.Windows.Forms.DataGridViewTextBoxColumn TipoPostalPrazoDiasCorridosRegulamentado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DataListaAtual;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NumeroListaAtual;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ItemAtual;
+        private System.Windows.Forms.DataGridViewTextBoxColumn QtdTotal;
     }
 }

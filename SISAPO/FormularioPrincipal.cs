@@ -279,6 +279,8 @@ namespace SISAPO
 
         public void ConfiguraMenusParaACCAgenciaComunitaria(bool @ModoACCAgenciaComunitaria)
         {
+            cadastrarNovosObjetosToolStripMenuItem.Visible = !@ModoACCAgenciaComunitaria;
+            cadastrarNovosObjetosViaQRCodePLRDaAgenciaMaeToolStripMenuItem.Visible = @ModoACCAgenciaComunitaria;
             TiposPostaisToolStripMenuItem.Enabled = !@ModoACCAgenciaComunitaria;
             atualizarNovosObjetosToolStripMenuItem.Enabled = !@ModoACCAgenciaComunitaria;
             solicitarVerificacaoDeObjetosAindaNaoEntreguesToolStripMenuItem.Enabled = !@ModoACCAgenciaComunitaria;
@@ -387,51 +389,26 @@ namespace SISAPO
             formularioCadastroObjetos.Show();
             //formularioCadastroObjetos.WindowState = FormWindowState.Normal;
             formularioCadastroObjetos.WindowState = FormWindowState.Maximized;
-
-
-
-
-
-
             return;
+        }
 
-            //foreach (Form item in MdiChildren)
-            //{
-            //    if (item.Name != "FormularioConsulta" && item.Name != "FormularioCadastroObjetos")
-            //    {
-            //        //fecha todos que não for "FormularioConsulta" e "FormularioCadastroObjetos"
-            //        item.Close();
-            //    }
-            //}
+        private void cadastrarNovosObjetosViaQRCodePLRDaAgenciaMaeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (Form item in MdiChildren)
+            {
+                if (item.Name == "FormularioCadastroObjetosViaQRCodePLRDaAgenciaMae")
+                {
+                    item.Activate();
+                    return;
+                }
+            }
 
-            //bool abertoConsulta = false;
-            //bool abertoCadastro = false;
-            //foreach (Form item in MdiChildren)
-            //{
-            //    if (item.Name == "FormularioConsulta") abertoConsulta = true;
-            //    if (item.Name != "FormularioCadastroObjetos") abertoCadastro = true;
-            //}
-
-            //if (abertoConsulta && abertoCadastro)
-            //{
-            //    LayoutMdi(MdiLayout.TileVertical);
-            //    return;
-            //}
-            //else
-            //{
-            //    if (abertoCadastro && !abertoConsulta)
-            //    {
-            //        foreach (Form item in MdiChildren)
-            //        {
-            //            if (item.Name == "FormularioCadastroObjetos")
-            //            {
-            //                item.WindowState = FormWindowState.Maximized;
-            //                item.Activate();
-            //                return;
-            //            }
-            //        }
-            //    }
-            //}
+            FormularioCadastroObjetosViaQRCodePLRDaAgenciaMae formularioCadastroObjetosViaQRCodePLRDaAgenciaMae = new FormularioCadastroObjetosViaQRCodePLRDaAgenciaMae();
+            formularioCadastroObjetosViaQRCodePLRDaAgenciaMae.MdiParent = this;
+            formularioCadastroObjetosViaQRCodePLRDaAgenciaMae.Show();
+            //formularioCadastroObjetosViaQRCodePLRDaAgenciaMae.WindowState = FormWindowState.Normal;
+            formularioCadastroObjetosViaQRCodePLRDaAgenciaMae.WindowState = FormWindowState.Maximized;
+            return;
         }
 
         private void TiposPostaisToolStripMenuItem_Click(object sender, EventArgs e)
