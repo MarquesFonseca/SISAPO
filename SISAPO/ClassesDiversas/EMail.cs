@@ -55,8 +55,11 @@ namespace SISAPO.ClassesDiversas
                 SmtpClient smtpServidor = new SmtpClient()
                 {
                     Host = ServidorEnvio,
-                    Port = 25, //Porta padrão sem autenticação
-                    Credentials = new NetworkCredential(Remetente, Senha)
+                    Port = 587, //Porta padrão sem autenticação
+                    Credentials = new NetworkCredential(Remetente, Senha),
+                    EnableSsl = true,
+                    DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = false
                 };
 
                 //Cria e-mail do emitente
@@ -83,6 +86,7 @@ namespace SISAPO.ClassesDiversas
                         Mensagem.BodyEncoding = System.Text.Encoding.UTF8;
                         Mensagem.IsBodyHtml = IsBodyHtml;
                         Mensagem.Priority = MailPriority.Normal;
+
 
                         //Adiciona os anexos à mensagem
                         AnexoStream.ForEach(r => Mensagem.Attachments.Add(new Attachment(r.StreamArquivo, r.NomeAnexo)));

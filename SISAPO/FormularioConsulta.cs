@@ -1664,10 +1664,16 @@ namespace SISAPO
                     {
                         if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
 
+                        DataRow dr = dao.RetornaDataRow("SELECT CodigoObjeto, CodigoLdi, DataModificacao, DataLancamento, NomeCliente, Comentario FROM TabelaObjetosSROLocal WHERE (CodigoObjeto = '" + itemCodigo + "')");
+
                         string dataHoje = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
-                        string dataModificacaoRetornada = dao.RetornaValor("SELECT DataModificacao FROM TabelaObjetosSROLocal WHERE (CodigoObjeto = '" + itemCodigo + "')").ToString();
-                        if (string.IsNullOrEmpty(dataModificacaoRetornada))
-                            dataModificacaoRetornada = dataHoje;
+                        string dataModificacaoRetornada = dataHoje;
+                        string NumeroLDI = dr["CodigoLdi"].ToString();
+                        string DataLancamento = string.Format("{0:dd/MM/yyyy HH:mm:ss}", dr["DataLancamento"].ToDateTime());
+                        string NomeCliente = dr["NomeCliente"].ToString();
+                        string Comentario = dr["Comentario"].ToString();
+                        string NomeRecebedor = string.Empty;
+                        string DocRecebedor = string.Empty;
 
                         List<Parametros> pr = new List<Parametros>() {
                             new Parametros() { Nome = "@DataModificacao", Tipo = TipoCampo.Text, Valor = dataModificacaoRetornada },
@@ -1677,6 +1683,9 @@ namespace SISAPO
                             new Parametros() { Nome = "@CodigoObjeto", Tipo = TipoCampo.Text, Valor = itemCodigo }
                         };
                         dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET DataModificacao = @DataModificacao, Situacao = @Situacao, ObjetoEntregue = @ObjetoEntregue WHERE (CodigoObjeto = @CodigoObjeto)", pr);
+
+                        EnviarEmailMotivoBaixa(itemCodigo, NumeroLDI, DataLancamento, NomeCliente, Comentario, MotivoBaixaInformado, dataModificacaoRetornada, NomeRecebedor, DocRecebedor);
+
                     }
                 }
                 waitForm.Close();
@@ -1685,6 +1694,124 @@ namespace SISAPO
             {
                 Mensagens.Erro("Ocorreu um erro inesperado ao gravar. \nErro: " + EX.Message);
             }
+        }
+
+        private void EnviarEmailMotivoBaixa(string itemCodigo, string numeroLDI, string dataLancamento, string nomeCliente, string comentario, string motivoBaixaInformado, string dataModificacaoRetornada, string nomeRecebedor, string docRecebedor)
+        {
+            try
+            {
+                System.Net.Mail.SmtpClient cliente = new System.Net.Mail.SmtpClient();
+                cliente.Port = Convert.ToInt32("587");
+                cliente.Host = "smtp.gmail.com";
+                cliente.EnableSsl = true;
+                cliente.DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network;
+                cliente.UseDefaultCredentials = false;
+                cliente.Credentials = new System.Net.NetworkCredential("accluzimangues@gmail.com", "oxmt9212");
+
+                System.Net.Mail.MailMessage email = new System.Net.Mail.MailMessage();
+                email.From = new System.Net.Mail.MailAddress("accluzimangues@gmail.com");
+                email.To.Add("marques.silva@correios.com.br");
+                email.To.Add("accluzimangues@gmail.com");
+                //email.To.Add("marques-fonseca@hotmail.com");
+                email.Subject = "Mudança de situação Objeto "+itemCodigo+" por Luzimangues às " + dataModificacaoRetornada + "";
+                email.IsBodyHtml = true;
+                email.Body = RetornaHTMLSituacaoBaixa(itemCodigo, numeroLDI, dataLancamento, nomeCliente, comentario, motivoBaixaInformado, dataModificacaoRetornada, nomeRecebedor, docRecebedor);
+
+                cliente.Send(email);
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        private string RetornaHTMLSituacaoBaixa(string itemCodigo, string numeroLDI, string dataLancamento, string nomeCliente, string comentario, string motivoBaixaInformado, string dataModificacaoRetornada, string nomeRecebedor, string docRecebedor)
+        {
+            StringBuilder Html = new StringBuilder();
+            Html.AppendLine("<!DOCTYPE html>");
+            Html.AppendLine("<html lang=\"pt-br\">");
+            Html.AppendLine("<head>");
+            Html.AppendLine("    <title></title>");
+            Html.AppendLine("    <style type=\"text/css\">");
+            Html.AppendLine("        table.SituacaoBaixa {");
+            Html.AppendLine("          font-family: Arial, Helvetica, sans-serif;");
+            Html.AppendLine("          border: 1px solid #000000;");
+            Html.AppendLine("          background-color: #EEEEEE;");
+            Html.AppendLine("          width-min: 500px;");
+            Html.AppendLine("          text-align: left;");
+            Html.AppendLine("        }");
+            Html.AppendLine("        table.SituacaoBaixa td, table.SituacaoBaixa th {");
+            Html.AppendLine("          padding: 3px 2px;");
+            Html.AppendLine("        }");
+            Html.AppendLine("        table.SituacaoBaixa tbody td {");
+            Html.AppendLine("          font-size: 14px;");
+            Html.AppendLine("        }");
+            Html.AppendLine("        table.SituacaoBaixa tr:nth-child(even) {");
+            Html.AppendLine("          background: #C1C1C1;");
+            Html.AppendLine("        }");
+            Html.AppendLine("        table.SituacaoBaixa thead {");
+            Html.AppendLine("          background: #C4C4C4;");
+            Html.AppendLine("          border-bottom: 2px solid #444444;");
+            Html.AppendLine("        }");
+            Html.AppendLine("        table.SituacaoBaixa thead th {");
+            Html.AppendLine("          font-size: 15px;");
+            Html.AppendLine("          font-weight: bold;");
+            Html.AppendLine("          color: #000000;");
+            Html.AppendLine("          border-left: 2px solid #C4C4C4;");
+            Html.AppendLine("        }");
+            Html.AppendLine("        table.SituacaoBaixa thead th:first-child {");
+            Html.AppendLine("          border-left: none;");
+            Html.AppendLine("        }");
+            Html.AppendLine("    </style>");
+            Html.AppendLine("</head>");
+            Html.AppendLine("<body>");
+            Html.AppendLine("    <table class=\"SituacaoBaixa\">");
+            Html.AppendLine("       <thead>");
+            Html.AppendLine("       <tr>");
+            Html.AppendLine("       <th colspan=\"2\">Informativo de mudança de situção de objeto</th>");
+            Html.AppendLine("       </tr>");
+            Html.AppendLine("       </thead>");
+            Html.AppendLine("       <tbody>");
+            Html.AppendLine("       <tr>");
+            Html.AppendLine("       <th>Código Objeto</td>");
+            Html.AppendLine("       <td>" + itemCodigo + "</td>");
+            Html.AppendLine("       </tr>");
+            Html.AppendLine("       <tr>");
+            Html.AppendLine("       <th>Número LDI</td>");
+            Html.AppendLine("       <td>" + numeroLDI + "</td>");
+            Html.AppendLine("       </tr>");
+            Html.AppendLine("       <tr>");
+            Html.AppendLine("       <th>Data Lançamento LDI</td>");
+            Html.AppendLine("       <td>"+ dataLancamento + "</td>");
+            Html.AppendLine("       </tr>");
+            Html.AppendLine("       <tr>");
+            Html.AppendLine("       <th>Nome Cliente</td>");
+            Html.AppendLine("       <td>"+ nomeCliente + "</td>");
+            Html.AppendLine("       </tr>");
+            Html.AppendLine("       <tr>");
+            Html.AppendLine("       <th>Comentário</td>");
+            Html.AppendLine("       <td>"+ comentario + "</td>");
+            Html.AppendLine("       </tr>");
+            Html.AppendLine("       <tr>");
+            Html.AppendLine("       <th>Situação informada</td>");
+            Html.AppendLine("       <td>"+ motivoBaixaInformado + "</td>");
+            Html.AppendLine("       </tr>");
+            Html.AppendLine("       <tr>");
+            Html.AppendLine("       <th>Data Situação</td>");
+            Html.AppendLine("       <td>"+ dataModificacaoRetornada + "</td>");
+            Html.AppendLine("       <tr>");
+            Html.AppendLine("       <th>Nome Recebedor</td>");
+            Html.AppendLine("       <td>"+ nomeRecebedor + "</td>");
+            Html.AppendLine("       </tr>");
+            Html.AppendLine("       <tr>");
+            Html.AppendLine("       <th>Doc. Recebedor</td>");
+            Html.AppendLine("       <td>"+ docRecebedor + "</td>");
+            Html.AppendLine("       </tr>");
+            Html.AppendLine("       </tbody>");
+            Html.AppendLine("    </table>");
+            Html.AppendLine("</body>");
+            Html.AppendLine("</html>");
+            return Html.ToString();
         }
 
         private void alterarComentarioSelecionadosToolStripMenuItem_Click(object sender, EventArgs e)

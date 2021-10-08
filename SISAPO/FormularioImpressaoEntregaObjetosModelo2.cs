@@ -137,6 +137,7 @@ namespace SISAPO
             //string curDir = System.IO.Path.GetDirectoryName(System.AppDomain.CurrentDomain.BaseDirectory.ToString());
             //string nomeArquivo = curDir + "\\Resources\\JsBarcode.all.min.js";
             Html = new StringBuilder();
+            #region Head HTML
             Html.AppendLine("<!DOCTYPE html>");
             Html.AppendLine("<html lang=\"pt-br\">");
             Html.AppendLine("<head>");
@@ -165,7 +166,7 @@ namespace SISAPO
             Html.AppendLine("            margin: auto;");
             Html.AppendLine("            min-height: 1100px;");
             Html.AppendLine("        }");
-            Html.AppendLine("");
+            Html.AppendLine("         ");
             Html.AppendLine("        table.TabelaPLR {");
             Html.AppendLine("          font-family: \"Courier New\", Courier, monospace;");
             Html.AppendLine("          border: 0px dotted #000000;");
@@ -197,7 +198,7 @@ namespace SISAPO
             Html.AppendLine("        table.TabelaPLR tfoot td {");
             Html.AppendLine("          font-size: 21px;");
             Html.AppendLine("        }");
-            Html.AppendLine("");
+            Html.AppendLine("         ");
             Html.AppendLine("        table.Consolidado {");
             Html.AppendLine("          font-family: Arial, Helvetica, sans-serif;");
             Html.AppendLine("          border: 1px solid #000000;");
@@ -230,16 +231,19 @@ namespace SISAPO
             Html.AppendLine("    </style>");
             Html.AppendLine("</head>");
             Html.AppendLine("<body>");
-            Html.AppendLine("    <div class=\"geral\">");
+            Html.AppendLine("    <div class=\"geral\">"); 
+            #endregion
 
             using (FormWaiting frm = new FormWaiting(ProcessandoListaObjetosSelecionados))
             {
                 frm.ShowDialog(this);
             }
 
+            #region Rodapé
             Html.AppendLine("    </div>");
             Html.AppendLine("</body>");
-            Html.AppendLine("</html>");
+            Html.AppendLine("</html>"); 
+            #endregion
 
             return Html;
         }
@@ -256,9 +260,6 @@ namespace SISAPO
                 int contador = 0;
                 foreach (DataRow itemCodigoSelecionado in CodigosSelecionadoAgrupados.Rows)
                 {
-                    //double ljl = CodigosSelecionadoAgrupados.Rows.Count / 4;
-                    //double llllll = System.Math.Round(ljl, 1);
-
                     //if (itemCodigoSelecionado["Impresso"].ToInt() == 1) continue;
                     contador++;
                     string codigoAtual = itemCodigoSelecionado["CodigoObjeto"].ToString();
@@ -279,6 +280,7 @@ namespace SISAPO
                     CodigoLdi = string.IsNullOrEmpty(CodigoLdi) ? "000000000000" : CodigoLdi;
                     string NomeCliente = dr["NomeCliente"].ToString();
                     DateTime DataLancamento = Convert.ToDateTime(dr["DataLancamento"]);
+                    string DataLancamentoFormatada = dr["DataLancamento"].ToString();
                     string DataModificacao = dr["DataModificacao"].ToString();
                     string Situacao = dr["Situacao"].ToString();
                     bool Atualizado = Convert.ToBoolean(dr["Atualizado"]);
@@ -414,50 +416,50 @@ namespace SISAPO
                         if (Configuracoes.GerarQRCodePLRNaLdi)
                         {
                             #region Cria QRCode
-
+                            
                             #region Escreve Texto para o QR Code
                             StringBuilder Str = new StringBuilder();
-                            Str.Append(CodigoObjeto); Str.Append("#tab");
-                            Str.Append(CodigoLdi); Str.Append("#tab");
-                            Str.Append(NomeCliente); Str.Append("#tab");
-                            Str.Append(DataLancamento); Str.Append("#tab");
-                            Str.Append(DataModificacao); Str.Append("#tab");
-                            Str.Append(Situacao); Str.Append("#tab");
-                            Str.Append(Atualizado); Str.Append("#tab");
-                            Str.Append(ObjetoEntregue); Str.Append("#tab");
-                            Str.Append(CaixaPostal); Str.Append("#tab");
-                            Str.Append(UnidadePostagem); Str.Append("#tab");
-                            Str.Append(MunicipioPostagem); Str.Append("#tab");
-                            Str.Append(CriacaoPostagem); Str.Append("#tab");
-                            Str.Append(CepDestinoPostagem); Str.Append("#tab");
-                            Str.Append(ARPostagem); Str.Append("#tab");
-                            Str.Append(MPPostagem); Str.Append("#tab");
-                            Str.Append(DataMaxPrevistaEntregaPostagem); Str.Append("#tab");
-                            Str.Append(UnidadeLOEC); Str.Append("#tab");
-                            Str.Append(MunicipioLOEC); Str.Append("#tab");
-                            Str.Append(CriacaoLOEC); Str.Append("#tab");
-                            Str.Append(CarteiroLOEC); Str.Append("#tab");
-                            Str.Append(DistritoLOEC); Str.Append("#tab");
-                            Str.Append(NumeroLOEC); Str.Append("#tab");
-                            Str.Append(EnderecoLOEC); Str.Append("#tab");
-                            Str.Append(BairroLOEC); Str.Append("#tab");
-                            Str.Append(LocalidadeLOEC); Str.Append("#tab");
-                            Str.Append(SituacaoDestinatarioAusente); Str.Append("#tab");
-                            Str.Append(AgrupadoDestinatarioAusente); Str.Append("#tab");
-                            Str.Append(CoordenadasDestinatarioAusente); Str.Append("#tab");
-                            Str.Append(Comentario); Str.Append("#tab");
-                            Str.Append(TipoPostalServico); Str.Append("#tab");
-                            Str.Append(TipoPostalSiglaCodigo); Str.Append("#tab");
-                            Str.Append(TipoPostalNomeSiglaCodigo); Str.Append("#tab");
-                            Str.Append(TipoPostalPrazoDiasCorridosRegulamentado); Str.Append("#tab");
-                            Str.Append(DataListaAtual); Str.Append("#tab");
-                            Str.Append(NumeroListaAtual); Str.Append("#tab");
-                            Str.Append(contador); Str.Append("#tab");
-                            Str.Append(CodigosSelecionadoAgrupados.Rows.Count);
+                            Str.Append(CodigoObjeto); Str.Append("[TAB]");
+                            Str.Append(CodigoLdi); Str.Append("[TAB]");
+                            Str.Append(NomeCliente); Str.Append("[TAB]");
+                            Str.Append(DataLancamentoFormatada); Str.Append("[TAB]");
+                            Str.Append(DataModificacao); Str.Append("[TAB]");
+                            Str.Append(Situacao); Str.Append("[TAB]");
+                            Str.Append(Atualizado == true ? "1" : "0"); Str.Append("[TAB]");
+                            Str.Append(ObjetoEntregue == true ? "1" : "0"); Str.Append("[TAB]");
+                            Str.Append(CaixaPostal == true ? "1" : "0"); Str.Append("[TAB]");
+                            Str.Append(UnidadePostagem); Str.Append("[TAB]");
+                            Str.Append(MunicipioPostagem); Str.Append("[TAB]");
+                            Str.Append(CriacaoPostagem); Str.Append("[TAB]");
+                            Str.Append(CepDestinoPostagem); Str.Append("[TAB]");
+                            Str.Append(ARPostagem.ToUpper() == "SIM" ? "1" : "0"); Str.Append("[TAB]");
+                            Str.Append(MPPostagem.ToUpper() == "SIM" ? "1" : "0"); Str.Append("[TAB]");
+                            Str.Append(DataMaxPrevistaEntregaPostagem); Str.Append("[TAB]");
+                            Str.Append(UnidadeLOEC); Str.Append("[TAB]");
+                            Str.Append(MunicipioLOEC); Str.Append("[TAB]");
+                            Str.Append(CriacaoLOEC); Str.Append("[TAB]");
+                            Str.Append(CarteiroLOEC); Str.Append("[TAB]");
+                            Str.Append(DistritoLOEC); Str.Append("[TAB]");
+                            Str.Append(NumeroLOEC); Str.Append("[TAB]");
+                            Str.Append(EnderecoLOEC); Str.Append("[TAB]");
+                            Str.Append(BairroLOEC); Str.Append("[TAB]");
+                            Str.Append(LocalidadeLOEC); Str.Append("[TAB]");
+                            Str.Append(SituacaoDestinatarioAusente); Str.Append("[TAB]");
+                            Str.Append(AgrupadoDestinatarioAusente.ToUpper() == "SIM" ? "1" : "0"); Str.Append("[TAB]");
+                            Str.Append(CoordenadasDestinatarioAusente); Str.Append("[TAB]");
+                            Str.Append(Comentario); Str.Append("[TAB]");
+                            Str.Append(TipoPostalServico); Str.Append("[TAB]");
+                            Str.Append(TipoPostalSiglaCodigo); Str.Append("[TAB]");
+                            Str.Append(TipoPostalNomeSiglaCodigo); Str.Append("[TAB]");
+                            Str.Append(TipoPostalPrazoDiasCorridosRegulamentado); Str.Append("[TAB]");
+                            Str.Append(DataListaAtual); Str.Append("[TAB]");
+                            Str.Append(NumeroListaAtual); Str.Append("[TAB]");
+                            Str.Append(contador.ToString()); Str.Append("[TAB]");
+                            Str.Append(CodigosSelecionadoAgrupados.Rows.Count.ToString());
                             #endregion
 
                             #region Monta Imagem QR Code
-                            string ObjetoLinhaQRCode = Str.ToString();
+                            string ObjetoLinhaQRCode = Str.ToString().Replace("NÃ","NA");
                             //string compacta = ClassesDiversas.FormataString.Compacta(Str.ToString());
                             //string descompacta = ClassesDiversas.FormataString.Descompacta(compacta); 
                             //Bitmap textoBitmap = GerarQRCode(250, 250, compacta);
@@ -478,15 +480,15 @@ namespace SISAPO
                             Html.AppendLine("       </thead>");
                             Html.AppendLine("       <tbody>");
                             Html.AppendLine("       <tr>");
+                            Html.AppendLine("       <td>Número da Lista</td>");
+                            Html.AppendLine("       <td>" + NumeroListaAtual + "</td>");
+                            Html.AppendLine("       </tr>");
+                            Html.AppendLine("       <tr>");
                             Html.AppendLine("       <td>Data da emiss&atilde;o da lista</td>");
                             Html.AppendLine("       <td>" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString() + "</td>");
                             Html.AppendLine("       </tr>");
                             Html.AppendLine("       <tr>");
-                            Html.AppendLine("       <td>Qtd. Total da lista</td>");
-                            Html.AppendLine("       <td>" + CodigosSelecionadoAgrupados.Rows.Count.ToString() + "</td>");
-                            Html.AppendLine("       </tr>");
-                            Html.AppendLine("       <tr>");
-                            Html.AppendLine("       <td>Item atual</td>");
+                            Html.AppendLine("       <td>Item/Qtd. total</td>");
                             Html.AppendLine("       <td>" + string.Format("{0}/{1}", contador, CodigosSelecionadoAgrupados.Rows.Count) + "</td>");
                             Html.AppendLine("       </tr>");
                             Html.AppendLine("       <tr>");
@@ -604,47 +606,47 @@ namespace SISAPO
 
                             #region Escreve Texto para o QR Code
                             StringBuilder Str = new StringBuilder();
-                            Str.Append(CodigoObjeto); Str.Append("#tab");
-                            Str.Append(CodigoLdi); Str.Append("#tab");
-                            Str.Append(NomeCliente); Str.Append("#tab");
-                            Str.Append(DataLancamento); Str.Append("#tab");
-                            Str.Append(DataModificacao); Str.Append("#tab");
-                            Str.Append(Situacao); Str.Append("#tab");
-                            Str.Append(Atualizado); Str.Append("#tab");
-                            Str.Append(ObjetoEntregue); Str.Append("#tab");
-                            Str.Append(CaixaPostal); Str.Append("#tab");
-                            Str.Append(UnidadePostagem); Str.Append("#tab");
-                            Str.Append(MunicipioPostagem); Str.Append("#tab");
-                            Str.Append(CriacaoPostagem); Str.Append("#tab");
-                            Str.Append(CepDestinoPostagem); Str.Append("#tab");
-                            Str.Append(ARPostagem); Str.Append("#tab");
-                            Str.Append(MPPostagem); Str.Append("#tab");
-                            Str.Append(DataMaxPrevistaEntregaPostagem); Str.Append("#tab");
-                            Str.Append(UnidadeLOEC); Str.Append("#tab");
-                            Str.Append(MunicipioLOEC); Str.Append("#tab");
-                            Str.Append(CriacaoLOEC); Str.Append("#tab");
-                            Str.Append(CarteiroLOEC); Str.Append("#tab");
-                            Str.Append(DistritoLOEC); Str.Append("#tab");
-                            Str.Append(NumeroLOEC); Str.Append("#tab");
-                            Str.Append(EnderecoLOEC); Str.Append("#tab");
-                            Str.Append(BairroLOEC); Str.Append("#tab");
-                            Str.Append(LocalidadeLOEC); Str.Append("#tab");
-                            Str.Append(SituacaoDestinatarioAusente); Str.Append("#tab");
-                            Str.Append(AgrupadoDestinatarioAusente); Str.Append("#tab");
-                            Str.Append(CoordenadasDestinatarioAusente); Str.Append("#tab");
-                            Str.Append(Comentario); Str.Append("#tab");
-                            Str.Append(TipoPostalServico); Str.Append("#tab");
-                            Str.Append(TipoPostalSiglaCodigo); Str.Append("#tab");
-                            Str.Append(TipoPostalNomeSiglaCodigo); Str.Append("#tab");
-                            Str.Append(TipoPostalPrazoDiasCorridosRegulamentado); Str.Append("#tab");
-                            Str.Append(DataListaAtual); Str.Append("#tab");
-                            Str.Append(NumeroListaAtual); Str.Append("#tab");
-                            Str.Append(contador); Str.Append("#tab");
-                            Str.Append(CodigosSelecionadoAgrupados.Rows.Count);
-                            #endregion                      
+                            Str.Append(CodigoObjeto); Str.Append("[TAB]");
+                            Str.Append(CodigoLdi); Str.Append("[TAB]");
+                            Str.Append(NomeCliente); Str.Append("[TAB]");
+                            Str.Append(DataLancamentoFormatada); Str.Append("[TAB]");
+                            Str.Append(DataModificacao); Str.Append("[TAB]");
+                            Str.Append(Situacao); Str.Append("[TAB]");
+                            Str.Append(Atualizado == true ? "1" : "0"); Str.Append("[TAB]");
+                            Str.Append(ObjetoEntregue == true ? "1" : "0"); Str.Append("[TAB]");
+                            Str.Append(CaixaPostal == true ? "1" : "0"); Str.Append("[TAB]");
+                            Str.Append(UnidadePostagem); Str.Append("[TAB]");
+                            Str.Append(MunicipioPostagem); Str.Append("[TAB]");
+                            Str.Append(CriacaoPostagem); Str.Append("[TAB]");
+                            Str.Append(CepDestinoPostagem); Str.Append("[TAB]");
+                            Str.Append(ARPostagem.ToUpper() == "SIM" ? "1" : "0"); Str.Append("[TAB]");
+                            Str.Append(MPPostagem.ToUpper() == "SIM" ? "1" : "0"); Str.Append("[TAB]");
+                            Str.Append(DataMaxPrevistaEntregaPostagem); Str.Append("[TAB]");
+                            Str.Append(UnidadeLOEC); Str.Append("[TAB]");
+                            Str.Append(MunicipioLOEC); Str.Append("[TAB]");
+                            Str.Append(CriacaoLOEC); Str.Append("[TAB]");
+                            Str.Append(CarteiroLOEC); Str.Append("[TAB]");
+                            Str.Append(DistritoLOEC); Str.Append("[TAB]");
+                            Str.Append(NumeroLOEC); Str.Append("[TAB]");
+                            Str.Append(EnderecoLOEC); Str.Append("[TAB]");
+                            Str.Append(BairroLOEC); Str.Append("[TAB]");
+                            Str.Append(LocalidadeLOEC); Str.Append("[TAB]");
+                            Str.Append(SituacaoDestinatarioAusente); Str.Append("[TAB]");
+                            Str.Append(AgrupadoDestinatarioAusente.ToUpper() == "SIM" ? "1" : "0"); Str.Append("[TAB]");
+                            Str.Append(CoordenadasDestinatarioAusente); Str.Append("[TAB]");
+                            Str.Append(Comentario); Str.Append("[TAB]");
+                            Str.Append(TipoPostalServico); Str.Append("[TAB]");
+                            Str.Append(TipoPostalSiglaCodigo); Str.Append("[TAB]");
+                            Str.Append(TipoPostalNomeSiglaCodigo); Str.Append("[TAB]");
+                            Str.Append(TipoPostalPrazoDiasCorridosRegulamentado); Str.Append("[TAB]");
+                            Str.Append(DataListaAtual); Str.Append("[TAB]");
+                            Str.Append(NumeroListaAtual); Str.Append("[TAB]");
+                            Str.Append(contador.ToString()); Str.Append("[TAB]");
+                            Str.Append(CodigosSelecionadoAgrupados.Rows.Count.ToString());
+                            #endregion
 
                             #region Monta Imagem QR Code
-                            string ObjetoLinhaQRCode = Str.ToString();
+                            string ObjetoLinhaQRCode = Str.ToString().Replace("NÃ", "NA");
                             //string compacta = ClassesDiversas.FormataString.Compacta(Str.ToString());
                             //string descompacta = ClassesDiversas.FormataString.Descompacta(compacta); 
                             //Bitmap textoBitmap = GerarQRCode(250, 250, compacta);
@@ -665,15 +667,15 @@ namespace SISAPO
                             Html.AppendLine("       </thead>");
                             Html.AppendLine("       <tbody>");
                             Html.AppendLine("       <tr>");
+                            Html.AppendLine("       <td>Número da Lista</td>");
+                            Html.AppendLine("       <td>" + NumeroListaAtual + "</td>");
+                            Html.AppendLine("       </tr>");
+                            Html.AppendLine("       <tr>");
                             Html.AppendLine("       <td>Data da emiss&atilde;o da lista</td>");
                             Html.AppendLine("       <td>" + DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString() + "</td>");
                             Html.AppendLine("       </tr>");
                             Html.AppendLine("       <tr>");
-                            Html.AppendLine("       <td>Qtd. Total da lista</td>");
-                            Html.AppendLine("       <td>" + CodigosSelecionadoAgrupados.Rows.Count.ToString() + "</td>");
-                            Html.AppendLine("       </tr>");
-                            Html.AppendLine("       <tr>");
-                            Html.AppendLine("       <td>Item atual</td>");
+                            Html.AppendLine("       <td>Item/Qtd. total</td>");
                             Html.AppendLine("       <td>" + string.Format("{0}/{1}", contador, CodigosSelecionadoAgrupados.Rows.Count) + "</td>");
                             Html.AppendLine("       </tr>");
                             Html.AppendLine("       <tr>");

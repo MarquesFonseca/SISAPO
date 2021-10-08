@@ -218,8 +218,33 @@ namespace SISAPO
                 {
                     Mensagens.Informa("Não foi possível importar. Nenhuma lista encontrada."); return;
                 }
-                //textBox1.Enabled = false;
-                //int contador = 0;
+
+                //verifica e informa que a possibilidade de falta de objetos lidos na lista / nas listas(varias listas)
+                var ListasAgrupadas = listaObjetos.AsEnumerable().GroupBy(T => T["NumeroListaAtual"]);//agrupo por lista
+                foreach (var itemDataTableNumeroLista in ListasAgrupadas)
+                {
+                    DataTable DataTableNumeroLista = itemDataTableNumeroLista.AsEnumerable().OrderBy(T => T["ItemAtual"]).OrderBy(T => T["QtdTotal"]).CopyToDataTable();
+                    string DataListaAtual = DataTableNumeroLista.Rows[0]["DataListaAtual"].ToDateTime().ToShortDateString();
+                    string NumeroListaAtual = DataTableNumeroLista.Rows[0]["NumeroListaAtual"].ToString();
+                    int QtdTotalLidosDestaLista = DataTableNumeroLista.Rows.Count;
+                    int QtdTotalPLR = DataTableNumeroLista.Rows[0]["QtdTotal"].ToInt();
+                    if (QtdTotalLidosDestaLista < QtdTotalPLR)
+                    {
+                        //informa na mensagem que falta objetos a ser lançados....
+                        StringBuilder str = new StringBuilder();
+                        str.AppendLine(string.Format("Atenção: Para a PLR [{0}] criada em [{1}], existem itens faltantes!\n", NumeroListaAtual, DataListaAtual));
+                        str.AppendLine(string.Format("Qtd. total da PLR..: {0}", QtdTotalPLR));
+                        str.AppendLine(string.Format("Qtd. de itens lidos: {0}", QtdTotalLidosDestaLista));
+                        str.AppendLine(string.Format("\n"));
+                        str.AppendLine(string.Format("Deseja continuar?"));
+                        string mensagemFormatada = str.ToString();
+                        if (Mensagens.Pergunta(mensagemFormatada, MessageBoxButtons.YesNo) == DialogResult.No)
+                        {
+                            return;
+                        }
+                    }
+                }
+
                 progressBar1.Value = 0;
                 label2.Text = "Barra de progresso";
 
@@ -235,123 +260,139 @@ namespace SISAPO
             }
         }
 
+
         string temp = "";
         private void bw_DoWork(object sender, DoWorkEventArgs e)
         {
-            int contador = 0;
-            BackgroundWorker worker = (BackgroundWorker)sender;
-            foreach (DataRow item in listaObjetos.Rows)
+            try
             {
-                if (backgroundWorker1.CancellationPending)
+                int contador = 0;
+                BackgroundWorker worker = (BackgroundWorker)sender;
+
+                var ListasAgrupadas = listaObjetos.AsEnumerable().GroupBy(T => T["NumeroListaAtual"]);
+                foreach (var itemDataTableNumeroLista in ListasAgrupadas)
                 {
-                    e.Cancel = true;
-                    break;
-                }
-                #region Linha item Atualização progresso
-                //FormularioPrincipal.RetornaComponentesFormularioPrincipal().BuscaNovoStatusQuantidadeNaoAtualizados();
-                string linhaItemCodigoObjeto = item["CodigoObjeto"].ToString();
-                string linhaItemDataLancamento = item["DataLancamento"].ToString();
-                string linhaItemDataModificacao = item["DataModificacao"].ToString();
-                string linhaItemSituacao = item["Situacao"].ToString();
-                string linhaItemComentario = item["Comentario"].ToString();
-                temp = string.Format("{0}-{1}-{2}-{3}", linhaItemCodigoObjeto, linhaItemDataLancamento, linhaItemDataModificacao, linhaItemSituacao, linhaItemComentario);
-                #endregion
+                    DataTable DataTableNumeroLista = itemDataTableNumeroLista.AsEnumerable().OrderBy(T => T["ItemAtual"]).OrderBy(T => T["QtdTotal"]).CopyToDataTable();
 
-
-
-                #region Carrega Variaveis
-                string CodigoObjeto = item["CodigoObjeto"].ToString();
-                string CodigoLdi = item["CodigoLdi"].ToString();
-                string NomeCliente = item["NomeCliente"].ToString();
-                DateTime DataLancamento = Convert.ToDateTime(item["DataLancamento"].ToString());
-                string DataModificacao = item["DataModificacao"].ToString();
-                string Situacao = item["Situacao"].ToString();
-                bool Atualizado = Convert.ToBoolean(item["Atualizado"].ToString());
-                bool ObjetoEntregue = Convert.ToBoolean(item["ObjetoEntregue"].ToString());
-                bool CaixaPostal = Convert.ToBoolean(item["CaixaPostal"].ToString());
-                string UnidadePostagem = item["UnidadePostagem"].ToString();
-                string MunicipioPostagem = item["MunicipioPostagem"].ToString();
-                string CriacaoPostagem = item["CriacaoPostagem"].ToString();
-                string CepDestinoPostagem = item["CepDestinoPostagem"].ToString();
-                string ARPostagem = item["ARPostagem"].ToString();
-                string MPPostagem = item["MPPostagem"].ToString();
-                string DataMaxPrevistaEntregaPostagem = item["DataMaxPrevistaEntregaPostagem"].ToString();
-                string UnidadeLOEC = item["UnidadeLOEC"].ToString();
-                string MunicipioLOEC = item["MunicipioLOEC"].ToString();
-                string CriacaoLOEC = item["CriacaoLOEC"].ToString();
-                string CarteiroLOEC = item["CarteiroLOEC"].ToString();
-                string DistritoLOEC = item["DistritoLOEC"].ToString();
-                string NumeroLOEC = item["NumeroLOEC"].ToString();
-                string EnderecoLOEC = item["EnderecoLOEC"].ToString();
-                string BairroLOEC = item["BairroLOEC"].ToString();
-                string LocalidadeLOEC = item["LocalidadeLOEC"].ToString();
-                string SituacaoDestinatarioAusente = item["SituacaoDestinatarioAusente"].ToString();
-                string AgrupadoDestinatarioAusente = item["AgrupadoDestinatarioAusente"].ToString();
-                string CoordenadasDestinatarioAusente = item["CoordenadasDestinatarioAusente"].ToString();
-                string Comentario = item["Comentario"].ToString();
-                string TipoPostalServico = item["TipoPostalServico"].ToString();
-                string TipoPostalSiglaCodigo = item["TipoPostalSiglaCodigo"].ToString();
-                string TipoPostalNomeSiglaCodigo = item["TipoPostalNomeSiglaCodigo"].ToString();
-                string TipoPostalPrazoDiasCorridosRegulamentado = item["TipoPostalPrazoDiasCorridosRegulamentado"].ToString();
-                string DataListaAtual = item["DataListaAtual"].ToString();
-                string NumeroListaAtual = item["NumeroListaAtual"].ToString();
-                string ItemAtual = item["ItemAtual"].ToString();
-                string QtdTotal = item["QtdTotal"].ToString();
-                #endregion
-                contador++;
-                int progresso = (contador * 100) / listaObjetos.Rows.Count;
-                worker.ReportProgress(progresso);
-
-                using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
-                {
-                    if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
-                    DataSet jaCadastrado = dao.RetornaDataSet(string.Format("SELECT DISTINCT CodigoObjeto, NomeCliente, CaixaPostal FROM TabelaObjetosSROLocal WHERE (CodigoObjeto = '{0}')", linhaItemCodigoObjeto));
-                    if (jaCadastrado.Tables[0].Rows.Count >= 1)//existe na base de dados
+                    StringBuilder itensHTMListaLido = new StringBuilder();
+                    int contadorPorLista = 0;
+                    foreach (DataRow item in DataTableNumeroLista.Rows)
                     {
-                        //existe na base de dados
-                        dao.ExecutaSQL(string.Format("UPDATE TabelaObjetosSROLocal SET CodigoLdi = @CodigoLdi, NomeCliente = @NomeCliente, DataLancamento = @DataLancamento, DataModificacao = @DataModificacao, Situacao = @Situacao, Atualizado = @Atualizado, ObjetoEntregue = @ObjetoEntregue, CaixaPostal = @CaixaPostal, UnidadePostagem = @UnidadePostagem, MunicipioPostagem = @MunicipioPostagem, CriacaoPostagem = @CriacaoPostagem, CepDestinoPostagem = @CepDestinoPostagem, ARPostagem = @ARPostagem, MPPostagem = @MPPostagem, DataMaxPrevistaEntregaPostagem = @DataMaxPrevistaEntregaPostagem, UnidadeLOEC = @UnidadeLOEC, MunicipioLOEC = @MunicipioLOEC, CriacaoLOEC = @CriacaoLOEC, CarteiroLOEC = @CarteiroLOEC, DistritoLOEC = @DistritoLOEC, NumeroLOEC = @NumeroLOEC, EnderecoLOEC = @EnderecoLOEC, BairroLOEC = @BairroLOEC, LocalidadeLOEC = @LocalidadeLOEC, SituacaoDestinatarioAusente = @SituacaoDestinatarioAusente, AgrupadoDestinatarioAusente = @AgrupadoDestinatarioAusente, CoordenadasDestinatarioAusente = @CoordenadasDestinatarioAusente, Comentario = @Comentario, TipoPostalServico = @TipoPostalServico, TipoPostalSiglaCodigo = @TipoPostalSiglaCodigo, TipoPostalNomeSiglaCodigo = @TipoPostalNomeSiglaCodigo, TipoPostalPrazoDiasCorridosRegulamentado = @TipoPostalPrazoDiasCorridosRegulamentado " +
-                            "WHERE (CodigoObjeto = @CodigoObjeto)"), new List<Parametros>(){
-                        new Parametros("@CodigoLdi", TipoCampo.Text, CodigoLdi),
-                        new Parametros("@NomeCliente", TipoCampo.Text, NomeCliente),
-                        new Parametros("@DataLancamento", TipoCampo.DateTime, DataLancamento),
-                        new Parametros("@DataModificacao", TipoCampo.Text, DataModificacao),
-                        new Parametros("@Situacao", TipoCampo.Text, Situacao),
-                        new Parametros("@Atualizado", TipoCampo.Boolean, Atualizado),
-                        new Parametros("@ObjetoEntregue", TipoCampo.Boolean, ObjetoEntregue),
-                        new Parametros("@CaixaPostal", TipoCampo.Boolean, ObjetoEntregue),
-                        new Parametros("@UnidadePostagem", TipoCampo.Text, UnidadePostagem),
-                        new Parametros("@MunicipioPostagem", TipoCampo.Text, MunicipioPostagem),
-                        new Parametros("@CriacaoPostagem", TipoCampo.Text, CriacaoPostagem),
-                        new Parametros("@CepDestinoPostagem", TipoCampo.Text, CepDestinoPostagem),
-                        new Parametros("@ARPostagem", TipoCampo.Text, ARPostagem),
-                        new Parametros("@MPPostagem", TipoCampo.Text, MPPostagem),
-                        new Parametros("@DataMaxPrevistaEntregaPostagem", TipoCampo.Text, DataMaxPrevistaEntregaPostagem),
-                        new Parametros("@UnidadeLOEC", TipoCampo.Text, UnidadeLOEC),
-                        new Parametros("@MunicipioLOEC", TipoCampo.Text, MunicipioLOEC),
-                        new Parametros("@CriacaoLOEC", TipoCampo.Text, CriacaoLOEC),
-                        new Parametros("@CarteiroLOEC", TipoCampo.Text, CarteiroLOEC),
-                        new Parametros("@DistritoLOEC", TipoCampo.Text, DistritoLOEC),
-                        new Parametros("@NumeroLOEC", TipoCampo.Text, NumeroLOEC),
-                        new Parametros("@EnderecoLOEC", TipoCampo.Text, EnderecoLOEC),
-                        new Parametros("@BairroLOEC", TipoCampo.Text, BairroLOEC),
-                        new Parametros("@LocalidadeLOEC", TipoCampo.Text, LocalidadeLOEC),
-                        new Parametros("@SituacaoDestinatarioAusente", TipoCampo.Text, SituacaoDestinatarioAusente),
-                        new Parametros("@AgrupadoDestinatarioAusente", TipoCampo.Text, AgrupadoDestinatarioAusente),
-                        new Parametros("@CoordenadasDestinatarioAusente", TipoCampo.Text, CoordenadasDestinatarioAusente),
-                        new Parametros("@Comentario", TipoCampo.Text, Comentario),
-                        new Parametros("@TipoPostalServico", TipoCampo.Text, TipoPostalServico),
-                        new Parametros("@TipoPostalSiglaCodigo", TipoCampo.Text, TipoPostalSiglaCodigo),
-                        new Parametros("@TipoPostalNomeSiglaCodigo", TipoCampo.Text, TipoPostalNomeSiglaCodigo),
-                        new Parametros("@TipoPostalPrazoDiasCorridosRegulamentado", TipoCampo.Text, TipoPostalPrazoDiasCorridosRegulamentado),
+                        if (backgroundWorker1.CancellationPending)
+                        {
+                            e.Cancel = true;
+                            break;
+                        }
+                        #region Linha item Atualização progresso
+                        //FormularioPrincipal.RetornaComponentesFormularioPrincipal().BuscaNovoStatusQuantidadeNaoAtualizados();
+                        string linhaItemCodigoObjeto = item["CodigoObjeto"].ToString();
+                        string linhaItemDataLancamento = item["DataLancamento"].ToString();
+                        string linhaItemDataModificacao = item["DataModificacao"].ToString();
+                        string linhaItemSituacao = item["Situacao"].ToString();
+                        string linhaItemComentario = item["Comentario"].ToString();
+                        temp = string.Format("{0}-{1}-{2}-{3}", linhaItemCodigoObjeto, linhaItemDataLancamento, linhaItemDataModificacao, linhaItemSituacao, linhaItemComentario);
+                        #endregion
 
-                        new Parametros("@CodigoObjeto", TipoCampo.Text, linhaItemCodigoObjeto)});
-                    }
-                    else//não existe na base de dados
-                    {
-                        dao.ExecutaSQL("INSERT INTO TabelaObjetosSROLocal " +
-                            "(CodigoObjeto, CodigoLdi, NomeCliente, DataLancamento, DataModificacao, Situacao, Atualizado, ObjetoEntregue, CaixaPostal, UnidadePostagem, MunicipioPostagem, CriacaoPostagem, CepDestinoPostagem, ARPostagem, MPPostagem, DataMaxPrevistaEntregaPostagem, UnidadeLOEC, MunicipioLOEC, CriacaoLOEC, CarteiroLOEC, DistritoLOEC, NumeroLOEC, EnderecoLOEC, BairroLOEC, LocalidadeLOEC, SituacaoDestinatarioAusente, AgrupadoDestinatarioAusente, CoordenadasDestinatarioAusente, Comentario, TipoPostalServico, TipoPostalSiglaCodigo, TipoPostalNomeSiglaCodigo, TipoPostalPrazoDiasCorridosRegulamentado) VALUES " +
-                            "(@CodigoObjeto, @CodigoLdi, @NomeCliente, @DataLancamento, @DataModificacao, @Situacao, @Atualizado, @ObjetoEntregue, @CaixaPostal, @UnidadePostagem, @MunicipioPostagem, @CriacaoPostagem, @CepDestinoPostagem, @ARPostagem, @MPPostagem, @DataMaxPrevistaEntregaPostagem, @UnidadeLOEC, @MunicipioLOEC, @CriacaoLOEC, @CarteiroLOEC, @DistritoLOEC, @NumeroLOEC, @EnderecoLOEC, @BairroLOEC, @LocalidadeLOEC, @SituacaoDestinatarioAusente, @AgrupadoDestinatarioAusente, @CoordenadasDestinatarioAusente, @Comentario, @TipoPostalServico, @TipoPostalSiglaCodigo, @TipoPostalNomeSiglaCodigo, @TipoPostalPrazoDiasCorridosRegulamentado)",
-                        new List<Parametros>() {
+                        #region Carrega Variaveis
+                        string CodigoObjeto = item["CodigoObjeto"].ToString();
+                        string CodigoLdi = item["CodigoLdi"].ToString();
+                        string NomeCliente = item["NomeCliente"].ToString();
+                        DateTime DataLancamento = Convert.ToDateTime(item["DataLancamento"]);
+                        string DataModificacao = item["DataModificacao"].ToString();
+                        string Situacao = item["Situacao"].ToString();
+                        bool Atualizado = Convert.ToBoolean(item["Atualizado"].ToString() == "1" ? true : false);
+                        bool ObjetoEntregue = Convert.ToBoolean(item["ObjetoEntregue"].ToString() == "1" ? true : false);
+                        bool CaixaPostal = Convert.ToBoolean(item["CaixaPostal"].ToString() == "1" ? true : false);
+                        string UnidadePostagem = item["UnidadePostagem"].ToString();
+                        string MunicipioPostagem = item["MunicipioPostagem"].ToString();
+                        string CriacaoPostagem = item["CriacaoPostagem"].ToString();
+                        string CepDestinoPostagem = item["CepDestinoPostagem"].ToString();
+                        string ARPostagem = item["ARPostagem"].ToString() == "1" ? "SIM" : "NÃO";
+                        string MPPostagem = item["MPPostagem"].ToString() == "1" ? "SIM" : "NÃO";
+                        string DataMaxPrevistaEntregaPostagem = item["DataMaxPrevistaEntregaPostagem"].ToString();
+                        string UnidadeLOEC = item["UnidadeLOEC"].ToString();
+                        string MunicipioLOEC = item["MunicipioLOEC"].ToString();
+                        string CriacaoLOEC = item["CriacaoLOEC"].ToString();
+                        string CarteiroLOEC = item["CarteiroLOEC"].ToString();
+                        string DistritoLOEC = item["DistritoLOEC"].ToString();
+                        string NumeroLOEC = item["NumeroLOEC"].ToString();
+                        string EnderecoLOEC = item["EnderecoLOEC"].ToString();
+                        string BairroLOEC = item["BairroLOEC"].ToString();
+                        string LocalidadeLOEC = item["LocalidadeLOEC"].ToString();
+                        string SituacaoDestinatarioAusente = item["SituacaoDestinatarioAusente"].ToString();
+                        string AgrupadoDestinatarioAusente = item["AgrupadoDestinatarioAusente"].ToString() == "1" ? "SIM" : "NÃO";
+                        string CoordenadasDestinatarioAusente = item["CoordenadasDestinatarioAusente"].ToString();
+                        string Comentario = item["Comentario"].ToString();
+                        string TipoPostalServico = item["TipoPostalServico"].ToString();
+                        string TipoPostalSiglaCodigo = item["TipoPostalSiglaCodigo"].ToString();
+                        string TipoPostalNomeSiglaCodigo = item["TipoPostalNomeSiglaCodigo"].ToString();
+                        string TipoPostalPrazoDiasCorridosRegulamentado = item["TipoPostalPrazoDiasCorridosRegulamentado"].ToString();
+                        string DataListaAtual = item["DataListaAtual"].ToString();
+                        string NumeroListaAtual = item["NumeroListaAtual"].ToString();
+                        string ItemAtual = item["ItemAtual"].ToString();
+                        string QtdTotal = item["QtdTotal"].ToString();
+
+                        string DataDevolucao = DataLancamento.ToDateTime().Date.AddDays(Convert.ToDouble(string.IsNullOrWhiteSpace(TipoPostalPrazoDiasCorridosRegulamentado) ? "0" : TipoPostalPrazoDiasCorridosRegulamentado)).ToDateTime().ToShortDateString();
+                        string QtdTotaListaAtual = DataTableNumeroLista.Rows.Count.ToString();
+                        #endregion
+
+                        contador++;
+                        int progresso = (contador * 100) / listaObjetos.Rows.Count;
+                        worker.ReportProgress(progresso);
+
+                        using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
+                        {
+                            if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+                            DataSet jaCadastrado = dao.RetornaDataSet(string.Format("SELECT DISTINCT CodigoObjeto, NomeCliente, CaixaPostal FROM TabelaObjetosSROLocal WHERE (CodigoObjeto = '{0}')", linhaItemCodigoObjeto));
+                            #region Existe na base de dados
+                            if (jaCadastrado.Tables[0].Rows.Count >= 1)//existe na base de dados
+                            {
+                                //existe na base de dados
+                                dao.ExecutaSQL(string.Format("UPDATE TabelaObjetosSROLocal SET CodigoLdi = @CodigoLdi, NomeCliente = @NomeCliente, DataLancamento = @DataLancamento, DataModificacao = @DataModificacao, Situacao = @Situacao, Atualizado = @Atualizado, ObjetoEntregue = @ObjetoEntregue, CaixaPostal = @CaixaPostal, UnidadePostagem = @UnidadePostagem, MunicipioPostagem = @MunicipioPostagem, CriacaoPostagem = @CriacaoPostagem, CepDestinoPostagem = @CepDestinoPostagem, ARPostagem = @ARPostagem, MPPostagem = @MPPostagem, DataMaxPrevistaEntregaPostagem = @DataMaxPrevistaEntregaPostagem, UnidadeLOEC = @UnidadeLOEC, MunicipioLOEC = @MunicipioLOEC, CriacaoLOEC = @CriacaoLOEC, CarteiroLOEC = @CarteiroLOEC, DistritoLOEC = @DistritoLOEC, NumeroLOEC = @NumeroLOEC, EnderecoLOEC = @EnderecoLOEC, BairroLOEC = @BairroLOEC, LocalidadeLOEC = @LocalidadeLOEC, SituacaoDestinatarioAusente = @SituacaoDestinatarioAusente, AgrupadoDestinatarioAusente = @AgrupadoDestinatarioAusente, CoordenadasDestinatarioAusente = @CoordenadasDestinatarioAusente, Comentario = @Comentario, TipoPostalServico = @TipoPostalServico, TipoPostalSiglaCodigo = @TipoPostalSiglaCodigo, TipoPostalNomeSiglaCodigo = @TipoPostalNomeSiglaCodigo, TipoPostalPrazoDiasCorridosRegulamentado = @TipoPostalPrazoDiasCorridosRegulamentado " +
+                                    "WHERE (CodigoObjeto = @CodigoObjeto)"), new List<Parametros>(){
+                                    new Parametros("@CodigoLdi", TipoCampo.Text, CodigoLdi),
+                                    new Parametros("@NomeCliente", TipoCampo.Text, NomeCliente),
+                                    new Parametros("@DataLancamento", TipoCampo.DateTime, DataLancamento),
+                                    new Parametros("@DataModificacao", TipoCampo.Text, DataModificacao),
+                                    new Parametros("@Situacao", TipoCampo.Text, Situacao),
+                                    new Parametros("@Atualizado", TipoCampo.Boolean, Atualizado),
+                                    new Parametros("@ObjetoEntregue", TipoCampo.Boolean, ObjetoEntregue),
+                                    new Parametros("@CaixaPostal", TipoCampo.Boolean, ObjetoEntregue),
+                                    new Parametros("@UnidadePostagem", TipoCampo.Text, UnidadePostagem),
+                                    new Parametros("@MunicipioPostagem", TipoCampo.Text, MunicipioPostagem),
+                                    new Parametros("@CriacaoPostagem", TipoCampo.Text, CriacaoPostagem),
+                                    new Parametros("@CepDestinoPostagem", TipoCampo.Text, CepDestinoPostagem),
+                                    new Parametros("@ARPostagem", TipoCampo.Text, ARPostagem),
+                                    new Parametros("@MPPostagem", TipoCampo.Text, MPPostagem),
+                                    new Parametros("@DataMaxPrevistaEntregaPostagem", TipoCampo.Text, DataMaxPrevistaEntregaPostagem),
+                                    new Parametros("@UnidadeLOEC", TipoCampo.Text, UnidadeLOEC),
+                                    new Parametros("@MunicipioLOEC", TipoCampo.Text, MunicipioLOEC),
+                                    new Parametros("@CriacaoLOEC", TipoCampo.Text, CriacaoLOEC),
+                                    new Parametros("@CarteiroLOEC", TipoCampo.Text, CarteiroLOEC),
+                                    new Parametros("@DistritoLOEC", TipoCampo.Text, DistritoLOEC),
+                                    new Parametros("@NumeroLOEC", TipoCampo.Text, NumeroLOEC),
+                                    new Parametros("@EnderecoLOEC", TipoCampo.Text, EnderecoLOEC),
+                                    new Parametros("@BairroLOEC", TipoCampo.Text, BairroLOEC),
+                                    new Parametros("@LocalidadeLOEC", TipoCampo.Text, LocalidadeLOEC),
+                                    new Parametros("@SituacaoDestinatarioAusente", TipoCampo.Text, SituacaoDestinatarioAusente),
+                                    new Parametros("@AgrupadoDestinatarioAusente", TipoCampo.Text, AgrupadoDestinatarioAusente),
+                                    new Parametros("@CoordenadasDestinatarioAusente", TipoCampo.Text, CoordenadasDestinatarioAusente),
+                                    new Parametros("@Comentario", TipoCampo.Text, Comentario),
+                                    new Parametros("@TipoPostalServico", TipoCampo.Text, TipoPostalServico),
+                                    new Parametros("@TipoPostalSiglaCodigo", TipoCampo.Text, TipoPostalSiglaCodigo),
+                                    new Parametros("@TipoPostalNomeSiglaCodigo", TipoCampo.Text, TipoPostalNomeSiglaCodigo),
+                                    new Parametros("@TipoPostalPrazoDiasCorridosRegulamentado", TipoCampo.Text, TipoPostalPrazoDiasCorridosRegulamentado),
+
+                                    new Parametros("@CodigoObjeto", TipoCampo.Text, linhaItemCodigoObjeto)});
+                            }
+                            #endregion
+                            #region Não existe na base de dados
+                            else//não existe na base de dados
+                            {
+                                dao.ExecutaSQL("INSERT INTO TabelaObjetosSROLocal " +
+                                    "(CodigoObjeto, CodigoLdi, NomeCliente, DataLancamento, DataModificacao, Situacao, Atualizado, ObjetoEntregue, CaixaPostal, UnidadePostagem, MunicipioPostagem, CriacaoPostagem, CepDestinoPostagem, ARPostagem, MPPostagem, DataMaxPrevistaEntregaPostagem, UnidadeLOEC, MunicipioLOEC, CriacaoLOEC, CarteiroLOEC, DistritoLOEC, NumeroLOEC, EnderecoLOEC, BairroLOEC, LocalidadeLOEC, SituacaoDestinatarioAusente, AgrupadoDestinatarioAusente, CoordenadasDestinatarioAusente, Comentario, TipoPostalServico, TipoPostalSiglaCodigo, TipoPostalNomeSiglaCodigo, TipoPostalPrazoDiasCorridosRegulamentado) VALUES " +
+                                    "(@CodigoObjeto, @CodigoLdi, @NomeCliente, @DataLancamento, @DataModificacao, @Situacao, @Atualizado, @ObjetoEntregue, @CaixaPostal, @UnidadePostagem, @MunicipioPostagem, @CriacaoPostagem, @CepDestinoPostagem, @ARPostagem, @MPPostagem, @DataMaxPrevistaEntregaPostagem, @UnidadeLOEC, @MunicipioLOEC, @CriacaoLOEC, @CarteiroLOEC, @DistritoLOEC, @NumeroLOEC, @EnderecoLOEC, @BairroLOEC, @LocalidadeLOEC, @SituacaoDestinatarioAusente, @AgrupadoDestinatarioAusente, @CoordenadasDestinatarioAusente, @Comentario, @TipoPostalServico, @TipoPostalSiglaCodigo, @TipoPostalNomeSiglaCodigo, @TipoPostalPrazoDiasCorridosRegulamentado)",
+                                new List<Parametros>() {
                                     new Parametros() { Nome = "@CodigoObjeto", Tipo = TipoCampo.Text, Valor = CodigoObjeto },
                                     new Parametros() { Nome = "@CodigoLdi", Tipo = TipoCampo.Text, Valor = CodigoLdi },
                                     new Parametros() { Nome = "@NomeCliente", Tipo = TipoCampo.Text, Valor = NomeCliente },
@@ -385,11 +426,141 @@ namespace SISAPO
                                     new Parametros() { Nome = "@TipoPostalSiglaCodigo", Tipo = TipoCampo.Text, Valor = TipoPostalSiglaCodigo },
                                     new Parametros() { Nome = "@TipoPostalNomeSiglaCodigo", Tipo = TipoCampo.Text, Valor = TipoPostalNomeSiglaCodigo },
                                     new Parametros() { Nome = "@TipoPostalPrazoDiasCorridosRegulamentado", Tipo = TipoCampo.Text, Valor = TipoPostalPrazoDiasCorridosRegulamentado }
-                        });
+                                });
+                            }
+                            #endregion
+
+                            itensHTMListaLido = RetornaItensSegundaParteHTMListaLido(itensHTMListaLido, ItemAtual, QtdTotal, CodigoObjeto, NomeCliente, Comentario, TipoPostalPrazoDiasCorridosRegulamentado, DataDevolucao);
+
+                            //envia email consolidado
+                            contadorPorLista++;
+                            if (contadorPorLista == DataTableNumeroLista.Rows.Count)
+                            {
+                                string PrimeiraParte = retornaPrimeiraParteHTMLListaLido();
+                                string CabecalhoParte = RetornaCabecalhoSegundaParteHTMListaLido(NumeroListaAtual, DataListaAtual, QtdTotaListaAtual, QtdTotal);
+                                string SegundaParte = retornaSegundaParteHTMLListaLido();
+                                string SegundaParteCentral = itensHTMListaLido.ToString();
+                                string TerceiraParteFinal = retornaTerceiraParteHTMLListaLido();
+
+                                StringBuilder html = new StringBuilder();
+                                html.AppendLine(PrimeiraParte);
+                                html.AppendLine(CabecalhoParte);
+                                html.AppendLine(SegundaParte);
+                                html.AppendLine(SegundaParteCentral);
+                                html.AppendLine(TerceiraParteFinal);
+                                string htmlFinal = html.ToString();
+                                EnviaEmailHTMLConsolidadoListaRecebimentoPLR(NumeroListaAtual, DateTime.Now.ToString(), html.ToString());
+                            }
+                        }
                     }
                 }
+                e.Result = listaObjetos.Rows.Count;
             }
-            e.Result = listaObjetos.Rows.Count;
+            catch (Exception ex)
+            {
+                Mensagens.Erro("Ocorreu o seguinte erro: " + ex.Message);
+            }
+        }
+
+        private string retornaSegundaParteHTMLListaLido()
+        {
+            StringBuilder str = new StringBuilder();
+            
+            str.AppendLine("		<thead>                               ");
+            str.AppendLine("			<tr>                              ");
+            str.AppendLine("				<th>Item/Qtd.</th>            ");
+            str.AppendLine("				<th>Código Objeto</th>        ");
+            str.AppendLine("				<th>Nome cliente</th>         ");
+            str.AppendLine("				<th>Comentário</th>           ");
+            str.AppendLine("				<th>Prazo</th>                ");
+            str.AppendLine("				<th>Data devolução</th>       ");
+            str.AppendLine("			</tr>                             ");
+            str.AppendLine("		</thead>                              ");
+            str.AppendLine("		<tbody>                               ");
+            return str.ToString();
+        }
+
+        private string retornaPrimeiraParteHTMLListaLido()
+        {
+            StringBuilder str = new StringBuilder();
+            str.AppendLine("<!DOCTYPE html>                               ");
+            str.AppendLine("<html>                                        ");
+            str.AppendLine("<head>                                        ");
+            str.AppendLine("	<title>HTML Table Generator</title>       ");
+            str.AppendLine("	<style>                                   ");
+            str.AppendLine("		table {                               ");
+            str.AppendLine("			border:1px solid #b3adad;         ");
+            str.AppendLine("			font-family:Arial, sans-serif;    ");
+            str.AppendLine("			font-size:12px;                   ");
+            str.AppendLine("			border-collapse:collapse;         ");
+            str.AppendLine("			padding:5px;                      ");
+            str.AppendLine("		}                                     ");
+            str.AppendLine("		table th {                            ");
+            str.AppendLine("			border:1px solid #b3adad;         ");
+            str.AppendLine("			text-align:center;                ");
+            str.AppendLine("			padding:5px;                      ");
+            str.AppendLine("			background: #f0f0f0;              ");
+            str.AppendLine("			color: #313030;                   ");
+            str.AppendLine("		}                                     ");
+            str.AppendLine("		table td {                            ");
+            str.AppendLine("			border:1px solid #b3adad;         ");
+            str.AppendLine("			text-align:left;                  ");
+            str.AppendLine("			padding:5px;                      ");
+            str.AppendLine("			background: #ffffff;              ");
+            str.AppendLine("			color: #313030;                   ");
+            str.AppendLine("		}                                     ");
+            str.AppendLine("	</style>                                  ");
+            str.AppendLine("</head>                                       ");
+            str.AppendLine("<body>                                        ");
+            str.AppendLine("	<table>                                   ");
+            return str.ToString();
+        }
+
+        private string RetornaCabecalhoSegundaParteHTMListaLido(string NumeroListaAtual, string DataListaAtual, string QtdTotaListaAtual, string QtdTotal)
+        {
+            StringBuilder str = new StringBuilder();
+            str.AppendLine("		<thead>                               ");
+            str.AppendLine("			<tr>                             ");
+            str.AppendLine("				<th>Núm. lista</th>          ");
+            str.AppendLine("				<th>Data emissão lista</th>  ");
+            str.AppendLine("				<th>Data recebimento</th>    ");
+            str.AppendLine("				<th>Qtd. Total de itens</th> ");
+            str.AppendLine("				<th>Qtd. lidas/recebidas</th>");
+            str.AppendLine("				<th>Qtd. faltantes</th>      ");
+            str.AppendLine("			</tr>                            ");
+            str.AppendLine("		</thead>                              ");
+            str.AppendLine("			<tr>                             ");
+            str.AppendLine("				<td>" + NumeroListaAtual + "</th>          ");
+            str.AppendLine("				<td>" + DataListaAtual + "</th>  ");
+            str.AppendLine("				<td>" + DateTime.Now.ToString() + "</th>    ");
+            str.AppendLine("				<td>" + QtdTotal + "</th>");
+            str.AppendLine("				<td>" + QtdTotaListaAtual + "</th> ");
+            str.AppendLine("				<td>" + (QtdTotal.ToInt() - QtdTotaListaAtual.ToInt()) + "</th>      ");
+            str.AppendLine("			</tr>                            ");
+            return str.ToString();
+        }
+
+        private StringBuilder RetornaItensSegundaParteHTMListaLido(StringBuilder itensHTMListaLido, string ItemAtual, string QtdTotal, string CodigoObjeto, string NomeCliente, string Comentario, string TipoPostalPrazoDiasCorridosRegulamentado, string DataDevolucao)
+        {
+            itensHTMListaLido.AppendLine("			<tr>                  ");
+            itensHTMListaLido.AppendLine("				<td>" + string.Format("{0:00000}/{1}", ItemAtual, QtdTotal) + "</td>   ");//Item/Qtd.
+            itensHTMListaLido.AppendLine("				<td>" + CodigoObjeto + "</td>  ");//Código Objeto
+            itensHTMListaLido.AppendLine("				<td>" + NomeCliente + "</td>  ");//Nome cliente
+            itensHTMListaLido.AppendLine("				<td>" + Comentario + "</td>  ");//Comentário
+            itensHTMListaLido.AppendLine("				<td>" + TipoPostalPrazoDiasCorridosRegulamentado + "</td>   ");//Prazo
+            itensHTMListaLido.AppendLine("				<td>" + DataDevolucao + "</td>   ");//Data devolução
+            itensHTMListaLido.AppendLine("			</tr>                 ");
+            return itensHTMListaLido;
+        }
+
+        private string retornaTerceiraParteHTMLListaLido()
+        {
+            StringBuilder str = new StringBuilder();
+            str.AppendLine("		</tbody>                              ");
+            str.AppendLine("	</table>                                  ");
+            str.AppendLine("</body>                                       ");
+            str.AppendLine("</html>                                       ");
+            return str.ToString();
         }
 
         private void bw_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -553,224 +724,36 @@ namespace SISAPO
             return;
         }
 
-        private void BtnAdicionarPorPLRPreListaRemessa_Click(object sender, EventArgs e)
-        {
-            //LV221247464CN#tab287077020401#tabJULIANA RODRIGUES#tab29/09/2021 10:40:11#tab29/09/2021 14:44:46#tabENTREGUE#tabTrue#tabTrue#tabFalse#tab00156-000 / CHINA#tab#tab22/08/2021 14:26:00#tab77019-096#tab#tab#tab#tab77100-970 / CDD PALMAS#tabPALMAS / TO#tab28/09/2021 11:52:52#tab83454624#tab502#tab112100021778#tabQUADRA ARSO 112 ALAMEDA 13 17#tabPLANO DIRETOR SUL#tab77019096#tabAUSENTE ENCAMINHADO ENTREGA INTERNA#tabNÃO#tab-10.25075,-48.34432#tabPCT INT#tabNAO URGENTE#tabLV#tabOBJETO INTERNACIONAL PRIME#tab20#tab
-
-            //BtnLimparListaAtual_Click(sender, e);
-
-            using (FormularioAdicionarItemObjetoQRCode formularioAdicionarItemObjetoQRCode = new FormularioAdicionarItemObjetoQRCode())
-            {
-                formularioAdicionarItemObjetoQRCode.ShowDialog();
-
-                if (formularioAdicionarItemObjetoQRCode.ClicouCancelar) return;
-                if (formularioAdicionarItemObjetoQRCode.ClicouConfirmar == false) return;
-
-                if (formularioAdicionarItemObjetoQRCode.dtbLista.Rows.Count > 0)
-                {
-                    foreach (DataRow item in formularioAdicionarItemObjetoQRCode.dtbLista.Rows)
-                    {
-                        if (listaObjetos == null || listaObjetos.Rows.Count == 0)
-                        {
-                            listaObjetos = new DataTable();
-                            listaObjetos.Columns.Add("CodigoObjeto", typeof(string));
-                            listaObjetos.PrimaryKey = new DataColumn[] { listaObjetos.Columns["CodigoObjeto"] };
-                            listaObjetos.Columns.Add("CodigoLdi", typeof(string));
-                            listaObjetos.Columns.Add("NomeCliente", typeof(string));
-                            listaObjetos.Columns.Add("DataLancamento", typeof(DateTime));
-                            listaObjetos.Columns.Add("DataModificacao", typeof(string));
-                            listaObjetos.Columns.Add("Situacao", typeof(string));
-                            listaObjetos.Columns.Add("Atualizado", typeof(bool));
-                            listaObjetos.Columns.Add("ObjetoEntregue", typeof(bool));
-                            listaObjetos.Columns.Add("CaixaPostal", typeof(bool));
-                            listaObjetos.Columns.Add("UnidadePostagem", typeof(string));
-                            listaObjetos.Columns.Add("MunicipioPostagem", typeof(string));
-                            listaObjetos.Columns.Add("CriacaoPostagem", typeof(string));
-                            listaObjetos.Columns.Add("CepDestinoPostagem", typeof(string));
-                            listaObjetos.Columns.Add("ARPostagem", typeof(string));
-                            listaObjetos.Columns.Add("MPPostagem", typeof(string));
-                            listaObjetos.Columns.Add("DataMaxPrevistaEntregaPostagem", typeof(string));
-                            listaObjetos.Columns.Add("UnidadeLOEC", typeof(string));
-                            listaObjetos.Columns.Add("MunicipioLOEC", typeof(string));
-                            listaObjetos.Columns.Add("CriacaoLOEC", typeof(string));
-                            listaObjetos.Columns.Add("CarteiroLOEC", typeof(string));
-                            listaObjetos.Columns.Add("DistritoLOEC", typeof(string));
-                            listaObjetos.Columns.Add("NumeroLOEC", typeof(string));
-                            listaObjetos.Columns.Add("EnderecoLOEC", typeof(string));
-                            listaObjetos.Columns.Add("BairroLOEC", typeof(string));
-                            listaObjetos.Columns.Add("LocalidadeLOEC", typeof(string));
-                            listaObjetos.Columns.Add("SituacaoDestinatarioAusente", typeof(string));
-                            listaObjetos.Columns.Add("AgrupadoDestinatarioAusente", typeof(string));
-                            listaObjetos.Columns.Add("CoordenadasDestinatarioAusente", typeof(string));
-                            listaObjetos.Columns.Add("Comentario", typeof(string));
-                            listaObjetos.Columns.Add("TipoPostalServico", typeof(string));
-                            listaObjetos.Columns.Add("TipoPostalSiglaCodigo", typeof(string));
-                            listaObjetos.Columns.Add("TipoPostalNomeSiglaCodigo", typeof(string));
-                            listaObjetos.Columns.Add("TipoPostalPrazoDiasCorridosRegulamentado", typeof(string));
-                            listaObjetos.Columns.Add("DataListaAtual", typeof(string));
-                            listaObjetos.Columns.Add("NumeroListaAtual", typeof(string));
-                            listaObjetos.Columns.Add("ItemAtual", typeof(string));
-                            listaObjetos.Columns.Add("QtdTotal", typeof(string));
-                        }
-
-                        string CodigoObjeto = item["CodigoObjeto"].ToString();
-                        string CodigoLdi = item["CodigoLdi"].ToString();
-                        string NomeCliente = item["NomeCliente"].ToString();
-                        DateTime DataLancamento = Convert.ToDateTime(item["DataLancamento"].ToString());
-                        string DataModificacao = item["DataModificacao"].ToString();
-                        string Situacao = item["Situacao"].ToString();
-                        bool Atualizado = Convert.ToBoolean(item["Atualizado"].ToString());
-                        bool ObjetoEntregue = Convert.ToBoolean(item["ObjetoEntregue"].ToString());
-                        bool CaixaPostal = Convert.ToBoolean(item["CaixaPostal"].ToString());
-                        string UnidadePostagem = item["UnidadePostagem"].ToString();
-                        string MunicipioPostagem = item["MunicipioPostagem"].ToString();
-                        string CriacaoPostagem = item["CriacaoPostagem"].ToString();
-                        string CepDestinoPostagem = item["CepDestinoPostagem"].ToString();
-                        string ARPostagem = item["ARPostagem"].ToString();
-                        string MPPostagem = item["MPPostagem"].ToString();
-                        string DataMaxPrevistaEntregaPostagem = item["DataMaxPrevistaEntregaPostagem"].ToString();
-                        string UnidadeLOEC = item["UnidadeLOEC"].ToString();
-                        string MunicipioLOEC = item["MunicipioLOEC"].ToString();
-                        string CriacaoLOEC = item["CriacaoLOEC"].ToString();
-                        string CarteiroLOEC = item["CarteiroLOEC"].ToString();
-                        string DistritoLOEC = item["DistritoLOEC"].ToString();
-                        string NumeroLOEC = item["NumeroLOEC"].ToString();
-                        string EnderecoLOEC = item["EnderecoLOEC"].ToString();
-                        string BairroLOEC = item["BairroLOEC"].ToString();
-                        string LocalidadeLOEC = item["LocalidadeLOEC"].ToString();
-                        string SituacaoDestinatarioAusente = item["SituacaoDestinatarioAusente"].ToString();
-                        string AgrupadoDestinatarioAusente = item["AgrupadoDestinatarioAusente"].ToString();
-                        string CoordenadasDestinatarioAusente = item["CoordenadasDestinatarioAusente"].ToString();
-                        string Comentario = item["Comentario"].ToString();
-                        string TipoPostalServico = item["TipoPostalServico"].ToString();
-                        string TipoPostalSiglaCodigo = item["TipoPostalSiglaCodigo"].ToString();
-                        string TipoPostalNomeSiglaCodigo = item["TipoPostalNomeSiglaCodigo"].ToString();
-                        string TipoPostalPrazoDiasCorridosRegulamentado = item["TipoPostalPrazoDiasCorridosRegulamentado"].ToString();
-                        string DataListaAtual = item["DataListaAtual"].ToString();
-                        string NumeroListaAtual = item["NumeroListaAtual"].ToString();
-                        string ItemAtual = item["ItemAtual"].ToString();
-                        string QtdTotal = item["QtdTotal"].ToString();
-
-                        bool existe = listaObjetos.AsEnumerable().Any(t => t["CodigoObjeto"].ToString() == item["CodigoObjeto"].ToString());
-                        if (!existe)
-                        {
-                            listaObjetos.Rows.Add(
-                                CodigoObjeto,
-                                CodigoLdi,
-                                NomeCliente,
-                                DataLancamento,
-                                DataModificacao,
-                                Situacao,
-                                Atualizado,
-                                ObjetoEntregue,
-                                CaixaPostal,
-                                UnidadePostagem,
-                                MunicipioPostagem,
-                                CriacaoPostagem,
-                                CepDestinoPostagem,
-                                ARPostagem,
-                                MPPostagem,
-                                DataMaxPrevistaEntregaPostagem,
-                                UnidadeLOEC,
-                                MunicipioLOEC,
-                                CriacaoLOEC,
-                                CarteiroLOEC,
-                                DistritoLOEC,
-                                NumeroLOEC,
-                                EnderecoLOEC,
-                                BairroLOEC,
-                                LocalidadeLOEC,
-                                SituacaoDestinatarioAusente,
-                                AgrupadoDestinatarioAusente,
-                                CoordenadasDestinatarioAusente,
-                                Comentario,
-                                TipoPostalServico,
-                                TipoPostalSiglaCodigo,
-                                TipoPostalNomeSiglaCodigo,
-                                TipoPostalPrazoDiasCorridosRegulamentado,
-                                DataListaAtual,
-                                NumeroListaAtual,
-                                ItemAtual,
-                                QtdTotal
-                                );
-                        }
-
-
-                        listaObjetos.DefaultView.Sort = "DataLancamento DESC";
-                        listaObjetos = listaObjetos.DefaultView.ToTable();
-                    }
-
-                    if (listaObjetos.Rows.Count == 0)
-                    {
-                        LblQuantidadeImportados.Text = "";
-                        //tabControl1.Visible = false;
-                        this.BtnGravar.Enabled = false;
-                        label2.Text = "";
-                        progressBar1.Visible = false;
-                    }
-                    if (listaObjetos.Rows.Count > 0)
-                    {
-                        LblQuantidadeImportados.Text = string.Format("Quantidade de objetos para importação: '{0}' objetos", listaObjetos.Rows.Count);
-                        dataGridViewQRCode.DataSource = listaObjetos;
-                        //tabControl1.Visible = true;
-                        this.BtnGravar.Enabled = true;
-                        label2.Text = "Barra de progresso";
-                        progressBar1.Visible = true;
-                        BtnGravar.Focus();
-                    }
-
-
-                }
-            }
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            EnviarEmailConsolidadoRecebimento();
-        }
-
         private void EnviarEmailConsolidadoRecebimento()
         {
-            Email email = new Email();
-            email.Assunto = "teste assunto";
-            email.Destinatario = new List<string>() { "marques-fonseca@hotmail.com" };
-            email.IsBodyHtml = true;
-            email.Remetente = "accluzimangues@gmail.com";
-            email.Senha = "oxmt9212";
-            email.ServidorEnvio = "smtp.gmail.com";
-            email.Texto = "teste";
-            email.AnexoStream = new List<AnexoStream>();
-            
-
-
-            //string remetenteEmail = "accluzimangues@gmail.com"; //O e-mail do remetente
-            //System.Net.Mail.MailMessage mail = new System.Net.Mail.MailMessage();
-            //mail.To.Add("marques-fonseca@hotmail.com");//destinatário
-            //mail.From = new System.Net.Mail.MailAddress(remetenteEmail, "ACC Luzimangues", System.Text.Encoding.UTF8);
-            //mail.Subject = "Assunto:Este e-mail é um teste do Asp.Net";
-            //mail.SubjectEncoding = System.Text.Encoding.UTF8;
-            //mail.Body = "teste";
-            //mail.BodyEncoding = System.Text.Encoding.UTF8;
-            //mail.IsBodyHtml = true;
-            //mail.Priority = System.Net.Mail.MailPriority.High; //Prioridade do E-Mail
-
-            //System.Net.Mail.SmtpClient client = new System.Net.Mail.SmtpClient("smtp.gmail.com", 465);  //Adicionando as credenciais do seu e-mail e senha:
-            //client.Credentials = new System.Net.NetworkCredential(remetenteEmail, "oxmt9212");
-            ////client.Port = 587; // Esta porta é a utilizada pelo Gmail para envio
-            ////client.Host = "smtp.gmail.com"; //Definindo o provedor que irá disparar o e-mail
-            //client.EnableSsl = true; //Gmail trabalha com Server Secured Layer
-            //client.DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network; // modo de envio
-            //client.UseDefaultCredentials = false; // vamos utilizar credencias especificas
-
             try
             {
-                email.EnviaEmail();
-                //client.Send(mail);
-                Mensagens.Informa("Envio do E-mail com sucesso");
+                System.Net.Mail.SmtpClient cliente = new System.Net.Mail.SmtpClient();
+                cliente.Port = Convert.ToInt32("587");
+                cliente.Host = "smtp.gmail.com";
+                cliente.EnableSsl = true;
+                cliente.DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network;
+                cliente.UseDefaultCredentials = false;
+                cliente.Credentials = new System.Net.NetworkCredential("accluzimangues@gmail.com", "oxmt9212");
+
+                System.Net.Mail.MailMessage email = new System.Net.Mail.MailMessage();
+                email.From = new System.Net.Mail.MailAddress("accluzimangues@gmail.com");
+                email.To.Add("marques-fonseca@hotmail.com");
+                email.To.Add("accluzimangues@gmail.com");
+                email.Subject = "teste de email";
+                email.IsBodyHtml = true;
+                email.Body = RetornaCorpoEmailHTML();
+
+                cliente.Send(email);
+
+
+
+                Mensagens.Informa("Email enviado com sucesso!");
+
             }
             catch (Exception ex)
             {
-                Mensagens.Erro("Ocorreu um erro ao enviar:" + ex.Message);
+                Mensagens.Erro("erro:" + ex.Message);
             }
         }
 
@@ -914,6 +897,259 @@ namespace SISAPO
             Html.AppendLine("</html>");
 
             return Html.ToString();
+        }
+
+        private void TxtObjetoAtual_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Escape)
+            {
+                TxtObjetoAtual.Text = "";
+                TxtObjetoAtual.Focus();
+                TxtObjetoAtual.ScrollToCaret();
+                TxtObjetoAtual.ScrollToCaret();
+
+                TxtObjetoAtual.Select(TxtObjetoAtual.Text.Length, 0);
+                return;
+            }
+            if (string.IsNullOrEmpty(TxtObjetoAtual.Text)) return;
+
+            if (e.KeyData != Keys.Enter) return;
+
+            if (VerificaPadraoLeitura(TxtObjetoAtual.Text) == false)
+            {
+                TxtObjetoAtual.Text = "";
+                TxtObjetoAtual.Focus();
+                TxtObjetoAtual.ScrollToCaret();
+                TxtObjetoAtual.ScrollToCaret();
+
+                TxtObjetoAtual.Select(TxtObjetoAtual.Text.Length, 0);
+                return;
+            }
+
+            AdicionaItemLista();
+        }
+
+        private bool VerificaPadraoLeitura(string text)
+        {
+            bool retorno = true;
+            try
+            {
+                string QRCode = TxtObjetoAtual.Text.ToUpper();
+                //string descompacta = ClassesDiversas.FormataString.Descompacta(QRCode);
+                string[] CelulasCampos = QRCode.Split(new string[] { "[TAB]" }, StringSplitOptions.None);
+                int QuantidadeCelulasCampos = CelulasCampos.Count();
+                if (QuantidadeCelulasCampos < 37)
+                    retorno = false;
+            }
+            catch (Exception ex)
+            {
+                retorno = false;
+            }
+
+            return retorno;
+        }
+
+        private void AdicionaItemLista()
+        {
+            try
+            {
+                //QH043464726BR[TAB]287077025122[TAB]BRUNA YASMIN SANTOS MARTINS[TAB]01/10/2021 15:12:25[TAB][TAB]AGUARDANDO RETIRADA[TAB]True[TAB]False[TAB]False[TAB][TAB][TAB][TAB][TAB][TAB][TAB][TAB][TAB]PALMAS / TO[TAB][TAB][TAB][TAB][TAB]Q ARSO 122 Q 13, 0, 1205SUL AL 00000[TAB]PLANO DIRETOR SUL[TAB]77025332[TAB][TAB][TAB][TAB]PCT[TAB]NAO URGENTE[TAB]QH[TAB]ETIQUETA LOGICA PAC[TAB]7[TAB]07/10/2021 19:13:14[TAB]20211007191314[TAB]1[TAB]1
+                string QRCode = TxtObjetoAtual.Text.ToUpper();
+                //string descompacta = ClassesDiversas.FormataString.Descompacta(QRCode);
+                string[] CelulasCampos = QRCode.Split(new string[] { "[TAB]" }, StringSplitOptions.None);
+
+                #region Carrega variaveis da leitura
+                string CodigoObjeto = CelulasCampos[0];
+                string CodigoLdi = CelulasCampos[1];
+                string NomeCliente = CelulasCampos[2];
+                string DataLancamento = CelulasCampos[3];
+                string DataModificacao = CelulasCampos[4];
+                string Situacao = CelulasCampos[5];
+                string Atualizado = CelulasCampos[6];
+                string ObjetoEntregue = CelulasCampos[7];
+                string CaixaPostal = CelulasCampos[8];
+                string UnidadePostagem = CelulasCampos[9];
+                string MunicipioPostagem = CelulasCampos[10];
+                string CriacaoPostagem = CelulasCampos[11];
+                string CepDestinoPostagem = CelulasCampos[12];
+                string ARPostagem = CelulasCampos[13];
+                string MPPostagem = CelulasCampos[14];
+                string DataMaxPrevistaEntregaPostagem = CelulasCampos[15];
+                string UnidadeLOEC = CelulasCampos[16];
+                string MunicipioLOEC = CelulasCampos[17];
+                string CriacaoLOEC = CelulasCampos[18];
+                string CarteiroLOEC = CelulasCampos[19];
+                string DistritoLOEC = CelulasCampos[20];
+                string NumeroLOEC = CelulasCampos[21];
+                string EnderecoLOEC = CelulasCampos[22];
+                string BairroLOEC = CelulasCampos[23];
+                string LocalidadeLOEC = CelulasCampos[24];
+                string SituacaoDestinatarioAusente = CelulasCampos[25];
+                string AgrupadoDestinatarioAusente = CelulasCampos[26];
+                string CoordenadasDestinatarioAusente = CelulasCampos[27];
+                string Comentario = CelulasCampos[28];
+                string TipoPostalServico = CelulasCampos[29];
+                string TipoPostalSiglaCodigo = CelulasCampos[30];
+                string TipoPostalNomeSiglaCodigo = CelulasCampos[31];
+                string TipoPostalPrazoDiasCorridosRegulamentado = CelulasCampos[32];
+                string DataListaAtual = CelulasCampos[33];
+                string NumeroListaAtual = CelulasCampos[34];
+                int ItemAtual = CelulasCampos[35].ToInt();
+                int QtdTotal = CelulasCampos[36].ToInt();
+                #endregion
+
+                if (listaObjetos == null || listaObjetos.Rows.Count == 0)
+                {
+                    #region Cria novo DataTable
+                    listaObjetos = new DataTable();
+                    listaObjetos.Columns.Add("CodigoObjeto", typeof(string));
+                    listaObjetos.PrimaryKey = new DataColumn[] { listaObjetos.Columns["CodigoObjeto"] };
+                    listaObjetos.Columns.Add("CodigoLdi", typeof(string));
+                    listaObjetos.Columns.Add("NomeCliente", typeof(string));
+                    listaObjetos.Columns.Add("DataLancamento", typeof(string));
+                    listaObjetos.Columns.Add("DataModificacao", typeof(string));
+                    listaObjetos.Columns.Add("Situacao", typeof(string));
+                    listaObjetos.Columns.Add("Atualizado", typeof(string));
+                    listaObjetos.Columns.Add("ObjetoEntregue", typeof(string));
+                    listaObjetos.Columns.Add("CaixaPostal", typeof(string));
+                    listaObjetos.Columns.Add("UnidadePostagem", typeof(string));
+                    listaObjetos.Columns.Add("MunicipioPostagem", typeof(string));
+                    listaObjetos.Columns.Add("CriacaoPostagem", typeof(string));
+                    listaObjetos.Columns.Add("CepDestinoPostagem", typeof(string));
+                    listaObjetos.Columns.Add("ARPostagem", typeof(string));
+                    listaObjetos.Columns.Add("MPPostagem", typeof(string));
+                    listaObjetos.Columns.Add("DataMaxPrevistaEntregaPostagem", typeof(string));
+                    listaObjetos.Columns.Add("UnidadeLOEC", typeof(string));
+                    listaObjetos.Columns.Add("MunicipioLOEC", typeof(string));
+                    listaObjetos.Columns.Add("CriacaoLOEC", typeof(string));
+                    listaObjetos.Columns.Add("CarteiroLOEC", typeof(string));
+                    listaObjetos.Columns.Add("DistritoLOEC", typeof(string));
+                    listaObjetos.Columns.Add("NumeroLOEC", typeof(string));
+                    listaObjetos.Columns.Add("EnderecoLOEC", typeof(string));
+                    listaObjetos.Columns.Add("BairroLOEC", typeof(string));
+                    listaObjetos.Columns.Add("LocalidadeLOEC", typeof(string));
+                    listaObjetos.Columns.Add("SituacaoDestinatarioAusente", typeof(string));
+                    listaObjetos.Columns.Add("AgrupadoDestinatarioAusente", typeof(string));
+                    listaObjetos.Columns.Add("CoordenadasDestinatarioAusente", typeof(string));
+                    listaObjetos.Columns.Add("Comentario", typeof(string));
+                    listaObjetos.Columns.Add("TipoPostalServico", typeof(string));
+                    listaObjetos.Columns.Add("TipoPostalSiglaCodigo", typeof(string));
+                    listaObjetos.Columns.Add("TipoPostalNomeSiglaCodigo", typeof(string));
+                    listaObjetos.Columns.Add("TipoPostalPrazoDiasCorridosRegulamentado", typeof(string));
+                    listaObjetos.Columns.Add("DataListaAtual", typeof(string));
+                    listaObjetos.Columns.Add("NumeroListaAtual", typeof(string));
+                    listaObjetos.Columns.Add("ItemAtual", typeof(int));
+                    listaObjetos.Columns.Add("QtdTotal", typeof(int));
+                    #endregion
+                }
+
+                bool existe = listaObjetos.AsEnumerable().Any(t => t["CodigoObjeto"].ToString() == CodigoObjeto);
+                #region Não Existe
+                if (!existe)
+                    listaObjetos.Rows.Add(
+                    CodigoObjeto,
+                    CodigoLdi,
+                    NomeCliente,
+                    DataLancamento,
+                    DataModificacao,
+                    Situacao,
+                    Atualizado,
+                    ObjetoEntregue,
+                    CaixaPostal,
+                    UnidadePostagem,
+                    MunicipioPostagem,
+                    CriacaoPostagem,
+                    CepDestinoPostagem,
+                    ARPostagem,
+                    MPPostagem,
+                    DataMaxPrevistaEntregaPostagem,
+                    UnidadeLOEC,
+                    MunicipioLOEC,
+                    CriacaoLOEC,
+                    CarteiroLOEC,
+                    DistritoLOEC,
+                    NumeroLOEC,
+                    EnderecoLOEC,
+                    BairroLOEC,
+                    LocalidadeLOEC,
+                    SituacaoDestinatarioAusente,
+                    AgrupadoDestinatarioAusente,
+                    CoordenadasDestinatarioAusente,
+                    Comentario,
+                    TipoPostalServico,
+                    TipoPostalSiglaCodigo,
+                    TipoPostalNomeSiglaCodigo,
+                    TipoPostalPrazoDiasCorridosRegulamentado,
+                    DataListaAtual,
+                    NumeroListaAtual,
+                    ItemAtual,
+                    QtdTotal
+                        );
+                #endregion
+
+                dataGridViewQRCode.DataSource = listaObjetos;
+                listaObjetos.DefaultView.Sort = "NumeroListaAtual ASC, ItemAtual ASC, QtdTotal ASC";
+                listaObjetos = listaObjetos.DefaultView.ToTable();
+
+                if (listaObjetos.Rows.Count == 0)
+                {
+                    LblQuantidadeImportados.Text = "";
+                    this.BtnGravar.Enabled = false;
+                    label2.Text = "";
+                    progressBar1.Visible = false;
+                }
+                if (listaObjetos.Rows.Count > 0)
+                {
+                    LblQuantidadeImportados.Text = string.Format("Quantidade de objetos para importação: '{0}' objetos", listaObjetos.Rows.Count);
+                    dataGridViewQRCode.DataSource = listaObjetos;
+                    this.BtnGravar.Enabled = true;
+                    label2.Text = "Barra de progresso";
+                    progressBar1.Visible = true;
+                    BtnGravar.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                Mensagens.Erro(ex.Message);
+            }
+            finally
+            {
+                TxtObjetoAtual.Text = "";
+                TxtObjetoAtual.Focus();
+                TxtObjetoAtual.ScrollToCaret();
+                TxtObjetoAtual.ScrollToCaret();
+
+                TxtObjetoAtual.Select(TxtObjetoAtual.Text.Length, 0);
+            }
+        }
+
+        private void EnviaEmailHTMLConsolidadoListaRecebimentoPLR(string numeroListaAtual, string horaRecebimentoPLR, string Html)
+        {
+            try
+            {
+                System.Net.Mail.SmtpClient cliente = new System.Net.Mail.SmtpClient();
+                cliente.Port = Convert.ToInt32("587");
+                cliente.Host = "smtp.gmail.com";
+                cliente.EnableSsl = true;
+                cliente.DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network;
+                cliente.UseDefaultCredentials = false;
+                cliente.Credentials = new System.Net.NetworkCredential("accluzimangues@gmail.com", "oxmt9212");
+
+                System.Net.Mail.MailMessage email = new System.Net.Mail.MailMessage();
+                email.From = new System.Net.Mail.MailAddress("accluzimangues@gmail.com");
+                email.To.Add("marques.silva@correios.com.br");
+                //email.To.Add("marques-fonseca@hotmail.com");
+                email.To.Add("accluzimangues@gmail.com");
+                email.Subject = "Resumo PLR [" + numeroListaAtual + "] recebida por Luzimangues às " + horaRecebimentoPLR + "";
+                email.IsBodyHtml = true;
+                email.Body = Html;
+
+                cliente.Send(email);
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
     }
 }

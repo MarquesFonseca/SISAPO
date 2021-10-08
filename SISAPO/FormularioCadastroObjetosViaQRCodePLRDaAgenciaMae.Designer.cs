@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormularioCadastroObjetosViaQRCodePLRDaAgenciaMae));
             this.BtnGravar = new System.Windows.Forms.Button();
@@ -54,8 +55,10 @@
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel3Botoes = new System.Windows.Forms.Panel();
-            this.BtnAdicionarPorPLRPreListaRemessa = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.LblLeituraPreListaRemessaLDI = new System.Windows.Forms.Label();
+            this.TxtObjetoAtual = new System.Windows.Forms.TextBox();
+            this.LblLeitura = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CodigoLdi = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NomeCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -104,6 +107,7 @@
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.panel3Botoes.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // BtnGravar
@@ -294,6 +298,7 @@
             this.BtnVerObjetosNaoAtualizados.TabIndex = 2;
             this.BtnVerObjetosNaoAtualizados.Text = "&Ver objetos não buscados";
             this.BtnVerObjetosNaoAtualizados.UseVisualStyleBackColor = true;
+            this.BtnVerObjetosNaoAtualizados.Visible = false;
             this.BtnVerObjetosNaoAtualizados.Click += new System.EventHandler(this.BtnVerObjetosNaoAtualizados_Click);
             // 
             // panel2
@@ -372,8 +377,8 @@
             this.dataGridView2.AllowUserToDeleteRows = false;
             this.dataGridView2.AllowUserToOrderColumns = true;
             this.dataGridView2.AllowUserToResizeRows = false;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -406,55 +411,70 @@
             this.panel3Botoes.Size = new System.Drawing.Size(200, 257);
             this.panel3Botoes.TabIndex = 3;
             // 
-            // BtnAdicionarPorPLRPreListaRemessa
+            // LblLeituraPreListaRemessaLDI
             // 
-            this.BtnAdicionarPorPLRPreListaRemessa.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnAdicionarPorPLRPreListaRemessa.Image = global::SISAPO.Properties.Resources.barcode_scanner;
-            this.BtnAdicionarPorPLRPreListaRemessa.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnAdicionarPorPLRPreListaRemessa.Location = new System.Drawing.Point(11, 12);
-            this.BtnAdicionarPorPLRPreListaRemessa.Name = "BtnAdicionarPorPLRPreListaRemessa";
-            this.BtnAdicionarPorPLRPreListaRemessa.Size = new System.Drawing.Size(225, 53);
-            this.BtnAdicionarPorPLRPreListaRemessa.TabIndex = 1;
-            this.BtnAdicionarPorPLRPreListaRemessa.Text = "        Adicionar por PLR -      Pré Lista de Remessa";
-            this.BtnAdicionarPorPLRPreListaRemessa.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnAdicionarPorPLRPreListaRemessa.UseVisualStyleBackColor = true;
-            this.BtnAdicionarPorPLRPreListaRemessa.Click += new System.EventHandler(this.BtnAdicionarPorPLRPreListaRemessa_Click);
+            this.LblLeituraPreListaRemessaLDI.AutoSize = true;
+            this.LblLeituraPreListaRemessaLDI.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblLeituraPreListaRemessaLDI.Location = new System.Drawing.Point(12, 8);
+            this.LblLeituraPreListaRemessaLDI.Name = "LblLeituraPreListaRemessaLDI";
+            this.LblLeituraPreListaRemessaLDI.Size = new System.Drawing.Size(644, 31);
+            this.LblLeituraPreListaRemessaLDI.TabIndex = 13;
+            this.LblLeituraPreListaRemessaLDI.Text = "Importação de objetos em Pré Lista de Remessa";
             // 
-            // button2
+            // TxtObjetoAtual
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(564, 12);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(190, 54);
-            this.button2.TabIndex = 0;
-            this.button2.Text = "&Limpar lista atual";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Visible = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.TxtObjetoAtual.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.TxtObjetoAtual.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.TxtObjetoAtual.Location = new System.Drawing.Point(67, 59);
+            this.TxtObjetoAtual.Name = "TxtObjetoAtual";
+            this.TxtObjetoAtual.Size = new System.Drawing.Size(242, 26);
+            this.TxtObjetoAtual.TabIndex = 11;
+            this.TxtObjetoAtual.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtObjetoAtual_KeyDown);
+            // 
+            // LblLeitura
+            // 
+            this.LblLeitura.AutoSize = true;
+            this.LblLeitura.Location = new System.Drawing.Point(67, 43);
+            this.LblLeitura.Name = "LblLeitura";
+            this.LblLeitura.Size = new System.Drawing.Size(123, 13);
+            this.LblLeitura.TabIndex = 12;
+            this.LblLeitura.Text = "Leitura QR Code do item";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::SISAPO.Properties.Resources.barcode_scanner;
+            this.pictureBox1.Location = new System.Drawing.Point(11, 42);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(66, 44);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox1.TabIndex = 14;
+            this.pictureBox1.TabStop = false;
             // 
             // dataGridViewTextBoxColumn2
             // 
+            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.dataGridViewTextBoxColumn2.DataPropertyName = "CodigoObjeto";
             this.dataGridViewTextBoxColumn2.HeaderText = "Código Objeto";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 130;
             // 
             // CodigoLdi
             // 
+            this.CodigoLdi.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.CodigoLdi.DataPropertyName = "CodigoLdi";
-            this.CodigoLdi.HeaderText = "CodigoLdi";
+            this.CodigoLdi.HeaderText = "Núm. Ldi";
             this.CodigoLdi.Name = "CodigoLdi";
             this.CodigoLdi.ReadOnly = true;
-            this.CodigoLdi.Visible = false;
+            this.CodigoLdi.Width = 85;
             // 
             // NomeCliente
             // 
+            this.NomeCliente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.NomeCliente.DataPropertyName = "NomeCliente";
-            this.NomeCliente.HeaderText = "NomeCliente";
+            this.NomeCliente.HeaderText = "Nome Cliente";
             this.NomeCliente.Name = "NomeCliente";
             this.NomeCliente.ReadOnly = true;
-            this.NomeCliente.Visible = false;
             // 
             // dataGridViewTextBoxColumn3
             // 
@@ -700,47 +720,56 @@
             // 
             // DataListaAtual
             // 
+            this.DataListaAtual.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.DataListaAtual.DataPropertyName = "DataListaAtual";
-            this.DataListaAtual.HeaderText = "DataListaAtual";
+            this.DataListaAtual.HeaderText = "Data da lista";
             this.DataListaAtual.Name = "DataListaAtual";
             this.DataListaAtual.ReadOnly = true;
-            this.DataListaAtual.Visible = false;
+            this.DataListaAtual.Width = 78;
             // 
             // NumeroListaAtual
             // 
+            this.NumeroListaAtual.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.NumeroListaAtual.DataPropertyName = "NumeroListaAtual";
-            this.NumeroListaAtual.HeaderText = "NumeroListaAtual";
+            this.NumeroListaAtual.HeaderText = "Núm. lista";
             this.NumeroListaAtual.Name = "NumeroListaAtual";
             this.NumeroListaAtual.ReadOnly = true;
-            this.NumeroListaAtual.Visible = false;
+            this.NumeroListaAtual.Width = 84;
             // 
             // ItemAtual
             // 
+            this.ItemAtual.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.ItemAtual.DataPropertyName = "ItemAtual";
-            this.ItemAtual.HeaderText = "ItemAtual";
+            dataGridViewCellStyle2.Format = "D5";
+            dataGridViewCellStyle2.NullValue = null;
+            this.ItemAtual.DefaultCellStyle = dataGridViewCellStyle2;
+            this.ItemAtual.HeaderText = "Item";
             this.ItemAtual.Name = "ItemAtual";
             this.ItemAtual.ReadOnly = true;
-            this.ItemAtual.Visible = false;
+            this.ItemAtual.Width = 58;
             // 
             // QtdTotal
             // 
+            this.QtdTotal.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.QtdTotal.DataPropertyName = "QtdTotal";
-            this.QtdTotal.HeaderText = "QtdTotal";
+            this.QtdTotal.HeaderText = "Qtd. Total";
             this.QtdTotal.Name = "QtdTotal";
             this.QtdTotal.ReadOnly = true;
-            this.QtdTotal.Visible = false;
+            this.QtdTotal.Width = 84;
             // 
             // FormularioCadastroObjetosViaQRCodePLRDaAgenciaMae
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(763, 462);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.LblLeituraPreListaRemessaLDI);
+            this.Controls.Add(this.TxtObjetoAtual);
+            this.Controls.Add(this.LblQuantidadeImportados);
+            this.Controls.Add(this.LblLeitura);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.panel3Botoes);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.BtnAdicionarPorPLRPreListaRemessa);
-            this.Controls.Add(this.LblQuantidadeImportados);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Name = "FormularioCadastroObjetosViaQRCodePLRDaAgenciaMae";
@@ -760,7 +789,9 @@
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.panel3Botoes.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -787,9 +818,11 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridView dataGridView2;
-        public System.Windows.Forms.Button BtnAdicionarPorPLRPreListaRemessa;
         private System.Windows.Forms.DataGridView dataGridViewQRCode;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label LblLeituraPreListaRemessaLDI;
+        public System.Windows.Forms.TextBox TxtObjetoAtual;
+        private System.Windows.Forms.Label LblLeitura;
+        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn CodigoLdi;
         private System.Windows.Forms.DataGridViewTextBoxColumn NomeCliente;
