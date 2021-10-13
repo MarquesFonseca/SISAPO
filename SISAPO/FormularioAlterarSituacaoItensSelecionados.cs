@@ -16,6 +16,8 @@ namespace SISAPO
         public bool ClicouCancelar = false;
         public string itemMotivoBaixaSelecionado = string.Empty;
         private Dictionary<string, string> ListaItensMotivoBaixa = new Dictionary<string, string>();
+        public string nomeRecebedor = string.Empty;
+        public string docRecebedor = string.Empty;
 
         public FormularioAlterarSituacaoItensSelecionados()
         {
@@ -62,6 +64,8 @@ namespace SISAPO
             {
                 string itemGrid = this.dataGridViewMotivoBaixo.SelectedRows[i].Cells["MotivoBaixa"].Value.ToString();
                 itemMotivoBaixaSelecionado = ListaItensMotivoBaixa.AsEnumerable().First(T => T.Key.ToString() == itemGrid).Value.ToString().RemoveAcentos().ToUpper().Trim();
+                nomeRecebedor = TxtNomeRecebedor.Text;
+                docRecebedor = TxtDocRecebedor.Text;
             }
 
             this.Close();

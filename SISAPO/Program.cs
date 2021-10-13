@@ -112,6 +112,7 @@ namespace SISAPO
             Configuracoes.SetaConfiguracoesGerarQRCodePLRNaLdi();
             Configuracoes.SetaConfiguracoesACCAgenciaComunitaria();
             Configuracoes.SetaConfiguracoesReceberObjetosViaQRCodePLRDaAgenciaMae();
+            Configuracoes.EmailsAgenciaMae = Configuracoes.ReceberEmailsAgenciaMae();
         }
 
 

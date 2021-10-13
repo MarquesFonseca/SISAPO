@@ -28,6 +28,7 @@ namespace SISAPO.ClassesDiversas
         public static bool GerarQRCodePLRNaLdi { get; internal set; }
         public static bool ACCAgenciaComunitaria { get; internal set; }
         public static bool ReceberObjetosViaQRCodePLRDaAgenciaMae { get; internal set; }
+        public static string EmailsAgenciaMae { get; internal set; }
 
         public static string strConexao
         {
@@ -149,6 +150,17 @@ namespace SISAPO.ClassesDiversas
             //{
             //    Mensagens.Erro(ex.Message);
             //}
+        }
+
+        public static string ReceberEmailsAgenciaMae()
+        {
+            using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
+            {
+                if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return ""; }
+
+                Configuracoes.EmailsAgenciaMae = Convert.ToString(dao.RetornaValor("SELECT TOP 1 EmailsAgenciaMae FROM TabelaConfiguracoesSistema"));
+            }
+            return Configuracoes.EmailsAgenciaMae;
         }
 
         public static void SetaConfiguracoesGerarQRCodePLRNaLdi()
@@ -441,7 +453,8 @@ namespace SISAPO.ClassesDiversas
             CriaColuna("TabelaConfiguracoesSistema", "GerarQRCodePLRNaLdi", "YESNO NULL DEFAULT 0");//GerarQRCodePLRNaLdi
             CriaColuna("TabelaConfiguracoesSistema", "ACCAgenciaComunitaria", "YESNO NULL DEFAULT 0");//ACCAgenciaComunitaria
             CriaColuna("TabelaConfiguracoesSistema", "ReceberObjetosViaQRCodePLRDaAgenciaMae", "YESNO NULL DEFAULT 0");//ReceberObjetosViaQRCodePLRDaAgenciaMae
-            
+            CriaColuna("TabelaConfiguracoesSistema", "EmailsAgenciaMae", "TEXT(255) NULL DEFAULT NULL");//EmailsAgenciaMae
+
 
             //CriaColuna("TabelaHistoricoConsulta", "Codigo", "INTEGER");//Codigo
             CriaColuna("TabelaHistoricoConsulta", "CodigoObjeto", "TEXT(255) NULL DEFAULT NULL");//CodigoObjeto

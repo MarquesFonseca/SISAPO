@@ -307,9 +307,9 @@ namespace SISAPO
         {
             toolStripMenuItemImprimirListaEntrega.Enabled = !@ModoACCAgenciaComunitaria;
             imprimirAvisosDeChegadaSelecionadosToolStripMenuItem.Enabled = !@ModoACCAgenciaComunitaria;
-            alterarItemToolStripMenuItem1.Enabled = !@ModoACCAgenciaComunitaria;
-            alterarSituaçãoDeItensSelecionadosToolStripMenuItem.Enabled = !@ModoACCAgenciaComunitaria;
-            alterarComentárioSelecionadosToolStripMenuItem.Enabled = !@ModoACCAgenciaComunitaria;
+            //alterarItemToolStripMenuItem1.Enabled = !@ModoACCAgenciaComunitaria;
+            //alterarSituaçãoDeItensSelecionadosToolStripMenuItem.Enabled = !@ModoACCAgenciaComunitaria;
+            //alterarComentárioSelecionadosToolStripMenuItem.Enabled = !@ModoACCAgenciaComunitaria;
             emitirCHECKOUTEncaminhamentoSelecionadosToolStripMenuItem.Enabled = !@ModoACCAgenciaComunitaria;
             AtualizarObjetosSelecionadosToolStripMenuItem.Enabled = !@ModoACCAgenciaComunitaria;
             Btn6Atualizar.Enabled = !@ModoACCAgenciaComunitaria;
@@ -1636,7 +1636,7 @@ namespace SISAPO
 
                 if (ListaGridSelecaoAtual.Count == 0) return;
 
-                FormularioConsulta.RetornaComponentesFormularioConsulta().AlterarSituacaoItensSelecionados(ListaGridSelecaoAtual, formularioAlterarSituacaoItensSelecionados.itemMotivoBaixaSelecionado);
+                FormularioConsulta.RetornaComponentesFormularioConsulta().AlterarSituacaoItensSelecionados(ListaGridSelecaoAtual, formularioAlterarSituacaoItensSelecionados.itemMotivoBaixaSelecionado, formularioAlterarSituacaoItensSelecionados.nomeRecebedor, formularioAlterarSituacaoItensSelecionados.docRecebedor);
 
                 //if (Mensagens.Pergunta("Itens atualizado com sucesso! Deseja atualizar grid?") == System.Windows.Forms.DialogResult.Yes)
                 //{
@@ -1653,11 +1653,13 @@ namespace SISAPO
 
         }
 
-        public void AlterarSituacaoItensSelecionados(List<string> ListaCodigosGrid, string MotivoBaixaInformado)
+        public void AlterarSituacaoItensSelecionados(List<string> ListaCodigosGrid, string MotivoBaixaInformado, string nomeRecebedor, string docRecebedor)
         {
             try
             {
-                waitForm.Show(this);
+#if !DEBUG
+            waitForm.Show(this);          
+#endif
                 foreach (string itemCodigo in ListaCodigosGrid)
                 {
                     using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
@@ -1672,8 +1674,8 @@ namespace SISAPO
                         string DataLancamento = string.Format("{0:dd/MM/yyyy HH:mm:ss}", dr["DataLancamento"].ToDateTime());
                         string NomeCliente = dr["NomeCliente"].ToString();
                         string Comentario = dr["Comentario"].ToString();
-                        string NomeRecebedor = string.Empty;
-                        string DocRecebedor = string.Empty;
+                        string NomeRecebedor = nomeRecebedor;
+                        string DocRecebedor = docRecebedor;
 
                         List<Parametros> pr = new List<Parametros>() {
                             new Parametros() { Nome = "@DataModificacao", Tipo = TipoCampo.Text, Valor = dataModificacaoRetornada },
@@ -1684,15 +1686,25 @@ namespace SISAPO
                         };
                         dao.ExecutaSQL("UPDATE TabelaObjetosSROLocal SET DataModificacao = @DataModificacao, Situacao = @Situacao, ObjetoEntregue = @ObjetoEntregue WHERE (CodigoObjeto = @CodigoObjeto)", pr);
 
+
                         EnviarEmailMotivoBaixa(itemCodigo, NumeroLDI, DataLancamento, NomeCliente, Comentario, MotivoBaixaInformado, dataModificacaoRetornada, NomeRecebedor, DocRecebedor);
 
                     }
                 }
-                waitForm.Close();
+#if !DEBUG
+            waitForm.Close();         
+#endif
+
             }
             catch (Exception EX)
             {
                 Mensagens.Erro("Ocorreu um erro inesperado ao gravar. \nErro: " + EX.Message);
+            }
+            finally
+            {
+#if !DEBUG
+            waitForm.Close();         
+#endif
             }
         }
 
@@ -1700,24 +1712,37 @@ namespace SISAPO
         {
             try
             {
-                System.Net.Mail.SmtpClient cliente = new System.Net.Mail.SmtpClient();
-                cliente.Port = Convert.ToInt32("587");
-                cliente.Host = "smtp.gmail.com";
-                cliente.EnableSsl = true;
-                cliente.DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network;
-                cliente.UseDefaultCredentials = false;
-                cliente.Credentials = new System.Net.NetworkCredential("accluzimangues@gmail.com", "oxmt9212");
+                Configuracoes.EmailsAgenciaMae = Configuracoes.ReceberEmailsAgenciaMae();
 
-                System.Net.Mail.MailMessage email = new System.Net.Mail.MailMessage();
-                email.From = new System.Net.Mail.MailAddress("accluzimangues@gmail.com");
-                email.To.Add("marques.silva@correios.com.br");
-                email.To.Add("accluzimangues@gmail.com");
-                //email.To.Add("marques-fonseca@hotmail.com");
-                email.Subject = "Mudança de situação Objeto "+itemCodigo+" por Luzimangues às " + dataModificacaoRetornada + "";
-                email.IsBodyHtml = true;
-                email.Body = RetornaHTMLSituacaoBaixa(itemCodigo, numeroLDI, dataLancamento, nomeCliente, comentario, motivoBaixaInformado, dataModificacaoRetornada, nomeRecebedor, docRecebedor);
+                if (string.IsNullOrWhiteSpace(Configuracoes.EmailsAgenciaMae))
+                    return;
 
-                cliente.Send(email);
+                string[] listaEmails = Configuracoes.EmailsAgenciaMae.Split(';');
+
+
+                    System.Net.Mail.SmtpClient cliente = new System.Net.Mail.SmtpClient();
+                    cliente.Port = Convert.ToInt32("587");
+                    cliente.Host = "smtp.gmail.com";
+                    cliente.EnableSsl = true;
+                    cliente.DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network;
+                    cliente.UseDefaultCredentials = false;
+                    cliente.Credentials = new System.Net.NetworkCredential("accluzimangues@gmail.com", "oxmt9212");
+
+                    System.Net.Mail.MailMessage email = new System.Net.Mail.MailMessage();
+                    email.From = new System.Net.Mail.MailAddress("ACC LUZIMANGUES <accluzimangues@gmail.com>");
+                foreach (string item in listaEmails)
+                {
+                    //valida email
+                    if (!Uteis.IsValidEmail(item.Trim())) continue;
+                    email.To.Add(item.ToLowerInvariant());
+                    //email.To.Add("accluzimangues@gmail.com");
+                    //email.To.Add("marques-fonseca@hotmail.com");
+                }
+                    email.Subject = "Mudança de situação Objeto " + itemCodigo + " por Luzimangues às " + dataModificacaoRetornada + "";
+                    email.IsBodyHtml = true;
+                    email.Body = RetornaHTMLSituacaoBaixa(itemCodigo, numeroLDI, dataLancamento, nomeCliente, comentario, motivoBaixaInformado, dataModificacaoRetornada, nomeRecebedor, docRecebedor);
+
+                    cliente.Send(email);
             }
             catch (Exception ex)
             {
@@ -1782,30 +1807,30 @@ namespace SISAPO
             Html.AppendLine("       </tr>");
             Html.AppendLine("       <tr>");
             Html.AppendLine("       <th>Data Lançamento LDI</td>");
-            Html.AppendLine("       <td>"+ dataLancamento + "</td>");
+            Html.AppendLine("       <td>" + dataLancamento + "</td>");
             Html.AppendLine("       </tr>");
             Html.AppendLine("       <tr>");
             Html.AppendLine("       <th>Nome Cliente</td>");
-            Html.AppendLine("       <td>"+ nomeCliente + "</td>");
+            Html.AppendLine("       <td>" + nomeCliente + "</td>");
             Html.AppendLine("       </tr>");
             Html.AppendLine("       <tr>");
             Html.AppendLine("       <th>Comentário</td>");
-            Html.AppendLine("       <td>"+ comentario + "</td>");
+            Html.AppendLine("       <td>" + comentario + "</td>");
             Html.AppendLine("       </tr>");
             Html.AppendLine("       <tr>");
             Html.AppendLine("       <th>Situação informada</td>");
-            Html.AppendLine("       <td>"+ motivoBaixaInformado + "</td>");
+            Html.AppendLine("       <td>" + motivoBaixaInformado + "</td>");
             Html.AppendLine("       </tr>");
             Html.AppendLine("       <tr>");
             Html.AppendLine("       <th>Data Situação</td>");
-            Html.AppendLine("       <td>"+ dataModificacaoRetornada + "</td>");
+            Html.AppendLine("       <td>" + dataModificacaoRetornada + "</td>");
             Html.AppendLine("       <tr>");
             Html.AppendLine("       <th>Nome Recebedor</td>");
-            Html.AppendLine("       <td>"+ nomeRecebedor + "</td>");
+            Html.AppendLine("       <td>" + nomeRecebedor + "</td>");
             Html.AppendLine("       </tr>");
             Html.AppendLine("       <tr>");
             Html.AppendLine("       <th>Doc. Recebedor</td>");
-            Html.AppendLine("       <td>"+ docRecebedor + "</td>");
+            Html.AppendLine("       <td>" + docRecebedor + "</td>");
             Html.AppendLine("       </tr>");
             Html.AppendLine("       </tbody>");
             Html.AppendLine("    </table>");

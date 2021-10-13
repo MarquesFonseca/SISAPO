@@ -196,7 +196,7 @@ namespace SISAPO
                 using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
                 {
                     if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
-                    dao.ExecutaSQL(string.Format("UPDATE TabelaConfiguracoesSistema SET NomeAgenciaLocal = @NomeAgenciaLocal, EnderecoAgenciaLocal = @EnderecoAgenciaLocal, SuperintendenciaEstadual = @SuperintendenciaEstadual, CepUnidade = @CepUnidade, CidadeAgenciaLocal = @CidadeAgenciaLocal, UFAgenciaLocal = @UFAgenciaLocal, TelefoneAgenciaLocal = @TelefoneAgenciaLocal, HorarioFuncionamentoAgenciaLocal = @HorarioFuncionamentoAgenciaLocal, GerarQRCodePLRNaLdi = @GerarQRCodePLRNaLdi, ACCAgenciaComunitaria = @ACCAgenciaComunitaria, ReceberObjetosViaQRCodePLRDaAgenciaMae = @ReceberObjetosViaQRCodePLRDaAgenciaMae Where Codigo = @Codigo"), new List<Parametros>(){
+                    dao.ExecutaSQL(string.Format("UPDATE TabelaConfiguracoesSistema SET NomeAgenciaLocal = @NomeAgenciaLocal, EnderecoAgenciaLocal = @EnderecoAgenciaLocal, SuperintendenciaEstadual = @SuperintendenciaEstadual, CepUnidade = @CepUnidade, CidadeAgenciaLocal = @CidadeAgenciaLocal, UFAgenciaLocal = @UFAgenciaLocal, TelefoneAgenciaLocal = @TelefoneAgenciaLocal, HorarioFuncionamentoAgenciaLocal = @HorarioFuncionamentoAgenciaLocal, GerarQRCodePLRNaLdi = @GerarQRCodePLRNaLdi, ACCAgenciaComunitaria = @ACCAgenciaComunitaria, ReceberObjetosViaQRCodePLRDaAgenciaMae = @ReceberObjetosViaQRCodePLRDaAgenciaMae, EmailsAgenciaMae = @EmailsAgenciaMae Where Codigo = @Codigo"), new List<Parametros>(){
                                             new Parametros("@NomeAgenciaLocal", TipoCampo.Text, txtNomeAgencia.Text),
                                             new Parametros("@EnderecoAgenciaLocal", TipoCampo.Text, txtEnderecoAgencia.Text),
                                             new Parametros("@SuperintendenciaEstadual", TipoCampo.Text, string.Format("{0}", comboBoxSupEst.Text)),
@@ -210,6 +210,7 @@ namespace SISAPO
                                             new Parametros("@GerarQRCodePLRNaLdi", TipoCampo.Boolean, checkBoxGerarQRCodePLRNaLdi.Checked),
                                             new Parametros("@ACCAgenciaComunitaria", TipoCampo.Boolean, checkBoxACCAgenciaComunitaria.Checked),
                                             new Parametros("@ReceberObjetosViaQRCodePLRDaAgenciaMae", TipoCampo.Boolean, checkBoxReceberObjetosViaQRCodePLRDaAgenciaMae.Checked),
+                                            new Parametros("@EmailsAgenciaMae", TipoCampo.Text, TxtEmailsAgenciaMae.Text),
 
                                             new Parametros("@Codigo", TipoCampo.Int, 2)});
 
@@ -229,6 +230,8 @@ namespace SISAPO
                 {
                     FormularioAuxilioGestaoDiaNovo.RetornaComponentesFormularioAuxilioGestaoDiaNovo().ConfiguraMenusEBotoesParaACCAgenciaComunitaria(checkBoxACCAgenciaComunitaria.Checked);
                 }
+
+                Configuracoes.EmailsAgenciaMae = Configuracoes.ReceberEmailsAgenciaMae();
 
                 Mensagens.Informa("Gravado com sucesso!", MessageBoxIcon.Information, MessageBoxButtons.OK);
 
@@ -485,6 +488,16 @@ namespace SISAPO
         private void checkBoxACCAgenciaComunitaria_CheckedChanged(object sender, EventArgs e)
         {
             checkBoxReceberObjetosViaQRCodePLRDaAgenciaMae.Enabled = checkBoxACCAgenciaComunitaria.Checked;
+            TxtEmailsAgenciaMae.Enabled = checkBoxACCAgenciaComunitaria.Checked;
+
+            if(checkBoxACCAgenciaComunitaria.Checked)
+            {
+                TxtEmailsAgenciaMae.Text = Configuracoes.ReceberEmailsAgenciaMae();
+            }
+            else
+            {
+                TxtEmailsAgenciaMae.Text = string.Empty;
+            }
         }
 
         private void checkBoxReceberObjetosViaQRCodePLRDaAgenciaMae_CheckedChanged(object sender, EventArgs e)

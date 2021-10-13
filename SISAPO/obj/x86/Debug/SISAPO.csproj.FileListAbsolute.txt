@@ -21,6 +21,7 @@ C:\Projetos\SISAPO\SISAPO\bin\Debug\zxing.presentation.dll
 C:\Projetos\SISAPO\SISAPO\bin\Debug\Microsoft.VisualBasic.PowerPacks.Vs.xml
 C:\Projetos\SISAPO\SISAPO\bin\Debug\zxing.xml
 C:\Projetos\SISAPO\SISAPO\bin\Debug\zxing.presentation.xml
+C:\Projetos\SISAPO\SISAPO\obj\x86\Debug\SISAPO.csprojResolveAssemblyReference.cache
 C:\Projetos\SISAPO\SISAPO\obj\x86\Debug\SISAPO.FormularioAdicionarItemObjetoQRCode.resources
 C:\Projetos\SISAPO\SISAPO\obj\x86\Debug\SISAPO.FormularioCadastroObjetosViaQRCodePLRDaAgenciaMae.resources
 C:\Projetos\SISAPO\SISAPO\obj\x86\Debug\SISAPO.FormularioInformarCodigo.resources
@@ -68,4 +69,3 @@ C:\Projetos\SISAPO\SISAPO\obj\x86\Debug\SISAPO.exe.manifest
 C:\Projetos\SISAPO\SISAPO\obj\x86\Debug\SISAPO.application
 C:\Projetos\SISAPO\SISAPO\obj\x86\Debug\SISAPO.exe
 C:\Projetos\SISAPO\SISAPO\obj\x86\Debug\SISAPO.pdb
-C:\Projetos\SISAPO\SISAPO\obj\x86\Debug\SISAPO.csprojResolveAssemblyReference.cache

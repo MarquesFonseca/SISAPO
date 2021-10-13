@@ -831,7 +831,7 @@ namespace SISAPO
             List<string> ListaGridSelecaoAtual = RetornaListaCodigosGridSelecaoAtual(dataGridView1);
             if (ListaGridSelecaoAtual.Count == 0) return;
 
-            FormularioConsulta.RetornaComponentesFormularioConsulta().AlterarSituacaoItensSelecionados(ListaGridSelecaoAtual, formularioAlterarSituacaoItensSelecionados.itemMotivoBaixaSelecionado);
+            FormularioConsulta.RetornaComponentesFormularioConsulta().AlterarSituacaoItensSelecionados(ListaGridSelecaoAtual, formularioAlterarSituacaoItensSelecionados.itemMotivoBaixaSelecionado, formularioAlterarSituacaoItensSelecionados.nomeRecebedor, formularioAlterarSituacaoItensSelecionados.docRecebedor);
 
             //if (Mensagens.Pergunta("Itens atualizado com sucesso! Deseja atualizar grid?") == System.Windows.Forms.DialogResult.Yes)
             //{
