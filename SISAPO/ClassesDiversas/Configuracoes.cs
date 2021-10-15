@@ -181,7 +181,7 @@ namespace SISAPO.ClassesDiversas
             {
                 if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
 
-                Configuracoes.GerarQRCodePLRNaLdi = Convert.ToBoolean(dao.RetornaValor("SELECT TOP 1 GerarTXTPLRNaLdi FROM TabelaConfiguracoesSistema"));
+                Configuracoes.GerarTXTPLRNaLdi = Convert.ToBoolean(dao.RetornaValor("SELECT TOP 1 GerarTXTPLRNaLdi FROM TabelaConfiguracoesSistema"));
             }
         }
 
@@ -211,7 +211,7 @@ namespace SISAPO.ClassesDiversas
             {
                 if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
 
-                Configuracoes.ReceberObjetosViaQRCodePLRDaAgenciaMae = Convert.ToBoolean(dao.RetornaValor("SELECT TOP 1 ReceberObjetosViaTXTPLRDaAgenciaMae FROM TabelaConfiguracoesSistema"));
+                Configuracoes.ReceberObjetosViaTXTPLRDaAgenciaMae = Convert.ToBoolean(dao.RetornaValor("SELECT TOP 1 ReceberObjetosViaTXTPLRDaAgenciaMae FROM TabelaConfiguracoesSistema"));
             }
         }
 
