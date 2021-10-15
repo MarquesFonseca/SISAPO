@@ -113,6 +113,8 @@ namespace SISAPO
             Configuracoes.SetaConfiguracoesACCAgenciaComunitaria();
             Configuracoes.SetaConfiguracoesReceberObjetosViaQRCodePLRDaAgenciaMae();
             Configuracoes.EmailsAgenciaMae = Configuracoes.ReceberEmailsAgenciaMae();
+            Configuracoes.SetaConfiguracoesGerarTXTPLRNaLdi();
+            Configuracoes.SetaConfiguracoesReceberObjetosViaTXTPLRDaAgenciaMae();
         }
 
 

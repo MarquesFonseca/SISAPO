@@ -196,7 +196,7 @@ namespace SISAPO
                 using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
                 {
                     if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
-                    dao.ExecutaSQL(string.Format("UPDATE TabelaConfiguracoesSistema SET NomeAgenciaLocal = @NomeAgenciaLocal, EnderecoAgenciaLocal = @EnderecoAgenciaLocal, SuperintendenciaEstadual = @SuperintendenciaEstadual, CepUnidade = @CepUnidade, CidadeAgenciaLocal = @CidadeAgenciaLocal, UFAgenciaLocal = @UFAgenciaLocal, TelefoneAgenciaLocal = @TelefoneAgenciaLocal, HorarioFuncionamentoAgenciaLocal = @HorarioFuncionamentoAgenciaLocal, GerarQRCodePLRNaLdi = @GerarQRCodePLRNaLdi, ACCAgenciaComunitaria = @ACCAgenciaComunitaria, ReceberObjetosViaQRCodePLRDaAgenciaMae = @ReceberObjetosViaQRCodePLRDaAgenciaMae, EmailsAgenciaMae = @EmailsAgenciaMae Where Codigo = @Codigo"), new List<Parametros>(){
+                    dao.ExecutaSQL(string.Format("UPDATE TabelaConfiguracoesSistema SET NomeAgenciaLocal = @NomeAgenciaLocal, EnderecoAgenciaLocal = @EnderecoAgenciaLocal, SuperintendenciaEstadual = @SuperintendenciaEstadual, CepUnidade = @CepUnidade, CidadeAgenciaLocal = @CidadeAgenciaLocal, UFAgenciaLocal = @UFAgenciaLocal, TelefoneAgenciaLocal = @TelefoneAgenciaLocal, HorarioFuncionamentoAgenciaLocal = @HorarioFuncionamentoAgenciaLocal Where Codigo = @Codigo"), new List<Parametros>(){
                                             new Parametros("@NomeAgenciaLocal", TipoCampo.Text, txtNomeAgencia.Text),
                                             new Parametros("@EnderecoAgenciaLocal", TipoCampo.Text, txtEnderecoAgencia.Text),
                                             new Parametros("@SuperintendenciaEstadual", TipoCampo.Text, string.Format("{0}", comboBoxSupEst.Text)),
@@ -207,35 +207,12 @@ namespace SISAPO
                                             new Parametros("@TelefoneAgenciaLocal", TipoCampo.Text, txtTelefoneAgenciaLocal.Text),
                                             new Parametros("@HorarioFuncionamentoAgenciaLocal", TipoCampo.Text, txtHorarioFuncionamentoAgenciaLocal.Text),
 
-                                            new Parametros("@GerarQRCodePLRNaLdi", TipoCampo.Boolean, checkBoxGerarQRCodePLRNaLdi.Checked),
-                                            new Parametros("@ACCAgenciaComunitaria", TipoCampo.Boolean, checkBoxACCAgenciaComunitaria.Checked),
-                                            new Parametros("@ReceberObjetosViaQRCodePLRDaAgenciaMae", TipoCampo.Boolean, checkBoxReceberObjetosViaQRCodePLRDaAgenciaMae.Checked),
-                                            new Parametros("@EmailsAgenciaMae", TipoCampo.Text, TxtEmailsAgenciaMae.Text),
-
                                             new Parametros("@Codigo", TipoCampo.Int, 2)});
 
                 }
                 Configuracoes.DadosAgencia = Configuracoes.RetornaDadosAgencia();
-                Configuracoes.GerarQRCodePLRNaLdi = checkBoxGerarQRCodePLRNaLdi.Checked;
-                Configuracoes.ACCAgenciaComunitaria = checkBoxACCAgenciaComunitaria.Checked;
-                Configuracoes.ReceberObjetosViaQRCodePLRDaAgenciaMae = checkBoxReceberObjetosViaQRCodePLRDaAgenciaMae.Checked;
-                FormularioPrincipal.RetornaComponentesFormularioPrincipal().ConfiguraMenusParaACCAgenciaComunitaria(checkBoxACCAgenciaComunitaria.Checked);
-
-                if (FormularioConsulta.RetornaComponentesFormularioConsulta() != null) //FormularioConsulta está aberto
-                {
-                    FormularioConsulta.RetornaComponentesFormularioConsulta().ConfiguraMenusEBotoesParaACCAgenciaComunitaria(checkBoxACCAgenciaComunitaria.Checked);
-                }
-
-                if (FormularioAuxilioGestaoDiaNovo.RetornaComponentesFormularioAuxilioGestaoDiaNovo() != null) //FormularioAuxilioGestaoDiaNovo está aberto
-                {
-                    FormularioAuxilioGestaoDiaNovo.RetornaComponentesFormularioAuxilioGestaoDiaNovo().ConfiguraMenusEBotoesParaACCAgenciaComunitaria(checkBoxACCAgenciaComunitaria.Checked);
-                }
-
-                Configuracoes.EmailsAgenciaMae = Configuracoes.ReceberEmailsAgenciaMae();
 
                 Mensagens.Informa("Gravado com sucesso!", MessageBoxIcon.Information, MessageBoxButtons.OK);
-
-
             }
             catch (Exception ex)
             {
@@ -485,6 +462,11 @@ namespace SISAPO
 
         }
 
+        private void checkBoxGerarArquiviTXTPLRNaLdi_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
         private void checkBoxACCAgenciaComunitaria_CheckedChanged(object sender, EventArgs e)
         {
             checkBoxReceberObjetosViaQRCodePLRDaAgenciaMae.Enabled = checkBoxACCAgenciaComunitaria.Checked;
@@ -503,6 +485,63 @@ namespace SISAPO
         private void checkBoxReceberObjetosViaQRCodePLRDaAgenciaMae_CheckedChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void checkBoxReceberObjetosViaTXTPLRDaAgenciaMae_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnAtualizarPLR_Click(object sender, EventArgs e)
+        {
+            try
+            {                
+                //if (string.IsNullOrEmpty(comboBoxUFAgenciaLocal.Text))
+                //{
+                //    Mensagens.Erro("O campo \"Estado\" se encontra vazio.");
+                //    return;
+                //}
+                using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
+                {
+                    if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+                    dao.ExecutaSQL(string.Format("UPDATE TabelaConfiguracoesSistema SET GerarQRCodePLRNaLdi = @GerarQRCodePLRNaLdi, ACCAgenciaComunitaria = @ACCAgenciaComunitaria, ReceberObjetosViaQRCodePLRDaAgenciaMae = @ReceberObjetosViaQRCodePLRDaAgenciaMae, EmailsAgenciaMae = @EmailsAgenciaMae, GerarTXTPLRNaLdi = @GerarTXTPLRNaLdi, ReceberObjetosViaTXTPLRDaAgenciaMae = @ReceberObjetosViaTXTPLRDaAgenciaMae Where Codigo = @Codigo"), new List<Parametros>(){
+                                            new Parametros("@GerarQRCodePLRNaLdi", TipoCampo.Boolean, checkBoxGerarQRCodePLRNaLdi.Checked),
+                                            new Parametros("@ACCAgenciaComunitaria", TipoCampo.Boolean, checkBoxACCAgenciaComunitaria.Checked),
+                                            new Parametros("@ReceberObjetosViaQRCodePLRDaAgenciaMae", TipoCampo.Boolean, checkBoxReceberObjetosViaQRCodePLRDaAgenciaMae.Checked),
+                                            new Parametros("@EmailsAgenciaMae", TipoCampo.Text, TxtEmailsAgenciaMae.Text),
+
+                                            new Parametros("@GerarTXTPLRNaLdi", TipoCampo.Boolean, checkBoxGerarArquiviTXTPLRNaLdi.Checked),
+                                            new Parametros("@ReceberObjetosViaTXTPLRDaAgenciaMae", TipoCampo.Boolean, checkBoxReceberObjetosViaTXTPLRDaAgenciaMae.Checked),
+
+                                            new Parametros("@Codigo", TipoCampo.Int, 2)});
+
+                }
+                Configuracoes.GerarQRCodePLRNaLdi = checkBoxGerarQRCodePLRNaLdi.Checked;
+                Configuracoes.ACCAgenciaComunitaria = checkBoxACCAgenciaComunitaria.Checked;
+                Configuracoes.ReceberObjetosViaQRCodePLRDaAgenciaMae = checkBoxReceberObjetosViaQRCodePLRDaAgenciaMae.Checked;
+                Configuracoes.GerarTXTPLRNaLdi = checkBoxGerarArquiviTXTPLRNaLdi.Checked;
+                Configuracoes.ReceberObjetosViaTXTPLRDaAgenciaMae = checkBoxReceberObjetosViaTXTPLRDaAgenciaMae.Checked;
+
+                FormularioPrincipal.RetornaComponentesFormularioPrincipal().ConfiguraMenusParaACCAgenciaComunitaria(checkBoxACCAgenciaComunitaria.Checked);
+
+                if (FormularioConsulta.RetornaComponentesFormularioConsulta() != null) //FormularioConsulta está aberto
+                {
+                    FormularioConsulta.RetornaComponentesFormularioConsulta().ConfiguraMenusEBotoesParaACCAgenciaComunitaria(checkBoxACCAgenciaComunitaria.Checked);
+                }
+
+                if (FormularioAuxilioGestaoDiaNovo.RetornaComponentesFormularioAuxilioGestaoDiaNovo() != null) //FormularioAuxilioGestaoDiaNovo está aberto
+                {
+                    FormularioAuxilioGestaoDiaNovo.RetornaComponentesFormularioAuxilioGestaoDiaNovo().ConfiguraMenusEBotoesParaACCAgenciaComunitaria(checkBoxACCAgenciaComunitaria.Checked);
+                }
+
+                Configuracoes.EmailsAgenciaMae = Configuracoes.ReceberEmailsAgenciaMae();
+
+                Mensagens.Informa("Gravado com sucesso!", MessageBoxIcon.Information, MessageBoxButtons.OK);
+            }
+            catch (Exception ex)
+            {
+                Mensagens.Erro(ex.Message);
+            }
         }
     }
 }

@@ -331,6 +331,10 @@ namespace SISAPO {
             
             private global::System.Data.DataColumn columnEmailsAgenciaMae;
             
+            private global::System.Data.DataColumn columnGerarTXTPLRNaLdi;
+            
+            private global::System.Data.DataColumn columnReceberObjetosViaTXTPLRDaAgenciaMae;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public TabelaConfiguracoesSistemaDataTable() {
@@ -574,6 +578,22 @@ namespace SISAPO {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn GerarTXTPLRNaLdiColumn {
+                get {
+                    return this.columnGerarTXTPLRNaLdi;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ReceberObjetosViaTXTPLRDaAgenciaMaeColumn {
+                get {
+                    return this.columnReceberObjetosViaTXTPLRDaAgenciaMae;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -634,7 +654,9 @@ namespace SISAPO {
                         bool GerarQRCodePLRNaLdi, 
                         bool ACCAgenciaComunitaria, 
                         bool ReceberObjetosViaQRCodePLRDaAgenciaMae, 
-                        string EmailsAgenciaMae) {
+                        string EmailsAgenciaMae, 
+                        bool GerarTXTPLRNaLdi, 
+                        bool ReceberObjetosViaTXTPLRDaAgenciaMae) {
                 TabelaConfiguracoesSistemaRow rowTabelaConfiguracoesSistemaRow = ((TabelaConfiguracoesSistemaRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -662,7 +684,9 @@ namespace SISAPO {
                         GerarQRCodePLRNaLdi,
                         ACCAgenciaComunitaria,
                         ReceberObjetosViaQRCodePLRDaAgenciaMae,
-                        EmailsAgenciaMae};
+                        EmailsAgenciaMae,
+                        GerarTXTPLRNaLdi,
+                        ReceberObjetosViaTXTPLRDaAgenciaMae};
                 rowTabelaConfiguracoesSistemaRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowTabelaConfiguracoesSistemaRow);
                 return rowTabelaConfiguracoesSistemaRow;
@@ -718,6 +742,8 @@ namespace SISAPO {
                 this.columnACCAgenciaComunitaria = base.Columns["ACCAgenciaComunitaria"];
                 this.columnReceberObjetosViaQRCodePLRDaAgenciaMae = base.Columns["ReceberObjetosViaQRCodePLRDaAgenciaMae"];
                 this.columnEmailsAgenciaMae = base.Columns["EmailsAgenciaMae"];
+                this.columnGerarTXTPLRNaLdi = base.Columns["GerarTXTPLRNaLdi"];
+                this.columnReceberObjetosViaTXTPLRDaAgenciaMae = base.Columns["ReceberObjetosViaTXTPLRDaAgenciaMae"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -775,6 +801,10 @@ namespace SISAPO {
                 base.Columns.Add(this.columnReceberObjetosViaQRCodePLRDaAgenciaMae);
                 this.columnEmailsAgenciaMae = new global::System.Data.DataColumn("EmailsAgenciaMae", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnEmailsAgenciaMae);
+                this.columnGerarTXTPLRNaLdi = new global::System.Data.DataColumn("GerarTXTPLRNaLdi", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnGerarTXTPLRNaLdi);
+                this.columnReceberObjetosViaTXTPLRDaAgenciaMae = new global::System.Data.DataColumn("ReceberObjetosViaTXTPLRDaAgenciaMae", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnReceberObjetosViaTXTPLRDaAgenciaMae);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnCodigo}, true));
                 this.columnCodigo.AutoIncrement = true;
@@ -1372,6 +1402,40 @@ namespace SISAPO {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool GerarTXTPLRNaLdi {
+                get {
+                    try {
+                        return ((bool)(this[this.tableTabelaConfiguracoesSistema.GerarTXTPLRNaLdiColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'GerarTXTPLRNaLdi\' in table \'TabelaConfiguracoesSistema\' is " +
+                                "DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTabelaConfiguracoesSistema.GerarTXTPLRNaLdiColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool ReceberObjetosViaTXTPLRDaAgenciaMae {
+                get {
+                    try {
+                        return ((bool)(this[this.tableTabelaConfiguracoesSistema.ReceberObjetosViaTXTPLRDaAgenciaMaeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ReceberObjetosViaTXTPLRDaAgenciaMae\' in table \'TabelaConfig" +
+                                "uracoesSistema\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTabelaConfiguracoesSistema.ReceberObjetosViaTXTPLRDaAgenciaMaeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsNomeAgenciaLocalNull() {
                 return this.IsNull(this.tableTabelaConfiguracoesSistema.NomeAgenciaLocalColumn);
             }
@@ -1669,6 +1733,30 @@ namespace SISAPO {
             public void SetEmailsAgenciaMaeNull() {
                 this[this.tableTabelaConfiguracoesSistema.EmailsAgenciaMaeColumn] = global::System.Convert.DBNull;
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsGerarTXTPLRNaLdiNull() {
+                return this.IsNull(this.tableTabelaConfiguracoesSistema.GerarTXTPLRNaLdiColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetGerarTXTPLRNaLdiNull() {
+                this[this.tableTabelaConfiguracoesSistema.GerarTXTPLRNaLdiColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsReceberObjetosViaTXTPLRDaAgenciaMaeNull() {
+                return this.IsNull(this.tableTabelaConfiguracoesSistema.ReceberObjetosViaTXTPLRDaAgenciaMaeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetReceberObjetosViaTXTPLRDaAgenciaMaeNull() {
+                this[this.tableTabelaConfiguracoesSistema.ReceberObjetosViaTXTPLRDaAgenciaMaeColumn] = global::System.Convert.DBNull;
+            }
         }
         
         /// <summary>
@@ -1856,6 +1944,8 @@ namespace SISAPO.DataSetConfiguracoesTableAdapters {
             tableMapping.ColumnMappings.Add("ACCAgenciaComunitaria", "ACCAgenciaComunitaria");
             tableMapping.ColumnMappings.Add("ReceberObjetosViaQRCodePLRDaAgenciaMae", "ReceberObjetosViaQRCodePLRDaAgenciaMae");
             tableMapping.ColumnMappings.Add("EmailsAgenciaMae", "EmailsAgenciaMae");
+            tableMapping.ColumnMappings.Add("GerarTXTPLRNaLdi", "GerarTXTPLRNaLdi");
+            tableMapping.ColumnMappings.Add("ReceberObjetosViaTXTPLRDaAgenciaMae", "ReceberObjetosViaTXTPLRDaAgenciaMae");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
@@ -1864,7 +1954,7 @@ namespace SISAPO.DataSetConfiguracoesTableAdapters {
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Codigo", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Codigo", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.InsertCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO `TabelaConfiguracoesSistema` (`NomeAgenciaLocal`, `EnderecoAgenciaLocal`, `DataInicialPeriodoExibicaoConsulta`, `DataFinalPeriodoExibicaoConsulta`, `ExibirObjetosEmCaixaPostalNaPesquisa`, `ExibirObjetosJaEntreguesNaPesquisa`, `ManterConsultaSempreAtualizada`, `TempoAtualizacaoConsultaSempreAtualizada`, `PermitirBuscarPorLDINaPesquisa`, `HabilitarCapturaDeDadosDePostagem`, `HabilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatario`, `HabilitarCapturaDeDadosDeDestinatarioAusente`, `DataHoraUltimaAtualizacaoImportacao`, `SuperintendenciaEstadual`, `CepUnidade`, `CidadeAgenciaLocal`, `UFAgenciaLocal`, `TelefoneAgenciaLocal`, `HorarioFuncionamentoAgenciaLocal`, `EnderecoSRO`, `EnderecoSROPorObjeto`, `GerarQRCodePLRNaLdi`, `ACCAgenciaComunitaria`, `ReceberObjetosViaQRCodePLRDaAgenciaMae`, `EmailsAgenciaMae`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO `TabelaConfiguracoesSistema` (`NomeAgenciaLocal`, `EnderecoAgenciaLocal`, `DataInicialPeriodoExibicaoConsulta`, `DataFinalPeriodoExibicaoConsulta`, `ExibirObjetosEmCaixaPostalNaPesquisa`, `ExibirObjetosJaEntreguesNaPesquisa`, `ManterConsultaSempreAtualizada`, `TempoAtualizacaoConsultaSempreAtualizada`, `PermitirBuscarPorLDINaPesquisa`, `HabilitarCapturaDeDadosDePostagem`, `HabilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatario`, `HabilitarCapturaDeDadosDeDestinatarioAusente`, `DataHoraUltimaAtualizacaoImportacao`, `SuperintendenciaEstadual`, `CepUnidade`, `CidadeAgenciaLocal`, `UFAgenciaLocal`, `TelefoneAgenciaLocal`, `HorarioFuncionamentoAgenciaLocal`, `EnderecoSRO`, `EnderecoSROPorObjeto`, `GerarQRCodePLRNaLdi`, `ACCAgenciaComunitaria`, `ReceberObjetosViaQRCodePLRDaAgenciaMae`, `EmailsAgenciaMae`, `GerarTXTPLRNaLdi`, `ReceberObjetosViaTXTPLRDaAgenciaMae`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("NomeAgenciaLocal", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "NomeAgenciaLocal", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("EnderecoAgenciaLocal", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "EnderecoAgenciaLocal", global::System.Data.DataRowVersion.Current, false, null));
@@ -1891,6 +1981,8 @@ namespace SISAPO.DataSetConfiguracoesTableAdapters {
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("ACCAgenciaComunitaria", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ACCAgenciaComunitaria", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("ReceberObjetosViaQRCodePLRDaAgenciaMae", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ReceberObjetosViaQRCodePLRDaAgenciaMae", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("EmailsAgenciaMae", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "EmailsAgenciaMae", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("GerarTXTPLRNaLdi", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "GerarTXTPLRNaLdi", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("ReceberObjetosViaTXTPLRDaAgenciaMae", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ReceberObjetosViaTXTPLRDaAgenciaMae", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
             this._adapter.UpdateCommand.CommandText = @"UPDATE       TabelaConfiguracoesSistema
@@ -1898,7 +1990,7 @@ SET                NomeAgenciaLocal = ?, EnderecoAgenciaLocal = ?, DataInicialPe
                          ManterConsultaSempreAtualizada = ?, TempoAtualizacaoConsultaSempreAtualizada = ?, PermitirBuscarPorLDINaPesquisa = ?, HabilitarCapturaDeDadosDePostagem = ?, 
                          HabilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatario = ?, HabilitarCapturaDeDadosDeDestinatarioAusente = ?, DataHoraUltimaAtualizacaoImportacao = ?, SuperintendenciaEstadual = ?, CepUnidade = ?, 
                          CidadeAgenciaLocal = ?, UFAgenciaLocal = ?, TelefoneAgenciaLocal = ?, HorarioFuncionamentoAgenciaLocal = ?, EnderecoSRO = ?, EnderecoSROPorObjeto = ?, GerarQRCodePLRNaLdi = ?, ACCAgenciaComunitaria = ?, 
-                         ReceberObjetosViaQRCodePLRDaAgenciaMae = ?, EmailsAgenciaMae = ?
+                         ReceberObjetosViaQRCodePLRDaAgenciaMae = ?, EmailsAgenciaMae = ?, GerarTXTPLRNaLdi = ?, ReceberObjetosViaTXTPLRDaAgenciaMae = ?
 WHERE        (Codigo = ?)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("NomeAgenciaLocal", global::System.Data.OleDb.OleDbType.WChar, 255, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "NomeAgenciaLocal", global::System.Data.DataRowVersion.Current, false, null));
@@ -1926,6 +2018,8 @@ WHERE        (Codigo = ?)";
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("ACCAgenciaComunitaria", global::System.Data.OleDb.OleDbType.Boolean, 2, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ACCAgenciaComunitaria", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("ReceberObjetosViaQRCodePLRDaAgenciaMae", global::System.Data.OleDb.OleDbType.Boolean, 2, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ReceberObjetosViaQRCodePLRDaAgenciaMae", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("EmailsAgenciaMae", global::System.Data.OleDb.OleDbType.WChar, 255, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "EmailsAgenciaMae", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("GerarTXTPLRNaLdi", global::System.Data.OleDb.OleDbType.Boolean, 2, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "GerarTXTPLRNaLdi", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("ReceberObjetosViaTXTPLRDaAgenciaMae", global::System.Data.OleDb.OleDbType.Boolean, 2, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ReceberObjetosViaTXTPLRDaAgenciaMae", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Codigo", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Codigo", global::System.Data.DataRowVersion.Original, false, null));
         }
         
@@ -1945,7 +2039,8 @@ WHERE        (Codigo = ?)";
             this._commandCollection[0].CommandText = @"SELECT        Codigo, NomeAgenciaLocal, EnderecoAgenciaLocal, DataInicialPeriodoExibicaoConsulta, DataFinalPeriodoExibicaoConsulta, ExibirObjetosEmCaixaPostalNaPesquisa, ExibirObjetosJaEntreguesNaPesquisa, 
                          ManterConsultaSempreAtualizada, TempoAtualizacaoConsultaSempreAtualizada, PermitirBuscarPorLDINaPesquisa, HabilitarCapturaDeDadosDePostagem, HabilitarCapturaDeDadosDeSaiuParaEntregaAoDestinatario, 
                          HabilitarCapturaDeDadosDeDestinatarioAusente, DataHoraUltimaAtualizacaoImportacao, SuperintendenciaEstadual, CepUnidade, CidadeAgenciaLocal, UFAgenciaLocal, TelefoneAgenciaLocal, 
-                         HorarioFuncionamentoAgenciaLocal, EnderecoSRO, EnderecoSROPorObjeto, GerarQRCodePLRNaLdi, ACCAgenciaComunitaria, ReceberObjetosViaQRCodePLRDaAgenciaMae, EmailsAgenciaMae
+                         HorarioFuncionamentoAgenciaLocal, EnderecoSRO, EnderecoSROPorObjeto, GerarQRCodePLRNaLdi, ACCAgenciaComunitaria, ReceberObjetosViaQRCodePLRDaAgenciaMae, EmailsAgenciaMae, GerarTXTPLRNaLdi, 
+                         ReceberObjetosViaTXTPLRDaAgenciaMae
 FROM            TabelaConfiguracoesSistema";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
@@ -2054,7 +2149,9 @@ FROM            TabelaConfiguracoesSistema";
                     bool GerarQRCodePLRNaLdi, 
                     bool ACCAgenciaComunitaria, 
                     bool ReceberObjetosViaQRCodePLRDaAgenciaMae, 
-                    string EmailsAgenciaMae) {
+                    string EmailsAgenciaMae, 
+                    bool GerarTXTPLRNaLdi, 
+                    bool ReceberObjetosViaTXTPLRDaAgenciaMae) {
             if ((NomeAgenciaLocal == null)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -2155,6 +2252,8 @@ FROM            TabelaConfiguracoesSistema";
             else {
                 this.Adapter.InsertCommand.Parameters[24].Value = ((string)(EmailsAgenciaMae));
             }
+            this.Adapter.InsertCommand.Parameters[25].Value = ((bool)(GerarTXTPLRNaLdi));
+            this.Adapter.InsertCommand.Parameters[26].Value = ((bool)(ReceberObjetosViaTXTPLRDaAgenciaMae));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -2201,6 +2300,8 @@ FROM            TabelaConfiguracoesSistema";
                     bool ACCAgenciaComunitaria, 
                     bool ReceberObjetosViaQRCodePLRDaAgenciaMae, 
                     string EmailsAgenciaMae, 
+                    bool GerarTXTPLRNaLdi, 
+                    bool ReceberObjetosViaTXTPLRDaAgenciaMae, 
                     int Original_Codigo) {
             if ((NomeAgenciaLocal == null)) {
                 this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
@@ -2302,7 +2403,9 @@ FROM            TabelaConfiguracoesSistema";
             else {
                 this.Adapter.UpdateCommand.Parameters[24].Value = ((string)(EmailsAgenciaMae));
             }
-            this.Adapter.UpdateCommand.Parameters[25].Value = ((int)(Original_Codigo));
+            this.Adapter.UpdateCommand.Parameters[25].Value = ((bool)(GerarTXTPLRNaLdi));
+            this.Adapter.UpdateCommand.Parameters[26].Value = ((bool)(ReceberObjetosViaTXTPLRDaAgenciaMae));
+            this.Adapter.UpdateCommand.Parameters[27].Value = ((int)(Original_Codigo));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {

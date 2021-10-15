@@ -29,6 +29,8 @@ namespace SISAPO.ClassesDiversas
         public static bool ACCAgenciaComunitaria { get; internal set; }
         public static bool ReceberObjetosViaQRCodePLRDaAgenciaMae { get; internal set; }
         public static string EmailsAgenciaMae { get; internal set; }
+        public static bool GerarTXTPLRNaLdi { get; internal set; }
+        public static bool ReceberObjetosViaTXTPLRDaAgenciaMae { get; internal set; }
 
         public static string strConexao
         {
@@ -173,6 +175,16 @@ namespace SISAPO.ClassesDiversas
             }
         }
 
+        public static void SetaConfiguracoesGerarTXTPLRNaLdi()
+        {
+            using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
+            {
+                if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+
+                Configuracoes.GerarQRCodePLRNaLdi = Convert.ToBoolean(dao.RetornaValor("SELECT TOP 1 GerarTXTPLRNaLdi FROM TabelaConfiguracoesSistema"));
+            }
+        }
+
         public static void SetaConfiguracoesACCAgenciaComunitaria()
         {
             using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
@@ -190,6 +202,16 @@ namespace SISAPO.ClassesDiversas
                 if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
 
                 Configuracoes.ReceberObjetosViaQRCodePLRDaAgenciaMae = Convert.ToBoolean(dao.RetornaValor("SELECT TOP 1 ReceberObjetosViaQRCodePLRDaAgenciaMae FROM TabelaConfiguracoesSistema"));
+            }
+        }
+
+        public static void SetaConfiguracoesReceberObjetosViaTXTPLRDaAgenciaMae()
+        {
+            using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
+            {
+                if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+
+                Configuracoes.ReceberObjetosViaQRCodePLRDaAgenciaMae = Convert.ToBoolean(dao.RetornaValor("SELECT TOP 1 ReceberObjetosViaTXTPLRDaAgenciaMae FROM TabelaConfiguracoesSistema"));
             }
         }
 
@@ -454,6 +476,8 @@ namespace SISAPO.ClassesDiversas
             CriaColuna("TabelaConfiguracoesSistema", "ACCAgenciaComunitaria", "YESNO NULL DEFAULT 0");//ACCAgenciaComunitaria
             CriaColuna("TabelaConfiguracoesSistema", "ReceberObjetosViaQRCodePLRDaAgenciaMae", "YESNO NULL DEFAULT 0");//ReceberObjetosViaQRCodePLRDaAgenciaMae
             CriaColuna("TabelaConfiguracoesSistema", "EmailsAgenciaMae", "TEXT(255) NULL DEFAULT NULL");//EmailsAgenciaMae
+            CriaColuna("TabelaConfiguracoesSistema", "GerarTXTPLRNaLdi", "YESNO NULL DEFAULT 0");//GerarTXTPLRNaLdi
+            CriaColuna("TabelaConfiguracoesSistema", "ReceberObjetosViaTXTPLRDaAgenciaMae", "YESNO NULL DEFAULT 0");//ReceberObjetosViaTXTPLRDaAgenciaMae
 
 
             //CriaColuna("TabelaHistoricoConsulta", "Codigo", "INTEGER");//Codigo

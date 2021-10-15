@@ -1658,7 +1658,7 @@ namespace SISAPO
             try
             {
 #if !DEBUG
-            waitForm.Show(this);          
+                waitForm.Show(this);
 #endif
                 foreach (string itemCodigo in ListaCodigosGrid)
                 {
@@ -1692,7 +1692,7 @@ namespace SISAPO
                     }
                 }
 #if !DEBUG
-            waitForm.Close();         
+                waitForm.Close();
 #endif
 
             }
@@ -1703,7 +1703,7 @@ namespace SISAPO
             finally
             {
 #if !DEBUG
-            waitForm.Close();         
+                waitForm.Close();
 #endif
             }
         }
@@ -1720,16 +1720,16 @@ namespace SISAPO
                 string[] listaEmails = Configuracoes.EmailsAgenciaMae.Split(';');
 
 
-                    System.Net.Mail.SmtpClient cliente = new System.Net.Mail.SmtpClient();
-                    cliente.Port = Convert.ToInt32("587");
-                    cliente.Host = "smtp.gmail.com";
-                    cliente.EnableSsl = true;
-                    cliente.DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network;
-                    cliente.UseDefaultCredentials = false;
-                    cliente.Credentials = new System.Net.NetworkCredential("accluzimangues@gmail.com", "oxmt9212");
+                System.Net.Mail.SmtpClient cliente = new System.Net.Mail.SmtpClient();
+                cliente.Port = Convert.ToInt32("587");
+                cliente.Host = "smtp.gmail.com";
+                cliente.EnableSsl = true;
+                cliente.DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network;
+                cliente.UseDefaultCredentials = false;
+                cliente.Credentials = new System.Net.NetworkCredential("accluzimangues@gmail.com", "oxmt9212");
 
-                    System.Net.Mail.MailMessage email = new System.Net.Mail.MailMessage();
-                    email.From = new System.Net.Mail.MailAddress("ACC LUZIMANGUES <accluzimangues@gmail.com>");
+                System.Net.Mail.MailMessage email = new System.Net.Mail.MailMessage();
+                email.From = new System.Net.Mail.MailAddress("ACC LUZIMANGUES <accluzimangues@gmail.com>");
                 foreach (string item in listaEmails)
                 {
                     //valida email
@@ -1738,11 +1738,11 @@ namespace SISAPO
                     //email.To.Add("accluzimangues@gmail.com");
                     //email.To.Add("marques-fonseca@hotmail.com");
                 }
-                    email.Subject = "Mudança de situação Objeto " + itemCodigo + " por Luzimangues às " + dataModificacaoRetornada + "";
-                    email.IsBodyHtml = true;
-                    email.Body = RetornaHTMLSituacaoBaixa(itemCodigo, numeroLDI, dataLancamento, nomeCliente, comentario, motivoBaixaInformado, dataModificacaoRetornada, nomeRecebedor, docRecebedor);
+                email.Subject = "Mudança de situação Objeto " + itemCodigo + " por Luzimangues às " + dataModificacaoRetornada + "";
+                email.IsBodyHtml = true;
+                email.Body = RetornaHTMLSituacaoBaixa(itemCodigo, numeroLDI, dataLancamento, nomeCliente, comentario, motivoBaixaInformado, dataModificacaoRetornada, nomeRecebedor, docRecebedor);
 
-                    cliente.Send(email);
+                cliente.Send(email);
             }
             catch (Exception ex)
             {
