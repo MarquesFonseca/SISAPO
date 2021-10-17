@@ -37,6 +37,7 @@ namespace SISAPO
             this.visualizarListaDeObjetosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.cadastrarNovosObjetosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cadastrarNovosObjetosViaQRCodePLRDaAgenciaMaeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.TiposPostaisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.atualizarNovosObjetosCompletoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -103,7 +104,7 @@ namespace SISAPO
             this.toolStripStatusLabelDataHora = new System.Windows.Forms.ToolStripStatusLabel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.timerAtualizaDataHoraAtualBarraStatus = new System.Windows.Forms.Timer(this.components);
-            this.cadastrarNovosObjetosViaQRCodePLRDaAgenciaMaeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cadastrarNovosObjetosViaTXTPLRDaAgenciaMaeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -136,6 +137,7 @@ namespace SISAPO
             this.toolStripSeparator7,
             this.cadastrarNovosObjetosToolStripMenuItem,
             this.cadastrarNovosObjetosViaQRCodePLRDaAgenciaMaeToolStripMenuItem,
+            this.cadastrarNovosObjetosViaTXTPLRDaAgenciaMaeToolStripMenuItem,
             this.TiposPostaisToolStripMenuItem,
             this.toolStripSeparator1,
             this.atualizarNovosObjetosCompletoToolStripMenuItem,
@@ -183,6 +185,14 @@ namespace SISAPO
             this.cadastrarNovosObjetosToolStripMenuItem.Size = new System.Drawing.Size(379, 22);
             this.cadastrarNovosObjetosToolStripMenuItem.Text = "Importar Novo(s) Objeto(s)";
             this.cadastrarNovosObjetosToolStripMenuItem.Click += new System.EventHandler(this.cadastrarNovosObjetosToolStripMenuItem_Click);
+            // 
+            // cadastrarNovosObjetosViaQRCodePLRDaAgenciaMaeToolStripMenuItem
+            // 
+            this.cadastrarNovosObjetosViaQRCodePLRDaAgenciaMaeToolStripMenuItem.Image = global::SISAPO.Properties.Resources.CadastroObjetos;
+            this.cadastrarNovosObjetosViaQRCodePLRDaAgenciaMaeToolStripMenuItem.Name = "cadastrarNovosObjetosViaQRCodePLRDaAgenciaMaeToolStripMenuItem";
+            this.cadastrarNovosObjetosViaQRCodePLRDaAgenciaMaeToolStripMenuItem.Size = new System.Drawing.Size(379, 22);
+            this.cadastrarNovosObjetosViaQRCodePLRDaAgenciaMaeToolStripMenuItem.Text = "Importar Novo(s) Objeto(s)";
+            this.cadastrarNovosObjetosViaQRCodePLRDaAgenciaMaeToolStripMenuItem.Click += new System.EventHandler(this.cadastrarNovosObjetosViaQRCodePLRDaAgenciaMaeToolStripMenuItem_Click);
             // 
             // TiposPostaisToolStripMenuItem
             // 
@@ -732,13 +742,13 @@ namespace SISAPO
             this.timerAtualizaDataHoraAtualBarraStatus.Interval = 1000;
             this.timerAtualizaDataHoraAtualBarraStatus.Tick += new System.EventHandler(this.timerAtualizaDataHoraAtualBarraStatus_Tick);
             // 
-            // cadastrarNovosObjetosViaQRCodePLRDaAgenciaMaeToolStripMenuItem
+            // cadastrarNovosObjetosViaTXTPLRDaAgenciaMaeToolStripMenuItem
             // 
-            this.cadastrarNovosObjetosViaQRCodePLRDaAgenciaMaeToolStripMenuItem.Image = global::SISAPO.Properties.Resources.CadastroObjetos;
-            this.cadastrarNovosObjetosViaQRCodePLRDaAgenciaMaeToolStripMenuItem.Name = "cadastrarNovosObjetosViaQRCodePLRDaAgenciaMaeToolStripMenuItem";
-            this.cadastrarNovosObjetosViaQRCodePLRDaAgenciaMaeToolStripMenuItem.Size = new System.Drawing.Size(379, 22);
-            this.cadastrarNovosObjetosViaQRCodePLRDaAgenciaMaeToolStripMenuItem.Text = "Importar Novo(s) Objeto(s)";
-            this.cadastrarNovosObjetosViaQRCodePLRDaAgenciaMaeToolStripMenuItem.Click += new System.EventHandler(this.cadastrarNovosObjetosViaQRCodePLRDaAgenciaMaeToolStripMenuItem_Click);
+            this.cadastrarNovosObjetosViaTXTPLRDaAgenciaMaeToolStripMenuItem.Image = global::SISAPO.Properties.Resources.CadastroObjetos;
+            this.cadastrarNovosObjetosViaTXTPLRDaAgenciaMaeToolStripMenuItem.Name = "cadastrarNovosObjetosViaTXTPLRDaAgenciaMaeToolStripMenuItem";
+            this.cadastrarNovosObjetosViaTXTPLRDaAgenciaMaeToolStripMenuItem.Size = new System.Drawing.Size(379, 22);
+            this.cadastrarNovosObjetosViaTXTPLRDaAgenciaMaeToolStripMenuItem.Text = "Importar Novo(s) Objetos(s)";
+            this.cadastrarNovosObjetosViaTXTPLRDaAgenciaMaeToolStripMenuItem.Click += new System.EventHandler(this.cadastrarNovosObjetosViaTXTPLRDaAgenciaMaeToolStripMenuItem_Click);
             // 
             // FormularioPrincipal
             // 
@@ -849,6 +859,7 @@ namespace SISAPO
         private System.Windows.Forms.ToolStripMenuItem relatóriosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem relatorioTesteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cadastrarNovosObjetosViaQRCodePLRDaAgenciaMaeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cadastrarNovosObjetosViaTXTPLRDaAgenciaMaeToolStripMenuItem;
     }
 }
 

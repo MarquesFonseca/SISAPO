@@ -1,4 +1,6 @@
-﻿using SISAPO;
+﻿using PdfSharp;
+using PdfSharp.Pdf;
+using SISAPO;
 using SISAPO.ClassesDiversas;
 using System;
 using System.Collections.Generic;
@@ -9,6 +11,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using TheArtOfDev.HtmlRenderer.PdfSharp;
 
 namespace SISAPO
 {
@@ -22,10 +25,12 @@ namespace SISAPO
         public bool ImprimirVariosPorFolha = false;
         private StringBuilder Html = new StringBuilder();
         private StringBuilder StrTXTPLR = new StringBuilder();
+        private StringBuilder HtmlConsolidado = new StringBuilder();
 
         private string DataListaAtual = string.Empty;
         private string NumeroListaAtual = string.Empty;
         private string NomeArquivoHtml = string.Empty;
+        private string TituloHTML = string.Empty;
         private string NomeArquivoPLRTXT = string.Empty;
 
         public FormularioImpressaoEntregaObjetosModelo2(List<string> _codigosSelecionados, bool _ImprimirUmPorFolha, bool _ImprimirVariosPorFolha)
@@ -53,9 +58,10 @@ namespace SISAPO
             DataListaAtual = DateTime.Now.ToString();
             NumeroListaAtual = string.Format("{0:yyyyMMddHHmmss}", DateTime.Now);
             NomeArquivoHtml = string.Format("SISAPO-SRO-Lista-de-entrega-[Modelo-LDI-{0:yyyyMMddHHmmss}].html", NumeroListaAtual);
+            TituloHTML = string.Format("SISAPO-SRO Lista de entrega [{0:dd/MM/yyyy HH:mm:ss}]", DateTime.Now);
             NomeArquivoPLRTXT = string.Format("PLR-[{0:yyyyMMddHHmmss}].txt", NumeroListaAtual);
 
-            string Html = RetornaHtml().ToString();
+            string Html = RetornaHtml(TituloHTML).ToString();
             GeraArquivoProntoHTMLImpressao(Html, NomeArquivoHtml);
         }
 
@@ -78,7 +84,7 @@ namespace SISAPO
             CodigosSelecionadoAgrupados = CodigosSelecionadoAgrupados.DefaultView.ToTable();
 
 
-            string Html = RetornaHtml().ToString();
+            string Html = RetornaHtml(TituloHTML).ToString();
             GeraArquivoProntoHTMLImpressao(Html, string.Format("SISAPO-SRO-Lista-de-entrega-[Modelo-LDI-{0:yyyyMMddHHmmss}].html", DateTime.Now));
 
             BeginInvoke(new InvokeDelegate(Fecha_Form));
@@ -90,6 +96,7 @@ namespace SISAPO
             string curDirTemp = Path.GetTempPath();
             string curDir = System.IO.Path.GetDirectoryName(System.AppDomain.CurrentDomain.BaseDirectory.ToString());
             string nomeEnderecoArquivo = string.Format(@"{0}{1}", curDirTemp, nomeArquivoHtml);
+            string nomeEnderecoArquivoPLR = string.Format(@"C:\PLR\{0:yyyy-MM-dd}\PLR-{1}.html", DateTime.Now, NumeroListaAtual);
 
             if (!Arquivos.Existe(string.Format(@"{0}{1}", curDirTemp, "JsBarcode.all.min.js"), false))
             {
@@ -103,11 +110,18 @@ namespace SISAPO
             using (Arquivos arq = new Arquivos())
             {
                 arq.GravarArquivo(nomeEnderecoArquivo, html);
-                //if (Configuracoes.GerarTXTPLRNaLdi)
-                //{
-                //    string nomeEnderecoArquivoPLR = string.Format(@"C:\PLR\{0:yyyy-MM-dd}\{1}.html", DateTime.Now, NumeroListaAtual);
-                //    arq.GravarArquivo(nomeEnderecoArquivoPLR, html);
-                //}
+
+                if (Configuracoes.GerarQRCodePLRNaLdi || Configuracoes.GerarTXTPLRNaLdi)
+                {
+                    arq.GravarArquivo(string.Format(@"{0}PLR-{1}.html", curDirTemp, NumeroListaAtual), HtmlConsolidado.ToString());
+                    arq.GravarArquivo(nomeEnderecoArquivoPLR, HtmlConsolidado.ToString());
+
+                    ////using TheArtOfDev.HtmlRenderer.PdfSharp.PdfGenerator;
+                    //string nomeEnderecoArquivoPLRPDF = string.Format(@"C:\PLR\{0:yyyy-MM-dd}\{1}.pdf", DateTime.Now, NumeroListaAtual);
+                    ////string html2 = File.ReadAllText(nomeEnderecoArquivo);
+                    //PdfDocument pdf = PdfGenerator.GeneratePdf(HtmlConsolidado.ToString(), PageSize.Letter);
+                    //pdf.Save(nomeEnderecoArquivoPLRPDF);
+                }
             }
 
             webBrowser1.Navigate("");
@@ -138,10 +152,16 @@ namespace SISAPO
 
             pProcess.StartInfo.Arguments = string.Format("\"{0}\"", nomeEnderecoArquivo);
             pProcess.Start();
+            if (Configuracoes.GerarQRCodePLRNaLdi || Configuracoes.GerarTXTPLRNaLdi)
+            {
+                //pProcess = new System.Diagnostics.Process();
+                pProcess.StartInfo.Arguments = string.Format(@"{0}PLR-{1}.html", curDirTemp, NumeroListaAtual);
+                pProcess.Start();
+            }
             //pProcess.WaitForExit();
         }
 
-        private StringBuilder RetornaHtml()
+        private StringBuilder RetornaHtml(string tituloHTML)
         {
             //string curDir = System.IO.Path.GetDirectoryName(System.AppDomain.CurrentDomain.BaseDirectory.ToString());
             //string nomeArquivo = curDir + "\\Resources\\JsBarcode.all.min.js";
@@ -150,9 +170,17 @@ namespace SISAPO
             Html.AppendLine("<!DOCTYPE html>");
             Html.AppendLine("<html lang=\"pt-br\">");
             Html.AppendLine("<head>");
-            Html.AppendLine("    <title>" + string.Format("SISAPO-SRO Lista de entrega [{0:dd/MM/yyyy HH:mm:ss}]", DateTime.Now) + "</title>");
+            Html.AppendLine("    <title>" + tituloHTML + "</title>");
             Html.AppendLine("    <meta http-equiv=\"Content-Type\" content=\"text/html;charset=utf-8\"/>");
             Html.AppendLine("    <script src=\"JsBarcode.all.min.js\"></script>");
+
+            //string curDirTemp = Path.GetTempPath();
+            //curDirTemp = "file:///" + curDirTemp.Replace(@"\", "/");
+            //Html.AppendLine("    <script src=\""+ curDirTemp +"JsBarcode.all.min.js\"></script>");
+
+            //string curDirTemp = @"https://cdnjs.cloudflare.com/ajax/libs/jsbarcode/3.11.5/";
+            //Html.AppendLine("    <script src=\"" + curDirTemp + "JsBarcode.all.min.js\"></script>");
+
             Html.AppendLine("    <script type=\"text/javascript\">");
             Html.AppendLine("        window.onload = function () {");
             Html.AppendLine("            JsBarcode(\".barcode\").init();");
@@ -469,7 +497,7 @@ namespace SISAPO
                     //Último registro
                     if (contador == CodigosSelecionadoAgrupados.Rows.Count)
                     {
-                        if (Configuracoes.GerarQRCodePLRNaLdi)
+                        if (Configuracoes.GerarQRCodePLRNaLdi && ImprimirUmPorFolha)
                         {
                             #region Cria QRCode
 
@@ -577,80 +605,6 @@ namespace SISAPO
                             #endregion
 
                             #endregion
-
-                            #region Consolidado [Última Página]
-                            Html.AppendLine("		<div class=\"quebrapagina\"></div>");
-                            #region Cabeçalho Consolidado
-                            Html.AppendLine("       <table class=\"Consolidado\">");
-                            Html.AppendLine("       <thead>");
-                            Html.AppendLine("       <tr>");
-                            Html.AppendLine("       <th>PLR - Pr&eacute Lista de Remessa - Consolidado</th>");
-                            Html.AppendLine("       </tr>");
-                            Html.AppendLine("       </thead>");
-                            Html.AppendLine("       <tbody>");
-                            Html.AppendLine("       </tbody>");
-                            Html.AppendLine("       </table>");
-                            Html.AppendLine("");
-                            Html.AppendLine("       <table class=\"Consolidado\">");
-                            Html.AppendLine("       <thead>");
-                            Html.AppendLine("       <tr>");
-                            Html.AppendLine("       <th>N&uacute;mero da Lista</th>");
-                            Html.AppendLine("       <th>Data da emiss&atilde;o</th>");
-                            Html.AppendLine("       <th>Qtd. total</th>");
-                            Html.AppendLine("       </tr>");
-                            Html.AppendLine("       </thead>");
-                            Html.AppendLine("       <tbody>");
-                            Html.AppendLine("       <tr>");
-                            Html.AppendLine("       <td>" + NumeroListaAtual + "</td>");
-                            Html.AppendLine("       <td>" + DataListaAtual + "</td>");
-                            Html.AppendLine("       <td>" + CodigosSelecionadoAgrupados.Rows.Count.ToString() + "</td>");
-                            Html.AppendLine("       </tr>");
-                            Html.AppendLine("       </tbody>");
-                            Html.AppendLine("       </table>");
-                            Html.AppendLine("");
-                            #endregion
-                            #region Lista Relação Objetos                            
-                            Html.AppendLine("       <table class=\"Consolidado\">");
-                            Html.AppendLine("       <thead>");
-                            Html.AppendLine("       <tr>");
-                            Html.AppendLine("       <th>Item/Qtd.</th>"); //Item/Qtd.
-                            Html.AppendLine("       <th>C&oacute;digo Objeto</th>");//Codigo Objeto
-                            Html.AppendLine("       <th>Nome Cliente</th>"); //Nome Cliente
-                            Html.AppendLine("       <th>N&uacute;m. LDI</th>"); //Núm. LDI
-                            Html.AppendLine("       <th>Data LDI</th>"); //Data LDI
-                            Html.AppendLine("       <th>Comentário</th>"); //Comentario
-                            //Html.AppendLine("       <th>Serviço Postal</th>"); //TipoPostalNomeSiglaCodigo
-                            Html.AppendLine("       <th>Prazo</th>"); // Prazo
-                            Html.AppendLine("       <th>Data devolu&ccedil;&atilde;o</th>");//Data Devolução
-                            Html.AppendLine("       </tr>");
-                            Html.AppendLine("       </thead>");
-                            Html.AppendLine("       <tbody>");
-
-                            int contadorConsolidado = 0;
-                            foreach (DataRow itemConsolidado in CodigosSelecionadoAgrupados.Rows)
-                            {
-                                contadorConsolidado++;
-                                DataRow drConsolidado = dao.RetornaDataRow("SELECT top 1 CodigoObjeto, CodigoLdi, NomeCliente, DataLancamento, Comentario, TipoPostalNomeSiglaCodigo, TipoPostalPrazoDiasCorridosRegulamentado FROM TabelaObjetosSROLocal WHERE(CodigoObjeto IN('" + itemConsolidado["CodigoObjeto"].ToString() + "')) ORDER BY NomeCliente");
-                                Html.AppendLine("       <tr>");
-                                Html.AppendLine("       <td>" + string.Format("{0}/{1}", contadorConsolidado, CodigosSelecionadoAgrupados.Rows.Count) + "</td>");//Item/Qtd.
-                                Html.AppendLine("       <td>" + drConsolidado["CodigoObjeto"].ToString() + "</td>");//Código Objeto
-                                Html.AppendLine("       <td>" + drConsolidado["NomeCliente"].ToString() + "</td>"); //Nome Cliente
-                                Html.AppendLine("       <td>" + drConsolidado["CodigoLdi"].ToString() + "</td>"); //Num. LDI
-                                Html.AppendLine("       <td>" + drConsolidado["DataLancamento"].ToString() + "</td>"); //Data LDI
-                                Html.AppendLine("       <td>" + drConsolidado["Comentario"].ToString() + "</td>"); //Comentario
-                                //Html.AppendLine("       <td>" + drConsolidado["TipoPostalNomeSiglaCodigo"].ToString() + "</td>"); //TipoPostalNomeSiglaCodigo
-
-                                if (string.IsNullOrWhiteSpace(drConsolidado["TipoPostalPrazoDiasCorridosRegulamentado"].ToString()))
-                                    Html.AppendLine("       <td>Não encontrado</td>"); //Prazo
-                                else
-                                    Html.AppendLine("       <td>" + drConsolidado["TipoPostalPrazoDiasCorridosRegulamentado"].ToString() + "</td>"); //Prazo
-                                Html.AppendLine("       <td>" + drConsolidado["DataLancamento"].ToDateTime().Date.AddDays(Convert.ToDouble(string.IsNullOrWhiteSpace(drConsolidado["TipoPostalPrazoDiasCorridosRegulamentado"].ToString()) ? "0" : drConsolidado["TipoPostalPrazoDiasCorridosRegulamentado"].ToString())).ToDateTime().ToShortDateString() + "</td>"); //Data devolução
-                                Html.AppendLine("       </tr>");
-                            }
-                            Html.AppendLine("       </tbody>");
-                            Html.AppendLine("       </table>");
-                            #endregion
-                            #endregion
                         }
                         if (Configuracoes.GerarTXTPLRNaLdi)
                         {
@@ -663,97 +617,167 @@ namespace SISAPO
                                 arq.GravarArquivo(nomeEnderecoArquivo, StrTXTPLR.ToString());
 
 
-                                string nomeEnderecoArquivoHtmlDaTemp = string.Format(@"{0}{1}", Path.GetTempPath(), NomeArquivoHtml);
-                                //file:///C:/PLR/2021-10-15/20211015172808.html
-                                nomeEnderecoArquivoHtmlDaTemp = "file:///" + nomeEnderecoArquivoHtmlDaTemp.Replace(@"\", "/");
+                                //string nomeEnderecoArquivoHtmlDaTemp = string.Format(@"{0}{1}", Path.GetTempPath(), NomeArquivoHtml);
+                                ////file:///C:/PLR/2021-10-15/20211015172808.html
+                                //nomeEnderecoArquivoHtmlDaTemp = "file:///" + nomeEnderecoArquivoHtmlDaTemp.Replace(@"\", "/");
 
 
-                                StringBuilder SrtRedirect = new StringBuilder();
-                                SrtRedirect.AppendLine("<html lang=\"pt-br\">");
-                                SrtRedirect.AppendLine("    <head>");
-                                SrtRedirect.AppendLine("        <meta http-equiv='refresh' content='0; URL="+ nomeEnderecoArquivoHtmlDaTemp + "'>");
-                                SrtRedirect.AppendLine("    </head>");
-                                SrtRedirect.AppendLine("<html>");
+                                //StringBuilder SrtRedirect = new StringBuilder();
+                                //SrtRedirect.AppendLine("<html lang=\"pt-br\">");
+                                //SrtRedirect.AppendLine("    <head>");
+                                //SrtRedirect.AppendLine("        <meta http-equiv='refresh' content='0; URL="+ nomeEnderecoArquivoHtmlDaTemp + "'>");
+                                //SrtRedirect.AppendLine("    </head>");
+                                //SrtRedirect.AppendLine("<html>");
 
-                                string nomeEnderecoArquivoAtalho = string.Format(@"C:\PLR\{0:yyyy-MM-dd}\{1}.html", DateTime.Now, NumeroListaAtual);
-                                arq.GravarArquivo(nomeEnderecoArquivoAtalho, SrtRedirect.ToString());
+                                //string nomeEnderecoArquivoAtalho = string.Format(@"C:\PLR\{0:yyyy-MM-dd}\{1}.html", DateTime.Now, NumeroListaAtual);
+                                //arq.GravarArquivo(nomeEnderecoArquivoAtalho, SrtRedirect.ToString());
                             }
                             #endregion
+                        }
 
+                        if (Configuracoes.GerarQRCodePLRNaLdi || Configuracoes.GerarTXTPLRNaLdi)
+                        {
                             #region Consolidado [Última Página]
-                            Html.AppendLine("	    <div class=\"quebrapagina\"></div>"); Html.AppendLine("");
-                            #region Cabeçalho Consolidado
-                            Html.AppendLine("       <table class=\"Consolidado\">");
-                            Html.AppendLine("       <thead>");
-                            Html.AppendLine("       <tr>");
-                            Html.AppendLine("       <th>PLR - Pr&eacute Lista de Remessa - Consolidado</th>");
-                            Html.AppendLine("       </tr>");
-                            Html.AppendLine("       </thead>");
-                            Html.AppendLine("       <tbody>");
-                            Html.AppendLine("       </tbody>");
-                            Html.AppendLine("       </table>");
-                            Html.AppendLine("       ");
-                            Html.AppendLine("       <table class=\"Consolidado\">");
-                            Html.AppendLine("       <thead>");
-                            Html.AppendLine("       <tr>");
-                            Html.AppendLine("       <th>N&uacute;mero da Lista</th>");
-                            Html.AppendLine("       <th>Data da emiss&atilde;o</th>");
-                            Html.AppendLine("       <th>Qtd. total</th>");
-                            Html.AppendLine("       </tr>");
-                            Html.AppendLine("       </thead>");
-                            Html.AppendLine("       <tbody>");
-                            Html.AppendLine("       <tr>");
-                            Html.AppendLine("       <td>" + NumeroListaAtual + "</td>");
-                            Html.AppendLine("       <td>" + DataListaAtual + "</td>");
-                            Html.AppendLine("       <td>" + CodigosSelecionadoAgrupados.Rows.Count.ToString() + "</td>");
-                            Html.AppendLine("       </tr>");
-                            Html.AppendLine("       </tbody>");
-                            Html.AppendLine("       </table>");
-                            Html.AppendLine("       ");
+                            HtmlConsolidado = new StringBuilder();
+                            #region Head HTML
+                            HtmlConsolidado.AppendLine("<!DOCTYPE html>");
+                            HtmlConsolidado.AppendLine("<html lang=\"pt-br\">");
+                            HtmlConsolidado.AppendLine("<head>");
+                            HtmlConsolidado.AppendLine("    <title>PLR - Pré Lista de Remessa número: " + NumeroListaAtual + "</title>");
+                            HtmlConsolidado.AppendLine("    <meta http-equiv=\"Content-Type\" content=\"text/html;charset=utf-8\"/>");
+                            HtmlConsolidado.AppendLine("    <style type=\"text/css\">");
+                            HtmlConsolidado.AppendLine("        .quebrapagina {");
+                            HtmlConsolidado.AppendLine("            page-break-before: always;");
+                            HtmlConsolidado.AppendLine("            page-break-inside: avoid;");
+                            HtmlConsolidado.AppendLine("        }");
+                            HtmlConsolidado.AppendLine("        BODY {");
+                            HtmlConsolidado.AppendLine("            margin-top: 0;");
+                            HtmlConsolidado.AppendLine("            margin-left: 0;");
+                            HtmlConsolidado.AppendLine("            margin-right: 0;");
+                            HtmlConsolidado.AppendLine("            background-color: #FFFFFF;");
+                            HtmlConsolidado.AppendLine("        }");
+                            HtmlConsolidado.AppendLine("        .geral {");
+                            HtmlConsolidado.AppendLine("            border: 0px solid rgb(252, 0, 0);");
+                            HtmlConsolidado.AppendLine("            width: 850px;");
+                            HtmlConsolidado.AppendLine("            margin: auto;");
+                            HtmlConsolidado.AppendLine("            min-height: 1100px;");
+                            HtmlConsolidado.AppendLine("        }");
+                            HtmlConsolidado.AppendLine("        table.Consolidado {");
+                            HtmlConsolidado.AppendLine("          font-family: Arial, Helvetica, sans-serif;");
+                            HtmlConsolidado.AppendLine("          border: 1px solid #000000;");
+                            HtmlConsolidado.AppendLine("          background-color: #EEEEEE;");
+                            HtmlConsolidado.AppendLine("          width: 100%;");
+                            HtmlConsolidado.AppendLine("          text-align: left;");
+                            HtmlConsolidado.AppendLine("          margin-top: 10px;");
+                            HtmlConsolidado.AppendLine("        }");
+                            HtmlConsolidado.AppendLine("        table.Consolidado td, table.Consolidado th {");
+                            HtmlConsolidado.AppendLine("          padding: 3px 2px;");
+                            HtmlConsolidado.AppendLine("        }");
+                            HtmlConsolidado.AppendLine("        table.Consolidado tbody td {");
+                            HtmlConsolidado.AppendLine("          font-size: 14px;");
+                            HtmlConsolidado.AppendLine("        }");
+                            HtmlConsolidado.AppendLine("        table.Consolidado tr:nth-child(even) {");
+                            HtmlConsolidado.AppendLine("          background: #C1C1C1;");
+                            HtmlConsolidado.AppendLine("        }");
+                            HtmlConsolidado.AppendLine("        table.Consolidado thead {");
+                            HtmlConsolidado.AppendLine("          background: #C4C4C4;");
+                            HtmlConsolidado.AppendLine("          border-bottom: 2px solid #444444;");
+                            HtmlConsolidado.AppendLine("        }");
+                            HtmlConsolidado.AppendLine("        table.Consolidado thead th {");
+                            HtmlConsolidado.AppendLine("          font-size: 15px;");
+                            HtmlConsolidado.AppendLine("          font-weight: bold;");
+                            HtmlConsolidado.AppendLine("          color: #000000;");
+                            HtmlConsolidado.AppendLine("          border-left: 2px solid #C4C4C4;");
+                            HtmlConsolidado.AppendLine("        }");
+                            HtmlConsolidado.AppendLine("        table.Consolidado thead th:first-child {");
+                            HtmlConsolidado.AppendLine("          border-left: none;");
+                            HtmlConsolidado.AppendLine("        }");
+                            HtmlConsolidado.AppendLine("    </style>");
+                            HtmlConsolidado.AppendLine("</head>");
+                            HtmlConsolidado.AppendLine("<body>");
+                            HtmlConsolidado.AppendLine("    <div class=\"geral\">");
                             #endregion
+
+                            #region Cabeçalho Consolidado
+                            HtmlConsolidado.AppendLine("       <table class=\"Consolidado\">");
+                            HtmlConsolidado.AppendLine("       <thead>");
+                            HtmlConsolidado.AppendLine("       <tr>");
+                            HtmlConsolidado.AppendLine("       <th>PLR - Pr&eacute Lista de Remessa - Consolidado</th>");
+                            HtmlConsolidado.AppendLine("       </tr>");
+                            HtmlConsolidado.AppendLine("       </thead>");
+                            HtmlConsolidado.AppendLine("       <tbody>");
+                            HtmlConsolidado.AppendLine("       </tbody>");
+                            HtmlConsolidado.AppendLine("       </table>");
+                            HtmlConsolidado.AppendLine("       <table class=\"Consolidado\">");
+                            HtmlConsolidado.AppendLine("       <thead>");
+                            HtmlConsolidado.AppendLine("       <tr>");
+                            HtmlConsolidado.AppendLine("       <th>N&uacute;mero da Lista</th>");
+                            HtmlConsolidado.AppendLine("       <th>Data da emiss&atilde;o</th>");
+                            HtmlConsolidado.AppendLine("       <th>Qtd. total</th>");
+                            HtmlConsolidado.AppendLine("       </tr>");
+                            HtmlConsolidado.AppendLine("       </thead>");
+                            HtmlConsolidado.AppendLine("       <tbody>");
+                            HtmlConsolidado.AppendLine("       <tr>");
+                            HtmlConsolidado.AppendLine("       <td>" + NumeroListaAtual + "</td>");
+                            HtmlConsolidado.AppendLine("       <td>" + DataListaAtual + "</td>");
+                            HtmlConsolidado.AppendLine("       <td>" + CodigosSelecionadoAgrupados.Rows.Count.ToString() + "</td>");
+                            HtmlConsolidado.AppendLine("       </tr>");
+                            HtmlConsolidado.AppendLine("       </tbody>");
+                            HtmlConsolidado.AppendLine("       </table>");
+                            HtmlConsolidado.AppendLine("");
+                            #endregion
+
                             #region Lista Relação Objetos                            
-                            Html.AppendLine("       <table class=\"Consolidado\">");
-                            Html.AppendLine("       <thead>");
-                            Html.AppendLine("       <tr>");
-                            Html.AppendLine("       <th>Item/Qtd.</th>"); //Item/Qtd.
-                            Html.AppendLine("       <th>C&oacute;digo Objeto</th>");//Codigo Objeto
-                            Html.AppendLine("       <th>Nome Cliente</th>"); //Nome Cliente
-                            Html.AppendLine("       <th>N&uacute;m. LDI</th>"); //Núm. LDI
-                            Html.AppendLine("       <th>Data LDI</th>"); //Data LDI
-                            Html.AppendLine("       <th>Comentário</th>"); //Comentario
-                            //Html.AppendLine("       <th>Serviço Postal</th>"); //TipoPostalNomeSiglaCodigo
-                            Html.AppendLine("       <th>Prazo</th>"); // Prazo
-                            Html.AppendLine("       <th>Data devolu&ccedil;&atilde;o</th>");//Data Devolução
-                            Html.AppendLine("       </tr>");
-                            Html.AppendLine("       </thead>");
-                            Html.AppendLine("       <tbody>");
+                            HtmlConsolidado.AppendLine("       <table class=\"Consolidado\">");
+                            HtmlConsolidado.AppendLine("       <thead>");
+                            HtmlConsolidado.AppendLine("       <tr>");
+                            HtmlConsolidado.AppendLine("       <th>Item/Qtd.</th>"); //Item/Qtd.
+                            HtmlConsolidado.AppendLine("       <th>C&oacute;digo Objeto</th>");//Codigo Objeto
+                            HtmlConsolidado.AppendLine("       <th>Nome Cliente</th>"); //Nome Cliente
+                            HtmlConsolidado.AppendLine("       <th>N&uacute;m. LDI</th>"); //Núm. LDI
+                            HtmlConsolidado.AppendLine("       <th>Data LDI</th>"); //Data LDI
+                            HtmlConsolidado.AppendLine("       <th>Comentário</th>"); //Comentario
+                                                                                      //HtmlConsolidado.AppendLine("       <th>Serviço Postal</th>"); //TipoPostalNomeSiglaCodigo
+                            HtmlConsolidado.AppendLine("       <th>Prazo</th>"); // Prazo
+                            HtmlConsolidado.AppendLine("       <th>Data devolu&ccedil;&atilde;o</th>");//Data Devolução
+                            HtmlConsolidado.AppendLine("       </tr>");
+                            HtmlConsolidado.AppendLine("       </thead>");
+                            HtmlConsolidado.AppendLine("       <tbody>");
 
                             int contadorConsolidado = 0;
                             foreach (DataRow itemConsolidado in CodigosSelecionadoAgrupados.Rows)
                             {
                                 contadorConsolidado++;
                                 DataRow drConsolidado = dao.RetornaDataRow("SELECT top 1 CodigoObjeto, CodigoLdi, NomeCliente, DataLancamento, Comentario, TipoPostalNomeSiglaCodigo, TipoPostalPrazoDiasCorridosRegulamentado FROM TabelaObjetosSROLocal WHERE(CodigoObjeto IN('" + itemConsolidado["CodigoObjeto"].ToString() + "')) ORDER BY NomeCliente");
-                                Html.AppendLine("       <tr>");
-                                Html.AppendLine("       <td>" + string.Format("{0}/{1}", contadorConsolidado, CodigosSelecionadoAgrupados.Rows.Count) + "</td>");//Item/Qtd.
-                                Html.AppendLine("       <td>" + drConsolidado["CodigoObjeto"].ToString() + "</td>");//Código Objeto
-                                Html.AppendLine("       <td>" + drConsolidado["NomeCliente"].ToString() + "</td>"); //Nome Cliente
-                                Html.AppendLine("       <td>" + drConsolidado["CodigoLdi"].ToString() + "</td>"); //Num. LDI
-                                Html.AppendLine("       <td>" + drConsolidado["DataLancamento"].ToString() + "</td>"); //Data LDI
-                                Html.AppendLine("       <td>" + drConsolidado["Comentario"].ToString() + "</td>"); //Comentario
-                                //Html.AppendLine("       <td>" + drConsolidado["TipoPostalNomeSiglaCodigo"].ToString() + "</td>"); //TipoPostalNomeSiglaCodigo
+                                HtmlConsolidado.AppendLine("       <tr>");
+                                HtmlConsolidado.AppendLine("       <td>" + string.Format("{0}/{1}", contadorConsolidado, CodigosSelecionadoAgrupados.Rows.Count) + "</td>");//Item/Qtd.
+                                HtmlConsolidado.AppendLine("       <td>" + drConsolidado["CodigoObjeto"].ToString() + "</td>");//Código Objeto
+                                HtmlConsolidado.AppendLine("       <td>" + drConsolidado["NomeCliente"].ToString() + "</td>"); //Nome Cliente
+                                HtmlConsolidado.AppendLine("       <td>" + drConsolidado["CodigoLdi"].ToString() + "</td>"); //Num. LDI
+                                HtmlConsolidado.AppendLine("       <td>" + drConsolidado["DataLancamento"].ToString() + "</td>"); //Data LDI
+                                HtmlConsolidado.AppendLine("       <td>" + drConsolidado["Comentario"].ToString() + "</td>"); //Comentario
+                                                                                                                              //HtmlConsolidado.AppendLine("       <td>" + drConsolidado["TipoPostalNomeSiglaCodigo"].ToString() + "</td>"); //TipoPostalNomeSiglaCodigo
 
                                 if (string.IsNullOrWhiteSpace(drConsolidado["TipoPostalPrazoDiasCorridosRegulamentado"].ToString()))
-                                    Html.AppendLine("       <td>Não encontrado</td>"); //Prazo
+                                    HtmlConsolidado.AppendLine("       <td>Não encontrado</td>"); //Prazo
                                 else
-                                    Html.AppendLine("       <td>" + drConsolidado["TipoPostalPrazoDiasCorridosRegulamentado"].ToString() + "</td>"); //Prazo
-                                Html.AppendLine("       <td>" + drConsolidado["DataLancamento"].ToDateTime().Date.AddDays(Convert.ToDouble(string.IsNullOrWhiteSpace(drConsolidado["TipoPostalPrazoDiasCorridosRegulamentado"].ToString()) ? "0" : drConsolidado["TipoPostalPrazoDiasCorridosRegulamentado"].ToString())).ToDateTime().ToShortDateString() + "</td>"); //Data devolução
-                                Html.AppendLine("       </tr>");
+                                    HtmlConsolidado.AppendLine("       <td>" + drConsolidado["TipoPostalPrazoDiasCorridosRegulamentado"].ToString() + "</td>"); //Prazo
+                                HtmlConsolidado.AppendLine("       <td>" + drConsolidado["DataLancamento"].ToDateTime().Date.AddDays(Convert.ToDouble(string.IsNullOrWhiteSpace(drConsolidado["TipoPostalPrazoDiasCorridosRegulamentado"].ToString()) ? "0" : drConsolidado["TipoPostalPrazoDiasCorridosRegulamentado"].ToString())).ToDateTime().ToShortDateString() + "</td>"); //Data devolução
+                                HtmlConsolidado.AppendLine("       </tr>");
                             }
-                            Html.AppendLine("       </tbody>");
-                            Html.AppendLine("       </table>");
+                            HtmlConsolidado.AppendLine("       </tbody>");
+                            HtmlConsolidado.AppendLine("       </table>");
                             #endregion
+
+                            #region Rodapé
+                            HtmlConsolidado.AppendLine("    </div>");
+                            HtmlConsolidado.AppendLine("</body>");
+                            HtmlConsolidado.AppendLine("</html>");
+                            #endregion
+
                             #endregion
                         }
+
                         continue;
                     }
                     if (ImprimirUmPorFolha)

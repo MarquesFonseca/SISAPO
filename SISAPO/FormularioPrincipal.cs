@@ -24,10 +24,6 @@ namespace SISAPO
         public static bool OpcoesImpressaoImprimirUmPorFolha = false;
         public static bool OpcoesImpressaoImprimirVariosPorFolha = false;
 
-        //public bool GerarQRCodePLRNaLdi { get; internal set; }
-        //public bool ACCAgenciaComunitaria { get; internal set; }
-        //public bool ReceberObjetosViaQRCodePLRDaAgenciaMae { get; internal set; }
-
         public FormularioPrincipal()
         {
             InitializeComponent();
@@ -97,7 +93,7 @@ namespace SISAPO
             VisualizarListaObjetos_toolStripButton_Click(sender, e);
 
             BuscaNovoStatusQuantidadeNaoAtualizados();
-            BuscaDataHoraUltimaAtualizacaoImportacao();            
+            BuscaDataHoraUltimaAtualizacaoImportacao();
 
             ConfiguraMenusParaACCAgenciaComunitaria(Configuracoes.ACCAgenciaComunitaria);
         }
@@ -279,8 +275,22 @@ namespace SISAPO
 
         public void ConfiguraMenusParaACCAgenciaComunitaria(bool @ModoACCAgenciaComunitaria)
         {
-            cadastrarNovosObjetosToolStripMenuItem.Visible = !@ModoACCAgenciaComunitaria;
-            cadastrarNovosObjetosViaQRCodePLRDaAgenciaMaeToolStripMenuItem.Visible = @ModoACCAgenciaComunitaria;
+            cadastrarNovosObjetosToolStripMenuItem.Visible = true;
+
+            cadastrarNovosObjetosViaQRCodePLRDaAgenciaMaeToolStripMenuItem.Visible = false;
+            if (Configuracoes.ReceberObjetosViaQRCodePLRDaAgenciaMae && @ModoACCAgenciaComunitaria)
+            {
+                cadastrarNovosObjetosToolStripMenuItem.Visible = false;
+                cadastrarNovosObjetosViaQRCodePLRDaAgenciaMaeToolStripMenuItem.Visible = true;
+            }
+
+            cadastrarNovosObjetosViaTXTPLRDaAgenciaMaeToolStripMenuItem.Visible = false;
+            if (Configuracoes.ReceberObjetosViaTXTPLRDaAgenciaMae && @ModoACCAgenciaComunitaria)
+            {
+                cadastrarNovosObjetosToolStripMenuItem.Visible = false;
+                cadastrarNovosObjetosViaTXTPLRDaAgenciaMaeToolStripMenuItem.Visible = @ModoACCAgenciaComunitaria;
+            }
+
             TiposPostaisToolStripMenuItem.Enabled = !@ModoACCAgenciaComunitaria;
             atualizarNovosObjetosToolStripMenuItem.Enabled = !@ModoACCAgenciaComunitaria;
             solicitarVerificacaoDeObjetosAindaNaoEntreguesToolStripMenuItem.Enabled = !@ModoACCAgenciaComunitaria;
@@ -408,6 +418,25 @@ namespace SISAPO
             formularioCadastroObjetosViaQRCodePLRDaAgenciaMae.Show();
             //formularioCadastroObjetosViaQRCodePLRDaAgenciaMae.WindowState = FormWindowState.Normal;
             formularioCadastroObjetosViaQRCodePLRDaAgenciaMae.WindowState = FormWindowState.Maximized;
+            return;
+        }
+
+        private void cadastrarNovosObjetosViaTXTPLRDaAgenciaMaeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (Form item in MdiChildren)
+            {
+                if (item.Name == "FormularioCadastroObjetosViaTXTPLRDaAgenciaMae")
+                {
+                    item.Activate();
+                    return;
+                }
+            }
+
+            FormularioCadastroObjetosViaTXTPLRDaAgenciaMae formularioCadastroObjetosViaTXTPLRDaAgenciaMae = new FormularioCadastroObjetosViaTXTPLRDaAgenciaMae();
+            formularioCadastroObjetosViaTXTPLRDaAgenciaMae.MdiParent = this;
+            formularioCadastroObjetosViaTXTPLRDaAgenciaMae.Show();
+            //formularioCadastroObjetosViaTXTPLRDaAgenciaMae.WindowState = FormWindowState.Normal;
+            formularioCadastroObjetosViaTXTPLRDaAgenciaMae.WindowState = FormWindowState.Maximized;
             return;
         }
 

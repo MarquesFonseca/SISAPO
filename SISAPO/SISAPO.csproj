@@ -83,6 +83,14 @@
     <Reference Include="FormularioModelo">
       <HintPath>Dlls\FormularioModelo.dll</HintPath>
     </Reference>
+    <Reference Include="HtmlRenderer, Version=1.5.0.5, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlRenderer.Core.1.5.0.5\lib\net40-client\HtmlRenderer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="HtmlRenderer.PdfSharp, Version=1.5.0.6, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlRenderer.PdfSharp.1.5.0.6\lib\net40-client\HtmlRenderer.PdfSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Ionic.Utils.Zip">
       <HintPath>Dlls\Ionic.Utils.Zip.dll</HintPath>
     </Reference>
@@ -131,6 +139,14 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
       <HintPath>bin\office.dll</HintPath>
     </Reference>
+    <Reference Include="PdfSharp, Version=1.32.3057.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp.1.32.3057.0\lib\net20\PdfSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PdfSharp.Charting, Version=1.32.3057.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp.1.32.3057.0\lib\net20\PdfSharp.Charting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Release">
       <HintPath>Dlls\Release.dll</HintPath>
     </Reference>
@@ -177,11 +193,29 @@
     <Compile Include="FormularioAdicionarItemObjetoQRCode.Designer.cs">
       <DependentUpon>FormularioAdicionarItemObjetoQRCode.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormularioCadastroObjetosViaTXTPLRDaAgenciaMae.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormularioCadastroObjetosViaTXTPLRDaAgenciaMae.Designer.cs">
+      <DependentUpon>FormularioCadastroObjetosViaTXTPLRDaAgenciaMae.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormularioCadastroObjetosViaQRCodePLRDaAgenciaMae.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormularioCadastroObjetosViaQRCodePLRDaAgenciaMae.Designer.cs">
       <DependentUpon>FormularioCadastroObjetosViaQRCodePLRDaAgenciaMae.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormularioCadastroObjetosViaTXTPLRDaAgenciaMaeConferencia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormularioCadastroObjetosViaTXTPLRDaAgenciaMaeConferencia.Designer.cs">
+      <DependentUpon>FormularioCadastroObjetosViaTXTPLRDaAgenciaMaeConferencia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormularioCadastroObjetosViaTXTPLRDaAgenciaMaeConferenciaObjetosFaltantes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormularioCadastroObjetosViaTXTPLRDaAgenciaMaeConferenciaObjetosFaltantes.Designer.cs">
+      <DependentUpon>FormularioCadastroObjetosViaTXTPLRDaAgenciaMaeConferenciaObjetosFaltantes.cs</DependentUpon>
     </Compile>
     <Compile Include="FormularioInformarCodigo.cs">
       <SubType>Form</SubType>
@@ -459,9 +493,19 @@
     <EmbeddedResource Include="FormularioAdicionarItemObjetoQRCode.resx">
       <DependentUpon>FormularioAdicionarItemObjetoQRCode.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormularioCadastroObjetosViaTXTPLRDaAgenciaMae.resx">
+      <DependentUpon>FormularioCadastroObjetosViaTXTPLRDaAgenciaMae.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormularioCadastroObjetosViaQRCodePLRDaAgenciaMae.resx">
       <DependentUpon>FormularioCadastroObjetosViaQRCodePLRDaAgenciaMae.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormularioCadastroObjetosViaTXTPLRDaAgenciaMaeConferencia.resx">
+      <DependentUpon>FormularioCadastroObjetosViaTXTPLRDaAgenciaMaeConferencia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormularioCadastroObjetosViaTXTPLRDaAgenciaMaeConferenciaObjetosFaltantes.resx">
+      <DependentUpon>FormularioCadastroObjetosViaTXTPLRDaAgenciaMaeConferenciaObjetosFaltantes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormularioInformarCodigo.resx">
       <DependentUpon>FormularioInformarCodigo.cs</DependentUpon>

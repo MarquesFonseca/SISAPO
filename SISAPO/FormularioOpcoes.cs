@@ -44,6 +44,7 @@ namespace SISAPO
             if (dataRow != null)
             {
                 checkBoxReceberObjetosViaQRCodePLRDaAgenciaMae.Enabled = Convert.ToBoolean(dataRow["ACCAgenciaComunitaria"]);
+                checkBoxReceberObjetosViaTXTPLRDaAgenciaMae.Enabled = Convert.ToBoolean(dataRow["ACCAgenciaComunitaria"]);
             }
         }
 
@@ -459,20 +460,24 @@ namespace SISAPO
 
         private void checkBoxGerarQRCodePLRNaLdi_CheckedChanged(object sender, EventArgs e)
         {
-
+            if (checkBoxGerarQRCodePLRNaLdi.Checked == true)
+                checkBoxGerarArquiviTXTPLRNaLdi.Checked = false;
         }
 
         private void checkBoxGerarArquiviTXTPLRNaLdi_CheckedChanged(object sender, EventArgs e)
         {
-
+            if (checkBoxGerarArquiviTXTPLRNaLdi.Checked == true)
+                checkBoxGerarQRCodePLRNaLdi.Checked = false;
         }
 
         private void checkBoxACCAgenciaComunitaria_CheckedChanged(object sender, EventArgs e)
         {
             checkBoxReceberObjetosViaQRCodePLRDaAgenciaMae.Enabled = checkBoxACCAgenciaComunitaria.Checked;
+            checkBoxReceberObjetosViaTXTPLRDaAgenciaMae.Enabled = checkBoxACCAgenciaComunitaria.Checked;
+            label14.Enabled = checkBoxACCAgenciaComunitaria.Checked;
             TxtEmailsAgenciaMae.Enabled = checkBoxACCAgenciaComunitaria.Checked;
 
-            if(checkBoxACCAgenciaComunitaria.Checked)
+            if (checkBoxACCAgenciaComunitaria.Checked)
             {
                 TxtEmailsAgenciaMae.Text = Configuracoes.ReceberEmailsAgenciaMae();
             }
@@ -484,18 +489,24 @@ namespace SISAPO
 
         private void checkBoxReceberObjetosViaQRCodePLRDaAgenciaMae_CheckedChanged(object sender, EventArgs e)
         {
-
+            if (checkBoxReceberObjetosViaQRCodePLRDaAgenciaMae.Checked == true)
+            {
+                checkBoxReceberObjetosViaTXTPLRDaAgenciaMae.Checked = false;
+            }
         }
 
         private void checkBoxReceberObjetosViaTXTPLRDaAgenciaMae_CheckedChanged(object sender, EventArgs e)
         {
-
+            if (checkBoxReceberObjetosViaTXTPLRDaAgenciaMae.Checked == true)
+            {
+                checkBoxReceberObjetosViaQRCodePLRDaAgenciaMae.Checked = false;
+            }
         }
 
         private void BtnAtualizarPLR_Click(object sender, EventArgs e)
         {
             try
-            {                
+            {
                 //if (string.IsNullOrEmpty(comboBoxUFAgenciaLocal.Text))
                 //{
                 //    Mensagens.Erro("O campo \"Estado\" se encontra vazio.");

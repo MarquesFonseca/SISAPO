@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormularioCadastroObjetosViaQRCodePLRDaAgenciaMae));
             this.BtnGravar = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
@@ -42,23 +42,6 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageListaObjetosImportados = new System.Windows.Forms.TabPage();
             this.dataGridViewQRCode = new System.Windows.Forms.DataGridView();
-            this.LblQuantidadeImportados = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.BtnLimparListaAtual = new System.Windows.Forms.Button();
-            this.BtnVerObjetosNaoAtualizados = new System.Windows.Forms.Button();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.tabControl2 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panel3Botoes = new System.Windows.Forms.Panel();
-            this.LblLeituraPreListaRemessaLDI = new System.Windows.Forms.Label();
-            this.TxtObjetoAtual = new System.Windows.Forms.TextBox();
-            this.LblLeitura = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CodigoLdi = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NomeCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -96,6 +79,23 @@
             this.NumeroListaAtual = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ItemAtual = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.QtdTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LblQuantidadeImportados = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.BtnLimparListaAtual = new System.Windows.Forms.Button();
+            this.BtnVerObjetosNaoAtualizados = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.tabControl2 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel3Botoes = new System.Windows.Forms.Panel();
+            this.LblLeituraPreListaRemessaLDI = new System.Windows.Forms.Label();
+            this.TxtObjetoAtual = new System.Windows.Forms.TextBox();
+            this.LblLeitura = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabControl1.SuspendLayout();
             this.tabPageListaObjetosImportados.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewQRCode)).BeginInit();
@@ -250,205 +250,6 @@
             this.dataGridViewQRCode.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewQRCode.Size = new System.Drawing.Size(353, 214);
             this.dataGridViewQRCode.TabIndex = 2;
-            // 
-            // LblQuantidadeImportados
-            // 
-            this.LblQuantidadeImportados.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.LblQuantidadeImportados.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblQuantidadeImportados.ForeColor = System.Drawing.Color.Blue;
-            this.LblQuantidadeImportados.Location = new System.Drawing.Point(11, 89);
-            this.LblQuantidadeImportados.Name = "LblQuantidadeImportados";
-            this.LblQuantidadeImportados.Size = new System.Drawing.Size(733, 28);
-            this.LblQuantidadeImportados.TabIndex = 2;
-            this.LblQuantidadeImportados.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.panel1.Controls.Add(this.progressBar1);
-            this.panel1.Controls.Add(this.BtnFechar);
-            this.panel1.Controls.Add(this.BtnCancelar);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 384);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(763, 78);
-            this.panel1.TabIndex = 4;
-            // 
-            // BtnLimparListaAtual
-            // 
-            this.BtnLimparListaAtual.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnLimparListaAtual.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnLimparListaAtual.Location = new System.Drawing.Point(4, 32);
-            this.BtnLimparListaAtual.Name = "BtnLimparListaAtual";
-            this.BtnLimparListaAtual.Size = new System.Drawing.Size(190, 54);
-            this.BtnLimparListaAtual.TabIndex = 0;
-            this.BtnLimparListaAtual.Text = "&Limpar lista atual";
-            this.BtnLimparListaAtual.UseVisualStyleBackColor = true;
-            this.BtnLimparListaAtual.Click += new System.EventHandler(this.BtnLimparListaAtual_Click);
-            // 
-            // BtnVerObjetosNaoAtualizados
-            // 
-            this.BtnVerObjetosNaoAtualizados.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnVerObjetosNaoAtualizados.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnVerObjetosNaoAtualizados.Location = new System.Drawing.Point(4, 92);
-            this.BtnVerObjetosNaoAtualizados.Name = "BtnVerObjetosNaoAtualizados";
-            this.BtnVerObjetosNaoAtualizados.Size = new System.Drawing.Size(190, 54);
-            this.BtnVerObjetosNaoAtualizados.TabIndex = 2;
-            this.BtnVerObjetosNaoAtualizados.Text = "&Ver objetos não buscados";
-            this.BtnVerObjetosNaoAtualizados.UseVisualStyleBackColor = true;
-            this.BtnVerObjetosNaoAtualizados.Visible = false;
-            this.BtnVerObjetosNaoAtualizados.Click += new System.EventHandler(this.BtnVerObjetosNaoAtualizados_Click);
-            // 
-            // panel2
-            // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel2.Controls.Add(this.panel4);
-            this.panel2.Location = new System.Drawing.Point(4, 121);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(557, 257);
-            this.panel2.TabIndex = 10;
-            // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.tabControl1);
-            this.panel4.Controls.Add(this.panel3);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(0, 0);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(557, 257);
-            this.panel4.TabIndex = 0;
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.button1);
-            this.panel3.Controls.Add(this.tabControl2);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel3.Location = new System.Drawing.Point(367, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(190, 257);
-            this.panel3.TabIndex = 1;
-            // 
-            // button1
-            // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(6, 231);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(177, 22);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Fechar";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // tabControl2
-            // 
-            this.tabControl2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabControl2.Controls.Add(this.tabPage1);
-            this.tabControl2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControl2.Location = new System.Drawing.Point(2, 0);
-            this.tabControl2.Name = "tabControl2";
-            this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(185, 232);
-            this.tabControl2.TabIndex = 0;
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.Controls.Add(this.dataGridView2);
-            this.tabPage1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabPage1.Location = new System.Drawing.Point(4, 33);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(177, 195);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Não buscados";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // dataGridView2
-            // 
-            this.dataGridView2.AllowUserToAddRows = false;
-            this.dataGridView2.AllowUserToDeleteRows = false;
-            this.dataGridView2.AllowUserToOrderColumns = true;
-            this.dataGridView2.AllowUserToResizeRows = false;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1});
-            this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView2.Location = new System.Drawing.Point(3, 3);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.ReadOnly = true;
-            this.dataGridView2.RowHeadersVisible = false;
-            this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridView2.Size = new System.Drawing.Size(171, 189);
-            this.dataGridView2.TabIndex = 0;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "CodigoObjeto";
-            this.dataGridViewTextBoxColumn1.HeaderText = "Código Objeto";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // panel3Botoes
-            // 
-            this.panel3Botoes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel3Botoes.Controls.Add(this.BtnLimparListaAtual);
-            this.panel3Botoes.Controls.Add(this.BtnVerObjetosNaoAtualizados);
-            this.panel3Botoes.Controls.Add(this.BtnGravar);
-            this.panel3Botoes.Location = new System.Drawing.Point(560, 121);
-            this.panel3Botoes.Name = "panel3Botoes";
-            this.panel3Botoes.Size = new System.Drawing.Size(200, 257);
-            this.panel3Botoes.TabIndex = 3;
-            // 
-            // LblLeituraPreListaRemessaLDI
-            // 
-            this.LblLeituraPreListaRemessaLDI.AutoSize = true;
-            this.LblLeituraPreListaRemessaLDI.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblLeituraPreListaRemessaLDI.Location = new System.Drawing.Point(12, 8);
-            this.LblLeituraPreListaRemessaLDI.Name = "LblLeituraPreListaRemessaLDI";
-            this.LblLeituraPreListaRemessaLDI.Size = new System.Drawing.Size(644, 31);
-            this.LblLeituraPreListaRemessaLDI.TabIndex = 13;
-            this.LblLeituraPreListaRemessaLDI.Text = "Importação de objetos em Pré Lista de Remessa";
-            // 
-            // TxtObjetoAtual
-            // 
-            this.TxtObjetoAtual.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.TxtObjetoAtual.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.TxtObjetoAtual.Location = new System.Drawing.Point(67, 59);
-            this.TxtObjetoAtual.Name = "TxtObjetoAtual";
-            this.TxtObjetoAtual.Size = new System.Drawing.Size(242, 26);
-            this.TxtObjetoAtual.TabIndex = 11;
-            this.TxtObjetoAtual.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtObjetoAtual_KeyDown);
-            // 
-            // LblLeitura
-            // 
-            this.LblLeitura.AutoSize = true;
-            this.LblLeitura.Location = new System.Drawing.Point(67, 43);
-            this.LblLeitura.Name = "LblLeitura";
-            this.LblLeitura.Size = new System.Drawing.Size(123, 13);
-            this.LblLeitura.TabIndex = 12;
-            this.LblLeitura.Text = "Leitura QR Code do item";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::SISAPO.Properties.Resources.barcode_scanner;
-            this.pictureBox1.Location = new System.Drawing.Point(11, 42);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(66, 44);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox1.TabIndex = 14;
-            this.pictureBox1.TabStop = false;
             // 
             // dataGridViewTextBoxColumn2
             // 
@@ -725,7 +526,7 @@
             this.DataListaAtual.HeaderText = "Data da lista";
             this.DataListaAtual.Name = "DataListaAtual";
             this.DataListaAtual.ReadOnly = true;
-            this.DataListaAtual.Width = 78;
+            this.DataListaAtual.Width = 108;
             // 
             // NumeroListaAtual
             // 
@@ -734,7 +535,7 @@
             this.NumeroListaAtual.HeaderText = "Núm. lista";
             this.NumeroListaAtual.Name = "NumeroListaAtual";
             this.NumeroListaAtual.ReadOnly = true;
-            this.NumeroListaAtual.Width = 84;
+            this.NumeroListaAtual.Width = 91;
             // 
             // ItemAtual
             // 
@@ -755,7 +556,206 @@
             this.QtdTotal.HeaderText = "Qtd. Total";
             this.QtdTotal.Name = "QtdTotal";
             this.QtdTotal.ReadOnly = true;
-            this.QtdTotal.Width = 84;
+            this.QtdTotal.Width = 91;
+            // 
+            // LblQuantidadeImportados
+            // 
+            this.LblQuantidadeImportados.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.LblQuantidadeImportados.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblQuantidadeImportados.ForeColor = System.Drawing.Color.Blue;
+            this.LblQuantidadeImportados.Location = new System.Drawing.Point(11, 89);
+            this.LblQuantidadeImportados.Name = "LblQuantidadeImportados";
+            this.LblQuantidadeImportados.Size = new System.Drawing.Size(733, 28);
+            this.LblQuantidadeImportados.TabIndex = 2;
+            this.LblQuantidadeImportados.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.panel1.Controls.Add(this.progressBar1);
+            this.panel1.Controls.Add(this.BtnFechar);
+            this.panel1.Controls.Add(this.BtnCancelar);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 384);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(763, 78);
+            this.panel1.TabIndex = 4;
+            // 
+            // BtnLimparListaAtual
+            // 
+            this.BtnLimparListaAtual.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnLimparListaAtual.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnLimparListaAtual.Location = new System.Drawing.Point(4, 32);
+            this.BtnLimparListaAtual.Name = "BtnLimparListaAtual";
+            this.BtnLimparListaAtual.Size = new System.Drawing.Size(190, 54);
+            this.BtnLimparListaAtual.TabIndex = 0;
+            this.BtnLimparListaAtual.Text = "&Limpar lista atual";
+            this.BtnLimparListaAtual.UseVisualStyleBackColor = true;
+            this.BtnLimparListaAtual.Click += new System.EventHandler(this.BtnLimparListaAtual_Click);
+            // 
+            // BtnVerObjetosNaoAtualizados
+            // 
+            this.BtnVerObjetosNaoAtualizados.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnVerObjetosNaoAtualizados.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnVerObjetosNaoAtualizados.Location = new System.Drawing.Point(4, 92);
+            this.BtnVerObjetosNaoAtualizados.Name = "BtnVerObjetosNaoAtualizados";
+            this.BtnVerObjetosNaoAtualizados.Size = new System.Drawing.Size(190, 54);
+            this.BtnVerObjetosNaoAtualizados.TabIndex = 2;
+            this.BtnVerObjetosNaoAtualizados.Text = "&Ver objetos não buscados";
+            this.BtnVerObjetosNaoAtualizados.UseVisualStyleBackColor = true;
+            this.BtnVerObjetosNaoAtualizados.Visible = false;
+            this.BtnVerObjetosNaoAtualizados.Click += new System.EventHandler(this.BtnVerObjetosNaoAtualizados_Click);
+            // 
+            // panel2
+            // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.Controls.Add(this.panel4);
+            this.panel2.Location = new System.Drawing.Point(4, 121);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(557, 257);
+            this.panel2.TabIndex = 10;
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.tabControl1);
+            this.panel4.Controls.Add(this.panel3);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(0, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(557, 257);
+            this.panel4.TabIndex = 0;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.button1);
+            this.panel3.Controls.Add(this.tabControl2);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel3.Location = new System.Drawing.Point(367, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(190, 257);
+            this.panel3.TabIndex = 1;
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(6, 231);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(177, 22);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "Fechar";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // tabControl2
+            // 
+            this.tabControl2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl2.Controls.Add(this.tabPage1);
+            this.tabControl2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabControl2.Location = new System.Drawing.Point(2, 0);
+            this.tabControl2.Name = "tabControl2";
+            this.tabControl2.SelectedIndex = 0;
+            this.tabControl2.Size = new System.Drawing.Size(185, 232);
+            this.tabControl2.TabIndex = 0;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.dataGridView2);
+            this.tabPage1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabPage1.Location = new System.Drawing.Point(4, 33);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(177, 195);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Não buscados";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.AllowUserToAddRows = false;
+            this.dataGridView2.AllowUserToDeleteRows = false;
+            this.dataGridView2.AllowUserToOrderColumns = true;
+            this.dataGridView2.AllowUserToResizeRows = false;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1});
+            this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView2.Location = new System.Drawing.Point(3, 3);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.ReadOnly = true;
+            this.dataGridView2.RowHeadersVisible = false;
+            this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dataGridView2.Size = new System.Drawing.Size(171, 189);
+            this.dataGridView2.TabIndex = 0;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "CodigoObjeto";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Código Objeto";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // panel3Botoes
+            // 
+            this.panel3Botoes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel3Botoes.Controls.Add(this.BtnLimparListaAtual);
+            this.panel3Botoes.Controls.Add(this.BtnVerObjetosNaoAtualizados);
+            this.panel3Botoes.Controls.Add(this.BtnGravar);
+            this.panel3Botoes.Location = new System.Drawing.Point(560, 121);
+            this.panel3Botoes.Name = "panel3Botoes";
+            this.panel3Botoes.Size = new System.Drawing.Size(200, 257);
+            this.panel3Botoes.TabIndex = 3;
+            // 
+            // LblLeituraPreListaRemessaLDI
+            // 
+            this.LblLeituraPreListaRemessaLDI.AutoSize = true;
+            this.LblLeituraPreListaRemessaLDI.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblLeituraPreListaRemessaLDI.Location = new System.Drawing.Point(12, 8);
+            this.LblLeituraPreListaRemessaLDI.Name = "LblLeituraPreListaRemessaLDI";
+            this.LblLeituraPreListaRemessaLDI.Size = new System.Drawing.Size(644, 31);
+            this.LblLeituraPreListaRemessaLDI.TabIndex = 13;
+            this.LblLeituraPreListaRemessaLDI.Text = "Importação de objetos em Pré Lista de Remessa";
+            // 
+            // TxtObjetoAtual
+            // 
+            this.TxtObjetoAtual.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.TxtObjetoAtual.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.TxtObjetoAtual.Location = new System.Drawing.Point(67, 59);
+            this.TxtObjetoAtual.Name = "TxtObjetoAtual";
+            this.TxtObjetoAtual.Size = new System.Drawing.Size(242, 26);
+            this.TxtObjetoAtual.TabIndex = 11;
+            this.TxtObjetoAtual.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtObjetoAtual_KeyDown);
+            // 
+            // LblLeitura
+            // 
+            this.LblLeitura.AutoSize = true;
+            this.LblLeitura.Location = new System.Drawing.Point(67, 43);
+            this.LblLeitura.Name = "LblLeitura";
+            this.LblLeitura.Size = new System.Drawing.Size(123, 13);
+            this.LblLeitura.TabIndex = 12;
+            this.LblLeitura.Text = "Leitura QR Code do item";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::SISAPO.Properties.Resources.barcode_scanner;
+            this.pictureBox1.Location = new System.Drawing.Point(11, 42);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(66, 44);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox1.TabIndex = 14;
+            this.pictureBox1.TabStop = false;
             // 
             // FormularioCadastroObjetosViaQRCodePLRDaAgenciaMae
             // 
