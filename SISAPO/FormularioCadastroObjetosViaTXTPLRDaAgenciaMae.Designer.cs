@@ -40,7 +40,7 @@
             this.BtnFechar = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageListaObjetosImportados = new System.Windows.Forms.TabPage();
-            this.dataGridViewQRCode = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTXT = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CodigoLdi = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NomeCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -88,7 +88,7 @@
             this.BtnIniciarConferenciaPLR = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPageListaObjetosImportados.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewQRCode)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTXT)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -169,7 +169,7 @@
             // 
             // tabPageListaObjetosImportados
             // 
-            this.tabPageListaObjetosImportados.Controls.Add(this.dataGridViewQRCode);
+            this.tabPageListaObjetosImportados.Controls.Add(this.dataGridViewTXT);
             this.tabPageListaObjetosImportados.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabPageListaObjetosImportados.Location = new System.Drawing.Point(4, 33);
             this.tabPageListaObjetosImportados.Name = "tabPageListaObjetosImportados";
@@ -179,17 +179,17 @@
             this.tabPageListaObjetosImportados.Text = "Lista para importação";
             this.tabPageListaObjetosImportados.UseVisualStyleBackColor = true;
             // 
-            // dataGridViewQRCode
+            // dataGridViewTXT
             // 
-            this.dataGridViewQRCode.AllowUserToAddRows = false;
-            this.dataGridViewQRCode.AllowUserToDeleteRows = false;
-            this.dataGridViewQRCode.AllowUserToOrderColumns = true;
-            this.dataGridViewQRCode.AllowUserToResizeRows = false;
+            this.dataGridViewTXT.AllowUserToAddRows = false;
+            this.dataGridViewTXT.AllowUserToDeleteRows = false;
+            this.dataGridViewTXT.AllowUserToOrderColumns = true;
+            this.dataGridViewTXT.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dataGridViewQRCode.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridViewQRCode.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridViewQRCode.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewQRCode.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTXT.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridViewTXT.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewTXT.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewTXT.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn2,
             this.CodigoLdi,
             this.NomeCliente,
@@ -227,14 +227,14 @@
             this.NumeroListaAtual,
             this.ItemAtual,
             this.QtdTotal});
-            this.dataGridViewQRCode.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridViewQRCode.Location = new System.Drawing.Point(3, 3);
-            this.dataGridViewQRCode.Name = "dataGridViewQRCode";
-            this.dataGridViewQRCode.ReadOnly = true;
-            this.dataGridViewQRCode.RowHeadersVisible = false;
-            this.dataGridViewQRCode.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewQRCode.Size = new System.Drawing.Size(543, 214);
-            this.dataGridViewQRCode.TabIndex = 2;
+            this.dataGridViewTXT.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewTXT.Location = new System.Drawing.Point(3, 3);
+            this.dataGridViewTXT.Name = "dataGridViewTXT";
+            this.dataGridViewTXT.ReadOnly = true;
+            this.dataGridViewTXT.RowHeadersVisible = false;
+            this.dataGridViewTXT.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewTXT.Size = new System.Drawing.Size(543, 214);
+            this.dataGridViewTXT.TabIndex = 2;
             // 
             // dataGridViewTextBoxColumn2
             // 
@@ -652,7 +652,7 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormularioCadastroObjetosViaTXTPLRDaAgenciaMae_KeyDown);
             this.tabControl1.ResumeLayout(false);
             this.tabPageListaObjetosImportados.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewQRCode)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTXT)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -679,7 +679,7 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3Botoes;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.DataGridView dataGridViewQRCode;
+        private System.Windows.Forms.DataGridView dataGridViewTXT;
         private System.Windows.Forms.Label LblLeituraPreListaRemessaLDI;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn CodigoLdi;

@@ -1712,6 +1712,7 @@ namespace SISAPO
         {
             try
             {
+                motivoBaixaInformado = motivoBaixaInformado == "ENTREGUE" ? "DISTRIBUÍDO AO DESTINATÁRIO" : motivoBaixaInformado;
                 Configuracoes.EmailsAgenciaMae = Configuracoes.ReceberEmailsAgenciaMae();
 
                 if (string.IsNullOrWhiteSpace(Configuracoes.EmailsAgenciaMae))

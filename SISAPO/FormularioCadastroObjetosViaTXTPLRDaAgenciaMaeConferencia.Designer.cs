@@ -39,6 +39,8 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageInserirArquivoPLR = new System.Windows.Forms.TabPage();
             this.LblEnderecoBuscado = new System.Windows.Forms.Label();
+            this.BtnDebug = new System.Windows.Forms.Button();
+            this.BtnFinalizarConferencia = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.CodigoObjeto = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -81,26 +83,25 @@
             this.LblLinkLimparListaPLRs = new System.Windows.Forms.LinkLabel();
             this.TxtLeituraConferencia = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.LblLinkLimparListaConferencia = new System.Windows.Forms.LinkLabel();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumnItem = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumnCodigoObjeto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumnResultado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.LblLinkLimparListaConferencia = new System.Windows.Forms.LinkLabel();
+            this.tabControl2 = new System.Windows.Forms.TabControl();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.LblLinkVisualizarObjetosFaltantes = new System.Windows.Forms.LinkLabel();
-            this.button1 = new System.Windows.Forms.Button();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.Descricao = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Qtd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridView4 = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Descricao = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Qtd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.tabControl2 = new System.Windows.Forms.TabControl();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabControl1.SuspendLayout();
             this.tabPageInserirArquivoPLR.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -108,13 +109,13 @@
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.panel1.SuspendLayout();
+            this.tabControl2.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
             this.panel2.SuspendLayout();
             this.groupBox4.SuspendLayout();
-            this.tabControl2.SuspendLayout();
-            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // label13
@@ -152,7 +153,8 @@
             // 
             this.tabPageInserirArquivoPLR.Controls.Add(this.LblEnderecoBuscado);
             this.tabPageInserirArquivoPLR.Controls.Add(this.label13);
-            this.tabPageInserirArquivoPLR.Controls.Add(this.button1);
+            this.tabPageInserirArquivoPLR.Controls.Add(this.BtnDebug);
+            this.tabPageInserirArquivoPLR.Controls.Add(this.BtnFinalizarConferencia);
             this.tabPageInserirArquivoPLR.Controls.Add(this.BtnLerArquivoPLR);
             this.tabPageInserirArquivoPLR.Location = new System.Drawing.Point(4, 33);
             this.tabPageInserirArquivoPLR.Name = "tabPageInserirArquivoPLR";
@@ -170,6 +172,31 @@
             this.LblEnderecoBuscado.Name = "LblEnderecoBuscado";
             this.LblEnderecoBuscado.Size = new System.Drawing.Size(0, 24);
             this.LblEnderecoBuscado.TabIndex = 2;
+            // 
+            // BtnDebug
+            // 
+            this.BtnDebug.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnDebug.Font = new System.Drawing.Font("Adobe Gothic Std B", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnDebug.Location = new System.Drawing.Point(277, 8);
+            this.BtnDebug.Name = "BtnDebug";
+            this.BtnDebug.Size = new System.Drawing.Size(219, 62);
+            this.BtnDebug.TabIndex = 3;
+            this.BtnDebug.Text = "Botão Debug Faz a leitura de todos";
+            this.BtnDebug.UseVisualStyleBackColor = true;
+            this.BtnDebug.Visible = false;
+            this.BtnDebug.Click += new System.EventHandler(this.BtnDebug_Click);
+            // 
+            // BtnFinalizarConferencia
+            // 
+            this.BtnFinalizarConferencia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnFinalizarConferencia.Font = new System.Drawing.Font("Adobe Gothic Std B", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnFinalizarConferencia.Location = new System.Drawing.Point(502, 8);
+            this.BtnFinalizarConferencia.Name = "BtnFinalizarConferencia";
+            this.BtnFinalizarConferencia.Size = new System.Drawing.Size(219, 62);
+            this.BtnFinalizarConferencia.TabIndex = 3;
+            this.BtnFinalizarConferencia.Text = "Finalizar conferência";
+            this.BtnFinalizarConferencia.UseVisualStyleBackColor = true;
+            this.BtnFinalizarConferencia.Click += new System.EventHandler(this.BtnFinalizarConferencia_Click);
             // 
             // groupBox1
             // 
@@ -583,6 +610,17 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Conferência / Check-in";
             // 
+            // LblLinkLimparListaConferencia
+            // 
+            this.LblLinkLimparListaConferencia.AutoSize = true;
+            this.LblLinkLimparListaConferencia.Location = new System.Drawing.Point(177, 1);
+            this.LblLinkLimparListaConferencia.Name = "LblLinkLimparListaConferencia";
+            this.LblLinkLimparListaConferencia.Size = new System.Drawing.Size(59, 13);
+            this.LblLinkLimparListaConferencia.TabIndex = 1;
+            this.LblLinkLimparListaConferencia.TabStop = true;
+            this.LblLinkLimparListaConferencia.Text = "Limpar lista";
+            this.LblLinkLimparListaConferencia.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LblLinkLimparListaConferencia_LinkClicked);
+            // 
             // dataGridView2
             // 
             this.dataGridView2.AllowUserToAddRows = false;
@@ -643,16 +681,28 @@
             this.panel1.Size = new System.Drawing.Size(242, 298);
             this.panel1.TabIndex = 2;
             // 
-            // LblLinkLimparListaConferencia
+            // tabControl2
             // 
-            this.LblLinkLimparListaConferencia.AutoSize = true;
-            this.LblLinkLimparListaConferencia.Location = new System.Drawing.Point(177, 1);
-            this.LblLinkLimparListaConferencia.Name = "LblLinkLimparListaConferencia";
-            this.LblLinkLimparListaConferencia.Size = new System.Drawing.Size(59, 13);
-            this.LblLinkLimparListaConferencia.TabIndex = 1;
-            this.LblLinkLimparListaConferencia.TabStop = true;
-            this.LblLinkLimparListaConferencia.Text = "Limpar lista";
-            this.LblLinkLimparListaConferencia.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LblLinkLimparListaConferencia_LinkClicked);
+            this.tabControl2.Controls.Add(this.tabPage2);
+            this.tabControl2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tabControl2.Font = new System.Drawing.Font("Adobe Gothic Std B", 14.25F, System.Drawing.FontStyle.Bold);
+            this.tabControl2.Location = new System.Drawing.Point(0, 0);
+            this.tabControl2.Name = "tabControl2";
+            this.tabControl2.SelectedIndex = 0;
+            this.tabControl2.Size = new System.Drawing.Size(242, 113);
+            this.tabControl2.TabIndex = 0;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.TxtLeituraConferencia);
+            this.tabPage2.Controls.Add(this.label2);
+            this.tabPage2.Location = new System.Drawing.Point(4, 33);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(234, 76);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Conferência / Check-in";
+            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
@@ -692,18 +742,6 @@
             this.LblLinkVisualizarObjetosFaltantes.Text = "Visualizar -->";
             this.LblLinkVisualizarObjetosFaltantes.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LblLinkVisualizarObjetosFaltantes_LinkClicked);
             // 
-            // button1
-            // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Font = new System.Drawing.Font("Adobe Gothic Std B", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(502, 8);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(219, 62);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Finalizar conferência";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.BtnLerArquivoPLR_Click);
-            // 
             // dataGridView3
             // 
             this.dataGridView3.AllowUserToAddRows = false;
@@ -724,6 +762,23 @@
             this.dataGridView3.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView3.Size = new System.Drawing.Size(265, 119);
             this.dataGridView3.TabIndex = 0;
+            // 
+            // Descricao
+            // 
+            this.Descricao.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Descricao.DataPropertyName = "Descricao";
+            this.Descricao.HeaderText = "Descrição";
+            this.Descricao.Name = "Descricao";
+            this.Descricao.ReadOnly = true;
+            // 
+            // Qtd
+            // 
+            this.Qtd.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.Qtd.DataPropertyName = "Qtd";
+            this.Qtd.HeaderText = "Qtd.";
+            this.Qtd.Name = "Qtd";
+            this.Qtd.ReadOnly = true;
+            this.Qtd.Width = 68;
             // 
             // dataGridView4
             // 
@@ -763,23 +818,6 @@
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
             this.dataGridViewTextBoxColumn2.Width = 68;
             // 
-            // Descricao
-            // 
-            this.Descricao.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Descricao.DataPropertyName = "Descricao";
-            this.Descricao.HeaderText = "Descrição";
-            this.Descricao.Name = "Descricao";
-            this.Descricao.ReadOnly = true;
-            // 
-            // Qtd
-            // 
-            this.Qtd.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.Qtd.DataPropertyName = "Qtd";
-            this.Qtd.HeaderText = "Qtd.";
-            this.Qtd.Name = "Qtd";
-            this.Qtd.ReadOnly = true;
-            this.Qtd.Width = 68;
-            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.groupBox3);
@@ -804,29 +842,6 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Relatório Final Conferência";
             // 
-            // tabControl2
-            // 
-            this.tabControl2.Controls.Add(this.tabPage2);
-            this.tabControl2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tabControl2.Font = new System.Drawing.Font("Adobe Gothic Std B", 14.25F, System.Drawing.FontStyle.Bold);
-            this.tabControl2.Location = new System.Drawing.Point(0, 0);
-            this.tabControl2.Name = "tabControl2";
-            this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(242, 113);
-            this.tabControl2.TabIndex = 0;
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.TxtLeituraConferencia);
-            this.tabPage2.Controls.Add(this.label2);
-            this.tabPage2.Location = new System.Drawing.Point(4, 33);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(234, 76);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Conferência / Check-in";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
             // FormularioCadastroObjetosViaTXTPLRDaAgenciaMaeConferencia
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -837,6 +852,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimizeBox = false;
             this.Name = "FormularioCadastroObjetosViaTXTPLRDaAgenciaMaeConferencia";
             this.Text = "Formulário de conferência de PLRs";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -851,15 +867,15 @@
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.panel1.ResumeLayout(false);
+            this.tabControl2.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
             this.panel2.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
-            this.tabControl2.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -922,7 +938,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ItemAtual;
         private System.Windows.Forms.DataGridViewTextBoxColumn QtdTotal;
         private System.Windows.Forms.Label LblEnderecoBuscado;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button BtnFinalizarConferencia;
         private System.Windows.Forms.DataGridView dataGridView3;
         private System.Windows.Forms.DataGridView dataGridView4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
@@ -933,5 +949,6 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.TabControl tabControl2;
         private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.Button BtnDebug;
     }
 }

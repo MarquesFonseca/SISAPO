@@ -11,23 +11,27 @@ namespace SISAPO
 {
     public partial class FormularioCadastroObjetosViaTXTPLRDaAgenciaMaeConferencia : Form
     {
-        DataTable dtListaObjetosTXT = new DataTable();
-        DataTable dtListaObjetosConferencia = new DataTable();
-        int itemConferencia = 1;
+        public DataTable dtListaFinalConferidos = new DataTable();
+        private DataTable dtListaObjetosTXT = new DataTable();
+        private DataTable dtListaObjetosConferencia = new DataTable();
+        private int itemConferencia = 1;
 
-        int TempLblQtdTotalSemPLR = 0;
-        int TempLblQdtTotalComPLR = 0;
+        private int TempLblQtdTotalSemPLR = 0;
+        private int TempLblQdtTotalComPLR = 0;
 
-        int TempLblQtdTotalDePLR = 0;
-        int TempLblQtdTotalItensEmPLRs = 0;
-        int TempLblTotalValidados = 0;
-        int TempLblQtdTotalFaltantes = 0;
+        private int TempLblQtdTotalDePLR = 0;
+        private int TempLblQtdTotalItensEmPLRs = 0;
+        private int TempLblTotalValidados = 0;
+        private int TempLblQtdTotalFaltantes = 0;
 
         string PastaEnderecoInicialArquivo = "C:\\";
 
         public FormularioCadastroObjetosViaTXTPLRDaAgenciaMaeConferencia()
         {
             InitializeComponent();
+#if DEBUG
+            BtnDebug.Visible = true;
+#endif
         }
 
         private void FormularioCadastroObjetosViaTXTPLRDaAgenciaMaeConferencia_Load(object sender, EventArgs e)
@@ -291,7 +295,8 @@ namespace SISAPO
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
                 openFileDialog.InitialDirectory = PastaEnderecoInicialArquivo;
-                openFileDialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+                //openFileDialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+                openFileDialog.Filter = "txt files (*.txt)|*.txt";
                 openFileDialog.FilterIndex = 2;
                 openFileDialog.RestoreDirectory = true;
 
@@ -827,6 +832,79 @@ namespace SISAPO
                 MudaCorLinhasGridView2();
                 CarregaRelatorio();
             }
+        }
+
+        private void BtnDebug_Click(object sender, EventArgs e)
+        {
+            foreach (DataRow item in dtListaObjetosTXT.Rows)
+            {
+                string CodigoObjeto = item["CodigoObjeto"].ToString();
+
+                bool existeNaListaConferencia = dtListaObjetosConferencia.AsEnumerable().Any(T => T["CodigoObjeto"].ToString().Contains(CodigoObjeto));
+                if (!existeNaListaConferencia)
+                {
+                    bool existeNaListaPLR = dtListaObjetosTXT.AsEnumerable().Any(T => T["CodigoObjeto"].ToString().Contains(CodigoObjeto));
+
+                    DataRow linhaDtListaObjetosConferencia = dtListaObjetosConferencia.NewRow();
+                    linhaDtListaObjetosConferencia["Item"] = itemConferencia++;
+                    linhaDtListaObjetosConferencia["CodigoObjeto"] = CodigoObjeto;
+                    linhaDtListaObjetosConferencia["Resultado"] = existeNaListaPLR;
+                    dtListaObjetosConferencia.Rows.Add(linhaDtListaObjetosConferencia);
+
+                    DataTable Temp = new DataTable();
+                    Temp.Columns.Add("Item");
+                    Temp.Columns.Add("CodigoObjeto");
+                    Temp.Columns.Add("Resultado");
+
+                    int contador = 0;
+                    foreach (DataRow itemNovaOrdem in dtListaObjetosConferencia.Rows)
+                    {
+                        contador++;
+
+                        existeNaListaPLR = dtListaObjetosTXT.AsEnumerable().Any(T => T["CodigoObjeto"].ToString().Contains(itemNovaOrdem["CodigoObjeto"].ToString()));
+
+                        DataRow DtTempRowConferencia = Temp.NewRow();
+                        DtTempRowConferencia["Item"] = contador;
+                        DtTempRowConferencia["CodigoObjeto"] = itemNovaOrdem["CodigoObjeto"].ToString();
+                        DtTempRowConferencia["Resultado"] = existeNaListaPLR;
+                        Temp.Rows.Add(DtTempRowConferencia);
+                    }
+
+                    dtListaObjetosConferencia.Clear();
+                    dtListaObjetosConferencia = Temp;
+
+                    dataGridView2.DataSource = dtListaObjetosConferencia;
+                }
+                MudaCorLinhasGridView1();
+                MudaCorLinhasGridView2();
+                CarregaRelatorio();
+            }
+        }
+
+        private void BtnFinalizarConferencia_Click(object sender, EventArgs e)
+        {
+            if (dtListaObjetosTXT == null || dtListaObjetosTXT.Rows.Count == 0)
+            {
+                Mensagens.Erro("Nenhuma PLR foi carregada.\nFaça o carregamento de uma lista e continue.");
+                return;
+            }
+            if (dtListaObjetosConferencia == null || dtListaObjetosConferencia.Rows.Count == 0)
+            {
+                Mensagens.Erro("Para finalizar é necessário efetuar a respectiva conferência.\nFaça a leitura dos códigos fisicamente e tente novamente.");
+                return;
+            }
+            dtListaFinalConferidos = (from T1 in dtListaObjetosTXT.Rows.Cast<DataRow>()
+                                      join T2 in dtListaObjetosConferencia.Rows.Cast<DataRow>() 
+                                      on T1["CodigoObjeto"] equals T2["CodigoObjeto"]
+                                      select T1).CopyToDataTable();
+            //foreach (DataRow item in dtListaObjetosConferencia.Rows)
+            //{
+            //    //DataRow lkjljlk = dtListaObjetosTXT.AsEnumerable().Where(T => (T["CodigoObjeto"].ToString() == item["CodigoObjeto"].ToString()));
+
+            //}
+
+
+            this.Close();
         }
     }
 }
