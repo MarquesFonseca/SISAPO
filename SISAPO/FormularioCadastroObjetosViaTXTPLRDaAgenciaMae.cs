@@ -231,8 +231,9 @@ namespace SISAPO
                         //informa na mensagem que falta objetos a ser lançados....
                         StringBuilder str = new StringBuilder();
                         str.AppendLine(string.Format("Atenção: Para a PLR [{0}] criada em [{1}], existem itens faltantes!\n", NumeroListaAtual, DataListaAtual));
-                        str.AppendLine(string.Format("Qtd. total da PLR..: {0}", QtdTotalPLR));
-                        str.AppendLine(string.Format("Qtd. de itens lidos: {0}", QtdTotalLidosDestaLista));
+                        str.AppendLine(string.Format("Qtd. total da PLR.........: {0}", QtdTotalPLR));
+                        str.AppendLine(string.Format("Qtd. de itens lidos.......: {0}", QtdTotalLidosDestaLista));
+                        str.AppendLine(string.Format("Qtd. de itens faltantes: {0}", (QtdTotalPLR - QtdTotalLidosDestaLista)));
                         str.AppendLine(string.Format("\n"));
                         str.AppendLine(string.Format("Deseja continuar?"));
                         string mensagemFormatada = str.ToString();
