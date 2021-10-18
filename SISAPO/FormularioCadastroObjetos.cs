@@ -307,17 +307,17 @@ namespace SISAPO
                         //existe na base de dados
                         if (string.IsNullOrEmpty(linhaItemDataModificacao))//se não tem modificação... não alterar o campo situação e data modificação.
                         {
-                            dao.ExecutaSQL(string.Format("UPDATE TabelaObjetosSROLocal SET Comentario = @Comentario, Atualizado = @Atualizado WHERE (CodigoObjeto = @CodigoObjeto)"), new List<Parametros>(){
-                                            new Parametros("@Comentario", TipoCampo.Text, linhaItemComentario),
+                            dao.ExecutaSQL(string.Format("UPDATE TabelaObjetosSROLocal SET Atualizado = @Atualizado WHERE (CodigoObjeto = @CodigoObjeto)"), new List<Parametros>(){
+                                            //new Parametros("@Comentario", TipoCampo.Text, linhaItemComentario),
                                             new Parametros("@Atualizado",TipoCampo.Boolean, jaCadastrado.Tables[0].Rows[0]["NomeCliente"].ToString() == "" ? false : true),
                                             new Parametros("@CodigoObjeto", TipoCampo.Text, linhaItemCodigoObjeto)});
                         }
                         if (!string.IsNullOrEmpty(linhaItemDataModificacao))//se não tem modificação... não alterar o campo situação e data modificação.
                         {
-                            dao.ExecutaSQL(string.Format("UPDATE TabelaObjetosSROLocal SET DataModificacao = @DataModificacao, Situacao = @Situacao, Comentario = @Comentario, Atualizado = @Atualizado, ObjetoEntregue = @ObjetoEntregue WHERE (CodigoObjeto = @CodigoObjeto)"), new List<Parametros>(){
+                            dao.ExecutaSQL(string.Format("UPDATE TabelaObjetosSROLocal SET DataModificacao = @DataModificacao, Situacao = @Situacao, Atualizado = @Atualizado, ObjetoEntregue = @ObjetoEntregue WHERE (CodigoObjeto = @CodigoObjeto)"), new List<Parametros>(){
                                             new Parametros("@DataModificacao", TipoCampo.Text, linhaItemDataModificacao),
                                             new Parametros("@Situacao", TipoCampo.Text, linhaItemSituacao),
-                                            new Parametros("@Comentario", TipoCampo.Text, linhaItemComentario),
+                                            //new Parametros("@Comentario", TipoCampo.Text, linhaItemComentario),
                                             new Parametros("@Atualizado",TipoCampo.Boolean, jaCadastrado.Tables[0].Rows[0]["NomeCliente"].ToString() == "" ? false : true),
                                             new Parametros("@ObjetoEntregue", TipoCampo.Boolean, linhaItemDataModificacao == "" ? false : true),
 

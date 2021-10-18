@@ -596,6 +596,7 @@
             this.TxtLeituraConferencia.Name = "TxtLeituraConferencia";
             this.TxtLeituraConferencia.Size = new System.Drawing.Size(230, 31);
             this.TxtLeituraConferencia.TabIndex = 1;
+            this.TxtLeituraConferencia.TextChanged += new System.EventHandler(this.TxtLeituraConferencia_TextChanged);
             this.TxtLeituraConferencia.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtLeituraConferencia_KeyDown);
             // 
             // groupBox2

@@ -906,5 +906,10 @@ namespace SISAPO
 
             this.Close();
         }
+
+        private void TxtLeituraConferencia_TextChanged(object sender, EventArgs e)
+        {
+            TxtLeituraConferencia.CharacterCasing = CharacterCasing.Upper;
+        }
     }
 }
