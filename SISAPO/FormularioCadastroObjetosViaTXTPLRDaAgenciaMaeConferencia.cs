@@ -34,7 +34,7 @@ namespace SISAPO
         {
             dtListaObjetosTXT = CriaDataTableListaObjetosTXT();
             dtListaObjetosConferencia = CriaDataTableListaObjetosConferencia();
-            
+
             LblLinkVisualizarObjetosFaltantes.Visible = false;
         }
 
@@ -509,11 +509,32 @@ namespace SISAPO
                     linhaDtListaObjetosConferencia["CodigoObjeto"] = TxtLeituraConferencia.Text;
                     linhaDtListaObjetosConferencia["Resultado"] = existeNaListaPLR;
                     dtListaObjetosConferencia.Rows.Add(linhaDtListaObjetosConferencia);
-                    dataGridView2.DataSource = dtListaObjetosConferencia;
 
+                    DataTable Temp = new DataTable();
+                    Temp.Columns.Add("Item");
+                    Temp.Columns.Add("CodigoObjeto");
+                    Temp.Columns.Add("Resultado");
+
+                    int contador = 0;
+                    foreach (DataRow itemNovaOrdem in dtListaObjetosConferencia.Rows)
+                    {
+                        contador++;
+
+                        existeNaListaPLR = dtListaObjetosTXT.AsEnumerable().Any(T => T["CodigoObjeto"].ToString().Contains(itemNovaOrdem["CodigoObjeto"].ToString()));
+
+                        DataRow DtTempRowConferencia = Temp.NewRow();
+                        DtTempRowConferencia["Item"] = contador;
+                        DtTempRowConferencia["CodigoObjeto"] = itemNovaOrdem["CodigoObjeto"].ToString();
+                        DtTempRowConferencia["Resultado"] = existeNaListaPLR;
+                        Temp.Rows.Add(DtTempRowConferencia);
+                    }
+
+                    dtListaObjetosConferencia.Clear();
+                    dtListaObjetosConferencia = Temp;
+
+                    dataGridView2.DataSource = dtListaObjetosConferencia;
                     MudaCorLinhasGridView1();
                     MudaCorLinhasGridView2();
-
                     CarregaRelatorio();
 
                     TxtLeituraConferencia.Text = string.Empty;
@@ -525,11 +546,6 @@ namespace SISAPO
                     TxtLeituraConferencia.Text = string.Empty;
                     TxtLeituraConferencia.Focus();
                     TxtLeituraConferencia.ScrollToCaret();
-
-                    //TxtLeituraConferencia.Focus();
-                    //TxtLeituraConferencia.ScrollToCaret();
-
-                    //TxtLeituraConferencia.Select(TxtLeituraConferencia.Text.Length, 0);
                     return;
                 }
             }
@@ -554,8 +570,8 @@ namespace SISAPO
 
             dtListaRelatorioPLR.Rows.Add("Quantidade de PLRs", TempLblQtdTotalDePLR.ToString());//linha 1
             dtListaRelatorioPLR.Rows.Add("Objetos listados", TempLblQtdTotalItensEmPLRs.ToString());//linha 2
-            dtListaRelatorioPLR.Rows.Add("Objetos validados",TempLblTotalValidados.ToString());//linha 3
-            dtListaRelatorioPLR.Rows.Add("Objetos faltantes",TempLblQtdTotalFaltantes.ToString());//linha 4
+            dtListaRelatorioPLR.Rows.Add("Objetos validados", TempLblTotalValidados.ToString());//linha 3
+            dtListaRelatorioPLR.Rows.Add("Objetos faltantes", TempLblQtdTotalFaltantes.ToString());//linha 4
             dataGridView3.DataSource = dtListaRelatorioPLR;
 
 
@@ -623,19 +639,45 @@ namespace SISAPO
         private void LblLinkVisualizarObjetosFaltantes_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             DataTable dtListaObjetosFaltantes = new DataTable();
-            dtListaObjetosFaltantes.Clear();
-            dtListaObjetosFaltantes.Columns.Add("Item");
-            dtListaObjetosFaltantes.Columns.Add("NumeroPLR");
-            dtListaObjetosFaltantes.Columns.Add("ClienteRemetente");
-            dtListaObjetosFaltantes.Columns.Add("Contrato");
-            dtListaObjetosFaltantes.Columns.Add("CodigoAdministrativo");
-            dtListaObjetosFaltantes.Columns.Add("CartaoAdministrativo");
-            dtListaObjetosFaltantes.Columns.Add("EnderecoRemetente");
-            dtListaObjetosFaltantes.Columns.Add("CodigoObjeto");
-            dtListaObjetosFaltantes.Columns.Add("Destinatario");
-            dtListaObjetosFaltantes.Columns.Add("CepDestino");
+            dtListaObjetosFaltantes.Columns.Add("CodigoObjeto", typeof(string));
+            dtListaObjetosFaltantes.Columns.Add("CodigoLdi", typeof(string));
+            dtListaObjetosFaltantes.Columns.Add("NomeCliente", typeof(string));
+            dtListaObjetosFaltantes.Columns.Add("DataLancamento", typeof(string));
+            dtListaObjetosFaltantes.Columns.Add("DataModificacao", typeof(string));
+            dtListaObjetosFaltantes.Columns.Add("Situacao", typeof(string));
+            dtListaObjetosFaltantes.Columns.Add("Atualizado", typeof(string));
+            dtListaObjetosFaltantes.Columns.Add("ObjetoEntregue", typeof(string));
+            dtListaObjetosFaltantes.Columns.Add("CaixaPostal", typeof(string));
+            dtListaObjetosFaltantes.Columns.Add("UnidadePostagem", typeof(string));
+            dtListaObjetosFaltantes.Columns.Add("MunicipioPostagem", typeof(string));
+            dtListaObjetosFaltantes.Columns.Add("CriacaoPostagem", typeof(string));
+            dtListaObjetosFaltantes.Columns.Add("CepDestinoPostagem", typeof(string));
+            dtListaObjetosFaltantes.Columns.Add("ARPostagem", typeof(string));
+            dtListaObjetosFaltantes.Columns.Add("MPPostagem", typeof(string));
+            dtListaObjetosFaltantes.Columns.Add("DataMaxPrevistaEntregaPostagem", typeof(string));
+            dtListaObjetosFaltantes.Columns.Add("UnidadeLOEC", typeof(string));
+            dtListaObjetosFaltantes.Columns.Add("MunicipioLOEC", typeof(string));
+            dtListaObjetosFaltantes.Columns.Add("CriacaoLOEC", typeof(string));
+            dtListaObjetosFaltantes.Columns.Add("CarteiroLOEC", typeof(string));
+            dtListaObjetosFaltantes.Columns.Add("DistritoLOEC", typeof(string));
+            dtListaObjetosFaltantes.Columns.Add("NumeroLOEC", typeof(string));
+            dtListaObjetosFaltantes.Columns.Add("EnderecoLOEC", typeof(string));
+            dtListaObjetosFaltantes.Columns.Add("BairroLOEC", typeof(string));
+            dtListaObjetosFaltantes.Columns.Add("LocalidadeLOEC", typeof(string));
+            dtListaObjetosFaltantes.Columns.Add("SituacaoDestinatarioAusente", typeof(string));
+            dtListaObjetosFaltantes.Columns.Add("AgrupadoDestinatarioAusente", typeof(string));
+            dtListaObjetosFaltantes.Columns.Add("CoordenadasDestinatarioAusente", typeof(string));
+            dtListaObjetosFaltantes.Columns.Add("Comentario", typeof(string));
+            dtListaObjetosFaltantes.Columns.Add("TipoPostalServico", typeof(string));
+            dtListaObjetosFaltantes.Columns.Add("TipoPostalSiglaCodigo", typeof(string));
+            dtListaObjetosFaltantes.Columns.Add("TipoPostalNomeSiglaCodigo", typeof(string));
+            dtListaObjetosFaltantes.Columns.Add("TipoPostalPrazoDiasCorridosRegulamentado", typeof(string));
+            dtListaObjetosFaltantes.Columns.Add("DataListaAtual", typeof(string));
+            dtListaObjetosFaltantes.Columns.Add("NumeroListaAtual", typeof(string));
+            dtListaObjetosFaltantes.Columns.Add("ItemAtual", typeof(int));
+            dtListaObjetosFaltantes.Columns.Add("QtdTotal", typeof(int));
 
-            int item = 1;
+            //int item = 1;
             foreach (DataGridViewRow rowGrid1 in dataGridView1.Rows)
             {
                 string codigoLinhaGrid1 = rowGrid1.Cells["CodigoObjeto"].Value.ToString();
@@ -645,16 +687,44 @@ namespace SISAPO
                     //cria Nova Tabela somente com os não conferidos/faltantes
                     //cria linha
                     DataRow linhaDtListaObjetos = dtListaObjetosFaltantes.NewRow();
-                    linhaDtListaObjetos["Item"] = item++;
-                    linhaDtListaObjetos["NumeroPLR"] = rowGrid1.Cells["NumeroPLR"].Value.ToString();
-                    linhaDtListaObjetos["ClienteRemetente"] = rowGrid1.Cells["ClienteRemetente"].Value.ToString();
-                    linhaDtListaObjetos["Contrato"] = rowGrid1.Cells["Contrato"].Value.ToString();
-                    linhaDtListaObjetos["CodigoAdministrativo"] = rowGrid1.Cells["CodigoAdministrativo"].Value.ToString();
-                    linhaDtListaObjetos["CartaoAdministrativo"] = rowGrid1.Cells["CartaoAdministrativo"].Value.ToString();
-                    linhaDtListaObjetos["EnderecoRemetente"] = rowGrid1.Cells["EnderecoRemetente"].Value.ToString();
                     linhaDtListaObjetos["CodigoObjeto"] = rowGrid1.Cells["CodigoObjeto"].Value.ToString();
-                    linhaDtListaObjetos["Destinatario"] = rowGrid1.Cells["Destinatario"].Value.ToString();
-                    linhaDtListaObjetos["CepDestino"] = rowGrid1.Cells["CepDestino"].Value.ToString();
+                    linhaDtListaObjetos["CodigoLdi"] = rowGrid1.Cells["CodigoLdi"].Value.ToString();
+                    linhaDtListaObjetos["NomeCliente"] = rowGrid1.Cells["NomeCliente"].Value.ToString();
+                    linhaDtListaObjetos["DataLancamento"] = rowGrid1.Cells["DataLancamento"].Value.ToString();
+                    linhaDtListaObjetos["DataModificacao"] = rowGrid1.Cells["DataModificacao"].Value.ToString();
+                    linhaDtListaObjetos["Situacao"] = rowGrid1.Cells["Situacao"].Value.ToString();
+                    linhaDtListaObjetos["Atualizado"] = rowGrid1.Cells["Atualizado"].Value.ToString();
+                    linhaDtListaObjetos["ObjetoEntregue"] = rowGrid1.Cells["ObjetoEntregue"].Value.ToString();
+                    linhaDtListaObjetos["CaixaPostal"] = rowGrid1.Cells["CaixaPostal"].Value.ToString();
+                    linhaDtListaObjetos["UnidadePostagem"] = rowGrid1.Cells["UnidadePostagem"].Value.ToString();
+                    linhaDtListaObjetos["MunicipioPostagem"] = rowGrid1.Cells["MunicipioPostagem"].Value.ToString();
+                    linhaDtListaObjetos["CriacaoPostagem"] = rowGrid1.Cells["CriacaoPostagem"].Value.ToString();
+                    linhaDtListaObjetos["CepDestinoPostagem"] = rowGrid1.Cells["CepDestinoPostagem"].Value.ToString();
+                    linhaDtListaObjetos["ARPostagem"] = rowGrid1.Cells["ARPostagem"].Value.ToString();
+                    linhaDtListaObjetos["MPPostagem"] = rowGrid1.Cells["MPPostagem"].Value.ToString();
+                    linhaDtListaObjetos["DataMaxPrevistaEntregaPostagem"] = rowGrid1.Cells["DataMaxPrevistaEntregaPostagem"].Value.ToString();
+                    linhaDtListaObjetos["UnidadeLOEC"] = rowGrid1.Cells["UnidadeLOEC"].Value.ToString();
+                    linhaDtListaObjetos["MunicipioLOEC"] = rowGrid1.Cells["MunicipioLOEC"].Value.ToString();
+                    linhaDtListaObjetos["CriacaoLOEC"] = rowGrid1.Cells["CriacaoLOEC"].Value.ToString();
+                    linhaDtListaObjetos["CarteiroLOEC"] = rowGrid1.Cells["CarteiroLOEC"].Value.ToString();
+                    linhaDtListaObjetos["DistritoLOEC"] = rowGrid1.Cells["DistritoLOEC"].Value.ToString();
+                    linhaDtListaObjetos["NumeroLOEC"] = rowGrid1.Cells["NumeroLOEC"].Value.ToString();
+                    linhaDtListaObjetos["EnderecoLOEC"] = rowGrid1.Cells["EnderecoLOEC"].Value.ToString();
+                    linhaDtListaObjetos["BairroLOEC"] = rowGrid1.Cells["BairroLOEC"].Value.ToString();
+                    linhaDtListaObjetos["LocalidadeLOEC"] = rowGrid1.Cells["LocalidadeLOEC"].Value.ToString();
+                    linhaDtListaObjetos["SituacaoDestinatarioAusente"] = rowGrid1.Cells["SituacaoDestinatarioAusente"].Value.ToString();
+                    linhaDtListaObjetos["AgrupadoDestinatarioAusente"] = rowGrid1.Cells["AgrupadoDestinatarioAusente"].Value.ToString();
+                    linhaDtListaObjetos["CoordenadasDestinatarioAusente"] = rowGrid1.Cells["CoordenadasDestinatarioAusente"].Value.ToString();
+                    linhaDtListaObjetos["Comentario"] = rowGrid1.Cells["Comentario"].Value.ToString();
+                    linhaDtListaObjetos["TipoPostalServico"] = rowGrid1.Cells["TipoPostalServico"].Value.ToString();
+                    linhaDtListaObjetos["TipoPostalSiglaCodigo"] = rowGrid1.Cells["TipoPostalSiglaCodigo"].Value.ToString();
+                    linhaDtListaObjetos["TipoPostalNomeSiglaCodigo"] = rowGrid1.Cells["TipoPostalNomeSiglaCodigo"].Value.ToString();
+                    linhaDtListaObjetos["TipoPostalPrazoDiasCorridosRegulamentado"] = rowGrid1.Cells["TipoPostalPrazoDiasCorridosRegulamentado"].Value.ToString();
+                    linhaDtListaObjetos["DataListaAtual"] = rowGrid1.Cells["DataListaAtual"].Value.ToString();
+                    linhaDtListaObjetos["NumeroListaAtual"] = rowGrid1.Cells["NumeroListaAtual"].Value.ToString();
+                    linhaDtListaObjetos["ItemAtual"] = rowGrid1.Cells["ItemAtual"].Value.ToInt();
+                    linhaDtListaObjetos["QtdTotal"] = rowGrid1.Cells["QtdTotal"].Value.ToInt();
+
                     dtListaObjetosFaltantes.Rows.Add(linhaDtListaObjetos);
                 }
             }
@@ -722,13 +792,39 @@ namespace SISAPO
         {
             if (e.KeyCode == Keys.Delete)
             {
-                for (int i = this.dataGridView2.SelectedCells.Count - 1; i >= 0; i--)
+                foreach (var item in dataGridView2.SelectedCells)
                 {
-                    int indiceLinha = dataGridView2.SelectedCells[i].RowIndex;
-                    dtListaObjetosConferencia.Rows[i].Delete();
+                    int sss = ((System.Windows.Forms.DataGridViewCell)item).OwningRow.Index;
+                    dtListaObjetosConferencia.Rows[sss].Delete();
+                    dtListaObjetosConferencia.AcceptChanges();
+                    break;
                 }
-                MudaCorLinhasGridView1();
 
+                DataTable Temp = new DataTable();
+                Temp.Columns.Add("Item");
+                Temp.Columns.Add("CodigoObjeto");
+                Temp.Columns.Add("Resultado");
+
+                int contador = 0;
+                foreach (DataRow item in dtListaObjetosConferencia.Rows)
+                {
+                    contador++;
+
+                    bool existeNaListaPLR = dtListaObjetosTXT.AsEnumerable().Any(T => T["CodigoObjeto"].ToString().Contains(item["CodigoObjeto"].ToString()));
+
+                    DataRow DtTempRowConferencia = Temp.NewRow();
+                    DtTempRowConferencia["Item"] = contador;
+                    DtTempRowConferencia["CodigoObjeto"] = item["CodigoObjeto"].ToString();
+                    DtTempRowConferencia["Resultado"] = existeNaListaPLR;
+                    Temp.Rows.Add(DtTempRowConferencia);
+                }
+
+                dtListaObjetosConferencia.Clear();
+                dtListaObjetosConferencia = Temp;
+
+                dataGridView2.DataSource = dtListaObjetosConferencia;
+                MudaCorLinhasGridView1();
+                MudaCorLinhasGridView2();
                 CarregaRelatorio();
             }
         }

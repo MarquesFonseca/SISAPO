@@ -707,6 +707,13 @@ namespace SISAPO
         {
             try
             {
+                Configuracoes.EmailsAgenciaMae = Configuracoes.ReceberEmailsAgenciaMae();
+
+                if (string.IsNullOrWhiteSpace(Configuracoes.EmailsAgenciaMae))
+                    return;
+
+                string[] listaEmails = Configuracoes.EmailsAgenciaMae.Split(';');
+
                 System.Net.Mail.SmtpClient cliente = new System.Net.Mail.SmtpClient();
                 cliente.Port = Convert.ToInt32("587");
                 cliente.Host = "smtp.gmail.com";
@@ -716,9 +723,15 @@ namespace SISAPO
                 cliente.Credentials = new System.Net.NetworkCredential("accluzimangues@gmail.com", "oxmt9212");
 
                 System.Net.Mail.MailMessage email = new System.Net.Mail.MailMessage();
-                email.From = new System.Net.Mail.MailAddress("accluzimangues@gmail.com");
-                email.To.Add("marques-fonseca@hotmail.com");
-                email.To.Add("accluzimangues@gmail.com");
+                email.From = new System.Net.Mail.MailAddress("AGC LUZIMANGUES <accluzimangues@gmail.com>");
+                foreach (string item in listaEmails)
+                {
+                    //valida email
+                    if (!Uteis.IsValidEmail(item.Trim())) continue;
+                    email.To.Add(item.ToLowerInvariant());
+                    //email.To.Add("accluzimangues@gmail.com");
+                    //email.To.Add("marques-fonseca@hotmail.com");
+                }
                 email.Subject = "teste de email";
                 email.IsBodyHtml = true;
                 email.Body = RetornaCorpoEmailHTML();
@@ -903,6 +916,13 @@ namespace SISAPO
         {
             try
             {
+                Configuracoes.EmailsAgenciaMae = Configuracoes.ReceberEmailsAgenciaMae();
+
+                if (string.IsNullOrWhiteSpace(Configuracoes.EmailsAgenciaMae))
+                    return;
+
+                string[] listaEmails = Configuracoes.EmailsAgenciaMae.Split(';');
+
                 System.Net.Mail.SmtpClient cliente = new System.Net.Mail.SmtpClient();
                 cliente.Port = Convert.ToInt32("587");
                 cliente.Host = "smtp.gmail.com";
@@ -912,9 +932,15 @@ namespace SISAPO
                 cliente.Credentials = new System.Net.NetworkCredential("accluzimangues@gmail.com", "oxmt9212");
 
                 System.Net.Mail.MailMessage email = new System.Net.Mail.MailMessage();
-                email.From = new System.Net.Mail.MailAddress("accluzimangues@gmail.com");
-                email.To.Add("marques.silva@correios.com.br");
-                //email.To.Add("marques-fonseca@hotmail.com");
+                email.From = new System.Net.Mail.MailAddress("AGC LUZIMANGUES <accluzimangues@gmail.com>");
+                foreach (string item in listaEmails)
+                {
+                    //valida email
+                    if (!Uteis.IsValidEmail(item.Trim())) continue;
+                    email.To.Add(item.ToLowerInvariant());
+                    //email.To.Add("accluzimangues@gmail.com");
+                    //email.To.Add("marques-fonseca@hotmail.com");
+                }
                 email.To.Add("accluzimangues@gmail.com");
                 email.Subject = "Resumo PLR [" + numeroListaAtual + "] recebida por Luzimangues às " + horaRecebimentoPLR + "";
                 email.IsBodyHtml = true;

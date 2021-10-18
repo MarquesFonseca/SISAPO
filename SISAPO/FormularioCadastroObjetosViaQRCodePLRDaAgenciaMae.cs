@@ -462,24 +462,6 @@ namespace SISAPO
             }
         }
 
-        private string retornaSegundaParteHTMLListaLido()
-        {
-            StringBuilder str = new StringBuilder();
-            
-            str.AppendLine("		<thead>                               ");
-            str.AppendLine("			<tr>                              ");
-            str.AppendLine("				<th>Item/Qtd.</th>            ");
-            str.AppendLine("				<th>Código Objeto</th>        ");
-            str.AppendLine("				<th>Nome cliente</th>         ");
-            str.AppendLine("				<th>Comentário</th>           ");
-            str.AppendLine("				<th>Prazo</th>                ");
-            str.AppendLine("				<th>Data devolução</th>       ");
-            str.AppendLine("			</tr>                             ");
-            str.AppendLine("		</thead>                              ");
-            str.AppendLine("		<tbody>                               ");
-            return str.ToString();
-        }
-
         private string retornaPrimeiraParteHTMLListaLido()
         {
             StringBuilder str = new StringBuilder();
@@ -537,6 +519,24 @@ namespace SISAPO
             str.AppendLine("				<td>" + QtdTotaListaAtual + "</th> ");
             str.AppendLine("				<td>" + (QtdTotal.ToInt() - QtdTotaListaAtual.ToInt()) + "</th>      ");
             str.AppendLine("			</tr>                            ");
+            return str.ToString();
+        }
+
+        private string retornaSegundaParteHTMLListaLido()
+        {
+            StringBuilder str = new StringBuilder();
+            
+            str.AppendLine("		<thead>                               ");
+            str.AppendLine("			<tr>                              ");
+            str.AppendLine("				<th>Item/Qtd.</th>            ");
+            str.AppendLine("				<th>Código Objeto</th>        ");
+            str.AppendLine("				<th>Nome cliente</th>         ");
+            str.AppendLine("				<th>Comentário</th>           ");
+            str.AppendLine("				<th>Prazo</th>                ");
+            str.AppendLine("				<th>Data devolução</th>       ");
+            str.AppendLine("			</tr>                             ");
+            str.AppendLine("		</thead>                              ");
+            str.AppendLine("		<tbody>                               ");
             return str.ToString();
         }
 
@@ -1127,6 +1127,13 @@ namespace SISAPO
         {
             try
             {
+                Configuracoes.EmailsAgenciaMae = Configuracoes.ReceberEmailsAgenciaMae();
+
+                if (string.IsNullOrWhiteSpace(Configuracoes.EmailsAgenciaMae))
+                    return;
+
+                string[] listaEmails = Configuracoes.EmailsAgenciaMae.Split(';');
+
                 System.Net.Mail.SmtpClient cliente = new System.Net.Mail.SmtpClient();
                 cliente.Port = Convert.ToInt32("587");
                 cliente.Host = "smtp.gmail.com";
@@ -1136,10 +1143,15 @@ namespace SISAPO
                 cliente.Credentials = new System.Net.NetworkCredential("accluzimangues@gmail.com", "oxmt9212");
 
                 System.Net.Mail.MailMessage email = new System.Net.Mail.MailMessage();
-                email.From = new System.Net.Mail.MailAddress("accluzimangues@gmail.com");
-                email.To.Add("marques.silva@correios.com.br");
-                //email.To.Add("marques-fonseca@hotmail.com");
-                email.To.Add("accluzimangues@gmail.com");
+                email.From = new System.Net.Mail.MailAddress("AGC LUZIMANGUES <accluzimangues@gmail.com>");
+                foreach (string item in listaEmails)
+                {
+                    //valida email
+                    if (!Uteis.IsValidEmail(item.Trim())) continue;
+                    email.To.Add(item.ToLowerInvariant());
+                    //email.To.Add("accluzimangues@gmail.com");
+                    //email.To.Add("marques-fonseca@hotmail.com");
+                }
                 email.Subject = "Resumo PLR [" + numeroListaAtual + "] recebida por Luzimangues às " + horaRecebimentoPLR + "";
                 email.IsBodyHtml = true;
                 email.Body = Html;
@@ -1151,5 +1163,6 @@ namespace SISAPO
 
             }
         }
+
     }
 }

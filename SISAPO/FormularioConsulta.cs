@@ -1729,7 +1729,7 @@ namespace SISAPO
                 cliente.Credentials = new System.Net.NetworkCredential("accluzimangues@gmail.com", "oxmt9212");
 
                 System.Net.Mail.MailMessage email = new System.Net.Mail.MailMessage();
-                email.From = new System.Net.Mail.MailAddress("ACC LUZIMANGUES <accluzimangues@gmail.com>");
+                email.From = new System.Net.Mail.MailAddress("AGC LUZIMANGUES <accluzimangues@gmail.com>");
                 foreach (string item in listaEmails)
                 {
                     //valida email
