@@ -1059,7 +1059,7 @@ namespace SISAPO
             //}
         }
 
-        private void PermiriBuscarPorLDINaPesquisaToolStripMenuItem_Click(object sender, EventArgs e)
+        public void PermiriBuscarPorLDINaPesquisaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ////GRAVA NO BANCO 
             //using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))

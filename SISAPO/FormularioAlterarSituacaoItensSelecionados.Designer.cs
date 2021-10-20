@@ -38,10 +38,10 @@
             this.dataGridViewMotivoBaixo = new System.Windows.Forms.DataGridView();
             this.MotivoBaixa = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.TxtNomeRecebedor = new System.Windows.Forms.TextBox();
-            this.TxtDocRecebedor = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.TxtDocRecebedor = new System.Windows.Forms.TextBox();
+            this.TxtNomeRecebedor = new System.Windows.Forms.TextBox();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMotivoBaixo)).BeginInit();
@@ -149,6 +149,16 @@
             this.panel3.Size = new System.Drawing.Size(584, 110);
             this.panel3.TabIndex = 2;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(11, 52);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(108, 16);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Doc. Recebedor";
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -158,16 +168,6 @@
             this.label4.Size = new System.Drawing.Size(117, 16);
             this.label4.TabIndex = 0;
             this.label4.Text = "Nome Recebedor";
-            // 
-            // TxtNomeRecebedor
-            // 
-            this.TxtNomeRecebedor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtNomeRecebedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtNomeRecebedor.Location = new System.Drawing.Point(12, 23);
-            this.TxtNomeRecebedor.Name = "TxtNomeRecebedor";
-            this.TxtNomeRecebedor.Size = new System.Drawing.Size(560, 26);
-            this.TxtNomeRecebedor.TabIndex = 1;
             // 
             // TxtDocRecebedor
             // 
@@ -179,15 +179,15 @@
             this.TxtDocRecebedor.Size = new System.Drawing.Size(560, 26);
             this.TxtDocRecebedor.TabIndex = 3;
             // 
-            // label2
+            // TxtNomeRecebedor
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(11, 52);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(108, 16);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Doc. Recebedor";
+            this.TxtNomeRecebedor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TxtNomeRecebedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtNomeRecebedor.Location = new System.Drawing.Point(12, 23);
+            this.TxtNomeRecebedor.Name = "TxtNomeRecebedor";
+            this.TxtNomeRecebedor.Size = new System.Drawing.Size(560, 26);
+            this.TxtNomeRecebedor.TabIndex = 1;
             // 
             // FormularioAlterarSituacaoItensSelecionados
             // 

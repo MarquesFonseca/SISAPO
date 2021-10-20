@@ -31,7 +31,6 @@ C:\Projetos\SISAPO\SISAPO\bin\Release\zxing.xml
 C:\Projetos\SISAPO\SISAPO\bin\Release\zxing.presentation.xml
 C:\Projetos\SISAPO\SISAPO\bin\Release\de\PdfSharp.resources.dll
 C:\Projetos\SISAPO\SISAPO\bin\Release\de\PdfSharp.Charting.resources.dll
-C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.csprojResolveAssemblyReference.cache
 C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioAdicionarItemObjetoQRCode.resources
 C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioCadastroObjetosViaTXTPLRDaAgenciaMae.resources
 C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioCadastroObjetosViaQRCodePLRDaAgenciaMae.resources
@@ -82,3 +81,4 @@ C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.exe.manifest
 C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.application
 C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.exe
 C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.pdb
+C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.csprojResolveAssemblyReference.cache

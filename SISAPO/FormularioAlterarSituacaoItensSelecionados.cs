@@ -18,14 +18,17 @@ namespace SISAPO
         private Dictionary<string, string> ListaItensMotivoBaixa = new Dictionary<string, string>();
         public string nomeRecebedor = string.Empty;
         public string docRecebedor = string.Empty;
+        public string NomeCliente = string.Empty; 
 
-        public FormularioAlterarSituacaoItensSelecionados()
+        public FormularioAlterarSituacaoItensSelecionados(string nomeCliente)
         {
+            NomeCliente = nomeCliente;
             InitializeComponent();
         }
 
         private void FormularioAlterarSituacaoItensSelecionados_Load(object sender, EventArgs e)
         {
+            TxtNomeRecebedor.Text = NomeCliente;
             itemMotivoBaixaSelecionado = string.Empty;
 
             ListaItensMotivoBaixa = new Dictionary<string, string>();

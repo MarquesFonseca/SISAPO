@@ -823,7 +823,7 @@ namespace SISAPO
         {
             if (dataGridView1.RowCount == 0) return;
 
-            FormularioAlterarSituacaoItensSelecionados formularioAlterarSituacaoItensSelecionados = new FormularioAlterarSituacaoItensSelecionados();
+            FormularioAlterarSituacaoItensSelecionados formularioAlterarSituacaoItensSelecionados = new FormularioAlterarSituacaoItensSelecionados("");
             formularioAlterarSituacaoItensSelecionados.ShowDialog();
 
             if (string.IsNullOrEmpty(formularioAlterarSituacaoItensSelecionados.itemMotivoBaixaSelecionado)) return;

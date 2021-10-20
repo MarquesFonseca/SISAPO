@@ -29,21 +29,21 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormularioConsulta));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormularioConsulta));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.codigoObjetoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStripImprimirListaEntrega = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -92,6 +92,8 @@
             this.LblTituloFormulario = new System.Windows.Forms.Label();
             this.TxtPesquisa = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.comboBoxListaLDIs = new System.Windows.Forms.ComboBox();
+            this.checkBoxFiltrarPorLDI = new System.Windows.Forms.CheckBox();
             this.LbnQuantidadeRegistros = new System.Windows.Forms.Label();
             this.LblCodigoForaDoPadraoBrasileiro = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -152,6 +154,7 @@
             this.dataGridViewTextBoxColumnEnderecoLOEC = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.panel3 = new System.Windows.Forms.Panel();
+            this.checkBoxPermitirBuscaPorLDI = new System.Windows.Forms.CheckBox();
             this.checkBoxIncluirBaixados = new System.Windows.Forms.CheckBox();
             this.checkBoxIncluirCaixaPostal = new System.Windows.Forms.CheckBox();
             this.Btn0SelecionarLinhas = new System.Windows.Forms.Button();
@@ -225,17 +228,17 @@
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle15;
             this.dataGridView1.AutoGenerateColumns = false;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.codigoObjetoDataGridViewTextBoxColumn,
@@ -257,26 +260,26 @@
             this.atualizadoDataGridViewCheckBoxColumn});
             this.dataGridView1.ContextMenuStrip = this.contextMenuStripImprimirListaEntrega;
             this.dataGridView1.DataSource = this.tabelaObjetosSROLocalBindingSource;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle8;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle19;
             this.dataGridView1.RowHeadersWidth = 30;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(645, 201);
@@ -289,9 +292,9 @@
             this.codigoObjetoDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.codigoObjetoDataGridViewTextBoxColumn.ContextMenuStrip = this.contextMenuStripImprimirListaEntrega;
             this.codigoObjetoDataGridViewTextBoxColumn.DataPropertyName = "CodigoObjeto";
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.NullValue = null;
-            this.codigoObjetoDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle17.NullValue = null;
+            this.codigoObjetoDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle17;
             this.codigoObjetoDataGridViewTextBoxColumn.FillWeight = 140F;
             this.codigoObjetoDataGridViewTextBoxColumn.Frozen = true;
             this.codigoObjetoDataGridViewTextBoxColumn.HeaderText = "Código";
@@ -444,8 +447,8 @@
             this.CaixaPostal.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.CaixaPostal.ContextMenuStrip = this.contextMenuStripImprimirListaEntrega;
             this.CaixaPostal.DataPropertyName = "CaixaPostal";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.CaixaPostal.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.CaixaPostal.DefaultCellStyle = dataGridViewCellStyle3;
             this.CaixaPostal.HeaderText = "Caixa Postal?";
             this.CaixaPostal.Name = "CaixaPostal";
             this.CaixaPostal.ReadOnly = true;
@@ -454,8 +457,8 @@
             // nomeClienteDataGridViewTextBoxColumn
             // 
             this.nomeClienteDataGridViewTextBoxColumn.DataPropertyName = "NomeCliente";
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.nomeClienteDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.nomeClienteDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
             this.nomeClienteDataGridViewTextBoxColumn.HeaderText = "Nome do cliente";
             this.nomeClienteDataGridViewTextBoxColumn.MinimumWidth = 100;
             this.nomeClienteDataGridViewTextBoxColumn.Name = "nomeClienteDataGridViewTextBoxColumn";
@@ -466,9 +469,9 @@
             // 
             this.DataLancamento.ContextMenuStrip = this.contextMenuStripImprimirListaEntrega;
             this.DataLancamento.DataPropertyName = "DataLancamento";
-            dataGridViewCellStyle6.Format = "G";
-            dataGridViewCellStyle6.NullValue = null;
-            this.DataLancamento.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle18.Format = "G";
+            dataGridViewCellStyle18.NullValue = null;
+            this.DataLancamento.DefaultCellStyle = dataGridViewCellStyle18;
             this.DataLancamento.FillWeight = 120F;
             this.DataLancamento.HeaderText = "Lançamento LDI";
             this.DataLancamento.Name = "DataLancamento";
@@ -510,8 +513,8 @@
             this.ObjetoEntregue.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.ObjetoEntregue.ContextMenuStrip = this.contextMenuStrip1;
             this.ObjetoEntregue.DataPropertyName = "ObjetoEntregue";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.ObjetoEntregue.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.ObjetoEntregue.DefaultCellStyle = dataGridViewCellStyle6;
             this.ObjetoEntregue.HeaderText = "Objeto Entregue?";
             this.ObjetoEntregue.Name = "ObjetoEntregue";
             this.ObjetoEntregue.ReadOnly = true;
@@ -609,8 +612,8 @@
             this.atualizadoDataGridViewCheckBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.atualizadoDataGridViewCheckBoxColumn.ContextMenuStrip = this.contextMenuStripAtualizacao;
             this.atualizadoDataGridViewCheckBoxColumn.DataPropertyName = "Atualizado";
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.atualizadoDataGridViewCheckBoxColumn.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.atualizadoDataGridViewCheckBoxColumn.DefaultCellStyle = dataGridViewCellStyle7;
             this.atualizadoDataGridViewCheckBoxColumn.FalseValue = "";
             this.atualizadoDataGridViewCheckBoxColumn.HeaderText = "Já atualizado?";
             this.atualizadoDataGridViewCheckBoxColumn.Name = "atualizadoDataGridViewCheckBoxColumn";
@@ -695,13 +698,15 @@
             this.TxtPesquisa.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtPesquisa.Location = new System.Drawing.Point(6, 39);
             this.TxtPesquisa.Name = "TxtPesquisa";
-            this.TxtPesquisa.Size = new System.Drawing.Size(394, 29);
+            this.TxtPesquisa.Size = new System.Drawing.Size(216, 29);
             this.TxtPesquisa.TabIndex = 4;
             this.TxtPesquisa.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             this.TxtPesquisa.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.comboBoxListaLDIs);
+            this.groupBox1.Controls.Add(this.checkBoxFiltrarPorLDI);
             this.groupBox1.Controls.Add(this.LbnQuantidadeRegistros);
             this.groupBox1.Controls.Add(this.LblCodigoForaDoPadraoBrasileiro);
             this.groupBox1.Controls.Add(this.label10);
@@ -740,6 +745,34 @@
             this.groupBox1.Size = new System.Drawing.Size(984, 175);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            // 
+            // comboBoxListaLDIs
+            // 
+            this.comboBoxListaLDIs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxListaLDIs.Enabled = false;
+            this.comboBoxListaLDIs.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F);
+            this.comboBoxListaLDIs.FormattingEnabled = true;
+            this.comboBoxListaLDIs.Location = new System.Drawing.Point(422, 42);
+            this.comboBoxListaLDIs.Name = "comboBoxListaLDIs";
+            this.comboBoxListaLDIs.Size = new System.Drawing.Size(137, 28);
+            this.comboBoxListaLDIs.TabIndex = 30;
+            this.comboBoxListaLDIs.SelectedValueChanged += new System.EventHandler(this.comboBoxListaLDIs_SelectedValueChanged);
+            // 
+            // checkBoxFiltrarPorLDI
+            // 
+            this.checkBoxFiltrarPorLDI.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.checkBoxFiltrarPorLDI.AutoSize = true;
+            this.checkBoxFiltrarPorLDI.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.checkBoxFiltrarPorLDI.Enabled = false;
+            this.checkBoxFiltrarPorLDI.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.checkBoxFiltrarPorLDI.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.checkBoxFiltrarPorLDI.Location = new System.Drawing.Point(422, 20);
+            this.checkBoxFiltrarPorLDI.Name = "checkBoxFiltrarPorLDI";
+            this.checkBoxFiltrarPorLDI.Size = new System.Drawing.Size(121, 20);
+            this.checkBoxFiltrarPorLDI.TabIndex = 0;
+            this.checkBoxFiltrarPorLDI.Text = "Filtrar por LDI";
+            this.checkBoxFiltrarPorLDI.UseVisualStyleBackColor = false;
+            this.checkBoxFiltrarPorLDI.CheckedChanged += new System.EventHandler(this.checkBoxFiltrarPorLDI_CheckedChanged);
             // 
             // LbnQuantidadeRegistros
             // 
@@ -897,7 +930,7 @@
             // 
             this.btnPesquisarSRO.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnPesquisarSRO.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPesquisarSRO.Location = new System.Drawing.Point(402, 38);
+            this.btnPesquisarSRO.Location = new System.Drawing.Point(228, 39);
             this.btnPesquisarSRO.Name = "btnPesquisarSRO";
             this.btnPesquisarSRO.Size = new System.Drawing.Size(155, 31);
             this.btnPesquisarSRO.TabIndex = 5;
@@ -1389,8 +1422,8 @@
             this.dataGridView2.AllowUserToAddRows = false;
             this.dataGridView2.AllowUserToDeleteRows = false;
             this.dataGridView2.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView2.AutoGenerateColumns = false;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -1411,8 +1444,8 @@
             // dataGridViewTextBoxColumnCodigoObjeto
             // 
             this.dataGridViewTextBoxColumnCodigoObjeto.DataPropertyName = "CodigoObjeto";
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
-            this.dataGridViewTextBoxColumnCodigoObjeto.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
+            this.dataGridViewTextBoxColumnCodigoObjeto.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewTextBoxColumnCodigoObjeto.FillWeight = 227F;
             this.dataGridViewTextBoxColumnCodigoObjeto.HeaderText = "Código";
             this.dataGridViewTextBoxColumnCodigoObjeto.Name = "dataGridViewTextBoxColumnCodigoObjeto";
@@ -1423,8 +1456,8 @@
             // 
             this.dataGridViewTextBoxColumnNomeCliente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.dataGridViewTextBoxColumnNomeCliente.DataPropertyName = "NomeCliente";
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.dataGridViewTextBoxColumnNomeCliente.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.dataGridViewTextBoxColumnNomeCliente.DefaultCellStyle = dataGridViewCellStyle9;
             this.dataGridViewTextBoxColumnNomeCliente.HeaderText = "Nome do cliente";
             this.dataGridViewTextBoxColumnNomeCliente.Name = "dataGridViewTextBoxColumnNomeCliente";
             this.dataGridViewTextBoxColumnNomeCliente.ReadOnly = true;
@@ -1433,8 +1466,8 @@
             // 
             this.dataGridViewTextBoxColumnEnderecoLOEC.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.dataGridViewTextBoxColumnEnderecoLOEC.DataPropertyName = "EnderecoLOEC";
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.dataGridViewTextBoxColumnEnderecoLOEC.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.dataGridViewTextBoxColumnEnderecoLOEC.DefaultCellStyle = dataGridViewCellStyle10;
             this.dataGridViewTextBoxColumnEnderecoLOEC.HeaderText = "Endereço Entrega LOEC";
             this.dataGridViewTextBoxColumnEnderecoLOEC.Name = "dataGridViewTextBoxColumnEnderecoLOEC";
             this.dataGridViewTextBoxColumnEnderecoLOEC.ReadOnly = true;
@@ -1443,6 +1476,7 @@
             // panel3
             // 
             this.panel3.AutoScroll = true;
+            this.panel3.Controls.Add(this.checkBoxPermitirBuscaPorLDI);
             this.panel3.Controls.Add(this.checkBoxIncluirBaixados);
             this.panel3.Controls.Add(this.checkBoxIncluirCaixaPostal);
             this.panel3.Controls.Add(this.Btn0SelecionarLinhas);
@@ -1459,6 +1493,19 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(124, 310);
             this.panel3.TabIndex = 0;
+            // 
+            // checkBoxPermitirBuscaPorLDI
+            // 
+            this.checkBoxPermitirBuscaPorLDI.AutoSize = true;
+            this.checkBoxPermitirBuscaPorLDI.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxPermitirBuscaPorLDI.Location = new System.Drawing.Point(6, 347);
+            this.checkBoxPermitirBuscaPorLDI.Name = "checkBoxPermitirBuscaPorLDI";
+            this.checkBoxPermitirBuscaPorLDI.Size = new System.Drawing.Size(118, 16);
+            this.checkBoxPermitirBuscaPorLDI.TabIndex = 10;
+            this.checkBoxPermitirBuscaPorLDI.Text = "Permitir buscar por LDI";
+            this.checkBoxPermitirBuscaPorLDI.UseVisualStyleBackColor = true;
+            this.checkBoxPermitirBuscaPorLDI.Visible = false;
+            this.checkBoxPermitirBuscaPorLDI.CheckedChanged += new System.EventHandler(this.checkBoxPermitirBuscaPorLDI_CheckedChanged);
             // 
             // checkBoxIncluirBaixados
             // 
@@ -1659,7 +1706,7 @@
             this.BtnCoordenadas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.BtnCoordenadas.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BtnCoordenadas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnCoordenadas.Location = new System.Drawing.Point(154, 3);
+            this.BtnCoordenadas.Location = new System.Drawing.Point(262, 3);
             this.BtnCoordenadas.Name = "BtnCoordenadas";
             this.BtnCoordenadas.Size = new System.Drawing.Size(64, 44);
             this.BtnCoordenadas.TabIndex = 4;
@@ -2061,5 +2108,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.ToolStripMenuItem emitirCHECKOUTEncaminhamentoSelecionadosToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
+        private System.Windows.Forms.CheckBox checkBoxPermitirBuscaPorLDI;
+        private System.Windows.Forms.ComboBox comboBoxListaLDIs;
+        private System.Windows.Forms.CheckBox checkBoxFiltrarPorLDI;
     }
 }

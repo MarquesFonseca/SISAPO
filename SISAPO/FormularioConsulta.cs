@@ -758,60 +758,25 @@ namespace SISAPO
 
                 this.tabelaObjetosSROLocalTableAdapter.Fill(this.dataSetTabelaObjetosSROLocal.TabelaObjetosSROLocal, dataInicial, datafinal);
                 this.MontaFiltro();
+
+
+                if (this.dataSetTabelaObjetosSROLocal.TabelaObjetosSROLocal.Count == 0)
+                {
+                    checkBoxFiltrarPorLDI.Enabled = false;
+                }
+                else
+                {
+                    checkBoxFiltrarPorLDI.Enabled = true;
+                }
+                if (checkBoxFiltrarPorLDI.Checked && comboBoxListaLDIs.Enabled == true)
+                {
+                    DataTable dataTable = this.dataSetTabelaObjetosSROLocal.TabelaObjetosSROLocal.CopyToDataTable();
+                    this.comboBoxListaLDIs.DataSource = dataTable.AsEnumerable().GroupBy(T => T["CodigoLdi"]).Select(x => x).ToList();
+                    this.comboBoxListaLDIs.DisplayMember = "key";
+                    this.comboBoxListaLDIs.ValueMember = "key";
+                }
+
                 waitForm.Close();
-
-                #region 1 tentativa nao deu certo
-                ////BindingSource bs2 = new BindingSource();
-                //object dataSourceGridView1 = dataGridView1.DataSource;
-                //bindingSource2.DataSource = dataSourceGridView1;
-                ////dataGridView2.DataSource = bindingSource2;
-
-                //foreach (DataGridViewColumn item in dataGridView2.Columns)
-                //{
-                //    if (item.Name == "dataGridViewTextBoxColumnCodigoObjeto" ||
-                //       item.Name == "dataGridViewTextBoxColumnNomeCliente" ||
-                //       item.Name == "dataGridViewTextBoxColumnEnderecoLOEC")
-                //    {
-                //        continue;
-                //    }
-                //    else
-                //    {
-                //        item.Visible = false;
-                //    }
-                //}
-                //bindingSource2.Filter = "EnderecoLOEC = '804 SUL ALAMEDA 6 20'";
-                ////EnderecoLOEC = '804 SUL ALAMEDA 6 20' 
-                #endregion
-
-                //foreach (DataGridViewColumn item in dataGridView2.Columns)
-                //{
-                //    if (item.Name == "dataGridViewTextBoxColumnCodigoObjeto" ||
-                //       item.Name == "dataGridViewTextBoxColumnNomeCliente" ||
-                //       item.Name == "dataGridViewTextBoxColumnEnderecoLOEC")
-                //    {
-                //        continue;
-                //    }
-                //    else
-                //    {
-                //        item.Visible = false;
-                //    }
-                //}
-                //dataGridView2.DataSource = dataGridView1.DataSource.
-
-                //var tbl = ((System.Windows.Forms.BindingSource)dataGridView1.DataSource).Cast<DataRowView>().Where(T => T["EnderecoLOEC"].ToString().Contains("804 SUL ALAMEDA 6 20"));//.AsEnumerable().Where(T => T.Rows .ToString().Contains("804 SUL ALAMEDA 6 20"));
-                //bindingSource2.DataSource = tbl;
-
-
-
-
-
-
-
-
-
-
-
-
 
                 tabelaObjetosSROLocalBindingSource.Position = posicao;
                 dataGridView1.Focus();
@@ -1620,7 +1585,8 @@ namespace SISAPO
             {
                 if (dataGridView1.SelectedRows.Count == 0) return;
 
-                FormularioAlterarSituacaoItensSelecionados formularioAlterarSituacaoItensSelecionados = new FormularioAlterarSituacaoItensSelecionados();
+
+                FormularioAlterarSituacaoItensSelecionados formularioAlterarSituacaoItensSelecionados = new FormularioAlterarSituacaoItensSelecionados(TxtItemSelecionado.Text);
                 formularioAlterarSituacaoItensSelecionados.ShowDialog();
 
                 if (string.IsNullOrEmpty(formularioAlterarSituacaoItensSelecionados.itemMotivoBaixaSelecionado)) return;
@@ -2078,6 +2044,67 @@ namespace SISAPO
             string compacta = FormataString.Compacta(linhallll);
             string descompacta = FormataString.Descompacta(compacta);
             if (ListaGridSelecaoAtual.Count == 0) return;
+        }
+
+        private void checkBoxPermitirBuscaPorLDI_CheckedChanged(object sender, EventArgs e)
+        {
+            FormularioPrincipal.RetornaComponentesFormularioPrincipal().PermiriBuscarPorLDINaPesquisaToolStripMenuItem.Checked = checkBoxPermitirBuscaPorLDI.Checked;
+            FormularioPrincipal.RetornaComponentesFormularioPrincipal().PermiriBuscarPorLDINaPesquisaToolStripMenuItem_Click(sender, e);
+        }
+
+        private string valorTextAntesFiltro = string.Empty;
+        private void checkBoxFiltrarPorLDI_CheckedChanged(object sender, EventArgs e)
+        {
+            if (this.dataSetTabelaObjetosSROLocal.TabelaObjetosSROLocal.Count > 0)
+            {
+                comboBoxListaLDIs.Enabled = checkBoxFiltrarPorLDI.Checked;
+            }
+
+            if (checkBoxFiltrarPorLDI.Checked == true)
+            {
+                valorTextAntesFiltro = TxtPesquisa.Text;
+                TxtPesquisa.Enabled = false;
+                btnPesquisarSRO.Enabled = false;
+                FormularioPrincipal.RetornaComponentesFormularioPrincipal().PermiriBuscarPorLDINaPesquisaToolStripMenuItem.Checked = true;
+                checkBoxPermitirBuscaPorLDI.Checked = true;
+                if (this.dataSetTabelaObjetosSROLocal.TabelaObjetosSROLocal.Count > 0)
+                {
+                    DataTable dataTable = this.dataSetTabelaObjetosSROLocal.TabelaObjetosSROLocal.CopyToDataTable();
+                    this.comboBoxListaLDIs.DataSource = dataTable.AsEnumerable().GroupBy(T => T["CodigoLdi"]).Select(x => x).ToList();
+                    this.comboBoxListaLDIs.DisplayMember = "key";
+                    this.comboBoxListaLDIs.ValueMember = "key";
+                }
+            }
+            if (checkBoxFiltrarPorLDI.Checked == false)
+            {
+                TxtPesquisa.Text = valorTextAntesFiltro;
+                TxtPesquisa.Enabled = true;
+                btnPesquisarSRO.Enabled = true;
+                FormularioPrincipal.RetornaComponentesFormularioPrincipal().PermiriBuscarPorLDINaPesquisaToolStripMenuItem.Checked = false;
+                checkBoxPermitirBuscaPorLDI.Checked = false;
+                DataTable dataTable = this.dataSetTabelaObjetosSROLocal.TabelaObjetosSROLocal.CopyToDataTable();
+                this.comboBoxListaLDIs.DataSource = dataTable.AsEnumerable().Select(T => T["CodigoLdi"].ToString() == "caixa de fosforo").ToList();
+                this.comboBoxListaLDIs.DisplayMember = "key";
+                this.comboBoxListaLDIs.ValueMember = "key";
+                comboBoxListaLDIs.Enabled = false;
+                MontaFiltro();
+                TxtPesquisa.Focus();
+            }
+        }
+
+        private void comboBoxListaLDIs_SelectedValueChanged(object sender, EventArgs e)
+        {
+            string valor = comboBoxListaLDIs.SelectedValue.ToString();
+            if (valor != "System.Linq.Lookup`2+Grouping[System.Object,System.Data.DataRow]")
+            {
+                if (valor != "False")
+                {
+                    TxtPesquisa.Text = string.Empty;
+                    TxtPesquisa.Text = valor;
+                    MontaFiltro();
+                }
+
+            }
         }
     }
 
