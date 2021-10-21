@@ -49,7 +49,7 @@ namespace SISAPO
 
             ConfiguraMenusEBotoesParaACCAgenciaComunitaria(Configuracoes.ACCAgenciaComunitaria);
 
-            splitContainer3.Panel2Collapsed = true;
+            //splitContainer3.Panel2Collapsed = true;
 
             DataFinal_dateTimePicker.Text = DateTime.Now.Date.ToShortDateString();
             DataInicial_dateTimePicker.Text = DateTime.Today.AddMonths(-1).Date.ToShortDateString();
@@ -646,13 +646,14 @@ namespace SISAPO
                 #region Carregamento GridView2
 
                 string nomeCliente = string.IsNullOrEmpty(currentRow["NomeCliente"].ToString()) ? "" : currentRow["NomeCliente"].ToString();
+                string nomeClienteSemComentario = nomeCliente.Replace(currentRow["Comentario"].ToString(), "").Replace("-", "").Trim();
                 string enderecoLOEC = string.IsNullOrEmpty(currentRow["EnderecoLOEC"].ToString()) ? "" : currentRow["EnderecoLOEC"].ToString();
                 string NomeMaisEndereco = string.Format("{0} {1}", nomeCliente, enderecoLOEC);
 
                 if (!string.IsNullOrWhiteSpace(nomeCliente) && string.IsNullOrEmpty(enderecoLOEC))
                 {
                     //vazio
-                    splitContainer3.Panel2Collapsed = true;
+                    //splitContainer3.Panel2Collapsed = true;
                     bindingSource2.DataSource = null;
 
                     //não vazio
@@ -661,15 +662,16 @@ namespace SISAPO
                     (T["NomeCliente"].ToString().Contains(nomeCliente) && Convert.ToBoolean(T["ObjetoEntregue"]) == false));
                     //(nomeCliente.Contains(T["NomeCliente"].ToString()) && Convert.ToBoolean(T["ObjetoEntregue"]) == false));
 
-                    groupBoxSemelhantes.Text = string.Format("Semelhantes - QTD.: {0}", Resultado.Count());
                     if (Resultado.Count() <= 1)
                     {
-                        splitContainer3.Panel2Collapsed = true;
+                        groupBoxSemelhantes.Text = string.Format("Semelhantes", Resultado.Count());
+                        //splitContainer3.Panel2Collapsed = true;
                         bindingSource2.DataSource = null;
                     }
-                    if (Resultado.Count() > 1)
+                    if (Resultado.Count() > 1 && !string.IsNullOrWhiteSpace(nomeClienteSemComentario))
                     {
-                        splitContainer3.Panel2Collapsed = false;
+                        groupBoxSemelhantes.Text = string.Format("Semelhantes - QTD.: {0}", Resultado.Count());
+                        //splitContainer3.Panel2Collapsed = false;
                         bindingSource2.DataSource = Resultado;
                     }
                 }
@@ -683,15 +685,16 @@ namespace SISAPO
                     //(nomeCliente.Contains(T["NomeCliente"].ToString()) && Convert.ToBoolean(T["ObjetoEntregue"]) == false) ||
                     (T["EnderecoLOEC"].ToString().Contains(enderecoLOEC) && Convert.ToBoolean(T["ObjetoEntregue"]) == false));
 
-                    groupBoxSemelhantes.Text = string.Format("Semelhantes - QTD.: {0}", Resultado.Count());
                     if (Resultado.Count() <= 1)
                     {
-                        splitContainer3.Panel2Collapsed = true;
+                        groupBoxSemelhantes.Text = string.Format("Semelhantes", Resultado.Count());
+                        //splitContainer3.Panel2Collapsed = true;
                         bindingSource2.DataSource = null;
                     }
                     if (Resultado.Count() > 1)
                     {
-                        splitContainer3.Panel2Collapsed = false;
+                        groupBoxSemelhantes.Text = string.Format("Semelhantes - QTD.: {0}", Resultado.Count());
+                        //splitContainer3.Panel2Collapsed = false;
                         bindingSource2.DataSource = Resultado;
                     }
                 }
@@ -1585,11 +1588,39 @@ namespace SISAPO
             {
                 if (dataGridView1.SelectedRows.Count == 0) return;
 
+                string nomeCliente = string.IsNullOrEmpty(currentRow["NomeCliente"].ToString()) ? "" : currentRow["NomeCliente"].ToString();
+                string nomeClienteSemComentario = nomeCliente.Replace(currentRow["Comentario"].ToString(), "").Replace("-", "").Trim();
+                string itemMotivoBaixaSelecionadoRetornado = string.Empty;
+                string nomeRecebedorRetornado = string.Empty;
+                string docRecebedorRetornado = string.Empty;
 
-                FormularioAlterarSituacaoItensSelecionados formularioAlterarSituacaoItensSelecionados = new FormularioAlterarSituacaoItensSelecionados(TxtItemSelecionado.Text);
-                formularioAlterarSituacaoItensSelecionados.ShowDialog();
+                if (this.dataGridView1.SelectedRows.Count == 1)
+                {
+                    FormularioAlterarSituacaoItensSelecionados formularioAlterarSituacaoItensSelecionados = new FormularioAlterarSituacaoItensSelecionados(nomeClienteSemComentario);
+                    formularioAlterarSituacaoItensSelecionados.ShowDialog();
+                    itemMotivoBaixaSelecionadoRetornado = formularioAlterarSituacaoItensSelecionados.itemMotivoBaixaSelecionado;
+                    nomeRecebedorRetornado = formularioAlterarSituacaoItensSelecionados.nomeRecebedor;
+                    docRecebedorRetornado = formularioAlterarSituacaoItensSelecionados.docRecebedor;
+                }
+                if (this.dataGridView1.SelectedRows.Count > 1)
+                {
+                    FormularioAlterarSituacaoItensSelecionados formularioAlterarSituacaoItensSelecionados = new FormularioAlterarSituacaoItensSelecionados("");
+                    formularioAlterarSituacaoItensSelecionados.ShowDialog();
+                    itemMotivoBaixaSelecionadoRetornado = formularioAlterarSituacaoItensSelecionados.itemMotivoBaixaSelecionado;
+                    if (string.IsNullOrWhiteSpace(formularioAlterarSituacaoItensSelecionados.nomeRecebedor))
+                    {
+                        nomeRecebedorRetornado = "[Baixa Simultânia - total baixados: " + this.dataGridView1.SelectedRows.Count + " objetos]";
+                        docRecebedorRetornado = "[Baixa Simultânia - Sem informação do documento";
+                    }
+                    else
+                    {
+                        nomeRecebedorRetornado = formularioAlterarSituacaoItensSelecionados.nomeRecebedor;
+                        docRecebedorRetornado = formularioAlterarSituacaoItensSelecionados.docRecebedor;
+                    }
 
-                if (string.IsNullOrEmpty(formularioAlterarSituacaoItensSelecionados.itemMotivoBaixaSelecionado)) return;
+                }
+
+                if (string.IsNullOrEmpty(itemMotivoBaixaSelecionadoRetornado)) return;
 
                 List<string> ListaGridSelecaoAtual = new List<string>();
 
@@ -1602,7 +1633,7 @@ namespace SISAPO
 
                 if (ListaGridSelecaoAtual.Count == 0) return;
 
-                FormularioConsulta.RetornaComponentesFormularioConsulta().AlterarSituacaoItensSelecionados(ListaGridSelecaoAtual, formularioAlterarSituacaoItensSelecionados.itemMotivoBaixaSelecionado, formularioAlterarSituacaoItensSelecionados.nomeRecebedor, formularioAlterarSituacaoItensSelecionados.docRecebedor);
+                FormularioConsulta.RetornaComponentesFormularioConsulta().AlterarSituacaoItensSelecionados(ListaGridSelecaoAtual, itemMotivoBaixaSelecionadoRetornado, nomeRecebedorRetornado, docRecebedorRetornado);
 
                 //if (Mensagens.Pergunta("Itens atualizado com sucesso! Deseja atualizar grid?") == System.Windows.Forms.DialogResult.Yes)
                 //{
@@ -1702,10 +1733,20 @@ namespace SISAPO
                     //valida email
                     if (!Uteis.IsValidEmail(item.Trim())) continue;
                     email.To.Add(item.ToLowerInvariant());
-                    //email.To.Add("accluzimangues@gmail.com");
-                    //email.To.Add("marques-fonseca@hotmail.com");
                 }
-                email.Subject = "Mudança de situação Objeto " + itemCodigo + " por Luzimangues às " + dataModificacaoRetornada + "";
+                if (motivoBaixaInformado == "DISTRIBUÍDO AO DESTINATÁRIO")
+                {
+                    email.Subject = "Objeto entregue: " + itemCodigo + " por Luzimangues às " + dataModificacaoRetornada + "";
+                }
+                if (motivoBaixaInformado == "NAO PROCURADO PELO DESTINATARIO")
+                {
+                    email.Subject = "Objeto devolvido ao remetente: " + itemCodigo + " por Luzimangues às " + dataModificacaoRetornada + "";
+                }
+                else
+                {
+                    email.Subject = "Mudança de situação Objeto " + itemCodigo + " por Luzimangues às " + dataModificacaoRetornada + "";
+                }
+
                 email.IsBodyHtml = true;
                 email.Body = RetornaHTMLSituacaoBaixa(itemCodigo, numeroLDI, dataLancamento, nomeCliente, comentario, motivoBaixaInformado, dataModificacaoRetornada, nomeRecebedor, docRecebedor);
 
