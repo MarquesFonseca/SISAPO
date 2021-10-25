@@ -26,7 +26,7 @@ namespace SISAPO
             Configuracoes.TipoAmbiente = TipoAmbiente.Desenvolvimento;
 #endif
 #if !DEBUG
-            Configuracoes.TipoAmbiente = TipoAmbiente.Producao;            
+            Configuracoes.TipoAmbiente = TipoAmbiente.Producao;
 #endif
             #endregion
 
@@ -40,9 +40,64 @@ namespace SISAPO
             var processo = System.Diagnostics.Process.GetCurrentProcess();
             var jaEstaRodando = System.Diagnostics.Process.GetProcessesByName(processo.ProcessName).Any(p => p.Id != processo.Id);
 
+
+
+            ////get all other (possible) running instances
+            //Process[] processes = Process.GetProcesses();
+            //try
+            //{
+            //    foreach (Process proc in processes)
+            //    {
+            //        var lkjlkjkl = System.Diagnostics.Process.GetProcessesByName(proc.ProcessName);
+                    
+            //        if (proc.ProcessName.ToString().ToUpper() != "SISAPO")
+            //            continue;
+                    
+            //        //proc.StartInfo
+                    
+            //        DialogResult pergunta = Mensagens.Pergunta("Processo: " + proc.ProcessName.ToString(), MessageBoxButtons.YesNoCancel);
+            //        if (pergunta == DialogResult.Yes)
+            //        {
+            //            continue;
+            //        }
+            //        if (pergunta == DialogResult.No)
+            //        {
+            //            Mensagens.Informa("Usuario StartInfo: " + proc.StartInfo.UserName.ToString());
+                        
+            //            return;
+            //        }
+            //        if (pergunta == DialogResult.Cancel)
+            //        {
+            //            break;
+            //        }
+            //        //Mensagens.Informa("Processo: " + proc.ProcessName.ToString());
+            //        // use proc
+            //    }
+            //}
+            //finally
+            //{
+            //    foreach (Process proc in processes)
+            //        proc.Dispose();
+            //    processes = null;
+            //}
+
+
+
+
+
+
+
+            //Mensagens.Informa(string.Format("UserName StartInfo: {0}", processo.StartInfo.UserName));
             if (jaEstaRodando)
             {
                 //Mensagens.Informa(string.Format("Está rodando: {0}", jaEstaRodando));
+                //Mensagens.Informa(string.Format("Processo: {0}", System.Diagnostics.Process.GetProcessesByName(processo.ProcessName)));
+                //Mensagens.Informa(string.Format("Id Processo: {0}", processo.Id));
+                Mensagens.Informa(string.Format("NomeUsuarioSISAPOLogado: {0}", Configuracoes.NomeUsuarioSISAPOLogado));
+                if (Configuracoes.NomeUsuarioSISAPOLogado == "")
+                {
+                }
+
                 formularioPrincipal.Activate();
                 return;
             }
@@ -99,6 +154,40 @@ namespace SISAPO
                 frm.ShowDialog(new Form() { WindowState = FormWindowState.Maximized });
             }
 
+            //Application.Run(new FormularioCadastroUsuario());
+
+            bool autenticado = false;
+            while (autenticado == false)
+            {
+                using (FormAcesso acesso = new FormAcesso())
+                {
+                    acesso.ShowDialog();
+                    if (!acesso.Autenticado) return;
+                    if (acesso.Autenticado)
+                    {
+                        if (acesso.CodigoUsuario == "1")
+                        {
+                            Mensagens.Informa("É necessário criar um novo usuário para acessar ao sistema.");
+                            using (FormularioCadastroUsuario usuario = new FormularioCadastroUsuario())
+                            {
+                                usuario.ShowDialog();
+                            }
+                            autenticado = false;
+                            continue;
+                        }
+                        else
+                        {
+                            Configuracoes.NomeUsuarioSISAPOLogado = acesso.NomeCompletoUsuario;
+                            Configuracoes.UsuarioSISAPOLogado = acesso.UsuarioLogado;
+                            Configuracoes.CPFUsuarioSISAPOLogado = acesso.CPFUsuarioLogado;
+                            //processo.StartInfo.UserName = "UsuarioSISAPOLogado";                            
+                            autenticado = true;
+                            continue;
+                        }
+                    }
+                }
+            }
+
             Application.Run(formularioPrincipal);
         }
 
@@ -116,8 +205,6 @@ namespace SISAPO
             Configuracoes.SetaConfiguracoesGerarTXTPLRNaLdi();
             Configuracoes.SetaConfiguracoesReceberObjetosViaTXTPLRDaAgenciaMae();
         }
-
-
 
         //[DllImport("user32.dll")]
         //private static extern IntPtr GetForegroundWindow();
@@ -174,6 +261,5 @@ namespace SISAPO
         //[System.Runtime.InteropServices.DllImport("kernel32.dll", SetLastError = true)]
         //[return: System.Runtime.InteropServices.MarshalAs(System.Runtime.InteropServices.UnmanagedType.Bool)]
         //private static extern bool CloseHandle(IntPtr hObject);
-
     }
 }

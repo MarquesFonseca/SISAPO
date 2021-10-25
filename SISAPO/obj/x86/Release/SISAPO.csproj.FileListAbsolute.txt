@@ -31,11 +31,13 @@ C:\Projetos\SISAPO\SISAPO\bin\Release\zxing.xml
 C:\Projetos\SISAPO\SISAPO\bin\Release\zxing.presentation.xml
 C:\Projetos\SISAPO\SISAPO\bin\Release\de\PdfSharp.resources.dll
 C:\Projetos\SISAPO\SISAPO\bin\Release\de\PdfSharp.Charting.resources.dll
+C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormAcesso.resources
 C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioAdicionarItemObjetoQRCode.resources
 C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioCadastroObjetosViaTXTPLRDaAgenciaMae.resources
 C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioCadastroObjetosViaQRCodePLRDaAgenciaMae.resources
 C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioCadastroObjetosViaTXTPLRDaAgenciaMaeConferencia.resources
 C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioCadastroObjetosViaTXTPLRDaAgenciaMaeConferenciaObjetosFaltantes.resources
+C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioCadastroUsuario.resources
 C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioInformarCodigo.resources
 C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioRetornaDadosInicialAgenciaBancoVazio.resources
 C:\Projetos\SISAPO\SISAPO\obj\x86\Release\SISAPO.FormularioVerObjetosNaoAtualizados.resources

@@ -485,9 +485,6 @@ namespace SISAPO
 
         private void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            if (Configuracoes.ACCAgenciaComunitaria)
-                return;
-
             if (this.dataGridView1.CurrentRow == null) return;
             string CodigoObjeto = this.dataGridView1.CurrentRow.Cells["CodigoObjeto"].Value.ToString();
             using (FormularioSRORastreamentoUnificado formularioSRORastreamentoUnificado = new FormularioSRORastreamentoUnificado(CodigoObjeto))

@@ -426,6 +426,11 @@ namespace SISAPO.ClassesDiversas
         /// </summary>
         public static string MensagemPerdaConexao = "A conexão com o banco de dados foi perdida.";
 
+        public static string NomeUsuarioSISAPOLogado { get; set; }
+        public static string UsuarioSISAPOLogado { get; set; }
+        public static string CPFUsuarioSISAPOLogado { get; set; }
+
+
         public static void LimpaBancoTornaBancoVazio()
         {
             using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
@@ -440,11 +445,17 @@ namespace SISAPO.ClassesDiversas
 
                 dao.ExecutaSQL("DELETE FROM TabelaObjetosSROLocal");
                 dao.ExecutaSQL("ALTER TABLE TabelaObjetosSROLocal ALTER COLUMN Codigo COUNTER(1, 1)");
+
+                dao.ExecutaSQL("DELETE FROM TabelaUsuario");
+                dao.ExecutaSQL("ALTER TABLE TabelaUsuario ALTER COLUMN Codigo COUNTER(1, 1)");
+                dao.ExecutaSQL("INSERT INTO [TabelaUsuario] ([NomeCompletoUsuario], [CPFUsuario], [MatriculaUsuario], [EmailCorporativoUsuario], [EmailAlternativoUsuario], [UsuarioCriacaoCadastro], [LoginUsuario], [SenhaUsuario], [LoginAtivo], [DataAlteracao]) VALUES ('USUARIO SUPORTE', '00000000000', '00000000', 'email@email.com.br', 'email.email.com.br', '-', 'suporte', '123', TRUE, NOW())");
+                //dao.ExecutaSQL("INSERT INTO [TabelaUsuario] ([NomeCompletoUsuario], [CPFUsuario], [MatriculaUsuario], [EmailCorporativoUsuario], [EmailAlternativoUsuario], [UsuarioCriacaoCadastro], [LoginUsuario], [SenhaUsuario], [LoginAtivo], [DataAlteracao]) VALUES ('MARQUES SILVA FONSECA', '83486267272', '83455183', 'marques.silva@correios.com.br', 'marques-fonseca@hotmail.com', '-', 'marquesfonseca', '9342456', TRUE, NOW())");
             }
         }
 
         public static void VerificaSquemaBancoDados()
         {
+            #region TabelaConfiguracoesSistema
             //CriaColuna("TabelaConfiguracoesSistema", "Codigo", "INTEGER");//Codigo
             CriaColuna("TabelaConfiguracoesSistema", "NomeAgenciaLocal", "TEXT(255) NULL DEFAULT NULL");//NomeAgenciaLocal
             CriaColuna("TabelaConfiguracoesSistema", "EnderecoAgenciaLocal", "TEXT(255) NULL DEFAULT NULL");//EnderecoAgenciaLocal
@@ -479,13 +490,16 @@ namespace SISAPO.ClassesDiversas
             CriaColuna("TabelaConfiguracoesSistema", "GerarTXTPLRNaLdi", "YESNO NULL DEFAULT 0");//GerarTXTPLRNaLdi
             CriaColuna("TabelaConfiguracoesSistema", "ReceberObjetosViaTXTPLRDaAgenciaMae", "YESNO NULL DEFAULT 0");//ReceberObjetosViaTXTPLRDaAgenciaMae
 
+            #endregion
 
+            #region TabelaHistoricoConsulta
             //CriaColuna("TabelaHistoricoConsulta", "Codigo", "INTEGER");//Codigo
             CriaColuna("TabelaHistoricoConsulta", "CodigoObjeto", "TEXT(255) NULL DEFAULT NULL");//CodigoObjeto
             CriaColuna("TabelaHistoricoConsulta", "DataConsulta", "DATETIME NULL DEFAULT NULL");//DataConsulta
             CriaColuna("TabelaHistoricoConsulta", "DataCadastro", "DATETIME NULL DEFAULT NULL");//
+            #endregion
 
-
+            #region TabelaObjetosSROLocal
             //CriaColuna("TabelaObjetosSROLocal", "Codigo", "INTEGER");//Codigo
             CriaColuna("TabelaObjetosSROLocal", "CodigoObjeto", "TEXT(255) NULL DEFAULT NULL");//CodigoObjeto
             CriaColuna("TabelaObjetosSROLocal", "CodigoLdi", "TEXT(255) NULL DEFAULT NULL");//CodigoLdi
@@ -521,6 +535,9 @@ namespace SISAPO.ClassesDiversas
             CriaColuna("TabelaObjetosSROLocal", "TipoPostalNomeSiglaCodigo", "TEXT(255) NULL DEFAULT NULL");//TipoPostalNomeSiglaCodigo  adicionado vindo do excel Tipos_Postais.xls filtrado pelo objeto Atual
             CriaColuna("TabelaObjetosSROLocal", "TipoPostalPrazoDiasCorridosRegulamentado", "TEXT(255) NULL DEFAULT NULL");//TipoPostalNomeSiglaCodigo adicionado vindo do excel Tipos_Postais.xls filtrado pelo objeto Atual
 
+            #endregion
+
+            #region TiposPostais
             if (VerificaSeTabelaExiste("TiposPostais") == false)//não existe a tabela... criar tabela
             {
                 CriaTabela("TiposPostais");
@@ -537,6 +554,43 @@ namespace SISAPO.ClassesDiversas
                 CriaColuna("TiposPostais", "DataAlteracao", "TEXT(255) NULL DEFAULT NULL");//DataAlteracao
 
                 CriaTiposPostaisIniciais();
+            }
+            #endregion
+
+            #region TabelaUsuario
+            if (VerificaSeTabelaExiste("TabelaUsuario") == false)//não existe a tabela... criar tabela
+            {
+                CriaTabela("TabelaUsuario");
+                CriaColuna("TabelaUsuario", "Codigo", "AUTOINCREMENT PRIMARY KEY NOT NULL");//Codigo
+                CriaColuna("TabelaUsuario", "NomeCompletoUsuario", "TEXT(255) NULL DEFAULT NULL");//NomeCompletoUsuario
+                CriaColuna("TabelaUsuario", "CPFUsuario", "TEXT(255) NULL DEFAULT NULL");//CPFUsuario
+                CriaColuna("TabelaUsuario", "MatriculaUsuario", "TEXT(255) NULL DEFAULT NULL");//MatriculaUsuario
+                CriaColuna("TabelaUsuario", "EmailCorporativoUsuario", "TEXT(255) NULL DEFAULT NULL");//EmailCorporativoUsuario
+                CriaColuna("TabelaUsuario", "EmailAlternativoUsuario", "TEXT(255) NULL DEFAULT NULL");//EmailAlternativoUsuario
+                CriaColuna("TabelaUsuario", "UsuarioCriacaoCadastro", "TEXT(255) NULL DEFAULT NULL");//UsuarioCriacaoCadastro
+                CriaColuna("TabelaUsuario", "LoginUsuario", "TEXT(255) NULL DEFAULT NULL");//LoginUsuario
+                CriaColuna("TabelaUsuario", "SenhaUsuario", "TEXT(255) NULL DEFAULT NULL");//SenhaUsuario
+                CriaColuna("TabelaUsuario", "LoginAtivo", "BIT NULL DEFAULT TRUE");//LoginAtivo
+                CriaColuna("TabelaUsuario", "DataAlteracao", "DATETIME NULL DEFAULT NOW()");//DataAlteracao
+                SetaCamposIniciaisUsuario();
+            } 
+            #endregion
+        }
+
+        private static void SetaCamposIniciaisUsuario()
+        {
+            using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
+            {
+                if (!dao.TestaConexao())
+                {
+                    FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao;
+                    return;
+                }
+
+                dao.ExecutaSQL("DELETE FROM TabelaUsuario");
+                dao.ExecutaSQL("ALTER TABLE TabelaUsuario ALTER COLUMN Codigo COUNTER(1, 1)");
+                dao.ExecutaSQL("INSERT INTO [TabelaUsuario] ([NomeCompletoUsuario], [CPFUsuario], [MatriculaUsuario], [EmailCorporativoUsuario], [EmailAlternativoUsuario], [UsuarioCriacaoCadastro], [LoginUsuario], [SenhaUsuario], [LoginAtivo], [DataAlteracao]) VALUES ('USUARIO SUPORTE', '00000000000', '00000000', 'email@email.com.br', 'email.email.com.br', '-', 'suporte', '123', TRUE, NOW())");
+                //dao.ExecutaSQL("INSERT INTO [TabelaUsuario] ([NomeCompletoUsuario], [CPFUsuario], [MatriculaUsuario], [EmailCorporativoUsuario], [EmailAlternativoUsuario], [UsuarioCriacaoCadastro], [LoginUsuario], [SenhaUsuario], [LoginAtivo], [DataAlteracao]) VALUES ('MARQUES SILVA FONSECA', '83486267272', '83455183', 'marques.silva@correios.com.br', 'marques-fonseca@hotmail.com', '-', 'marquesfonseca', '9342456', TRUE, NOW())");
             }
         }
 

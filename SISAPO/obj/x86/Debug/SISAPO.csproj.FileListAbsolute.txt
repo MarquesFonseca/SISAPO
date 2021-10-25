@@ -82,3 +82,5 @@ C:\Projetos\SISAPO\SISAPO\obj\x86\Debug\SISAPO.application
 C:\Projetos\SISAPO\SISAPO\obj\x86\Debug\SISAPO.exe
 C:\Projetos\SISAPO\SISAPO\obj\x86\Debug\SISAPO.pdb
 C:\Projetos\SISAPO\SISAPO\obj\x86\Debug\SISAPO.csprojResolveAssemblyReference.cache
+C:\Projetos\SISAPO\SISAPO\obj\x86\Debug\SISAPO.FormAcesso.resources
+C:\Projetos\SISAPO\SISAPO\obj\x86\Debug\SISAPO.FormularioCadastroUsuario.resources

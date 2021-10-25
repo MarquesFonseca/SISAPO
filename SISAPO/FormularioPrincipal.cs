@@ -33,7 +33,7 @@ namespace SISAPO
 
             this.imprimirListaDeEntregaParaConsultaSelecionadaToolStripMenuItem1.Text = string.Format("Imprimir lista de entrega lançados hoje [{0}]", DateTime.Now.GetDateTimeFormats()[14]);
             dataSource = new System.Data.OleDb.OleDbConnection(ClassesDiversas.Configuracoes.strConexao).DataSource.ToString();
-
+            
             //min ---- seg
             //1min --  60s
             //10min - Xseg
@@ -56,6 +56,9 @@ namespace SISAPO
             string nomeArquivo = "SISAPO.exe";
             string nomeEnderecoArquivo = string.Format(@"{0}\{1}", curDir, nomeArquivo);
             string DataModificacaoArquivo = string.Empty;
+
+            this.toolStripLabelAgencia.Text = ClassesDiversas.Configuracoes.RetornaDadosAgencia().Tables[0].Rows[0]["NomeAgenciaLocal"].ToString();
+            this.toolStripLabelUsuarioLogado.Text = ClassesDiversas.Configuracoes.NomeUsuarioSISAPOLogado;
 
             if (Arquivos.Existe(nomeArquivo, false))
             {
@@ -1334,6 +1337,22 @@ namespace SISAPO
             //relatorioPrincipal.WindowState = FormWindowState.Normal;
             relatorioPrincipal.WindowState = FormWindowState.Maximized;
             relatorioPrincipal.Activate();
+        }
+
+        private void cadastroDeUsuárioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (Form item in MdiChildren)
+            {
+                if (item.Name == "FormularioCadastroUsuario")
+                {
+                    item.Activate();
+                    return;
+                }
+            }
+
+            FormularioCadastroUsuario formularioCadastroUsuario = new FormularioCadastroUsuario();
+            formularioCadastroUsuario.ShowDialog();
+            return;
         }
     }
 }
