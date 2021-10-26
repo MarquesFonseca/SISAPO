@@ -40,6 +40,8 @@ namespace SISAPO
             this.cadastrarNovosObjetosViaQRCodePLRDaAgenciaMaeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cadastrarNovosObjetosViaTXTPLRDaAgenciaMaeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.TiposPostaisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
+            this.cadastroDeUsuárioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.atualizarNovosObjetosCompletoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.atualizarNovosObjetosPostadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,6 +54,7 @@ namespace SISAPO
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.auxílioÀGestaoDoDiaItensNaoEntreguesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.auxílioÀGestaoDoDiaItensColadosSROToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sairDoSistemaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.opçõesTelaConsultaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ExibirCaixaPostalPesquisa_toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ExibirItensJaEntreguesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -105,8 +108,6 @@ namespace SISAPO
             this.toolStripStatusLabelDataHora = new System.Windows.Forms.ToolStripStatusLabel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.timerAtualizaDataHoraAtualBarraStatus = new System.Windows.Forms.Timer(this.components);
-            this.cadastroDeUsuárioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabelAgencia = new System.Windows.Forms.ToolStripLabel();
             this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
@@ -159,7 +160,8 @@ namespace SISAPO
             this.solicitarVerificacaoDeObjetosAindaNaoEntreguesToolStripMenuItem,
             this.toolStripSeparator5,
             this.auxílioÀGestaoDoDiaItensNaoEntreguesToolStripMenuItem,
-            this.auxílioÀGestaoDoDiaItensColadosSROToolStripMenuItem});
+            this.auxílioÀGestaoDoDiaItensColadosSROToolStripMenuItem,
+            this.sairDoSistemaToolStripMenuItem});
             this.toolsMenu.Name = "toolsMenu";
             this.toolsMenu.Size = new System.Drawing.Size(84, 20);
             this.toolsMenu.Text = "&Ferramentas";
@@ -218,6 +220,19 @@ namespace SISAPO
             this.TiposPostaisToolStripMenuItem.Size = new System.Drawing.Size(379, 22);
             this.TiposPostaisToolStripMenuItem.Text = "Gestão de Tipos Postais";
             this.TiposPostaisToolStripMenuItem.Click += new System.EventHandler(this.TiposPostaisToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator10
+            // 
+            this.toolStripSeparator10.Name = "toolStripSeparator10";
+            this.toolStripSeparator10.Size = new System.Drawing.Size(376, 6);
+            // 
+            // cadastroDeUsuárioToolStripMenuItem
+            // 
+            this.cadastroDeUsuárioToolStripMenuItem.Image = global::SISAPO.Properties.Resources.CadastroObjetos;
+            this.cadastroDeUsuárioToolStripMenuItem.Name = "cadastroDeUsuárioToolStripMenuItem";
+            this.cadastroDeUsuárioToolStripMenuItem.Size = new System.Drawing.Size(379, 22);
+            this.cadastroDeUsuárioToolStripMenuItem.Text = "Cadastro de Usuário";
+            this.cadastroDeUsuárioToolStripMenuItem.Click += new System.EventHandler(this.cadastroDeUsuárioToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -314,6 +329,14 @@ namespace SISAPO
             this.auxílioÀGestaoDoDiaItensColadosSROToolStripMenuItem.Size = new System.Drawing.Size(379, 22);
             this.auxílioÀGestaoDoDiaItensColadosSROToolStripMenuItem.Text = "Auxílio à gestão do dia - COLADOS SRO";
             this.auxílioÀGestaoDoDiaItensColadosSROToolStripMenuItem.Click += new System.EventHandler(this.auxílioÀGestaoDoDiaItensColadosSROToolStripMenuItem_Click);
+            // 
+            // sairDoSistemaToolStripMenuItem
+            // 
+            this.sairDoSistemaToolStripMenuItem.Image = global::SISAPO.Properties.Resources.Users_Exit_icon;
+            this.sairDoSistemaToolStripMenuItem.Name = "sairDoSistemaToolStripMenuItem";
+            this.sairDoSistemaToolStripMenuItem.Size = new System.Drawing.Size(379, 22);
+            this.sairDoSistemaToolStripMenuItem.Text = "Sair do Sistema";
+            this.sairDoSistemaToolStripMenuItem.Click += new System.EventHandler(this.sairDoSistemaToolStripMenuItem_Click);
             // 
             // opçõesTelaConsultaToolStripMenuItem
             // 
@@ -759,19 +782,6 @@ namespace SISAPO
             this.timerAtualizaDataHoraAtualBarraStatus.Interval = 1000;
             this.timerAtualizaDataHoraAtualBarraStatus.Tick += new System.EventHandler(this.timerAtualizaDataHoraAtualBarraStatus_Tick);
             // 
-            // cadastroDeUsuárioToolStripMenuItem
-            // 
-            this.cadastroDeUsuárioToolStripMenuItem.Image = global::SISAPO.Properties.Resources.CadastroObjetos;
-            this.cadastroDeUsuárioToolStripMenuItem.Name = "cadastroDeUsuárioToolStripMenuItem";
-            this.cadastroDeUsuárioToolStripMenuItem.Size = new System.Drawing.Size(379, 22);
-            this.cadastroDeUsuárioToolStripMenuItem.Text = "Cadastro de Usuário";
-            this.cadastroDeUsuárioToolStripMenuItem.Click += new System.EventHandler(this.cadastroDeUsuárioToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator10
-            // 
-            this.toolStripSeparator10.Name = "toolStripSeparator10";
-            this.toolStripSeparator10.Size = new System.Drawing.Size(376, 6);
-            // 
             // toolStrip1
             // 
             this.toolStrip1.AutoSize = false;
@@ -790,8 +800,7 @@ namespace SISAPO
             // 
             this.toolStripLabelAgencia.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.toolStripLabelAgencia.Name = "toolStripLabelAgencia";
-            this.toolStripLabelAgencia.Size = new System.Drawing.Size(127, 19);
-            this.toolStripLabelAgencia.Text = ClassesDiversas.Configuracoes.RetornaDadosAgencia().Tables[0].Rows[0]["NomeAgenciaLocal"].ToString();
+            this.toolStripLabelAgencia.Size = new System.Drawing.Size(0, 19);
             // 
             // toolStripSeparator12
             // 
@@ -802,8 +811,7 @@ namespace SISAPO
             // 
             this.toolStripLabelUsuarioLogado.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.toolStripLabelUsuarioLogado.Name = "toolStripLabelUsuarioLogado";
-            this.toolStripLabelUsuarioLogado.Size = new System.Drawing.Size(127, 19);
-            this.toolStripLabelUsuarioLogado.Text = ClassesDiversas.Configuracoes.NomeUsuarioSISAPOLogado;
+            this.toolStripLabelUsuarioLogado.Size = new System.Drawing.Size(0, 19);
             // 
             // FormularioPrincipal
             // 
@@ -927,6 +935,7 @@ namespace SISAPO
         private System.Windows.Forms.ToolStripLabel toolStripLabelAgencia;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator12;
         private System.Windows.Forms.ToolStripLabel toolStripLabelUsuarioLogado;
+        private System.Windows.Forms.ToolStripMenuItem sairDoSistemaToolStripMenuItem;
     }
 }
 

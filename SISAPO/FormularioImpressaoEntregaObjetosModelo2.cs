@@ -114,7 +114,7 @@ namespace SISAPO
                 if (Configuracoes.GerarQRCodePLRNaLdi || Configuracoes.GerarTXTPLRNaLdi)
                 {
                     arq.GravarArquivo(string.Format(@"{0}PLR-{1}.html", curDirTemp, NumeroListaAtual), HtmlConsolidado.ToString());
-                    arq.GravarArquivo(nomeEnderecoArquivoPLR, HtmlConsolidado.ToString());
+                    //arq.GravarArquivo(nomeEnderecoArquivoPLR, HtmlConsolidado.ToString());
 
                     ////using TheArtOfDev.HtmlRenderer.PdfSharp.PdfGenerator;
                     //string nomeEnderecoArquivoPLRPDF = string.Format(@"C:\PLR\{0:yyyy-MM-dd}\{1}.pdf", DateTime.Now, NumeroListaAtual);

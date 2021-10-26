@@ -571,6 +571,7 @@ namespace SISAPO.ClassesDiversas
                 CriaColuna("TabelaUsuario", "LoginUsuario", "TEXT(255) NULL DEFAULT NULL");//LoginUsuario
                 CriaColuna("TabelaUsuario", "SenhaUsuario", "TEXT(255) NULL DEFAULT NULL");//SenhaUsuario
                 CriaColuna("TabelaUsuario", "LoginAtivo", "BIT NULL DEFAULT TRUE");//LoginAtivo
+                CriaColuna("TabelaUsuario", "EstaLogado", "BIT NULL DEFAULT FALSE");//EstaLogado
                 CriaColuna("TabelaUsuario", "DataAlteracao", "DATETIME NULL DEFAULT NOW()");//DataAlteracao
                 SetaCamposIniciaisUsuario();
             } 

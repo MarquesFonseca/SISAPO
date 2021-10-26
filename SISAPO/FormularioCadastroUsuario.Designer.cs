@@ -39,9 +39,10 @@
             System.Windows.Forms.Label codigoLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormularioCadastroUsuario));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.codigoTextBox = new System.Windows.Forms.TextBox();
             this.bindingNavigatorTabelaUsuario = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
+            this.tabelaUsuarioBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dataSetTabelaUsuario = new SISAPO.DataSetTabelaUsuario();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
@@ -54,6 +55,7 @@
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonSave = new System.Windows.Forms.ToolStripButton();
+            this.codigoTextBox = new System.Windows.Forms.TextBox();
             this.nomeCompletoUsuarioTextBox = new System.Windows.Forms.TextBox();
             this.cPFUsuarioTextBox = new System.Windows.Forms.TextBox();
             this.matriculaUsuarioTextBox = new System.Windows.Forms.TextBox();
@@ -63,9 +65,8 @@
             this.senhaUsuarioTextBox = new System.Windows.Forms.TextBox();
             this.loginAtivoCheckBox = new System.Windows.Forms.CheckBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.tabelaUsuarioDataGridView = new System.Windows.Forms.DataGridView();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.tabelaUsuarioDataGridView = new System.Windows.Forms.DataGridView();
             this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NomeCompletoUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CPFUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -77,8 +78,7 @@
             this.SenhaUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LoginAtivo = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.DataAlteracao = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tabelaUsuarioBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dataSetTabelaUsuario = new SISAPO.DataSetTabelaUsuario();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tabelaUsuarioTableAdapter = new SISAPO.DataSetTabelaUsuarioTableAdapters.TabelaUsuarioTableAdapter();
             this.tableAdapterManager = new SISAPO.DataSetTabelaUsuarioTableAdapters.TableAdapterManager();
             nomeCompletoUsuarioLabel = new System.Windows.Forms.Label();
@@ -92,11 +92,11 @@
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigatorTabelaUsuario)).BeginInit();
             this.bindingNavigatorTabelaUsuario.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tabelaUsuarioBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetTabelaUsuario)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tabelaUsuarioDataGridView)).BeginInit();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tabelaUsuarioBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSetTabelaUsuario)).BeginInit();
             this.SuspendLayout();
             // 
             // nomeCompletoUsuarioLabel
@@ -133,36 +133,36 @@
             emailCorporativoUsuarioLabel.AutoSize = true;
             emailCorporativoUsuarioLabel.Location = new System.Drawing.Point(6, 73);
             emailCorporativoUsuarioLabel.Name = "emailCorporativoUsuarioLabel";
-            emailCorporativoUsuarioLabel.Size = new System.Drawing.Size(131, 13);
+            emailCorporativoUsuarioLabel.Size = new System.Drawing.Size(89, 13);
             emailCorporativoUsuarioLabel.TabIndex = 8;
-            emailCorporativoUsuarioLabel.Text = "Email Corporativo Usuario:";
+            emailCorporativoUsuarioLabel.Text = "Email Corporativo";
             // 
             // emailAlternativoUsuarioLabel
             // 
             emailAlternativoUsuarioLabel.AutoSize = true;
             emailAlternativoUsuarioLabel.Location = new System.Drawing.Point(339, 73);
             emailAlternativoUsuarioLabel.Name = "emailAlternativoUsuarioLabel";
-            emailAlternativoUsuarioLabel.Size = new System.Drawing.Size(127, 13);
+            emailAlternativoUsuarioLabel.Size = new System.Drawing.Size(85, 13);
             emailAlternativoUsuarioLabel.TabIndex = 10;
-            emailAlternativoUsuarioLabel.Text = "Email Alternativo Usuario:";
+            emailAlternativoUsuarioLabel.Text = "Email Alternativo";
             // 
             // loginUsuarioLabel
             // 
             loginUsuarioLabel.AutoSize = true;
             loginUsuarioLabel.Location = new System.Drawing.Point(6, 125);
             loginUsuarioLabel.Name = "loginUsuarioLabel";
-            loginUsuarioLabel.Size = new System.Drawing.Size(75, 13);
+            loginUsuarioLabel.Size = new System.Drawing.Size(33, 13);
             loginUsuarioLabel.TabIndex = 12;
-            loginUsuarioLabel.Text = "Login Usuario:";
+            loginUsuarioLabel.Text = "Login";
             // 
             // senhaUsuarioLabel
             // 
             senhaUsuarioLabel.AutoSize = true;
             senhaUsuarioLabel.Location = new System.Drawing.Point(212, 125);
             senhaUsuarioLabel.Name = "senhaUsuarioLabel";
-            senhaUsuarioLabel.Size = new System.Drawing.Size(80, 13);
+            senhaUsuarioLabel.Size = new System.Drawing.Size(38, 13);
             senhaUsuarioLabel.TabIndex = 14;
-            senhaUsuarioLabel.Text = "Senha Usuario:";
+            senhaUsuarioLabel.Text = "Senha";
             // 
             // codigoLabel
             // 
@@ -181,16 +181,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(720, 38);
             this.panel1.TabIndex = 0;
-            // 
-            // codigoTextBox
-            // 
-            this.codigoTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.tabelaUsuarioBindingSource, "Codigo", true));
-            this.codigoTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.codigoTextBox.Location = new System.Drawing.Point(7, 38);
-            this.codigoTextBox.Name = "codigoTextBox";
-            this.codigoTextBox.ReadOnly = true;
-            this.codigoTextBox.Size = new System.Drawing.Size(100, 26);
-            this.codigoTextBox.TabIndex = 1;
             // 
             // bindingNavigatorTabelaUsuario
             // 
@@ -236,6 +226,17 @@
             this.bindingNavigatorAddNewItem.Text = "Adicionar novo";
             this.bindingNavigatorAddNewItem.ToolTipText = "Adicionar novo - Preencha os campos e clique em \"Gravar\"";
             this.bindingNavigatorAddNewItem.Click += new System.EventHandler(this.bindingNavigatorAddNewItem_Click);
+            // 
+            // tabelaUsuarioBindingSource
+            // 
+            this.tabelaUsuarioBindingSource.DataMember = "TabelaUsuario";
+            this.tabelaUsuarioBindingSource.DataSource = this.dataSetTabelaUsuario;
+            this.tabelaUsuarioBindingSource.CurrentChanged += new System.EventHandler(this.tabelaUsuarioBindingSource_CurrentChanged);
+            // 
+            // dataSetTabelaUsuario
+            // 
+            this.dataSetTabelaUsuario.DataSetName = "DataSetTabelaUsuario";
+            this.dataSetTabelaUsuario.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // bindingNavigatorMoveFirstItem
             // 
@@ -336,6 +337,16 @@
             this.toolStripButtonSave.Text = "Gravar";
             this.toolStripButtonSave.Click += new System.EventHandler(this.toolStripButtonSave_Click);
             // 
+            // codigoTextBox
+            // 
+            this.codigoTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.tabelaUsuarioBindingSource, "Codigo", true));
+            this.codigoTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.codigoTextBox.Location = new System.Drawing.Point(7, 38);
+            this.codigoTextBox.Name = "codigoTextBox";
+            this.codigoTextBox.ReadOnly = true;
+            this.codigoTextBox.Size = new System.Drawing.Size(100, 26);
+            this.codigoTextBox.TabIndex = 1;
+            // 
             // nomeCompletoUsuarioTextBox
             // 
             this.nomeCompletoUsuarioTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -434,6 +445,18 @@
             this.panel2.Size = new System.Drawing.Size(720, 63);
             this.panel2.TabIndex = 2;
             // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(576, 9);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(134, 45);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "Fechar";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // tabelaUsuarioDataGridView
             // 
             this.tabelaUsuarioDataGridView.AllowUserToAddRows = false;
@@ -460,45 +483,6 @@
             this.tabelaUsuarioDataGridView.RowHeadersVisible = false;
             this.tabelaUsuarioDataGridView.Size = new System.Drawing.Size(720, 137);
             this.tabelaUsuarioDataGridView.TabIndex = 1;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(codigoLabel);
-            this.groupBox1.Controls.Add(this.loginAtivoCheckBox);
-            this.groupBox1.Controls.Add(this.codigoTextBox);
-            this.groupBox1.Controls.Add(this.senhaUsuarioTextBox);
-            this.groupBox1.Controls.Add(senhaUsuarioLabel);
-            this.groupBox1.Controls.Add(nomeCompletoUsuarioLabel);
-            this.groupBox1.Controls.Add(this.loginUsuarioTextBox);
-            this.groupBox1.Controls.Add(this.nomeCompletoUsuarioTextBox);
-            this.groupBox1.Controls.Add(loginUsuarioLabel);
-            this.groupBox1.Controls.Add(cPFUsuarioLabel);
-            this.groupBox1.Controls.Add(this.emailAlternativoUsuarioTextBox);
-            this.groupBox1.Controls.Add(this.cPFUsuarioTextBox);
-            this.groupBox1.Controls.Add(emailAlternativoUsuarioLabel);
-            this.groupBox1.Controls.Add(matriculaUsuarioLabel);
-            this.groupBox1.Controls.Add(this.emailCorporativoUsuarioTextBox);
-            this.groupBox1.Controls.Add(this.matriculaUsuarioTextBox);
-            this.groupBox1.Controls.Add(emailCorporativoUsuarioLabel);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox1.Location = new System.Drawing.Point(0, 38);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(720, 180);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Dados do usuário";
-            // 
-            // button1
-            // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(576, 9);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(134, 45);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Fechar";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Codigo
             // 
@@ -543,7 +527,6 @@
             this.EmailCorporativoUsuario.Name = "EmailCorporativoUsuario";
             this.EmailCorporativoUsuario.ReadOnly = true;
             this.EmailCorporativoUsuario.Visible = false;
-            this.EmailCorporativoUsuario.Width = 116;
             // 
             // EmailAlternativoUsuario
             // 
@@ -553,7 +536,6 @@
             this.EmailAlternativoUsuario.Name = "EmailAlternativoUsuario";
             this.EmailAlternativoUsuario.ReadOnly = true;
             this.EmailAlternativoUsuario.Visible = false;
-            this.EmailAlternativoUsuario.Width = 112;
             // 
             // UsuarioCriacaoCadastro
             // 
@@ -563,7 +545,6 @@
             this.UsuarioCriacaoCadastro.Name = "UsuarioCriacaoCadastro";
             this.UsuarioCriacaoCadastro.ReadOnly = true;
             this.UsuarioCriacaoCadastro.Visible = false;
-            this.UsuarioCriacaoCadastro.Width = 112;
             // 
             // LoginUsuario
             // 
@@ -582,7 +563,6 @@
             this.SenhaUsuario.Name = "SenhaUsuario";
             this.SenhaUsuario.ReadOnly = true;
             this.SenhaUsuario.Visible = false;
-            this.SenhaUsuario.Width = 63;
             // 
             // LoginAtivo
             // 
@@ -605,16 +585,32 @@
             this.DataAlteracao.ReadOnly = true;
             this.DataAlteracao.Width = 90;
             // 
-            // tabelaUsuarioBindingSource
+            // groupBox1
             // 
-            this.tabelaUsuarioBindingSource.DataMember = "TabelaUsuario";
-            this.tabelaUsuarioBindingSource.DataSource = this.dataSetTabelaUsuario;
-            this.tabelaUsuarioBindingSource.CurrentChanged += new System.EventHandler(this.tabelaUsuarioBindingSource_CurrentChanged);
-            // 
-            // dataSetTabelaUsuario
-            // 
-            this.dataSetTabelaUsuario.DataSetName = "DataSetTabelaUsuario";
-            this.dataSetTabelaUsuario.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.groupBox1.Controls.Add(codigoLabel);
+            this.groupBox1.Controls.Add(this.loginAtivoCheckBox);
+            this.groupBox1.Controls.Add(this.codigoTextBox);
+            this.groupBox1.Controls.Add(this.senhaUsuarioTextBox);
+            this.groupBox1.Controls.Add(senhaUsuarioLabel);
+            this.groupBox1.Controls.Add(nomeCompletoUsuarioLabel);
+            this.groupBox1.Controls.Add(this.loginUsuarioTextBox);
+            this.groupBox1.Controls.Add(this.nomeCompletoUsuarioTextBox);
+            this.groupBox1.Controls.Add(loginUsuarioLabel);
+            this.groupBox1.Controls.Add(cPFUsuarioLabel);
+            this.groupBox1.Controls.Add(this.emailAlternativoUsuarioTextBox);
+            this.groupBox1.Controls.Add(this.cPFUsuarioTextBox);
+            this.groupBox1.Controls.Add(emailAlternativoUsuarioLabel);
+            this.groupBox1.Controls.Add(matriculaUsuarioLabel);
+            this.groupBox1.Controls.Add(this.emailCorporativoUsuarioTextBox);
+            this.groupBox1.Controls.Add(this.matriculaUsuarioTextBox);
+            this.groupBox1.Controls.Add(emailCorporativoUsuarioLabel);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox1.Location = new System.Drawing.Point(0, 38);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(720, 180);
+            this.groupBox1.TabIndex = 1;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Dados do usuário";
             // 
             // tabelaUsuarioTableAdapter
             // 
@@ -650,12 +646,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigatorTabelaUsuario)).EndInit();
             this.bindingNavigatorTabelaUsuario.ResumeLayout(false);
             this.bindingNavigatorTabelaUsuario.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tabelaUsuarioBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetTabelaUsuario)).EndInit();
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tabelaUsuarioDataGridView)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tabelaUsuarioBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSetTabelaUsuario)).EndInit();
             this.ResumeLayout(false);
 
         }

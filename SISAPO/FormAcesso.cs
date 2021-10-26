@@ -102,6 +102,8 @@ namespace SISAPO
                     LoginAtivo = (bool)RetornoUsuario.Rows[0]["LoginAtivo"];
                     DataAlteracao = RetornoUsuario.Rows[0]["DataAlteracao"].ToString();
 
+                    dao.ExecutaSQL("UPDATE TabelaUsuario SET EstaLogado = true WHERE Codigo = " + CodigoUsuario.ToInt() + "");
+
                     Autenticado = true;
                     this.Close();
                 }

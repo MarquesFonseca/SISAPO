@@ -33,7 +33,7 @@ namespace SISAPO
 
             this.imprimirListaDeEntregaParaConsultaSelecionadaToolStripMenuItem1.Text = string.Format("Imprimir lista de entrega lançados hoje [{0}]", DateTime.Now.GetDateTimeFormats()[14]);
             dataSource = new System.Data.OleDb.OleDbConnection(ClassesDiversas.Configuracoes.strConexao).DataSource.ToString();
-            
+
             //min ---- seg
             //1min --  60s
             //10min - Xseg
@@ -1315,11 +1315,6 @@ namespace SISAPO
             FormularioImpressaoAvisosChegada FormularioImpressaoAvisosChegada = new FormularioImpressaoAvisosChegada(ListaCodigoOrdenadosPelaDataLancamento);
         }
 
-        private void FormularioPrincipal_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Dispose();
-        }
-
         private void relatorioTesteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             foreach (Form item in MdiChildren)
@@ -1354,5 +1349,16 @@ namespace SISAPO
             formularioCadastroUsuario.ShowDialog();
             return;
         }
+
+        private void sairDoSistemaToolStripMenuItem_Click(object sender, EventArgs e)
+        {            
+            this.Close();            
+        }
+
+        private void FormularioPrincipal_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Dispose();
+        }
     }
 }
+

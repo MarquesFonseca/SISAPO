@@ -785,6 +785,7 @@
     <None Include="Resources\local-map-google.png" />
     <None Include="Resources\seta-diagonal.png" />
     <Content Include="Resources\timg11.gif" />
+    <None Include="Resources\Users-Exit-icon.png" />
     <Content Include="SelectDataSet.txt" />
     <None Include="Resources\LogoCorreios.jpg" />
     <None Include="Resources\AtualizarListaObjetos.png" />

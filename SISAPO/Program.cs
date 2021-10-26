@@ -189,6 +189,12 @@ namespace SISAPO
             }
 
             Application.Run(formularioPrincipal);
+            using (DAO dao = new DAO(TipoBanco.OleDb, ClassesDiversas.Configuracoes.strConexao))
+            {
+                if (!dao.TestaConexao()) { FormularioPrincipal.RetornaComponentesFormularioPrincipal().toolStripStatusLabel.Text = Configuracoes.MensagemPerdaConexao; return; }
+
+                dao.ExecutaSQL("UPDATE TabelaUsuario SET EstaLogado = false WHERE LoginUsuario = '" + Configuracoes.UsuarioSISAPOLogado + "'");
+            }
         }
 
         private static void ProcessandoItensBancoBadosInicial()
