@@ -737,8 +737,8 @@ namespace SISAPO
             }
             return null;
         }
-
         WaitWndFun waitForm = new WaitWndFun();
+
         public void ConsultaTodosNaoEntreguesOrdenadoNome()
         {
             try
@@ -753,7 +753,10 @@ namespace SISAPO
                 datafinal = Convert.ToDateTime(DataFinal_dateTimePicker.Text).ToString("yyyy/MM/dd");
 
 
+#if !DEBUG
                 waitForm.Show(this);
+#endif
+
                 this.tabelaObjetosSROLocalTableAdapter.Connection.ConnectionString = ClassesDiversas.Configuracoes.strConexao;
 
                 //string commandText = @"SELECT Codigo, CodigoObjeto, IIf(CodigoLdi IS NULL OR CodigoLdi = '','000000000000',CodigoLdi) AS CodigoLdi, NomeCliente, Format(IIf(TabelaObjetosSROLocal.DataLancamento IS NULL OR TabelaObjetosSROLocal.DataLancamento = '', Format(NOW(),'dd/MM/yyyy 00:00:01'), TabelaObjetosSROLocal.DataLancamento), 'dd/MM/yyyy hh:mm:ss') AS DataLancamento, Format(DataModificacao, 'dd/MM/yyyy hh:mm:ss') AS DataModificacao, Situacao, Atualizado, ObjetoEntregue, CaixaPostal, UnidadePostagem, MunicipioPostagem, CriacaoPostagem, CepDestinoPostagem, ARPostagem, MPPostagem, DataMaxPrevistaEntregaPostagem, UnidadeLOEC, MunicipioLOEC, CriacaoLOEC, CarteiroLOEC, DistritoLOEC, NumeroLOEC, EnderecoLOEC, BairroLOEC, LocalidadeLOEC, SituacaoDestinatarioAusente, AgrupadoDestinatarioAusente, CoordenadasDestinatarioAusente, Comentario, TipoPostalServico, TipoPostalSiglaCodigo, TipoPostalNomeSiglaCodigo, TipoPostalPrazoDiasCorridosRegulamentado FROM            TabelaObjetosSROLocal WHERE        (Format(DataLancamento, 'yyyy/MM/dd') BETWEEN Format(?, 'yyyy/MM/dd') AND Format(?, 'yyyy/MM/dd')) ORDER BY DataLancamento DESC";
@@ -774,12 +777,53 @@ namespace SISAPO
                 if (checkBoxFiltrarPorLDI.Checked && comboBoxListaLDIs.Enabled == true)
                 {
                     DataTable dataTable = this.dataSetTabelaObjetosSROLocal.TabelaObjetosSROLocal.CopyToDataTable();
-                    this.comboBoxListaLDIs.DataSource = dataTable.AsEnumerable().GroupBy(T => T["CodigoLdi"]).Select(x => x).ToList();
+                    this.comboBoxListaLDIs.DataSource = dataTable.AsEnumerable()
+                        .OrderBy(Z => Z["CodigoLdi"])
+                        .GroupBy(T => T["CodigoLdi"])
+                        .Select(x => x).ToList();
                     this.comboBoxListaLDIs.DisplayMember = "key";
                     this.comboBoxListaLDIs.ValueMember = "key";
                 }
 
+
+                #region Teste
+                //DataTable dataTableNovo = this.dataSetTabelaObjetosSROLocal.TabelaObjetosSROLocal.CopyToDataTable();
+                //var ss = dataTableNovo.AsEnumerable()
+                //    .Where(Z => Z["DataLancamento"].ToDateTime().Date == "19/10/2021".ToDateTime().Date)
+                //    .OrderBy(N => N["NomeCliente"])
+                //    .Select(x => x).ToList()
+                //    ;
+                //DataTable TodosDoDiaSelecionado = dataTableNovo.AsEnumerable()
+                //    .Where(Z => Z["DataLancamento"].ToDateTime().Date == "19/10/2021".ToDateTime().Date)
+                //    .CopyToDataTable()
+                //    ;
+
+                //var AgrupadoPeloPrazo = dataTableNovo.AsEnumerable()
+                //    .Where(Z => Z["DataLancamento"].ToDateTime().Date == "19/10/2021".ToDateTime().Date)
+                //    .OrderByDescending(N => N["TipoPostalPrazoDiasCorridosRegulamentado"])
+                //    .GroupBy(T => T["TipoPostalPrazoDiasCorridosRegulamentado"].ToString()).ToList()                 
+                //    ;
+
+                //foreach (var item in AgrupadoPeloPrazo)
+                //{
+                //    DataTable DtObjetos = dataTableNovo.AsEnumerable()
+                //    .Where(Z => Z["TipoPostalPrazoDiasCorridosRegulamentado"].ToString() == item.Key.ToString())
+                //    .Where(Z => Z["DataLancamento"].ToDateTime().Date == "19/10/2021".ToDateTime().Date)
+                //    .OrderBy(Z => Z["NomeCliente"])
+                //    .CopyToDataTable()
+                //    ;
+
+
+                //}
+                #endregion
+
+
+
+
+#if !DEBUG
                 waitForm.Close();
+#endif
+
 
                 tabelaObjetosSROLocalBindingSource.Position = posicao;
                 dataGridView1.Focus();
@@ -1005,19 +1049,12 @@ namespace SISAPO
             FormularioConsulta_Activated(sender, e);
         }
 
-        Dictionary<string, string> dicionarioCodigo_Nome = new Dictionary<string, string>();
-        Dictionary<string, DateTime> dicionarioCodigo_DataLancamento = new Dictionary<string, DateTime>();
+        private DataTable dtbListaImpressao = null;
         public void GeraImpressaoItensSelecionados(ModeloImpressaoListaObjetos _modeloImpressaoListaObjetos)
         {
-            dicionarioCodigo_Nome = new Dictionary<string, string>();
-            dicionarioCodigo_DataLancamento = new Dictionary<string, DateTime>();
             List<string> novosCodigosSelecionadosOrdenados = new List<string>();
 
-            if (dataGridView1.SelectedRows.Count == 0)
-            {
-                Mensagens.Informa("Para impressão da lista de entrega é necessário selecionar algum objeto.");
-                return;
-            }
+            #region Verifica se o Form está aberto
             foreach (Form item in Application.OpenForms)
             {
                 if (item.Name == "FormularioImpressaoEntregaObjetosModelo1" ||
@@ -1027,7 +1064,65 @@ namespace SISAPO
                     break;
                 }
             }
+            #endregion
 
+            #region Verifica se count > 0
+            if (dataGridView1.SelectedRows.Count == 0)
+            {
+                Mensagens.Informa("Para impressão da lista de entrega é necessário selecionar algum objeto.");
+                return;
+            }
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                #region Cria DataTable
+                dtbListaImpressao = new DataTable();
+                dtbListaImpressao.Columns.Add("CodigoObjeto", typeof(string));
+                dtbListaImpressao.Columns.Add("DataLancamento", typeof(DateTime));
+                dtbListaImpressao.Columns.Add("NomeCliente", typeof(string));
+                dtbListaImpressao.Columns.Add("Prazo", typeof(string));
+                #endregion
+
+                #region Pega Dados Selecionados DataGridView
+
+                if (this.dataGridView1.SelectedRows.Count > 100)
+                {
+                    using (FormWaiting frm = new FormWaiting(ProcessandoListaObjetosSelecionados))
+                    {
+                        frm.ShowDialog(this);
+                    }
+                }
+                else
+                {
+                    for (int i = this.dataGridView1.SelectedRows.Count - 1; i >= 0; i--)
+                    {
+                        dtbListaImpressao.Rows.Add
+                        (
+                            this.dataGridView1.SelectedRows[i].Cells["codigoObjetoDataGridViewTextBoxColumn"].Value.ToString(),
+                            this.dataGridView1.SelectedRows[i].Cells["DataLancamento"].Value.ToString(),
+                            this.dataGridView1.SelectedRows[i].Cells["nomeClienteDataGridViewTextBoxColumn"].Value.ToString(),
+                            this.dataGridView1.SelectedRows[i].Cells["TipoPostalPrazoDiasCorridosRegulamentado"].Value.ToString()
+                        );
+                    }
+                }
+
+                #endregion
+            }
+            #endregion
+
+            #region Seta Valores Opçoes Impressao ModeloComum
+            if (_modeloImpressaoListaObjetos == ModeloImpressaoListaObjetos.ModeloComum)
+            {
+                //não vai mostrar a tela de opções
+                FormularioPrincipal.OpcoesImpressaoOrdenacaoPorNomeDestinatario = true;
+                FormularioPrincipal.OpcoesImpressaoOrdenacaoPorDataLancamento = false;
+                FormularioPrincipal.OpcoesImpressaoOrdenacaoPorOrdemCrescente = true;
+                FormularioPrincipal.OpcoesImpressaoImprimirUmPorFolha = false;
+                FormularioPrincipal.OpcoesImpressaoImprimirVariosPorFolha = true;
+                FormularioPrincipal.OpcoesImpressaoSepararPorPrazo = false;
+                FormularioPrincipal.OpcoesImpressaoNaoSepararPorPrazo = true;
+            }
+            #endregion
+            #region Seta Valores Opçoes Impressao ModeloLDI
             if (_modeloImpressaoListaObjetos == ModeloImpressaoListaObjetos.ModeloLDI)
             {
                 if (this.dataGridView1.SelectedRows.Count == 1)
@@ -1037,6 +1132,8 @@ namespace SISAPO
                     FormularioPrincipal.OpcoesImpressaoOrdenacaoPorOrdemCrescente = true;
                     FormularioPrincipal.OpcoesImpressaoImprimirUmPorFolha = true;
                     FormularioPrincipal.OpcoesImpressaoImprimirVariosPorFolha = false;
+                    FormularioPrincipal.OpcoesImpressaoSepararPorPrazo = false;
+                    FormularioPrincipal.OpcoesImpressaoNaoSepararPorPrazo = true;
                 }
                 if (this.dataGridView1.SelectedRows.Count > 1)
                 {
@@ -1050,80 +1147,136 @@ namespace SISAPO
                         FormularioPrincipal.OpcoesImpressaoOrdenacaoPorOrdemCrescente = formularioImpressaoEntregaObjetosOpcoesImpressao.OrdenacaoPorOrdemCrescente;
                         FormularioPrincipal.OpcoesImpressaoImprimirUmPorFolha = formularioImpressaoEntregaObjetosOpcoesImpressao.ImprimirUmPorFolha;
                         FormularioPrincipal.OpcoesImpressaoImprimirVariosPorFolha = formularioImpressaoEntregaObjetosOpcoesImpressao.ImprimirVariosPorFolha;
+                        FormularioPrincipal.OpcoesImpressaoSepararPorPrazo = formularioImpressaoEntregaObjetosOpcoesImpressao.SepararPorPrazo;
+                        FormularioPrincipal.OpcoesImpressaoNaoSepararPorPrazo = formularioImpressaoEntregaObjetosOpcoesImpressao.NaoSepararPorPrazo;
                     }
                 }
             }
-            if (_modeloImpressaoListaObjetos == ModeloImpressaoListaObjetos.ModeloComum)
-            {
-                //não vai mostrar a tela de opções
-                FormularioPrincipal.OpcoesImpressaoOrdenacaoPorNomeDestinatario = true;
-                FormularioPrincipal.OpcoesImpressaoOrdenacaoPorDataLancamento = false;
-                FormularioPrincipal.OpcoesImpressaoOrdenacaoPorOrdemCrescente = true;
-                FormularioPrincipal.OpcoesImpressaoImprimirUmPorFolha = false;
-                FormularioPrincipal.OpcoesImpressaoImprimirVariosPorFolha = true;
-            }
+            #endregion
 
-            #region Ordem alfabética
-            if (FormularioPrincipal.OpcoesImpressaoOrdenacaoPorNomeDestinatario)
+            #region Separar Por Prazo
+            if (FormularioPrincipal.OpcoesImpressaoSepararPorPrazo)
             {
-                for (int i = this.dataGridView1.SelectedRows.Count - 1; i >= 0; i--)
+                //prazo 7, prazo 20 ...
+                foreach (var prazo in dtbListaImpressao.AsEnumerable().Select(T => T["Prazo"]).Distinct())
                 {
-                    //codigoObjetoDataGridViewTextBoxColumn
-                    //nomeClienteDataGridViewTextBoxColumn
-                    //DataLancamento
-                    bool existe = dicionarioCodigo_Nome.AsEnumerable().Any(t => t.Key == this.dataGridView1.SelectedRows[i].Cells["codigoObjetoDataGridViewTextBoxColumn"].Value.ToString());
-                    if (!existe)
-                        dicionarioCodigo_Nome.Add(this.dataGridView1.SelectedRows[i].Cells["codigoObjetoDataGridViewTextBoxColumn"].Value.ToString(), this.dataGridView1.SelectedRows[i].Cells["nomeClienteDataGridViewTextBoxColumn"].Value.ToString());
+                    //DataTable ListaPrazorr = dtbListaImpressao.AsEnumerable().Where(T => T["Prazo"].ToString() == prazo.ToString()).OrderBy(Z => Z["NomeCliente"]).CopyToDataTable();
+
+                    #region Ordenar por Nome do Destinatario
+                    if (FormularioPrincipal.OpcoesImpressaoOrdenacaoPorNomeDestinatario)
+                    {
+                        if (FormularioPrincipal.OpcoesImpressaoOrdenacaoPorOrdemCrescente)
+                        {
+                            //DataTable teste = dtbListaImpressao.AsEnumerable().Where(T => T["Prazo"].ToString() == prazo.ToString()).OrderBy(Z => Z["NomeCliente"].ToString()).CopyToDataTable();
+                            novosCodigosSelecionadosOrdenados = dtbListaImpressao.AsEnumerable().Where(T => T["Prazo"].ToString() == prazo.ToString()).OrderBy(Z => Z["NomeCliente"].ToString()).Select(T => T["CodigoObjeto"].ToString()).ToList();
+                        }
+                        else
+                        {
+                            //DataTable teste = dtbListaImpressao.AsEnumerable().Where(T => T["Prazo"].ToString() == prazo.ToString()).OrderByDescending(Z => Z["NomeCliente"].ToString()).CopyToDataTable();
+                            novosCodigosSelecionadosOrdenados = dtbListaImpressao.AsEnumerable().Where(T => T["Prazo"].ToString() == prazo.ToString()).OrderByDescending(Z => Z["NomeCliente"].ToString()).Select(T => T["CodigoObjeto"].ToString()).ToList();
+                        }
+                    }
+                    #endregion
+
+                    #region Ordenar por Data Lançamento
+                    if (FormularioPrincipal.OpcoesImpressaoOrdenacaoPorDataLancamento)
+                    {
+                        if (FormularioPrincipal.OpcoesImpressaoOrdenacaoPorOrdemCrescente)
+                        {
+                            //DataTable teste = dtbListaImpressao.AsEnumerable().Where(T => T["Prazo"].ToString() == prazo.ToString()).OrderBy(Z => Z["DataLancamento"].ToDateTime()).CopyToDataTable();
+                            novosCodigosSelecionadosOrdenados = dtbListaImpressao.AsEnumerable().Where(T => T["Prazo"].ToString() == prazo.ToString()).OrderBy(Z => Z["DataLancamento"].ToDateTime()).Select(T => T["CodigoObjeto"].ToString()).ToList();
+                        }
+                        else
+                        {
+                            //DataTable teste = dtbListaImpressao.AsEnumerable().Where(T => T["Prazo"].ToString() == prazo.ToString()).OrderByDescending(Z => Z["DataLancamento"].ToDateTime()).CopyToDataTable();
+                            novosCodigosSelecionadosOrdenados = dtbListaImpressao.AsEnumerable().Where(T => T["Prazo"].ToString() == prazo.ToString()).OrderByDescending(Z => Z["DataLancamento"].ToDateTime()).Select(T => T["CodigoObjeto"].ToString()).ToList();
+                        }
+                    }
+                    #endregion
+
+                    #region Abre Formulario impressao
+                    if (_modeloImpressaoListaObjetos == ModeloImpressaoListaObjetos.ModeloLDI)
+                    {
+                        FormularioImpressaoEntregaObjetosModelo2 formularioImpressaoEntregaObjetos = new FormularioImpressaoEntregaObjetosModelo2(novosCodigosSelecionadosOrdenados, FormularioPrincipal.OpcoesImpressaoImprimirUmPorFolha, FormularioPrincipal.OpcoesImpressaoImprimirVariosPorFolha);
+                    }
+                    if (_modeloImpressaoListaObjetos == ModeloImpressaoListaObjetos.ModeloComum)
+                    {
+                        FormularioImpressaoEntregaObjetosModelo1 formularioImpressaoEntregaObjetos = new FormularioImpressaoEntregaObjetosModelo1(novosCodigosSelecionadosOrdenados);
+                    }
+                    #endregion
                 }
-                if (FormularioPrincipal.OpcoesImpressaoOrdenacaoPorOrdemCrescente)
-                    novosCodigosSelecionadosOrdenados = dicionarioCodigo_Nome.AsEnumerable().OrderBy(t => t.Value).Select(c => c.Key).ToList();
-                else
-                    novosCodigosSelecionadosOrdenados = dicionarioCodigo_Nome.AsEnumerable().OrderByDescending(t => t.Value).Select(c => c.Key).ToList();
             }
             #endregion
 
-            #region Ordem de Lançamento
-            if (FormularioPrincipal.OpcoesImpressaoOrdenacaoPorDataLancamento)
+            #region Não Separar Por Prazo
+            if (FormularioPrincipal.OpcoesImpressaoNaoSepararPorPrazo)
             {
-                for (int i = this.dataGridView1.SelectedRows.Count - 1; i >= 0; i--)
+                //DataTable ListaPrazorr = dtbLista.AsEnumerable().OrderBy(Z => Z["NomeCliente"]).CopyToDataTable();
+
+                #region Ordenar por Nome do Destinatario
+                if (FormularioPrincipal.OpcoesImpressaoOrdenacaoPorNomeDestinatario)
                 {
-                    //codigoObjetoDataGridViewTextBoxColumn
-                    //nomeClienteDataGridViewTextBoxColumn
-                    //DataLancamento
-                    bool existe = dicionarioCodigo_DataLancamento.AsEnumerable().Any(t => t.Key == this.dataGridView1.SelectedRows[i].Cells["codigoObjetoDataGridViewTextBoxColumn"].Value.ToString());
-                    if (!existe)
-                        dicionarioCodigo_DataLancamento.Add(this.dataGridView1.SelectedRows[i].Cells["codigoObjetoDataGridViewTextBoxColumn"].Value.ToString(), this.dataGridView1.SelectedRows[i].Cells["DataLancamento"].Value.ToDateTime());
+                    if (FormularioPrincipal.OpcoesImpressaoOrdenacaoPorOrdemCrescente)
+                    {
+                        //DataTable teste = dtbListaImpressao.AsEnumerable().OrderBy(Z => Z["NomeCliente"].ToString()).CopyToDataTable();
+                        novosCodigosSelecionadosOrdenados = dtbListaImpressao.AsEnumerable().OrderBy(Z => Z["NomeCliente"].ToString()).Select(T => T["CodigoObjeto"].ToString()).ToList();
+                    }
+                    else
+                    {
+                        //DataTable teste = dtbListaImpressao.AsEnumerable().OrderByDescending(Z => Z["NomeCliente"].ToString()).CopyToDataTable();
+                        novosCodigosSelecionadosOrdenados = dtbListaImpressao.AsEnumerable().OrderByDescending(Z => Z["NomeCliente"].ToString()).Select(T => T["CodigoObjeto"].ToString()).ToList();
+                    }
                 }
-                if (FormularioPrincipal.OpcoesImpressaoOrdenacaoPorOrdemCrescente)
-                    novosCodigosSelecionadosOrdenados = dicionarioCodigo_DataLancamento.AsEnumerable().OrderBy(t => t.Value).Select(c => c.Key).ToList();
-                else
-                    novosCodigosSelecionadosOrdenados = dicionarioCodigo_DataLancamento.AsEnumerable().OrderByDescending(t => t.Value).Select(c => c.Key).ToList();
+                #endregion
+
+                #region Ordenar por Data Lançamento
+                if (FormularioPrincipal.OpcoesImpressaoOrdenacaoPorDataLancamento)
+                {
+                    if (FormularioPrincipal.OpcoesImpressaoOrdenacaoPorOrdemCrescente)
+                    {
+                        //DataTable teste = dtbListaImpressao.AsEnumerable().OrderBy(Z => Z["DataLancamento"].ToDateTime()).CopyToDataTable();
+                        novosCodigosSelecionadosOrdenados = dtbListaImpressao.AsEnumerable().OrderBy(Z => Z["DataLancamento"].ToDateTime()).Select(T => T["CodigoObjeto"].ToString()).ToList();
+                    }
+                    else
+                    {
+                        //DataTable teste = dtbListaImpressao.AsEnumerable().OrderByDescending(Z => Z["DataLancamento"].ToDateTime()) .CopyToDataTable();
+                        novosCodigosSelecionadosOrdenados = dtbListaImpressao.AsEnumerable().OrderByDescending(Z => Z["DataLancamento"].ToDateTime()).Select(T => T["CodigoObjeto"].ToString()).ToList();
+                    }
+                }
+                #endregion
+
+                #region Abre Formulario impressao
+                if (_modeloImpressaoListaObjetos == ModeloImpressaoListaObjetos.ModeloLDI)
+                {
+                    FormularioImpressaoEntregaObjetosModelo2 formularioImpressaoEntregaObjetos = new FormularioImpressaoEntregaObjetosModelo2(novosCodigosSelecionadosOrdenados, FormularioPrincipal.OpcoesImpressaoImprimirUmPorFolha, FormularioPrincipal.OpcoesImpressaoImprimirVariosPorFolha);
+                }
+                if (_modeloImpressaoListaObjetos == ModeloImpressaoListaObjetos.ModeloComum)
+                {
+                    FormularioImpressaoEntregaObjetosModelo1 formularioImpressaoEntregaObjetos = new FormularioImpressaoEntregaObjetosModelo1(novosCodigosSelecionadosOrdenados);
+                }
+                #endregion
             }
             #endregion
+        }
 
-
-            if (_modeloImpressaoListaObjetos == ModeloImpressaoListaObjetos.ModeloLDI)
+        private void ProcessandoListaObjetosSelecionados()
+        {
+            for (int i = this.dataGridView1.SelectedRows.Count - 1; i >= 0; i--)
             {
-                FormularioImpressaoEntregaObjetosModelo2 formularioImpressaoEntregaObjetos = new FormularioImpressaoEntregaObjetosModelo2(novosCodigosSelecionadosOrdenados, FormularioPrincipal.OpcoesImpressaoImprimirUmPorFolha, FormularioPrincipal.OpcoesImpressaoImprimirVariosPorFolha);
-                //formularioImpressaoEntregaObjetos.MdiParent = MdiParent;
-                //formularioImpressaoEntregaObjetos.Show();
-                //formularioImpressaoEntregaObjetos.WindowState = FormWindowState.Maximized;
-                //formularioImpressaoEntregaObjetos.Activate();
-            }
-            if (_modeloImpressaoListaObjetos == ModeloImpressaoListaObjetos.ModeloComum)
-            {
-                FormularioImpressaoEntregaObjetosModelo1 formularioImpressaoEntregaObjetos = new FormularioImpressaoEntregaObjetosModelo1(novosCodigosSelecionadosOrdenados);
-                //formularioImpressaoEntregaObjetos.MdiParent = MdiParent;
-                //formularioImpressaoEntregaObjetos.Show();
-                //formularioImpressaoEntregaObjetos.WindowState = FormWindowState.Maximized;
-                //formularioImpressaoEntregaObjetos.Activate();
+                dtbListaImpressao.Rows.Add
+                (
+                    this.dataGridView1.SelectedRows[i].Cells["codigoObjetoDataGridViewTextBoxColumn"].Value.ToString(),
+                    this.dataGridView1.SelectedRows[i].Cells["DataLancamento"].Value.ToString(),
+                    this.dataGridView1.SelectedRows[i].Cells["nomeClienteDataGridViewTextBoxColumn"].Value.ToString(),
+                    this.dataGridView1.SelectedRows[i].Cells["TipoPostalPrazoDiasCorridosRegulamentado"].Value.ToString()
+                );
             }
         }
 
         public void GeraAvisosDeChegadaSelecionados()
         {
             List<string> novosCodigosSelecionadosOrdenados = new List<string>();
-            dicionarioCodigo_DataLancamento = new Dictionary<string, DateTime>();
+            Dictionary<string, DateTime> dicionarioCodigo_DataLancamento = new Dictionary<string, DateTime>();
             if (dataGridView1.SelectedRows.Count == 0)
             {
                 Mensagens.Informa("Para impressão da lista de entrega é necessário selecionar algum objeto.");
@@ -1824,12 +1977,18 @@ namespace SISAPO
             Html.AppendLine("       </tr>");
             Html.AppendLine("       <tr>");
             Html.AppendLine("       <th>Situação informada</td>");
-            Html.AppendLine("       <td>" + motivoBaixaInformado + "</td>");
+            Html.AppendLine("       <td><b>" + motivoBaixaInformado + "</b></td>");
             Html.AppendLine("       </tr>");
             Html.AppendLine("       <tr>");
             Html.AppendLine("       <th>Data Situação</td>");
             Html.AppendLine("       <td>" + dataModificacaoRetornada + "</td>");
             Html.AppendLine("       <tr>");
+
+            Html.AppendLine("       <th>Usuário Sistema</td>");
+            Html.AppendLine("       <td>" + Configuracoes.NomeUsuarioSISAPOLogado + "</td>");
+            Html.AppendLine("       </tr>");
+
+
             Html.AppendLine("       <th>Nome Recebedor</td>");
             Html.AppendLine("       <td>" + nomeRecebedor + "</td>");
             Html.AppendLine("       </tr>");

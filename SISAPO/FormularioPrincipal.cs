@@ -23,6 +23,8 @@ namespace SISAPO
         public static bool OpcoesImpressaoOrdenacaoPorOrdemCrescente = true;
         public static bool OpcoesImpressaoImprimirUmPorFolha = false;
         public static bool OpcoesImpressaoImprimirVariosPorFolha = false;
+        public static bool OpcoesImpressaoSepararPorPrazo = false;
+        public static bool OpcoesImpressaoNaoSepararPorPrazo = false;
 
         public FormularioPrincipal()
         {

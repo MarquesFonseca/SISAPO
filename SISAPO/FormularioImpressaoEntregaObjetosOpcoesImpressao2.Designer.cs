@@ -30,6 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormularioImpressaoEntregaObjetosOpcoesImpressao2));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.tabControl3 = new System.Windows.Forms.TabControl();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.checkBoxNaoSepararPorPrazo = new System.Windows.Forms.RadioButton();
+            this.checkBoxSepararListaPorPrazo = new System.Windows.Forms.RadioButton();
             this.tabControl4 = new System.Windows.Forms.TabControl();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.checkBoxImprimirVariosPorFolha = new System.Windows.Forms.RadioButton();
@@ -44,6 +48,8 @@
             this.btnAlterar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
+            this.tabControl3.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.tabControl4.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -55,15 +61,67 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.tabControl3);
             this.groupBox1.Controls.Add(this.tabControl4);
             this.groupBox1.Controls.Add(this.tabControl1);
             this.groupBox1.Controls.Add(this.tabControl2);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(778, 362);
+            this.groupBox1.Size = new System.Drawing.Size(778, 452);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            // 
+            // tabControl3
+            // 
+            this.tabControl3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl3.Controls.Add(this.tabPage2);
+            this.tabControl3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabControl3.Location = new System.Drawing.Point(32, 279);
+            this.tabControl3.Name = "tabControl3";
+            this.tabControl3.SelectedIndex = 0;
+            this.tabControl3.Size = new System.Drawing.Size(718, 102);
+            this.tabControl3.TabIndex = 3;
+            this.tabControl3.TabStop = false;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.checkBoxNaoSepararPorPrazo);
+            this.tabPage2.Controls.Add(this.checkBoxSepararListaPorPrazo);
+            this.tabPage2.Location = new System.Drawing.Point(4, 29);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(710, 69);
+            this.tabPage2.TabIndex = 0;
+            this.tabPage2.Text = "Escolha como deseja formar a PLR (Pré Lista de Remessa para outra unidade)";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxNaoSepararPorPrazo
+            // 
+            this.checkBoxNaoSepararPorPrazo.AutoSize = true;
+            this.checkBoxNaoSepararPorPrazo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxNaoSepararPorPrazo.Location = new System.Drawing.Point(374, 22);
+            this.checkBoxNaoSepararPorPrazo.Name = "checkBoxNaoSepararPorPrazo";
+            this.checkBoxNaoSepararPorPrazo.Size = new System.Drawing.Size(266, 29);
+            this.checkBoxNaoSepararPorPrazo.TabIndex = 1;
+            this.checkBoxNaoSepararPorPrazo.Text = "Não separar por prazo";
+            this.checkBoxNaoSepararPorPrazo.UseVisualStyleBackColor = true;
+            this.checkBoxNaoSepararPorPrazo.CheckedChanged += new System.EventHandler(this.checkBoxNaoSepararPorPrazo_CheckedChanged);
+            // 
+            // checkBoxSepararListaPorPrazo
+            // 
+            this.checkBoxSepararListaPorPrazo.AutoSize = true;
+            this.checkBoxSepararListaPorPrazo.Checked = true;
+            this.checkBoxSepararListaPorPrazo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxSepararListaPorPrazo.Location = new System.Drawing.Point(24, 22);
+            this.checkBoxSepararListaPorPrazo.Name = "checkBoxSepararListaPorPrazo";
+            this.checkBoxSepararListaPorPrazo.Size = new System.Drawing.Size(283, 29);
+            this.checkBoxSepararListaPorPrazo.TabIndex = 0;
+            this.checkBoxSepararListaPorPrazo.TabStop = true;
+            this.checkBoxSepararListaPorPrazo.Text = "Separar listas por prazo";
+            this.checkBoxSepararListaPorPrazo.UseVisualStyleBackColor = true;
+            this.checkBoxSepararListaPorPrazo.CheckedChanged += new System.EventHandler(this.checkBoxSepararListaPorPrazo_CheckedChanged);
             // 
             // tabControl4
             // 
@@ -199,7 +257,7 @@
             this.panel2.Controls.Add(this.btnAlterar);
             this.panel2.Controls.Add(this.btnCancelar);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 311);
+            this.panel2.Location = new System.Drawing.Point(0, 401);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(778, 51);
             this.panel2.TabIndex = 1;
@@ -233,7 +291,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(778, 362);
+            this.ClientSize = new System.Drawing.Size(778, 452);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -250,6 +308,9 @@
             this.Load += new System.EventHandler(this.FormularioImpressaoEntregaObjetosOpcoesImpressao2_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormularioImpressaoEntregaObjetosOpcoesImpressao2_KeyDown);
             this.groupBox1.ResumeLayout(false);
+            this.tabControl3.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.tabControl4.ResumeLayout(false);
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
@@ -277,5 +338,9 @@
         private System.Windows.Forms.TabControl tabControl2;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.ComboBox comboBoxTipoOrdenacao;
+        private System.Windows.Forms.TabControl tabControl3;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.RadioButton checkBoxNaoSepararPorPrazo;
+        private System.Windows.Forms.RadioButton checkBoxSepararListaPorPrazo;
     }
 }

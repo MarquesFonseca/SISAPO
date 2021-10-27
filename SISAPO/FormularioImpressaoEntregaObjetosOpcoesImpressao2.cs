@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SISAPO.ClassesDiversas;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,6 +17,8 @@ namespace SISAPO
         public bool OrdenacaoPorOrdemCrescente = true;
         public bool ImprimirUmPorFolha = false;
         public bool ImprimirVariosPorFolha = false;
+        public bool SepararPorPrazo = false;
+        public bool NaoSepararPorPrazo = false;
         public bool Cancelou = false;
         public bool ClicouNoConfirmar = false;
         public FormularioConsulta.ModeloImpressaoListaObjetos ModeloImpressaoListaObjetos;
@@ -26,6 +29,23 @@ namespace SISAPO
         {
             InitializeComponent();
             ModeloImpressaoListaObjetos = _modeloImpressaoListaObjetos;
+            checkBoxImprimirUmPorFolha.ForeColor = Color.Red;
+            checkBoxSepararListaPorPrazo.ForeColor = Color.Red;
+
+
+
+            //tabControl3.Visible = true;
+            //this.Size = new Size(794, 491);
+            if (Configuracoes.GerarTXTPLRNaLdi || Configuracoes.GerarQRCodePLRNaLdi)
+            {
+                tabControl3.TabPages[0].Text = "Escolha como deseja formar a PLR (Pré Lista de Remessa para outra unidade)";
+                checkBoxSepararListaPorPrazo.Checked = true;
+            }
+            else
+            {
+                tabControl3.TabPages[0].Text = "Escolha como deseja formar a lista";
+                checkBoxSepararListaPorPrazo.Checked = true;
+            }
         }
 
         private void FormularioImpressaoEntregaObjetosOpcoesImpressao2_Load(object sender, EventArgs e)
@@ -66,7 +86,8 @@ namespace SISAPO
             OrdenacaoPorOrdemCrescente = comboBoxOrdemCrescenteDescrecente.SelectedIndex == 0 ? true : false;
             ImprimirUmPorFolha = checkBoxImprimirUmPorFolha.Checked;
             ImprimirVariosPorFolha = checkBoxImprimirVariosPorFolha.Checked;
-
+            SepararPorPrazo = checkBoxSepararListaPorPrazo.Checked;
+            NaoSepararPorPrazo = checkBoxNaoSepararPorPrazo.Checked;
             Cancelou = false;
             this.Close();
         }
@@ -81,6 +102,7 @@ namespace SISAPO
         private void checkBoxImprimirUmPorFolha_CheckedChanged(object sender, EventArgs e)
         {
             ImprimirUmPorFolha = checkBoxImprimirUmPorFolha.Checked;
+            ImprimirVariosPorFolha = !checkBoxImprimirUmPorFolha.Checked;
 
             if (checkBoxImprimirUmPorFolha.Checked)
             {
@@ -88,15 +110,16 @@ namespace SISAPO
             }
             else
             {
-                checkBoxImprimirUmPorFolha.ForeColor = System.Drawing.SystemColors.Highlight;
+                checkBoxImprimirUmPorFolha.ForeColor = System.Drawing.SystemColors.ControlText;
             }
 
-            checkBoxImprimirVariosPorFolha.Checked = !checkBoxImprimirUmPorFolha.Checked;
+            //checkBoxImprimirVariosPorFolha.Checked = !checkBoxImprimirUmPorFolha.Checked;
         }
 
         private void checkBoxImprimirVariosPorFolha_CheckedChanged(object sender, EventArgs e)
         {
             ImprimirVariosPorFolha = checkBoxImprimirVariosPorFolha.Checked;
+            ImprimirUmPorFolha = !checkBoxImprimirVariosPorFolha.Checked;
 
             if (checkBoxImprimirVariosPorFolha.Checked)
             {
@@ -104,7 +127,37 @@ namespace SISAPO
             }
             else
             {
-                checkBoxImprimirVariosPorFolha.ForeColor = System.Drawing.SystemColors.Highlight;
+                checkBoxImprimirVariosPorFolha.ForeColor = System.Drawing.SystemColors.ControlText;
+            }
+        }
+
+        private void checkBoxSepararListaPorPrazo_CheckedChanged(object sender, EventArgs e)
+        {
+            SepararPorPrazo = checkBoxSepararListaPorPrazo.Checked;
+            NaoSepararPorPrazo = !checkBoxSepararListaPorPrazo.Checked;
+
+            if (checkBoxSepararListaPorPrazo.Checked)
+            {
+                checkBoxSepararListaPorPrazo.ForeColor = Color.Red;
+            }
+            else
+            {
+                checkBoxSepararListaPorPrazo.ForeColor = System.Drawing.SystemColors.ControlText;
+            }
+        }
+
+        private void checkBoxNaoSepararPorPrazo_CheckedChanged(object sender, EventArgs e)
+        {
+            NaoSepararPorPrazo = checkBoxNaoSepararPorPrazo.Checked;
+            SepararPorPrazo = !checkBoxNaoSepararPorPrazo.Checked;
+
+            if (checkBoxNaoSepararPorPrazo.Checked)
+            {
+                checkBoxNaoSepararPorPrazo.ForeColor = Color.Red;
+            }
+            else
+            {
+                checkBoxNaoSepararPorPrazo.ForeColor = System.Drawing.SystemColors.ControlText;
             }
         }
 
@@ -185,5 +238,7 @@ namespace SISAPO
         {
 
         }
+
+
     }
 }
