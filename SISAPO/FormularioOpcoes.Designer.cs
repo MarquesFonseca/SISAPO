@@ -39,6 +39,8 @@
             this.radioButtonEnderecoSROWebsro2oCampo2 = new System.Windows.Forms.RadioButton();
             this.radioButtonEnderecoAppCampo2 = new System.Windows.Forms.RadioButton();
             this.TxtEnderecoSROEspecificoObjeto = new System.Windows.Forms.TextBox();
+            this.bindingSourceTabelaConfiguracoesSistema = new System.Windows.Forms.BindingSource(this.components);
+            this.dataSetConfiguracoes = new SISAPO.DataSetConfiguracoes();
             this.label9 = new System.Windows.Forms.Label();
             this.BtnAtualizarEnderecoSROObjetoEspecifico = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
@@ -97,13 +99,13 @@
             this.labelResultadoFolderBackup = new System.Windows.Forms.Label();
             this.BtnBuscarEnderecoParaBackup = new System.Windows.Forms.Button();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.bindingSourceTabelaConfiguracoesSistema = new System.Windows.Forms.BindingSource(this.components);
-            this.dataSetConfiguracoes = new SISAPO.DataSetConfiguracoes();
             this.tabelaConfiguracoesSistemaTableAdapter = new SISAPO.DataSetConfiguracoesTableAdapters.TabelaConfiguracoesSistemaTableAdapter();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageObjetosAguardandoRetirada.SuspendLayout();
             this.groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceTabelaConfiguracoesSistema)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetConfiguracoes)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.tabPageExibirItensJaEntregues.SuspendLayout();
             this.tabPageConfiguracoesAgencia.SuspendLayout();
@@ -114,8 +116,6 @@
             this.groupBox2.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceTabelaConfiguracoesSistema)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSetConfiguracoes)).BeginInit();
             this.SuspendLayout();
             // 
             // LblTituloFormulario
@@ -230,6 +230,16 @@
             this.TxtEnderecoSROEspecificoObjeto.Name = "TxtEnderecoSROEspecificoObjeto";
             this.TxtEnderecoSROEspecificoObjeto.Size = new System.Drawing.Size(648, 26);
             this.TxtEnderecoSROEspecificoObjeto.TabIndex = 8;
+            // 
+            // bindingSourceTabelaConfiguracoesSistema
+            // 
+            this.bindingSourceTabelaConfiguracoesSistema.DataMember = "TabelaConfiguracoesSistema";
+            this.bindingSourceTabelaConfiguracoesSistema.DataSource = this.dataSetConfiguracoes;
+            // 
+            // dataSetConfiguracoes
+            // 
+            this.dataSetConfiguracoes.DataSetName = "DataSetConfiguracoes";
+            this.dataSetConfiguracoes.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label9
             // 
@@ -782,9 +792,9 @@
             this.checkBoxACCAgenciaComunitaria.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBoxACCAgenciaComunitaria.Location = new System.Drawing.Point(28, 120);
             this.checkBoxACCAgenciaComunitaria.Name = "checkBoxACCAgenciaComunitaria";
-            this.checkBoxACCAgenciaComunitaria.Size = new System.Drawing.Size(343, 24);
+            this.checkBoxACCAgenciaComunitaria.Size = new System.Drawing.Size(345, 24);
             this.checkBoxACCAgenciaComunitaria.TabIndex = 4;
-            this.checkBoxACCAgenciaComunitaria.Text = "ACC - Agência de Correios Comunitária";
+            this.checkBoxACCAgenciaComunitaria.Text = "AGC - Agência de Correios Comunitária";
             this.checkBoxACCAgenciaComunitaria.UseVisualStyleBackColor = true;
             this.checkBoxACCAgenciaComunitaria.CheckedChanged += new System.EventHandler(this.checkBoxACCAgenciaComunitaria_CheckedChanged);
             // 
@@ -959,16 +969,6 @@
             this.BtnBuscarEnderecoParaBackup.UseVisualStyleBackColor = true;
             this.BtnBuscarEnderecoParaBackup.Click += new System.EventHandler(this.BtnBuscarEnderecoParaBackup_Click);
             // 
-            // bindingSourceTabelaConfiguracoesSistema
-            // 
-            this.bindingSourceTabelaConfiguracoesSistema.DataMember = "TabelaConfiguracoesSistema";
-            this.bindingSourceTabelaConfiguracoesSistema.DataSource = this.dataSetConfiguracoes;
-            // 
-            // dataSetConfiguracoes
-            // 
-            this.dataSetConfiguracoes.DataSetName = "DataSetConfiguracoes";
-            this.dataSetConfiguracoes.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // tabelaConfiguracoesSistemaTableAdapter
             // 
             this.tabelaConfiguracoesSistemaTableAdapter.ClearBeforeFill = true;
@@ -995,6 +995,8 @@
             this.tabPageObjetosAguardandoRetirada.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceTabelaConfiguracoesSistema)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetConfiguracoes)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.tabPageExibirItensJaEntregues.ResumeLayout(false);
@@ -1010,8 +1012,6 @@
             this.groupBox4.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceTabelaConfiguracoesSistema)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSetConfiguracoes)).EndInit();
             this.ResumeLayout(false);
 
         }
