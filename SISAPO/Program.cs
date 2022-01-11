@@ -21,6 +21,7 @@ namespace SISAPO
 
         static void Main(string[] args)
         {
+            //teste git
             #region TipoAmbiente
 #if DEBUG
             Configuracoes.TipoAmbiente = TipoAmbiente.Desenvolvimento;
