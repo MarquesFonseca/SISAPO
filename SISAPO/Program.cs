@@ -21,7 +21,7 @@ namespace SISAPO
 
         static void Main(string[] args)
         {
-            //teste git --> 3 --> 4 --> 5
+            
             #region TipoAmbiente
 #if DEBUG
             Configuracoes.TipoAmbiente = TipoAmbiente.Desenvolvimento;
@@ -30,12 +30,12 @@ namespace SISAPO
             Configuracoes.TipoAmbiente = TipoAmbiente.Producao;
 #endif
             #endregion
-            //6
+            
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("pt-BR");
             System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("pt-BR");
-            //teste git 2
+            
             FormularioPrincipal formularioPrincipal = new FormularioPrincipal();
 
             var processo = System.Diagnostics.Process.GetCurrentProcess();
