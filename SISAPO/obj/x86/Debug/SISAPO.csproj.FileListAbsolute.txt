@@ -11,7 +11,6 @@ C:\Projetos\SISAPO\SISAPO\bin\Debug\HtmlRenderer.PdfSharp.dll
 C:\Projetos\SISAPO\SISAPO\bin\Debug\Ionic.Utils.Zip.dll
 C:\Projetos\SISAPO\SISAPO\bin\Debug\MessagingToolkit.QRCode.dll
 C:\Projetos\SISAPO\SISAPO\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Validation.dll
-C:\Projetos\SISAPO\SISAPO\bin\Debug\Microsoft.VisualBasic.PowerPacks.Vs.dll
 C:\Projetos\SISAPO\SISAPO\bin\Debug\Mono.Security.dll
 C:\Projetos\SISAPO\SISAPO\bin\Debug\MySql.Data.dll
 C:\Projetos\SISAPO\SISAPO\bin\Debug\MySql.Web.dll
@@ -19,7 +18,6 @@ C:\Projetos\SISAPO\SISAPO\bin\Debug\Npgsql.dll
 C:\Projetos\SISAPO\SISAPO\bin\Debug\PdfSharp.Charting.dll
 C:\Projetos\SISAPO\SISAPO\bin\Debug\PdfSharp.dll
 C:\Projetos\SISAPO\SISAPO\bin\Debug\Release.dll
-C:\Projetos\SISAPO\SISAPO\bin\Debug\System.Data.SqlServerCe.dll
 C:\Projetos\SISAPO\SISAPO\bin\Debug\zxing.dll
 C:\Projetos\SISAPO\SISAPO\bin\Debug\zxing.presentation.dll
 C:\Projetos\SISAPO\SISAPO\bin\Debug\HtmlRenderer.pdb
@@ -84,3 +82,5 @@ C:\Projetos\SISAPO\SISAPO\obj\x86\Debug\SISAPO.pdb
 C:\Projetos\SISAPO\SISAPO\obj\x86\Debug\SISAPO.csprojResolveAssemblyReference.cache
 C:\Projetos\SISAPO\SISAPO\obj\x86\Debug\SISAPO.FormAcesso.resources
 C:\Projetos\SISAPO\SISAPO\obj\x86\Debug\SISAPO.FormularioCadastroUsuario.resources
+C:\projetos\SISAPO\sisapo\obj\x86\Debug\SISAPO.csproj.AssemblyReference.cache
+C:\projetos\SISAPO\sisapo\obj\x86\Debug\SISAPO.csproj.SuggestedBindingRedirects.cache
