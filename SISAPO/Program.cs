@@ -30,7 +30,7 @@ namespace SISAPO
             Configuracoes.TipoAmbiente = TipoAmbiente.Producao;
 #endif
             #endregion
-
+            //6
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("pt-BR");
