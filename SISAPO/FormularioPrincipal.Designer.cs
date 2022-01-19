@@ -307,6 +307,7 @@ namespace SISAPO
             this.solicitarVerificacaoDeObjetosAindaNaoEntreguesToolStripMenuItem.Name = "solicitarVerificacaoDeObjetosAindaNaoEntreguesToolStripMenuItem";
             this.solicitarVerificacaoDeObjetosAindaNaoEntreguesToolStripMenuItem.Size = new System.Drawing.Size(379, 22);
             this.solicitarVerificacaoDeObjetosAindaNaoEntreguesToolStripMenuItem.Text = "&Solicitar verificação de Objetos ainda não Entregues";
+            this.solicitarVerificacaoDeObjetosAindaNaoEntreguesToolStripMenuItem.Visible = false;
             this.solicitarVerificacaoDeObjetosAindaNaoEntreguesToolStripMenuItem.Click += new System.EventHandler(this.solicitarVerificacaoDeObjetosAindaNaoEntreguesToolStripMenuItem_Click);
             // 
             // toolStripSeparator5
@@ -742,28 +743,28 @@ namespace SISAPO
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabelDataHoraUltimaAtualizacaoImportacao,
             this.toolStripStatusLabelDataHora});
-            this.statusStrip1.Location = new System.Drawing.Point(374, 1);
+            this.statusStrip1.Location = new System.Drawing.Point(407, -1);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(365, 23);
+            this.statusStrip1.Size = new System.Drawing.Size(332, 25);
             this.statusStrip1.TabIndex = 4;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabelDataHoraUltimaAtualizacaoImportacao
             // 
-            this.toolStripStatusLabelDataHoraUltimaAtualizacaoImportacao.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripStatusLabelDataHoraUltimaAtualizacaoImportacao.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripStatusLabelDataHoraUltimaAtualizacaoImportacao.ForeColor = System.Drawing.Color.Red;
             this.toolStripStatusLabelDataHoraUltimaAtualizacaoImportacao.Name = "toolStripStatusLabelDataHoraUltimaAtualizacaoImportacao";
-            this.toolStripStatusLabelDataHoraUltimaAtualizacaoImportacao.Size = new System.Drawing.Size(249, 18);
+            this.toolStripStatusLabelDataHoraUltimaAtualizacaoImportacao.Size = new System.Drawing.Size(225, 20);
             this.toolStripStatusLabelDataHoraUltimaAtualizacaoImportacao.Text = "Última atualização dos dados: ";
             this.toolStripStatusLabelDataHoraUltimaAtualizacaoImportacao.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // toolStripStatusLabelDataHora
             // 
-            this.toolStripStatusLabelDataHora.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripStatusLabelDataHora.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripStatusLabelDataHora.ForeColor = System.Drawing.Color.MediumBlue;
             this.toolStripStatusLabelDataHora.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.toolStripStatusLabelDataHora.Name = "toolStripStatusLabelDataHora";
-            this.toolStripStatusLabelDataHora.Size = new System.Drawing.Size(99, 18);
+            this.toolStripStatusLabelDataHora.Size = new System.Drawing.Size(90, 20);
             this.toolStripStatusLabelDataHora.Text = "data e hora";
             // 
             // panel1
